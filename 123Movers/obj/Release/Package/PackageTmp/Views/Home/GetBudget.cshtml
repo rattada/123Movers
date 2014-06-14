@@ -1,0 +1,294 @@
+﻿@model _123Movers.Models.SearchModel
+@using _123Movers.Models;
+
+@{
+    ViewBag.Title = "GetBudget";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var IsActive = (@Model.IsActive) ? "Active" : "Expired";
+}
+
+ <div class="row">
+        <div class="col-md-12">
+            <p></p>
+    <table class="table table-bordered" style="margin-bottom:0px;">
+                            <tbody>
+                                <tr>
+                                    <td class="col-md-6">Legal Name : <strong>@Model.CompanyName</strong> <a href="javascript:void(0);">Edit</a></td>
+                                    <td class="col-md-3">STATUS : @IsActive</td>
+                                    <td class="col-md-3">SUPPRESS : NO</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">DBA Name :</td>
+                                    <td class="col-md-3">CompanyID : <strong>@Model.CompanyId</strong></td>
+                                    <td class="col-md-3">Sales Person : <strong>@Model.ContactPerson</strong></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">AKA Name :</td>
+                                    <td class="col-md-6" colspan="2">Company Handle :@Model.CompanyHandle <a href="javascript:void(0);">Company Page</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">Display Name : <strong>@Model.DisplayName</strong></td>
+                                    <td class="col-md-3">AX # : <strong>@Model.AX</strong></td>
+                                    <td class="col-md-3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+    </div>
+        </div>
+
+@if (@Model != null)
+{
+    
+    
+        <h2>Active Budgets</h2> 
+    
+     <div class="row">
+         <div class="col-md-12">
+             @*<input type="button" id ="AddBudget" class="button" value="Add Budget" />*@
+  <p>  @Html.ActionLink("Add a Budget", "AddBudget", "Home", new { companyid = @Model.CompanyId, companyName = @Model.CompanyName, ax = @Model.AX, active = @Model.IsActive, displayname = @Model.DisplayName, contactperson = @Model.ContactPerson, companyHandle=@Model.CompanyHandle }, new {id = "AddBudget", @class = "btn btn-primary" })</p>
+             </div>
+     </div>
+    <div class="table-responsive">
+    <table id="ActiveInfo" class="table table-striped">
+      <thead>
+        <tr>
+            <th>
+                Insertion Order Id
+            </th>
+
+            <th>
+                Start Date
+            </th>
+
+            <th>
+               Budget Amount
+            </th>
+
+            <th>
+                Remaining Budget
+            </th>
+            <th>
+                Terms
+            </th>
+            <th>
+                Filters
+            </th>
+        </tr>
+          </thead>
+          <tbody>
+               
+            @{
+           // DateTime currentDate = DateTime.UtcNow;
+            List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null).ToList();
+                }   
+            @if (activeBudget.Count > 0)
+            {
+                foreach (var lot in activeBudget)
+                {
+           
+          
+            <tr>
+                <td>
+                    @lot.InsertionOrderId
+                </td>
+
+                <td>
+                    @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString()
+                </td>
+                
+                <td>
+                    @string.Format("{0:c}", @lot.TotalBudget)
+                </td>
+
+                <td>
+                   @string.Format("{0:c}", @lot.RemainingBudget)
+                </td>
+
+                <td>
+                   @if (@lot.IsRecurring)
+                   {
+                   <span>Reoccuring</span>                  
+                   }
+                   else
+                   {
+                    <span>Notice Required</span>     
+                   }
+               </td>
+
+                <td>
+            
+                               
+                </td>
+            </tr>
+            
+                }
+            }
+            else
+            {
+                <tr>
+                <td class="col-md-6">No Active Bugdets found
+                </td>
+            </tr>
+            }
+
+       
+               </tbody>
+    </table>
+        </div>
+    
+    
+        <h2>Expired Budgets</h2> 
+     
+    <div class="row">
+        <div class="col-md-6">
+             <p>  <strong>Total Billed :</strong> @ViewBag.TotalBilled</p>
+            </div>
+            <div class="col-md-6">
+              <p> <strong>Total Uncharged :</strong> @ViewBag.UnchargedAmount</p>
+          </div>
+     </div>
+  
+    <div class="row">
+    <div class="table-responsive">
+    <table id="ExpiredInfo" class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+            </th>
+
+            <th>
+                Start Date
+            </th>
+
+            <th>
+               End Date
+            </th>
+
+            <th>
+                Total Budget
+            </th>
+            <th>
+               Uncharged Amount
+            </th>
+            <th>
+               Terms
+            </th>
+            <th>
+                Filters
+            </th>
+        </tr>
+         </thead>
+          <tbody>
+        
+            @{
+            List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now).ToList();
+                } 
+            @if (expiredBudget.Count > 0)
+            {
+                foreach (var lot in expiredBudget)
+                {
+               
+            <tr>
+                <td>
+                    @lot.InsertionOrderId
+                </td>
+
+                <td>
+                  @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString()
+                </td>
+                
+                <td>
+                   @DateTime.Parse(@lot.EndDate.ToString()).ToShortDateString()
+                </td>
+
+                <td>
+                   @string.Format("{0:c}", @lot.TotalBudget)
+                </td>
+
+                <td>
+                     @string.Format("{0:c}", @lot.UnchargedAmount)
+                </td>
+
+               <td>
+                   @if (@lot.IsRecurring)
+                   {
+                   <span>Reoccuring</span>                  
+                   }
+                   else
+                   {
+                    <span>Notice Required</span>     
+                   }
+               </td>
+
+                <td>
+                             
+                </td>
+            </tr>
+                
+                }
+            }
+             else
+        {
+            <tr>
+                <td colspan="10">No Exipred Bugdets found
+                </td>
+            </tr>
+        }
+
+        
+       
+              </tbody>
+    </table>
+        </div>
+         </div>
+    
+}
+
+@* <div class="Container">
+ <p class="button">@Html.ActionLink("Back to List", "history.go(-1);return false;")</p>
+</div>*@
+<a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">BACK TO LIST</a> 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //var count = $('#ActiveInfo>tbody>tr').length;
+        //var count1 = $('#ExpiredInfo>tbody>tr').length;
+        //alert(count1);
+        //if (count <= 0) {
+        //    $('#empty').attr('style', 'display:none')
+        //}
+        
+
+      @*  $("#AddBudget").click(function () {
+
+            var search = {
+                CompanyId: @Model.CompanyId,
+                    CompanyName: @Model.CompanyName,
+            ContactPerson: @Model.ContactPerson,
+            AX: @Model.AX
+              
+        };
+
+            var car = { CompanyId: @Model.CompanyId, Model: 'A4 Avant', Colour: 'Black', Registered: 2013 };
+              $.ajax({
+                url: '/Home/AddBudget',
+                type: 'GET',
+                dataType: 'json',
+                traditional: true,
+                data: $("#form").serialize(),
+                success: function () {
+                    //reordered = false;
+                    //$('#saveOrder').removeClass('Save').addClass('Disabled').unbind('click');
+                    //$("body").unmask();
+                    //Dominion.Cms.Common.showSuccessMessage("#cmsMessage", "Coupon order saved successfully.");
+                },
+                error: function () {
+                    //$("body").unmask();
+                    //Dominion.Cms.Common.showErrorMessage("#cmsMessage", "There was an error saving the coupon order. Please try again.");
+                }
+            });
+        });*@
+
+
+    });
+</script>

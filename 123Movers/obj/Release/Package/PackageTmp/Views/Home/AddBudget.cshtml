@@ -1,0 +1,241 @@
+﻿@model _123Movers.Models.BudgetModel
+
+@{
+    ViewBag.Title = "Add Budget";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var IsActive = ((bool)@Session["IsActive"]) ? "Active" : "Expired";
+}
+<script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+
+
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+
+ @Html.HiddenFor(model => model.CompanyId)
+
+ 
+
+<input type="hidden" id="message" value="@ViewBag.Success"/>
+
+@using (Html.BeginForm("AddBudget", "Home", FormMethod.Post, new { id = "frmaddbudget" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <p></p>
+    <table class="table table-bordered" style="margin-bottom:0px;">
+                            <tbody>
+                                <tr>
+                                    <td class="col-md-6">Legal Name : <strong>@Session["CompanyName"]</strong> <a href="javascript:void(0);">Edit</a></td>
+                                    <td class="col-md-3">STATUS : @IsActive</td>
+                                    <td class="col-md-3">SUPPRESS : NO</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">DBA Name :</td>
+                                    <td class="col-md-3">CompanyID : <strong>@Session["CompanyId"]</strong></td>
+                                    <td class="col-md-3">Sales Person : <strong>@Session["ContactPerson"]</strong></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">AKA Name :</td>
+                                    <td class="col-md-6" colspan="2">Company Handle : @Session["CompanyHandle"] <a href="javascript:void(0);">Company Page</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">Display Name : <strong>@Session["DisplayName"]</strong></td>
+                                    <td class="col-md-3">AX # : <strong>@Session["Ax"]</strong></td>
+                                    <td class="col-md-3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+    </div>
+        </div>
+ <div class="row">
+    <div class="col-lg-4">
+
+        @* <div class="form-group" >
+                
+                    Insertion Order ID
+                    <div class="form-control">
+                       Auto Generate
+                    </div>
+                </div>*@
+            @*<div class="form-group" >
+                
+                    @Html.LabelFor(m => m.InsertionOrderId)
+                @Html.TextBoxFor(m => m.InsertionOrderId)
+                @Html.ValidationMessageFor(m => m.InsertionOrderId)
+                </div>*@
+                
+              <div class="form-group">
+                    @Html.LabelFor(m => m.TotalBudget)
+                    @Html.TextBoxFor(m => m.TotalBudget, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.TotalBudget)
+                </div>
+               <div class="form-group">
+                @Html.LabelFor(m => m.AgreementNumber)
+                @Html.TextBoxFor(m => m.AgreementNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.AgreementNumber)
+                   </div>
+      <div class="form-group">
+                @Html.LabelFor(m => m.MinDaysToCharge)
+                @Html.TextBoxFor(m => m.MinDaysToCharge, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.MinDaysToCharge)
+                   </div>
+            </div>
+            <div class="col-lg-4">
+              @*  @Html.LabelFor(m => m.StartDate)
+                @Html.TextBoxFor(m => m.StartDate, new { @class = "datepicker form-control" })
+                @Html.ValidationMessageFor(m => m.StartDate)*@
+
+                 
+                 @*<div class="form-group checkbox">
+                     @Html.LabelFor(m => m.IsRecurring)
+                     @Html.CheckBoxFor(m => m.IsRecurring)
+               
+             </div>
+                 <div class="form-group checkbox">
+                       @Html.LabelFor(m => m.IsRequireNoticeToCharge)
+                     @Html.CheckBoxFor(m => m.IsRequireNoticeToCharge)
+              
+             </div>*@
+                 @*<div class="form-group checkbox">
+                     @Html.LabelFor(m => m.Expire)
+                     @Html.CheckBoxFor(m => m.Expire)
+                
+             </div>*@
+                   @* <div class="form-group">
+                <label>
+                    Terms</label>
+                @Html.DropDownList("terms", ViewBag.Terms as IEnumerable<SelectListItem>, new { id = "terms", @class = "form-control" })
+                     </div> *@ 
+                         
+                 <div class="form-group">
+                @Html.LabelFor(m => m.Terms)
+                @Html.DropDownListFor(m => m.Terms, ViewBag.Terms as IEnumerable<SelectListItem>, "--Choose One--", new { @class = "form-control dropdown", @title = "Select Terms" })
+                @Html.ValidationMessageFor(m => m.Terms)
+                </div>
+
+                <div class="form-group">
+                @Html.LabelFor(m => m.Services)
+                @Html.DropDownListFor(m => m.Services, ViewBag.Services as IEnumerable<SelectListItem>, "--Choose One--", new { id ="services", @class = "form-control dropdown", @title = "Select Services" })
+                @Html.ValidationMessageFor(m => m.Services)
+                </div>
+
+            </div>
+@* <div class="col-lg-2">
+     <input type="checkbox" id ="chkterms" /> 
+ </div>*@
+                <div class="col-lg-4 pull-right">
+                 <div class="top-buffer" >
+                    <input type="submit" value="Save Budget" id ="save" class="btn btn-primary">
+
+                     </div>
+                </div>
+
+   
+
+</div>
+                @* <div class ="row">
+                 <div class="form-group col-lg-4">
+                @Html.LabelFor(m => m.Services)
+                @Html.DropDownListFor(m => m.Services, ViewBag.Services as IEnumerable<SelectListItem>, new { id ="services", @class = "form-control dropdown", @title = "Select Services" })
+                @Html.ValidationMessageFor(m => m.Services)
+                </div></div>*@
+}
+@*<div class ="row">
+    <div class="form-group">
+
+@Html.LabelFor(m => m.Services)
+@Html.DropDownListFor(m => m.Services, ViewBag.Services as IEnumerable<SelectListItem>, new { @class = "form-control dropdown", @title = "Select Services" })
+@Html.ValidationMessageFor(m => m.Services)
+
+
+                <label>
+                    Services</label>
+                @Html.DropDownList("services", ViewBag.Services as IEnumerable<SelectListItem>, new { id = "services", @class = "form-control" })
+                     </div>  
+</div>*@
+
+<div id ="treeview" style="display:block">
+
+</div>
+@* <section  class="">
+    @Html.Partial("_LoginPartial")
+</section>*@
+<div class ="row">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Get Services</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+
+
+<script type="text/javascript">
+    $(function () {
+        //$(".datepicker").datepicker();
+
+        var message =$.trim($('#message').val());
+        if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
+
+
+        //$('#services').on('change', function () {
+        //        $.ajax({
+        //            url: '/Home/GetServices',
+        //            type: "GET",
+        //            dataType: "json",
+        //            success: function (data) {
+        //                var strigifyJson = JSON.stringify(data);
+        //                var json = $.parseJSON(strigifyJson);
+
+        //                var tr;
+        //                tr = "<table class='table'><tr><td class='col-md-2'>" + 'Area Code' + "</td><td >" + 'State' + "</td></tr>";
+        //                jQuery.each(json, function (i, val) {
+        //                    tr += "<tr><td>" + val['areaCode'] + "</td><td>" + val['longState'] + "</td></tr>";
+        //                });
+        //                tr += "</table>";
+        //                $(".modal-body").html(tr);
+
+                       
+        //            },
+        //            error: function (xhr, ajaxOptions, thrownError) {
+        //            }
+        //        });
+
+        //        $('#myModal').modal('show')
+        //});
+
+        $("#save").click(function () {
+          @*  $.ajax({
+                url: '/Home/AddBudget',
+                type: 'POST',
+                dataType: 'json',
+                traditional: true,
+                data: { "model": @Model },
+                success: function () {
+                    //reordered = false;
+                    //$('#saveOrder').removeClass('Save').addClass('Disabled').unbind('click');
+                    //$("body").unmask();
+                    //Dominion.Cms.Common.showSuccessMessage("#cmsMessage", "Coupon order saved successfully.");
+                },
+                error: function () {
+                    //$("body").unmask();
+                    //Dominion.Cms.Common.showErrorMessage("#cmsMessage", "There was an error saving the coupon order. Please try again.");
+                }
+            });*@
+        });
+
+
+    });
+</script>

@@ -1,0 +1,106 @@
+﻿
+
+/* info and errors */
+.message-info {
+    border: 1px solid;
+    clear: both;
+    padding: 10px 20px;
+}
+
+.message-error {
+    clear: both;
+    color: #e80c4d;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.message-success {
+    color: #7ac0da;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.error {
+    color: #e80c4d;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #e80c4d;
+    font-weight: bold;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #e80c4d;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #e80c4d;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+
+    #loginForm .validation-error {
+        display: block;
+        margin-left: 15px;
+    }
+
+    #loginForm .validation-summary-errors ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    #loginForm .validation-summary-errors li {
+        display: inline;
+        list-style: none;
+        margin: 0;
+    }
+    .top-buffer { margin-top:65%;float:right; }
+    .nav-pills > li > a:hover{
+        border-radius:0px!important;
+           color:#000;
+    }
+    .nav-pills > li > a{
+        color:#fff;
+    }
+    .nav-pills > li > a:focus{
+        color:#000;
+    }
+    #login{
+        margin-top:10px;
+    }
+    .dtbl{color:#231F20;table-layout:fixed;text-align:left;width:100%;}
+
+.button {
+		background: #00a6fc;
+		display: inline-block;
+		text-align: center;
+		padding: 9px 34px 11px;
+		color: #fff;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 13px; font-size: 1.3rem;
+		line-height: 1;
+		font-family: "Helvetica Neue", "Helvetica", Arial, Verdana, sans-serif;
+		position: relative;
+		cursor: pointer;
+		border: none;
+		outline: none;
+		margin: 0;
+	}
+.hr{
+    border-top:2px solid #000;
+    margin-top:10px;
+    margin-bottom:10px;
+}

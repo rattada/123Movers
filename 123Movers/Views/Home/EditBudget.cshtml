@@ -1,0 +1,235 @@
+﻿@model _123Movers.Models.BudgetModel
+
+@{
+    ViewBag.Title = "Edit Budget";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var IsActive = (@Model.IsActive) ? "Active" : "Expired";
+}
+<script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+@*<script src="~/Scripts/jstree.js" type="text/javascript"></script>*@
+
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+
+<input type="hidden" id="message" value="@ViewBag.Success"/>
+
+@using (Html.BeginForm("EditBudget", "Home", FormMethod.Post, new { id = "frmeditbudget" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <p></p>
+            <table class="table table-bordered" style="margin-bottom: 0px;">
+                <tbody>
+                    <tr>
+                        <td class="col-md-6">Legal Name : <strong>@Model.CompanyName</strong> <a href="javascript:void(0);">Edit</a></td>
+                        <td class="col-md-3">STATUS : @IsActive</td>
+                        <td class="col-md-3">SUPPRESS : NO</td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-6">DBA Name :</td>
+                        <td class="col-md-3">CompanyID : <strong>@Model.CompanyId</strong></td>
+                        <td class="col-md-3">Sales Person : <strong>@Model.ContactPerson</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-6">AKA Name :</td>
+                        <td class="col-md-6" colspan="2">Company Handle :@Model.CompanyHandle <a href="javascript:void(0);">Company Page</a></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-6">Display Name : <strong>@Model.DisplayName</strong></td>
+                        <td class="col-md-3">AX # : <strong>@Model.AX</strong></td>
+                        <td class="col-md-3"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <p class="clearfix"></p>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.TotalBudget)
+                @Html.TextBoxFor(m => m.TotalBudget, new { @class = "form-control", Value = String.Format("{0:0.00}", Model.TotalBudget) })
+                @Html.ValidationMessageFor(m => m.TotalBudget)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AgreementNumber)
+                @Html.TextBoxFor(m => m.AgreementNumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.AgreementNumber)
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Terms)
+                @Html.DropDownListFor(m => m.Terms, ViewBag.Terms as IEnumerable<SelectListItem>, new { @class = "form-control dropdown", @title = "Select Terms" })
+                @Html.ValidationMessageFor(m => m.Terms)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Services)
+                @Html.DropDownListFor(m => m.Services, ViewBag.Services as IEnumerable<SelectListItem>, new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
+                @Html.ValidationMessageFor(m => m.Services)
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(m => m.MinDaysToCharge)
+                @Html.TextBoxFor(m => m.MinDaysToCharge, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.MinDaysToCharge)
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 pull-right">
+            <a href="#" onclick="history.go(-1);return false;" class="btn btn-default">BACK TO LIST</a>
+            <input type="submit" value="Save Budget" id="save" class="btn btn-primary pull-right">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="service" />Filters
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="filters">
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        var message = $.trim($('#message').val());
+        if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
+
+
+        $('#service').on('change', function () {
+            if (this.checked) {
+
+                $.ajax({
+                    url: '/Home/GetServices',
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        var strigifyJson = JSON.stringify(data);
+                        var json = $.parseJSON(strigifyJson);
+
+                        var table;
+
+
+
+                        table = "<div class='panel-group' id='accordion'> <div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'>  <a data-toggle='collapse' data-parent='#accordion' href='#collapseAreaCode'>Geography </a></h4></div><div id='collapseAreaCode' class='panel-collapse collapse in'><div class='panel-body'>                           <div class='row scrollable-table'><div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                        jQuery.each(json, function (i, val) {
+                            if (i <= 57) {
+                                table += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /> </td></tr>";
+                            }
+                        });
+                        table += "</tbody></table></div>";
+
+                        var table1 = "<div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                        jQuery.each(json, function (i, val) {
+                            if (i >= 58 && i <= 115) {
+                                table1 += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /> </td></tr>";
+                            }
+                        });
+                        table1 += "</tbody></table></div>";
+
+                        var table2 = "<div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                        jQuery.each(json, function (i, val) {
+                            if (i >= 116 && i <= 173) {
+                                table2 += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /> </td></tr>";
+                            }
+                        });
+                        table2 += "</tbody></table></div>";
+
+                        var table3 = "<div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                        jQuery.each(json, function (i, val) {
+                            if (i >= 174 && i < json.length) {
+                                table3 += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /> </td></tr>";
+                            }
+                        });
+                        table3 += "</tbody></table></div></div></div></div></div>";
+
+                        table += table1 + table2 + table3;
+
+
+
+                        var tableNew;
+                        tableNew = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseTwo'># Of LEADS per day</a></h4></div><div id='collapseTwo' class='panel-collapse collapse'><div class='panel-body'> Need to Add Leads filter Information here. </div> </div></div>";
+
+
+                        var tableNew2;
+                        tableNew2 = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseThree'>Distance </a></h4></div><div id='collapseThree' class='panel-collapse collapse'><div class='panel-body'> Nedd to Add Distance filter Information here. </div> </div></div>";
+
+                        var tableNew3;
+                        tableNew3 = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseFour'>Day of the Week </a></h4></div><div id='collapseFour' class='panel-collapse collapse'><div class='panel-body'> Nedd to Add Day of the Week  filter Information here. </div> </div></div>";
+
+
+                        var tableNew4;
+                        tableNew4 = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseFive'>Weight/Size</a></h4></div><div id='collapseFive' class='panel-collapse collapse'><div class='panel-body'> Nedd to Add Weight/Size filter Information here. </div> </div></div>";
+
+                        table += tableNew + tableNew2 + tableNew3 + tableNew4;
+
+                        $("#filters").html(table);
+
+
+
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+
+                    }
+                });
+            }
+            else {
+                $("#filters").html('');
+            }
+        });
+        var tableValues = ' ';
+        $("#save").click(function () {
+            $('table tbody tr').each(function () {
+                $(this).find('input:checkbox:checked').each(function () {
+                    var checkboxId = $(this).attr('id');
+                    var textBoxValue = $(this).closest('tr').find('.form-control').val()
+                    var textBoxId = $(this).closest('tr').find('.form-control').attr('id');
+                    var StoreinDB = "(" + checkboxId + " " + textBoxId + " " + textBoxValue + ")";
+                    tableValues = tableValues + " _ " + StoreinDB;
+
+
+                    // $.ajax({
+                    //    url: '/Home/EditBudget',
+                    //    type: 'POST',
+                    //    dataType: 'json',
+                    //    traditional: true,
+                    //    data: JSON.stringify(filterDetails),
+                    //    success: function () {
+                    //        alert("Success");
+                    //        //reordered = false;
+                    //        //$('#saveOrder').removeClass('Save').addClass('Disabled').unbind('click');
+                    //        //$("body").unmask();
+                    //        //Dominion.Cms.Common.showSuccessMessage("#cmsMessage", "Coupon order saved successfully.");
+                    //    },
+                    //    error: function () {
+                    //        alert("Fail");
+                    //        //$("body").unmask();
+                    //        //Dominion.Cms.Common.showErrorMessage("#cmsMessage", "There was an error saving the coupon order. Please try again.");
+                    //    }
+                    //});
+
+
+
+                });
+            });
+
+
+
+        });
+
+    });
+
+</script>

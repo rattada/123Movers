@@ -1,0 +1,52 @@
+﻿@model _123Movers.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<hgroup class="title">
+    <div class="col-md-12">
+    <h1>@ViewBag.Title.</h1>
+</div>
+</hgroup>
+
+<section id="loginForm">
+    <div class="col-md-6">
+        <div class="well well-lg">
+<h2>Use a local account to log in.</h2>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl ,@class="form"})) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+   
+   
+        <div class="form-group">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName ,new {@class="form-control"})
+                @Html.ValidationMessageFor(m => m.UserName)
+           </div> <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password,new {@class="form-control"})
+                @Html.ValidationMessageFor(m => m.Password)
+             </div>
+        <button type="submit" value="Log in" class="btn btn-primary">Log in</button>
+    
+    @*<p>
+        @Html.ActionLink("Register", "Register") if you don't have an account.
+    </p>*@
+}</div>
+        </div>
+</section>
+
+<section class="social" id="socialLoginForm">
+        <div class="col-md-6">
+            <div class="well well-lg">
+    <h2>Login Using your google account</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+            </div>
+            </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

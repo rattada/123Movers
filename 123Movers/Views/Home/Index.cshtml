@@ -1,0 +1,171 @@
+﻿@model _123Movers.Models.BudgetModel
+@{
+    ViewBag.Title = "Home Page";
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+      $(function () {
+          $("#datepicker").datepicker();
+      });
+  </script>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "frmbudget" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    
+   
+    <div class="row">
+        <div class="col-md-12">
+            <p></p>
+    <table class="table table-bordered" style="margin-bottom:0px;">
+                            <tbody>
+                                <tr>
+                                    <td class="col-md-6">Legal Name : <strong>Allied Van Lines / SIRVA, Inc.</strong> <a href="javascript:void(0);">Edit</a></td>
+                                    <td class="col-md-3">STATUS : ACTIVE</td>
+                                    <td class="col-md-3">SUPPRESS : NO</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">DBA Name :</td>
+                                    <td class="col-md-3">CompanyID : <strong>1719</strong></td>
+                                    <td class="col-md-3">Sales Person : <strong>House</strong></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">AKA Name :</td>
+                                    <td class="col-md-6" colspan="2">Company Handle : <strong>allied</strong> <a href="javascript:void(0);">Company Page</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-6">Display Name : <strong>Allied Van Lines / North American Van Lines</strong></td>
+                                    <td class="col-md-3">AX # : <strong>10006830</strong></td>
+                                    <td class="col-md-3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+    </div>
+        </div>
+    
+    <div class="row">
+                <div class="col-lg-12">
+                    <p class="pull-right">Back to Account Screen</p>
+                </div>
+            </div>
+     <div class="row">
+    <div class="col-lg-4">
+            <div class="form-group" >
+                
+                    Insertion Order ID
+                    <div class="form-control">
+                        000123
+                    </div>
+                </div>
+                
+              <div class="form-group">
+                    @Html.LabelFor(m => m.TotalBudget)
+                    @Html.TextBoxFor(m => m.TotalBudget,new {@class="form-control"})
+                    @Html.ValidationMessageFor(m => m.TotalBudget)
+                </div>
+            </div>
+            <div class="col-lg-4">
+                    Start Date :
+                     <div class="form-group">
+                     <input type="text" id="datepicker" class="datefield form-control">
+                         </div>
+                Terms :
+                     <div class="form-group"> <select class="form-control">
+                        <option value="one">Notice Required</option>
+                        <option value="two">Reoccuring</option>
+                       <option value="three">Expires</option>
+                       @*  <option value="four">Four</option>
+                        <option value="five">Five</option>*@
+                    </select></div>
+                </div>
+                
+                    
+                <div class="col-lg-4">
+                 <div class="top-buffer" >
+                    <input type="submit" value="Save Budget" class="btn btn-primary">
+                     </div>
+                </div>
+
+ 
+@*<div>
+    <dl>
+       <dd>
+            @Html.LabelFor(m => m.CompanyId)
+            @Html.TextBoxFor(m => m.CompanyId)
+            @Html.ValidationMessageFor(m => m.CompanyId)
+        </dd>
+
+        <dd>
+            @Html.LabelFor(m => m.BudgetAction)
+            @Html.TextBoxFor(m => m.BudgetAction)
+            @Html.ValidationMessageFor(m => m.BudgetAction)
+       </dd>
+
+       <dd>
+            @Html.LabelFor(m => m.TotalBudget)
+            @Html.TextBoxFor(m => m.TotalBudget)
+            @Html.ValidationMessageFor(m => m.TotalBudget)
+        </dd>
+
+        <dd>
+            @Html.LabelFor(m => m.RemainingBudget)
+            @Html.TextBoxFor(m => m.RemainingBudget)
+            @Html.ValidationMessageFor(m => m.RemainingBudget)
+        </dd>
+        <dd>
+            @Html.LabelFor(m => m.AgreementNumber)
+            @Html.TextBoxFor(m => m.AgreementNumber)
+            @Html.ValidationMessageFor(m => m.AgreementNumber)
+        </dd>
+
+        <dd>
+            @Html.LabelFor(m => m.IsRecurring)
+            @Html.CheckBoxFor(m => m.IsRecurring)
+            @Html.ValidationMessageFor(m => m.IsRecurring)
+        </dd>
+
+       <dd>
+            @Html.LabelFor(m => m.IsRequireNoticeToCharge)
+            @Html.CheckBoxFor(m => m.IsRequireNoticeToCharge)
+            @Html.ValidationMessageFor(m => m.IsRequireNoticeToCharge)
+       </dd>
+
+        <dd>
+         <input type="submit" value="Save" />
+        </dd>
+    </dl>*@
+</div>
+
+                  <div class="row">
+                       <div class="col-lg-12">
+                           <span>Service: </span>
+            <label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox1" value="option1"> Local
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox2" value="option2">Long Distance
+</label>
+</div>
+                      </div>
+    
+}
+
+
+
+
+@* <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    *@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}
+

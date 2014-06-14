@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - 123 Movers</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+          @Scripts.Render("~/bundles/jquery")
+         @Scripts.Render("~/bundles/jqueryval")
+        @RenderSection("scripts", required: false)
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+                <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                 @* <div class="col-lg-8">
+                    <h3 class="text-muted"><img src="../../Content/themes/base/images/123movers.png" alt="123Movers" /></h3>
+                </div>*@
+                <div class="row">
+                <div class="col-md-8">
+                    @Html.Raw(@Html.ActionLink("[replacetext]", "Index", "Home").ToHtmlString().Replace("[replacetext]", "<img src=\"../../Content/themes/base/images/123movers.png\" />"))
+                </div>
+                <div class="col-md-4">
+                    <section id="login" class="">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    </div>
+                    
+                </div>
+                 <div class="row">
+                <nav>
+                         <div class="row">
+                        <div class="col-md-12">
+                        <ul id="menu" class="nav nav-pills navbar-inverse">
+                            <li>@Html.ActionLink("Search", "Search", "Home")</li>
+                            <li>@Html.ActionLink("Reports", "About", "Home")</li>
+                            <li>@Html.ActionLink("Notifications", "Contact", "Home")</li>
+                        </ul>
+                            </div>
+                             </div>
+                    </nav></div>
+            </div>
+        </header>
+        <div id="body" class="container">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="container">
+                <div class="row">
+                <div class="col-md-12 hr"></div></div>
+                    <div class="row">
+                <div class="col-md-12">
+                    <p>&copy; @DateTime.Now.Year - 123Movers</p>
+                </div>
+</div>
+            </div>
+        </footer>
+
+      
+    </body>
+</html>
