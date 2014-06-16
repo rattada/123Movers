@@ -349,97 +349,109 @@ namespace _123Movers.DataEntities
             }
 
         }
-        //public int ExecuteCommand(string storeProcedureName, Guid singleParm, bool startTransaction = true, bool commitTransaction = true, IsolationLevel transactionLevel = IsolationLevel.ReadCommitted, bool throwError = true)
-        //{
-        //    var parms = new IDataParameter[1];
-        //    parms[0] = NewParameter("Id", SqlDbType.UniqueIdentifier, singleParm);
-
-        //    var cmd = GetCommand(storeProcedureName, parms, startTransaction, transactionLevel);
-        //    return ExecuteCommand(cmd, commitTransaction, throwError);
-        //}
-
-        /// <summary>
-        /// Set paramater for command 
-        /// </summary>
-        /// <param name="name">name of parameter</param>
-        /// <param name="pType">param type</param>
-        /// <param name="value">param value</param>
-        /// <returns></returns>
-        public static IDataParameter NewParameter(string name, SqlDbType pType, object value)
+        public static DataTable GetAvailableAreas(int? companyId, int? serviceId)
         {
-            var parm = new SqlParameter(name, pType);
-
-
-            if (pType == SqlDbType.DateTime)
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
             {
-                if (value == null || (DateTime)value < System.Data.SqlTypes.SqlDateTime.MinValue)
+                SqlCommand cmdGetAvailableAreas = new SqlCommand();
+                cmdGetAvailableAreas.Connection = dbCon;
+                cmdGetAvailableAreas.CommandType = System.Data.CommandType.StoredProcedure;
+                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
+                cmdGetAvailableAreas.CommandText = "usp_availableAreas"; //"usp_availableAreacoded";
+                if (serviceId == null)
                 {
-                    value = System.Data.SqlTypes.SqlDateTime.MinValue;
+                    serviceId = 1009;
                 }
-            }
-            else if (pType == SqlDbType.NVarChar || pType == SqlDbType.VarChar)
-            {
-                if (value == null)
-                {
-                    value = String.Empty;
-                }
-            }
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
 
-            parm.Value = value;
+                cmdGetAvailableAreas.Parameters.Add(paramCompanyId);
+                cmdGetAvailableAreas.Parameters.Add(paramService);
 
-            return parm;
+                DataTable dtResults = new DataTable();
+
+                SqlDataReader drResults = cmdGetAvailableAreas.ExecuteReader();
+                dtResults.Load(drResults);
+
+                return dtResults;
+
+            }
         }
-        //private static int ExecuteCommand(SqlCommand command, bool commitTransaction = true, bool throwError = true)
-        //{
-        //    int rowsUpdated = 0;
+        public static DataTable GetCompanyAdByArea(int? companyId, int? serviceId)
+        {
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdGetCompanyAdByArea = new SqlCommand();
+                cmdGetCompanyAdByArea.Connection = dbCon;
+                cmdGetCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
+                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
+                cmdGetCompanyAdByArea.CommandText = "usp_getCompanyStateAreacode"; //"usp_getCompanyAdByArea";
+                if (serviceId == null)
+                {
+                    serviceId = 1009;
+                }
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
 
-        //    try
-        //    {
-        //        _error = null;
-        //        rowsUpdated = command.ExecuteNonQuery();
-        //        CommitTransaction(commitTransaction);
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        RollbackTransaction(command, throwError, exc);
-        //    }
+                cmdGetCompanyAdByArea.Parameters.Add(paramCompanyId);
+                cmdGetCompanyAdByArea.Parameters.Add(paramService);
 
-        //    return rowsUpdated;
-        //}
-        //public static void CommitTransaction(bool commit = true)
-        //{
-        //    bool commitOccurred = false;
+                DataTable dtResults = new DataTable();
 
-        //    if (commit && _transaction != null)
-        //    {
-        //        _transaction.Commit();
-        //        _transaction = null;
-        //        commitOccurred = true;
-        //    }
+                SqlDataReader drResults = cmdGetCompanyAdByArea.ExecuteReader();
+                dtResults.Load(drResults);
 
-        //    if (commit && !commitOccurred)
-        //    {
-        //        throw new Exception("CommitTransaction was called with out a Transaction.");
-        //    }
-        //}
-        ///// Will roll back transaction on exception.
-        ///// </summary>
-        ///// <param name="command">command object rolling back</param>
-        ///// <param name="throwError">throw the error error and let parent catch</param>
-        ///// <param name="exc">the error that occured</param>
-        //private static void RollbackTransaction(SqlCommand command, bool throwError, Exception exc)
-        //{
-        //    if (_transaction != null)
-        //    {
-        //        _transaction.Rollback();
-        //        _transaction = null;
-        //    }
-        //    if (throwError)
-        //    {
-        //        throw new ApplicationException(command.CommandType + " (" + command.CommandText + " ) Failed. See inner exception for details.", exc);
-        //    }
+                return dtResults;
 
-        //    _error = exc;
-        //}
+            }
+        }
+        public static void AddCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
+        {
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
+                cmdAddCompanyAdByArea.Connection = dbCon;
+                cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
+                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
+                cmdAddCompanyAdByArea.CommandText = "up_companyAreacodeAdd";//"usp_companyAdByAreaAdd";
+              
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+                SqlParameter paramAreaCode = new SqlParameter("areacode", areaCode);
+
+                cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
+                cmdAddCompanyAdByArea.Parameters.Add(paramService);
+                cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
+
+
+                var i = cmdAddCompanyAdByArea.ExecuteNonQuery();
+
+            }
+        }
+
+        public static void DeleteCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
+        {
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdDeleteCompanyAdByArea = new SqlCommand();
+                cmdDeleteCompanyAdByArea.Connection = dbCon;
+                cmdDeleteCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
+                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
+                cmdDeleteCompanyAdByArea.CommandText = "up_companyAreacodeDelete";//"usp_companyAdByAreaDelete";
+
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+                SqlParameter paramAreaCode = new SqlParameter("areacode", areaCode);
+
+                cmdDeleteCompanyAdByArea.Parameters.Add(paramCompanyId);
+                cmdDeleteCompanyAdByArea.Parameters.Add(paramService);
+                cmdDeleteCompanyAdByArea.Parameters.Add(paramAreaCode);
+
+
+                var i = cmdDeleteCompanyAdByArea.ExecuteNonQuery();
+
+            }
+        }
+        
     }
 }

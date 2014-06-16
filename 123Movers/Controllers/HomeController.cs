@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using _123Movers.Models;
 using _123Movers.BusinessEntities;
 using System.Data;
+using System.Web.Script.Serialization;
 
 namespace _123Movers.Controllers
 {
@@ -41,6 +42,18 @@ namespace _123Movers.Controllers
         public JsonResult GetServices()
         {
             var services = BusinessLayer.GetServies();
+            List<List<string>> list = retListTable(services);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetAvailableAreas(int? companyId, int? serviceId)
+        {
+            var services = BusinessLayer.GetAvailableAreas(companyId, serviceId);
+            List<List<string>> list = retListTable(services);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetCompanyAdByArea(int? companyId, int? serviceId)
+        {
+            var services = BusinessLayer.GetCompanyAdByArea(companyId, serviceId);
             List<List<string>> list = retListTable(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -125,7 +138,7 @@ namespace _123Movers.Controllers
             listOption = new SelectListItem { Text = "Long", Value = "1000" };
             services.Add(listOption);
 
-            listOption = new SelectListItem { Text = "Both", Value = "" };
+            listOption = new SelectListItem { Text = "Both", Value = "999" };
             services.Add(listOption);
 
             int i = 0;
@@ -177,7 +190,7 @@ namespace _123Movers.Controllers
                         services.Insert(0, listOption);
                         break;
                     case 3:
-                        listOption = new SelectListItem { Text = "Both", Value = "" };
+                        listOption = new SelectListItem { Text = "Both", Value = "999" };
                         services.Insert(0, listOption);
                         break;
                 }
@@ -456,6 +469,48 @@ namespace _123Movers.Controllers
                 ModelState.AddModelError("", ex.Message);
             }
             return View(search);
+        }
+
+        public ActionResult ManageAreaCodes(int? companyId, int? serviceId, string companyName)
+        {
+            ViewBag.CompanyID = companyId;
+            ViewBag.CompanyName = companyName;
+            ViewBag.ServiceID = serviceId;
+
+            return View();
+        }
+        public ActionResult AddAreaCodes(int? companyId, int? serviceId, string companyName, string areaCodes)
+        {
+
+            IList<string> areacode1 =
+        new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
+
+
+
+            foreach (var areacode in areacode1)
+            {
+
+                BusinessLayer.AddCompanyAdByArea(companyId,serviceId,Convert.ToInt16(areacode));
+
+            }
+            return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
+        }
+
+        public ActionResult DeleteAreaCodes(int? companyId, int? serviceId, string companyName, string areaCodes)
+        {
+
+            IList<string> areacode1 =
+        new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
+
+
+
+            foreach (var areacode in areacode1)
+            {
+
+                BusinessLayer.DeleteCompanyAdByArea(companyId, serviceId, Convert.ToInt16(areacode));
+
+            }
+            return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
         }
 
         //MoversEntities m = new MoversEntities();

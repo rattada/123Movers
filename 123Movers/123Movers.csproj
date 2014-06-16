@@ -337,6 +337,7 @@
     <Content Include="Views\Home\EditBudget.cshtml" />
     <Content Include="Views\Home\Reports.cshtml" />
     <Content Include="Views\Home\Notifications.cshtml" />
+    <Content Include="Views\Home\ManageAreaCodes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

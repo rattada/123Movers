@@ -55,6 +55,21 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.GetServices();
         }
-
+        public static DataTable GetAvailableAreas(int? companyId, int? serviceId)
+        {
+            return DataLayer.GetAvailableAreas(companyId, serviceId);
+        }
+        public static DataTable GetCompanyAdByArea(int? companyId, int? serviceId)
+        {
+            return DataLayer.GetCompanyAdByArea(companyId, serviceId);
+        }
+        public static void AddCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
+        {
+            DataLayer.AddCompanyAdByArea(companyId, serviceId, areaCode);
+        }
+        public static void DeleteCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
+        {
+            DataLayer.DeleteCompanyAdByArea(companyId, serviceId, areaCode);
+        }
     }
 }

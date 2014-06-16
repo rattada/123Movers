@@ -43,6 +43,14 @@ input.input-validation-error {
 input[type="checkbox"].input-validation-error {
     border: 0 none;
 }
+table input[type="text"] {
+   height:25px;
+}
+.scrollable-table {
+max-height:500px;
+overflow-y:scroll;
+overflow-x:hidden;
+}
 
 .validation-summary-errors {
     color: #e80c4d;
@@ -66,7 +74,7 @@ input[type="checkbox"].input-validation-error {
         list-style: none;
         margin: 0;
     }
-    .top-buffer { margin-top:65%;float:right; }
+    .top-buffer { margin-top:40%;float:right; }
     .nav-pills > li > a:hover{
         border-radius:0px!important;
            color:#000;

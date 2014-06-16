@@ -58,16 +58,16 @@
     if (@Model.budget.Count() > 0)
     {
           <div class="nav nav-pills navbar-inverse">
-        <h4 style="color:#fff">
+       <div class="container"> <h4 style="color:#fff">
           @Model.budget.Count()- Results
-        </h4>
+        </h4></div>
     </div>
     <div class="table-responsive">
     <table id="info" class="table">
       
         <tr>
             <th class="col-md-2">
-                Company ID
+               Company ID
             </th>
 
             <th class="col-md-4">
@@ -108,12 +108,10 @@
 
                 <td>
                     
-                    @Html.ActionLink("Budget", "GetBudget", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, displayname = @lot.DisplayName, contactperson = @lot.ContactPerson, companyHandle = @lot.CompanyHandle }, new {@class="btn btn-primary" })
+                    @Html.ActionLink("Budget", "GetBudget", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, displayname = @lot.DisplayName, contactperson = @lot.ContactPerson, companyHandle = @lot.CompanyHandle }, new {@class="btn btn-primary btn-sm" })
                     @*<input type="button" value="Budgets" class="btn btn-primary" id ="btnBudget">*@
-               </td>
-
-                <td>
-                            <input type="button" value="Reports" class="btn btn-primary">
+              
+                            <input type="button" value="Reports" class="btn btn-primary btn-sm">
                 </td>
             </tr>
             }
