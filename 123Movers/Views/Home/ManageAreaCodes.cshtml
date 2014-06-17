@@ -2,89 +2,82 @@
     ViewBag.Title = "ManageAreaCodes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm("ManageAreacodes", "Home", FormMethod.Post, new { id = "frmareacode" }))
+@*@using (Html.BeginForm("ManageAreacodes", "Home", FormMethod.Post, new { id = "frmareacode" }))
 {
+    *@<br />
+    <h4 class="alignLeft"><strong>@ViewBag.CompanyName</strong></h4>
+    <ul class="nav nav-tabs" id="ServiceTab">
+        <li class="cslocal"><a href="#local" data-toggle="tab">Local</a></li>
+        <li class="cslong"><a href="#long" data-toggle="tab">Long</a></li>
+
+    </ul>
     <br />
 
- 
-<div>
-<table class="table" id="TextAdmin2">
-    <tr>
-        <td>
-            <table class="table" style="width:100%;align-content:center" >
-                <tr>
-                    <th colspan="2" style="text-align:center"><span id="Text8"> @ViewBag.CompanyName</span>
-                        <br>
-                        <br>
-                    </th>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <a href="#" role="button" id ="local" class="disabled">Local</a>
-                    </td>
-                    <td colspan="2">
-                         <a href="#"  role="button" id ="long">Long</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:50%; text-align:right" id ="tdareacodes">
-                        <select name="areaCode" id ="areaCode" size="20" style="width:100px" multiple>
+    <!-- Tab panes -->
+    <div class="tab-content" style="margin-bottom: -235px;" >
+        <div class="tab-pane" id="local">
+          
+                
+            <select name="areaCode" id="areaCodeLocal" size="20" style="width: 150px" multiple>
+            </select>
 
-                        </select>&nbsp;
-                    </td>
-                    <td>&nbsp;
-						<select name="areasSelected" id ="areasSelected" style="width:100px" size="20" multiple>
 
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align:right" >
-                        <input type="button" id="add" value="Add -->" class="btn btn-primary">&nbsp;
-                    </td>
-                    <td>&nbsp;
-						<input type="button" id="remove" value="<-- Remove" class="btn btn-primary">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">Back</a>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
+            <input type="button" id="addLocal" value="Add -->" class="btn btn-primary" />
+            <input type="button" id="removeLocal" value="<-- Remove" class="btn btn-primary">
+
+
+            <select name="areasSelected" id="areasSelectedLocal" style="width: 150px" size="20" multiple>
+            </select>
+            
+
+        </div>
+
+
+
+        <div class="tab-pane" id="long">
+
+
+            <select name="areaCode" id="areaCodeLong" size="20" style="width: 150px" multiple>
+            </select>
+
+            <input type="button" id="addLong" value="Add -->" class="btn btn-primary">
+            <input type="button" id="removeLong" value="<-- Remove" class="btn btn-primary">
+
+            <select name="areasSelected" id="areasSelectedLong" style="width: 150px" size="20" multiple>
+            </select>
+        </div>
 
     </div>
+<div>
+    <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">Back To Edit</a>
+</div>
          
-}
+@*}*@
 
-<script type="text/javascript" >
+<script type="text/javascript">
     $(function () {
         var serviceId;
+        var ServiceType;
 
         if ('@ViewBag.ServiceId' == 1000) {
             serviceId = 1000;
-            //$('#long').attr('disabled', 'disabled');
-            //$('#local').removeAttr('disabled');
+            ServiceType = 'long';
         }
         else {
 
             serviceId = 1009;
-            //$('#local').attr('disabled', 'disabled');
-            //$('#long').removeAttr('disabled');
+            ServiceType = 'local';
         }
-        GetAvailableAreas(serviceId);
-        GetSelectedAreas(serviceId);
+        GetAvailableAreas(serviceId, ServiceType);
+        GetSelectedAreas(serviceId, ServiceType);
 
-        function GetAvailableAreas(serviceId) {
+        function GetAvailableAreas(serviceId, ServiceType) {
             $.ajax({
                 url: '/Home/GetAvailableAreas',
                 type: "GET",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId },
                 dataType: "json",
-                cache : false,
+                cache: false,
                 success: function (data) {
                     var strigifyJson = JSON.stringify(data);
                     var json = $.parseJSON(strigifyJson);
@@ -98,7 +91,11 @@
                         }
                     });
 
-                    $('#areaCode').html(options);
+
+                    if (ServiceType == 'local')
+                        $('#areaCodeLocal').html(options);
+                    else
+                        $('#areaCodeLong').html(options);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
@@ -106,8 +103,8 @@
             });
         }
 
-        function GetSelectedAreas(serviceId) {
-           
+        function GetSelectedAreas(serviceId, ServiceType) {
+
             $.ajax({
                 url: '/Home/GetCompanyAdByArea',
                 type: "GET",
@@ -127,17 +124,24 @@
                         }
                     });
 
-                    $('#areasSelected').html(options);
+                    if (ServiceType == 'local') {
+                        $('#areasSelectedLocal').html(options);
+                    }
+                    else {
+                        $('#areasSelectedLong').html(options);
+                    }
+
+                    // $('#areasSelected').html(options);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
                 }
-             });
+            });
         }
 
-        $('#add').click(function () {
+        $('#addLocal').click(function () {
             var selected = [];
-            $('#areaCode :selected').each(function (i, el) {
+            $('#areaCodeLocal :selected').each(function (i, el) {
                 selected[i] = $(this).val();
             });
             var data_to_send = JSON.stringify(selected);
@@ -145,18 +149,18 @@
                 url: '/Home/AddAreaCodes',
                 type: "POST",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
-            success: function (data) {
-                location.reload();
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
 
-            }
-              });
+                }
+            });
         });
 
-        $('#remove').click(function () {
+        $('#removeLocal').click(function () {
             var selected = [];
-            $('#areasSelected :selected').each(function (i, el) {
+            $('#areasSelectedLocal :selected').each(function (i, el) {
                 selected[i] = $(this).val();
             });
             var data_to_send = JSON.stringify(selected);
@@ -173,18 +177,64 @@
             });
         });
 
-        $('#local').click(function () {
-            
-            serviceId = 1009;
-            GetAvailableAreas(serviceId);
-            GetSelectedAreas(serviceId);
+
+        $('#addLong').click(function () {
+            var selected = [];
+            $('#areaCodeLong :selected').each(function (i, el) {
+                selected[i] = $(this).val();
+            });
+            var data_to_send = JSON.stringify(selected);
+            $.ajax({
+                url: '/Home/AddAreaCodes',
+                type: "POST",
+                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                }
+            });
         });
 
-        $('#long').click(function () {
-            serviceId = 1000;
-            GetAvailableAreas(serviceId);
-            GetSelectedAreas(serviceId);
-         });
+        $('#removeLong').click(function () {
+            var selected = [];
+            $('#areasSelectedLong :selected').each(function (i, el) {
+                selected[i] = $(this).val();
+            });
+            var data_to_send = JSON.stringify(selected);
+            $.ajax({
+                url: '/Home/DeleteAreaCodes',
+                type: "POST",
+                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
 
+                }
+            });
+        });
+
+    
+
+        $('#ServiceTab > li:first').click(function () {
+           
+            serviceId = 1009;
+            GetAvailableAreas(serviceId, 'local');
+            GetSelectedAreas(serviceId, 'local');
+        });
+
+        $('#ServiceTab > li:last').click(function () {
+            serviceId = 1000;
+            GetAvailableAreas(serviceId, 'long');
+            GetSelectedAreas(serviceId, 'long');
+        });
+
+        if (ServiceType == 'local') {
+            $('#ServiceTab a[href="#local"]').tab('show')
+        }
+        else
+            $('#ServiceTab a[href="#long"]').tab('show')
     });
 </script>

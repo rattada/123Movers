@@ -7,6 +7,7 @@
     var IsActive = (@Model.IsActive) ? "Active" : "Expired";
 }
 
+<script type="text/javascript" src="~/Scripts/jquery.tablesorter.min.js"></script>"
  <div class="row">
         <div class="col-md-12">
             <p></p>
@@ -80,7 +81,8 @@
                
             @{
            // DateTime currentDate = DateTime.UtcNow;
-            List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null).ToList();
+             List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget > 0).ToList();
+           // List<BudgetModel> activeBudget = Model.budget.Where(c => c.RemainingBudget > 0).ToList();
                 }   
             @if (activeBudget.Count > 0)
             {
@@ -94,7 +96,10 @@
                 </td>
 
                 <td>
-                    @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString()
+                    @{
+                     var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
+                     }
+                  @sdate
                 </td>
                 
                 <td>
@@ -121,7 +126,7 @@
                </td>
 
                 <td>
-           <p> @Html.ActionLink("Edit", "EditBudget", "Home", new { TotalBudget =@lot.TotalBudget,IsRecurring =@lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge,ServiceId =@lot.ServiceId, agnumber=@lot.AgreementNumber,mindayscharge =@lot.MinDaysToCharge}, new {id = "EditBudget", @class = "btn btn-sm btn-primary" })</p>
+           <p> @Html.ActionLink("Edit", "EditBudget", "Home", new { TotalBudget =@lot.TotalBudget,IsRecurring =@lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge,ServiceId =@lot.ServiceId, agnumber=@lot.AgreementNumber,minDaysToCharge =@lot.MinDaysToCharge}, new {id = "EditBudget", @class = "btn btn-sm btn-primary" })</p>
                                
                 </td>
             </tr>
@@ -155,7 +160,7 @@
   
   
     <div class="table-responsive">
-    <table id="ExpiredInfo" class="table table-striped table-bordered">
+    <table id="ExpiredInfo" class="table table-striped table-bordered tablesorter">
     <thead>
         <tr>
             <th>  Insertion Order ID
@@ -189,7 +194,9 @@
           <tbody>
         
             @{
-            List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now).ToList();
+    //List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now ).ToList();
+             List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now || c.UnchargedAmount <= 0 || c.RemainingBudget <= 0).ToList();
+           // List<BudgetModel> expiredBudget = Model.budget.Where(c => c.RemainingBudget <= 0).ToList();
                 } 
             @if (expiredBudget.Count > 0)
             {
@@ -202,11 +209,18 @@
                 </td>
 
                 <td>
-                  @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString()
+                    @{
+                     var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
+                     }
+                  @sdate
                 </td>
                 
                 <td>
-                   @DateTime.Parse(@lot.EndDate.ToString()).ToShortDateString()
+                    @{
+                       
+                    var edate = @lot.EndDate.HasValue ? @DateTime.Parse(@lot.EndDate.ToString()).ToShortDateString() : null;
+                    }
+                   @edate
                 </td>
 
                 <td>
@@ -264,6 +278,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#ExpiredInfo").tablesorter();
         //var count = $('#ActiveInfo>tbody>tr').length;
         //var count1 = $('#ExpiredInfo>tbody>tr').length;
         //alert(count1);

@@ -49,7 +49,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(m => m.TotalBudget)
-                @Html.TextBoxFor(m => m.TotalBudget, new { @class = "form-control", Value = String.Format("{0:0.00}", Model.TotalBudget) })
+                @Html.TextBoxFor(m => m.TotalBudget, new { @class = "form-control", @readonly = "readonly", Value = String.Format("{0:0.00}" , Model.TotalBudget) })
                 @Html.ValidationMessageFor(m => m.TotalBudget)
             </div>
             <div class="form-group">
@@ -78,18 +78,22 @@
                 @Html.TextBoxFor(m => m.MinDaysToCharge, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.MinDaysToCharge)
             </div>
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-5 pull-right">
-           
-            <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">Back To List</a>
-               @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "managearea", @class = "btn btn-primary" })
+            
+            <p class="clearfix"></p>
+             <p class="clearfix"></p>
+              <p class="clearfix"></p>
+            <div class="form-group">
+               @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "managearea", @class = "btn btn-primary pull-right" })
              @*<input type="button" value="Manage Area Codes" id="managearea" class="btn btn-primary ">*@
-            <input type="submit" value="Save Budget" id="save" class="btn btn-primary pull-right">
+            
+        </div>
         </div>
     </div>
+   
+       
+           
+            
+    
     <div class="row">
         <div class="col-md-12">
             <div class="checkbox">
@@ -103,6 +107,11 @@
         <div id="filters">
         </div>
     </div>
+    <div class="row">   <div class="col-md-6">
+    <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">Back To List</a>
+       </div>   <div class="col-md-6">
+    <input type="submit" value="Save Budget" id="save" class="btn btn-primary pull-right">
+        </div></div>
 }
 
 <script type="text/javascript">
@@ -110,21 +119,6 @@
         var message = $.trim($('#message').val());
         if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
 
-        //$('#managearea').click(function () {
-        //    $.ajax({
-        //        url: '/Home/ManageAreaCodes',
-        //        type: "POST",
-        //       // dataType: "json",
-        //        success: function (data) {
-                   
-
-        //        },
-        //        error: function (xhr, ajaxOptions, thrownError) {
-
-        //        }
-        //    });
-
-        //});
 
         $('#service').on('change', function () {
             if (this.checked) {
@@ -141,7 +135,7 @@
 
 
 
-                        table = "<div class='panel-group' id='accordion'> <div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'>  <a data-toggle='collapse' data-parent='#accordion' href='#collapseAreaCode'>Geography </a></h4></div><div id='collapseAreaCode' class='panel-collapse collapse in'><div class='panel-body'>                           <div class='row scrollable-table'><div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                        table = "<div class='panel-group' id='accordion'> <div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'>  <a data-toggle='collapse' data-parent='#accordion' href='#collapseAreaCode'>Geography <span class='glyphicon glyphicon-plus pull-right'></span></a></h4></div><div id='collapseAreaCode' class='panel-collapse collapse in'><div class='panel-body'>                           <div class='row scrollable-table'><div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
                         jQuery.each(json, function (i, val) {
                             if (i <= 57) {
                                 table += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /> </td></tr>";
@@ -178,18 +172,18 @@
 
 
                         var tableNew;
-                        tableNew = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseTwo'># Of LEADS per day</a></h4></div><div id='collapseTwo' class='panel-collapse collapse'><div class='panel-body'> Need to Add Leads filter Information here. </div> </div></div>";
+                        tableNew = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseTwo'># Of LEADS per day<span class='glyphicon glyphicon-plus pull-right'></span></a></h4></div><div id='collapseTwo' class='panel-collapse collapse'><div class='panel-body'> Need to Add Leads filter Information here. </div> </div></div>";
 
 
                         var tableNew2;
-                        tableNew2 = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseThree'>Distance </a></h4></div><div id='collapseThree' class='panel-collapse collapse'><div class='panel-body'> Nedd to Add Distance filter Information here. </div> </div></div>";
+                        tableNew2 = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseThree'>Distance <span class='glyphicon glyphicon-plus pull-right'></span></a></h4></div><div id='collapseThree' class='panel-collapse collapse'><div class='panel-body'> Nedd to Add Distance filter Information here. </div> </div></div>";
 
                         var tableNew3;
-                        tableNew3 = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseFour'>Day of the Week </a></h4></div><div id='collapseFour' class='panel-collapse collapse'><div class='panel-body'> Nedd to Add Day of the Week  filter Information here. </div> </div></div>";
+                        tableNew3 = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseFour'>Day of the Week <span class='glyphicon glyphicon-plus pull-right'></span></a></h4></div><div id='collapseFour' class='panel-collapse collapse'><div class='panel-body'> Nedd to Add Day of the Week  filter Information here. </div> </div></div>";
 
 
                         var tableNew4;
-                        tableNew4 = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseFive'>Weight/Size</a></h4></div><div id='collapseFive' class='panel-collapse collapse'><div class='panel-body'> Nedd to Add Weight/Size filter Information here. </div> </div></div>";
+                        tableNew4 = "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#accordion' href='#collapseFive'>Weight/Size<span class='glyphicon glyphicon-plus pull-right'></span></a></h4></div><div id='collapseFive' class='panel-collapse collapse'><div class='panel-body'> Nedd to Add Weight/Size filter Information here. </div> </div></div>";
 
                         table += tableNew + tableNew2 + tableNew3 + tableNew4;
 

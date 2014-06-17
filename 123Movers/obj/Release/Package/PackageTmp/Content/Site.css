@@ -112,3 +112,39 @@ overflow-x:hidden;
     margin-top:10px;
     margin-bottom:10px;
 }
+
+
+#removeLocal {
+    margin-bottom: 365px;
+margin-left: -79px;
+margin-right: 30px;
+width: 104px;
+}
+
+
+#addLocal {
+ margin-bottom: 509px;
+margin-left: 40px;
+width: 104px;
+margin-right: -29px;
+}
+
+
+
+#removeLong {
+    margin-bottom: 365px;
+margin-left: -79px;
+margin-right: 30px;
+width: 104px;
+}
+
+
+#addLong {
+ margin-bottom: 509px;
+margin-left: 40px;
+width: 104px;
+margin-right: -29px;
+}
+.alignLeft {
+    margin-left: 500px;
+}

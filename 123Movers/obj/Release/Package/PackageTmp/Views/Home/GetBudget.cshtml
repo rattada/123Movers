@@ -80,7 +80,8 @@
                
             @{
            // DateTime currentDate = DateTime.UtcNow;
-            List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null).ToList();
+             List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget > 0).ToList();
+           // List<BudgetModel> activeBudget = Model.budget.Where(c => c.RemainingBudget > 0).ToList();
                 }   
             @if (activeBudget.Count > 0)
             {
@@ -94,7 +95,10 @@
                 </td>
 
                 <td>
-                    @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString()
+                    @{
+                     var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
+                     }
+                  @sdate
                 </td>
                 
                 <td>
@@ -121,7 +125,7 @@
                </td>
 
                 <td>
-           <p> @Html.ActionLink("Edit", "EditBudget", "Home", new { TotalBudget =@lot.TotalBudget,IsRecurring =@lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge,ServiceId =@lot.ServiceId, agnumber=@lot.AgreementNumber,mindayscharge =@lot.MinDaysToCharge}, new {id = "EditBudget", @class = "btn btn-sm btn-primary" })</p>
+           <p> @Html.ActionLink("Edit", "EditBudget", "Home", new { TotalBudget =@lot.TotalBudget,IsRecurring =@lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge,ServiceId =@lot.ServiceId, agnumber=@lot.AgreementNumber,minDaysToCharge =@lot.MinDaysToCharge}, new {id = "EditBudget", @class = "btn btn-sm btn-primary" })</p>
                                
                 </td>
             </tr>
@@ -189,7 +193,9 @@
           <tbody>
         
             @{
-            List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now).ToList();
+    //List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now ).ToList();
+             List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now || c.UnchargedAmount <= 0 || c.RemainingBudget <= 0).ToList();
+           // List<BudgetModel> expiredBudget = Model.budget.Where(c => c.RemainingBudget <= 0).ToList();
                 } 
             @if (expiredBudget.Count > 0)
             {
@@ -202,11 +208,18 @@
                 </td>
 
                 <td>
-                  @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString()
+                    @{
+                     var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
+                     }
+                  @sdate
                 </td>
                 
                 <td>
-                   @DateTime.Parse(@lot.EndDate.ToString()).ToShortDateString()
+                    @{
+                       
+                    var edate = @lot.EndDate.HasValue ? @DateTime.Parse(@lot.EndDate.ToString()).ToShortDateString() : null;
+                    }
+                   @edate
                 </td>
 
                 <td>
