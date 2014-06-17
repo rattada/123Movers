@@ -26,7 +26,8 @@
                         @Html.LabelFor(m => m.AX, new { @class = "control-label col-md-4"})
                        <div class="col-md-8">@Html.TextBoxFor(m => m.AX, new { @class = "form-control" , id ="AX" })</div>
                         @Html.ValidationMessageFor(m => m.AX)
-                     </div><div class="form-group">
+                     </div>
+                        <div class="form-group">
                         @Html.LabelFor(m => m.InsertionOrderId, new { @class = "control-label col-md-4"})
                        <div class="col-md-8">@Html.TextBoxFor(m => m.InsertionOrderId, new { @class = "form-control", id ="InsertionOrderId" })</div>
                         @Html.ValidationMessageFor(m => m.InsertionOrderId)
@@ -78,9 +79,9 @@
                 AX #
             </th>
 
-            <th class="col-md-2">
+@*            <th class="col-md-2">
                 Insertion Order ID
-            </th>
+            </th>*@
             <th class="col-md-2">
                 Actions
             </th>
@@ -102,9 +103,9 @@
                     @lot.AX
                 </td>
 
-                <td>
+               @* <td>
                     @lot.InsertionOrderId
-                </td>
+                </td>*@
 
                 <td>
                     

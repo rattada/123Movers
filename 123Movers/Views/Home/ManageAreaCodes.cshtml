@@ -6,7 +6,7 @@
 {
     <br />
 
-   
+ 
 <div>
 <table class="table" id="TextAdmin2">
     <tr>
@@ -19,15 +19,23 @@
                     </th>
                 </tr>
                 <tr>
-                    <td   style="width:50%;text-align:right" id ="tdareacodes">
-                        <select name="areaCode" id ="areaCode" size="30" style="width:100px" multiple>
+                    <td colspan="2">
+                        <a href="#" role="button" id ="local" class="disabled">Local</a>
+                    </td>
+                    <td colspan="2">
+                         <a href="#"  role="button" id ="long">Long</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50%; text-align:right" id ="tdareacodes">
+                        <select name="areaCode" id ="areaCode" size="20" style="width:100px" multiple>
 
                         </select>&nbsp;
                     </td>
                     <td>&nbsp;
-						<select name="areasSelected" id ="areasSelected" style="width:100px" size="30" multiple>
+						<select name="areasSelected" id ="areasSelected" style="width:100px" size="20" multiple>
 
-                  </select>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -54,61 +62,78 @@
 
 <script type="text/javascript" >
     $(function () {
-      
-        $.ajax({
-            url: '/Home/GetAvailableAreas',
-            type: "GET",
-            data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': '@ViewBag.ServiceID' },
-            dataType: "json",
-            success: function (data) {
-                var strigifyJson = JSON.stringify(data);
-                var json = $.parseJSON(strigifyJson);
+        var serviceId;
 
-                //var options =  "<select name='areaCode' id ='areaCode' size='20' style='width:50px' multiple>"
-                var options;
-                jQuery.each(json, function (i, val) {
-                    if (i == 0) {
-                        //options = "<option value='" + val[1] + " - " + val[0] + "'></option>";
-                        options = '<option value="' + val[0] + '">' + val[1] + ' - ' +val[0] + '</option>';
-                    } else {
-                        options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                    }
-                });
-                
-                $('#areaCode').html(options);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
+        if ('@ViewBag.ServiceId' == 1000) {
+            serviceId = 1000;
+            //$('#long').attr('disabled', 'disabled');
+            //$('#local').removeAttr('disabled');
+        }
+        else {
 
-            }
-        });
+            serviceId = 1009;
+            //$('#local').attr('disabled', 'disabled');
+            //$('#long').removeAttr('disabled');
+        }
+        GetAvailableAreas(serviceId);
+        GetSelectedAreas(serviceId);
 
+        function GetAvailableAreas(serviceId) {
+            $.ajax({
+                url: '/Home/GetAvailableAreas',
+                type: "GET",
+                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId },
+                dataType: "json",
+                cache : false,
+                success: function (data) {
+                    var strigifyJson = JSON.stringify(data);
+                    var json = $.parseJSON(strigifyJson);
 
-        $.ajax({
-            url: '/Home/GetCompanyAdByArea',
-            type: "GET",
-            data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': '@ViewBag.ServiceID' },
-            dataType: "json",
-            success: function (data) {
-                var strigifyJson = JSON.stringify(data);
-                var json = $.parseJSON(strigifyJson);
+                    var options = '<option value=""></option>';
+                    jQuery.each(json, function (i, val) {
+                        if (i == 0) {
+                            options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        } else {
+                            options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        }
+                    });
 
-                //var options =  "<select name='areaCode' id ='areaCode' size='20' style='width:50px' multiple>"
-                var options;
-                jQuery.each(json, function (i, val) {
-                    if (i == 0) {
-                        //options = "<option value='" + val[1] + " - " + val[0] + "'></option>";
-                        options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                    } else {
-                        options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                    }
-                });
+                    $('#areaCode').html(options);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
 
-                $('#areasSelected').html(options);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+        }
 
-            }
-        });
+        function GetSelectedAreas(serviceId) {
+           
+            $.ajax({
+                url: '/Home/GetCompanyAdByArea',
+                type: "GET",
+                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId },
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    var strigifyJson = JSON.stringify(data);
+                    var json = $.parseJSON(strigifyJson);
+
+                    var options = '<option value=""></option>';
+                    jQuery.each(json, function (i, val) {
+                        if (i == 0) {
+                            options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        } else {
+                            options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        }
+                    });
+
+                    $('#areasSelected').html(options);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                }
+             });
+        }
 
         $('#add').click(function () {
             var selected = [];
@@ -119,7 +144,7 @@
             $.ajax({
                 url: '/Home/AddAreaCodes',
                 type: "POST",
-                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': '@ViewBag.ServiceID', 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
+                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
             success: function (data) {
                 location.reload();
             },
@@ -138,7 +163,7 @@
             $.ajax({
                 url: '/Home/DeleteAreaCodes',
                 type: "POST",
-                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': '@ViewBag.ServiceID', 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
+                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
                 success: function (data) {
                     location.reload();
                 },
@@ -147,6 +172,19 @@
                 }
             });
         });
+
+        $('#local').click(function () {
+            
+            serviceId = 1009;
+            GetAvailableAreas(serviceId);
+            GetSelectedAreas(serviceId);
+        });
+
+        $('#long').click(function () {
+            serviceId = 1000;
+            GetAvailableAreas(serviceId);
+            GetSelectedAreas(serviceId);
+         });
 
     });
 </script>
