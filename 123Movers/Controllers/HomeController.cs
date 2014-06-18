@@ -178,7 +178,6 @@ namespace _123Movers.Controllers
 
                 }
 
-
                 switch (i)
                 {
                     case 1:
@@ -198,12 +197,6 @@ namespace _123Movers.Controllers
 
 
             }
-
-
-
-
-
-
 
             return services;
         }
@@ -278,10 +271,10 @@ namespace _123Movers.Controllers
                 budget.CompanyId = (int?)Session["CompanyId"];
                 budget.CompanyName = (string)Session["CompanyName"];
                 budget.AX = (string)Session["Ax"];
-               // budget.IsActive = (bool)Session["IsActive"];
+                // budget.IsActive = (bool)Session["IsActive"];
                 //budget.DisplayName = (string)Session["DisplayName"];
                 budget.ContactPerson = (string)Session["ContactPerson"];
-               // budget.CompanyHandle = (string)Session["CompanyHandle"];
+                // budget.CompanyHandle = (string)Session["CompanyHandle"];
                 budget.Type = "NEW";
 
                 if (budget.Terms == "Recurring")
@@ -336,10 +329,10 @@ namespace _123Movers.Controllers
             budget.CompanyId = (int?)Session["CompanyId"];
             budget.CompanyName = (string)Session["CompanyName"];
             budget.AX = (string)Session["Ax"];
-          //  budget.IsActive = (bool)Session["IsActive"];
-          //  budget.DisplayName = (string)Session["DisplayName"];
+            //  budget.IsActive = (bool)Session["IsActive"];
+            //  budget.DisplayName = (string)Session["DisplayName"];
             budget.ContactPerson = (string)Session["ContactPerson"];
-           // budget.CompanyHandle = (string)Session["CompanyHandle"];
+            // budget.CompanyHandle = (string)Session["CompanyHandle"];
 
             return View(budget);
 
@@ -359,10 +352,10 @@ namespace _123Movers.Controllers
                 budget.CompanyId = (int?)Session["CompanyId"];
                 budget.CompanyName = (string)Session["CompanyName"];
                 budget.AX = (string)Session["Ax"];
-               // budget.IsActive = (bool)Session["IsActive"];
-               // budget.DisplayName = (string)Session["DisplayName"];
+                // budget.IsActive = (bool)Session["IsActive"];
+                // budget.DisplayName = (string)Session["DisplayName"];
                 budget.ContactPerson = (string)Session["ContactPerson"];
-               // budget.CompanyHandle = (string)Session["CompanyHandle"];
+                // budget.CompanyHandle = (string)Session["CompanyHandle"];
                 budget.BudgetAction = "RENEWAL INSERTION";
                 budget.Type = "EDIT";
 
@@ -386,7 +379,7 @@ namespace _123Movers.Controllers
                 //ModelState.Clear();
                 ViewBag.Success = "Budget saved successfully..";
                 //return View();
-                return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX, budget.DisplayName, budget.ContactPerson});
+                return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX, budget.DisplayName, budget.ContactPerson });
 
                 //}
             }
@@ -456,7 +449,7 @@ namespace _123Movers.Controllers
                         //Session["IsActive"] = b.IsActive;
                         //Session["DisplayName"] = b.DisplayName;
                         Session["ContactPerson"] = b.ContactPerson;
-                       // Session["CompanyHandle"] = b.CompanyHandle;
+                        // Session["CompanyHandle"] = b.CompanyHandle;
                         break;
                     }
 
@@ -481,36 +474,58 @@ namespace _123Movers.Controllers
         }
         public ActionResult AddAreaCodes(int? companyId, int? serviceId, string companyName, string areaCodes)
         {
+            IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
 
-            IList<string> areacode1 =
-        new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
-
-
-
-            foreach (var areacode in areacode1)
+            foreach (var areacode in areacodelist)
             {
-
-                BusinessLayer.AddCompanyAdByArea(companyId,serviceId,Convert.ToInt16(areacode));
-
+                BusinessLayer.AddCompanyAdByArea(companyId, serviceId, Convert.ToInt16(areacode));
             }
             return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
         }
 
         public ActionResult DeleteAreaCodes(int? companyId, int? serviceId, string companyName, string areaCodes)
         {
+            IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
 
-            IList<string> areacode1 =
-        new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
-
-
-
-            foreach (var areacode in areacode1)
+            foreach (var areacode in areacodelist)
             {
-
                 BusinessLayer.DeleteCompanyAdByArea(companyId, serviceId, Convert.ToInt16(areacode));
-
             }
             return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
+        }
+
+        [HttpPost]
+        public JsonResult AddCompanyPricePerLead(int? companyId, int? serviceId, string companyName, string areaCodes)
+        {
+            
+           // ViewBag.Success = "Budget saved successfully..";
+
+            JsonResult result = null;
+            try
+            {
+                IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
+
+                foreach (var areacode in areacodelist)
+                {
+                    var s = areacode.Split('-');
+                    if (BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, Convert.ToInt16(s[0]), Convert.ToDecimal(s[1]), null))
+                    {
+                        result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                    }
+                    else {
+                        throw new ApplicationException(string.Format("An error occurred while saving"));
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result = Json(new { success = false, message = "An error occurred while saving."  + ex.Message}, JsonRequestBehavior.AllowGet);
+            }
+
+            return result;
+
+           // return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
         }
 
         //MoversEntities m = new MoversEntities();

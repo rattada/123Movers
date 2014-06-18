@@ -71,5 +71,9 @@ namespace _123Movers.BusinessEntities
         {
             DataLayer.DeleteCompanyAdByArea(companyId, serviceId, areaCode);
         }
+        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, int areaCode, decimal? price, int? moveWeightID)
+        {
+            return  DataLayer.AddCompanyPricePerLead(companyId, serviceId, areaCode, price, moveWeightID);
+        }
     }
 }

@@ -186,3 +186,13 @@ background-image: url(../images/desc.gif);
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
 background-color: #8dbdd8;
 }
+
+#divSelected {
+    border-style: ridge;
+    height: 226px;
+}
+.btnSpacing {
+    float: right;
+    margin-right: 39px;
+}
+
