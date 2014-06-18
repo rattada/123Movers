@@ -14,10 +14,10 @@
 
 <input type="hidden" id="message" value="@ViewBag.Success"/>
 
-@using (Html.BeginForm("EditBudget", "Home", FormMethod.Post, new { id = "frmeditbudget" }))
-{
-    <div class="row">
-        <div class="col-md-12">
+ <div class="row">
+
+        @Html.Partial("_CompanyInfo", @Model)
+        @*<div class="col-md-12">
             <p></p>
             <table class="table table-bordered" style="margin-bottom: 0px;">
                 <tbody>
@@ -42,8 +42,11 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div>*@
     </div>
+@using (Html.BeginForm("EditBudget", "Home", FormMethod.Post, new { id = "frmeditbudget" }))
+{
+
     <p class="clearfix"></p>
     <div class="row">
         <div class="col-lg-4">

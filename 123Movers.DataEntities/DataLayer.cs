@@ -251,7 +251,8 @@ namespace _123Movers.DataEntities
                         ServiceId = sid,
                         MinDaysToCharge = dcharge,
                         IsRecurring = recurring,
-                        IsRequireNoticeToCharge = notice
+                        IsRequireNoticeToCharge = notice,
+                        ContactPerson = row["contactPerson"].ToString()
                     };
                     list.Add(s);
                 }

@@ -5,14 +5,20 @@
 @*@using (Html.BeginForm("ManageAreacodes", "Home", FormMethod.Post, new { id = "frmareacode" }))
 {
     *@<br />
+<div class ="row">
     <h4 class="alignLeft"><strong>@ViewBag.CompanyName</strong></h4>
+   </div>
+<div class="row">
+    
     <ul class="nav nav-tabs" id="ServiceTab">
         <li class="cslocal"><a href="#local" data-toggle="tab">Local</a></li>
         <li class="cslong"><a href="#long" data-toggle="tab">Long</a></li>
 
     </ul>
     <br />
-
+    </div>
+<div class="row">
+    <div class="col-md-6">
     <!-- Tab panes -->
     <div class="tab-content" style="margin-bottom: -235px;" >
         <div class="tab-pane" id="local">
@@ -46,11 +52,18 @@
             <select name="areasSelected" id="areasSelectedLong" style="width: 150px" size="20" multiple>
             </select>
         </div>
+      
 
+    </div>
+ </div>
+    <div class="col-md-6">
+          <div id ="selectedareas"></div>
+    </div>
     </div>
 <div>
     <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">Back To Edit</a>
 </div>
+
          
 @*}*@
 
@@ -81,7 +94,7 @@
                 success: function (data) {
                     var strigifyJson = JSON.stringify(data);
                     var json = $.parseJSON(strigifyJson);
-
+                    var table;
                     var options = '<option value=""></option>';
                     jQuery.each(json, function (i, val) {
                         if (i == 0) {
@@ -90,7 +103,6 @@
                             options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                         }
                     });
-
 
                     if (ServiceType == 'local')
                         $('#areaCodeLocal').html(options);
@@ -115,6 +127,8 @@
                     var strigifyJson = JSON.stringify(data);
                     var json = $.parseJSON(strigifyJson);
 
+                    var table;
+                    table = "<div class ='scrollable-table'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
                     var options = '<option value=""></option>';
                     jQuery.each(json, function (i, val) {
                         if (i == 0) {
@@ -122,8 +136,12 @@
                         } else {
                             options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                         }
+                        table += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /> </td></tr>";
                     });
+                    table += "</tbody></table></div>";
 
+                    $('#selectedareas').html(table);
+         
                     if (ServiceType == 'local') {
                         $('#areasSelectedLocal').html(options);
                     }
@@ -189,6 +207,9 @@
                 type: "POST",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
                 success: function (data) {
+
+
+
                     location.reload();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -208,6 +229,10 @@
                 type: "POST",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
                 success: function (data) {
+
+
+
+
                     location.reload();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {

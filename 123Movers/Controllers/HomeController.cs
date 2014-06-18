@@ -278,10 +278,10 @@ namespace _123Movers.Controllers
                 budget.CompanyId = (int?)Session["CompanyId"];
                 budget.CompanyName = (string)Session["CompanyName"];
                 budget.AX = (string)Session["Ax"];
-                budget.IsActive = (bool)Session["IsActive"];
-                budget.DisplayName = (string)Session["DisplayName"];
+               // budget.IsActive = (bool)Session["IsActive"];
+                //budget.DisplayName = (string)Session["DisplayName"];
                 budget.ContactPerson = (string)Session["ContactPerson"];
-                budget.CompanyHandle = (string)Session["CompanyHandle"];
+               // budget.CompanyHandle = (string)Session["CompanyHandle"];
                 budget.Type = "NEW";
 
                 if (budget.Terms == "Recurring")
@@ -336,10 +336,10 @@ namespace _123Movers.Controllers
             budget.CompanyId = (int?)Session["CompanyId"];
             budget.CompanyName = (string)Session["CompanyName"];
             budget.AX = (string)Session["Ax"];
-            budget.IsActive = (bool)Session["IsActive"];
-            budget.DisplayName = (string)Session["DisplayName"];
+          //  budget.IsActive = (bool)Session["IsActive"];
+          //  budget.DisplayName = (string)Session["DisplayName"];
             budget.ContactPerson = (string)Session["ContactPerson"];
-            budget.CompanyHandle = (string)Session["CompanyHandle"];
+           // budget.CompanyHandle = (string)Session["CompanyHandle"];
 
             return View(budget);
 
@@ -359,10 +359,10 @@ namespace _123Movers.Controllers
                 budget.CompanyId = (int?)Session["CompanyId"];
                 budget.CompanyName = (string)Session["CompanyName"];
                 budget.AX = (string)Session["Ax"];
-                budget.IsActive = (bool)Session["IsActive"];
-                budget.DisplayName = (string)Session["DisplayName"];
+               // budget.IsActive = (bool)Session["IsActive"];
+               // budget.DisplayName = (string)Session["DisplayName"];
                 budget.ContactPerson = (string)Session["ContactPerson"];
-                budget.CompanyHandle = (string)Session["CompanyHandle"];
+               // budget.CompanyHandle = (string)Session["CompanyHandle"];
                 budget.BudgetAction = "RENEWAL INSERTION";
                 budget.Type = "EDIT";
 
@@ -386,7 +386,7 @@ namespace _123Movers.Controllers
                 //ModelState.Clear();
                 ViewBag.Success = "Budget saved successfully..";
                 //return View();
-                return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX, budget.DisplayName, budget.ContactPerson, budget.CompanyHandle });
+                return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX, budget.DisplayName, budget.ContactPerson});
 
                 //}
             }
@@ -402,7 +402,7 @@ namespace _123Movers.Controllers
 
 
         [HttpGet]
-        public ActionResult GetBudget(string companyid, string companyName, string ax, string displayname, string contactperson, string companyHandle)
+        public ActionResult GetBudget(string companyid, string companyName, string ax, string displayname, string contactperson)
         {
 
             // MoversEntities dc = new MoversEntities();
@@ -423,7 +423,7 @@ namespace _123Movers.Controllers
             search.budget = budgetList;
             search.ContactPerson = contactperson;
             search.DisplayName = displayname;
-            search.CompanyHandle = companyHandle;
+            //search.CompanyHandle = companyHandle;
             return View(search);
         }
 
@@ -453,10 +453,10 @@ namespace _123Movers.Controllers
                         Session["CompanyId"] = b.CompanyId;
                         Session["CompanyName"] = b.CompanyName;
                         Session["Ax"] = b.AX;
-                        Session["IsActive"] = b.IsActive;
-                        Session["DisplayName"] = b.DisplayName;
+                        //Session["IsActive"] = b.IsActive;
+                        //Session["DisplayName"] = b.DisplayName;
                         Session["ContactPerson"] = b.ContactPerson;
-                        Session["CompanyHandle"] = b.CompanyHandle;
+                       // Session["CompanyHandle"] = b.CompanyHandle;
                         break;
                     }
 
