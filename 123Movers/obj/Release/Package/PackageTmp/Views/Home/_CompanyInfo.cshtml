@@ -1,8 +1,7 @@
 ﻿
 @{
     //var IsActive = (@Model.IsActive) ? "Active" : "Inactive";
-    var Suspended = ((string)@Session["Suspended"] == "Yes") ? "Suspended" : ((bool)@Session["IsActive"]) ? "Active" : "Inactive";
-    //var IsActive = ((bool)@Session["IsActive"]) ? "Active" : "Inactive";
+    var IsActive = ((bool)@Session["IsActive"]) ? "Active" : "Inactive";
 }
 <div class="col-md-12">
             <p></p>
@@ -18,7 +17,7 @@
                         <td class="col-md-6">Sales Person : <strong>@Session["ContactPerson"]</strong></td>
                     </tr>
                     <tr>
-                        <td  class="col-md-6"> Status : <strong>@Suspended</strong></td>
+                        <td  class="col-md-6"> Status : <strong>@IsActive</strong></td>
                         <td class="col-md-6"></td>
                     </tr>
 

@@ -296,10 +296,15 @@ namespace _123Movers.DataEntities
                 foreach (DataRow row in dtResults.Rows)
                 {
                      int? cid = 0;
+                     bool isActive = false;
 
                      if (!string.IsNullOrEmpty(row["CompanyID"].ToString()))
                      {
                          cid = Convert.ToInt32(row["CompanyID"]);
+                     }
+                     if (!string.IsNullOrEmpty(row["isActive"].ToString()))
+                     {
+                         isActive = Convert.ToBoolean(row["isActive"]);
                      }
                     BudgetModel s = new BudgetModel {
                       //  CompanyId = row[""],
@@ -308,9 +313,11 @@ namespace _123Movers.DataEntities
                         CompanyName = row["companyName"].ToString(),
                         AX = row["AbNumber"].ToString(),
                         InsertionOrderId = row["insertionOrderId"].ToString(),
-                        DisplayName = row["displayName"].ToString(),
-                        CompanyHandle = row["companyHandle"].ToString(),
-                        ContactPerson = row["contactPerson"].ToString()
+                        //DisplayName = row["displayName"].ToString(),
+                       // CompanyHandle = row["companyHandle"].ToString(),
+                        ContactPerson = row["contactPerson"].ToString(),
+                        IsActive = isActive,
+                        Suspended = row["suspended"].ToString()
                         //AgreementNumber = row["agreementNumber"].ToString(),
                        // AreaCodes = row["Area Code"].ToString()
 
@@ -482,6 +489,33 @@ namespace _123Movers.DataEntities
 
             }
             return true;
+        }
+        public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
+        {
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdGetCompanyPricePerLead = new SqlCommand();
+                cmdGetCompanyPricePerLead.Connection = dbCon;
+                cmdGetCompanyPricePerLead.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdGetCompanyPricePerLead.CommandText = "usp_GetCompanyPricePerLead";
+                if (serviceId == null)
+                {
+                    serviceId = 1009;
+                }
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+
+                cmdGetCompanyPricePerLead.Parameters.Add(paramCompanyId);
+                cmdGetCompanyPricePerLead.Parameters.Add(paramService);
+
+                DataTable dtResults = new DataTable();
+
+                SqlDataReader drResults = cmdGetCompanyPricePerLead.ExecuteReader();
+                dtResults.Load(drResults);
+
+                return dtResults;
+
+            }
         }
         
     }

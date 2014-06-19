@@ -202,7 +202,7 @@ namespace _123Movers.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddBudget(SearchModel search)
+        public ActionResult AddBudget()
         {
             ViewBag.Terms = Terms(false, false, false);
 
@@ -210,14 +210,14 @@ namespace _123Movers.Controllers
 
             BudgetModel budgget = new BudgetModel();
 
-            budgget.CompanyId = search.CompanyId;
-            budgget.CompanyName = search.CompanyName;
-            budgget.AX = search.AX;
-            budgget.IsActive = search.IsActive;
+            //budgget.CompanyId = search.CompanyId;
+            //budgget.CompanyName = search.CompanyName;
+            //budgget.AX = search.AX;
+            //budgget.IsActive = search.IsActive;
 
-            budgget.DisplayName = search.DisplayName;
-            budgget.ContactPerson = search.ContactPerson;
-            budgget.CompanyHandle = search.CompanyHandle;
+            //budgget.DisplayName = search.DisplayName;
+            //budgget.ContactPerson = search.ContactPerson;
+            //budgget.CompanyHandle = search.CompanyHandle;
 
             //Session["CompanyId"] = budgget.CompanyId;
             //Session["CompanyName"] = budgget.CompanyName;
@@ -266,9 +266,11 @@ namespace _123Movers.Controllers
 
             try
             {
+                
                 //if (ModelState.IsValid)
                 //{
-                budget.CompanyId = (int?)Session["CompanyId"];
+                var cmd = (string)Session["CompanyId"];
+                budget.CompanyId = Convert.ToInt32(cmd);
                 budget.CompanyName = (string)Session["CompanyName"];
                 budget.AX = (string)Session["Ax"];
                 budget.IsActive = (bool)Session["IsActive"];
@@ -297,7 +299,7 @@ namespace _123Movers.Controllers
                 // ModelState.Clear();
                 ViewBag.Success = "Budget saved successfully..";
                 //return View();
-                return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX, budget.DisplayName, budget.ContactPerson, budget.CompanyHandle });
+                return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX,  budget.ContactPerson, budget.Suspended, budget.IsActive });
 
                 //}
             }
@@ -326,13 +328,13 @@ namespace _123Movers.Controllers
             ViewBag.Services = Services(budget.ServiceId, true);
 
 
-            budget.CompanyId = (int?)Session["CompanyId"];
+            var cmd = (string)Session["CompanyId"];
+            budget.CompanyId = Convert.ToInt32(cmd);
             budget.CompanyName = (string)Session["CompanyName"];
             budget.AX = (string)Session["Ax"];
             budget.IsActive = (bool)Session["IsActive"];
-            //  budget.DisplayName = (string)Session["DisplayName"];
+            budget.Suspended = (string)Session["Suspended"];
             budget.ContactPerson = (string)Session["ContactPerson"];
-            // budget.CompanyHandle = (string)Session["CompanyHandle"];
 
             return View(budget);
 
@@ -349,13 +351,13 @@ namespace _123Movers.Controllers
             {
                 //if (ModelState.IsValid)
                 //{
-                budget.CompanyId = (int?)Session["CompanyId"];
+                var cmd = (string)Session["CompanyId"];
+                budget.CompanyId = Convert.ToInt32(cmd);
                 budget.CompanyName = (string)Session["CompanyName"];
                 budget.AX = (string)Session["Ax"];
                 budget.IsActive = (bool)Session["IsActive"];
-                // budget.DisplayName = (string)Session["DisplayName"];
+                budget.Suspended = (string)Session["Suspended"];
                 budget.ContactPerson = (string)Session["ContactPerson"];
-                // budget.CompanyHandle = (string)Session["CompanyHandle"];
                 budget.BudgetAction = "RENEWAL INSERTION";
                 budget.Type = "EDIT";
 
@@ -379,7 +381,7 @@ namespace _123Movers.Controllers
                 //ModelState.Clear();
                 ViewBag.Success = "Budget saved successfully..";
                 //return View();
-                return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX, budget.DisplayName, budget.ContactPerson });
+                return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX, budget.ContactPerson, budget.Suspended, budget.IsActive });
 
                 //}
             }
@@ -395,13 +397,13 @@ namespace _123Movers.Controllers
 
 
         [HttpGet]
-        public ActionResult GetBudget(string companyid, string companyName, string ax, string displayname, string contactperson)
+        public ActionResult GetBudget(string companyid, string companyName, string ax, string contactperson, string suspended, bool active = false)
         {
 
             // MoversEntities dc = new MoversEntities();
             IEnumerable<BudgetModel> budgetList = new List<BudgetModel>();
             SearchModel search = new SearchModel();
-            var cmpid = Convert.ToInt32(companyid);
+            //var cmpid = Convert.ToInt32(companyid);
             budgetList = BusinessLayer.GetBudget(companyid);
 
             var tbilled = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.TotalBudget);
@@ -410,13 +412,50 @@ namespace _123Movers.Controllers
             ViewBag.TotalBilled = String.Format("{0:C}", tbilled);
             ViewBag.UnchargedAmount = String.Format("{0:C}", uamount);
 
-            search.CompanyId = cmpid;
-            search.AX = ax;
-            search.CompanyName = companyName;
+            //if (Session["CompanyId"] == null) { Session["CompanyId"] = companyid; }
+            //if (Session["CompanyName"] == null) { Session["CompanyName"] = companyName; }
+            //if (Session["Ax"] == null) { Session["Ax"] = ax; }
+            //if (Session["IsActive"] == null) { Session["IsActive"] = active; }
+            //if (Session["ContactPerson"] == null) { Session["ContactPerson"] = contactperson; }
+
+
+            Session["CompanyId"] = companyid;
+            Session["CompanyName"] = companyName;
+            Session["Ax"] = ax;
+            Session["IsActive"] = active;
+            Session["Suspended"] = suspended;
+            Session["ContactPerson"] = contactperson;
+
+
+            //if (budgetList.ToList().Count == 0)
+            //{
+            //    IEnumerable<BudgetModel> budget = new List<BudgetModel> {
+            //        new BudgetModel{
+            //        CompanyId = cmpid,
+            //        CompanyName = companyName,
+            //        AX = ax,
+            //        ContactPerson = contactperson,
+            //        IsActive = actice}
+            //    };
+
+            //    search.budget = budget;
+            //}
+            //else {
+            //    foreach (var b in budgetList) {
+            //        b.IsActive = actice;
+            //        break;
+            //    }
+            //    //  search.CompanyId = cmpid;
+            //    // search.AX = ax;
+            //    // search.CompanyName = companyName;
+            //    search.budget = budgetList;
+            //    // search.ContactPerson = contactperson;
+            //    //search.DisplayName = displayname;
+            //    //search.CompanyHandle = companyHandle;
+            //}
+
             search.budget = budgetList;
-            search.ContactPerson = contactperson;
-            search.DisplayName = displayname;
-            //search.CompanyHandle = companyHandle;
+           
             return View(search);
         }
 
@@ -439,21 +478,21 @@ namespace _123Movers.Controllers
 
                 var budget = BusinessLayer.SearchCompany(search);
                 search.budget = budget;
-                if (budget.Count() > 0)
-                {
-                    foreach (var b in budget)
-                    {
-                        Session["CompanyId"] = b.CompanyId;
-                        Session["CompanyName"] = b.CompanyName;
-                        Session["Ax"] = b.AX;
-                        Session["IsActive"] = b.IsActive;
-                        //Session["DisplayName"] = b.DisplayName;
-                        Session["ContactPerson"] = b.ContactPerson;
-                        // Session["CompanyHandle"] = b.CompanyHandle;
-                        break;
-                    }
+                //if (budget.Count() > 0)
+                //{
+                //    foreach (var b in budget)
+                //    {
+                //        Session["CompanyId"] = b.CompanyId;
+                //        Session["CompanyName"] = b.CompanyName;
+                //        Session["Ax"] = b.AX;
+                //        Session["IsActive"] = b.IsActive;
+                //        //Session["DisplayName"] = b.DisplayName;
+                //        Session["ContactPerson"] = b.ContactPerson;
+                //        // Session["CompanyHandle"] = b.CompanyHandle;
+                //        break;
+                //    }
 
-                }
+                //}
 
                 return View(search);
             }
@@ -527,7 +566,7 @@ namespace _123Movers.Controllers
 
            // return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
         }
-
+        
         //MoversEntities m = new MoversEntities();
 
         //public List<TreeViewModel> GetTreeVeiwList()

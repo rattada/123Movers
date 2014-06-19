@@ -4,34 +4,36 @@
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="alert-box error" style="display:none"></div>
-    <h2>Search for Company </h2>
+<div class="alert-box error" style="display: none"></div>
+<h2>Search for Company </h2>
 @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { id = "frmsearch", @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     
    
-        <div class="row">
-            <div class="col-md-5">
-                 <div class="form-group">
-                        @Html.LabelFor(m => m.CompanyName, new { @class = "control-label col-md-4"})
-                       <div class="col-md-8"> @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", id ="CompanyName"})</div>
-                        @Html.ValidationMessageFor(m => m.CompanyName)
-                    </div><div class="form-group">
-                        @Html.LabelFor(m => m.CompanyId, new { @class = "control-label col-md-4"})
-                      <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyId, new { @class = "form-control" , id ="CompanyId"})</div>
-                        @Html.ValidationMessageFor(m => m.CompanyId)
-                     </div><div class="form-group">
-                        @Html.LabelFor(m => m.AX, new { @class = "control-label col-md-4"})
-                       <div class="col-md-8">@Html.TextBoxFor(m => m.AX, new { @class = "form-control" , id ="AX" })</div>
-                        @Html.ValidationMessageFor(m => m.AX)
-                     </div>
-                        <div class="form-group">
-                        @Html.LabelFor(m => m.InsertionOrderId, new { @class = "control-label col-md-4"})
-                       <div class="col-md-8">@Html.TextBoxFor(m => m.InsertionOrderId, new { @class = "form-control", id ="InsertionOrderId" })</div>
-                        @Html.ValidationMessageFor(m => m.InsertionOrderId)
-                   @*  </div><div class="form-group">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                @Html.LabelFor(m => m.CompanyName, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", id = "CompanyName" })</div>
+                @Html.ValidationMessageFor(m => m.CompanyName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CompanyId, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyId, new { @class = "form-control", id = "CompanyId" })</div>
+                @Html.ValidationMessageFor(m => m.CompanyId)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AX, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">@Html.TextBoxFor(m => m.AX, new { @class = "form-control", id = "AX" })</div>
+                @Html.ValidationMessageFor(m => m.AX)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.InsertionOrderId, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">@Html.TextBoxFor(m => m.InsertionOrderId, new { @class = "form-control", id = "InsertionOrderId" })</div>
+                @Html.ValidationMessageFor(m => m.InsertionOrderId)
+                @*  </div><div class="form-group">
                         @Html.LabelFor(m => m.AgreementNumber, new { @class = "control-label col-md-4"})
                         <div class="col-md-8">@Html.TextBoxFor(m => m.AgreementNumber, new { @class = "form-control" , id ="AgreementNumber" })</div>
                         @Html.ValidationMessageFor(m => m.AgreementNumber)
@@ -39,15 +41,15 @@
                         @Html.LabelFor(m => m.AreaCodes, new { @class = "control-label col-md-4"})
                        <div class="col-md-8">@Html.TextBoxFor(m => m.AreaCodes, new { @class = "form-control", id ="AreaCode" })</div>
                         @Html.ValidationMessageFor(m => m.AreaCodes)*@
-                     </div>
-               
             </div>
-           <div class="col-md-4">
-                        <div class="top-buffer">
-                            <input type="submit" value="Search" class="btn btn-primary btn-lg" id ="btnSearch">
-                        </div>
-                    </div>
+
         </div>
+        <div class="col-md-4">
+            <div class="top-buffer">
+                <input type="submit" value="Search" class="btn btn-primary btn-lg" id="btnSearch">
+            </div>
+        </div>
+    </div>
 
    
      
@@ -55,101 +57,91 @@
 
 @if (@Model != null)
 {
-    if (@Model.budget != null) {
-    if (@Model.budget.Count() > 0)
-    {
-          <div class="nav nav-pills navbar-inverse">
-       <div class="container"> <h4 style="color:#fff">
-          @Model.budget.Count()- Results
-        </h4></div>
+    //if (@Model.budget != null)
+    //{
+    //    if (@Model.budget.Count() > 0)
+    //    {
+    <div class="nav nav-pills navbar-inverse">
+        <div class="container">
+            <h4 style="color: #fff">
+                 @{
+                    var count = @Model.budget != null ? @Model.budget.Count() : 0;
+                    }
+                @count - Results
+            </h4>
+        </div>
     </div>
     <div class="table-responsive">
-    <table id="info" class="table">
-      
-        <tr>
-            <th class="col-md-2">
-               Company ID
-            </th>
+        <table id="info" class="table table-striped table-bordered">
 
-            <th class="col-md-4">
-                Company Name
-            </th>
+            <tr>
+                <th class="col-md-2">Company ID
+                </th>
 
-            <th class="col-md-2">
-                AX #
-            </th>
+                <th class="col-md-4">Company Name
+                </th>
 
-@*            <th class="col-md-2">
+                <th class="col-md-2">AX #
+                </th>
+
+                @*            <th class="col-md-2">
                 Insertion Order ID
             </th>*@
-            <th class="col-md-2">
-                Actions
-            </th>
-        </tr>
-        @if (@Model.budget != null)
-        {
-            foreach (var lot in Model.budget)
+                <th class="col-md-2">Actions
+                </th>
+            </tr>
+            @if (@Model.budget != null && @Model.budget.Count() > 0)
             {
-            <tr>
-                <td>
-                    @lot.CompanyId
-                </td>
+                foreach (var lot in Model.budget)
+                {
+                <tr>
+                    <td>
+                        @lot.CompanyId
+                    </td>
 
-                <td>
-                    @lot.CompanyName
-                </td>
-                
-                <td>
-                    @lot.AX
-                </td>
+                    <td>
+                        @lot.CompanyName
+                    </td>
 
-               @* <td>
+                    <td>
+                        @lot.AX
+                    </td>
+
+                    @* <td>
                     @lot.InsertionOrderId
                 </td>*@
 
-                <td>
-                    
-                    @Html.ActionLink("Budget", "GetBudget", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, displayname = @lot.DisplayName, contactperson = @lot.ContactPerson, companyHandle = @lot.CompanyHandle }, new {@class="btn btn-primary btn-sm" })
-                    @*<input type="button" value="Budgets" class="btn btn-primary" id ="btnBudget">*@
-              
-                            <input type="button" value="Reports" class="btn btn-primary btn-sm">
-                </td>
-            </tr>
+                    <td>
+
+                        @Html.ActionLink("Budget", "GetBudget", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX,  contactperson = @lot.ContactPerson, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
+                        @*<input type="button" value="Budgets" class="btn btn-primary" id ="btnBudget">*@
+
+                        <input type="button" value="Reports" class="btn btn-primary btn-sm">
+                    </td>
+                </tr>
+                }
             }
-        }
+            else
+            {
+                <tr>
+                    <td class="col-md-6 text-center" colspan="10">No Results Found
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+     @*   }
         else
         {
-            <tr>
-                <td colspan="10" class="loneTd">No Bugdets found
-                </td>
-            </tr>
-        }
-    </table>
-        </div>
-}
-else{
-        <table>
+    <table>
         <tr>
-                <td colspan="10" class="loneTd">No Results found
-                </td>
-            </tr>
-            </table>
-}
-    }
-    @*
-    
-      <div class="col-lg-4">
-                        <div class="top-buffer">
-                            <input type="button" value="Budgets" class="btn btn-primary">
-                        </div>
-                    </div>
-    
-         <div class="col-lg-4">
-                        <div class="top-buffer">
-                            <input type="button" value="Reports" class="btn btn-primary">
-                        </div>
-                    </div>*@
-    
+             <td class="col-md-6 text-center" colspan="10">No Results found
+            </td>
+        </tr>
+    </table>
+        }
+    }*@
+
 }
 
 

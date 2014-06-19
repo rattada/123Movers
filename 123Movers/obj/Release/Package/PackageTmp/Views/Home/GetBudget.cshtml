@@ -9,7 +9,8 @@
 
 <script type="text/javascript" src="~/Scripts/jquery.tablesorter.min.js"></script>
  <div class="row">
-     @Html.Partial("_CompanyInfo", @Model.budget.FirstOrDefault())
+    @* @Html.Partial("_CompanyInfo", @Model.budget.FirstOrDefault())*@
+      @Html.Partial("_CompanyInfo")
                 </div>
  <p class="clearfix"></p>
 @if (@Model != null)
@@ -19,7 +20,8 @@
      <div class="row">
          <div class="col-md-12">
              @*<input type="button" id ="AddBudget" class="button" value="Add Budget" />*@
-  <p>  @Html.ActionLink("Add a Budget", "AddBudget", "Home", new { companyid = @Model.CompanyId, companyName = @Model.CompanyName, ax = @Model.AX, active = @Model.IsActive, displayname = @Model.DisplayName, contactperson = @Model.ContactPerson, companyHandle=@Model.CompanyHandle }, new {id = "AddBudget", @class = "btn btn-primary btn-lg btn-warning" })</p>
+  @*<p>  @Html.ActionLink("Add a Budget", "AddBudget", "Home", new { companyid =(int?)@Session["CompanyId"], companyName = @Model.CompanyName, ax = @Model.AX, active = @Model.IsActive, displayname = @Model.DisplayName, contactperson = @Model.ContactPerson, companyHandle=@Model.CompanyHandle }, new {id = "AddBudget", @class = "btn btn-primary btn-lg btn-warning" })</p>*@
+             <p>  @Html.ActionLink("Add a Budget", "AddBudget", "Home", new {id = "AddBudget", @class = "btn btn-primary btn-lg btn-warning" })</p>
              </div>
      </div>
     <div class="table-responsive">
@@ -246,52 +248,12 @@
     
 }
 
-@* <div class="Container">
- <p class="button">@Html.ActionLink("Back to List", "history.go(-1);return false;")</p>
-</div>*@
 <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">BACK TO LIST</a> 
 
 <script type="text/javascript">
     $(document).ready(function () {
+
         $("#ExpiredInfo").tablesorter();
-        //var count = $('#ActiveInfo>tbody>tr').length;
-        //var count1 = $('#ExpiredInfo>tbody>tr').length;
-        //alert(count1);
-        //if (count <= 0) {
-        //    $('#empty').attr('style', 'display:none')
-        //}
-        
-
-      @*  $("#AddBudget").click(function () {
-
-            var search = {
-                CompanyId: @Model.CompanyId,
-                    CompanyName: @Model.CompanyName,
-            ContactPerson: @Model.ContactPerson,
-            AX: @Model.AX
-              
-        };
-
-            var car = { CompanyId: @Model.CompanyId, Model: 'A4 Avant', Colour: 'Black', Registered: 2013 };
-              $.ajax({
-                url: '/Home/AddBudget',
-                type: 'GET',
-                dataType: 'json',
-                traditional: true,
-                data: $("#form").serialize(),
-                success: function () {
-                    //reordered = false;
-                    //$('#saveOrder').removeClass('Save').addClass('Disabled').unbind('click');
-                    //$("body").unmask();
-                    //Dominion.Cms.Common.showSuccessMessage("#cmsMessage", "Coupon order saved successfully.");
-                },
-                error: function () {
-                    //$("body").unmask();
-                    //Dominion.Cms.Common.showErrorMessage("#cmsMessage", "There was an error saving the coupon order. Please try again.");
-                }
-            });
-        });*@
-
-
+       
     });
 </script>

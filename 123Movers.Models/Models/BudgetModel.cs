@@ -37,7 +37,8 @@ namespace _123Movers.Models
         [Display(Name = "Company Handle")]
         public string CompanyHandle { get; set; }
 
-      
+        [Display(Name = "Suspended")]
+        public string Suspended { get; set; }
 
 
         [Required]

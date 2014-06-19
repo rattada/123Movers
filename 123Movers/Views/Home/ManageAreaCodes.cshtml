@@ -86,20 +86,23 @@
         if ('@ViewBag.ServiceId' == 1000) {
             serviceId = 1000;
             ServiceType = 'long';
-        }
-        else {
-
-            serviceId = 1009;
-            ServiceType = 'local';
-        }
-        if (ServiceType == 'local') {
-            $('#ServiceTab a:first').tab('show') // Select first 
-
-        }
-        else {
             $('#ServiceTab a:last').tab('show') // Select last 
+            $('li.cslocal').hide();
+        }
+        else if ('@ViewBag.ServiceId' == 1009) {
+
+             serviceId = 1009;
+             ServiceType = 'local';
+             $('#ServiceTab a:first').tab('show') // Select first 
+             $('li.cslong').hide();
+         }
+         else {
+             serviceId = 1009;
+             ServiceType = 'Both';
+             $('#ServiceTab a:first').tab('show') // Default first 
 
         }
+
         GetAvailableAreas(serviceId, ServiceType);
         GetSelectedAreas(serviceId, ServiceType);
 
@@ -163,10 +166,7 @@
                     $('#selectedareas').html(table);
 
                     $('#areasSelected').html(options);
-                    
-                     
-
-                    // $('#areasSelected').html(options);
+  
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
@@ -178,7 +178,6 @@
             var defaultprice = $.trim($('#txtDefaultPrice').val());
             var decimal = /^(\d*\.?\d*)$/;
 
-            //if (defaultprice.length == 0) {
             var areacodes = [];
             $("#tblareas tbody tr").each(function () {
                 var areaprice = $(this).closest('tr').find('.form-control').val();
@@ -231,18 +230,6 @@
                     alert('Error occurred while saving the prices' + errMessage);
                 }
             });
-            //} else {
-            //    if (!defaultprice.match(decimal)) {
-            //        alert('Please Enter a Valid Numeric Price ');
-            //        return false;
-            //    }
-
-
-
-            //}
-
-
-
 
         });
 
@@ -330,10 +317,5 @@
             GetSelectedAreas(serviceId, 'long');
         });
 
-        //if (ServiceType == 'local') {
-        //    $('#ServiceTab a[href="#local"]').tab('show')
-        //}
-        //else
-        //    $('#ServiceTab a[href="#long"]').tab('show')
     });
 </script>

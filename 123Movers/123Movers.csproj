@@ -271,8 +271,11 @@
     </Content>
     <None Include="Properties\PublishProfiles\release.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\asc.gif" />
     <Content Include="Images\asc.png" />
+    <Content Include="Images\bg.gif" />
     <Content Include="Images\bg.png" />
+    <Content Include="Images\desc.gif" />
     <Content Include="Images\desc.png" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

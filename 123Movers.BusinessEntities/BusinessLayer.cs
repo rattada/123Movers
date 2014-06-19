@@ -75,5 +75,9 @@ namespace _123Movers.BusinessEntities
         {
             return  DataLayer.AddCompanyPricePerLead(companyId, serviceId, areaCode, price, moveWeightID);
         }
+        public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
+        {
+            return DataLayer.GetCompanyPricePerLead(companyId, serviceId);
+        }
     }
 }
