@@ -1,5 +1,7 @@
 ﻿ @model _123Movers.Models.BudgetModel
-
+@{
+    var IsActive = (@Model.IsActive) ? "Active" : "Inactive";
+}
 <div class="col-md-12">
             <p></p>
             <table class="table table-bordered" style="margin-bottom: 0px;">
@@ -13,6 +15,10 @@
                         <td class="col-md-6">AX # : <strong>@Model.AX</strong></td>
                         <td class="col-md-6">Sales Person : <strong>@Model.ContactPerson</strong></td>
                     </tr>
+                    <tr>
+                        <td>STATUS : @IsActive</td>
+                    </tr>
+
                    @* <tr>
                         <td class="col-md-6">AKA Name :</td>
                         <td class="col-md-6" colspan="2">Company Handle :@Model.CompanyHandle <a href="javascript:void(0);">Company Page</a></td>

@@ -271,7 +271,7 @@ namespace _123Movers.Controllers
                 budget.CompanyId = (int?)Session["CompanyId"];
                 budget.CompanyName = (string)Session["CompanyName"];
                 budget.AX = (string)Session["Ax"];
-                // budget.IsActive = (bool)Session["IsActive"];
+                budget.IsActive = (bool)Session["IsActive"];
                 //budget.DisplayName = (string)Session["DisplayName"];
                 budget.ContactPerson = (string)Session["ContactPerson"];
                 // budget.CompanyHandle = (string)Session["CompanyHandle"];
@@ -329,7 +329,7 @@ namespace _123Movers.Controllers
             budget.CompanyId = (int?)Session["CompanyId"];
             budget.CompanyName = (string)Session["CompanyName"];
             budget.AX = (string)Session["Ax"];
-            //  budget.IsActive = (bool)Session["IsActive"];
+            budget.IsActive = (bool)Session["IsActive"];
             //  budget.DisplayName = (string)Session["DisplayName"];
             budget.ContactPerson = (string)Session["ContactPerson"];
             // budget.CompanyHandle = (string)Session["CompanyHandle"];
@@ -352,7 +352,7 @@ namespace _123Movers.Controllers
                 budget.CompanyId = (int?)Session["CompanyId"];
                 budget.CompanyName = (string)Session["CompanyName"];
                 budget.AX = (string)Session["Ax"];
-                // budget.IsActive = (bool)Session["IsActive"];
+                budget.IsActive = (bool)Session["IsActive"];
                 // budget.DisplayName = (string)Session["DisplayName"];
                 budget.ContactPerson = (string)Session["ContactPerson"];
                 // budget.CompanyHandle = (string)Session["CompanyHandle"];
@@ -446,7 +446,7 @@ namespace _123Movers.Controllers
                         Session["CompanyId"] = b.CompanyId;
                         Session["CompanyName"] = b.CompanyName;
                         Session["Ax"] = b.AX;
-                        //Session["IsActive"] = b.IsActive;
+                        Session["IsActive"] = b.IsActive;
                         //Session["DisplayName"] = b.DisplayName;
                         Session["ContactPerson"] = b.ContactPerson;
                         // Session["CompanyHandle"] = b.CompanyHandle;
