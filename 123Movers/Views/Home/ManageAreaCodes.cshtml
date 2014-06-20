@@ -162,11 +162,7 @@
                         }
                         if (i < Math.round(json.length / 2))
                         {
-                            var p;
-                            if (val[2] != null) {
-                                p = val[2].toFixed(2);
-                            } else { p = val[2] }
-                            table1 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + p + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
+                            table1 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + val[2] + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
                         }
                         
                     });
@@ -175,11 +171,9 @@
                     var table2 = "<div class ='col-md-6' ><table class='table table-striped' id ='table2'><thead><tr><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
                     jQuery.each(json, function (i, val) {
                         if (i >= Math.round(json.length / 2) && i < json.length)
-                            var p;
-                        if (val[2] != null) {
-                            p = val[2].toFixed(2);
-                        } else { p = val[2] }
-                        { table2 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + p + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>"; }
+                        {
+                            table2 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + val[2] + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
+                        }
                     });
 
                     table2 += "</tbody></table></div>"; 
