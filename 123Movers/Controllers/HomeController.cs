@@ -379,8 +379,8 @@ namespace _123Movers.Controllers
 
                 BusinessLayer.SaveBudget(budget);
                 //ModelState.Clear();
-                ViewBag.Success = "Budget saved successfully..";
-                //return View();
+              //  ViewBag.Success = "Budget saved successfully..";
+
                 return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX, budget.ContactPerson, budget.Suspended, budget.IsActive });
 
                 //}
@@ -476,8 +476,8 @@ namespace _123Movers.Controllers
                     return View(search);
                 }
 
-                var budget = BusinessLayer.SearchCompany(search);
-                search.budget = budget;
+                var companies = BusinessLayer.SearchCompany(search);
+                search.Companies = companies;
                 //if (budget.Count() > 0)
                 //{
                 //    foreach (var b in budget)
@@ -547,13 +547,30 @@ namespace _123Movers.Controllers
                 foreach (var areacode in areacodelist)
                 {
                     var s = areacode.Split('-');
-                    if (BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, Convert.ToInt16(s[0]), Convert.ToDecimal(s[1]), null))
+                    //int? acode = s[0] != null ?  Convert.ToInt32(s[0]) : null;
+                    if (s[0].ToString() == "null")
                     {
-                        result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                        if (BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, null, Convert.ToDecimal(s[1]), null))
+                        {
+                            result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            throw new ApplicationException(string.Format("An error occurred while saving"));
+                        }
                     }
-                    else {
-                        throw new ApplicationException(string.Format("An error occurred while saving"));
+                    else
+                    {
+                        if (BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, Convert.ToInt16(s[0]), Convert.ToDecimal(s[1]), null))
+                        {
+                            result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            throw new ApplicationException(string.Format("An error occurred while saving"));
+                        }
                     }
+                   
                 }
 
             }

@@ -262,9 +262,9 @@ namespace _123Movers.DataEntities
             }
         }
 
-        public static IEnumerable<BudgetModel> SearchCompany(SearchModel search)
+        public static IEnumerable<SearchModel> SearchCompany(SearchModel search)
         {
-            List<BudgetModel> list = new List<BudgetModel>();
+            List<SearchModel> list = new List<SearchModel>();
             using (SqlConnection dbCon = ConnectToDb(DBConnString))
             {
                 SqlCommand cmdGetCompany = new SqlCommand();
@@ -306,7 +306,8 @@ namespace _123Movers.DataEntities
                      {
                          isActive = Convert.ToBoolean(row["isActive"]);
                      }
-                    BudgetModel s = new BudgetModel {
+                     SearchModel s = new SearchModel
+                     {
                       //  CompanyId = row[""],
 
                         CompanyId = cid,
@@ -393,7 +394,7 @@ namespace _123Movers.DataEntities
                 cmdGetCompanyAdByArea.Connection = dbCon;
                 cmdGetCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
                 //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
-                cmdGetCompanyAdByArea.CommandText = "usp_getCompanyStateAreacode"; //"usp_getCompanyAdByArea";
+                cmdGetCompanyAdByArea.CommandText = "usp_getCompanyStateAreacodePrice"; //"usp_getCompanyStateAreacode";
                 if (serviceId == null)
                 {
                     serviceId = 1009;
@@ -461,7 +462,7 @@ namespace _123Movers.DataEntities
             }
         }
 
-        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, int areaCode, decimal? price, int? moveWeightID)
+        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, int? areaCode, decimal? price, int? moveWeightID)
         {
             int i = 0;
             using (SqlConnection dbCon = ConnectToDb(DBConnString))

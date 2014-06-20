@@ -24,7 +24,7 @@ namespace _123Movers.BusinessEntities
             budget.RemainingBudget = budget.TotalBudget;
             return DataLayer.SaveBudget(budget);
         }
-        public static IEnumerable<BudgetModel> SearchCompany(SearchModel search)
+        public static IEnumerable<SearchModel> SearchCompany(SearchModel search)
         {
             //if (search.CompanyId)
             //{
@@ -71,7 +71,7 @@ namespace _123Movers.BusinessEntities
         {
             DataLayer.DeleteCompanyAdByArea(companyId, serviceId, areaCode);
         }
-        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, int areaCode, decimal? price, int? moveWeightID)
+        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, int? areaCode, decimal? price, int? moveWeightID)
         {
             return  DataLayer.AddCompanyPricePerLead(companyId, serviceId, areaCode, price, moveWeightID);
         }
