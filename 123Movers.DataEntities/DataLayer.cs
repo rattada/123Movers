@@ -499,7 +499,7 @@ namespace _123Movers.DataEntities
                 SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
                 cmdAddCompanyAdByArea.Connection = dbCon;
                 cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyPricePerLead1";
+                cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyPricePerLead";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
