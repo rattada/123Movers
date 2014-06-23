@@ -462,7 +462,36 @@ namespace _123Movers.DataEntities
             }
         }
 
-        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, int? areaCode, decimal? price, int? moveWeightID)
+        //public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, int? areaCode, decimal? price, int? moveWeightID)
+        //{
+        //    int i = 0;
+        //    using (SqlConnection dbCon = ConnectToDb(DBConnString))
+        //    {
+        //        SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
+        //        cmdAddCompanyAdByArea.Connection = dbCon;
+        //        cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyPricePerLead1";
+
+        //        SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+        //        SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+        //        SqlParameter paramAreaCode = new SqlParameter("areacode", areaCode);
+        //        SqlParameter paramPrice = new SqlParameter("price", price);
+        //        SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", moveWeightID);
+
+        //        cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
+        //        cmdAddCompanyAdByArea.Parameters.Add(paramService);
+        //        cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
+        //        cmdAddCompanyAdByArea.Parameters.Add(paramPrice);
+        //        cmdAddCompanyAdByArea.Parameters.Add(paramMoveWeight);
+
+
+        //        i = cmdAddCompanyAdByArea.ExecuteNonQuery();
+               
+
+        //    }
+        //    return true;
+        //}
+        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, string areaCodes, int? moveWeightID)
         {
             int i = 0;
             using (SqlConnection dbCon = ConnectToDb(DBConnString))
@@ -470,27 +499,26 @@ namespace _123Movers.DataEntities
                 SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
                 cmdAddCompanyAdByArea.Connection = dbCon;
                 cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyPricePerLead";
+                cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyPricePerLead1";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramAreaCode = new SqlParameter("areacode", areaCode);
-                SqlParameter paramPrice = new SqlParameter("price", price);
+                SqlParameter paramAreaCode = new SqlParameter("areacodes", areaCodes);
                 SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", moveWeightID);
 
                 cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
                 cmdAddCompanyAdByArea.Parameters.Add(paramService);
                 cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
-                cmdAddCompanyAdByArea.Parameters.Add(paramPrice);
                 cmdAddCompanyAdByArea.Parameters.Add(paramMoveWeight);
 
 
                 i = cmdAddCompanyAdByArea.ExecuteNonQuery();
-               
+
 
             }
             return true;
         }
+
         public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
         {
             using (SqlConnection dbCon = ConnectToDb(DBConnString))

@@ -64,9 +64,9 @@
     <div class="nav nav-pills navbar-inverse">
         <div class="container">
             <h4 style="color: #fff">
-                 @{
-                    var count = @Model.budget != null ? @Model.budget.Count() : 0;
-                    }
+                @{
+    var count = @Model.Companies != null ? @Model.Companies.Count() : 0;
+                }
                 @count - Results
             </h4>
         </div>
@@ -90,9 +90,9 @@
                 <th class="col-md-2">Actions
                 </th>
             </tr>
-            @if (@Model.budget != null && @Model.budget.Count() > 0)
+            @if (@Model.Companies != null && @Model.Companies.Count() > 0)
             {
-                foreach (var lot in Model.budget)
+                foreach (var lot in Model.Companies)
                 {
                 <tr>
                     <td>
@@ -113,7 +113,7 @@
 
                     <td>
 
-                        @Html.ActionLink("Budget", "GetBudget", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX,  contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Budget", "GetBudget", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
                         @*<input type="button" value="Budgets" class="btn btn-primary" id ="btnBudget">*@
 
                         <input type="button" value="Reports" class="btn btn-primary btn-sm">
@@ -130,7 +130,7 @@
             }
         </table>
     </div>
-     @*   }
+@*   }
         else
         {
     <table>

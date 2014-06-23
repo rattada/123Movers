@@ -44,8 +44,8 @@
     </div>
     <div class="col-md-6">
         <div class="row">
-            <b>Default Price:
-                <input type="text" id="txtDefaultPrice"></b>
+            <b>Default Price:</b>
+                <input type="text" id="txtDefaultPrice">
         </div>
         <br />
         <div class="row">
@@ -57,7 +57,7 @@
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <div id="selectedareas"></div>
+                            <div id="selectedareas" class ="scrollable-table"></div>
                         </div>
                     </div>
                 </div>
@@ -150,8 +150,9 @@
                     var strigifyJson = JSON.stringify(data);
                     var json = $.parseJSON(strigifyJson);
 
+
                     var table;
-                    table = "<div class ='scrollable-table' id='divSelected'><table class='table table-striped' id='tblareas' ><thead><tr><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                    var table1 = "<div class ='col-md-6' ><table class='table table-striped' id ='table1' ><thead><tr><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
                     var options = '<option value=""></option>';
                     jQuery.each(json, function (i, val) {
                         if (i == 0) {
@@ -159,9 +160,31 @@
                         } else {
                             options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                         }
-                        table += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
+                        if (val[3] != null)
+                        {
+                            $('#txtDefaultPrice').val(val[3].toString().slice(0, -2));
+                        }
+
+                        if (i < Math.round(json.length / 2))
+                        {
+                            var value = val[2].toString().slice(0, -2);
+                            table1 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
+                        }
+                        
                     });
-                    table += "</tbody></table></div>";
+                    table1 += "</tbody></table></div>";
+
+                    var table2 = "<div class ='col-md-6' ><table class='table table-striped' id ='table2'><thead><tr><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                    jQuery.each(json, function (i, val) {
+                        if (i >= Math.round(json.length / 2) && i < json.length)
+                        {
+                            var value = val[2].toString().slice(0, -2);
+                            table2 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
+                        }
+                    });
+
+                    table2 += "</tbody></table></div>"; 
+                    table = table1 + table2;
 
                     $('#selectedareas').html(table);
 
@@ -177,9 +200,9 @@
         $('#saveprice').on("click", function () {
             var defaultprice = $.trim($('#txtDefaultPrice').val());
             var decimal = /^(\d*\.?\d*)$/;
-
             var areacodes = [];
-            $("#tblareas tbody tr").each(function () {
+
+            $("#table1 tbody tr").each(function () {
                 var areaprice = $(this).closest('tr').find('.form-control').val();
                 var areacode = $(this).closest('tr').find('.areacode').val();
                 if (areaprice.length > 0) {
@@ -188,18 +211,51 @@
                         return false;
                     }
                     areacodes.push(areacode + '-' + areaprice);
-                } else {
+                }
+                else {
                     if (defaultprice.length > 0) {
-                        if (!areaprice.match(decimal)) {
-                            alert('Please Enter a Valid Default Price :' + areacode + '-' + defaultprice);
+                        if (!defaultprice.match(decimal)) {
+                            alert('Please Enter a Valid Default Price');
                             return false;
                         }
-                        areacodes.push(areacode + '-' + defaultprice);
+                        if (areacodes.length > 0)
+                        {
+                            if (areacodes.indexOf('null-' + defaultprice) > -1) {
+                               
+                            } else { areacodes.push(null + '-' + defaultprice); }
+                        }
+                       // areacodes.push(null + '-' + defaultprice);
                     }
                 }
 
             });
-            var rows = $("#tblareas tbody tr").length;
+
+            $("#table2 tbody tr").each(function () {
+                var areaprice = $(this).closest('tr').find('.form-control').val();
+                var areacode = $(this).closest('tr').find('.areacode').val();
+                if (areaprice.length > 0) {
+                    if (!areaprice.match(decimal)) {
+                        alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
+                        return false;
+                    }
+                    areacodes.push(areacode + '-' + areaprice);
+                }
+                if (defaultprice.length > 0) {
+                    if (!defaultprice.match(decimal)) {
+                        alert('Please Enter a Valid Default Price');
+                        return false;
+                    }
+                    if (areacodes.length > 0) {
+                        if (areacodes.indexOf('null-' + defaultprice) > -1) {
+
+                        } else { areacodes.push(null + '-' + defaultprice); }
+                    }
+                    // areacodes.push(null + '-' + defaultprice);
+                }
+
+            });
+
+            var rows = $("#table1 tbody tr").length + $("#table2 tbody tr").length;
 
             if (areacodes.length == 0) {
                 alert('Please enter the price values');
@@ -213,7 +269,7 @@
 
             var jsareacodes = JSON.stringify(areacodes);
 
-            $.ajax({
+           $.ajax({
                 url: '/Home/AddCompanyPricePerLead',
                 type: "POST",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: jsareacodes },

@@ -44,8 +44,8 @@
     </div>
     <div class="col-md-6">
         <div class="row">
-            <b>Default Price:
-                <input type="text" id="txtDefaultPrice"></b>
+            <b>Default Price:</b>
+                <input type="text" id="txtDefaultPrice">
         </div>
         <br />
         <div class="row">
@@ -160,9 +160,15 @@
                         } else {
                             options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                         }
+                        if (val[3] != null)
+                        {
+                            $('#txtDefaultPrice').val(val[3].toString().slice(0, -2));
+                        }
+
                         if (i < Math.round(json.length / 2))
                         {
-                            table1 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + val[2] + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
+                            var value = val[2].toString().slice(0, -2);
+                            table1 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
                         }
                         
                     });
@@ -172,7 +178,8 @@
                     jQuery.each(json, function (i, val) {
                         if (i >= Math.round(json.length / 2) && i < json.length)
                         {
-                            table2 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + val[2] + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
+                            var value = val[2].toString().slice(0, -2);
+                            table2 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
                         }
                     });
 
@@ -193,8 +200,8 @@
         $('#saveprice').on("click", function () {
             var defaultprice = $.trim($('#txtDefaultPrice').val());
             var decimal = /^(\d*\.?\d*)$/;
-            debugger;
             var areacodes = [];
+
             $("#table1 tbody tr").each(function () {
                 var areaprice = $(this).closest('tr').find('.form-control').val();
                 var areacode = $(this).closest('tr').find('.areacode').val();
@@ -203,7 +210,8 @@
                         alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                         return false;
                     }
-                    areacodes.push(areacode + '-' + areaprice);
+                    //areacodes.push(areacode + '-' + areaprice);
+                    areacodes.push(areacode + '-' + 'NO-' + areaprice);
                 }
                 else {
                     if (defaultprice.length > 0) {
@@ -211,17 +219,18 @@
                             alert('Please Enter a Valid Default Price');
                             return false;
                         }
-                        if (areacodes.length > 0)
-                        {
-                            if (areacodes.indexOf('null-' + defaultprice) > -1) {
+                        areacodes.push(areacode + '-' + 'YES-' + defaultprice);
+                        //if (areacodes.length > 0)
+                        //{
+                        //    if (areacodes.indexOf('null-' + defaultprice) > -1) {
                                
-                            } else { areacodes.push(null + '-' + defaultprice); }
-                        }
-                       // areacodes.push(null + '-' + defaultprice);
+                        //    } else { areacodes.push(null + '-' + defaultprice); }
+                        //}
                     }
                 }
 
             });
+
             $("#table2 tbody tr").each(function () {
                 var areaprice = $(this).closest('tr').find('.form-control').val();
                 var areacode = $(this).closest('tr').find('.areacode').val();
@@ -230,19 +239,21 @@
                         alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                         return false;
                     }
-                    areacodes.push(areacode + '-' + areaprice);
+                    //areacodes.push(areacode + '-' + areaprice);
+                    areacodes.push(areacode + '-' + 'NO-' + areaprice);
                 }
                 if (defaultprice.length > 0) {
                     if (!defaultprice.match(decimal)) {
                         alert('Please Enter a Valid Default Price');
                         return false;
                     }
-                    if (areacodes.length > 0) {
-                        if (areacodes.indexOf('null-' + defaultprice) > -1) {
 
-                        } else { areacodes.push(null + '-' + defaultprice); }
-                    }
-                    // areacodes.push(null + '-' + defaultprice);
+                    areacodes.push(areacode + '-' + 'YES-' + defaultprice);
+                    //if (areacodes.length > 0) {
+                    //    if (areacodes.indexOf('null-' + defaultprice) > -1) {
+
+                    //    } else { areacodes.push(null + '-' + defaultprice); }
+                    //}
                 }
 
             });
@@ -268,6 +279,7 @@
                 success: function (data) {
                     if (data.success === true) {
                         alert('Prices Saved Suceessfully');
+                        $("#saveprice").attr('disabled', 'disabled');
                     } else {
                         alert("Error :" + data.message);
                     }
@@ -363,6 +375,11 @@
             serviceId = 1000;
             GetAvailableAreas(serviceId, 'long');
             GetSelectedAreas(serviceId, 'long');
+        });
+
+        $("#saveprice").attr('disabled', 'disabled');
+        $('#body').on('change keyup keydown', 'input, textarea', function (e) {
+            $("#saveprice").removeAttr('disabled');
         });
 
     });

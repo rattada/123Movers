@@ -187,9 +187,9 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 background-color: #8dbdd8;
 }
 
-#divSelected {
+#selectedareas {
     border-style: ridge;
-    height: 226px;
+    height: 210px;
 }
 .btnSpacing {
     float: right;

@@ -542,36 +542,39 @@ namespace _123Movers.Controllers
             JsonResult result = null;
             try
             {
-                IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
 
-                foreach (var areacode in areacodelist)
-                {
-                    var s = areacode.Split('-');
-                    //int? acode = s[0] != null ?  Convert.ToInt32(s[0]) : null;
-                    if (s[0].ToString() == "null")
-                    {
-                        if (BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, null, Convert.ToDecimal(s[1]), null))
-                        {
-                            result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
-                        }
-                        else
-                        {
-                            throw new ApplicationException(string.Format("An error occurred while saving"));
-                        }
-                    }
-                    else
-                    {
-                        if (BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, Convert.ToInt16(s[0]), Convert.ToDecimal(s[1]), null))
-                        {
-                            result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
-                        }
-                        else
-                        {
-                            throw new ApplicationException(string.Format("An error occurred while saving"));
-                        }
-                    }
+                BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, areaCodes, null);
+                result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                //IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
+
+                //foreach (var areacode in areacodelist)
+                //{
+                //    var s = areacode.Split('-');
+                //    //int? acode = s[0] != null ?  Convert.ToInt32(s[0]) : null;
+                //    if (s[0].ToString() == "null")
+                //    {
+                //        if (BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, null, Convert.ToDecimal(s[1]), null))
+                //        {
+                //            result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                //        }
+                //        else
+                //        {
+                //            throw new ApplicationException(string.Format("An error occurred while saving"));
+                //        }
+                //    }
+                //    else
+                //    {
+                //        if (BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, Convert.ToInt16(s[0]), Convert.ToDecimal(s[1]), null))
+                //        {
+                //            result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                //        }
+                //        else
+                //        {
+                //            throw new ApplicationException(string.Format("An error occurred while saving"));
+                //        }
+                //    }
                    
-                }
+                //}
 
             }
             catch (Exception ex)
