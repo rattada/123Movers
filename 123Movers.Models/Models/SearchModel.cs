@@ -41,11 +41,11 @@ namespace _123Movers.Models
         [Display(Name = "Active")]
         public bool IsActive { get; set; }
 
-        [Display(Name = "Display Name")]
-        public string DisplayName { get; set; }
+        //[Display(Name = "Display Name")]
+        //public string DisplayName { get; set; }
 
-        [Display(Name = "Company Handle")]
-        public string CompanyHandle { get; set; }
+        //[Display(Name = "Company Handle")]
+        //public string CompanyHandle { get; set; }
 
         [Display(Name = "Suspended")]
         public string Suspended { get; set; }

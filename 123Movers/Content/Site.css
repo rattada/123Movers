@@ -47,7 +47,7 @@ table input[type="text"] {
    height:25px;
 }
 .scrollable-table {
-max-height:500px;
+max-height:235px;
 overflow-y:scroll;
 overflow-x:hidden;
 }
@@ -195,4 +195,8 @@ background-color: #8dbdd8;
     float: right;
     margin-right: 39px;
 }
+#divGeographyInfo {
+   margin-top: -72px;
+}
+
 

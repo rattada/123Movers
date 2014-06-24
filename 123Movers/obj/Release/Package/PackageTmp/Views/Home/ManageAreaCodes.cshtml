@@ -210,7 +210,8 @@
                         alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                         return false;
                     }
-                    areacodes.push(areacode + '-' + areaprice);
+                    //areacodes.push(areacode + '-' + areaprice);
+                    areacodes.push(areacode + '-' + 'NO-' + areaprice);
                 }
                 else {
                     if (defaultprice.length > 0) {
@@ -218,13 +219,13 @@
                             alert('Please Enter a Valid Default Price');
                             return false;
                         }
-                        if (areacodes.length > 0)
-                        {
-                            if (areacodes.indexOf('null-' + defaultprice) > -1) {
+                        areacodes.push(areacode + '-' + 'YES-' + defaultprice);
+                        //if (areacodes.length > 0)
+                        //{
+                        //    if (areacodes.indexOf('null-' + defaultprice) > -1) {
                                
-                            } else { areacodes.push(null + '-' + defaultprice); }
-                        }
-                       // areacodes.push(null + '-' + defaultprice);
+                        //    } else { areacodes.push(null + '-' + defaultprice); }
+                        //}
                     }
                 }
 
@@ -238,19 +239,21 @@
                         alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                         return false;
                     }
-                    areacodes.push(areacode + '-' + areaprice);
+                    //areacodes.push(areacode + '-' + areaprice);
+                    areacodes.push(areacode + '-' + 'NO-' + areaprice);
                 }
                 if (defaultprice.length > 0) {
                     if (!defaultprice.match(decimal)) {
                         alert('Please Enter a Valid Default Price');
                         return false;
                     }
-                    if (areacodes.length > 0) {
-                        if (areacodes.indexOf('null-' + defaultprice) > -1) {
 
-                        } else { areacodes.push(null + '-' + defaultprice); }
-                    }
-                    // areacodes.push(null + '-' + defaultprice);
+                    areacodes.push(areacode + '-' + 'YES-' + defaultprice);
+                    //if (areacodes.length > 0) {
+                    //    if (areacodes.indexOf('null-' + defaultprice) > -1) {
+
+                    //    } else { areacodes.push(null + '-' + defaultprice); }
+                    //}
                 }
 
             });
@@ -276,6 +279,7 @@
                 success: function (data) {
                     if (data.success === true) {
                         alert('Prices Saved Suceessfully');
+                        $("#saveprice").attr('disabled', 'disabled');
                     } else {
                         alert("Error :" + data.message);
                     }
@@ -371,6 +375,11 @@
             serviceId = 1000;
             GetAvailableAreas(serviceId, 'long');
             GetSelectedAreas(serviceId, 'long');
+        });
+
+        $("#saveprice").attr('disabled', 'disabled');
+        $('#body').on('change keyup keydown', 'input, textarea', function (e) {
+            $("#saveprice").removeAttr('disabled');
         });
 
     });

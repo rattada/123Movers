@@ -421,7 +421,6 @@ namespace _123Movers.DataEntities
                 SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
                 cmdAddCompanyAdByArea.Connection = dbCon;
                 cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
                 cmdAddCompanyAdByArea.CommandText = "up_companyAreacodeAdd";//"usp_companyAdByAreaAdd";
               
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
@@ -520,6 +519,33 @@ namespace _123Movers.DataEntities
         }
 
         public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
+        {
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdGetCompanyPricePerLead = new SqlCommand();
+                cmdGetCompanyPricePerLead.Connection = dbCon;
+                cmdGetCompanyPricePerLead.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdGetCompanyPricePerLead.CommandText = "usp_GetCompanyPricePerLead";
+                if (serviceId == null)
+                {
+                    serviceId = 1009;
+                }
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+
+                cmdGetCompanyPricePerLead.Parameters.Add(paramCompanyId);
+                cmdGetCompanyPricePerLead.Parameters.Add(paramService);
+
+                DataTable dtResults = new DataTable();
+
+                SqlDataReader drResults = cmdGetCompanyPricePerLead.ExecuteReader();
+                dtResults.Load(drResults);
+
+                return dtResults;
+
+            }
+        }
+        public static DataTable GetReports(int? companyId, int? serviceId)
         {
             using (SqlConnection dbCon = ConnectToDb(DBConnString))
             {

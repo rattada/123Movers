@@ -14,8 +14,15 @@ namespace _123Movers.Controllers
     public class HomeController : Controller
     {
 
-        public ActionResult Reports()
+        public ActionResult Reports(string companyid, string companyName, string ax, string contactperson, string suspended, bool active = false)
         {
+            Session["CompanyId"] = companyid;
+            Session["CompanyName"] = companyName;
+            Session["Ax"] = ax;
+            Session["IsActive"] = active;
+            Session["Suspended"] = suspended;
+            Session["ContactPerson"] = contactperson;
+
             return View();
         }
         public ActionResult Notifications()
@@ -412,47 +419,12 @@ namespace _123Movers.Controllers
             ViewBag.TotalBilled = String.Format("{0:C}", tbilled);
             ViewBag.UnchargedAmount = String.Format("{0:C}", uamount);
 
-            //if (Session["CompanyId"] == null) { Session["CompanyId"] = companyid; }
-            //if (Session["CompanyName"] == null) { Session["CompanyName"] = companyName; }
-            //if (Session["Ax"] == null) { Session["Ax"] = ax; }
-            //if (Session["IsActive"] == null) { Session["IsActive"] = active; }
-            //if (Session["ContactPerson"] == null) { Session["ContactPerson"] = contactperson; }
-
-
             Session["CompanyId"] = companyid;
             Session["CompanyName"] = companyName;
             Session["Ax"] = ax;
             Session["IsActive"] = active;
             Session["Suspended"] = suspended;
             Session["ContactPerson"] = contactperson;
-
-
-            //if (budgetList.ToList().Count == 0)
-            //{
-            //    IEnumerable<BudgetModel> budget = new List<BudgetModel> {
-            //        new BudgetModel{
-            //        CompanyId = cmpid,
-            //        CompanyName = companyName,
-            //        AX = ax,
-            //        ContactPerson = contactperson,
-            //        IsActive = actice}
-            //    };
-
-            //    search.budget = budget;
-            //}
-            //else {
-            //    foreach (var b in budgetList) {
-            //        b.IsActive = actice;
-            //        break;
-            //    }
-            //    //  search.CompanyId = cmpid;
-            //    // search.AX = ax;
-            //    // search.CompanyName = companyName;
-            //    search.budget = budgetList;
-            //    // search.ContactPerson = contactperson;
-            //    //search.DisplayName = displayname;
-            //    //search.CompanyHandle = companyHandle;
-            //}
 
             search.budget = budgetList;
            
@@ -537,9 +509,7 @@ namespace _123Movers.Controllers
         public JsonResult AddCompanyPricePerLead(int? companyId, int? serviceId, string companyName, string areaCodes)
         {
             
-           // ViewBag.Success = "Budget saved successfully..";
-
-            JsonResult result = null;
+            JsonResult result;
             try
             {
 
@@ -585,6 +555,18 @@ namespace _123Movers.Controllers
             return result;
 
            // return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
+        }
+
+        [HttpGet]
+        public ActionResult CompanyLeadLimit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CompanyLeadLimit(LeadLimitModel leadlimit)
+        {
+            return View();
         }
         
         //MoversEntities m = new MoversEntities();

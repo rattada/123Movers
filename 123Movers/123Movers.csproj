@@ -346,6 +346,7 @@
     <Content Include="Views\Home\Notifications.cshtml" />
     <Content Include="Views\Home\ManageAreaCodes.cshtml" />
     <Content Include="Views\Home\_CompanyInfo.cshtml" />
+    <Content Include="Views\Home\CompanyLeadLimit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

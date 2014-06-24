@@ -3,4 +3,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reports</h2>
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+
+<div class="row">
+     @Html.Partial("_CompanyInfo")
+</div>
+<script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+ <p class="clearfix"></p>
+
+<div class="row">
+    <div class="col-md-4">
+        <b>Date From :</b><br /><input type="text" id="dateFrom" class="form-control datepicker"/>
+    </div>
+     <div class="col-md-4">
+        <b>Date To :</b><br /><input type="text" id="dateTo" class="form-control datepicker" />
+    </div>
+     @*<div class="col-md-4 pull-right">
+       <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">BACK TO LIST</a> 
+       <input type="button" id="btnSubmit" class="btn btn-primary pull-right" value="Submit" />
+    </div>*@
+</div>
+ <div class="row">
+        <div class="col-md-3 pull-right">
+            <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">BACK TO LIST</a>
+             <input type="button" id="btnSubmit" class="btn btn-primary pull-right" value="SUBMIT" />
+        </div>
+    </div>
+
+<div id ="reports"></div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".datepicker").datepicker();
+
+        $('#btnSubmit').on('click', function () {
+            var dateFrom = $('#dateFrom').val();
+            var dateTo = $('#dateTo').val();
+
+            if (dateFrom == '' && dateTo == '') { alert('Please Enter From And To Dates'); }
+            else if (dateFrom == '') { alert('Please Enter From Date'); }
+            else if (dateTo == '') { alert('Please Enter To Date'); }
+
+
+
+        });
+    });
+</script>

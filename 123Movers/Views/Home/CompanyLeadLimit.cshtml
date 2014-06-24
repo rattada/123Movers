@@ -1,0 +1,140 @@
+﻿@model _123Movers.Models.LeadLimitModel
+@{
+    ViewBag.Title = "Company Lead Limit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+     @Html.Partial("_CompanyInfo")
+</div>
+   <p class="clearfix"></p>
+@using (Html.BeginForm("CompanyLeadLimit", "Home", FormMethod.Post, new { id = "frmLeadLimit" }))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.CheckBoxFor(x => x.IsDailyLeadLimit)
+            @Html.LabelFor(x => x.IsDailyLeadLimit)
+           
+        </div>
+        <div class="col-md-2">
+            @Html.TextBoxFor(x => x.DailyLeadLimit, new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.DailyLeadLimit)
+        </div>
+        <div  class="col-md-4">
+            @Html.LabelFor(x => x.LeadCounter)
+            @Html.TextBoxFor(x => x.LeadCounter)
+            @Html.ValidationMessageFor(x => x.LeadCounter)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.CheckBoxFor(x => x.IsMonthlyLeadLimit)
+            @Html.LabelFor(x => x.IsMonthlyLeadLimit)
+           
+        </div>
+        <div class="col-md-2">
+            @Html.TextBoxFor(x => x.MonthlyLeadLimit, new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.MonthlyLeadLimit)
+        </div >
+         <div  class="col-md-4">
+            @Html.LabelFor(x => x.LeadFrequency)
+            @Html.TextBoxFor(x => x.LeadFrequency)
+            @Html.ValidationMessageFor(x => x.LeadFrequency)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.CheckBoxFor(x => x.IsTotalLeadLimit)
+            @Html.LabelFor(x => x.IsTotalLeadLimit)
+           
+        </div>
+        <div class="col-md-2">
+            @Html.TextBoxFor(x => x.TotalLeadLimit, new { @class = "form-control"})
+            @Html.ValidationMessageFor(x => x.TotalLeadLimit)
+        </div>
+       
+    </div>
+    <div class="row">
+             <input type="submit" value="Save" id="save" class="btn btn-primary pull-right">
+        </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+<script type="text/javascript">
+    $(function () {
+        var serviceId;
+        //var ServiceType;
+
+        if ('@ViewBag.ServiceId' == 1000) {
+            serviceId = 1000;
+            //ServiceType = 'long';
+            //$('#ServiceTab a:last').tab('show') // Select last 
+            //$('li.cslocal').hide();
+        }
+        else if ('@ViewBag.ServiceId' == 1009) {
+
+            serviceId = 1009;
+            //ServiceType = 'local';
+            //$('#ServiceTab a:first').tab('show') // Select first 
+            //$('li.cslong').hide();
+        }
+        else {
+            serviceId = 1009;
+           // ServiceType = 'Both';
+           // $('#ServiceTab a:first').tab('show') // Default first 
+
+        }
+
+        GetAvailableAreas(serviceId);
+
+
+
+        function GetAvailableAreas(serviceId) {
+            $.ajax({
+                url: '/Home/GetAvailableAreas',
+                type: "GET",
+                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId },
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    var strigifyJson = JSON.stringify(data);
+                    var json = $.parseJSON(strigifyJson);
+                    var table;
+                    var options = '<option value=""></option>';
+                    jQuery.each(json, function (i, val) {
+                        if (i == 0) {
+                            options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        } else {
+                            options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        }
+                    });
+
+
+                    $('#areaCode').html(options);
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                }
+            });
+        }
+    });
+</script>
