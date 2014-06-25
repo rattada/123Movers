@@ -31,29 +31,32 @@ namespace _123Movers.Models
         [Display(Name = "Monthly Lead Limit")]
         public int? MonthlyLeadLimit { get; set; }
 
-        [RegularExpression(RegexPattern.NUMERIC, ErrorMessage = "Lead Counter must be a numerical value.")]
-        [Display(Name = "Lead Counter")]
-        public int? LeadCounter { get; set; }
+        //[RegularExpression(RegexPattern.NUMERIC, ErrorMessage = "Lead Counter must be a numerical value.")]
+        //[Display(Name = "Lead Counter")]
+        //public int? LeadCounter { get; set; }
 
+        [Required]
         [RegularExpression(RegexPattern.NUMERIC, ErrorMessage = "Lead Frequency must be a numerical value.")]
         [Display(Name = "Lead Frequency")]
         public int? LeadFrequency { get; set; }
 
-        [Display(Name = "Is Total Lead Limit")]
+        [Display(Name = "Total Lead Limit")]
         public bool IsTotalLeadLimit { get; set; }
 
-        [Display(Name = "Is Daily Lead Limit")]
+        [Display(Name = "Daily Lead Limit")]
         public bool IsDailyLeadLimit { get; set; }
 
-        [Display(Name = "Is Monthly Lead Limit")]
+        [Display(Name = "Monthly Lead Limit")]
         public bool IsMonthlyLeadLimit { get; set; }
 
         [Display(Name = "Price")]
         public decimal? Price { get; set; }
 
-        [Required]
         [Display(Name = "Services")]
         public string Services { get; set; }
+
+        [Display(Name = "Area Codes")]
+        public string AreaCodes { get; set; }
 
     }
 }

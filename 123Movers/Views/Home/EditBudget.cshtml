@@ -64,7 +64,8 @@
             <div class="form-group">
                @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "managearea", @class = "btn btn-primary pull-right" })
              @*<input type="button" value="Manage Area Codes" id="managearea" class="btn btn-primary ">*@
-               @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "leadlimit", @class = "btn btn-primary pull-right" })
+             
+               @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "leadlimit", @class = "btn btn-primary" })
         </div>
         </div>
     </div>
@@ -98,6 +99,7 @@
         var message = $.trim($('#message').val());
         if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
 
+
         $('#service').on('change', function () {
             if (this.checked) {
 
@@ -113,37 +115,37 @@
 
 
 
-                        table = "<div class='panel-group' id='accordion'> <div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'>  <a data-toggle='collapse' data-parent='#accordion' href='#collapseAreaCode'>Geography <span class='glyphicon glyphicon-minus pull-right'></span></a></h4></div><div id='collapseAreaCode' class='panel-collapse collapse in'><div class='panel-body'>        <div class='container-fluid'><div class='row'><div class='col-sm-3 col-md-2 sidebar'><ul class='nav nav-sidebar'><li class='active'><a href='#divGeographyInfo' class='btn-primary'>Origin</a></li><li><a href='#divGeographyInfo' class='btn-primary'>Destination</a></li></ul></div><div class='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>                  <div class='scrollable-table page-header' id='divGeographyInfo'><div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                        table = "<div class='panel-group' id='accordion'> <div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'>  <a data-toggle='collapse' data-parent='#accordion' href='#collapseAreaCode'>Geography <span class='glyphicon glyphicon-minus pull-right'></span></a></h4></div><div id='collapseAreaCode' class='panel-collapse collapse in'><div class='panel-body'>        <div class='container-fluid'><div class='row'><div class='col-sm-3 col-md-2 sidebar'><ul class='nav nav-sidebar'><li><a href='#divGeographyInfo' id='anchorOrigin' class='btn btn-warning'>Origin</a></li><li><a href='#divGeographyInfo' id='anchorDestination' >Destination</a></li></ul></div><div class='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>                  <div class='scrollable-table page-header' id='divGeographyInfo'><div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th></tr> </thead><tbody>";
                         jQuery.each(json, function (i, val) {
                             if (i <= 57) {
-                                table += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /> </td></tr>";
+                                table += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td> <span> " + val[1] + " ---> " + val[0] + "</span>     </td></tr>";
                             }
                         });
                         table += "</tbody></table></div>";
 
-                        var table1 = "<div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                        var table1 = "<div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th></tr> </thead><tbody>";
                         jQuery.each(json, function (i, val) {
                             if (i >= 58 && i <= 115) {
-                                table1 += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /> </td></tr>";
+                                table1 += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td><span>" + val[1] + " ---> " + val[0] + "</span>   </td></tr>";
                             }
                         });
                         table1 += "</tbody></table></div>";
 
-                        var table2 = "<div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                        var table2 = "<div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th></tr> </thead><tbody>";
                         jQuery.each(json, function (i, val) {
                             if (i >= 116 && i <= 173) {
-                                table2 += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /> </td></tr>";
+                                table2 += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td><span>" + val[1] + " ---> " + val[0] + "</span> </td></tr>";
                             }
                         });
                         table2 += "</tbody></table></div>";
 
-                        var table3 = "<div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                        var table3 = "<div class = 'col-md-3'><table class='table table-striped'><thead><tr><th class='col-md-1'>Select</th><th class='col-md-2'>" + 'Area Code' + "</th></tr> </thead><tbody>";
                         jQuery.each(json, function (i, val) {
                             if (i >= 174 && i < json.length) {
-                                table3 += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' class='form-control' /> </td></tr>";
+                                table3 += "<tr><td><input type='checkbox' id='chk" + val[0] + "' class='checkbox' /> </td><td><span>" + val[1] + " ---> " + val[0] + "</span> </td></tr>";
                             }
                         });
-                        table3 += "</tbody></table></div></div></div></div></div>  </div></div></div> ";
+                        table3 += "</tbody></table></div></div></div></div></div><input type='button' id='btnGeography' class='btn pull-right btn-warning btn-lg' value='Save' />  </div></div></div> ";
 
                         table += table1 + table2 + table3;
 
@@ -306,6 +308,21 @@
 
         $("body").parent().on('click', "a", function () {
 
+            if ($(this).attr('id') == 'anchorOrigin' || $(this).attr('id') == 'anchorDestination') {
+                if ($(this).attr('id') == 'anchorOrigin') {
+                    $(this).addClass("btn btn-warning");
+                    $('#anchorDestination').removeClass("btn btn-warning");
+                    $('input:checkbox').removeAttr('checked');
+                }
+                else {
+                    $('#anchorDestination').addClass("btn btn-warning");
+                    $('#anchorOrigin').removeClass("btn btn-warning");
+                    $('input:checkbox').removeAttr('checked');
+
+                }
+
+
+            }
 
             if ($(this).children().hasClass('glyphicon glyphicon-plus')) {
                 $(this).children().removeClass("glyphicon glyphicon-plus");
@@ -318,6 +335,51 @@
                 $(this).children().addClass("glyphicon glyphicon-plus");
 
             }
+        });
+
+
+        $("body").parent().on('click', "#btnGeography", function () {
+            var IsOrigin = '';
+            if ($('#anchorDestination').hasClass("btn btn-warning")) {
+                IsOrigin = 0;
+            }
+            else {
+                IsOrigin = 1;
+            }
+
+            var areacodes = [];
+            $('table tbody tr').each(function () {
+                $(this).find('input:checkbox:checked').each(function () {
+
+                    var textBoxValue = $(this).closest('tr').find('span').text();
+                    var areaCode = textBoxValue.split('--->');
+                    areacodes.push(areaCode[1]);
+
+                });
+            });
+
+            var jsareacodes = JSON.stringify(areacodes);
+            var serviceId = $('#services').val();
+
+            $.ajax({
+                url: '/Home/AddCompanyZipCodesPerAreaCodes',
+                type: "POST",
+                data: { 'serviceId': serviceId, areaCodes: jsareacodes, "IsOrigin": IsOrigin },
+                success: function (data) {
+                    if (data.success === true) {
+                        alert('AreaCodes Saved Suceessfully');
+                        //$("#btnGeography").attr('disabled', 'disabled');
+                    } else {
+                        alert("Error :" + data.message);
+                    }
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    var errMessage = JSON.parse(xhr.responseText).customErrorMessage;
+                    alert('Error occurred while saving the AreaCodes' + errMessage);
+                }
+            });
+
         });
 
     });

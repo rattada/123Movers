@@ -80,11 +80,19 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.AddCompanyPricePerLead(companyId, serviceId, areaCodes, moveWeightID);
         }
+        public static bool AddCompanyLeadLimit(LeadLimitModel leadlimit)
+        {
+            return DataLayer.AddCompanyLeadLimit(leadlimit);
+        }
 
 
         public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
         {
             return DataLayer.GetCompanyPricePerLead(companyId, serviceId);
+        }
+        public static bool AddCompanyZipCodesPerAreaCodes(int companyId, int serviceId, string areaCodes, int IsOrigin)
+        {
+            return DataLayer.AddCompanyZipCodesPerAreaCodes(companyId, serviceId, areaCodes, IsOrigin);
         }
     }
 }

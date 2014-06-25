@@ -116,7 +116,8 @@
                         @Html.ActionLink("Budget", "GetBudget", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
                         @*<input type="button" value="Budgets" class="btn btn-primary" id ="btnBudget">*@
 
-                        <input type="button" value="Reports" class="btn btn-primary btn-sm">
+                         @Html.ActionLink("Reports", "Reports", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
+                        @*<input type="button" value="Reports" class="btn btn-primary btn-sm" id ="btnReports">*@
                     </td>
                 </tr>
                 }

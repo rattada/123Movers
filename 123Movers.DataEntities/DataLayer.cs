@@ -517,6 +517,63 @@ namespace _123Movers.DataEntities
             }
             return true;
         }
+        public static bool AddCompanyLeadLimit(LeadLimitModel leadlimit)
+        {
+            int i = 0;
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
+                cmdAddCompanyAdByArea.Connection = dbCon;
+                cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyLeadLimit";
+
+                int? serviceId = null;
+                int? areaCode = null;
+
+                if (!string.IsNullOrWhiteSpace(leadlimit.Services) && leadlimit.Services != "999")
+                {
+                    serviceId = Convert.ToInt32(leadlimit.Services);
+                }
+                
+                if (!string.IsNullOrWhiteSpace(leadlimit.AreaCodes))
+                {
+                    areaCode = Convert.ToInt32(leadlimit.AreaCodes);
+                }
+
+                SqlParameter paramCompanyId = new SqlParameter("companyID", leadlimit.CompanyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+                SqlParameter paramAreaCode = new SqlParameter("areaCode", areaCode);
+                SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", leadlimit.MoveWeightID);
+                SqlParameter paramisDailyLeadLimit = new SqlParameter("isDailyLeadLimit", leadlimit.IsDailyLeadLimit);
+                SqlParameter paramisMonthlyLeadLimit = new SqlParameter("isMonthlyLeadLimit", leadlimit.IsMonthlyLeadLimit);
+                SqlParameter paramisTotalLeadLimit = new SqlParameter("isTotalLeadLimit", leadlimit.IsTotalLeadLimit);
+                SqlParameter paramdailyLeadLimit = new SqlParameter("dailyLeadLimit", leadlimit.DailyLeadLimit);
+                SqlParameter parammontlyLeadLimit = new SqlParameter("montlyLeadLimit", leadlimit.MonthlyLeadLimit);
+                SqlParameter paramtotalLeadLimit = new SqlParameter("totalLeadLimit", leadlimit.TotalLeadLimit);
+                SqlParameter paramprice = new SqlParameter("price", leadlimit.Price);
+                SqlParameter paramleadFrq = new SqlParameter("leadFrq", leadlimit.LeadFrequency);
+
+
+                cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
+                cmdAddCompanyAdByArea.Parameters.Add(paramService);
+                cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
+                cmdAddCompanyAdByArea.Parameters.Add(paramMoveWeight);
+                cmdAddCompanyAdByArea.Parameters.Add(paramisDailyLeadLimit);
+                cmdAddCompanyAdByArea.Parameters.Add(paramisMonthlyLeadLimit);
+                cmdAddCompanyAdByArea.Parameters.Add(paramisTotalLeadLimit);
+                cmdAddCompanyAdByArea.Parameters.Add(paramdailyLeadLimit);
+                cmdAddCompanyAdByArea.Parameters.Add(parammontlyLeadLimit);
+                cmdAddCompanyAdByArea.Parameters.Add(paramtotalLeadLimit);
+                cmdAddCompanyAdByArea.Parameters.Add(paramprice);
+                cmdAddCompanyAdByArea.Parameters.Add(paramleadFrq);
+
+
+                i = cmdAddCompanyAdByArea.ExecuteNonQuery();
+
+
+            }
+            return true;
+        }
 
         public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
         {
@@ -572,6 +629,32 @@ namespace _123Movers.DataEntities
 
             }
         }
+        public static bool AddCompanyZipCodesPerAreaCodes(int companyId, int serviceId, string areaCodes, int IsOrigin)
+        {
+            int i = 0;
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
+                cmdAddCompanyAdByArea.Connection = dbCon;
+                cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdAddCompanyAdByArea.CommandText = "usp_SaveCompanyOriginDestinationZipCodes";
+
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+                SqlParameter paramAreaCode = new SqlParameter("AreaCodes", areaCodes);
+                SqlParameter paramIsOrigin = new SqlParameter("IsOrigin", IsOrigin);
+
+                cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
+                cmdAddCompanyAdByArea.Parameters.Add(paramService);
+                cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
+                cmdAddCompanyAdByArea.Parameters.Add(paramIsOrigin);
+                i = cmdAddCompanyAdByArea.ExecuteNonQuery();
+
+
+            }
+            return true;
+        }
         
     }
+
 }
