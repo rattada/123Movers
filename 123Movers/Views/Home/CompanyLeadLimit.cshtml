@@ -17,17 +17,27 @@
 
      <div class="row">
         <div class="col-lg-4">
-            <div class="form-group">
-                @*<b>Area Codes :</b>
+           @* <div class="form-group">
+                <b>Area Codes :</b>
                  <select id ="ddlAreas" class="form-control">
 
-                </select>*@
+                </select>
+                </div>*@
+            <div class="form-group">
+                
+                @Html.RadioButton("AvailableAreaCodes", "Available Area Codes" , new { id = "availableAreaCodes" })
+                <b>Available Area Codes</b>
+                    
+                @Html.RadioButton("NewAreaCodes", "New Area Codes" , new { id = "newAreaCodes" })
+                <b>New Area Codes</b>
+                    
+              </div>
                   <div class="form-group">
                 @Html.LabelFor(m => m.AreaCodes)
                 @Html.DropDownListFor(m => m.AreaCodes, ViewBag.AreaCodes as IEnumerable<SelectListItem>,"---Choose One---", new { @class = "form-control dropdown", @title = "Select Area Codes" })
                 @Html.ValidationMessageFor(m => m.AreaCodes)
             </div>
-            </div>
+            
             <div class="form-group">
                 @Html.LabelFor(m => m.Services)
                 @Html.DropDownListFor(m => m.Services, ViewBag.Services as IEnumerable<SelectListItem>,"---Choose One---", new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
@@ -38,11 +48,11 @@
                     @Html.TextBoxFor(x => x.LeadFrequency, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.LeadFrequency)
                          </div>
-            <div class="form-group">
+            @*<div class="form-group">
                     @Html.LabelFor(x => x.Price)
                     @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.Price)
-                         </div>
+                         </div>*@
             @*<div class="form-group">
                     @Html.LabelFor(x => x.LeadCounter)
                     @Html.TextBoxFor(x => x.LeadCounter, new { @class = "form-control" })
