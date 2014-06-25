@@ -567,6 +567,10 @@ namespace _123Movers.Controllers
 
             ViewBag.Services = Services(null, true);
 
+            var avaAreaCodes = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
+
+            ViewBag.avaAreaCodes = DataTableToSelectList(avaAreaCodes, "areaCode", "state"); ;
+
             var services = BusinessLayer.GetServies();
 
             ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "state"); ;
@@ -583,10 +587,11 @@ namespace _123Movers.Controllers
             leadlimit.CompanyId = Convert.ToInt32(cmd);
             BusinessLayer.AddCompanyLeadLimit(leadlimit);
             ViewBag.Services = Services(Convert.ToInt32(leadlimit.Services), true);
+            
 
             var services = BusinessLayer.GetServies();
 
-            ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "state");
+            ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "areaCode");
 
             ModelState.Clear();
             ViewBag.Success = "Lead saved successfully..";
@@ -601,7 +606,8 @@ namespace _123Movers.Controllers
             {
                 list.Add(new SelectListItem()
                 {
-                    Text = row[textField].ToString() + "-" + row[valueField].ToString(),
+                    //Text = row[textField].ToString() + "-" + row[valueField].ToString(),
+                    Text = row[textField].ToString(),
                     Value = row[valueField].ToString()
                 });
             }

@@ -85,7 +85,10 @@ namespace _123Movers.BusinessEntities
             return DataLayer.AddCompanyLeadLimit(leadlimit);
         }
 
-
+        public static DataTable GetCompanyLeadLimit(int? companyId, int? serviceId)
+        {
+            return DataLayer.GetCompanyLeadLimit(companyId, serviceId);
+        }
         public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
         {
             return DataLayer.GetCompanyPricePerLead(companyId, serviceId);

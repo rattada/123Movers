@@ -575,6 +575,32 @@ namespace _123Movers.DataEntities
             return true;
         }
 
+        public static DataTable GetCompanyLeadLimit(int? companyId, int? serviceId)
+        {
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdGetCompanyLeadLimit = new SqlCommand();
+                cmdGetCompanyLeadLimit.Connection = dbCon;
+                cmdGetCompanyLeadLimit.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdGetCompanyLeadLimit.CommandText = "usp_GetCompanyLeadLimit";
+
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+
+                cmdGetCompanyLeadLimit.Parameters.Add(paramCompanyId);
+                cmdGetCompanyLeadLimit.Parameters.Add(paramService);
+
+                DataTable dtResults = new DataTable();
+
+                SqlDataReader drResults = cmdGetCompanyLeadLimit.ExecuteReader();
+                dtResults.Load(drResults);
+
+                return dtResults;
+
+            }
+        }
+
+
         public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
         {
             using (SqlConnection dbCon = ConnectToDb(DBConnString))
