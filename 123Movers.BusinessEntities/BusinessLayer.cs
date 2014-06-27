@@ -10,14 +10,14 @@ namespace _123Movers.BusinessEntities
 {
     public static class BusinessLayer
     {
-        public static void RegisterUser(RegisterModel model)
-        {
-            DataLayer.RegisterUser(model);
-        }
-        public static bool Login(LoginModel login)
-        {
-            return DataLayer.Login(login);
-        }
+        //public static void RegisterUser(RegisterModel model)
+        //{
+        //    DataLayer.RegisterUser(model);
+        //}
+        //public static bool Login(LoginModel login)
+        //{
+        //    return DataLayer.Login(login);
+        //}
 
         public static bool SaveBudget(BudgetModel budget)
         {
@@ -96,6 +96,26 @@ namespace _123Movers.BusinessEntities
         public static bool AddCompanyZipCodesPerAreaCodes(int companyId, int serviceId, string areaCodes, int IsOrigin)
         {
             return DataLayer.AddCompanyZipCodesPerAreaCodes(companyId, serviceId, areaCodes, IsOrigin);
+        }
+        public static GeographyModel GetCompanyServiceAreaCodes(int? companyId, int? serviceId)
+        {
+            return DataLayer.GetCompanyServiceAreaCodes(companyId, serviceId);
+        }
+        public static DataTable GetAvailableZipCodes(int? companyId, int? serviceId, int? areaCode)
+        {
+            return DataLayer.GetAvailableZipCodes(companyId, serviceId, areaCode);
+        }
+        public static DataTable GetCompanyAreasZipCodes(int? companyId, int? serviceId, int? areaCode)
+        {
+            return DataLayer.GetCompanyAreasZipCodes(companyId, serviceId, areaCode);
+        }
+        public static bool AddCompanyAreaZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
+        {
+            return DataLayer.AddCompanyAreaZipCodes(companyId, serviceId, areaCode, zipCodes);
+        }
+        public static bool DeleteCompanyAreaZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
+        {
+            return DataLayer.DeleteCompanyAreaZipCodes(companyId, serviceId, areaCode, zipCodes);
         }
     }
 }

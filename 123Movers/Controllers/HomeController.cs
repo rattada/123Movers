@@ -13,15 +13,16 @@ namespace _123Movers.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private IEnumerable<GeographyModel> OriginZipCodes { get; set; }
 
         public ActionResult Reports(string companyid, string companyName, string ax, string contactperson, string suspended, bool active = false)
         {
-            Session["CompanyId"] = companyid;
-            Session["CompanyName"] = companyName;
-            Session["Ax"] = ax;
-            Session["IsActive"] = active;
-            Session["Suspended"] = suspended;
-            Session["ContactPerson"] = contactperson;
+            HttpContext.Application["CompanyId"] = companyid;
+            HttpContext.Application["CompanyName"] = companyName;
+            HttpContext.Application["Ax"] = ax;
+            HttpContext.Application["IsActive"] = active;
+            HttpContext.Application["Suspended"] = suspended;
+            HttpContext.Application["ContactPerson"] = contactperson;
 
             return View();
         }
@@ -226,13 +227,13 @@ namespace _123Movers.Controllers
             //budgget.ContactPerson = search.ContactPerson;
             //budgget.CompanyHandle = search.CompanyHandle;
 
-            //Session["CompanyId"] = budgget.CompanyId;
-            //Session["CompanyName"] = budgget.CompanyName;
-            //Session["Ax"] = budgget.AX;
-            //Session["IsActive"] = budgget.IsActive;
-            //Session["DisplayName"] = budgget.DisplayName;
-            //Session["ContactPerson"] = budgget.ContactPerson;
-            //Session["CompanyHandle"] = budgget.CompanyHandle;
+            //HttpContext.Application["CompanyId"] = budgget.CompanyId;
+            //HttpContext.Application["CompanyName"] = budgget.CompanyName;
+            //HttpContext.Application["Ax"] = budgget.AX;
+            //HttpContext.Application["IsActive"] = budgget.IsActive;
+            //HttpContext.Application["DisplayName"] = budgget.DisplayName;
+            //HttpContext.Application["ContactPerson"] = budgget.ContactPerson;
+            //HttpContext.Application["CompanyHandle"] = budgget.CompanyHandle;
 
 
             return View(budgget);
@@ -252,13 +253,13 @@ namespace _123Movers.Controllers
         //      budgget.IsActive = active;
 
 
-        //      Session["CompanyId"] = budgget.CompanyId;
-        //      Session["CompanyName"] = companyName;
-        //      Session["Ax"] = ax;
-        //      Session["IsActive"] = active;
-        //      Session["DisplayName"] = displayname;
-        //      Session["ContactPerson"] = contactperson;
-        //      Session["CompanyHandle"] = companyHandle;
+        //      HttpContext.Application["CompanyId"] = budgget.CompanyId;
+        //      HttpContext.Application["CompanyName"] = companyName;
+        //      HttpContext.Application["Ax"] = ax;
+        //      HttpContext.Application["IsActive"] = active;
+        //      HttpContext.Application["DisplayName"] = displayname;
+        //      HttpContext.Application["ContactPerson"] = contactperson;
+        //      HttpContext.Application["CompanyHandle"] = companyHandle;
 
         //      return View(budgget);
         //  }
@@ -276,14 +277,14 @@ namespace _123Movers.Controllers
                 
                 //if (ModelState.IsValid)
                 //{
-                var cmd = (string)Session["CompanyId"];
+                var cmd = (string)HttpContext.Application["CompanyId"];
                 budget.CompanyId = Convert.ToInt32(cmd);
-                budget.CompanyName = (string)Session["CompanyName"];
-                budget.AX = (string)Session["Ax"];
-                budget.IsActive = (bool)Session["IsActive"];
-                //budget.DisplayName = (string)Session["DisplayName"];
-                budget.ContactPerson = (string)Session["ContactPerson"];
-                // budget.CompanyHandle = (string)Session["CompanyHandle"];
+                budget.CompanyName = (string)HttpContext.Application["CompanyName"];
+                budget.AX = (string)HttpContext.Application["Ax"];
+                budget.IsActive = (bool)HttpContext.Application["IsActive"];
+                //budget.DisplayName = (string)HttpContext.Application["DisplayName"];
+                budget.ContactPerson = (string)HttpContext.Application["ContactPerson"];
+                // budget.CompanyHandle = (string)HttpContext.Application["CompanyHandle"];
                 budget.Type = "NEW";
 
                 if (budget.Terms == "Recurring")
@@ -335,13 +336,13 @@ namespace _123Movers.Controllers
             ViewBag.Services = Services(budget.ServiceId, true);
 
 
-            var cmd = (string)Session["CompanyId"];
+            var cmd = (string)HttpContext.Application["CompanyId"];
             budget.CompanyId = Convert.ToInt32(cmd);
-            budget.CompanyName = (string)Session["CompanyName"];
-            budget.AX = (string)Session["Ax"];
-            budget.IsActive = (bool)Session["IsActive"];
-            budget.Suspended = (string)Session["Suspended"];
-            budget.ContactPerson = (string)Session["ContactPerson"];
+            budget.CompanyName = (string)HttpContext.Application["CompanyName"];
+            budget.AX = (string)HttpContext.Application["Ax"];
+            budget.IsActive = (bool)HttpContext.Application["IsActive"];
+            budget.Suspended = (string)HttpContext.Application["Suspended"];
+            budget.ContactPerson = (string)HttpContext.Application["ContactPerson"];
 
             return View(budget);
 
@@ -358,13 +359,13 @@ namespace _123Movers.Controllers
             {
                 //if (ModelState.IsValid)
                 //{
-                var cmd = (string)Session["CompanyId"];
+                var cmd = (string)HttpContext.Application["CompanyId"];
                 budget.CompanyId = Convert.ToInt32(cmd);
-                budget.CompanyName = (string)Session["CompanyName"];
-                budget.AX = (string)Session["Ax"];
-                budget.IsActive = (bool)Session["IsActive"];
-                budget.Suspended = (string)Session["Suspended"];
-                budget.ContactPerson = (string)Session["ContactPerson"];
+                budget.CompanyName = (string)HttpContext.Application["CompanyName"];
+                budget.AX = (string)HttpContext.Application["Ax"];
+                budget.IsActive = (bool)HttpContext.Application["IsActive"];
+                budget.Suspended = (string)HttpContext.Application["    "];
+                budget.ContactPerson = (string)HttpContext.Application["ContactPerson"];
                 budget.BudgetAction = "RENEWAL INSERTION";
                 budget.Type = "EDIT";
 
@@ -419,12 +420,12 @@ namespace _123Movers.Controllers
             ViewBag.TotalBilled = String.Format("{0:C}", tbilled);
             ViewBag.UnchargedAmount = String.Format("{0:C}", uamount);
 
-            Session["CompanyId"] = companyid;
-            Session["CompanyName"] = companyName;
-            Session["Ax"] = ax;
-            Session["IsActive"] = active;
-            Session["Suspended"] = suspended;
-            Session["ContactPerson"] = contactperson;
+            HttpContext.Application["CompanyId"] = companyid;
+            HttpContext.Application["CompanyName"] = companyName;
+            HttpContext.Application["Ax"] = ax;
+            HttpContext.Application["IsActive"] = active;
+            HttpContext.Application["Suspended"] = suspended;
+            HttpContext.Application["ContactPerson"] = contactperson;
 
             search.budget = budgetList;
            
@@ -454,13 +455,13 @@ namespace _123Movers.Controllers
                 //{
                 //    foreach (var b in budget)
                 //    {
-                //        Session["CompanyId"] = b.CompanyId;
-                //        Session["CompanyName"] = b.CompanyName;
-                //        Session["Ax"] = b.AX;
-                //        Session["IsActive"] = b.IsActive;
-                //        //Session["DisplayName"] = b.DisplayName;
-                //        Session["ContactPerson"] = b.ContactPerson;
-                //        // Session["CompanyHandle"] = b.CompanyHandle;
+                //        HttpContext.Application["CompanyId"] = b.CompanyId;
+                //        HttpContext.Application["CompanyName"] = b.CompanyName;
+                //        HttpContext.Application["Ax"] = b.AX;
+                //        HttpContext.Application["IsActive"] = b.IsActive;
+                //        //HttpContext.Application["DisplayName"] = b.DisplayName;
+                //        HttpContext.Application["ContactPerson"] = b.ContactPerson;
+                //        // HttpContext.Application["CompanyHandle"] = b.CompanyHandle;
                 //        break;
                 //    }
 
@@ -583,7 +584,7 @@ namespace _123Movers.Controllers
         [HttpPost]
         public ActionResult CompanyLeadLimit(LeadLimitModel leadlimit)
         {
-            var cmd = (string)Session["CompanyId"];
+            var cmd = (string)HttpContext.Application["CompanyId"];
             leadlimit.CompanyId = Convert.ToInt32(cmd);
             BusinessLayer.AddCompanyLeadLimit(leadlimit);
             ViewBag.Services = Services(Convert.ToInt32(leadlimit.Services), true);
@@ -622,7 +623,7 @@ namespace _123Movers.Controllers
             JsonResult result;
             try
             {
-                string companyId = (string)Session["CompanyId"];
+                string companyId = (string)HttpContext.Application["CompanyId"];
                 BusinessLayer.AddCompanyZipCodesPerAreaCodes(Convert.ToInt32(companyId), serviceId, areaCodes, IsOrigin);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
          
@@ -637,69 +638,79 @@ namespace _123Movers.Controllers
 
             // return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
         }
-        //MoversEntities m = new MoversEntities();
+          [HttpGet]
+          public ActionResult Geography(int? companyId, int? serviceId)
+          {
+              GeographyModel Origin = new GeographyModel();
 
-        //public List<TreeViewModel> GetTreeVeiwList()
-        //{
-        //    List<TreeViewModel> rootNode = (from e1 in m.tbl_zip
-        //                                    select new TreeViewModel()
-        //                                     {
-        //                                         // EmployeeCode = e1.areaCode,
-        //                                         State = e1.longState
-        //                                     }).Distinct().ToList<TreeViewModel>();
+              var OriginAreaCodes = BusinessLayer.GetCompanyServiceAreaCodes(companyId, serviceId);
+              OriginZipCodes = OriginAreaCodes.OriginZipCodes;
+              return View(OriginAreaCodes);
+          }
+          public JsonResult GetAreaCodeZipCodes(int? companyId,int? serviceId, int? areaCode)
+          {
+              var OriginAreaCodes = BusinessLayer.GetCompanyAreasZipCodes(companyId, serviceId, areaCode);
 
-        //    foreach (var childRootNode in rootNode)
-        //    {
-        //        BuildChildNode(childRootNode);
-        //    }
-
-
-        //    return rootNode;
-        //}
+                 List<List<string>> list = retListTable(OriginAreaCodes);
+                 return Json(list, JsonRequestBehavior.AllowGet);
 
 
-        //private void BuildChildNode(TreeViewModel rootNode)
-        //{
-        //    if (rootNode != null)
-        //    {
-        //        List<TreeViewModel> chidNode = (from e1 in m.tbl_zip
-        //                                         where e1.longState == rootNode.State
-        //                                        select new TreeViewModel()
-        //                                         {
-        //                                             AreaCode = e1.areaCode,
-        //                                             //EmployeeName = e1.state
-        //                                         }).Distinct().ToList<TreeViewModel>();
-        //        if (chidNode.Count > 0)
-        //        {
-        //            foreach (var childRootNode in chidNode)
-        //            {
-        //                //BuildChildNode1(childRootNode);
-        //                rootNode.ChildNode.Add(childRootNode);
-        //            }
-        //        }
+          }
+          public JsonResult GetAvailableZipCodes(int? companyId, int? serviceId, int? areaCode)
+          {
+              var services = BusinessLayer.GetAvailableZipCodes(companyId, serviceId, areaCode);
+              List<List<string>> list = retListTable(services);
+              return Json(list, JsonRequestBehavior.AllowGet);
+          }
 
-        //    }
-        //}
-        //private void BuildChildNode1(TreeViewModel rootNode)
-        //{
-        //    if (rootNode != null)
-        //    {
-        //        List<TreeViewModel> chidNode = (from e1 in m.tbl_zip
-        //                                         where e1.areaCode == rootNode.AreaCode
-        //                                        select new TreeViewModel()
-        //                                         {
-        //                                             Zipcode = e1.zipCode,
-        //                                             //EmployeeName = e1.state
-        //                                         }).Distinct().ToList<TreeViewModel>();
-        //        if (chidNode.Count > 0)
-        //        {
-        //            foreach (var childRootNode in chidNode)
-        //            {
-        //                rootNode.ChildNode.Add(childRootNode);
-        //            }
-        //        }
+          [HttpPost]
+          public JsonResult AddCompanyAreaZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
+          {
 
-        //    }
-        //}
+              JsonResult result;
+              try
+              {
+
+                  BusinessLayer.AddCompanyAreaZipCodes(companyId, serviceId, areaCode, zipCodes);
+                  result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                  
+
+              }
+              catch (Exception ex)
+              {
+                  result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+              }
+
+              return result;
+          }
+          [HttpPost]
+          public JsonResult DeleteCompanyAreaZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
+          {
+
+              JsonResult result;
+              try
+              {
+
+                  BusinessLayer.DeleteCompanyAreaZipCodes(companyId, serviceId, areaCode, zipCodes);
+                  result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+
+
+              }
+              catch (Exception ex)
+              {
+                  result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+              }
+
+              return result;
+          }
+
+          public ActionResult Distance()
+          {
+              return View();
+          }
+          public ActionResult MoveWight()
+          {
+              return View();
+          }
     }
 }

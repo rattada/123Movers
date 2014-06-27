@@ -1,0 +1,239 @@
+﻿@model _123Movers.Models.GeographyModel
+
+@{
+    ViewBag.Title = "Geography";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+
+<input type="hidden" id="message" value="@ViewBag.Success"/>
+<input type="hidden" id="orgareacodes" value="@Model.OriginAreaCodes" />
+<input type="hidden" id="orgzipcodes" value="@Model.OriginZipCodes" />
+<div class="row">
+
+       @* @Html.Partial("_CompanyInfo", @Model)*@
+     @Html.Partial("_CompanyInfo")
+     
+    </div>
+<p class="clearfix"></p>
+<p class="clearfix"></p>
+ <div class="table-responsive" id ="divOrigin">
+      <table id="tbOrigin" class="table table-striped table-bordered">
+          <thead>
+              <tr><th class="text-center"  colspan="10"><strong>Origin Zip To Multiple Area Code</strong></th></tr>
+              <tr>
+                  <th>Service</th>
+                  <th>Area Code</th>
+                  <th  class="text-center">Origin Zip Filter On</th>
+              </tr>
+              
+          </thead>
+          <tbody>
+              @if (@Model != null)
+              {
+                  if (@Model.OriginAreaCodes.Count() > 0)
+                  {
+                      
+                        foreach (var OriginAreaCode in Model.OriginAreaCodes)
+                      {
+                          <tr>
+                              <td>
+                                  @{
+                                      var service = @OriginAreaCode.ServiceId == 1000 ? "Long" : "Local";
+                                  }
+                                  @service
+                              </td>
+                              <td id ="areacode">
+                                  @OriginAreaCode.AreaCode
+                              </td>
+                              <td class="text-center">
+                                  @{
+                                      var zipcodes = @Model.OriginZipCodes.Where(x => x.AreaCode == @OriginAreaCode.AreaCode && x.ServiceId == @OriginAreaCode.ServiceId).Select(x => x.ZipCode).ToList();
+                                   }
+                              
+                                  @if(@zipcodes.Count() > 0)
+                                  {
+                                      <p>YES --> @zipcodes.Count() ZipCodes</p><a id="zipcodes" href="#" data-toggle="modal" data-target="#myModal" data-id="@OriginAreaCode.AreaCode" onclick="GetZipCodes(@OriginAreaCode.AreaCode,@OriginAreaCode.ServiceId)">View</a>
+                                  }
+                                  else
+                                  {
+                                      
+                                      <a id="zipcodes1" href="#" data-toggle="modal" data-target="#myModal" data-id="@OriginAreaCode.AreaCode" onclick="GetZipCodes(@OriginAreaCode.AreaCode,@OriginAreaCode.ServiceId)">Add Origin ZipCodes</a>
+                                  }
+                                  
+                              </td>
+                          </tr>
+                      }
+                  }
+              }
+          </tbody>
+      </table>
+ </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Origin Zip Codes</h4>
+      </div>
+      <div class="modal-body">
+        <select name="areaZipCode" id="areaZipCode" size="20" style="width: 150px" multiple>
+                </select>
+
+
+                <input type="button" id="add" value="Add -->" class="btn btn-primary" />
+                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary">
+
+
+                <select name="areaZipSelected" id="areaZipSelected" style="width: 150px" size="20" multiple>
+                </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>
+        @*<button type="button" class="btn btn-primary" id="saveZipCodes">Save changes</button>*@
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+   // $(function () {
+        //var orgarea = $('#orgareacodes').val();
+        //alert(orgarea);
+    var areacode;
+    var serviceid;
+    function GetZipCodes(areaCode, serviceId) {
+        serviceid = serviceId;
+        areacode = areaCode
+        $.ajax({
+            url: '/Home/GetAvailableZipCodes',
+            type: "GET",
+            data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceId, 'areaCode': areaCode },
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    var strigifyJson = JSON.stringify(data);
+                    var json = $.parseJSON(strigifyJson);
+                    var table;
+                    var options = '<option value=""></option>';
+                    jQuery.each(json, function (i, val) {
+                        if (i == 0) {
+                            options = '<option value="' + val[0] + '">' + val[0] + '</option>';
+                        } else {
+                            options += '<option value="' + val[0] + '">' + val[0] + '</option>';
+                        }
+                    });
+
+
+                    $('#areaZipCode').html(options);
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                }
+        });
+           
+        $.ajax({
+            url: '/Home/GetAreaCodeZipCodes',
+            type: "GET",
+            data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceId, 'areaCode': areaCode },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                var strigifyJson = JSON.stringify(data);
+                var json = $.parseJSON(strigifyJson);
+                var table;
+                var options = '<option value=""></option>';
+                jQuery.each(json, function (i, val) {
+                    if (i == 0) {
+                        options = '<option value="' + val[0] + '">' + val[0] + '</option>';
+                    } else {
+                        options += '<option value="' + val[0] + '">' + val[0] + '</option>';
+                    }
+                });
+
+
+                $('#areaZipSelected').html(options);
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+
+            }
+        });
+
+
+        }
+        
+
+    $('#add').click(function () {
+        var selected = [];
+        $('#areaZipCode :selected').each(function (i, el) {
+            selected[i] = $(this).val();
+            $("#areaZipCode option:selected").remove();
+            $("#areaZipSelected").append($(this));
+        });
+        if (selected.length == 0)
+        {
+            alert('Please Select ZipCode');
+        }
+
+       var data_to_send = JSON.stringify(selected);
+        $.ajax({
+            url: '/Home/AddCompanyAreaZipCodes',
+            type: "POST",
+            data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': data_to_send },
+            success: function (data) {
+                if (data.success === true) {
+                    alert('Zip Codes Successfully Added');
+                } else {
+                    alert("Error :" + data.message);
+                }
+                   // location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                }
+            });
+        
+     });
+
+        $('#remove').click(function () {
+            var selected = [];
+            $('#areaZipSelected :selected').each(function (i, el) {
+                selected[i] = $(this).val();
+                $("#areaZipSelected option:selected").remove();
+                $("#areaZipCode").append($(this));
+            });
+
+            var data_to_send = JSON.stringify(selected);
+            $.ajax({
+                url: '/Home/DeleteCompanyAreaZipCodes',
+                type: "POST",
+                data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': data_to_send },
+                success: function (data) {
+                    if (data.success === true) {
+                        alert('Zip Codes Successfully Deleted');
+                    } else {
+                        alert("Error :" + data.message);
+                    }
+                   // location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                }
+            });
+         
+        });
+    $('#close').click(function () {
+        //$('#body').on('change', 'select', function (e) {
+        //    location.reload();
+        //});
+        location.reload();
+    });
+       
+   // });
+</script>

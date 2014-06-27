@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\BudgetModel.cs" />
+    <Compile Include="Models\GeographyModel.cs" />
     <Compile Include="Models\LeadLimitModel.cs" />
     <Compile Include="Models\RegexPattern.cs" />
     <Compile Include="Models\SearchModel.cs" />

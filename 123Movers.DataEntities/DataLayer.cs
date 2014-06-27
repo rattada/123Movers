@@ -33,72 +33,72 @@ namespace _123Movers.DataEntities
             }
         }
 
-        public static bool Login(LoginModel login)
-        {
+        //public static bool Login(LoginModel login)
+        //{
 
 
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
-            {
-                SqlCommand cmdGetDetailsByCompanyName = new SqlCommand();
-                cmdGetDetailsByCompanyName.Connection = dbCon;
-                cmdGetDetailsByCompanyName.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdGetDetailsByCompanyName.CommandText = "usp_CheckUser";
-
-
-
-                SqlParameter paramUserName = new SqlParameter("UserName", login.UserName);
-                SqlParameter paramPassword = new SqlParameter("Password", login.Password);
-
-                cmdGetDetailsByCompanyName.Parameters.Add(paramUserName);
-                cmdGetDetailsByCompanyName.Parameters.Add(paramPassword);
-
-                SqlDataReader dr = cmdGetDetailsByCompanyName.ExecuteReader();
-                if (dr.Read())
-                {
-
-                    ret = dr.GetBoolean(0);
-
-                }
-            }
-            return ret;
-
-        }
-
-        public static void RegisterUser(RegisterModel model)
-        {
-
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
-            {
-
-                SqlCommand cmdGetDetailsByCompanyName = new SqlCommand();
-                cmdGetDetailsByCompanyName.Connection = dbCon;
-                cmdGetDetailsByCompanyName.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdGetDetailsByCompanyName.CommandText = "usp_AddUser";
+        //    using (SqlConnection dbCon = ConnectToDb(DBConnString))
+        //    {
+        //        SqlCommand cmdGetDetailsByCompanyName = new SqlCommand();
+        //        cmdGetDetailsByCompanyName.Connection = dbCon;
+        //        cmdGetDetailsByCompanyName.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmdGetDetailsByCompanyName.CommandText = "usp_CheckUser";
 
 
 
-                SqlParameter paramUserName = new SqlParameter("UserName", model.UserName);
-                SqlParameter paramPassword = new SqlParameter("Password", model.Password);
-                SqlParameter paramEmail = new SqlParameter("EmailId", model.EmailID);
+        //        SqlParameter paramUserName = new SqlParameter("UserName", login.UserName);
+        //        SqlParameter paramPassword = new SqlParameter("Password", login.Password);
 
-                cmdGetDetailsByCompanyName.Parameters.Add(paramUserName);
-                cmdGetDetailsByCompanyName.Parameters.Add(paramPassword);
-                cmdGetDetailsByCompanyName.Parameters.Add(paramEmail);
+        //        cmdGetDetailsByCompanyName.Parameters.Add(paramUserName);
+        //        cmdGetDetailsByCompanyName.Parameters.Add(paramPassword);
+
+        //        SqlDataReader dr = cmdGetDetailsByCompanyName.ExecuteReader();
+        //        if (dr.Read())
+        //        {
+
+        //            ret = dr.GetBoolean(0);
+
+        //        }
+        //    }
+        //    return ret;
+
+        //}
+
+        //public static void RegisterUser(RegisterModel model)
+        //{
+
+        //    using (SqlConnection dbCon = ConnectToDb(DBConnString))
+        //    {
+
+        //        SqlCommand cmdGetDetailsByCompanyName = new SqlCommand();
+        //        cmdGetDetailsByCompanyName.Connection = dbCon;
+        //        cmdGetDetailsByCompanyName.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmdGetDetailsByCompanyName.CommandText = "usp_AddUser";
 
 
-                //var parms = new IDataParameter[3];
-                //int i = 0;
-                //parms[i++] = NewParameter("UserName", SqlDbType.VarChar, model.UserName);
-                //parms[i++] = NewParameter("Password", SqlDbType.VarChar, model.Password);
-                //parms[i++] = NewParameter("EmailId", SqlDbType.VarChar, model.EmailID);
 
-                //cmdGetDetailsByCompanyName.Parameters.Add(parms);
+        //        SqlParameter paramUserName = new SqlParameter("UserName", model.UserName);
+        //        SqlParameter paramPassword = new SqlParameter("Password", model.Password);
+        //        SqlParameter paramEmail = new SqlParameter("EmailId", model.EmailID);
 
-                var i = cmdGetDetailsByCompanyName.ExecuteNonQuery();
+        //        cmdGetDetailsByCompanyName.Parameters.Add(paramUserName);
+        //        cmdGetDetailsByCompanyName.Parameters.Add(paramPassword);
+        //        cmdGetDetailsByCompanyName.Parameters.Add(paramEmail);
 
-            }
 
-        }
+        //        //var parms = new IDataParameter[3];
+        //        //int i = 0;
+        //        //parms[i++] = NewParameter("UserName", SqlDbType.VarChar, model.UserName);
+        //        //parms[i++] = NewParameter("Password", SqlDbType.VarChar, model.Password);
+        //        //parms[i++] = NewParameter("EmailId", SqlDbType.VarChar, model.EmailID);
+
+        //        //cmdGetDetailsByCompanyName.Parameters.Add(parms);
+
+        //        var i = cmdGetDetailsByCompanyName.ExecuteNonQuery();
+
+        //    }
+
+        //}
 
         public static bool SaveBudget(BudgetModel budget)
         {
@@ -376,6 +376,66 @@ namespace _123Movers.DataEntities
 
                 cmdGetAvailableAreas.Parameters.Add(paramCompanyId);
                 cmdGetAvailableAreas.Parameters.Add(paramService);
+
+                DataTable dtResults = new DataTable();
+
+                SqlDataReader drResults = cmdGetAvailableAreas.ExecuteReader();
+                dtResults.Load(drResults);
+
+                return dtResults;
+
+            }
+        }
+        public static DataTable GetAvailableZipCodes(int? companyId, int? serviceId,int? areaCode)
+        {
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdGetAvailableAreas = new SqlCommand();
+                cmdGetAvailableAreas.Connection = dbCon;
+                cmdGetAvailableAreas.CommandType = System.Data.CommandType.StoredProcedure;
+                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
+                cmdGetAvailableAreas.CommandText = "usp_GetCompanyAvailableAreasZipCodes"; //"usp_availableAreacoded";
+                if (serviceId == null)
+                {
+                    serviceId = 1009;
+                }
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+                SqlParameter paramAreaCode = new SqlParameter("areaCode", areaCode);
+
+                cmdGetAvailableAreas.Parameters.Add(paramCompanyId);
+                cmdGetAvailableAreas.Parameters.Add(paramService);
+                cmdGetAvailableAreas.Parameters.Add(paramAreaCode);
+
+                DataTable dtResults = new DataTable();
+
+                SqlDataReader drResults = cmdGetAvailableAreas.ExecuteReader();
+                dtResults.Load(drResults);
+
+                return dtResults;
+
+            }
+        }
+        public static DataTable GetCompanyAreasZipCodes(int? companyId, int? serviceId, int? areaCode)
+        {
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdGetAvailableAreas = new SqlCommand();
+                cmdGetAvailableAreas.Connection = dbCon;
+                cmdGetAvailableAreas.CommandType = System.Data.CommandType.StoredProcedure;
+                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
+                cmdGetAvailableAreas.CommandText = "usp_GetCompanyAreasZipCodes"; //"usp_availableAreacoded";
+                if (serviceId == null)
+                {
+                    serviceId = 1009;
+                }
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+                SqlParameter paramAreaCode = new SqlParameter("areaCode", areaCode);
+
+                cmdGetAvailableAreas.Parameters.Add(paramCompanyId);
+                cmdGetAvailableAreas.Parameters.Add(paramService);
+                cmdGetAvailableAreas.Parameters.Add(paramAreaCode);
 
                 DataTable dtResults = new DataTable();
 
@@ -680,7 +740,196 @@ namespace _123Movers.DataEntities
             }
             return true;
         }
-        
+        public static GeographyModel GetCompanyServiceAreaCodes(int? companyId, int? serviceId)
+        {
+
+            GeographyModel OriginAreaZip = new GeographyModel();
+            List<GeographyModel> areacodes = new List<GeographyModel>();
+            List<GeographyModel> zipcodes = new List<GeographyModel>();
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdGetCompanyServiceAreaCodes = new SqlCommand();
+                cmdGetCompanyServiceAreaCodes.Connection = dbCon;
+                cmdGetCompanyServiceAreaCodes.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdGetCompanyServiceAreaCodes.CommandText = "usp_GetCompanyServiceAreaCodes";
+
+
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+
+                cmdGetCompanyServiceAreaCodes.Parameters.Add(paramCompanyId);
+                cmdGetCompanyServiceAreaCodes.Parameters.Add(paramService);
+
+                DataTable dtResults = new DataTable();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmdGetCompanyServiceAreaCodes);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    int? sid = null;
+                    int? areacode = null;
+                    int? cid = null;
+                    //int? zid = null;
+
+                    if (!string.IsNullOrEmpty(row["companyID"].ToString()))
+                    {
+                        cid = Convert.ToInt32(row["companyID"]);
+                    }
+
+                    if (!string.IsNullOrEmpty(row["serviceID"].ToString()))
+                    {
+                        sid = Convert.ToInt32(row["serviceID"]);
+                    }
+                    if (!string.IsNullOrEmpty(row["areaCode"].ToString()))
+                    {
+                        areacode = Convert.ToInt32(row["areaCode"]);
+                    }
+                    //if (!string.IsNullOrEmpty(row["zipCode"].ToString()))
+                    //{
+                    //    zid = Convert.ToInt32(row["zipCode"]);
+                    //}
+                    GeographyModel s = new GeographyModel
+                    {
+                        CompanyId = cid,
+                        ServiceId = sid,
+                        AreaCode = areacode,
+                       // ZipCode = zid
+                    };
+                    areacodes.Add(s);
+                }
+                OriginAreaZip.OriginAreaCodes = areacodes;
+
+
+                foreach (DataRow row in ds.Tables[1].Rows)
+                {
+                    int? sid = null;
+                    int? areacode = null;
+                    int? cid = null;
+                    int? zid = null;
+
+                    if (!string.IsNullOrEmpty(row["companyID"].ToString()))
+                    {
+                        cid = Convert.ToInt32(row["companyID"]);
+                    }
+                    if (!string.IsNullOrEmpty(row["serviceID"].ToString()))
+                    {
+                        sid = Convert.ToInt32(row["serviceID"]);
+                    }
+                    if (!string.IsNullOrEmpty(row["originAreaCode"].ToString()))
+                    {
+                        areacode = Convert.ToInt32(row["originAreaCode"]);
+                    }
+                    if (!string.IsNullOrEmpty(row["originZipCode"].ToString()))
+                    {
+                        zid = Convert.ToInt32(row["originZipCode"]);
+                    }
+                    GeographyModel s = new GeographyModel
+                    {
+                        CompanyId = cid,
+                        ServiceId = sid,
+                        AreaCode = areacode,
+                        ZipCode =zid
+                    };
+                    zipcodes.Add(s);
+                }
+                OriginAreaZip.OriginZipCodes = zipcodes;
+
+
+
+
+
+                //SqlDataReader drResults = cmdGetCompanyServiceAreaCodes.ExecuteReader();
+                //dtResults.Load(drResults);
+
+                //foreach (DataRow row in dtResults.Rows)
+                //{
+                //    int? sid = null;
+                //    int? areacode = null;
+                //    int? cid = null;
+
+                //    if (!string.IsNullOrEmpty(row["companyID"].ToString()))
+                //    {
+                //        cid = Convert.ToInt32(row["companyID"]);
+                //    }
+
+                //    if (!string.IsNullOrEmpty(row["serviceID"].ToString()))
+                //    {
+                //        sid = Convert.ToInt32(row["serviceID"]);
+                //    }
+                //    if (!string.IsNullOrEmpty(row["areaCode"].ToString()))
+                //    {
+                //        areacode = Convert.ToInt32(row["areaCode"]);
+                //    }
+                //    GeographyModel s = new GeographyModel
+                //    {
+                //        CompanyId = cid,
+                //        ServiceId = sid,
+                //        AreaCode = areacode
+                //    };
+                //    list.Add(s);
+                //}
+
+            }
+            return OriginAreaZip;
+        }
+        public static bool AddCompanyAreaZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
+        {
+            int i = 0;
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdAddCompanyAreaZipCodes = new SqlCommand();
+                cmdAddCompanyAreaZipCodes.Connection = dbCon;
+                cmdAddCompanyAreaZipCodes.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdAddCompanyAreaZipCodes.CommandText = "usp_AddCompanyAreasZipCodes";
+
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceId", serviceId);
+                SqlParameter paramAreaCode = new SqlParameter("areaCode", areaCode);
+                SqlParameter paramzipCodes = new SqlParameter("zipCodes", zipCodes);
+
+                cmdAddCompanyAreaZipCodes.Parameters.Add(paramCompanyId);
+                cmdAddCompanyAreaZipCodes.Parameters.Add(paramService);
+                cmdAddCompanyAreaZipCodes.Parameters.Add(paramAreaCode);
+                cmdAddCompanyAreaZipCodes.Parameters.Add(paramzipCodes);
+
+
+                i = cmdAddCompanyAreaZipCodes.ExecuteNonQuery();
+
+
+            }
+            return true;
+        }
+
+        public static bool DeleteCompanyAreaZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
+        {
+            int i = 0;
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = dbCon;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "usp_DeleteCompanyAreasZipCodes";
+
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceId", serviceId);
+                SqlParameter paramAreaCode = new SqlParameter("areaCode", areaCode);
+                SqlParameter paramzipCodes = new SqlParameter("zipCodes", zipCodes);
+
+                cmd.Parameters.Add(paramCompanyId);
+                cmd.Parameters.Add(paramService);
+                cmd.Parameters.Add(paramAreaCode);
+                cmd.Parameters.Add(paramzipCodes);
+
+
+                i = cmd.ExecuteNonQuery();
+
+
+            }
+            return true;
+        }
     }
 
 }

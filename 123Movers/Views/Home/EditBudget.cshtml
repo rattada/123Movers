@@ -61,20 +61,28 @@
             <p class="clearfix"></p>
              <p class="clearfix"></p>
               <p class="clearfix"></p>
-            <div class="form-group">
+           @* <div class="form-group">
                @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "managearea", @class = "btn btn-primary pull-right" })
-             @*<input type="button" value="Manage Area Codes" id="managearea" class="btn btn-primary ">*@
-             
+                        
                @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "leadlimit", @class = "btn btn-primary" })
-        </div>
+        </div>*@
         </div>
     </div>
    
-       
+       <div class="row">
+            <div class="col-md-12">
+                 @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "managearea", @class = "btn btn-primary" })
+               @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "leadlimit", @class = "btn btn-primary" })
+                 @Html.ActionLink("Manage Geography", "Geography", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "geography", @class = "btn btn-primary" })
+                 @Html.ActionLink("Manage Distance", "Distance", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "distance", @class = "btn btn-primary" })
+                 @Html.ActionLink("Manage Move Wight", "MoveWight", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName =@Model.CompanyName }, new {id = "movewight", @class = "btn btn-primary" })
+            </div>
+       </div>
            
-            
+             <p class="clearfix"></p>
+             <p class="clearfix"></p>
     
-    <div class="row">
+    @*<div class="row">
         <div class="col-md-12">
             <div class="checkbox">
                 <label>
@@ -86,10 +94,12 @@
     <div class="row">
         <div id="filters">
         </div>
-    </div>
-    <div class="row">   <div class="col-md-6">
+    </div>*@
+    
+    <div class="row">   
+         <div class="col-lg-3 pull-right">
     <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">Back To List</a>
-       </div>   <div class="col-md-6">
+       
     <input type="submit" value="Save Budget" id="save" class="btn btn-primary pull-right">
         </div></div>
 }
