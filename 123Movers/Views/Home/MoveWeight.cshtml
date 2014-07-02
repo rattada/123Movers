@@ -1,0 +1,88 @@
+﻿@model _123Movers.Models.MoveWeightModel
+@{
+    ViewBag.Title = "MoveWeight";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+
+
+<div class="row">
+
+       @* @Html.Partial("_CompanyInfo", @Model)*@
+     @Html.Partial("_CompanyInfo")
+     
+    </div>
+<p class="clearfix"></p>
+<p class="clearfix"></p>
+
+<input type="hidden" id="message" value="@ViewBag.Success"/>
+@using (Html.BeginForm("MoveWeight", "Home", FormMethod.Post, new { id = "frmMoveWeight" }))
+{
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Services)
+            @Html.DropDownListFor(m => m.Services, ViewBag.Services as IEnumerable<SelectListItem>,"--Choose One--", new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
+            @Html.ValidationMessageFor(m => m.Services)
+        </div></div>
+         <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(m => m.MinMoveWeight)
+            @Html.DropDownListFor(m => m.MinMoveWeight, ViewBag.MinMoveWeight as IEnumerable<SelectListItem>, "--Choose One--", new { id = "minMoveWeight", @class = "form-control dropdown", @title = "Select Min Move Weight" })
+            @Html.ValidationMessageFor(m => m.MinMoveWeight)
+        </div></div>
+              <div class="col-lg-4">
+         <div class="form-group">
+            @Html.LabelFor(m => m.MaxMoveWeight)
+            @Html.DropDownListFor(m => m.MaxMoveWeight, ViewBag.MinMoveWeight as IEnumerable<SelectListItem>, "--Choose One--", new { id = "maxMoveWeight", @class = "form-control dropdown", @title = "Select Max Move Weight" })
+            @Html.ValidationMessageFor(m => m.MaxMoveWeight)
+        </div></div>
+    
+</div>
+
+<div class="row">
+    <input type="submit" id="savemoveweight" class="btn btn-primary pull-right" value="Save" />
+    <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+
+
+</div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        var message = $.trim($('#message').val());
+        if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
+
+        $('#savemoveweight').click(function () {
+            var serviceId = $('#services').val().trim();
+            var min = $('#minMoveWeight').val().trim();
+            var max = $('#maxMoveWeight').val().trim();
+
+            if (serviceId == '' || serviceId == undefined) {
+                alert('Please Select Service Type');
+                $("#services").focus();
+                return false;
+            } else {
+                if ($("#minMoveWeight").val() <= 0)
+                {
+                    alert('Please Select Min Move Weight Value');
+                    $("#minMoveWeight").focus();
+                    return false;
+                }
+                if ($("#maxMoveWeight").val() <= 0)
+                {
+                    alert('Please Select Max Move Weight Value');
+                    $("#maxMoveWeight").focus();
+                    return false;
+                }
+            }
+
+
+        });
+
+
+    });
+</script>

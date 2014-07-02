@@ -8,6 +8,7 @@ namespace _123Movers.Models
     public class RegexPattern
     {
         public const string NUMERIC = @"^\d*$";
+        public const string Decimal = @"[0-9]*\.?[0-9]+";
 
     }
 }

@@ -118,9 +118,9 @@ namespace _123Movers.BusinessEntities
             return DataLayer.DeleteCompanyAreaZipCodes(companyId, serviceId, areaCode, zipCodes);
         }
 
-        public static bool AddCompanyMoveDistance(int companyId, int serviceId, int? minWeight, int? maxWeight)
+        public static bool SaveMoveDistance(DistanceModel model)
         {
-            return DataLayer.AddCompanyMoveDistance(companyId, serviceId, minWeight, maxWeight);
+            return DataLayer.SaveMoveDistance(model);
         }
         public static DataTable GetCompanyMoveDistance(int? companyId, int? serviceId)
         {
@@ -136,7 +136,10 @@ namespace _123Movers.BusinessEntities
             return oSerializer.Serialize(o);
         }
 
-
+        public static bool SaveMoveWeight(MoveWeightModel model)
+        {
+            return DataLayer.SaveMoveWeight(model);
+        }
 
 
 

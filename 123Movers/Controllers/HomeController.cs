@@ -140,6 +140,7 @@ namespace _123Movers.Controllers
             var listOption = new SelectListItem();
             var services = new List<SelectListItem>();
 
+
             listOption = new SelectListItem { Text = "Local", Value = "1009" };
             services.Add(listOption);
 
@@ -335,14 +336,14 @@ namespace _123Movers.Controllers
             ViewBag.Terms = Terms(budget.IsRecurring, budget.IsRequireNoticeToCharge, true);
             ViewBag.Services = Services(budget.ServiceId, true);
 
-            var result = BusinessLayer.GetMoveWeights().AsEnumerable();
-            List<string> items = new List<string>();
-            foreach (var item in result)
-            {
-                items.Add(item[0].ToString());
-            }
+            //var result = BusinessLayer.GetMoveWeights().AsEnumerable();
+            //List<string> items = new List<string>();
+            //foreach (var item in result)
+            //{
+            //    items.Add(item[0].ToString());
+            //}
 
-            ViewBag.MoveWeights = BusinessLayer.ToJSON(items);
+            //ViewBag.MoveWeights = BusinessLayer.ToJSON(items);
 
             var cmd = (string)HttpContext.Application["CompanyId"];
             budget.CompanyId = Convert.ToInt32(cmd);
@@ -829,37 +830,93 @@ namespace _123Movers.Controllers
               return result;
           }
 
-          public ActionResult Distance()
+          [HttpGet]  
+          public ActionResult Distance(int? companyId,int? serviceId)
           {
-              return View();
-          }
-          public ActionResult MoveWight()
-          {
-              return View();
+
+              ViewBag.Services = Services(null, false).Take(2);
+              var query = BusinessLayer.GetCompanyMoveDistance(companyId, serviceId);
+              List<List<string>> list = retListTable(query);
+              DistanceModel model = new DistanceModel();
+              model.CompanyId = companyId;
+              model.ServiceId = serviceId;
+              if (list.Count > 0)
+              {
+                  model.MinMoveWeight = string.IsNullOrWhiteSpace(list[0][1].ToString()) ? 0 : Convert.ToDecimal(list[0][1]);
+                  model.MaxMoveWeight = string.IsNullOrWhiteSpace(list[0][2].ToString()) ? 0 : Convert.ToDecimal(list[0][2]);
+              }
+
+              return View(model);
+
           }
 
 
-        
           [HttpPost]
-          public JsonResult AddCompanyMoveDistance(int ServiceId, int? MinWeight, int? MaxWeight)
+          public ActionResult Distance(DistanceModel model)
           {
-
-              JsonResult result;
+              ViewBag.Services = Services(null, false).Take(2);
               try
               {
-                  var cmd = (string)Session["CompanyId"];
-                  BusinessLayer.AddCompanyMoveDistance(Convert.ToInt32(cmd), ServiceId, MinWeight, MaxWeight);
-                  result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                  var cmd = (string)HttpContext.Application["CompanyId"];
+                  model.CompanyId = Convert.ToInt32(cmd);
+                  BusinessLayer.SaveMoveDistance(model);
+
+                  ViewBag.Success = "Saved Sucessfully";
               }
               catch (Exception ex)
               {
-                  result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+
               }
-
-              return result;
-
-
+              return View(model);
+              //return RedirectToAction("Distance", "Home", new { model.CompanyId, model.ServiceId });
           }
+
+          [HttpGet]
+          public ActionResult MoveWeight(int? ServiceId)
+          {
+              ViewBag.MinMoveWeight = DataTableToSelectList(BusinessLayer.GetMoveWeights(), "moveWeightSeq", "moveweight");
+              ViewBag.Services = Services(ServiceId, true).Take(2);
+              return View();
+          }
+        [HttpPost]
+          public ActionResult MoveWeight(MoveWeightModel model)
+          {
+              ViewBag.MinMoveWeight = DataTableToSelectList(BusinessLayer.GetMoveWeights(), "moveWeightSeq" , "moveweight"); 
+              ViewBag.Services = Services(Convert.ToInt32(model.Services), false).Take(2);
+
+              try
+              {
+                  var cmd = (string)HttpContext.Application["CompanyId"];
+                  model.CompanyId = Convert.ToInt32(cmd);
+                  BusinessLayer.SaveMoveWeight(model);
+                  ViewBag.Success = "Saved Sucessfully";
+              }
+              catch {
+              }
+              return View(model);
+          }
+
+        
+          //[HttpPost]
+          //public JsonResult AddCompanyMoveDistance(int ServiceId, int? MinWeight, int? MaxWeight)
+          //{
+
+          //    JsonResult result;
+          //    try
+          //    {
+          //        var cmd = (string)HttpContext.Application["CompanyId"];
+          //        BusinessLayer.AddCompanyMoveDistance(Convert.ToInt32(cmd), ServiceId, MinWeight, MaxWeight);
+          //        result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+          //    }
+          //    catch (Exception ex)
+          //    {
+          //        result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+          //    }
+
+          //    return result;
+
+
+          //}
 
 
           public JsonResult GetCompanyMoveDistance(int ServiceId)
@@ -869,7 +926,7 @@ namespace _123Movers.Controllers
 
               try
               {
-                  var cmd = (string)Session["CompanyId"];
+                  var cmd = (string)HttpContext.Application["CompanyId"];
 
                   var query = BusinessLayer.GetCompanyMoveDistance(Convert.ToInt32(cmd), ServiceId);
                   List<List<string>> list = retListTable(query);

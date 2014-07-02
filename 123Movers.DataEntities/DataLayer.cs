@@ -933,32 +933,32 @@ namespace _123Movers.DataEntities
         }
 
 
-        public static bool AddCompanyMoveDistance(int CompanyID, int ServiceId, int? MinWeight, int? MaxWeight)
+        public static bool SaveMoveDistance(DistanceModel model)
         {
             int i = 0;
             using (SqlConnection dbCon = ConnectToDb(DBConnString))
             {
-                SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
-                cmdAddCompanyAdByArea.Connection = dbCon;
-                cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyMoveDistance";
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = dbCon;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "usp_SaveMoveDistance";
 
 
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", CompanyID);
-                SqlParameter paramServiceID = new SqlParameter("serviceID", ServiceId);
-                SqlParameter paramMinWeight = new SqlParameter("minimumWeightID", MinWeight);
-                SqlParameter paramMaxWeight = new SqlParameter("maximumWeight", MaxWeight);
+                SqlParameter paramCompanyId = new SqlParameter("companyID", model.CompanyId);
+                SqlParameter paramServiceID = new SqlParameter("serviceID", model.ServiceId);
+                SqlParameter paramMinWeight = new SqlParameter("minMoveWeight", model.MinMoveWeight);
+                SqlParameter paramMaxWeight = new SqlParameter("maxMoveWeight", model.MaxMoveWeight);
 
 
-                cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
-                cmdAddCompanyAdByArea.Parameters.Add(paramServiceID);
-                cmdAddCompanyAdByArea.Parameters.Add(paramMinWeight);
-                cmdAddCompanyAdByArea.Parameters.Add(paramMaxWeight);
+                cmd.Parameters.Add(paramCompanyId);
+                cmd.Parameters.Add(paramServiceID);
+                cmd.Parameters.Add(paramMinWeight);
+                cmd.Parameters.Add(paramMaxWeight);
 
 
 
-                i = cmdAddCompanyAdByArea.ExecuteNonQuery();
+                i = cmd.ExecuteNonQuery();
 
 
             }
@@ -994,15 +994,14 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb(DBConnString))
             {
-                SqlCommand cmdGetService = new SqlCommand();
-                cmdGetService.Connection = dbCon;
-                cmdGetService.CommandType = System.Data.CommandType.StoredProcedure;
-                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
-                cmdGetService.CommandText = "usp_GetMOVESIZELOOKUP";
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = dbCon;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "usp_GetMoveSizeLookup";
 
                 DataTable dtResults = new DataTable();
 
-                SqlDataReader drResults = cmdGetService.ExecuteReader();
+                SqlDataReader drResults = cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
                 return dtResults;
@@ -1010,7 +1009,33 @@ namespace _123Movers.DataEntities
             }
 
         }
+        public static bool SaveMoveWeight(MoveWeightModel model)
+        {
+            int i = 0;
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = dbCon;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "usp_SaveMoveWeight";
 
+                SqlParameter paramCompanyId = new SqlParameter("companyID", model.CompanyId);
+                SqlParameter paramService = new SqlParameter("serviceId", Convert.ToInt32(model.Services));
+                SqlParameter parammin = new SqlParameter("minMoveWeight", model.MinMoveWeight);
+                SqlParameter parammax = new SqlParameter("maxMoveWeight", model.MaxMoveWeight);
+
+                cmd.Parameters.Add(paramCompanyId);
+                cmd.Parameters.Add(paramService);
+                cmd.Parameters.Add(parammin);
+                cmd.Parameters.Add(parammax);
+
+
+                i = cmd.ExecuteNonQuery();
+
+
+            }
+            return true;
+        }
 
 
     }

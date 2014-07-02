@@ -75,7 +75,7 @@
                @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "leadlimit", @class = "btn btn-primary" })
                  @Html.ActionLink("Manage Geography", "Geography", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "geography", @class = "btn btn-primary" })
                  @Html.ActionLink("Manage Distance", "Distance", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "distance", @class = "btn btn-primary" })
-                 @Html.ActionLink("Manage Move Wight", "MoveWight", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "movewight", @class = "btn btn-primary" })
+                 @Html.ActionLink("Manage Move Weight", "MoveWeight", "Home", new {serviceId = @Model.ServiceId }, new { id = "movewight", @class = "btn btn-primary" })
             </div>
        </div>
            
@@ -108,10 +108,8 @@
    
 
     $(function () {
-        var strigifyJsonViewBag = @Html.Raw(ViewBag.MoveWeights)
-        alert(strigifyJsonViewBag);
+       // var strigifyJsonViewBag = @Html.Raw(ViewBag.MoveWeights);
 
-        //alert(strigifyJson);
         var message = $.trim($('#message').val());
         if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
 
@@ -195,47 +193,47 @@
                     }
                 });
                 
-                var serviceId = $("#services").val();
-                $.ajax({
-                    url: '/Home/GetCompanyMoveDistance',
-                    type: "GET",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: { "serviceId": serviceId },
-                    success: function (data) {
+                //var serviceId = $("#services").val();
+                //$.ajax({
+                //    url: '/Home/GetCompanyMoveDistance',
+                //    type: "GET",
+                //    contentType: "application/json; charset=utf-8",
+                //    dataType: "json",
+                //    data: { "serviceId": serviceId },
+                //    success: function (data) {
                        
-                        var strigifyJson = JSON.stringify(data);
-                        var json = $.parseJSON(strigifyJson);
-                        var isMoveDistanceSelect = 0;
+                //        var strigifyJson = JSON.stringify(data);
+                //        var json = $.parseJSON(strigifyJson);
+                //        var isMoveDistanceSelect = 0;
 
                       
-                        jQuery.each(json, function (key, item) {
+                //        jQuery.each(json, function (key, item) {
 
-                            $("#ddlServiceID").val(item[0]);
-                            $("#txtMinWeight").val(item[1]);
-                            $("#txtMaxWeight").val(item[2]);
-                            //isMoveDistanceSelect = item[0];
+                //            $("#ddlServiceID").val(item[0]);
+                //            $("#txtMinWeight").val(item[1]);
+                //            $("#txtMaxWeight").val(item[2]);
+                //            //isMoveDistanceSelect = item[0];
 
 
 
-                        });
-                        //if (isMoveDistanceSelect == 0 ) {
-                        //    $('#tblDistance *').attr('disabled', 'disabled');
-                        //}
+                //        });
+                //        //if (isMoveDistanceSelect == 0 ) {
+                //        //    $('#tblDistance *').attr('disabled', 'disabled');
+                //        //}
                      
-                        $.each(strigifyJsonViewBag, function (key, value) {
+                //        $.each(strigifyJsonViewBag, function (key, value) {
                          
-                            $('#ddlMinWeightID').append($('<option>').text(value).attr('value', value));
-                            $('#ddlMaxWeightID').append($('<option>').text(value).attr('value', value));
+                //            $('#ddlMinWeightID').append($('<option>').text(value).attr('value', value));
+                //            $('#ddlMaxWeightID').append($('<option>').text(value).attr('value', value));
                             
-                        });
+                //        });
 
                         
-                    },
-                    error: function (result) {
+                //    },
+                //    error: function (result) {
 
-                    }
-                });
+                //    }
+                //});
                 
                 //$("#").find("input,button,select,textarea").attr("disabled", "disabled");
                 //$('#tblDistance').attr('disabled', 'disabled');
