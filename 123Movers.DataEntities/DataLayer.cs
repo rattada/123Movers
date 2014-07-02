@@ -661,6 +661,7 @@ namespace _123Movers.DataEntities
         }
 
 
+
         public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
         {
             using (SqlConnection dbCon = ConnectToDb(DBConnString))
@@ -822,7 +823,7 @@ namespace _123Movers.DataEntities
                     {
                         areacode = Convert.ToInt32(row["originAreaCode"]);
                     }
-                    if (!string.IsNullOrEmpty(row["originZipCode"].ToString()))
+                    if (!string.IsNullOrEmpty(row["originZipCode"].ToString().Trim()))
                     {
                         zid = Convert.ToInt32(row["originZipCode"]);
                     }
@@ -930,6 +931,88 @@ namespace _123Movers.DataEntities
             }
             return true;
         }
+
+
+        public static bool AddCompanyMoveDistance(int CompanyID, int ServiceId, int? MinWeight, int? MaxWeight)
+        {
+            int i = 0;
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
+                cmdAddCompanyAdByArea.Connection = dbCon;
+                cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyMoveDistance";
+
+
+
+                SqlParameter paramCompanyId = new SqlParameter("companyID", CompanyID);
+                SqlParameter paramServiceID = new SqlParameter("serviceID", ServiceId);
+                SqlParameter paramMinWeight = new SqlParameter("minimumWeightID", MinWeight);
+                SqlParameter paramMaxWeight = new SqlParameter("maximumWeight", MaxWeight);
+
+
+                cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
+                cmdAddCompanyAdByArea.Parameters.Add(paramServiceID);
+                cmdAddCompanyAdByArea.Parameters.Add(paramMinWeight);
+                cmdAddCompanyAdByArea.Parameters.Add(paramMaxWeight);
+
+
+
+                i = cmdAddCompanyAdByArea.ExecuteNonQuery();
+
+
+            }
+            return true;
+        }
+
+
+        public static DataTable GetCompanyMoveDistance(int? companyId, int? serviceId)
+        {
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdGetCompanyLeadLimit = new SqlCommand();
+                cmdGetCompanyLeadLimit.Connection = dbCon;
+                cmdGetCompanyLeadLimit.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdGetCompanyLeadLimit.CommandText = "usp_GetCompanyMoveDistance";
+
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+
+                cmdGetCompanyLeadLimit.Parameters.Add(paramCompanyId);
+                cmdGetCompanyLeadLimit.Parameters.Add(paramService);
+
+                DataTable dtResults = new DataTable();
+
+                SqlDataReader drResults = cmdGetCompanyLeadLimit.ExecuteReader();
+                dtResults.Load(drResults);
+
+                return dtResults;
+
+            }
+        }
+        public static DataTable GetMoveWeights()
+        {
+            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            {
+                SqlCommand cmdGetService = new SqlCommand();
+                cmdGetService.Connection = dbCon;
+                cmdGetService.CommandType = System.Data.CommandType.StoredProcedure;
+                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
+                cmdGetService.CommandText = "usp_GetMOVESIZELOOKUP";
+
+                DataTable dtResults = new DataTable();
+
+                SqlDataReader drResults = cmdGetService.ExecuteReader();
+                dtResults.Load(drResults);
+
+                return dtResults;
+
+            }
+
+        }
+
+
+
     }
 
 }

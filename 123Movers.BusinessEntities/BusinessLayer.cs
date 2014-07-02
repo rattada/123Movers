@@ -117,5 +117,32 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.DeleteCompanyAreaZipCodes(companyId, serviceId, areaCode, zipCodes);
         }
+
+        public static bool AddCompanyMoveDistance(int companyId, int serviceId, int? minWeight, int? maxWeight)
+        {
+            return DataLayer.AddCompanyMoveDistance(companyId, serviceId, minWeight, maxWeight);
+        }
+        public static DataTable GetCompanyMoveDistance(int? companyId, int? serviceId)
+        {
+            return DataLayer.GetCompanyMoveDistance(companyId, serviceId);
+        }
+        public static DataTable GetMoveWeights()
+        {
+            return DataLayer.GetMoveWeights();
+        }
+        public static string ToJSON(this object o)
+        {
+            var oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            return oSerializer.Serialize(o);
+        }
+
+
+
+
+
+
+
+
+
     }
 }

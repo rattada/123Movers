@@ -72,6 +72,12 @@
       </table>
  </div>
 
+ <div class="row">
+        @*<input  type="button" id="saveleads" class="btn btn-primary pull-right" value="Save Leads" />*@
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+    
+    </div>
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -171,33 +177,40 @@
 
     $('#add').click(function () {
         var selected = [];
+        if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val() =='')
+        {
+            $('#areaZipSelected option:first').remove();
+        }
         $('#areaZipCode :selected').each(function (i, el) {
             selected[i] = $(this).val();
             $("#areaZipCode option:selected").remove();
+            
             $("#areaZipSelected").append($(this));
         });
-        if (selected.length == 0)
-        {
+        if (selected.length == 0) {
             alert('Please Select ZipCode');
+            return false;
         }
-
-       var data_to_send = JSON.stringify(selected);
-        $.ajax({
-            url: '/Home/AddCompanyAreaZipCodes',
-            type: "POST",
-            data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': data_to_send },
+        else {
+            var data_to_send = JSON.stringify(selected);
+            $.ajax({
+                url: '/Home/AddCompanyAreaZipCodes',
+                type: "POST",
+                data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': data_to_send },
             success: function (data) {
                 if (data.success === true) {
                     alert('Zip Codes Successfully Added');
                 } else {
                     alert("Error :" + data.message);
                 }
-                   // location.reload();
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
+                // location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
 
-                }
-            });
+            }
+        });
+    }
+       
         
      });
 
@@ -208,24 +221,29 @@
                 $("#areaZipSelected option:selected").remove();
                 $("#areaZipCode").append($(this));
             });
-
-            var data_to_send = JSON.stringify(selected);
-            $.ajax({
-                url: '/Home/DeleteCompanyAreaZipCodes',
-                type: "POST",
-                data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': data_to_send },
+            if (selected.length == 0) {
+                alert('Please Select ZipCode');
+                return false;
+            } else {
+                var zipcodes = JSON.stringify(selected);
+                $.ajax({
+                    url: '/Home/DeleteCompanyAreaZipCodes',
+                    type: "POST",
+                    data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
                 success: function (data) {
                     if (data.success === true) {
                         alert('Zip Codes Successfully Deleted');
                     } else {
                         alert("Error :" + data.message);
                     }
-                   // location.reload();
+                    // location.reload();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
                 }
             });
+            }
+           
          
         });
     $('#close').click(function () {

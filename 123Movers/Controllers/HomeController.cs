@@ -13,7 +13,7 @@ namespace _123Movers.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private IEnumerable<GeographyModel> OriginZipCodes { get; set; }
+        public IEnumerable<GeographyModel> OriginZipCodes { get; set; }
 
         public ActionResult Reports(string companyid, string companyName, string ax, string contactperson, string suspended, bool active = false)
         {
@@ -335,6 +335,14 @@ namespace _123Movers.Controllers
             ViewBag.Terms = Terms(budget.IsRecurring, budget.IsRequireNoticeToCharge, true);
             ViewBag.Services = Services(budget.ServiceId, true);
 
+            var result = BusinessLayer.GetMoveWeights().AsEnumerable();
+            List<string> items = new List<string>();
+            foreach (var item in result)
+            {
+                items.Add(item[0].ToString());
+            }
+
+            ViewBag.MoveWeights = BusinessLayer.ToJSON(items);
 
             var cmd = (string)HttpContext.Application["CompanyId"];
             budget.CompanyId = Convert.ToInt32(cmd);
@@ -559,45 +567,162 @@ namespace _123Movers.Controllers
            // return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
         }
 
+        //[HttpGet]
+        //public ActionResult CompanyLeadLimit(int? companyId, int? serviceId, string companyName)
+        //{
+        //    //ViewBag.CompanyID = companyId;
+        //    //ViewBag.CompanyName = companyName;
+        //    //ViewBag.ServiceID = serviceId;
+
+        //    ViewBag.Services = Services(null, true);
+
+        //    var avaAreaCodes = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
+
+        //    ViewBag.avaAreaCodes = DataTableToSelectList(avaAreaCodes, "areaCode", "state"); ;
+
+        //    var services = BusinessLayer.GetServies();
+
+        //    ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "state"); ;
+
+        //    LeadLimitModel ld = new LeadLimitModel();
+
+        //    return View(ld);
+        //}
+
+        //[HttpPost]
+        //public ActionResult CompanyLeadLimit(LeadLimitModel leadlimit)
+        //{
+        //    var cmd = (string)HttpContext.Application["CompanyId"];
+        //    leadlimit.CompanyId = Convert.ToInt32(cmd);
+        //    BusinessLayer.AddCompanyLeadLimit(leadlimit);
+        //    ViewBag.Services = Services(Convert.ToInt32(leadlimit.Services), true);
+            
+
+        //    var services = BusinessLayer.GetServies();
+
+        //    ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "areaCode");
+
+        //    ModelState.Clear();
+        //    ViewBag.Success = "Lead saved successfully..";
+
+        //    return View(leadlimit);
+        //}
+
+        [HttpPost]
+        public JsonResult CompanyLeadLimit(List<List<LeadLimitModel>> leadlimit)
+        {
+
+            JsonResult result;
+            try
+            {
+                var cmd = (string)Session["CompanyId"];
+                foreach (var ld in leadlimit)
+                {
+                    ld[0].CompanyId = Convert.ToInt32(cmd);
+                    BusinessLayer.AddCompanyLeadLimit(ld[0]);
+                }
+                ModelState.Clear();
+                result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+            return result;
+
+
+        }
+
+
+
         [HttpGet]
         public ActionResult CompanyLeadLimit(int? companyId, int? serviceId, string companyName)
         {
             //ViewBag.CompanyID = companyId;
             //ViewBag.CompanyName = companyName;
-            //ViewBag.ServiceID = serviceId;
+            ViewBag.ServiceID = serviceId;
 
-            ViewBag.Services = Services(null, true);
+            //ViewBag.Services = Services(null, true);
 
-            var avaAreaCodes = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
+            //var avaAreaCodes = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
 
-            ViewBag.avaAreaCodes = DataTableToSelectList(avaAreaCodes, "areaCode", "state"); ;
+            //ViewBag.availAreaCodes = DataTableToSelectList(avaAreaCodes, "areaCode", "areaCode");
 
-            var services = BusinessLayer.GetServies();
+            //var services = BusinessLayer.GetServies();
 
-            ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "state"); ;
+            //ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "areaCode");
+            //ViewBag.AreaCodes = GetCompanyLeadLimitAreaCodeInfo(serviceId);
 
             LeadLimitModel ld = new LeadLimitModel();
-
+            // ld = GetCompanyLeadLimitAreaCodeInfo(serviceId);
             return View(ld);
         }
 
-        [HttpPost]
-        public ActionResult CompanyLeadLimit(LeadLimitModel leadlimit)
+
+        public JsonResult GetCompanyLeadLimitAreaCodeInfo(int? serviceId)
         {
-            var cmd = (string)HttpContext.Application["CompanyId"];
-            leadlimit.CompanyId = Convert.ToInt32(cmd);
-            BusinessLayer.AddCompanyLeadLimit(leadlimit);
-            ViewBag.Services = Services(Convert.ToInt32(leadlimit.Services), true);
-            
 
-            var services = BusinessLayer.GetServies();
 
-            ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "areaCode");
+            int? companyId;
+            var cmd = (string)Session["CompanyId"];
+            companyId = Convert.ToInt32(cmd);
+            var query = from r in BusinessLayer.GetCompanyLeadLimit(companyId, serviceId).AsEnumerable()
+                        //where r.Field<string>("areaCode") == area
+                        select r;
+            var items = new List<LeadLimitModel>();
+            if (query.Any())
+            {
+                DataTable conversions = query.CopyToDataTable();
 
-            ModelState.Clear();
-            ViewBag.Success = "Lead saved successfully..";
+                var Areacode = "";
+                var ServiceId = "";
+                foreach (DataRow row in conversions.Rows)
+                {
+                    if (String.IsNullOrEmpty(row["areaCode"].ToString()))
+                    {
+                        Areacode = null;
 
-            return View(leadlimit);
+                    }
+                    else
+                    {
+                        Areacode = row["areaCode"].ToString();
+                    }
+                    if (String.IsNullOrEmpty(row["serviceID"].ToString()))
+                    {
+                        ServiceId = null;
+
+                    }
+                    else
+                    {
+                        ServiceId = row["serviceID"].ToString();
+                    }
+
+
+                    LeadLimitModel obj = new LeadLimitModel()
+                    {
+
+                        AreaCodes = Areacode,
+                        ServiceId = Convert.ToInt32(ServiceId),
+                        LeadFrequency = Convert.ToInt32(row["leadFrequency"].ToString()),
+                        IsDailyLeadLimit = Convert.ToBoolean((int)row["isDailyLeadLimit"]),
+                        DailyLeadLimit = Convert.ToInt32(row["dailyLeadLimit"].ToString()),
+                        IsMonthlyLeadLimit = Convert.ToBoolean((int)row["isMonthlyLeadLimit"]),
+                        MonthlyLeadLimit = Convert.ToInt32(row["monthlyLeadLimit"].ToString()),
+                        IsTotalLeadLimit = Convert.ToBoolean((int)row["isTotalLeadLimit"]),
+                        TotalLeadLimit = Convert.ToInt32(row["totalLeadLimit"].ToString())
+
+
+
+                    };
+                    items.Add(obj);
+
+                }
+            }
+
+
+            return Json(items, JsonRequestBehavior.AllowGet);
+
         }
         public  SelectList DataTableToSelectList(DataTable table, string valueField, string textField)
         {
@@ -712,5 +837,57 @@ namespace _123Movers.Controllers
           {
               return View();
           }
+
+
+        
+          [HttpPost]
+          public JsonResult AddCompanyMoveDistance(int ServiceId, int? MinWeight, int? MaxWeight)
+          {
+
+              JsonResult result;
+              try
+              {
+                  var cmd = (string)Session["CompanyId"];
+                  BusinessLayer.AddCompanyMoveDistance(Convert.ToInt32(cmd), ServiceId, MinWeight, MaxWeight);
+                  result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+              }
+              catch (Exception ex)
+              {
+                  result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+              }
+
+              return result;
+
+
+          }
+
+
+          public JsonResult GetCompanyMoveDistance(int ServiceId)
+          {
+
+              JsonResult result;
+
+              try
+              {
+                  var cmd = (string)Session["CompanyId"];
+
+                  var query = BusinessLayer.GetCompanyMoveDistance(Convert.ToInt32(cmd), ServiceId);
+                  List<List<string>> list = retListTable(query);
+
+                  result = Json(list, JsonRequestBehavior.AllowGet);
+
+              }
+              catch (Exception ex)
+              {
+                  result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+              }
+
+              return result;
+
+
+          }
+
+
+
     }
 }
