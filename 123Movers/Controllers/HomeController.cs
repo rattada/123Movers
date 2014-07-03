@@ -609,6 +609,18 @@ namespace _123Movers.Controllers
         //    return View(leadlimit);
         //}
 
+        [HttpGet]
+        public ActionResult CompanyLeadLimit(int? serviceId)
+        {
+            int? companyId;
+            companyId = Convert.ToInt32((string)HttpContext.Application["CompanyId"]);
+            LeadLimitModel ld = new LeadLimitModel();
+            var leadLimitData = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
+
+            return View(leadLimitData);
+        }
+
+
         [HttpPost]
         public JsonResult CompanyLeadLimit(List<List<LeadLimitModel>> leadlimit)
         {
@@ -616,7 +628,7 @@ namespace _123Movers.Controllers
             JsonResult result;
             try
             {
-                var cmd = (string)Session["CompanyId"];
+                var cmd = (string)HttpContext.Application["CompanyId"];
                 foreach (var ld in leadlimit)
                 {
                     ld[0].CompanyId = Convert.ToInt32(cmd);
@@ -636,95 +648,78 @@ namespace _123Movers.Controllers
         }
 
 
-
-        [HttpGet]
-        public ActionResult CompanyLeadLimit(int? companyId, int? serviceId, string companyName)
-        {
-            //ViewBag.CompanyID = companyId;
-            //ViewBag.CompanyName = companyName;
-            ViewBag.ServiceID = serviceId;
-
-            //ViewBag.Services = Services(null, true);
-
-            //var avaAreaCodes = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
-
-            //ViewBag.availAreaCodes = DataTableToSelectList(avaAreaCodes, "areaCode", "areaCode");
-
-            //var services = BusinessLayer.GetServies();
-
-            //ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "areaCode");
-            //ViewBag.AreaCodes = GetCompanyLeadLimitAreaCodeInfo(serviceId);
-
-            LeadLimitModel ld = new LeadLimitModel();
-            // ld = GetCompanyLeadLimitAreaCodeInfo(serviceId);
-            return View(ld);
-        }
+        //public JsonResult GetCompanyLeadLimitAreaCodeInfo(int? serviceId)
+        //{
 
 
-        public JsonResult GetCompanyLeadLimitAreaCodeInfo(int? serviceId)
-        {
+        //    int? companyId;
+        //    var cmd = (string)HttpContext.Application["CompanyId"];
+        //    companyId = Convert.ToInt32(cmd);
+        //    var query = from r in BusinessLayer.GetCompanyLeadLimit(companyId, serviceId).AsEnumerable()
+        //                //where r.Field<string>("areaCode") == area
+        //                select r;
+        //    var items = new List<LeadLimitModel>();
+        //    if (query.Any())
+        //    {
+        //        DataTable conversions = query.CopyToDataTable();
+
+        //        var Areacode = "";
+        //        var ServiceId = "";
+        //        //bool isMonth = false;
+        //        //bool isDaily = false;
+        //        //bool isTotal = false;
+        //        foreach (DataRow row in conversions.Rows)
+        //        {
+        //            if (String.IsNullOrEmpty(row["areaCode"].ToString()))
+        //            {
+        //                Areacode = null;
+
+        //            }
+        //            else
+        //            {
+        //                Areacode = row["areaCode"].ToString();
+        //            }
+        //            if (String.IsNullOrEmpty(row["serviceID"].ToString()))
+        //            {
+        //                ServiceId = null;
+
+        //            }
+        //            else
+        //            {
+        //                ServiceId = row["serviceID"].ToString();
+        //            }
 
 
-            int? companyId;
-            var cmd = (string)Session["CompanyId"];
-            companyId = Convert.ToInt32(cmd);
-            var query = from r in BusinessLayer.GetCompanyLeadLimit(companyId, serviceId).AsEnumerable()
-                        //where r.Field<string>("areaCode") == area
-                        select r;
-            var items = new List<LeadLimitModel>();
-            if (query.Any())
-            {
-                DataTable conversions = query.CopyToDataTable();
+        //            //if (!string.IsNullOrEmpty(row["isDailyLeadLimit"].ToString()))
+        //            //{
+        //            //    isDaily = Convert.ToBoolean(row["isDailyLeadLimit"]);
+        //            //}
 
-                var Areacode = "";
-                var ServiceId = "";
-                foreach (DataRow row in conversions.Rows)
-                {
-                    if (String.IsNullOrEmpty(row["areaCode"].ToString()))
-                    {
-                        Areacode = null;
+        //            LeadLimitModel obj = new LeadLimitModel()
+        //            {
 
-                    }
-                    else
-                    {
-                        Areacode = row["areaCode"].ToString();
-                    }
-                    if (String.IsNullOrEmpty(row["serviceID"].ToString()))
-                    {
-                        ServiceId = null;
-
-                    }
-                    else
-                    {
-                        ServiceId = row["serviceID"].ToString();
-                    }
-
-
-                    LeadLimitModel obj = new LeadLimitModel()
-                    {
-
-                        AreaCodes = Areacode,
-                        ServiceId = Convert.ToInt32(ServiceId),
-                        LeadFrequency = Convert.ToInt32(row["leadFrequency"].ToString()),
-                        IsDailyLeadLimit = Convert.ToBoolean((int)row["isDailyLeadLimit"]),
-                        DailyLeadLimit = Convert.ToInt32(row["dailyLeadLimit"].ToString()),
-                        IsMonthlyLeadLimit = Convert.ToBoolean((int)row["isMonthlyLeadLimit"]),
-                        MonthlyLeadLimit = Convert.ToInt32(row["monthlyLeadLimit"].ToString()),
-                        IsTotalLeadLimit = Convert.ToBoolean((int)row["isTotalLeadLimit"]),
-                        TotalLeadLimit = Convert.ToInt32(row["totalLeadLimit"].ToString())
+        //                AreaCodes = Areacode,
+        //                ServiceId = Convert.ToInt32(ServiceId),
+        //                LeadFrequency = Convert.ToInt32(row["leadFrequency"].ToString()),
+        //                IsDailyLeadLimit = Convert.ToBoolean(row["isDailyLeadLimit"]),
+        //                DailyLeadLimit = Convert.ToInt32(row["dailyLeadLimit"].ToString()),
+        //                IsMonthlyLeadLimit = Convert.ToBoolean(row["isMonthlyLeadLimit"]),
+        //                MonthlyLeadLimit = Convert.ToInt32(row["monthlyLeadLimit"].ToString()),
+        //                IsTotalLeadLimit = Convert.ToBoolean(row["isTotalLeadLimit"]),
+        //                TotalLeadLimit = Convert.ToInt32(row["totalLeadLimit"].ToString())
 
 
 
-                    };
-                    items.Add(obj);
+        //            };
+        //            items.Add(obj);
 
-                }
-            }
+        //        }
+        //    }
 
 
-            return Json(items, JsonRequestBehavior.AllowGet);
+        //    return Json(items, JsonRequestBehavior.AllowGet);
 
-        }
+        //}
         public  SelectList DataTableToSelectList(DataTable table, string valueField, string textField)
         {
             List<SelectListItem> list = new List<SelectListItem>();
@@ -874,19 +869,35 @@ namespace _123Movers.Controllers
           [HttpGet]
           public ActionResult MoveWeight(int? ServiceId)
           {
-              ViewBag.MinMoveWeight = DataTableToSelectList(BusinessLayer.GetMoveWeights(), "moveWeightSeq", "moveweight");
-              ViewBag.Services = Services(ServiceId, true).Take(2);
-              return View();
+              //var moveWeights = DataTableToSelectList(BusinessLayer.GetMoveWeights(), "moveWeightSeq", "moveweight");
+              //var selectedItem = moveWeights.First(x => x.Value == "7");
+
+              //ViewBag.MinMoveWeight = new SelectList(moveWeights, "Value", "Text", new { Value = 7 });
+
+              var cmd = (string)HttpContext.Application["CompanyId"];
+
+              DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), ServiceId);
+
+              ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
+              ViewBag.Services = Services(null, false).Take(2);
+              MoveWeightModel model = new MoveWeightModel();
+              model.CompanyId = Convert.ToInt32(cmd);
+              model.ServiceId = ServiceId;
+              model.MinMoveWeightSeq =Convert.ToInt32( ds.Tables[1].Rows[0][2].ToString());
+              model.MaxMoveWeightSeq = Convert.ToInt32(ds.Tables[1].Rows[0][3].ToString());
+              return View(model);
           }
         [HttpPost]
           public ActionResult MoveWeight(MoveWeightModel model)
           {
-              ViewBag.MinMoveWeight = DataTableToSelectList(BusinessLayer.GetMoveWeights(), "moveWeightSeq" , "moveweight"); 
-              ViewBag.Services = Services(Convert.ToInt32(model.Services), false).Take(2);
+             var cmd = (string)HttpContext.Application["CompanyId"];
+              DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), model.ServiceId);
+
+              ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
+              ViewBag.Services = Services(null, false).Take(2);
 
               try
               {
-                  var cmd = (string)HttpContext.Application["CompanyId"];
                   model.CompanyId = Convert.ToInt32(cmd);
                   BusinessLayer.SaveMoveWeight(model);
                   ViewBag.Success = "Saved Sucessfully";
@@ -895,7 +906,13 @@ namespace _123Movers.Controllers
               }
               return View(model);
           }
-
+        public JsonResult GetMoveWeight(int? serviceId)
+        {
+            var cmd = (string)HttpContext.Application["CompanyId"];
+            DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), serviceId);
+            List<List<string>> list = retListTable(ds.Tables[1]);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
         
           //[HttpPost]
           //public JsonResult AddCompanyMoveDistance(int ServiceId, int? MinWeight, int? MaxWeight)

@@ -58,3 +58,4 @@ D:\Movers123\123Movers\123Movers.Models\bin\System.Web.WebPages.Deployment.xml
 D:\Movers123\123Movers\123Movers.Models\bin\System.Web.WebPages.Razor.xml
 D:\Movers123\123Movers\123Movers.Models\obj\Debug\123Movers.Models.dll
 D:\Movers123\123Movers\123Movers.Models\obj\Debug\123Movers.Models.pdb
+D:\Movers123\123Movers\123Movers.Models\obj\Debug\123Movers.Models.csprojResolveAssemblyReference.cache

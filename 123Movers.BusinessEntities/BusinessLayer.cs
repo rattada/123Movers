@@ -85,7 +85,7 @@ namespace _123Movers.BusinessEntities
             return DataLayer.AddCompanyLeadLimit(leadlimit);
         }
 
-        public static DataTable GetCompanyLeadLimit(int? companyId, int? serviceId)
+        public static LeadLimitModel GetCompanyLeadLimit(int? companyId, int? serviceId)
         {
             return DataLayer.GetCompanyLeadLimit(companyId, serviceId);
         }
@@ -126,9 +126,9 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.GetCompanyMoveDistance(companyId, serviceId);
         }
-        public static DataTable GetMoveWeights()
+        public static DataSet GetMoveWeights(int? companyId, int? serviceId)
         {
-            return DataLayer.GetMoveWeights();
+            return DataLayer.GetMoveWeights(companyId, serviceId);
         }
         public static string ToJSON(this object o)
         {

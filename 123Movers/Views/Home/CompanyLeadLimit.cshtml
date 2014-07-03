@@ -1,26 +1,26 @@
 ﻿@model _123Movers.Models.LeadLimitModel
+@using _123Movers.Models;
 @{
     ViewBag.Title = "Company Lead Limit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <input type="hidden" id="message" value="@ViewBag.Success"/>
 <input type="hidden" id="hdnServiceId" value="@ViewBag.ServiceID"/>
-<div class="row">
-    @Html.Partial("_CompanyInfo")
-</div>
+
+@Html.Partial("_CompanyInfo")
+
 <p class="clearfix"></p>
-@using (Html.BeginForm("CompanyLeadLimit", "Home", FormMethod.Post, new { id = "frmLeadLimit" }))
-{ 
+@*@using (Html.BeginForm("CompanyLeadLimit", "Home", FormMethod.Post, new { id = "frmLeadLimit" }))
+{  *@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <div class="table-responsive">
+   <div class="table-responsive">
         <table id="tblLeadLimit" class="table table-striped table-bordered tablesorter">
             <thead>
                 <tr>
-                    <th style="height:5px;">Select</th>
+                    <th style="height: 5px;">Select</th>
                     <th>Service
                     </th>
 
@@ -30,36 +30,35 @@
                     <th>Frequency
                     </th>
 
-                    <th >Daily Limit
+                    <th>Daily Limit
                     </th>
                     <th>Monthly Limit
                     </th>
-                    <th >Total Limit
+                    <th>Total Limit
                     </th>
 
                 </tr>
             </thead>
             <tbody>
-                
-                <tr >
-                    <td><input type="checkbox" name="group1" class='Test2' id="rdbtnBoth"></td>
+                        <tr >
+                    <td><input type="checkbox" name="group1" class='chkSelectClass' id="rdbtnBoth"></td>
                     <td id="tdBoth">BOTH
                     </td>
                     <td>Default
                     </td>
-                    <td><input type="text" id="txtBothFrequency" >
+                    <td><input type="text" id="txtBothFrequency" class="textBoxWidth" >
                     </td>
                     <td>
-                        <input type="checkbox" id="chkBothDaily" class="Test">
-                        Daily Lead Limit:<input type="text" id="txtBothDaily" disabled="disabled"><br>
+                        <input type="checkbox" id="chkBothDaily" class="chkInnerClass">
+                        Daily Lead Limit:<input type="text" id="txtBothDaily" disabled="disabled" class="textBoxWidth"  ><br>
                     </td>
                     <td>
-                        <input type="checkbox" id="chkBothMonthly" class="Test">
-                        Monthly Lead Limit:<input type="text" id="txtBothMonthly" disabled="disabled"><br>
+                        <input type="checkbox" id="chkBothMonthly" class="chkInnerClass">
+                        Monthly Lead Limit:<input type="text" id="txtBothMonthly" disabled="disabled" class="textBoxWidth" ><br>
                     </td>
                     <td>
-                        <input type="checkbox" id="chkBothTotal" class="Test">
-                        Total Lead Limit:<input type="text" id="txtBothTotal" disabled="disabled"><br>
+                        <input type="checkbox" id="chkBothTotal" class="chkInnerClass">
+                        Total Lead Limit:<input type="text" id="txtBothTotal" disabled="disabled" class="textBoxWidth" ><br>
                     </td>
 
                 </tr>
@@ -70,48 +69,48 @@
 
 
 
-                <tr ><td><input type="checkbox" name="group2" class='Test2' id="rdbtnLocal"></td>
+                <tr ><td><input type="checkbox" name="group2" class='chkSelectClass' id="rdbtnLocal"></td>
                     <td id="tdLocal">Local
                     </td>
                     <td>Default
                     </td>
-                    <td><input type="text" id="txtLocalFrequency">
+                    <td><input type="text" id="txtLocalFrequency" class="textBoxWidth">
                     </td>
                     <td>
-                        <input type="checkbox" id="chkLocalDaily" class="Test">
-                        Daily Lead Limit:<input type="text" id="txtLocalDaily" disabled="disabled"><br>
+                        <input type="checkbox" id="chkLocalDaily" class="chkInnerClass">
+                        Daily Lead Limit:<input type="text" id="txtLocalDaily" disabled="disabled" class="textBoxWidth"><br>
                     </td>
                     <td>
-                        <input type="checkbox" id="chkLocalMonthly" class="Test">
-                        Monthly Lead Limit:<input type="text" id="txtLocalMonthly" disabled="disabled"><br>
+                        <input type="checkbox" id="chkLocalMonthly" class="chkInnerClass">
+                        Monthly Lead Limit:<input type="text" id="txtLocalMonthly" disabled="disabled" class="textBoxWidth"><br>
                     </td>
                     <td>
-                        <input type="checkbox" name="chkLocalTotal" class="Test">
-                        Total Lead Limit:<input type="text" id="txtLocalTotal" disabled="disabled"><br>
+                        <input type="checkbox" name="chkLocalTotal" class="chkInnerClass">
+                        Total Lead Limit:<input type="text" id="txtLocalTotal" disabled="disabled" class="textBoxWidth"><br>
                     </td>
 
                 </tr>
 
 
 
-                <tr ><td><input type="checkbox" name="group2" class='Test2' id="rdbtnLong"></td>
+                <tr ><td><input type="checkbox" name="group2" class='chkSelectClass' id="rdbtnLong"></td>
                     <td id="tdLong">Long
                     </td>
                     <td>Default
                     </td>
-                    <td><input type="text" id="txtLongFrequency" >
+                    <td><input type="text" id="txtLongFrequency" class="textBoxWidth" >
                     </td>
                     <td>
-                        <input type="checkbox" id="chkLongDaily" class="Test" >
-                        Daily Lead Limit:<input type="text" id="txtLongDaily" disabled="disabled"><br>
+                        <input type="checkbox" id="chkLongDaily" class="chkInnerClass" >
+                        Daily Lead Limit:<input type="text" id="txtLongDaily" disabled="disabled" class="textBoxWidth"><br>
                     </td>
                     <td>
-                        <input type="checkbox" id="chkLongMonthly" class="Test">
-                        Monthly Lead Limit:<input type="text" id="txtLongMonthly" disabled="disabled"><br>
+                        <input type="checkbox" id="chkLongMonthly" class="chkInnerClass">
+                        Monthly Lead Limit:<input type="text" id="txtLongMonthly" disabled="disabled" class="textBoxWidth"><br>
                     </td>
                     <td>
-                        <input type="checkbox" id="chkLongTotal" class="Test">
-                        Total Lead Limit:<input type="text" id="txtLongTotal" disabled="disabled"><br>
+                        <input type="checkbox" id="chkLongTotal" class="chkInnerClass">
+                        Total Lead Limit:<input type="text" id="txtLongTotal" disabled="disabled" class="textBoxWidth"><br>
                     </td>
 
                 </tr>
@@ -121,298 +120,148 @@
                     </td>
                 </tr>
 
+                @if (@Model.LeadLimitData != null)
+                {
+                    if (@Model.LeadLimitData.Count() > 0)
+                    {
+                        
+       
+                    foreach (var leadlimit in Model.LeadLimitData)
+                    {
+                       
+
+
+                        if (@leadlimit.ServiceId != null && @leadlimit.AreaCodes != null)
+                        {
+                            var Service = (@leadlimit.ServiceId == 1009) ? "Local" : "Long";
+                            var areaCode = (@leadlimit.AreaCodes == null) ? "Default" : @leadlimit.AreaCodes;
+
+                            //if (@leadlimit.AreaCodes == null)
+                            //Count = Count + 1;
+
+                                <tr>
+
+                                    <td>
+                                        <input type="checkbox"   class='chkSelectClass' id="rdbtn@(areaCode)"></td>
+                                    <td>@Service
+                                    </td>
+                                    <td>@areaCode
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtFrequency@(areaCode)" value="@leadlimit.LeadFrequency" class="textBoxWidth">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkDaily@(areaCode)" class="chkInnerClass"  checked="@leadlimit.IsDailyLeadLimit">
+                                     
+                                        
+                                        Daily Lead Limit:<input type="text" class="classCheckVal textBoxWidth" id="txtDaily@(areaCode)" value="@leadlimit.DailyLeadLimit" disabled="disabled"><br>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkMonthly@(areaCode)" class="chkInnerClass" checked="@leadlimit.IsMonthlyLeadLimit">
+                                        Monthly Lead Limit:<input type="text" class="classCheckVal textBoxWidth"  id ="txtMonthly@(areaCode)" value="@leadlimit.MonthlyLeadLimit" disabled="disabled"><br>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="chkTotal@(areaCode)" class="chkInnerClass" checked="@leadlimit.IsTotalLeadLimit">
+                                        Total Lead Limit:<input type="text" class="classCheckVal textBoxWidth"  id="txtTotal@(areaCode)" value="@leadlimit.TotalLeadLimit" disabled="disabled"><br>
+                                    </td>
+                                </tr>
+                        }
+
+                    }              
+                        
+                        
+                }
+                         
+              }
+                else
+                
+                {
+                    <tr>
+                  <td colspan="7" align="center">
+                      No Records found
+                                    </td></tr>
+                }
             </tbody>
         </table>
     </div>
     <div class="row">
-        <input  type="button" id="saveleads" class="btn btn-primary pull-right" value="Save Leads" />
+        <input type="button" id="saveleads" class="btn btn-primary pull-right" value="Save Leads" />
         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
-    
+
     </div>
     
-}
+@*}*@
 
 <script type="text/javascript">
     $(function () {
+        jQuery.each($(".classCheckVal "), function (i, val) {
+            if ($(this).find("input[type=text]").prop("value") == 0) {
 
-
-        var serviceId = $("#hdnServiceId").val();
-
-        if (serviceId == 1000) {
-            $("td#tdLocal").parent().hide();
-
-        }
-        if(serviceId == 1009)
-            {
-            $("td#tdLong").parent().hide();
-        }
-
-        if(serviceId!=null) 
-           {
-                $("td#tdBoth").parent().hide();
-                $("td#tdOR").parent().hide();
+                $(".classCheckVal ").find("input[type=text]").prop("disabled", "disabled")
             }
-       
-
-        //Getting the existing records from  tbl_companyLeadLimit
-
-        $.ajax({
-            url: '/Home/GetCompanyLeadLimitAreaCodeInfo',
-            type: "GET",
-            dataType: "json",
-            data: { "serviceId": serviceId },
-            success: function (data) {
-
-                var strigifyJson = JSON.stringify(data);
-                var json = $.parseJSON(strigifyJson);
-                var table;
-
-                $.each(json, function (key, item) {
-
-                    if (item.AreaCodes == null || item.AreaCodes == "") {
-
-                        //If Both
-
-                        if (item.ServiceId == null || item.ServiceId == "") {
-                            var newtrforBoth = "<tr ><td id='trBoth'><input type='checkbox' name='group1' class='Test2' id='rdbtnBoth'></td><td>BOTH</td><td>Default</td><td><input type='text' id='txtBothFrequency' value ='" + item.LeadFrequency + "'></td><td><input type='checkbox' id='chkBothDaily' class='Test'> Daily Lead Limit:<input type='text' id='txtBothDaily'  value ='" + item.DailyLeadLimit + "' ><br> </td><td><input type='checkbox' id='chkBothMonthly' class='Test'> Monthly Lead Limit:<input type='text' id='txtBothMonthly'  value ='" + item.MonthlyLeadLimit + "' ><br></td><td><input type='checkbox' id='chkBothTotal' class='Test'> Total Lead Limit:<input type='text' id='txtBothTotal' value ='" + item.TotalLeadLimit + "'><br></td></tr>";
-                            $("td#tdBoth").parent().replaceWith(newtrforBoth);
-                            if (item.IsDailyLeadLimit == true) {
-                                $("#chkBothDaily").prop('checked', true);
-
-                            }
-                            else {
-                                $("#txtBothDaily" + item.AreaCodes).attr('disabled', 'disabled');
-                            }
-                            if (item.IsMonthlyLeadLimit == true) {
-                                $("#chkBothMonthly").prop('checked', true);
-                            }
-                            else {
-                                $("#txtBothMonthly").attr('disabled', 'disabled');
-
-                            }
-                            if (item.IsTotalLeadLimit == true) {
-                                $(" #chkBothTotal").prop('checked', true);
-                            }
-                            else {
-
-                                $("#txtBothTotal").attr('disabled', 'disabled');
-
-                            }
-
-                        }
-
-                        //If Local
-
-                        if (item.ServiceId == 1009) {
-                            var newtrforLocal = "<tr ><td id='tdLocal'><input type='checkbox' name='group2' class='Test2' id='rdbtnLocal'></td><td>Local</td><td>Default</td><td><input type='text' id='txtLocalFrequency' value ='" + item.LeadFrequency + "'></td><td><input type='checkbox' id='chkLocalDaily' class='Test'> Daily Lead Limit:<input type='text' id='txtLocalDaily' value ='" + item.DailyLeadLimit + "'><br> </td><td><input type='checkbox' id='chkLocalMonthly' class='Test'> Monthly Lead Limit:<input type='text' id='txtLocalMonthly' value ='" + item.MonthlyLeadLimit + "'><br></td><td><input type='checkbox' id='chkLocalTotal' class='Test'> Total Lead Limit:<input type='text' id='txtLocaLTotal' value ='" + item.TotalLeadLimit + "'><br></td></tr>";
-                            $("td#tdLocal").parent().replaceWith(newtrforLocal);
-
-                            if (item.IsDailyLeadLimit == true) {
-                                $("#chkLocalDaily").prop('checked', true);
-
-                            }
-                            else {
-                                $("#txtLocalDaily" + item.AreaCodes).attr('disabled', 'disabled');
-                            }
-                            if (item.IsMonthlyLeadLimit == true) {
-                                $("#chkLocalMonthly").prop('checked', true);
-                            }
-                            else {
-                                $("#txtLocalMonthly").attr('disabled', 'disabled');
-
-                            }
-                            if (item.IsTotalLeadLimit == true) {
-                                $(" #chkLocalTotal").prop('checked', true);
-                            }
-                            else {
-
-                                $("#txtLocalTotal").attr('disabled', 'disabled');
-
-                            }
-
-                        }
-
-                        //If Long
-
-                        if (item.ServiceId == 1000)
-                        {
-                            var newtrforLong = "<tr ><td id='tdLong'><input type='checkbox' name='group2' class='Test2' id='rdbtnLong'></td><td>Long</td><td>Default</td><td><input type='text' id='txtLongFrequency' value ='" + item.LeadFrequency + "'></td><td><input type='checkbox' id='chkLongDaily' class='Test'> Daily Lead Limit:<input type='text' id='txtLongDaily' value ='" + item.DailyLeadLimit + "'><br> </td><td><input type='checkbox' id='chkLongMonthly' class='Test'> Monthly Lead Limit:<input type='text' id='txtLongMonthly' value ='" + item.MonthlyLeadLimit + "'><br></td><td><input type='checkbox' id='chkLongTotal' class='Test'> Total Lead Limit:<input type='text' id='txtLongTotal' value ='" + item.TotalLeadLimit + "'><br></td></tr>";
-                            $("td#tdLong").parent().replaceWith(newtrforLong);
-
-                            if (item.IsDailyLeadLimit == true) {
-                                $("#chkLongDaily").prop('checked', true);
-
-                            }
-                            else {
-                                $("#txtLongDaily" + item.AreaCodes).attr('disabled', 'disabled');
-                            }
-                            if (item.IsMonthlyLeadLimit == true) {
-                                $("#chkLongMonthly").prop('checked', true);
-                            }
-                            else {
-                                $("#txtLongMonthly").attr('disabled', 'disabled');
-
-                            }
-                            if (item.IsTotalLeadLimit == true) {
-                                $(" #chkLongTotal").prop('checked', true);
-                            }
-                            else {
-
-                                $("#txtLongTotal").attr('disabled', 'disabled');
-
-                            }
-
-                        }
-                           
-                       
-                    }
-                        //Getting records with Different Area Codes for a ServiceId
-
-                    else {
-                        var serviceId = '';
-                        if (item.ServiceId == 1000) {
-
-                            serviceId = 'Long';
-                        }
-                        else {
-
-                            serviceId = 'Local';
-                        }
-
-                        $("#tblLeadLimit tbody").append(
-
-                         "<tr><td '><input type='checkbox' class='Test2'   id='rdbtnSelect" + item.AreaCodes + "'></td><td>" + serviceId + "</td> <td>" + item.AreaCodes + "</td><td><input type='text' id='txtFrequency" + item.AreaCodes + "' value ='" + item.LeadFrequency + "' ></td></td>   <td><input type='checkbox' class='Test' id='chkDaily" + item.AreaCodes + "'>Daily Lead Limit:<input type='text' id='txtDaily" + item.AreaCodes + "' value ='" + item.DailyLeadLimit + "'  ></td><td><input type='checkbox' class='Test' id='chkMonthly" + item.AreaCodes + "'>Monthly Lead Limit:<input type='text' id='txtMonthly" + item.AreaCodes + "' value ='" + item.MonthlyLeadLimit + "' ></td>  <td><input type='checkbox' class='Test'  id='chkTotal" + item.AreaCodes + "'>Total Lead Limit:<input type='text' id='txtTotal" + item.AreaCodes + "' value ='" + item.TotalLeadLimit + "'    ></td></tr>");
-                        if (item.IsDailyLeadLimit == true) {
-                            $("#chkDaily" + item.AreaCodes).prop('checked', true);
-
-                        }
-                        else {
-                            $("#txtDaily" + item.AreaCodes).attr('disabled', 'disabled');
-                        }
-                        if (item.IsMonthlyLeadLimit == true) {
-                            $("#chkMonthly" + item.AreaCodes).prop('checked', true);
-                        }
-                        else {
-                            $("#txtMonthly" + item.AreaCodes).attr('disabled', 'disabled');
-
-                        }
-                        if (item.IsTotalLeadLimit == true) {
-                            $(" #chkTotal" + item.AreaCodes).prop('checked', true);
-                        }
-                        else {
-
-                            $("#txtTotal" + item.AreaCodes).attr('disabled', 'disabled');
-
-                        }
-                    }
-                    if (item.ServiceId = 1009) {
-                        item.ServiceId = 'Local';
-
-                    }
-                    else if (item.ServiceId = 1000) {
-                        item.ServiceId = 'Long';
-                    }
-                    else {
-
-                        item.ServiceId = 'BOTH';
-                    }
-
-
-                });
-                
-            },
-            error: function (result) {
-               
-
+            else {
+                ($(this).find("input[type=text]").prop("disabled", false));
             }
-        })
-
-
-
-    });
-
-    //By checking checkbox , enable the Textboxes
-
-    $("body #tblLeadLimit ").parent().on('change', ".Test", function () {
-
-        if ($(this).prop('checked') == true) {
-            $(this).closest("td").find("input[type=text]").prop("value", "");
-            $(this).closest("td").find("input[type=text]").prop("disabled", false);
-        }
-        else {
-            $(this).closest("td").find("input[type=text]").prop("value", "");
-            $(this).closest("td").find("input[type=text]").prop("disabled", true);
-        }
-    });
-
-    //Check Only both or (Local or Long) or (Local and Long)
-
-    $("body #tblLeadLimit ").parent().on('change', "#rdbtnBoth,#rdbtnLocal,#rdbtnLong", function () {
-       
-        if ($(this).attr("id") != "rdbtnLocal" && $(this).attr("id") != "rdbtnLong") {
-
-            if ($("#rdbtnBoth").prop('checked') == true) {
-
-                $("input[name='group2']").prop("checked", false);
-            }
-        }
-        else {
-            if ($("input[name='group1']").prop("checked")==true)
-            {
-
-                $("input[name='group1']").prop("checked", false);
-            }
-        }
 
         });
-        
-    //Saving the checked Records only
 
-    $("#saveleads").click(function () {
-        var count = 0;
-        var required = "";
-        var Array=[];
-        var values = "";
-        var LeadLimitData = [];
-        var Filleddata = [];
-        $('#tblLeadLimit tbody tr').each(function () {
-            
-            //Checking for Only checked checkboxes
+        //if ($(".classCheckVal ").find("input[type=text]").prop("value") == "") {
 
-            $(this).find('.Test2:checkbox:checked').each(function ()
-            {
-              
-               
-                var row = $(this).closest('tr');
-                var columns = row.find('td');
-                    
+        //    $("#chkInnerClass").prop("checked", false);
+        //    $(".classCheckVal ").find("input[type=text]").prop("disabled", "disabled")
+        //}
+        //else {
 
-                $.each(columns, function (i, item) {
-                    if (i > 2) {
-                        values = values + "," + $(this).closest('td').find("input:text").val().trim();
-                        
-                    }
-                    else {
-                        if (i == 0)
-                            values = item.textContent;
-                        else
-                            values = values +","+ item.textContent.trim();
-                    }
-                        
-                   
-                        
+        //    $("#chkInnerClass").prop("checked", true);
+        //    $(".classCheckVal ").find("input[type=text]").prop("disabled", false);
+        //}
+
+
+
+        $("#saveleads").click(function () {
+            var count = 0;
+            var required = "";
+            var Array = [];
+            var values = "";
+            var LeadLimitData = [];
+            var Filleddata = [];
+            $('#tblLeadLimit tbody tr').each(function () {
+
+                //Checking for Only checked checkboxes
+
+                $(this).find('.chkSelectClass:checkbox:checked').each(function () {
+
+
+                    var row = $(this).closest('tr');
+                    var columns = row.find('td');
+
+
+                    $.each(columns, function (i, item) {
+                        if (i > 2) {
+                            values = values + "," + $(this).closest('td').find("input:text").val().trim();
+
+                        }
+                        else {
+                            if (i == 0)
+                                values = item.textContent;
+                            else
+                                values = values + "," + item.textContent.trim();
+                        }
+
+
+
+                    });
+                    //saving lsit of checked item data in a Array.
+                    Array.push(values);
                 });
-               //saving lsit of checked item data in a Array.
-                Array.push(values);
             });
-        });   
-             
-        
-        //looping through the Array  and storing in a Array list 
-        $.each(Array, function (i, item) {
-        
-            required = item.split(",")
-       
+
+
+            //looping through the Array  and storing in a Array list 
+            $.each(Array, function (i, item) {
+
+                required = item.split(",")
+
 
                 if (required[2] == 'Default') {
                     required[2] = null;
@@ -421,13 +270,13 @@
                 //if (required[3] == 'Default') {
                 //    required[3] = null;
 
-            //}
+                //}
 
                 if (required[1] == 'Local') {
                     required[1] = 1009;
 
                 }
-               else if (required[1] == 'Long') {
+                else if (required[1] == 'Long') {
                     required[1] = 1000;
 
                 }
@@ -435,51 +284,83 @@
                     required[1] = null;
                 }
 
-                
+
                 LeadLimitData =
-               [{ AreaCodes:required[2]  ,
-               ServiceId: required[1] ,
-               LeadFrequency:required[3]  ,
-               DailyLeadLimit: required[4] ,
-               MonthlyLeadLimit: required[5] ,
-               TotalLeadLimit: required[6]
+               [{
+                   AreaCodes: required[2],
+                   ServiceId: required[1],
+                   LeadFrequency: required[3],
+                   DailyLeadLimit: required[4],
+                   MonthlyLeadLimit: required[5],
+                   TotalLeadLimit: required[6]
                }]
 
                 Filleddata.push(LeadLimitData);
-        
-        });
 
-        //Saving the  entire data in DB with Ajax call
-
-        if (Filleddata.length != 0) {
-            $.ajax({
-
-                url: '/Home/CompanyLeadLimit',
-                cache: false,
-                type: 'POST',
-                dataType: "json",
-                data: JSON.stringify(Filleddata),// Comverting the list items to JSON format(Because POST method accepts  only JSON data)
-                contentType: "application/json; charset=utf-8",
-                success: function (data)
-                {
-                    alert('Successfully Updated:');
-                    location.reload();
-                },
-                error: function ()
-                {
-                    alert('Service call failed');
-                }
             });
 
-        }
-        else {
-            alert("Please Select any");
-            return false;
+            //Saving the  entire data in DB with Ajax call
 
-        }
+            if (Filleddata.length != 0) {
+                $.ajax({
+
+                    url: '/Home/CompanyLeadLimit',
+                    cache: false,
+                    type: 'POST',
+                    dataType: "json",
+                    data: JSON.stringify(Filleddata),// Comverting the list items to JSON format(Because POST method accepts  only JSON data)
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        alert('Successfully Updated:');
+                        location.reload();
+                    },
+                    error: function () {
+                        alert('Service call failed');
+                    }
+                });
+
+            }
+            else {
+                alert("Please Select any");
+                return false;
+
+            }
+
+        });
+
+
+        $("body #tblLeadLimit ").parent().on('change', ".chkInnerClass", function () {
+
+            if ($(this).prop('checked') == true) {
+                $(this).closest("td").find("input[type=text]").prop("value", "");
+                $(this).closest("td").find("input[type=text]").prop("disabled", false);
+            }
+            else {
+                $(this).closest("td").find("input[type=text]").prop("value", "");
+                $(this).closest("td").find("input[type=text]").prop("disabled", true);
+            }
+        });
+
+
+        $("body #tblLeadLimit ").parent().on('change', "#rdbtnBoth,#rdbtnLocal,#rdbtnLong", function () {
+
+            if ($(this).attr("id") != "rdbtnLocal" && $(this).attr("id") != "rdbtnLong") {
+
+                if ($("#rdbtnBoth").prop('checked') == true) {
+
+                    $("input[name='group2']").prop("checked", false);
+                }
+            }
+            else {
+                if ($("input[name='group1']").prop("checked") == true) {
+
+                    $("input[name='group1']").prop("checked", false);
+                }
+            }
+
+        });
+
+
 
     });
-   
-
-
-</script>
+    </script>

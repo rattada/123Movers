@@ -590,41 +590,68 @@ namespace _123Movers.DataEntities
                 int? serviceId = null;
                 int? areaCode = null;
 
-                if (!string.IsNullOrWhiteSpace(leadlimit.Services) && leadlimit.Services != "999")
+                if (leadlimit.ServiceId != null)
                 {
-                    serviceId = Convert.ToInt32(leadlimit.Services);
+                    serviceId = Convert.ToInt32(leadlimit.ServiceId);
                 }
-                
+
                 if (!string.IsNullOrWhiteSpace(leadlimit.AreaCodes))
                 {
                     areaCode = Convert.ToInt32(leadlimit.AreaCodes);
+                }
+                if (leadlimit.DailyLeadLimit != null && leadlimit.DailyLeadLimit != 0)
+                {
+                    leadlimit.IsDailyLeadLimit = true;
+                }
+                else
+                {
+                    leadlimit.IsDailyLeadLimit = false;
+
+                }
+                if (leadlimit.MonthlyLeadLimit != null && leadlimit.MonthlyLeadLimit != 0)
+                {
+                    leadlimit.IsMonthlyLeadLimit = true;
+                }
+                else
+                {
+                    leadlimit.IsMonthlyLeadLimit = false;
+
+                }
+                if (leadlimit.TotalLeadLimit != null && leadlimit.TotalLeadLimit != 0)
+                {
+                    leadlimit.IsTotalLeadLimit = true;
+                }
+                else
+                {
+                    leadlimit.IsTotalLeadLimit = false;
+
                 }
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", leadlimit.CompanyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
                 SqlParameter paramAreaCode = new SqlParameter("areaCode", areaCode);
-                SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", leadlimit.MoveWeightID);
+                //SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", leadlimit.MoveWeightID);
                 SqlParameter paramisDailyLeadLimit = new SqlParameter("isDailyLeadLimit", leadlimit.IsDailyLeadLimit);
                 SqlParameter paramisMonthlyLeadLimit = new SqlParameter("isMonthlyLeadLimit", leadlimit.IsMonthlyLeadLimit);
                 SqlParameter paramisTotalLeadLimit = new SqlParameter("isTotalLeadLimit", leadlimit.IsTotalLeadLimit);
                 SqlParameter paramdailyLeadLimit = new SqlParameter("dailyLeadLimit", leadlimit.DailyLeadLimit);
                 SqlParameter parammontlyLeadLimit = new SqlParameter("montlyLeadLimit", leadlimit.MonthlyLeadLimit);
                 SqlParameter paramtotalLeadLimit = new SqlParameter("totalLeadLimit", leadlimit.TotalLeadLimit);
-                SqlParameter paramprice = new SqlParameter("price", leadlimit.Price);
+               // SqlParameter paramprice = new SqlParameter("price", leadlimit.Price);
                 SqlParameter paramleadFrq = new SqlParameter("leadFrq", leadlimit.LeadFrequency);
 
 
                 cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
                 cmdAddCompanyAdByArea.Parameters.Add(paramService);
                 cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
-                cmdAddCompanyAdByArea.Parameters.Add(paramMoveWeight);
+               // cmdAddCompanyAdByArea.Parameters.Add(paramMoveWeight);
                 cmdAddCompanyAdByArea.Parameters.Add(paramisDailyLeadLimit);
                 cmdAddCompanyAdByArea.Parameters.Add(paramisMonthlyLeadLimit);
                 cmdAddCompanyAdByArea.Parameters.Add(paramisTotalLeadLimit);
                 cmdAddCompanyAdByArea.Parameters.Add(paramdailyLeadLimit);
                 cmdAddCompanyAdByArea.Parameters.Add(parammontlyLeadLimit);
                 cmdAddCompanyAdByArea.Parameters.Add(paramtotalLeadLimit);
-                cmdAddCompanyAdByArea.Parameters.Add(paramprice);
+                //cmdAddCompanyAdByArea.Parameters.Add(paramprice);
                 cmdAddCompanyAdByArea.Parameters.Add(paramleadFrq);
 
 
@@ -635,8 +662,13 @@ namespace _123Movers.DataEntities
             return true;
         }
 
-        public static DataTable GetCompanyLeadLimit(int? companyId, int? serviceId)
+        public static LeadLimitModel GetCompanyLeadLimit(int? companyId, int? serviceId)
         {
+            LeadLimitModel ldModel = new LeadLimitModel();
+
+            List<LeadLimitModel> leadLimitData = new List<LeadLimitModel>();
+
+
             using (SqlConnection dbCon = ConnectToDb(DBConnString))
             {
                 SqlCommand cmdGetCompanyLeadLimit = new SqlCommand();
@@ -655,9 +687,58 @@ namespace _123Movers.DataEntities
                 SqlDataReader drResults = cmdGetCompanyLeadLimit.ExecuteReader();
                 dtResults.Load(drResults);
 
-                return dtResults;
+                if (dtResults.Rows.Count > 0)
+                {
+
+                    var Areacode = "";
+                    var ServiceId = "";
+                    foreach (DataRow row in dtResults.Rows)
+                    {
+                        if (String.IsNullOrEmpty(row["areaCode"].ToString()))
+                        {
+                            Areacode = null;
+
+                        }
+                        else
+                        {
+                            Areacode = row["areaCode"].ToString();
+                        }
+                        if (String.IsNullOrEmpty(row["serviceID"].ToString()))
+                        {
+                            ServiceId = null;
+
+                        }
+                        else
+                        {
+                            ServiceId = row["serviceID"].ToString();
+                        }
+
+
+                        LeadLimitModel obj = new LeadLimitModel()
+                        {
+
+                            AreaCodes = Areacode,
+                            ServiceId = Convert.ToInt32(ServiceId),
+                            LeadFrequency = Convert.ToInt32(row["leadFrequency"].ToString()),
+                            IsDailyLeadLimit = Convert.ToBoolean(row["isDailyLeadLimit"]),
+                            DailyLeadLimit = Convert.ToInt32(row["dailyLeadLimit"].ToString()),
+                            IsMonthlyLeadLimit = Convert.ToBoolean(row["isMonthlyLeadLimit"]),
+                            MonthlyLeadLimit = Convert.ToInt32(row["monthlyLeadLimit"].ToString()),
+                            IsTotalLeadLimit = Convert.ToBoolean(row["isTotalLeadLimit"]),
+                            TotalLeadLimit = Convert.ToInt32(row["totalLeadLimit"].ToString())
+
+
+
+                        };
+                        leadLimitData.Add(obj);
+
+                    }
+                    ldModel.LeadLimitData = leadLimitData;
+                }
+
 
             }
+            return ldModel;
         }
 
 
@@ -990,7 +1071,7 @@ namespace _123Movers.DataEntities
 
             }
         }
-        public static DataTable GetMoveWeights()
+        public static DataSet GetMoveWeights(int? companyId, int? serviceId)
         {
             using (SqlConnection dbCon = ConnectToDb(DBConnString))
             {
@@ -999,12 +1080,23 @@ namespace _123Movers.DataEntities
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.CommandText = "usp_GetMoveSizeLookup";
 
-                DataTable dtResults = new DataTable();
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
 
-                SqlDataReader drResults = cmd.ExecuteReader();
-                dtResults.Load(drResults);
+                cmd.Parameters.Add(paramCompanyId);
+                cmd.Parameters.Add(paramService);
 
-                return dtResults;
+                //DataTable dtResults = new DataTable();
+
+                //SqlDataReader drResults = cmd.ExecuteReader();
+                //dtResults.Load(drResults);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                return ds;
 
             }
 
@@ -1020,9 +1112,9 @@ namespace _123Movers.DataEntities
                 cmd.CommandText = "usp_SaveMoveWeight";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", model.CompanyId);
-                SqlParameter paramService = new SqlParameter("serviceId", Convert.ToInt32(model.Services));
-                SqlParameter parammin = new SqlParameter("minMoveWeight", model.MinMoveWeight);
-                SqlParameter parammax = new SqlParameter("maxMoveWeight", model.MaxMoveWeight);
+                SqlParameter paramService = new SqlParameter("serviceId", model.ServiceId);
+                SqlParameter parammin = new SqlParameter("minMoveWeight", model.MinMoveWeightSeq);
+                SqlParameter parammax = new SqlParameter("maxMoveWeight", model.MaxMoveWeightSeq);
 
                 cmd.Parameters.Add(paramCompanyId);
                 cmd.Parameters.Add(paramService);

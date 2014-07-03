@@ -177,7 +177,7 @@
 
     $('#add').click(function () {
         var selected = [];
-        if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val() =='')
+        if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val().trim() == '')
         {
             $('#areaZipSelected option:first').remove();
         }
@@ -192,11 +192,11 @@
             return false;
         }
         else {
-            var data_to_send = JSON.stringify(selected);
+            var zipcodes = JSON.stringify(selected);
             $.ajax({
                 url: '/Home/AddCompanyAreaZipCodes',
                 type: "POST",
-                data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': data_to_send },
+                data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
             success: function (data) {
                 if (data.success === true) {
                     alert('Zip Codes Successfully Added');

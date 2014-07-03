@@ -24,21 +24,21 @@
 <div class="row">
     <div class="col-lg-4">
         <div class="form-group">
-            @Html.LabelFor(m => m.ServiceId)
-            @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>,"--Choose One--", new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
-            @Html.ValidationMessageFor(m => m.ServiceId)
+            @Html.LabelFor(m => m.Services)
+            @Html.DropDownListFor(m => m.Services, ViewBag.Services as IEnumerable<SelectListItem>,"--Choose One--", new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
+            @Html.ValidationMessageFor(m => m.Services)
         </div></div>
          <div class="col-lg-4">
         <div class="form-group">
-            @Html.LabelFor(m => m.MinMoveWeightSeq)
-            @Html.DropDownListFor(m => m.MinMoveWeightSeq, ViewBag.MinMoveWeight as IEnumerable<SelectListItem>, "--Choose One--", new { id = "minMoveWeight", @class = "form-control dropdown", @title = "Select Min Move Weight" })
-            @Html.ValidationMessageFor(m => m.MinMoveWeightSeq)
+            @Html.LabelFor(m => m.MinMoveWeight)
+            @Html.DropDownListFor(m => m.MinMoveWeight, ViewBag.MinMoveWeight as IEnumerable<SelectListItem>, "--Choose One--", new { id = "minMoveWeight", @class = "form-control dropdown", @title = "Select Min Move Weight" })
+            @Html.ValidationMessageFor(m => m.MinMoveWeight)
         </div></div>
               <div class="col-lg-4">
          <div class="form-group">
-            @Html.LabelFor(m => m.MaxMoveWeightSeq)
-            @Html.DropDownListFor(m => m.MaxMoveWeightSeq, ViewBag.MinMoveWeight as IEnumerable<SelectListItem>, "--Choose One--", new { id = "maxMoveWeight", @class = "form-control dropdown", @title = "Select Max Move Weight" })
-            @Html.ValidationMessageFor(m => m.MaxMoveWeightSeq)
+            @Html.LabelFor(m => m.MaxMoveWeight)
+            @Html.DropDownListFor(m => m.MaxMoveWeight, ViewBag.MinMoveWeight as IEnumerable<SelectListItem>, "--Choose One--", new { id = "maxMoveWeight", @class = "form-control dropdown", @title = "Select Max Move Weight" })
+            @Html.ValidationMessageFor(m => m.MaxMoveWeight)
         </div></div>
     
 </div>
@@ -82,25 +82,7 @@
 
 
         });
-        $('#services').on("change", function () {
-            var min = $('#minMoveWeight option:selected').val();
-            var max = $('#maxMoveWeight option:selected').val();
 
-            var serviceId = $('#services option:selected').val();
-
-            $.ajax({
-                url: '/Home/GetMoveWeight',
-                type: "GET",
-                data: { 'ServiceId': serviceId },
-                success: function (data) {
-                   
-                  //  location.reload();
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-
-                }
-            });
-        });
 
     });
 </script>

@@ -16,8 +16,6 @@ namespace _123Movers.Models
         [Display(Name = "Service ID")]
         public int? ServiceId { get; set; }
 
-        [Display(Name = "Move Weight ID")]
-        public int? MoveWeightID { get; set; }
 
         [RegularExpression(RegexPattern.NUMERIC, ErrorMessage = "Total Lead Limit must be a numerical value.")]
         [Display(Name = "Total Lead Limit")]
@@ -31,32 +29,29 @@ namespace _123Movers.Models
         [Display(Name = "Monthly Lead Limit")]
         public int? MonthlyLeadLimit { get; set; }
 
-        //[RegularExpression(RegexPattern.NUMERIC, ErrorMessage = "Lead Counter must be a numerical value.")]
-        //[Display(Name = "Lead Counter")]
-        //public int? LeadCounter { get; set; }
 
         [Required]
         [RegularExpression(RegexPattern.NUMERIC, ErrorMessage = "Lead Frequency must be a numerical value.")]
         [Display(Name = "Lead Frequency")]
         public int? LeadFrequency { get; set; }
 
-        [Display(Name = "Total Lead Limit")]
+        [Display(Name = "chkTotal Lead Limit")]
         public bool IsTotalLeadLimit { get; set; }
 
-        [Display(Name = "Daily Lead Limit")]
+        [Display(Name = "chkDaily Lead Limit")]
         public bool IsDailyLeadLimit { get; set; }
 
-        [Display(Name = "Monthly Lead Limit")]
+        [Display(Name = "chkMonthly Lead Limit")]
         public bool IsMonthlyLeadLimit { get; set; }
 
-        [Display(Name = "Price")]
-        public decimal? Price { get; set; }
 
         [Display(Name = "Services")]
         public string Services { get; set; }
 
         [Display(Name = "Area Codes")]
         public string AreaCodes { get; set; }
+
+        public IEnumerable<LeadLimitModel> LeadLimitData { get; set; }
 
     }
 }

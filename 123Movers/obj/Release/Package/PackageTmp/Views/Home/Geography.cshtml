@@ -73,7 +73,7 @@
  </div>
 
  <div class="row">
-        <input  type="button" id="saveleads" class="btn btn-primary pull-right" value="Save Leads" />
+        @*<input  type="button" id="saveleads" class="btn btn-primary pull-right" value="Save Leads" />*@
         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
     
     </div>
@@ -177,9 +177,14 @@
 
     $('#add').click(function () {
         var selected = [];
+        if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val() =='')
+        {
+            $('#areaZipSelected option:first').remove();
+        }
         $('#areaZipCode :selected').each(function (i, el) {
             selected[i] = $(this).val();
             $("#areaZipCode option:selected").remove();
+            
             $("#areaZipSelected").append($(this));
         });
         if (selected.length == 0) {

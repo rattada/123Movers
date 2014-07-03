@@ -8,6 +8,15 @@
 
 
 <input type="hidden" id="message" value="@ViewBag.Success"/>
+
+<div class="row">
+
+       @* @Html.Partial("_CompanyInfo", @Model)*@
+     @Html.Partial("_CompanyInfo")
+     
+    </div>
+<p class="clearfix"></p>
+<p class="clearfix"></p>
 @Html.AntiForgeryToken()
 
 @Html.ValidationSummary(true)
@@ -22,9 +31,9 @@
 
             <thead>
                 <tr>
-                    <th>Service</th>
-                    <th>Minimum Weight </th>
-                    <th>Maximum Weight</th>
+                    <th class="text-center">Service</th>
+                    <th class="text-center">Minimum Weight </th>
+                    <th class="text-center">Maximum Weight</th>
 
                 </tr>
 
@@ -36,12 +45,13 @@
                         @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>,"--Choose One--", new { id = "ddlServiceID", @class = "form-control dropdown", @title = "Select Services" })
                         @Html.ValidationMessageFor(m => m.ServiceId)
 
-                    <td>
+                    <td >
                             @Html.TextBoxFor(m => m.MinMoveWeight, new { @class = "form-control", Value = String.Format("{0:0.00}", Model.MinMoveWeight) })
                             @Html.ValidationMessageFor(m => m.MinMoveWeight)
                     <td>
+                        <div class="form-group">
                         @Html.TextBoxFor(m => m.MaxMoveWeight, new { @class = "form-control", Value = String.Format("{0:0.00}", Model.MaxMoveWeight) })
-                            @Html.ValidationMessageFor(m => m.MaxMoveWeight)</td>
+                            @Html.ValidationMessageFor(m => m.MaxMoveWeight)</div></td>
 
                 </tr>
             </tbody>
@@ -52,12 +62,9 @@
         
        
     <div class="row">
-        <div class="col-md-6">
-            <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">Back To List</a>
-        </div>
-        <div class="col-md-6">
-            <input type="submit" value='Save Distance' id='saveDistance' class='btn btn-primary pull-right'>
-        </div>
+        <input type="submit" value='Save Distance' id='saveDistance'  class="btn btn-primary pull-right"  />
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+
     </div>
 }
 <script type="text/javascript">

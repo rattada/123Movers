@@ -11,24 +11,27 @@ namespace _123Movers.Models
         [Display(Name = "Company ID")]
         public int? CompanyId { get; set; }
 
-        [Display(Name = "Service ID")]
+        [Display(Name = "Service")]
         public int? ServiceId { get; set; }
 
         [Display(Name = "Move Weight")]
         public string MoveWeight { get; set; }
 
-        [Display(Name = "Min Move Weight")]
-        public string MinMoveWeight { get; set; }
+        //[Display(Name = "Min Move Weight")]
+        //public string MinMoveWeight { get; set; }
 
-        [Display(Name = "Max Move Weight")]
-        public string MaxMoveWeight { get; set; }
+        //[Display(Name = "Max Move Weight")]
+        //public string MaxMoveWeight { get; set; }
 
-        [Display(Name = "Move Weight Seq")]
-        public int? MoveWeightSeq { get; set; }
+        [Display(Name = "Min Move Weight Seq")]
+        public int? MinMoveWeightSeq { get; set; }
 
-        [Required]
-        [Display(Name = "Services")]
-        public string Services { get; set; }
+        [Display(Name = "Max Move Weight Seq")]
+        public int? MaxMoveWeightSeq { get; set; }
+
+        //[Required]
+        //[Display(Name = "Services")]
+        //public string Services { get; set; }
 
     }
 }
