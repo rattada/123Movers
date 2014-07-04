@@ -101,17 +101,17 @@
                      </div> *@
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Terms)
-                @Html.DropDownListFor(m => m.Terms, ViewBag.Terms as IEnumerable<SelectListItem>, "--Choose One--", new { @class = "form-control dropdown", @title = "Select Terms" })
-                @Html.ValidationMessageFor(m => m.Terms)
+                @Html.LabelFor(m => m.TermType)
+                @Html.DropDownListFor(m => m.TermType, ViewBag.Terms as IEnumerable<SelectListItem>, "--Choose One--", new { @class = "form-control dropdown", @title = "Select Terms" })
+                @Html.ValidationMessageFor(m => m.TermType)
 
                 
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Services)
-                @Html.DropDownListFor(m => m.Services, ViewBag.Services as IEnumerable<SelectListItem>, "--Choose One--", new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
-                @Html.ValidationMessageFor(m => m.Services)
+                @Html.LabelFor(m => m.ServiceId)
+                @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, "--Choose One--", new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
+                @Html.ValidationMessageFor(m => m.ServiceId)
             </div>
 
         </div>

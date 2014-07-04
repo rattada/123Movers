@@ -177,12 +177,12 @@ namespace _123Movers.Controllers
                 // budget.CompanyHandle = (string)HttpContext.Application["CompanyHandle"];
                 budget.Type = "NEW";
 
-                if (budget.Terms == "Recurring")
+                if (budget.TermType == "0")
                 {
                     budget.IsRecurring = true;
                     budget.IsRequireNoticeToCharge = false;
                 }
-                else if (budget.Terms == "NonRecurring")
+                else if (budget.TermType == "1")
                 {
                     budget.IsRecurring = false;
                     budget.IsRequireNoticeToCharge = false;
