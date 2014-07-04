@@ -13,7 +13,6 @@ namespace _123Movers.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        public IEnumerable<GeographyModel> OriginZipCodes { get; set; }
 
         public ActionResult Reports(string companyid, string companyName, string ax, string contactperson, string suspended, bool active = false)
         {
@@ -65,81 +64,28 @@ namespace _123Movers.Controllers
             List<List<string>> list = retListTable(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        public List<SelectListItem> Terms(bool IsRecurring, bool IsRequireNoticeToCharge, bool forEdit)
+        public List<SelectListItem> Terms(bool IsRecurring, bool IsRequireNoticeToCharge)
         {
             var listOption = new SelectListItem();
             var terms = new List<SelectListItem>();
 
-            //listOption = new SelectListItem { Text = "--Choose One--", Value = "Choose" };
-            //terms.Add(listOption);
-
-            listOption = new SelectListItem { Text = "Recurring", Value = "Recurring" };
+            listOption = new SelectListItem { Text = "Recurring", Value = "0" };
             terms.Add(listOption);
 
-            listOption = new SelectListItem { Text = "Non Recurring", Value = "NonRecurring" };
+            listOption = new SelectListItem { Text = "Non Recurring", Value = "1" };
             terms.Add(listOption);
 
-            listOption = new SelectListItem { Text = "Recurring With Notice", Value = "RecurringWithNotice" };
+            listOption = new SelectListItem { Text = "Recurring With Notice", Value = "2" };
 
             terms.Add(listOption);
 
-            int i = 0;
-            if (forEdit == true)
-            {
-                foreach (var item in terms)
-                {
-
-                    if (IsRecurring == true)
-                    {
-                        if (IsRecurring && !IsRequireNoticeToCharge)
-                        {
-                            i = 1;
-                            terms.RemoveAt(0);
-                            break;
-
-                        }
-
-                        if (IsRecurring && IsRequireNoticeToCharge)
-                        {
-                            i = 3;
-                            terms.RemoveAt(2);
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        i = 2;
-                        terms.RemoveAt(1);
-
-
-                        break;
-                    }
-                    i = i++;
-                }
-                switch (i)
-                {
-                    case 1:
-                        listOption = new SelectListItem { Text = "Recurring", Value = "Recurring" };
-                        terms.Insert(0, listOption);
-                        break;
-                    case 2:
-                        listOption = new SelectListItem { Text = "Non Recurring", Value = "NonRecurring" };
-                        terms.Insert(0, listOption);
-                        break;
-                    case 3:
-                        listOption = new SelectListItem { Text = "Recurring With Notice", Value = "RecurringWithNotice" };
-                        terms.Insert(0, listOption);
-                        break;
-                }
-            }
             return terms;
         }
 
-        public List<SelectListItem> Services(int? serviceId, bool forEdit)
+        public List<SelectListItem> Services(int? serviceId)
         {
             var listOption = new SelectListItem();
             var services = new List<SelectListItem>();
-
 
             listOption = new SelectListItem { Text = "Local", Value = "1009" };
             services.Add(listOption);
@@ -150,72 +96,15 @@ namespace _123Movers.Controllers
             listOption = new SelectListItem { Text = "Both", Value = "999" };
             services.Add(listOption);
 
-            int i = 0;
-            if (forEdit == true)
-            {
-                foreach (var item in services)
-                {
-
-                    if (serviceId != null)
-                    {
-                        if (serviceId == 1009)
-                        {
-
-                            i = 1;
-                            services.RemoveAt(0);
-                            break;
-
-                        }
-
-                        if (serviceId == 1000)
-                        {
-                            i = 2;
-                            services.RemoveAt(1);
-                            break;
-                        }
-                    }
-
-                    else
-                    {
-                        i = 3;
-                        services.RemoveAt(2);
-
-
-                        break;
-                    }
-                    i = i++;
-
-                }
-
-                switch (i)
-                {
-                    case 1:
-                        listOption = new SelectListItem { Text = "Local", Value = "1009" };
-                        services.Insert(0, listOption);
-                        break;
-                    case 2:
-                        listOption = new SelectListItem { Text = "Long", Value = "1000" };
-                        services.Insert(0, listOption);
-                        break;
-                    case 3:
-                        listOption = new SelectListItem { Text = "Both", Value = "999" };
-                        services.Insert(0, listOption);
-                        break;
-                }
-
-
-
-            }
-
             return services;
         }
 
         [HttpGet]
         public ActionResult AddBudget()
         {
-            ViewBag.Terms = Terms(false, false, false);
+            ViewBag.Terms = Terms(false, false);
 
-            ViewBag.Services = Services(null, false);
+            ViewBag.Services = Services(null);
 
             BudgetModel budgget = new BudgetModel();
 
@@ -270,8 +159,8 @@ namespace _123Movers.Controllers
         public ActionResult AddBudget(BudgetModel budget)
         {
 
-            ViewBag.Terms = Terms(false, false, false);
-            ViewBag.Services = Services(null, false);
+            ViewBag.Terms = Terms(false, false);
+            ViewBag.Services = Services(null);
 
             try
             {
@@ -324,26 +213,17 @@ namespace _123Movers.Controllers
         public ActionResult EditBudget(decimal? TotalBudget, bool IsRecurring, bool IsRequireNoticeToCharge, int? serviceId, string agnumber, int? minDaysToCharge)
         {
             BudgetModel budget = new BudgetModel();
-
+            ViewBag.Terms = Terms(budget.IsRecurring, budget.IsRequireNoticeToCharge);
+            ViewBag.Services = Services(budget.ServiceId);
+            int Service = (serviceId == 1009) ? 1009 : (serviceId == 1000) ? 1000 : 999;
+            string Recurring = (IsRecurring) ? (IsRequireNoticeToCharge) ? "2" : "0" : "1";
             budget.TotalBudget = TotalBudget;
             budget.IsRecurring = IsRecurring;
             budget.IsRequireNoticeToCharge = IsRequireNoticeToCharge;
-            budget.ServiceId = serviceId;
+            budget.ServiceId = Service;
             budget.MinDaysToCharge = minDaysToCharge;
             budget.AgreementNumber = agnumber;
-
-
-            ViewBag.Terms = Terms(budget.IsRecurring, budget.IsRequireNoticeToCharge, true);
-            ViewBag.Services = Services(budget.ServiceId, true);
-
-            //var result = BusinessLayer.GetMoveWeights().AsEnumerable();
-            //List<string> items = new List<string>();
-            //foreach (var item in result)
-            //{
-            //    items.Add(item[0].ToString());
-            //}
-
-            //ViewBag.MoveWeights = BusinessLayer.ToJSON(items);
+            budget.TermType = Recurring;
 
             var cmd = (string)HttpContext.Application["CompanyId"];
             budget.CompanyId = Convert.ToInt32(cmd);
@@ -361,13 +241,12 @@ namespace _123Movers.Controllers
         public ActionResult EditBudget(BudgetModel budget)
         {
 
-            ViewBag.Terms = Terms(false, false, false);
-            ViewBag.Services = Services(null, false);
+            ViewBag.Terms = Terms(false, false);
+            ViewBag.Services = Services(null);
 
             try
             {
-                //if (ModelState.IsValid)
-                //{
+
                 var cmd = (string)HttpContext.Application["CompanyId"];
                 budget.CompanyId = Convert.ToInt32(cmd);
                 budget.CompanyName = (string)HttpContext.Application["CompanyName"];
@@ -378,12 +257,13 @@ namespace _123Movers.Controllers
                 budget.BudgetAction = "RENEWAL INSERTION";
                 budget.Type = "EDIT";
 
-                if (budget.Terms == "Recurring")
+                if (budget.TermType == "0")
                 {
+
                     budget.IsRecurring = true;
                     budget.IsRequireNoticeToCharge = false;
                 }
-                else if (budget.Terms == "NonRecurring")
+                else if (budget.TermType == "1")
                 {
                     budget.IsRecurring = false;
                     budget.IsRequireNoticeToCharge = false;
@@ -395,20 +275,15 @@ namespace _123Movers.Controllers
                 }
 
                 BusinessLayer.SaveBudget(budget);
-                //ModelState.Clear();
-              //  ViewBag.Success = "Budget saved successfully..";
 
                 return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX, budget.ContactPerson, budget.Suspended, budget.IsActive });
 
-                //}
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
             }
             return View(budget);
-
-
 
         }
 
@@ -765,7 +640,6 @@ namespace _123Movers.Controllers
               GeographyModel Origin = new GeographyModel();
 
               var OriginAreaCodes = BusinessLayer.GetCompanyServiceAreaCodes(companyId, serviceId);
-              OriginZipCodes = OriginAreaCodes.OriginZipCodes;
               return View(OriginAreaCodes);
           }
           public JsonResult GetAreaCodeZipCodes(int? companyId,int? serviceId, int? areaCode)
@@ -829,16 +703,16 @@ namespace _123Movers.Controllers
           public ActionResult Distance(int? companyId,int? serviceId)
           {
 
-              ViewBag.Services = Services(null, false).Take(2);
-              var query = BusinessLayer.GetCompanyMoveDistance(companyId, serviceId);
-              List<List<string>> list = retListTable(query);
+              ViewBag.Services = Services(null).Take(2);
+             DataTable dt = BusinessLayer.GetCompanyMoveDistance(companyId, serviceId);
+              //List<List<string>> list = retListTable(query);
               DistanceModel model = new DistanceModel();
               model.CompanyId = companyId;
-              model.ServiceId = serviceId;
-              if (list.Count > 0)
+              if (dt.Rows.Count > 0)
               {
-                  model.MinMoveWeight = string.IsNullOrWhiteSpace(list[0][1].ToString()) ? 0 : Convert.ToDecimal(list[0][1]);
-                  model.MaxMoveWeight = string.IsNullOrWhiteSpace(list[0][2].ToString()) ? 0 : Convert.ToDecimal(list[0][2]);
+                  model.ServiceId = string.IsNullOrWhiteSpace(dt.Rows[0][0].ToString()) ? 0 : Convert.ToInt32(dt.Rows[0][0]);
+                  model.MinMoveDistance = string.IsNullOrWhiteSpace(dt.Rows[0][1].ToString()) ? 0 : Convert.ToDecimal(dt.Rows[0][1]);
+                  model.MaxMoveDistance = string.IsNullOrWhiteSpace(dt.Rows[0][2].ToString()) ? 0 : Convert.ToDecimal(dt.Rows[0][2]);
               }
 
               return View(model);
@@ -849,7 +723,7 @@ namespace _123Movers.Controllers
           [HttpPost]
           public ActionResult Distance(DistanceModel model)
           {
-              ViewBag.Services = Services(null, false).Take(2);
+              ViewBag.Services = Services(null).Take(2);
               try
               {
                   var cmd = (string)HttpContext.Application["CompanyId"];
@@ -879,12 +753,16 @@ namespace _123Movers.Controllers
               DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), ServiceId);
 
               ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
-              ViewBag.Services = Services(null, false).Take(2);
+              ViewBag.Services = Services(null).Take(2);
               MoveWeightModel model = new MoveWeightModel();
               model.CompanyId = Convert.ToInt32(cmd);
-              model.ServiceId = ServiceId;
-              model.MinMoveWeightSeq =Convert.ToInt32( ds.Tables[1].Rows[0][2].ToString());
-              model.MaxMoveWeightSeq = Convert.ToInt32(ds.Tables[1].Rows[0][3].ToString());
+              if (ds.Tables[1].Rows.Count > 0)
+              {
+                  model.ServiceId = Convert.ToInt32(ds.Tables[1].Rows[0][1].ToString()); ;
+                  model.MinMoveWeightSeq = Convert.ToInt32(ds.Tables[1].Rows[0][2].ToString());
+                  model.MaxMoveWeightSeq = Convert.ToInt32(ds.Tables[1].Rows[0][3].ToString());
+              }
+              
               return View(model);
           }
         [HttpPost]
@@ -894,7 +772,7 @@ namespace _123Movers.Controllers
               DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), model.ServiceId);
 
               ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
-              ViewBag.Services = Services(null, false).Take(2);
+              ViewBag.Services = Services(null).Take(2);
 
               try
               {
@@ -911,6 +789,13 @@ namespace _123Movers.Controllers
             var cmd = (string)HttpContext.Application["CompanyId"];
             DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), serviceId);
             List<List<string>> list = retListTable(ds.Tables[1]);
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetDistance(int? serviceId)
+        {
+            var cmd = (string)HttpContext.Application["CompanyId"];
+            DataTable dt = BusinessLayer.GetCompanyMoveDistance(Convert.ToInt32(cmd), serviceId);
+            List<List<string>> list = retListTable(dt);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         

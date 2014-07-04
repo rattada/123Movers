@@ -17,7 +17,6 @@
 <div class="row">
 
     @Html.Partial("_CompanyInfo")
-    @* @Html.Partial("_CompanyInfo", @Model)*@
 
 </div>
 @using (Html.BeginForm("EditBudget", "Home", FormMethod.Post, new { id = "frmeditbudget" }))
@@ -40,15 +39,15 @@
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                @Html.LabelFor(m => m.Terms)
-                @Html.DropDownListFor(m => m.Terms, ViewBag.Terms as IEnumerable<SelectListItem>, new { @class = "form-control dropdown", @title = "Select Terms" })
-                @Html.ValidationMessageFor(m => m.Terms)
+                @Html.LabelFor(m => m.TermType)
+                @Html.DropDownListFor(m => m.TermType, ViewBag.Terms as IEnumerable<SelectListItem>, new { @class = "form-control dropdown", @title = "Select Terms" })
+                @Html.ValidationMessageFor(m => m.TermType)
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Services)
-                @Html.DropDownListFor(m => m.Services, ViewBag.Services as IEnumerable<SelectListItem>, new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
-                @Html.ValidationMessageFor(m => m.Services)
+                @Html.LabelFor(m => m.ServiceId)
+                @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
+                @Html.ValidationMessageFor(m => m.ServiceId)
             </div>
         </div>
         <div class="col-lg-4">
@@ -61,7 +60,7 @@
             <p class="clearfix"></p>
             <p class="clearfix"></p>
             <p class="clearfix"></p>
-           @* <div class="form-group">
+            @* <div class="form-group">
                 @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "managearea", @class = "btn btn-primary pull-right" })
 
                 @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "leadlimit", @class = "btn btn-primary" })
@@ -69,19 +68,19 @@
         </div>
     </div>
    
-         <div class="row">
-            <div class="col-md-12">
-                 @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "managearea", @class = "btn btn-primary" })
-               @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "leadlimit", @class = "btn btn-primary" })
-                 @Html.ActionLink("Manage Geography", "Geography", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "geography", @class = "btn btn-primary" })
-                 @Html.ActionLink("Manage Distance", "Distance", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "distance", @class = "btn btn-primary" })
-                 @Html.ActionLink("Manage Move Weight", "MoveWeight", "Home", new {serviceId = @Model.ServiceId }, new { id = "movewight", @class = "btn btn-primary" })
-            </div>
-       </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "managearea", @class = "btn btn-primary" })
+            @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId, companyName = @Model.CompanyName }, new { id = "leadlimit", @class = "btn btn-primary" })
+            @Html.ActionLink("Manage Geography", "Geography", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId }, new { id = "geography", @class = "btn btn-primary" })
+            @Html.ActionLink("Manage Distance", "Distance", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId }, new { id = "distance", @class = "btn btn-primary" })
+            @Html.ActionLink("Manage Move Weight", "MoveWeight", "Home", new { serviceId = @Model.ServiceId }, new { id = "movewight", @class = "btn btn-primary" })
+        </div>
+    </div>
            
             
     
-    @*<div class="row">
+@*<div class="row">
         <div class="col-md-12">
             <div class="checkbox">
                 <label>
@@ -106,25 +105,23 @@
     </div>*@
     
     <div class="row">
-    <input type="submit" id="save" class="btn btn-primary pull-right" value="Save Budget" />
-    <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
-
-
-</div>
+        <input type="submit" id="save" class="btn btn-primary pull-right" value="Save Budget" />
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List</a>
+    </div>
 }
 
 <script type="text/javascript">
-   
+
 
     $(function () {
-       // var strigifyJsonViewBag = @Html.Raw(ViewBag.MoveWeights);
+        // var strigifyJsonViewBag = @Html.Raw(ViewBag.MoveWeights);
 
         var message = $.trim($('#message').val());
         if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
 
-      
 
-         $('#service').on('change', function () {
+
+        $('#service').on('change', function () {
             if (this.checked) {
 
                 $.ajax({
@@ -201,7 +198,7 @@
 
                     }
                 });
-                
+
                 //var serviceId = $("#services").val();
                 //$.ajax({
                 //    url: '/Home/GetCompanyMoveDistance',
@@ -210,12 +207,12 @@
                 //    dataType: "json",
                 //    data: { "serviceId": serviceId },
                 //    success: function (data) {
-                       
+
                 //        var strigifyJson = JSON.stringify(data);
                 //        var json = $.parseJSON(strigifyJson);
                 //        var isMoveDistanceSelect = 0;
 
-                      
+
                 //        jQuery.each(json, function (key, item) {
 
                 //            $("#ddlServiceID").val(item[0]);
@@ -229,32 +226,32 @@
                 //        //if (isMoveDistanceSelect == 0 ) {
                 //        //    $('#tblDistance *').attr('disabled', 'disabled');
                 //        //}
-                     
+
                 //        $.each(strigifyJsonViewBag, function (key, value) {
-                         
+
                 //            $('#ddlMinWeightID').append($('<option>').text(value).attr('value', value));
                 //            $('#ddlMaxWeightID').append($('<option>').text(value).attr('value', value));
-                            
+
                 //        });
 
-                        
+
                 //    },
                 //    error: function (result) {
 
                 //    }
                 //});
-                
+
                 //$("#").find("input,button,select,textarea").attr("disabled", "disabled");
                 //$('#tblDistance').attr('disabled', 'disabled');
                 //$("#tblDistance tr").find("input,select").atrr('disabled', 'disabled');
 
-          }
+            }
             else {
                 $("#filters").html('');
             }
         });
 
-       
+
 
         $("body").parent().on('click', "a", function () {
 
@@ -335,13 +332,12 @@
 
 
         $("body").parent().on('click', "#saveDistance", function () {
-          
-            var serviceId = $('#ddlServiceID').val();
-            var MinWeight=$("#txtMinWeight").val();
-            var MaxWeight=$("#txtMaxWeight").val();
 
-            if (serviceId != $("#services").val())
-            {
+            var serviceId = $('#ddlServiceID').val();
+            var MinWeight = $("#txtMinWeight").val();
+            var MaxWeight = $("#txtMaxWeight").val();
+
+            if (serviceId != $("#services").val()) {
                 alert('Please choose right  Service Type');
                 $('#ddlServiceID').focus();
                 return false;
@@ -360,8 +356,8 @@
                     return false;
 
                 }
-                
-               
+
+
 
 
                 $.ajax({
@@ -370,15 +366,15 @@
                     data: { 'ServiceId': serviceId, 'MinWeight': MinWeight, "MaxWeight": MaxWeight },
                     success: function (data) {
                         alert('Move Distance  Saved Suceessfully');
-                       // $("#service").attr("checked", false);
-                       
+                        // $("#service").attr("checked", false);
+
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         var errMessage = JSON.parse(xhr.responseText).customErrorMessage;
                         alert('Error occurred while saving the AreaCodes' + errMessage);
                     }
 
-                     
+
                 });
 
             }

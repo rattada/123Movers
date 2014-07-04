@@ -116,5 +116,7 @@ namespace _123Movers.Models
          public string InsertionOrderId { get; set; }
 
          public string Type { get; set; }
+
+         public string TermType { get; set; }
     }
 }

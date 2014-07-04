@@ -23,10 +23,10 @@ namespace _123Movers.Models
         //[Display(Name = "Max Move Weight")]
         //public string MaxMoveWeight { get; set; }
 
-        [Display(Name = "Min Move Weight Seq")]
+        [Display(Name = "Min Move Weight")]
         public int? MinMoveWeightSeq { get; set; }
 
-        [Display(Name = "Max Move Weight Seq")]
+        [Display(Name = "Max Move Weight")]
         public int? MaxMoveWeightSeq { get; set; }
 
         //[Required]

@@ -24,8 +24,8 @@
           <thead>
               <tr><th class="text-center"  colspan="10"><strong>Origin Zip To Multiple Area Code</strong></th></tr>
               <tr>
-                  <th>Service</th>
-                  <th>Area Code</th>
+                  <th class="text-center">Service</th>
+                  <th class="text-center">Area Code</th>
                   <th  class="text-center">Origin Zip Filter On</th>
               </tr>
               
@@ -39,13 +39,13 @@
                         foreach (var OriginAreaCode in Model.OriginAreaCodes)
                       {
                           <tr>
-                              <td>
+                              <td class="text-center">
                                   @{
                                       var service = @OriginAreaCode.ServiceId == 1000 ? "Long" : "Local";
                                   }
                                   @service
                               </td>
-                              <td id ="areacode">
+                              <td id ="areacode" class="text-center">
                                   @OriginAreaCode.AreaCode
                               </td>
                               <td class="text-center">
@@ -55,7 +55,7 @@
                               
                                   @if(@zipcodes.Count() > 0)
                                   {
-                                      <p>YES --> @zipcodes.Count() ZipCodes</p><a id="zipcodes" href="#" data-toggle="modal" data-target="#myModal" data-id="@OriginAreaCode.AreaCode" onclick="GetZipCodes(@OriginAreaCode.AreaCode,@OriginAreaCode.ServiceId)">View</a>
+                                     <b>YES --> @zipcodes.Count() ZipCodes - </b> <a id="zipcodes" href="#" data-toggle="modal" data-target="#myModal" data-id="@OriginAreaCode.AreaCode" onclick="GetZipCodes(@OriginAreaCode.AreaCode,@OriginAreaCode.ServiceId)">View</a>
                                   }
                                   else
                                   {
@@ -177,9 +177,11 @@
 
     $('#add').click(function () {
         var selected = [];
-        if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val() =='')
+        if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val() != undefined)
         {
-            $('#areaZipSelected option:first').remove();
+            if ($('#areaZipSelected option:first').val().trim() == '')
+            { $('#areaZipSelected option:first').remove(); }
+            
         }
         $('#areaZipCode :selected').each(function (i, el) {
             selected[i] = $(this).val();
@@ -192,11 +194,11 @@
             return false;
         }
         else {
-            var data_to_send = JSON.stringify(selected);
+            var zipcodes = JSON.stringify(selected);
             $.ajax({
                 url: '/Home/AddCompanyAreaZipCodes',
                 type: "POST",
-                data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': data_to_send },
+                data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
             success: function (data) {
                 if (data.success === true) {
                     alert('Zip Codes Successfully Added');

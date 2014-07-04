@@ -24,21 +24,21 @@
 <div class="row">
     <div class="col-lg-4">
         <div class="form-group">
-            @Html.LabelFor(m => m.Services)
-            @Html.DropDownListFor(m => m.Services, ViewBag.Services as IEnumerable<SelectListItem>,"--Choose One--", new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
-            @Html.ValidationMessageFor(m => m.Services)
+            @Html.LabelFor(m => m.ServiceId)
+            @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>,"--Choose One--", new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
+            @Html.ValidationMessageFor(m => m.ServiceId)
         </div></div>
          <div class="col-lg-4">
         <div class="form-group">
-            @Html.LabelFor(m => m.MinMoveWeight)
-            @Html.DropDownListFor(m => m.MinMoveWeight, ViewBag.MinMoveWeight as IEnumerable<SelectListItem>, "--Choose One--", new { id = "minMoveWeight", @class = "form-control dropdown", @title = "Select Min Move Weight" })
-            @Html.ValidationMessageFor(m => m.MinMoveWeight)
+            @Html.LabelFor(m => m.MinMoveWeightSeq)
+            @Html.DropDownListFor(m => m.MinMoveWeightSeq, ViewBag.MinMoveWeight as IEnumerable<SelectListItem>, "--Choose One--", new { id = "minMoveWeight", @class = "form-control dropdown", @title = "Select Min Move Weight" })
+            @Html.ValidationMessageFor(m => m.MinMoveWeightSeq)
         </div></div>
               <div class="col-lg-4">
          <div class="form-group">
-            @Html.LabelFor(m => m.MaxMoveWeight)
-            @Html.DropDownListFor(m => m.MaxMoveWeight, ViewBag.MinMoveWeight as IEnumerable<SelectListItem>, "--Choose One--", new { id = "maxMoveWeight", @class = "form-control dropdown", @title = "Select Max Move Weight" })
-            @Html.ValidationMessageFor(m => m.MaxMoveWeight)
+            @Html.LabelFor(m => m.MaxMoveWeightSeq)
+            @Html.DropDownListFor(m => m.MaxMoveWeightSeq, ViewBag.MinMoveWeight as IEnumerable<SelectListItem>, "--Choose One--", new { id = "maxMoveWeight", @class = "form-control dropdown", @title = "Select Max Move Weight" })
+            @Html.ValidationMessageFor(m => m.MaxMoveWeightSeq)
         </div></div>
     
 </div>
@@ -55,6 +55,9 @@
     $(function () {
         var message = $.trim($('#message').val());
         if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
+
+        var orgMax = $('#maxMoveWeight option:selected').val();
+        var orgMin = $('#minMoveWeight option:selected').val();
 
         $('#savemoveweight').click(function () {
             var serviceId = $('#services').val().trim();
@@ -82,7 +85,59 @@
 
 
         });
+        $('#services').on("change", function () {
+            var serviceId = $('#services option:selected').val();
 
+            $.ajax({
+                url: '/Home/GetMoveWeight',
+                type: "GET",
+                data: { 'ServiceId': serviceId },
+                cache: false,
+                success: function (data) {
+                    var strigifyJson = JSON.stringify(data);
+                    var json = $.parseJSON(strigifyJson);
+                    if (json.length > 0) {
+                        $('#minMoveWeight').val(json[0][2]).attr("selected", "selected");
+                        $('#maxMoveWeight').val(json[0][3]).attr("selected", "selected");
+                    }
+                    else {
+                        $("#minMoveWeight option:first").attr('selected', 'selected');
+                        $("#maxMoveWeight option:first").attr('selected', 'selected');
+                    }
+                  //  location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                }
+            });
+        });
+        $('#minMoveWeight').on("change", function () {
+            var max = $('#maxMoveWeight option:selected').val();
+            var min = $('#minMoveWeight option:selected').val();
+            if (parseInt(min) >= parseInt(max))
+            {
+                alert('Min Move Weight Should be Less Than Max Move Weight');
+                $('#minMoveWeight').val(orgMin).attr("selected", "selected");
+                return false;
+            } else {
+                orgMax = $('#maxMoveWeight option:selected').val();
+                orgMin = $('#minMoveWeight option:selected').val();
+            }
+        });
+
+        $('#maxMoveWeight').on("change", function () {
+            var max = $('#maxMoveWeight option:selected').val();
+            var min = $('#minMoveWeight option:selected').val();
+            if (parseInt(max) <= parseInt(min)) {
+                alert('Max Move Weight Should be Grater Than Min Move Weight');
+                $('#maxMoveWeight').val(orgMax).attr("selected", "selected");
+                return false;
+            }
+            else {
+                orgMax = $('#maxMoveWeight option:selected').val();
+                orgMin = $('#minMoveWeight option:selected').val();
+            }
+        });
 
     });
 </script>

@@ -17,12 +17,12 @@ namespace _123Movers.Models
         [Display(Name = "Move Weight")]
         public string MoveWeight { get; set; }
 
-        [Display(Name = "Min Move Weight")]
-        public decimal? MinMoveWeight { get; set; }
+        [Display(Name = "Min Move Distance")]
+        public decimal? MinMoveDistance { get; set; }
 
-        [Display(Name = "Max Move Weight")]
+        [Display(Name = "Max Move Distance")]
         //[RegularExpression(RegexPattern.Decimal, ErrorMessage = "Min Move Weight must be a decimal.")]
-        public decimal? MaxMoveWeight { get; set; }
+        public decimal? MaxMoveDistance { get; set; }
 
         [Display(Name = "Move Weight Seq")]
       //  [RegularExpression(RegexPattern.Decimal, ErrorMessage = "Max Move Weight must be a decimal.")]

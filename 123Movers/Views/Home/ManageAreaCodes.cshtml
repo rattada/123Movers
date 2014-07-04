@@ -4,10 +4,14 @@
 }
 @*@using (Html.BeginForm("ManageAreacodes", "Home", FormMethod.Post, new { id = "frmareacode" }))
 {*@
-<br />
+
 <div class="row">
-    <h4 class="alignLeft"><strong>@ViewBag.CompanyName</strong></h4>
+     @Html.Partial("_CompanyInfo")
 </div>
+
+<p class="clearfix"></p>
+<p class="clearfix"></p>
+
 <div class="row">
 
     <ul class="nav nav-tabs" id="ServiceTab">

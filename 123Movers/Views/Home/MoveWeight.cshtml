@@ -56,6 +56,9 @@
         var message = $.trim($('#message').val());
         if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
 
+        var orgMax = $('#maxMoveWeight option:selected').val();
+        var orgMin = $('#minMoveWeight option:selected').val();
+
         $('#savemoveweight').click(function () {
             var serviceId = $('#services').val().trim();
             var min = $('#minMoveWeight').val().trim();
@@ -83,23 +86,57 @@
 
         });
         $('#services').on("change", function () {
-            var min = $('#minMoveWeight option:selected').val();
-            var max = $('#maxMoveWeight option:selected').val();
-
             var serviceId = $('#services option:selected').val();
 
             $.ajax({
                 url: '/Home/GetMoveWeight',
                 type: "GET",
                 data: { 'ServiceId': serviceId },
+                cache: false,
                 success: function (data) {
-                   
+                    var strigifyJson = JSON.stringify(data);
+                    var json = $.parseJSON(strigifyJson);
+                    if (json.length > 0) {
+                        $('#minMoveWeight').val(json[0][2]).attr("selected", "selected");
+                        $('#maxMoveWeight').val(json[0][3]).attr("selected", "selected");
+                    }
+                    else {
+                        $("#minMoveWeight option:first").attr('selected', 'selected');
+                        $("#maxMoveWeight option:first").attr('selected', 'selected');
+                    }
                   //  location.reload();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
                 }
             });
+        });
+        $('#minMoveWeight').on("change", function () {
+            var max = $('#maxMoveWeight option:selected').val();
+            var min = $('#minMoveWeight option:selected').val();
+            if (parseInt(min) >= parseInt(max))
+            {
+                alert('Min Move Weight Should be Less Than Max Move Weight');
+                $('#minMoveWeight').val(orgMin).attr("selected", "selected");
+                return false;
+            } else {
+                orgMax = $('#maxMoveWeight option:selected').val();
+                orgMin = $('#minMoveWeight option:selected').val();
+            }
+        });
+
+        $('#maxMoveWeight').on("change", function () {
+            var max = $('#maxMoveWeight option:selected').val();
+            var min = $('#minMoveWeight option:selected').val();
+            if (parseInt(max) <= parseInt(min)) {
+                alert('Max Move Weight Should be Grater Than Min Move Weight');
+                $('#maxMoveWeight').val(orgMax).attr("selected", "selected");
+                return false;
+            }
+            else {
+                orgMax = $('#maxMoveWeight option:selected').val();
+                orgMin = $('#minMoveWeight option:selected').val();
+            }
         });
 
     });

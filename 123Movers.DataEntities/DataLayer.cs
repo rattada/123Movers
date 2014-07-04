@@ -122,7 +122,7 @@ namespace _123Movers.DataEntities
                 SqlParameter paramRequireNoticeToCharge = new SqlParameter("isRequireNoticeToCharge", budget.IsRequireNoticeToCharge);
                 SqlParameter paramAgreementNumber = new SqlParameter("agreementNumber", budget.AgreementNumber);
                 SqlParameter paramMinCharge = new SqlParameter("minDaysToCharge", budget.MinDaysToCharge);
-                SqlParameter paramServices = new SqlParameter("service", budget.Services);
+                SqlParameter paramServices = new SqlParameter("service", budget.ServiceId);
                 SqlParameter paramType = new SqlParameter("type", budget.Type);
 
 
@@ -1028,8 +1028,8 @@ namespace _123Movers.DataEntities
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", model.CompanyId);
                 SqlParameter paramServiceID = new SqlParameter("serviceID", model.ServiceId);
-                SqlParameter paramMinWeight = new SqlParameter("minMoveWeight", model.MinMoveWeight);
-                SqlParameter paramMaxWeight = new SqlParameter("maxMoveWeight", model.MaxMoveWeight);
+                SqlParameter paramMinWeight = new SqlParameter("minMoveWeight", model.MinMoveDistance);
+                SqlParameter paramMaxWeight = new SqlParameter("maxMoveWeight", model.MaxMoveDistance);
 
 
                 cmd.Parameters.Add(paramCompanyId);
