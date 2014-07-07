@@ -74,7 +74,7 @@
            @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "managearea", @class = "btn btn-primary" })
            @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "leadlimit", @class = "btn btn-primary" })
            @Html.ActionLink("Manage Origin", "Geography", "Home", new { companyid = @Model.CompanyId, serviceId = Service}, new { id = "geography", @class = "btn btn-primary" })
-           @Html.ActionLink("Manage Destination", "DestinationZipCodes", "Home", new { companyid = @Model.CompanyId, serviceId = @Model.ServiceId }, new { id = "destzipcodes", @class = "btn btn-primary" })
+           @Html.ActionLink("Manage Destination", "DestinationZipCodes", "Home", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-primary" })
            @Html.ActionLink("Manage Distance", "Distance", "Home", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "distance", @class = "btn btn-primary" })
            @Html.ActionLink("Manage Move Weight", "MoveWeight", "Home", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-primary" })
        </div>

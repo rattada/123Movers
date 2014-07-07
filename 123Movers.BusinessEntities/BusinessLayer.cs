@@ -5,6 +5,7 @@ using System.Web;
 using _123Movers.Models;
 using _123Movers.DataEntities;
 using System.Data;
+using System.Xml;
 
 namespace _123Movers.BusinessEntities
 {
@@ -130,11 +131,7 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.GetMoveWeights(companyId, serviceId);
         }
-        public static string ToJSON(this object o)
-        {
-            var oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-            return oSerializer.Serialize(o);
-        }
+       
 
         public static bool SaveMoveWeight(MoveWeightModel model)
         {

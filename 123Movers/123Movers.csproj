@@ -340,7 +340,6 @@
     <Content Include="Views\Home\GetBudget.cshtml" />
     <Content Include="Views\Home\AddBudget.cshtml" />
     <Content Include="Views\Home\AddCompany.cshtml" />
-    <Content Include="Views\Home\ChildNode.cshtml" />
     <Content Include="Views\Home\EditBudget.cshtml" />
     <Content Include="Views\Home\Reports.cshtml" />
     <Content Include="Views\Home\Notifications.cshtml" />
