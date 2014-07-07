@@ -965,7 +965,7 @@ namespace _123Movers.DataEntities
                 SqlCommand cmdAddCompanyAreaZipCodes = new SqlCommand();
                 cmdAddCompanyAreaZipCodes.Connection = dbCon;
                 cmdAddCompanyAreaZipCodes.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdAddCompanyAreaZipCodes.CommandText = "usp_AddCompanyAreasZipCodes";
+                cmdAddCompanyAreaZipCodes.CommandText = "usp_AddCompanyAreasOriginZipCodes";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceId", serviceId);
@@ -993,7 +993,7 @@ namespace _123Movers.DataEntities
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = dbCon;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = "usp_DeleteCompanyAreasZipCodes";
+                cmd.CommandText = "usp_DeleteCompanyAreasOriginZipCodes";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceId", serviceId);
@@ -1203,13 +1203,13 @@ namespace _123Movers.DataEntities
                     {
                         sid = Convert.ToInt32(row["serviceID"]);
                     }
-                    if (!string.IsNullOrEmpty(row["originAreaCode"].ToString()))
+                    if (!string.IsNullOrEmpty(row["destinationAreaCode"].ToString()))
                     {
-                        areacode = Convert.ToInt32(row["originAreaCode"]);
+                        areacode = Convert.ToInt32(row["destinationAreaCode"]);
                     }
-                    if (!string.IsNullOrEmpty(row["originZipCode"].ToString().Trim()))
+                    if (!string.IsNullOrEmpty(row["destinationZipCode"].ToString().Trim()))
                     {
-                        zid = Convert.ToInt32(row["originZipCode"]);
+                        zid = Convert.ToInt32(row["destinationZipCode"]);
                     }
                     DestinationZipModel s = new DestinationZipModel
                     {
@@ -1237,7 +1237,7 @@ namespace _123Movers.DataEntities
                 SqlCommand cmdAddCompanyAreaZipCodes = new SqlCommand();
                 cmdAddCompanyAreaZipCodes.Connection = dbCon;
                 cmdAddCompanyAreaZipCodes.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdAddCompanyAreaZipCodes.CommandText = "usp_AddCompanyAreasZipCodes";
+                cmdAddCompanyAreaZipCodes.CommandText = "usp_AddCompanyAreasDestZipCodes";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceId", serviceId);
@@ -1266,7 +1266,7 @@ namespace _123Movers.DataEntities
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = dbCon;
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = "usp_DeleteCompanyAreasZipCodes";
+                cmd.CommandText = "usp_DeleteCompanyAreasDestZipCodes";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceId", serviceId);
