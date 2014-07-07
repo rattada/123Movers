@@ -642,6 +642,75 @@ namespace _123Movers.Controllers
               var OriginAreaCodes = BusinessLayer.GetCompanyServiceAreaCodes(companyId, serviceId);
               return View(OriginAreaCodes);
           }
+
+
+          [HttpGet]
+          public ActionResult DestinationZipCodes(int? companyId, int? serviceId)
+          {
+              DestinationZipModel Origin = new DestinationZipModel();
+
+              var DestinationAreaCodes = BusinessLayer.GetCompanyDestinationServiceAreaCodes(companyId, serviceId);
+              return View(DestinationAreaCodes);
+          }
+
+          public JsonResult GetCompanyAreasDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
+          {
+              var DestinationAreaCodes = BusinessLayer.GetCompanyAreasDestinationZipCodes(companyId, serviceId, areaCode);
+
+              List<List<string>> list = retListTable(DestinationAreaCodes);
+              return Json(list, JsonRequestBehavior.AllowGet);
+
+
+          }
+
+          public JsonResult GetAvailableDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
+          {
+              var services = BusinessLayer.GetAvailableDestinationZipCodes(companyId, serviceId, areaCode);
+              List<List<string>> list = retListTable(services);
+              return Json(list, JsonRequestBehavior.AllowGet);
+          }
+
+          [HttpPost]
+          public JsonResult AddCompanyAreaDestinationZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
+          {
+
+              JsonResult result;
+              try
+              {
+
+                  BusinessLayer.AddCompanyAreaDestinationZipCodes(companyId, serviceId, areaCode, zipCodes);
+                  result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+
+
+              }
+              catch (Exception ex)
+              {
+                  result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+              }
+
+              return result;
+          }
+
+          [HttpPost]
+          public JsonResult DeleteCompanyAreaDestinationZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
+          {
+
+              JsonResult result;
+              try
+              {
+
+                  BusinessLayer.DeleteCompanyAreaDestinationZipCodes(companyId, serviceId, areaCode, zipCodes);
+                  result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+
+
+              }
+              catch (Exception ex)
+              {
+                  result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+              }
+
+              return result;
+          }
           public JsonResult GetAreaCodeZipCodes(int? companyId,int? serviceId, int? areaCode)
           {
               var OriginAreaCodes = BusinessLayer.GetCompanyAreasZipCodes(companyId, serviceId, areaCode);

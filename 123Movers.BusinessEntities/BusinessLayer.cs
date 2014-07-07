@@ -141,7 +141,33 @@ namespace _123Movers.BusinessEntities
             return DataLayer.SaveMoveWeight(model);
         }
 
+        public static bool AddCompanyAreaDestinationZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
+        {
+            return DataLayer.AddCompanyAreaDestinationZipCodes(companyId, serviceId, areaCode, zipCodes);
+        }
+        public static bool DeleteCompanyAreaDestinationZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
+        {
+            return DataLayer.DeleteCompanyAreaDestinationZipCodes(companyId, serviceId, areaCode, zipCodes);
+        }
 
+
+
+        public static DataTable GetAvailableDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
+        {
+            return DataLayer.GetAvailableDestinationZipCodes(companyId, serviceId, areaCode);
+        }
+
+
+        public static DataTable GetCompanyAreasDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
+        {
+            return DataLayer.GetCompanyAreasDestinationZipCodes(companyId, serviceId, areaCode);
+        }
+
+
+        public static DestinationZipModel GetCompanyDestinationServiceAreaCodes(int? companyId, int? serviceId)
+        {
+            return DataLayer.GetCompanyDestinationServiceAreaCodes(companyId, serviceId);
+        }
 
 
 

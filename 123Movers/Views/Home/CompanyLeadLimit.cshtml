@@ -21,38 +21,156 @@
         <thead>
             <tr>
                 <th style="height: 5px;">Select</th>
-                <th>Service
+                <th  class="text-center">Service
                 </th>
 
-                <th>AreaCode
+                <th class="text-center">AreaCode
                 </th>
 
-                <th>Frequency
+                <th class="text-center">Frequency
                 </th>
 
-                <th>Daily Limit
+                <th class="text-center">Daily Limit
                 </th>
-                <th>Monthly Limit
+                <th class="text-center">Monthly Limit
                 </th>
-                <th>Total Limit
+                <th class="text-center">Total Limit
                 </th>
 
             </tr>
         </thead>
         <tbody>
-
-
-            @if (@Model.LeadLimitData != null)
-            {
-                if (@Model.LeadLimitData.Count() > 0)
+            @{
+                if (@Model.LeadLimitData != null)
                 {
-
-                    var Count = 0;
-                    var ModelLength = 0;
-                    foreach (var leadlimit in Model.LeadLimitData)
+                    if (@Model.LeadLimitData.Count() > 0)
                     {
-                        var Service = (@leadlimit.ServiceId == 1009) ? "Local" : (@leadlimit.ServiceId == 1000) ? "Long" : "Both";
-                        var areaCode = (@leadlimit.AreaCodes == null) ? "Default" : @leadlimit.AreaCodes;
+                        var bothservice = Model.LeadLimitData.Where(x => x.ServiceId == 0).SingleOrDefault();
+
+                        if (bothservice != null)
+                        {
+
+                            var Service = "Both";
+                            
+                <tr>
+                    <td>
+                        <input type="checkbox" name="group1" class='chkSelectClass' id="rdbtnboth"></td>
+                    <td id="tdBoth1">@Service
+                    </td>
+                    <td>Default
+                    </td>
+                    <td>
+                        <input type="text" id="txtFrequencyboth" class="textBoxWidth" value="@bothservice.LeadFrequency" >
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkDailyBoth" class="chkInnerClass" checked="@bothservice.IsDailyLeadLimit">
+                        Daily Lead Limit:<input type="text" id="txtDailyBoth" disabled="disabled" class="classCheckVal textBoxWidth"  value="@bothservice.DailyLeadLimit" ><br>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkMonthlyBoth" class="chkInnerClass" checked="@bothservice.IsMonthlyLeadLimit">
+                        Monthly Lead Limit:<input type="text" id="txtMonthlyBoth" disabled="disabled" class="classCheckVal textBoxWidth" value="@bothservice.MonthlyLeadLimit" ><br>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkTotalBoth" class="chkInnerClass" checked="@bothservice.IsTotalLeadLimit">
+                        Total Lead Limit:<input type="text" id="txtTotalBoth" disabled="disabled" class="classCheckVal textBoxWidth" value="@bothservice.TotalLeadLimit" ><br>
+                    </td>
+
+                </tr>
+                
+                <tr>
+                    <td class="col-md-6 text-center" colspan="7">----OR----
+                    </td>
+                </tr>
+                        }
+
+
+
+                        var services = Model.LeadLimitData.Where(x => (x.ServiceId == 1009 || x.ServiceId == 1000) && x.AreaCodes == null).OrderByDescending(x => x.ServiceId).ToList();
+                        if (services.Count > 0)
+                        {
+                            foreach (var service in services)
+                            {
+                                var ServiceId = (@service.ServiceId == 1009) ? "Local" : "Long";
+                                var areaCode = "Default";
+                            
+                                     
+                <tr>
+                    <td>
+                        <input type="checkbox" name="group1" class='chkSelectClass' id="rdbtn@(ServiceId)"></td>
+                    <td id="tdLocalLong">@ServiceId
+                    </td>
+                    <td>@areaCode
+                    </td>
+                    <td>
+                        <input type="text" id="txtFrequency@(areaCode)" class="textBoxWidth" value="@service.LeadFrequency" >
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkDaily@(areaCode)" class="chkInnerClass" checked="@service.IsDailyLeadLimit">
+                        Daily Lead Limit:<input type="text" id="txtDaily@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth"  value="@service.DailyLeadLimit" ><br>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkMonthly@(areaCode)" class="chkInnerClass" checked="@service.IsMonthlyLeadLimit">
+                        Monthly Lead Limit:<input type="text" id="txtMonthly@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth" value="@service.MonthlyLeadLimit" ><br>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkTotal@(areaCode)" class="chkInnerClass" checked="@service.IsTotalLeadLimit">
+                        Total Lead Limit:<input type="text" id="txtTotal@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth" value="@service.TotalLeadLimit" ><br>
+                    </td>
+
+                </tr>
+                            }
+                <tr>
+                    <td class="col-md-6 text-center" colspan="7">----OR----
+                    </td>
+                </tr>
+                        }
+
+
+                        var allServices = Model.LeadLimitData.Where(x => x.ServiceId != 0 && x.AreaCodes != null).OrderByDescending(x => x.ServiceId).ToList();
+                        if (allServices.Count > 0)
+                        {
+                            foreach (var service in allServices)
+                            {
+                                var Service = (@service.ServiceId == 1009) ? "Local" : "Long";
+                                var areaCode = @service.AreaCodes;
+                                 
+                <tr>
+                    <td>
+                        <input type="checkbox" name="group1" class='chkSelectClass' id="rdbtn@(Service)@(areaCode)"></td>
+                    <td id="tdBoth">@Service
+                    </td>
+                    <td>@areaCode
+                    </td>
+                    <td>
+                        <input type="text" id="txtFrequency@(areaCode)" class="textBoxWidth" value="@service.LeadFrequency" >
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkDaily@(areaCode)" class="chkInnerClass" checked="@service.IsDailyLeadLimit">
+                        Daily Lead Limit:<input type="text" id="txtDaily@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth"  value="@service.DailyLeadLimit" ><br>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkMonthly@(areaCode)" class="chkInnerClass" checked="@service.IsMonthlyLeadLimit">
+                        Monthly Lead Limit:<input type="text" id="txtMonthly@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth" value="@service.MonthlyLeadLimit" ><br>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chkTotal@(areaCode)" class="chkInnerClass" checked="@service.IsTotalLeadLimit">
+                        Total Lead Limit:<input type="text" id="txtTotal@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth" value="@service.TotalLeadLimit" ><br>
+                    </td>
+
+                </tr>
+                                 
+                            }
+                        }
+                         
+                         
+                         
+                         
+@*    var Count = 0;
+                         var ModelLength = 0;
+                         foreach (var leadlimit in Model.LeadLimitData)
+                         {
+                             var Service = (@leadlimit.ServiceId == 1009) ? "Local" : (@leadlimit.ServiceId == 1000) ? "Long" : "Both";
+                             var areaCode = (@leadlimit.AreaCodes == null) ? "Default" : @leadlimit.AreaCodes;
                             
                                      
                 <tr>
@@ -80,32 +198,35 @@
 
                 </tr>
               
-                        if (@leadlimit.ServiceId != 0 && @leadlimit.AreaCodes == null)
-                        {
+                             if (@leadlimit.ServiceId != 0 && @leadlimit.AreaCodes == null)
+                             {
 
-                            Count = Count + 1;
+                                 Count = Count + 1;
 
-                        }
-                        ModelLength = ModelLength + 1;
+                             }
+                             ModelLength = ModelLength + 1;
 
-                        if ((@leadlimit.ServiceId == 0 && @leadlimit.AreaCodes == null) || @Count > 1 || (Count == 1 && ModelLength == 1))
-                        {
+                             if ((@leadlimit.ServiceId == 0 && @leadlimit.AreaCodes == null) || @Count > 1 || (Count == 1 && ModelLength == 1))
+                             {
                 <tr>
                     <td class="col-md-6 text-center" colspan="7">----OR----
                     </td>
                 </tr>
-                            Count = 0;
-                        }
+                                 Count = 0;
+                             }
+                         }*@
+
                     }
 
                 }
-
+                else
+                {<tr>
+                    <td class="col-md-6 text-center" colspan="7">----No Records found----
+                    </td>
+                </tr>}
             }
-            else
-            {<tr>
-                        <td class="col-md-6 text-center" colspan="7">----No Records found----
-                        </td>
-                    </tr>}
+
+
         </tbody>
     </table>
 </div>

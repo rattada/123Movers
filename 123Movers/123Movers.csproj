@@ -350,6 +350,7 @@
     <Content Include="Views\Home\Geography.cshtml" />
     <Content Include="Views\Home\Distance.cshtml" />
     <Content Include="Views\Home\MoveWeight.cshtml" />
+    <Content Include="Views\Home\DestinationZipCodes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

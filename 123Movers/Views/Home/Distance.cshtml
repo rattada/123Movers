@@ -147,9 +147,10 @@
         $('#MinMoveDistance').on("focusout", function () {
             var minWeight = $("#MinMoveDistance").val();
             var maxWeight = $("#MaxMoveDistance").val();
-            if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(maxWeight) != 0) {
+            if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0 && parseInt(maxWeight) != 0) {
                 alert('Min Move Weight Should be Less Than Max Move Weight');
                 $("#MinMoveDistance").val(orgMinWeight);
+                $("#MinMoveDistance").focus();
                 return false;
             }
             else {
@@ -162,9 +163,10 @@
         $('#MaxMoveDistance').on("focusout", function () {
             var minWeight = $("#MinMoveDistance").val();
             var maxWeight = $("#MaxMoveDistance").val();
-            if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0) {
+            if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0 && parseInt(maxWeight) != 0) {
                 alert('Max Move Weight Should be Grater Than Min Move Weight');
                 $("#MaxMoveDistance").val(orgMaxWeight);
+                $("#MaxMoveDistance").focus();
                 return false;
             }
             else {
