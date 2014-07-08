@@ -19,6 +19,7 @@ namespace _123Movers.Models
         [Display(Name = "Min Days To Charge")]
         public int? MinDaysToCharge { get; set; }
 
+        [Required]
         [Display(Name = "Service ID")]
         public int? ServiceId { get; set; }
 
@@ -117,6 +118,7 @@ namespace _123Movers.Models
 
          public string Type { get; set; }
 
+        [Required]
          public string TermType { get; set; }
     }
 }

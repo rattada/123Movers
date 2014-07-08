@@ -98,8 +98,8 @@
         var message = $.trim($('#message').val());
         if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
 
-        var orgMinWeight = $("#MinMoveDistance").val();
-        var orgMaxWeight = $("#MaxMoveDistance").val();
+        var orgMinWeight = $.trim($("#MinMoveDistance").val());
+        var orgMaxWeight = $.trim($("#MaxMoveDistance").val());
 
         $("body").parent().on('click', "#saveDistance", function () {
 
@@ -114,6 +114,17 @@
 
                 }
 
+            }
+            if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0 && parseInt(maxWeight) != 0) {
+                alert('Min Move Weight Should be Less Than Max Move Weight');
+                $("#MinMoveDistance").val(orgMinWeight);
+                $("#MaxMoveDistance").val(orgMaxWeight);
+                $("#MinMoveDistance").focus();
+                return false;
+            }
+            else {
+                orgMinWeight = $("#MinMoveDistance").val();
+                orgMaxWeight = $("#MaxMoveDistance").val();
             }
         });
         $('#ddlServiceID').on("change", function () {
@@ -130,6 +141,9 @@
                         if (json.length > 0) {
                             $("#MinMoveDistance").val(json[0][1]);
                             $("#MaxMoveDistance").val(json[0][2]);
+
+                            orgMinWeight = $("#MinMoveDistance").val();
+                            orgMaxWeight = $("#MaxMoveDistance").val();
                         }
                         else {
                             $("#MinMoveDistance").val('');
@@ -147,38 +161,37 @@
             }
         });
 
-        //$('#MinMoveDistance').keydown(function () { alert('123');});
-        $('#MinMoveDistance').on("focusout", function () {
-            var minWeight = $("#MinMoveDistance").val();
-            var maxWeight = $("#MaxMoveDistance").val();
-            if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0 && parseInt(maxWeight) != 0) {
-                alert('Min Move Weight Should be Less Than Max Move Weight');
-                $("#MinMoveDistance").val(orgMinWeight);
-                $("#MinMoveDistance").focus();
-                return false;
-            }
-            else {
-                orgMinWeight = $("#MinMoveDistance").val();
-                orgMaxWeight = $("#MaxMoveDistance").val();
-            }
+        //$('#MinMoveDistance').on("focusout", function () {
+        //    var minWeight = $("#MinMoveDistance").val();
+        //    var maxWeight = $("#MaxMoveDistance").val();
+        //    if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0 && parseInt(maxWeight) != 0) {
+        //        alert('Min Move Weight Should be Less Than Max Move Weight');
+        //        $("#MinMoveDistance").val(orgMinWeight);
+        //        $("#MinMoveDistance").focus();
+        //        return false;
+        //    }
+        //    else {
+        //        orgMinWeight = $("#MinMoveDistance").val();
+        //        orgMaxWeight = $("#MaxMoveDistance").val();
+        //    }
 
-        });
+        //});
 
-        $('#MaxMoveDistance').on("focusout", function () {
-            var minWeight = $("#MinMoveDistance").val();
-            var maxWeight = $("#MaxMoveDistance").val();
-            if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0 && parseInt(maxWeight) != 0) {
-                alert('Max Move Weight Should be Grater Than Min Move Weight');
-                $("#MaxMoveDistance").val(orgMaxWeight);
-                $("#MaxMoveDistance").focus();
-                return false;
-            }
-            else {
-                orgMinWeight = $("#MinMoveDistance").val();
-                orgMaxWeight = $("#MaxMoveDistance").val();
-            }
+        //$('#MaxMoveDistance').on("focusout", function () {
+        //    var minWeight = $("#MinMoveDistance").val();
+        //    var maxWeight = $("#MaxMoveDistance").val();
+        //    if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0 && parseInt(maxWeight) != 0) {
+        //        alert('Max Move Weight Should be Grater Than Min Move Weight');
+        //        $("#MaxMoveDistance").val(orgMaxWeight);
+        //        $("#MaxMoveDistance").focus();
+        //        return false;
+        //    }
+        //    else {
+        //        orgMinWeight = $("#MinMoveDistance").val();
+        //        orgMaxWeight = $("#MaxMoveDistance").val();
+        //    }
 
-        });
+        //});
 
     });
 </script>

@@ -118,29 +118,33 @@
         });
         $('#ddlServiceID').on("change", function () {
             var serviceId = $('#ddlServiceID option:selected').val();
+            if (serviceId != '') {
+                $.ajax({
+                    url: '/Home/GetDistance',
+                    type: "GET",
+                    data: { 'ServiceId': serviceId },
+                    cache: false,
+                    success: function (data) {
+                        var strigifyJson = JSON.stringify(data);
+                        var json = $.parseJSON(strigifyJson);
+                        if (json.length > 0) {
+                            $("#MinMoveDistance").val(json[0][1]);
+                            $("#MaxMoveDistance").val(json[0][2]);
+                        }
+                        else {
+                            $("#MinMoveDistance").val('');
+                            $("#MaxMoveDistance").val('');
+                        }
+                        //  location.reload();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
 
-            $.ajax({
-                url: '/Home/GetDistance',
-                type: "GET",
-                data: { 'ServiceId': serviceId },
-                cache: false,
-                success: function (data) {
-                    var strigifyJson = JSON.stringify(data);
-                    var json = $.parseJSON(strigifyJson);
-                    if (json.length > 0) {
-                        $("#MinMoveDistance").val(json[0][1]);
-                        $("#MaxMoveDistance").val(json[0][2]);
                     }
-                    else {
-                        $("#MinMoveDistance").val('');
-                        $("#MaxMoveDistance").val('');
-                    }
-                    //  location.reload();
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-
-                }
-            });
+                });
+            } else {
+                $("#MinMoveDistance").val('');
+                $("#MaxMoveDistance").val('');
+            }
         });
 
         //$('#MinMoveDistance').keydown(function () { alert('123');});

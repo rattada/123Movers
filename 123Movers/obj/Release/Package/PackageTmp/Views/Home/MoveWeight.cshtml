@@ -87,29 +87,34 @@
         });
         $('#services').on("change", function () {
             var serviceId = $('#services option:selected').val();
+            if (serviceId != '') {
+                $.ajax({
+                    url: '/Home/GetMoveWeight',
+                    type: "GET",
+                    data: { 'ServiceId': serviceId },
+                    cache: false,
+                    success: function (data) {
+                        var strigifyJson = JSON.stringify(data);
+                        var json = $.parseJSON(strigifyJson);
+                        if (json.length > 0) {
+                            $('#minMoveWeight').val(json[0][2]).attr("selected", "selected");
+                            $('#maxMoveWeight').val(json[0][3]).attr("selected", "selected");
+                        }
+                        else {
+                            $("#minMoveWeight option:first").attr('selected', 'selected');
+                            $("#maxMoveWeight option:first").attr('selected', 'selected');
+                        }
+                        //  location.reload();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
 
-            $.ajax({
-                url: '/Home/GetMoveWeight',
-                type: "GET",
-                data: { 'ServiceId': serviceId },
-                cache: false,
-                success: function (data) {
-                    var strigifyJson = JSON.stringify(data);
-                    var json = $.parseJSON(strigifyJson);
-                    if (json.length > 0) {
-                        $('#minMoveWeight').val(json[0][2]).attr("selected", "selected");
-                        $('#maxMoveWeight').val(json[0][3]).attr("selected", "selected");
                     }
-                    else {
-                        $("#minMoveWeight option:first").attr('selected', 'selected');
-                        $("#maxMoveWeight option:first").attr('selected', 'selected');
-                    }
-                  //  location.reload();
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-
-                }
-            });
+                });
+            }
+            else {
+                $("#minMoveWeight option:first").attr('selected', 'selected');
+                $("#maxMoveWeight option:first").attr('selected', 'selected');
+            }
         });
         $('#minMoveWeight').on("change", function () {
             var max = $('#maxMoveWeight option:selected').val();
