@@ -83,15 +83,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Origin Zip Codes</h4>
+        <h4 class="modal-title text-center" id="myModalLabel">Origin Zip Codes</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <select name="areaZipCode" id="areaZipCode" size="20" style="width: 150px" multiple>
                 </select>
 
 
-                <input type="button" id="add" value="Add -->" class="btn btn-primary" />
-                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary">
+                <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
+                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
 
 
                 <select name="areaZipSelected" id="areaZipSelected" style="width: 150px" size="20" multiple>
@@ -134,8 +134,9 @@
                         }
                     });
 
-
-                    $('#areaZipCode').html(options);
+                    if (json.length > 0) {
+                        $('#areaZipCode').html(options);
+                    }
 
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -162,8 +163,10 @@
                     }
                 });
 
-
-                $('#areaZipSelected').html(options);
+                if (json.length > 0) {
+                    $('#areaZipSelected').html(options);
+                }
+                
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -177,12 +180,12 @@
 
     $('#add').click(function () {
         var selected = [];
-        if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val() != undefined)
-        {
-            if ($('#areaZipSelected option:first').val().trim() == '')
-            { $('#areaZipSelected option:first').remove(); }
+        //if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val() != undefined)
+        //{
+        //    if ($('#areaZipSelected option:first').val().trim() == '')
+        //    { $('#areaZipSelected option:first').remove(); }
             
-        }
+        //}
         $('#areaZipCode :selected').each(function (i, el) {
             selected[i] = $(this).val();
             $("#areaZipCode option:selected").remove();

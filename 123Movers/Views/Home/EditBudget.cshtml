@@ -71,12 +71,12 @@
  var Service = (@Model.ServiceId == 1009) ? "1009" : (@Model.ServiceId == 1000) ? "1000" : null;
     <div class="row">
        <div class="col-md-12">
-           @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "managearea", @class = "btn btn-primary" })
-           @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "leadlimit", @class = "btn btn-primary" })
-           @Html.ActionLink("Manage Origin", "Geography", "Home", new { companyid = @Model.CompanyId, serviceId = Service}, new { id = "geography", @class = "btn btn-primary" })
-           @Html.ActionLink("Manage Destination", "DestinationZipCodes", "Home", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-primary" })
-           @Html.ActionLink("Manage Distance", "Distance", "Home", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "distance", @class = "btn btn-primary" })
-           @Html.ActionLink("Manage Move Weight", "MoveWeight", "Home", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-primary" })
+           @Html.ActionLink("Manage Area Codes", "ManageAreaCodes", "Home", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "managearea", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "leadlimit", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Origin", "Geography", "Home", new { companyid = @Model.CompanyId, serviceId = Service}, new { id = "geography", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Destination", "DestinationZipCodes", "Home", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Distance", "Distance", "Home", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "distance", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Move Weight", "MoveWeight", "Home", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default" })
        </div>
    </div>
 
@@ -122,7 +122,65 @@
         var message = $.trim($('#message').val());
         if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
 
+        var ddlservice = $("#services").val();
+        var ServiceId = (ddlservice == 1009) ? "1009" : (ddlservice == 1000) ? "1000" : null;
 
+        $.ajax({
+            url: '/Home/GetFilterResult',
+            type: "GET",
+            data: { 'serviceId': ServiceId },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                var strigifyJson = JSON.stringify(data);
+                var json = $.parseJSON(strigifyJson);
+
+                jQuery.each(json, function (i, val) {
+                    var ID = val[0];
+                    var value = val[2];
+
+                    if (ID == 1 && val[2] == "True") {
+
+                        $('#managearea').removeClass('btn-default');
+                        $('#managearea').addClass('btn-warning');
+                    }
+                    else
+                        if (ID == 2 && val[2] == "True") {
+                            $('#destzipcodes').removeClass('btn-default');
+                            $('#destzipcodes').addClass('btn-warning');
+                        }
+
+                        else if (ID == 3 && val[2] == "True") {
+                            $('#distance').removeClass('btn-default');
+                            $('#distance').addClass('btn-warning');
+                        }
+                        else
+                            if (ID == 4 && val[2] == "True") {
+                                $('#leadlimit').removeClass('btn-default');
+                                $('#leadlimit').addClass('btn-warning');
+                            }
+
+                            else
+                                if (ID == 5 && val[2] == "True") {
+                                    $('#movewight').removeClass('btn-default');
+                                    $('#movewight').addClass('btn-warning');
+                                }
+                                else
+                                    if (ID == 6 && val[2] == "True") {
+                                        $('#geography').removeClass('btn-default');
+                                        $('#geography').addClass('btn-warning');
+
+                                    }
+
+                });
+
+
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+
+            }
+        });
 
         $('#service').on('change', function () {
             if (this.checked) {
@@ -202,58 +260,13 @@
                     }
                 });
 
-                //var serviceId = $("#services").val();
-                //$.ajax({
-                //    url: '/Home/GetCompanyMoveDistance',
-                //    type: "GET",
-                //    contentType: "application/json; charset=utf-8",
-                //    dataType: "json",
-                //    data: { "serviceId": serviceId },
-                //    success: function (data) {
-
-                //        var strigifyJson = JSON.stringify(data);
-                //        var json = $.parseJSON(strigifyJson);
-                //        var isMoveDistanceSelect = 0;
-
-
-                //        jQuery.each(json, function (key, item) {
-
-                //            $("#ddlServiceID").val(item[0]);
-                //            $("#txtMinWeight").val(item[1]);
-                //            $("#txtMaxWeight").val(item[2]);
-                //            //isMoveDistanceSelect = item[0];
-
-
-
-                //        });
-                //        //if (isMoveDistanceSelect == 0 ) {
-                //        //    $('#tblDistance *').attr('disabled', 'disabled');
-                //        //}
-
-                //        $.each(strigifyJsonViewBag, function (key, value) {
-
-                //            $('#ddlMinWeightID').append($('<option>').text(value).attr('value', value));
-                //            $('#ddlMaxWeightID').append($('<option>').text(value).attr('value', value));
-
-                //        });
-
-
-                //    },
-                //    error: function (result) {
-
-                //    }
-                //});
-
-                //$("#").find("input,button,select,textarea").attr("disabled", "disabled");
-                //$('#tblDistance').attr('disabled', 'disabled');
-                //$("#tblDistance tr").find("input,select").atrr('disabled', 'disabled');
+                
 
             }
             else {
                 $("#filters").html('');
             }
         });
-
 
 
         $("body").parent().on('click', "a", function () {

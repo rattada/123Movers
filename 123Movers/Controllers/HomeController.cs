@@ -16,12 +16,12 @@ namespace _123Movers.Controllers
 
         public ActionResult Reports(string companyid, string companyName, string ax, string contactperson, string suspended, bool active = false)
         {
-            HttpContext.Application["CompanyId"] = companyid;
-            HttpContext.Application["CompanyName"] = companyName;
-            HttpContext.Application["Ax"] = ax;
-            HttpContext.Application["IsActive"] = active;
-            HttpContext.Application["Suspended"] = suspended;
-            HttpContext.Application["ContactPerson"] = contactperson;
+            Session["CompanyId"] = companyid;
+            Session["CompanyName"] = companyName;
+            Session["Ax"] = ax;
+            Session["IsActive"] = active;
+            Session["Suspended"] = suspended;
+            Session["ContactPerson"] = contactperson;
 
             return View();
         }
@@ -58,9 +58,9 @@ namespace _123Movers.Controllers
             List<List<string>> list = retListTable(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetCompanyAdByArea(int? companyId, int? serviceId)
+        public JsonResult GetCompanyAreasWithPrices(int? companyId, int? serviceId)
         {
-            var services = BusinessLayer.GetCompanyAdByArea(companyId, serviceId);
+            var services = BusinessLayer.GetCompanyAreasWithPrices(companyId, serviceId);
             List<List<string>> list = retListTable(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -167,15 +167,15 @@ namespace _123Movers.Controllers
                 
                 //if (ModelState.IsValid)
                 //{
-                var cmd = (string)HttpContext.Application["CompanyId"];
+                var cmd = (string)Session["CompanyId"];
                 budget.CompanyId = Convert.ToInt32(cmd);
-                budget.CompanyName = (string)HttpContext.Application["CompanyName"];
-                budget.AX = (string)HttpContext.Application["Ax"];
-                budget.IsActive = (bool)HttpContext.Application["IsActive"];
-                //budget.DisplayName = (string)HttpContext.Application["DisplayName"];
-                budget.ContactPerson = (string)HttpContext.Application["ContactPerson"];
-                // budget.CompanyHandle = (string)HttpContext.Application["CompanyHandle"];
-                budget.Type = "NEW";
+                budget.CompanyName = (string)Session["CompanyName"];
+                budget.AX = (string)Session["Ax"];
+                budget.IsActive = (bool)Session["IsActive"];
+                //budget.DisplayName = (string)Session["DisplayName"];
+                budget.ContactPerson = (string)Session["ContactPerson"];
+                // budget.CompanyHandle = (string)Session["CompanyHandle"];
+                //budget.Type = "NEW";
 
                 if (budget.TermType == "0")
                 {
@@ -225,13 +225,13 @@ namespace _123Movers.Controllers
             budget.AgreementNumber = agnumber;
             budget.TermType = Recurring;
 
-            var cmd = (string)HttpContext.Application["CompanyId"];
+            var cmd = (string)Session["CompanyId"];
             budget.CompanyId = Convert.ToInt32(cmd);
-            budget.CompanyName = (string)HttpContext.Application["CompanyName"];
-            budget.AX = (string)HttpContext.Application["Ax"];
-            budget.IsActive = (bool)HttpContext.Application["IsActive"];
-            budget.Suspended = (string)HttpContext.Application["Suspended"];
-            budget.ContactPerson = (string)HttpContext.Application["ContactPerson"];
+            budget.CompanyName = (string)Session["CompanyName"];
+            budget.AX = (string)Session["Ax"];
+            budget.IsActive = (bool)Session["IsActive"];
+            budget.Suspended = (string)Session["Suspended"];
+            budget.ContactPerson = (string)Session["ContactPerson"];
 
             return View(budget);
 
@@ -247,15 +247,15 @@ namespace _123Movers.Controllers
             try
             {
 
-                var cmd = (string)HttpContext.Application["CompanyId"];
+                var cmd = (string)Session["CompanyId"];
                 budget.CompanyId = Convert.ToInt32(cmd);
-                budget.CompanyName = (string)HttpContext.Application["CompanyName"];
-                budget.AX = (string)HttpContext.Application["Ax"];
-                budget.IsActive = (bool)HttpContext.Application["IsActive"];
-                budget.Suspended = (string)HttpContext.Application["    "];
-                budget.ContactPerson = (string)HttpContext.Application["ContactPerson"];
+                budget.CompanyName = (string)Session["CompanyName"];
+                budget.AX = (string)Session["Ax"];
+                budget.IsActive = (bool)Session["IsActive"];
+                budget.Suspended = (string)Session["    "];
+                budget.ContactPerson = (string)Session["ContactPerson"];
                 budget.BudgetAction = "RENEWAL INSERTION";
-                budget.Type = "EDIT";
+                //budget.Type = "EDIT";
 
                 if (budget.TermType == "0")
                 {
@@ -304,12 +304,12 @@ namespace _123Movers.Controllers
             ViewBag.TotalBilled = String.Format("{0:C}", tbilled);
             ViewBag.UnchargedAmount = String.Format("{0:C}", uamount);
 
-            HttpContext.Application["CompanyId"] = companyid;
-            HttpContext.Application["CompanyName"] = companyName;
-            HttpContext.Application["Ax"] = ax;
-            HttpContext.Application["IsActive"] = active;
-            HttpContext.Application["Suspended"] = suspended;
-            HttpContext.Application["ContactPerson"] = contactperson;
+            Session["CompanyId"] = companyid;
+            Session["CompanyName"] = companyName;
+            Session["Ax"] = ax;
+            Session["IsActive"] = active;
+            Session["Suspended"] = suspended;
+            Session["ContactPerson"] = contactperson;
 
             search.budget = budgetList;
            
@@ -488,7 +488,7 @@ namespace _123Movers.Controllers
         public ActionResult CompanyLeadLimit(int? serviceId)
         {
             int? companyId;
-            companyId = Convert.ToInt32((string)HttpContext.Application["CompanyId"]);
+            companyId = Convert.ToInt32((string)Session["CompanyId"]);
             LeadLimitModel ld = new LeadLimitModel();
             var leadLimitData = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
 
@@ -503,7 +503,7 @@ namespace _123Movers.Controllers
             JsonResult result;
             try
             {
-                var cmd = (string)HttpContext.Application["CompanyId"];
+                var cmd = (string)Session["CompanyId"];
                 foreach (var ld in leadlimit)
                 {
                     ld[0].CompanyId = Convert.ToInt32(cmd);
@@ -619,7 +619,7 @@ namespace _123Movers.Controllers
             JsonResult result;
             try
             {
-                string companyId = (string)HttpContext.Application["CompanyId"];
+                string companyId = (string)Session["CompanyId"];
                 BusinessLayer.AddCompanyZipCodesPerAreaCodes(Convert.ToInt32(companyId), serviceId, areaCodes, IsOrigin);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
          
@@ -795,7 +795,7 @@ namespace _123Movers.Controllers
               ViewBag.Services = Services(null).Take(2);
               try
               {
-                  var cmd = (string)HttpContext.Application["CompanyId"];
+                  var cmd = (string)Session["CompanyId"];
                   model.CompanyId = Convert.ToInt32(cmd);
                   BusinessLayer.SaveMoveDistance(model);
 
@@ -817,7 +817,7 @@ namespace _123Movers.Controllers
 
               //ViewBag.MinMoveWeight = new SelectList(moveWeights, "Value", "Text", new { Value = 7 });
 
-              var cmd = (string)HttpContext.Application["CompanyId"];
+              var cmd = (string)Session["CompanyId"];
 
               DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), ServiceId);
 
@@ -837,7 +837,7 @@ namespace _123Movers.Controllers
         [HttpPost]
           public ActionResult MoveWeight(MoveWeightModel model)
           {
-             var cmd = (string)HttpContext.Application["CompanyId"];
+             var cmd = (string)Session["CompanyId"];
               DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), model.ServiceId);
 
               ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
@@ -855,14 +855,14 @@ namespace _123Movers.Controllers
           }
         public JsonResult GetMoveWeight(int? serviceId)
         {
-            var cmd = (string)HttpContext.Application["CompanyId"];
+            var cmd = (string)Session["CompanyId"];
             DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), serviceId);
             List<List<string>> list = retListTable(ds.Tables[1]);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetDistance(int? serviceId)
         {
-            var cmd = (string)HttpContext.Application["CompanyId"];
+            var cmd = (string)Session["CompanyId"];
             DataTable dt = BusinessLayer.GetCompanyMoveDistance(Convert.ToInt32(cmd), serviceId);
             List<List<string>> list = retListTable(dt);
             return Json(list, JsonRequestBehavior.AllowGet);
@@ -897,7 +897,7 @@ namespace _123Movers.Controllers
 
               try
               {
-                  var cmd = (string)HttpContext.Application["CompanyId"];
+                  var cmd = (string)Session["CompanyId"];
 
                   var query = BusinessLayer.GetCompanyMoveDistance(Convert.ToInt32(cmd), ServiceId);
                   List<List<string>> list = retListTable(query);
@@ -915,7 +915,13 @@ namespace _123Movers.Controllers
 
           }
 
-
+          public JsonResult GetFilterResult(int? serviceId)
+          {
+              var cmd = (string)Session["CompanyId"];
+              DataTable dt = BusinessLayer.GetFilterResult(Convert.ToInt32(cmd), serviceId);
+              List<List<string>> list = retListTable(dt);
+              return Json(list, JsonRequestBehavior.AllowGet);
+          }
 
     }
 }

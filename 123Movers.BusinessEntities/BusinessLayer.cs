@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace _123Movers.BusinessEntities
 {
-    public static class BusinessLayer
+    public partial class BusinessLayer
     {
         //public static void RegisterUser(RegisterModel model)
         //{
@@ -20,11 +20,11 @@ namespace _123Movers.BusinessEntities
         //    return DataLayer.Login(login);
         //}
 
-        public static bool SaveBudget(BudgetModel budget)
-        {
-            budget.RemainingBudget = budget.TotalBudget;
-            return DataLayer.SaveBudget(budget);
-        }
+        //public static void SaveBudget(BudgetModel budget)
+        //{
+        //    budget.RemainingBudget = budget.TotalBudget;
+        //    DataLayer.SaveBudget(budget);
+        //}
         public static IEnumerable<SearchModel> SearchCompany(SearchModel search)
         {
             //if (search.CompanyId)
@@ -47,40 +47,16 @@ namespace _123Movers.BusinessEntities
             return DataLayer.SearchCompany(search);
         }
 
-        public static List<BudgetModel> GetBudget(string companyid)
-        {
+        //public static List<BudgetModel> GetBudget(string companyid)
+        //{
 
-            return DataLayer.GetBudget(companyid);
-        }
+        //    return DataLayer.GetBudget(companyid);
+        //}
         public static DataTable GetServies()
         {
             return DataLayer.GetServices();
         }
-        public static DataTable GetAvailableAreas(int? companyId, int? serviceId)
-        {
-            return DataLayer.GetAvailableAreas(companyId, serviceId);
-        }
-        public static DataTable GetCompanyAdByArea(int? companyId, int? serviceId)
-        {
-            return DataLayer.GetCompanyAdByArea(companyId, serviceId);
-        }
-        public static void AddCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
-        {
-            DataLayer.AddCompanyAdByArea(companyId, serviceId, areaCode);
-        }
-        public static void DeleteCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
-        {
-            DataLayer.DeleteCompanyAdByArea(companyId, serviceId, areaCode);
-        }
-        //public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, int? areaCode, decimal? price, int? moveWeightID)
-        //{
-        //    return  DataLayer.AddCompanyPricePerLead(companyId, serviceId, areaCode, price, moveWeightID);
-        //}
-
-        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, string areaCodes, int? moveWeightID)
-        {
-            return DataLayer.AddCompanyPricePerLead(companyId, serviceId, areaCodes, moveWeightID);
-        }
+        
         public static bool AddCompanyLeadLimit(LeadLimitModel leadlimit)
         {
             return DataLayer.AddCompanyLeadLimit(leadlimit);
@@ -166,7 +142,10 @@ namespace _123Movers.BusinessEntities
             return DataLayer.GetCompanyDestinationServiceAreaCodes(companyId, serviceId);
         }
 
-
+        public static DataTable GetFilterResult(int companyID, int? serviceID)
+        {
+            return DataLayer.GetFilterResult(companyID, serviceID);
+        }
 
 
 

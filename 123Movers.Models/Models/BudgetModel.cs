@@ -10,8 +10,8 @@ namespace _123Movers.Models
     public class BudgetModel
     {
 
-        [Display(Name = "Tid")]
-        public int Tid { get; set; }
+        //[Display(Name = "Tid")]
+        //public int Tid { get; set; }
        // [Required]
         [Display(Name = "Company ID")]
         public int? CompanyId { get; set; }
@@ -20,7 +20,7 @@ namespace _123Movers.Models
         public int? MinDaysToCharge { get; set; }
 
         [Required]
-        [Display(Name = "Service ID")]
+        [Display(Name = "Service")]
         public int? ServiceId { get; set; }
 
         //[Required]
@@ -28,15 +28,15 @@ namespace _123Movers.Models
         public string CompanyName { get; set; }
 
         //[Required]
-        [Display(Name = "Display Name")]
-        public string DisplayName { get; set; }
+        //[Display(Name = "Display Name")]
+        //public string DisplayName { get; set; }
 
         [Display(Name = "Sales Person")]
         public string ContactPerson { get; set; }
 
-        [Required]
-        [Display(Name = "Company Handle")]
-        public string CompanyHandle { get; set; }
+        //[Required]
+        //[Display(Name = "Company Handle")]
+        //public string CompanyHandle { get; set; }
 
         [Display(Name = "Suspended")]
         public string Suspended { get; set; }
@@ -93,13 +93,13 @@ namespace _123Movers.Models
         [Display(Name = "Expire")]
         public bool Expire { get; set; }
 
-        [Required]
-        [Display(Name = "Terms")]
-        public string Terms { get; set; }
+        //[Required]
+        //[Display(Name = "Terms")]
+        //public string Terms { get; set; }
 
-        [Required]
-        [Display(Name = "Services")]
-        public string Services { get; set; }
+        //[Required]
+        //[Display(Name = "Services")]
+        //public string Services { get; set; }
 
        // [Required]
         [Display(Name = "Agreement Number")]
@@ -116,9 +116,10 @@ namespace _123Movers.Models
          [Display(Name = "Insertion Order ID")]
          public string InsertionOrderId { get; set; }
 
-         public string Type { get; set; }
+         //public string Type { get; set; }
 
         [Required]
+        [Display(Name = "Terms")]
          public string TermType { get; set; }
     }
 }

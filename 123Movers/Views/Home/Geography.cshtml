@@ -13,7 +13,6 @@
 <input type="hidden" id="orgzipcodes" value="@Model.OriginZipCodes" />
 <div class="row">
 
-       @* @Html.Partial("_CompanyInfo", @Model)*@
      @Html.Partial("_CompanyInfo")
      
     </div>
@@ -83,15 +82,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Origin Zip Codes</h4>
+        <h4 class="modal-title text-center" id="myModalLabel">Origin Zip Codes</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <select name="areaZipCode" id="areaZipCode" size="20" style="width: 150px" multiple>
                 </select>
 
 
-                <input type="button" id="add" value="Add -->" class="btn btn-primary" />
-                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary">
+                <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
+                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
 
 
                 <select name="areaZipSelected" id="areaZipSelected" style="width: 150px" size="20" multiple>
@@ -118,7 +117,7 @@
         $.ajax({
             url: '/Home/GetAvailableZipCodes',
             type: "GET",
-            data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceId, 'areaCode': areaCode },
+            data: { 'companyId': '@Session["CompanyId"]', 'serviceId': serviceId, 'areaCode': areaCode },
                 dataType: "json",
                 cache: false,
                 success: function (data) {
@@ -134,8 +133,9 @@
                         }
                     });
 
-
-                    $('#areaZipCode').html(options);
+                    if (json.length > 0) {
+                        $('#areaZipCode').html(options);
+                    }
 
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -146,7 +146,7 @@
         $.ajax({
             url: '/Home/GetAreaCodeZipCodes',
             type: "GET",
-            data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceId, 'areaCode': areaCode },
+            data: { 'companyId': '@Session["CompanyId"]', 'serviceId': serviceId, 'areaCode': areaCode },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -162,8 +162,10 @@
                     }
                 });
 
-
-                $('#areaZipSelected').html(options);
+                if (json.length > 0) {
+                    $('#areaZipSelected').html(options);
+                }
+                
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -175,14 +177,15 @@
         }
         
 
-    $('#add').click(function () {
+    $('#add').click(function (e) {
+        e.preventDefault();
         var selected = [];
-        if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val() != undefined)
-        {
-            if ($('#areaZipSelected option:first').val().trim() == '')
-            { $('#areaZipSelected option:first').remove(); }
+        //if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val() != undefined)
+        //{
+        //    if ($('#areaZipSelected option:first').val().trim() == '')
+        //    { $('#areaZipSelected option:first').remove(); }
             
-        }
+        //}
         $('#areaZipCode :selected').each(function (i, el) {
             selected[i] = $(this).val();
             $("#areaZipCode option:selected").remove();
@@ -198,9 +201,12 @@
             $.ajax({
                 url: '/Home/AddCompanyAreaZipCodes',
                 type: "POST",
-                data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
+                data: { 'companyId': '@Session["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
             success: function (data) {
                 if (data.success === true) {
+                    var x = $('#areaZipCode > option').length;
+                    $('#areaZipCode').scrollTop(x);
+
                     alert('Zip Codes Successfully Added');
                 } else {
                     alert("Error :" + data.message);
@@ -231,9 +237,12 @@
                 $.ajax({
                     url: '/Home/DeleteCompanyAreaZipCodes',
                     type: "POST",
-                    data: { 'companyId': '@HttpContext.Current.Application["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
+                    data: { 'companyId': '@Session["CompanyId"]', 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
                 success: function (data) {
                     if (data.success === true) {
+                        var x = $('#areaZipSelected > option').length;
+                        $('#areaZipSelected').scrollTop(x);
+
                         alert('Zip Codes Successfully Deleted');
                     } else {
                         alert("Error :" + data.message);

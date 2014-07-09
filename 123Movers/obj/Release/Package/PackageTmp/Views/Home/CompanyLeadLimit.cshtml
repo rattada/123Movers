@@ -16,11 +16,11 @@
 @Html.AntiForgeryToken()
 @Html.ValidationSummary(true)
 
-<div class="table-responsive">
-    <table id="tblLeadLimit" class="table table-striped table-bordered tablesorter">
+<div class="table-responsive"   ID="divLeadlimit">
+    <table id="tblLeadLimit" class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th class="text-center">Select</th>
+                <th class="text-center" id="tdSelect">Select</th>
                 <th  class="text-center">Service
                 </th>
 
@@ -60,19 +60,19 @@
                     <td class="text-center">Default
                     </td>
                     <td class="text-center">
-                        <input type="text" id="txtFrequencyboth" class="textBoxWidth" value="@bothservice.LeadFrequency" >
+                        <input type="text" id="txtFrequencyboth" class="leadLimit-control text-center " value="@bothservice.LeadFrequency" >
                     </td>
-                    <td >
+                    <td class="text-center">
                         <input type="checkbox" id="chkDailyBoth" class="chkInnerClass" checked="@bothservice.IsDailyLeadLimit">
-                        Daily Lead Limit:<input type="text" id="txtDailyBoth" disabled="disabled" class="classCheckVal textBoxWidth"  value="@bothservice.DailyLeadLimit" ><br>
+                        Daily Lead Limit : <input type="text" id="txtDailyBoth" disabled="disabled" class="classCheckVal  text-center leadLimit-control"  value="@bothservice.DailyLeadLimit" ><br>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <input type="checkbox" id="chkMonthlyBoth" class="chkInnerClass" checked="@bothservice.IsMonthlyLeadLimit">
-                        Monthly Lead Limit:<input type="text" id="txtMonthlyBoth" disabled="disabled" class="classCheckVal textBoxWidth" value="@bothservice.MonthlyLeadLimit" ><br>
+                        Monthly Lead Limit : <input type="text" id="txtMonthlyBoth" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@bothservice.MonthlyLeadLimit" ><br>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <input type="checkbox" id="chkTotalBoth" class="chkInnerClass" checked="@bothservice.IsTotalLeadLimit">
-                        Total Lead Limit:<input type="text" id="txtTotalBoth" disabled="disabled" class="classCheckVal textBoxWidth" value="@bothservice.TotalLeadLimit" ><br>
+                        Total Lead Limit : <input type="text" id="txtTotalBoth" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@bothservice.TotalLeadLimit" ><br>
                     </td>
 
                 </tr>
@@ -102,19 +102,19 @@
                     <td class="text-center">@areaCode
                     </td>
                     <td class="text-center">
-                        <input type="text" id="txtFrequency@(areaCode)" class="textBoxWidth" value="@service.LeadFrequency" >
+                        <input type="text" id="txtFrequency@(areaCode)" class=" text-center leadLimit-control" value="@service.LeadFrequency" >
                     </td>
-                    <td>
+                    <td class="text-center">
                         <input type="checkbox" id="chkDaily@(areaCode)" class="chkInnerClass" checked="@service.IsDailyLeadLimit">
-                        Daily Lead Limit:<input type="text" id="txtDaily@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth"  value="@service.DailyLeadLimit" ><br>
+                        Daily Lead Limit : <input type="text" id="txtDaily@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control"  value="@service.DailyLeadLimit" ><br>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <input type="checkbox" id="chkMonthly@(areaCode)" class="chkInnerClass" checked="@service.IsMonthlyLeadLimit">
-                        Monthly Lead Limit:<input type="text" id="txtMonthly@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth" value="@service.MonthlyLeadLimit" ><br>
+                        Monthly Lead Limit : <input type="text" id="txtMonthly@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.MonthlyLeadLimit" ><br>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <input type="checkbox" id="chkTotal@(areaCode)" class="chkInnerClass" checked="@service.IsTotalLeadLimit">
-                        Total Lead Limit:<input type="text" id="txtTotal@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth" value="@service.TotalLeadLimit" ><br>
+                        Total Lead Limit : <input type="text" id="txtTotal@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.TotalLeadLimit" ><br>
                     </td>
 
                 </tr>
@@ -142,19 +142,19 @@
                     <td class="text-center">@areaCode
                     </td>
                     <td class="text-center">
-                        <input type="text" id="txtFrequency@(areaCode)" class="textBoxWidth" value="@service.LeadFrequency" >
+                        <input type="text" id="txtFrequency@(areaCode)" class=" text-center leadLimit-control" value="@service.LeadFrequency" >
                     </td>
-                    <td>
+                    <td class="text-center">
                         <input type="checkbox" id="chkDaily@(areaCode)" class="chkInnerClass" checked="@service.IsDailyLeadLimit">
-                        Daily Lead Limit:<input type="text" id="txtDaily@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth"  value="@service.DailyLeadLimit" ><br>
+                        Daily Lead Limit : <input type="text" id="txtDaily@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control"  value="@service.DailyLeadLimit" ><br>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <input type="checkbox" id="chkMonthly@(areaCode)" class="chkInnerClass" checked="@service.IsMonthlyLeadLimit">
-                        Monthly Lead Limit:<input type="text" id="txtMonthly@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth" value="@service.MonthlyLeadLimit" ><br>
+                        Monthly Lead Limit : <input type="text" id="txtMonthly@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.MonthlyLeadLimit" ><br>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <input type="checkbox" id="chkTotal@(areaCode)" class="chkInnerClass" checked="@service.IsTotalLeadLimit">
-                        Total Lead Limit:<input type="text" id="txtTotal@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth" value="@service.TotalLeadLimit" ><br>
+                        Total Lead Limit : <input type="text" id="txtTotal@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.TotalLeadLimit" ><br>
                     </td>
 
                 </tr>
@@ -165,56 +165,7 @@
                          
                          
                          
-@*    var Count = 0;
-                         var ModelLength = 0;
-                         foreach (var leadlimit in Model.LeadLimitData)
-                         {
-                             var Service = (@leadlimit.ServiceId == 1009) ? "Local" : (@leadlimit.ServiceId == 1000) ? "Long" : "Both";
-                             var areaCode = (@leadlimit.AreaCodes == null) ? "Default" : @leadlimit.AreaCodes;
-                            
-                                     
-                <tr>
-                    <td>
-                        <input type="checkbox" name="group1" class='chkSelectClass' id="rdbtn@(Service)@(areaCode)"></td>
-                    <td id="tdBoth">@Service
-                    </td>
-                    <td>@areaCode
-                    </td>
-                    <td>
-                        <input type="text" id="txtFrequency@(areaCode)" class="textBoxWidth" value="@leadlimit.LeadFrequency" >
-                    </td>
-                    <td>
-                        <input type="checkbox" id="chkDaily@(areaCode)" class="chkInnerClass" checked="@leadlimit.IsDailyLeadLimit">
-                        Daily Lead Limit:<input type="text" id="txtDaily@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth"  value="@leadlimit.DailyLeadLimit" ><br>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="chkMonthly@(areaCode)" class="chkInnerClass" checked="@leadlimit.IsMonthlyLeadLimit">
-                        Monthly Lead Limit:<input type="text" id="txtMonthly@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth" value="@leadlimit.MonthlyLeadLimit" ><br>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="chkTotal@(areaCode)" class="chkInnerClass" checked="@leadlimit.IsTotalLeadLimit">
-                        Total Lead Limit:<input type="text" id="txtTotal@(areaCode)" disabled="disabled" class="classCheckVal textBoxWidth" value="@leadlimit.TotalLeadLimit" ><br>
-                    </td>
 
-                </tr>
-              
-                             if (@leadlimit.ServiceId != 0 && @leadlimit.AreaCodes == null)
-                             {
-
-                                 Count = Count + 1;
-
-                             }
-                             ModelLength = ModelLength + 1;
-
-                             if ((@leadlimit.ServiceId == 0 && @leadlimit.AreaCodes == null) || @Count > 1 || (Count == 1 && ModelLength == 1))
-                             {
-                <tr>
-                    <td class="col-md-6 text-center" colspan="7">----OR----
-                    </td>
-                </tr>
-                                 Count = 0;
-                             }
-                         }*@
 
                     }
 
@@ -271,7 +222,6 @@
                     var row = $(this).closest('tr');
                     var columns = row.find('td');
 
-                    debugger;
                     $.each(columns, function (i, item) {
                         if (i > 2) {
                             values = values + "," + $(this).closest('td').find("input:text").val().trim();
@@ -358,7 +308,7 @@
 
             }
             else {
-                alert("Please Select any");
+                alert("Please select atleast one");
                 return false;
 
             }

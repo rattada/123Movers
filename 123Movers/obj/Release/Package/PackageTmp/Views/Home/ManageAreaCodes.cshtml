@@ -32,8 +32,8 @@
                 </select>
 
 
-                <input type="button" id="add" value="Add -->" class="btn btn-primary" />
-                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary">
+                <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
+                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
 
 
                 <select name="areasSelected" id="areasSelected" style="width: 150px" size="20" multiple>
@@ -49,7 +49,7 @@
     <div class="col-md-6">
         <div class="row">
             <b>Default Price:</b>
-                <input type="text" id="txtDefaultPrice">
+                <input type="text" id="txtDefaultPrice" class="manageAreaCode-control">
         </div>
         <br />
         <div class="row">
@@ -132,8 +132,10 @@
                         }
                     });
 
-               
+                    if (json.length > 0) {
                         $('#areaCode').html(options);
+                    }
+                      
                    
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -192,8 +194,13 @@
 
                     $('#selectedareas').html(table);
 
-                    $('#areasSelected').html(options);
-  
+                    if (json.length > 0) {
+                        $('#areasSelected').html(options);
+                    }
+                    else
+                        $("#txtDefaultPrice").attr("disabled", "disabled")
+
+                  
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 

@@ -11,7 +11,7 @@ namespace _123Movers.Models
         [Display(Name = "Company ID")]
         public int? CompanyId { get; set; }
 
-        [Display(Name = "Service ID")]
+        [Display(Name = "Service")]
         public int? ServiceId { get; set; }
 
         [Display(Name = "Move Weight")]

@@ -12,13 +12,11 @@ using System.Globalization;
 
 namespace _123Movers.DataEntities
 {
-    public static class DataLayer
+    public partial class DataLayer
     {
-        static bool ret = false;
-        static readonly string DBConnString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
-        static SqlConnection ConnectToDb(string strCon)
+        public static SqlConnection ConnectToDb()
         {
-
+            string strCon = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
             SqlConnection conDB = null;
             try
             {
@@ -37,7 +35,7 @@ namespace _123Movers.DataEntities
         //{
 
 
-        //    using (SqlConnection dbCon = ConnectToDb(DBConnString))
+        //    using (SqlConnection dbCon = ConnectToDb())
         //    {
         //        SqlCommand cmdGetDetailsByCompanyName = new SqlCommand();
         //        cmdGetDetailsByCompanyName.Connection = dbCon;
@@ -67,7 +65,7 @@ namespace _123Movers.DataEntities
         //public static void RegisterUser(RegisterModel model)
         //{
 
-        //    using (SqlConnection dbCon = ConnectToDb(DBConnString))
+        //    using (SqlConnection dbCon = ConnectToDb())
         //    {
 
         //        SqlCommand cmdGetDetailsByCompanyName = new SqlCommand();
@@ -100,172 +98,167 @@ namespace _123Movers.DataEntities
 
         //}
 
-        public static bool SaveBudget(BudgetModel budget)
-        {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
-            {
-                SqlCommand cmdSaveBudget = new SqlCommand();
-                cmdSaveBudget.Connection = dbCon;
-                cmdSaveBudget.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdSaveBudget.CommandText = "usp_SaveBudget";
+        //public static bool SaveBudget(BudgetModel budget)
+        //{
+        //    using (SqlConnection dbCon = ConnectToDb())
+        //    {
+        //        SqlCommand cmdSaveBudget = new SqlCommand();
+        //        cmdSaveBudget.Connection = dbCon;
+        //        cmdSaveBudget.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmdSaveBudget.CommandText = "usp_SaveBudget";
 
 
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", budget.CompanyId);
-                //SqlParameter paramCompanyName = new SqlParameter("companyName", budget.CompanyName);
-                //SqlParameter paramCompanyHandle = new SqlParameter("companyHandle", budget.CompanyHandle);
-               // SqlParameter paramActive = new SqlParameter("isActive", budget.IsActive);
-                SqlParameter paramTotalBudget = new SqlParameter("totalBudget", budget.TotalBudget);
-                SqlParameter paramRemainingBudget = new SqlParameter("remainingBudget", budget.RemainingBudget);
-                SqlParameter paramBudgetAction = new SqlParameter("budgetAction", budget.BudgetAction);
-                SqlParameter paramRecurring = new SqlParameter("isRecurring", budget.IsRecurring);
-                SqlParameter paramRequireNoticeToCharge = new SqlParameter("isRequireNoticeToCharge", budget.IsRequireNoticeToCharge);
-                SqlParameter paramAgreementNumber = new SqlParameter("agreementNumber", budget.AgreementNumber);
-                SqlParameter paramMinCharge = new SqlParameter("minDaysToCharge", budget.MinDaysToCharge);
-                SqlParameter paramServices = new SqlParameter("service", budget.ServiceId);
-                SqlParameter paramType = new SqlParameter("type", budget.Type);
+        //        SqlParameter paramCompanyId = new SqlParameter("companyID", budget.CompanyId);
+        //        //SqlParameter paramCompanyName = new SqlParameter("companyName", budget.CompanyName);
+        //        //SqlParameter paramCompanyHandle = new SqlParameter("companyHandle", budget.CompanyHandle);
+        //       // SqlParameter paramActive = new SqlParameter("isActive", budget.IsActive);
+        //        SqlParameter paramTotalBudget = new SqlParameter("totalBudget", budget.TotalBudget);
+        //        SqlParameter paramRemainingBudget = new SqlParameter("remainingBudget", budget.RemainingBudget);
+        //        SqlParameter paramBudgetAction = new SqlParameter("budgetAction", budget.BudgetAction);
+        //        SqlParameter paramRecurring = new SqlParameter("isRecurring", budget.IsRecurring);
+        //        SqlParameter paramRequireNoticeToCharge = new SqlParameter("isRequireNoticeToCharge", budget.IsRequireNoticeToCharge);
+        //        SqlParameter paramAgreementNumber = new SqlParameter("agreementNumber", budget.AgreementNumber);
+        //        SqlParameter paramMinCharge = new SqlParameter("minDaysToCharge", budget.MinDaysToCharge);
+        //        SqlParameter paramServices = new SqlParameter("service", budget.ServiceId);
+        //        //SqlParameter paramType = new SqlParameter("type", budget.Type);
 
 
-                cmdSaveBudget.Parameters.Add(paramCompanyId);
-                //cmdSaveBudget.Parameters.Add(paramCompanyName);
-                //cmdSaveBudget.Parameters.Add(paramCompanyHandle);
-                //cmdSaveBudget.Parameters.Add(paramActive);
-                cmdSaveBudget.Parameters.Add(paramTotalBudget);
-                cmdSaveBudget.Parameters.Add(paramRemainingBudget);
-                cmdSaveBudget.Parameters.Add(paramBudgetAction);
-                cmdSaveBudget.Parameters.Add(paramRecurring);
-                cmdSaveBudget.Parameters.Add(paramRequireNoticeToCharge);
-                cmdSaveBudget.Parameters.Add(paramAgreementNumber);
-                cmdSaveBudget.Parameters.Add(paramMinCharge);
-                cmdSaveBudget.Parameters.Add(paramServices);
-                cmdSaveBudget.Parameters.Add(paramType);
+        //        cmdSaveBudget.Parameters.Add(paramCompanyId);
+        //        //cmdSaveBudget.Parameters.Add(paramCompanyName);
+        //        //cmdSaveBudget.Parameters.Add(paramCompanyHandle);
+        //        //cmdSaveBudget.Parameters.Add(paramActive);
+        //        cmdSaveBudget.Parameters.Add(paramTotalBudget);
+        //        cmdSaveBudget.Parameters.Add(paramRemainingBudget);
+        //        cmdSaveBudget.Parameters.Add(paramBudgetAction);
+        //        cmdSaveBudget.Parameters.Add(paramRecurring);
+        //        cmdSaveBudget.Parameters.Add(paramRequireNoticeToCharge);
+        //        cmdSaveBudget.Parameters.Add(paramAgreementNumber);
+        //        cmdSaveBudget.Parameters.Add(paramMinCharge);
+        //        cmdSaveBudget.Parameters.Add(paramServices);
+        //        //cmdSaveBudget.Parameters.Add(paramType);
 
-                SqlDataReader dr = cmdSaveBudget.ExecuteReader();
-                if (dr.Read())
-                {
+        //        var i = cmdSaveBudget.ExecuteNonQuery();
+                
+        //    }
+        //    return true;
 
-                    ret = dr.GetBoolean(0);
+        //}
 
-                }
-            }
-            return ret;
-
-        }
-
-        public static List<BudgetModel> GetBudget(string companyid)
-        {
-            List<BudgetModel> list = new List<BudgetModel>();
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
-            {
-                SqlCommand cmdGetCompany = new SqlCommand();
-                cmdGetCompany.Connection = dbCon;
-                cmdGetCompany.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdGetCompany.CommandText = "usp_GetCompanyBudget";
+        //public static List<BudgetModel> GetBudget(string companyid)
+        //{
+        //    List<BudgetModel> list = new List<BudgetModel>();
+        //    using (SqlConnection dbCon = ConnectToDb())
+        //    {
+        //        SqlCommand cmdGetCompany = new SqlCommand();
+        //        cmdGetCompany.Connection = dbCon;
+        //        cmdGetCompany.CommandType = System.Data.CommandType.StoredProcedure;
+        //        cmdGetCompany.CommandText = "usp_GetCompanyBudget";
 
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyid);
+        //        SqlParameter paramCompanyId = new SqlParameter("companyID", companyid);
              
 
-                cmdGetCompany.Parameters.Add(paramCompanyId);
+        //        cmdGetCompany.Parameters.Add(paramCompanyId);
      
 
 
-                DataTable dtResults = new DataTable();
+        //        DataTable dtResults = new DataTable();
 
-                SqlDataReader drResults = cmdGetCompany.ExecuteReader();
-                dtResults.Load(drResults);
+        //        SqlDataReader drResults = cmdGetCompany.ExecuteReader();
+        //        dtResults.Load(drResults);
 
-                foreach (DataRow row in dtResults.Rows)
-                {
-                    int? cid = null;
-                    int? sid = null;
-                    int? dcharge = null;
-                    DateTime? sdate = null;
-                    DateTime? edate = null;
-                    decimal? tbudget = null;
-                    decimal? rbudget = null;
-                    decimal? uAmount = null;
-                    bool recurring = false;
-                    bool notice = false;
+        //        foreach (DataRow row in dtResults.Rows)
+        //        {
+        //            int? cid = null;
+        //            int? sid = null;
+        //            int? dcharge = null;
+        //            DateTime? sdate = null;
+        //            DateTime? edate = null;
+        //            decimal? tbudget = null;
+        //            decimal? rbudget = null;
+        //            decimal? uAmount = null;
+        //            bool recurring = false;
+        //            bool notice = false;
 
-                    if (!string.IsNullOrEmpty(row["CompanyID"].ToString()))
-                    {
-                        cid = Convert.ToInt32(row["CompanyID"]);
-                    }
+        //            if (!string.IsNullOrEmpty(row["CompanyID"].ToString()))
+        //            {
+        //                cid = Convert.ToInt32(row["CompanyID"]);
+        //            }
 
-                    if (!string.IsNullOrEmpty(row["ServiceID"].ToString()))
-                    {
-                        sid = Convert.ToInt32(row["ServiceID"]);
-                    }
+        //            if (!string.IsNullOrEmpty(row["ServiceID"].ToString()))
+        //            {
+        //                sid = Convert.ToInt32(row["ServiceID"]);
+        //            }
 
-                    if (!string.IsNullOrEmpty(row["minDaysToCharge"].ToString()))
-                    {
-                        dcharge = Convert.ToInt32(row["minDaysToCharge"]);
-                    }
+        //            if (!string.IsNullOrEmpty(row["minDaysToCharge"].ToString()))
+        //            {
+        //                dcharge = Convert.ToInt32(row["minDaysToCharge"]);
+        //            }
 
-                    if (!string.IsNullOrEmpty(row["Budget Start Date"].ToString()))
-                    {
-                        sdate = Convert.ToDateTime(row["Budget Start Date"]).Date;
-                    }
+        //            if (!string.IsNullOrEmpty(row["Budget Start Date"].ToString()))
+        //            {
+        //                sdate = Convert.ToDateTime(row["Budget Start Date"]).Date;
+        //            }
 
-                    if (!string.IsNullOrEmpty(row["Budget End Date"].ToString()))
-                    {
-                        edate = Convert.ToDateTime(row["Budget End Date"]).Date;
-                    }
-                    if (!string.IsNullOrEmpty(row["Total Budget"].ToString()))
-                    {
-                        tbudget = Convert.ToDecimal(row["Total Budget"]);
-                    }
-                    if (!string.IsNullOrEmpty(row["Remaining Budget"].ToString()))
-                    {
-                        rbudget = Convert.ToDecimal(row["Remaining Budget"]);
-                    }
-                    if (!string.IsNullOrEmpty(row["Uncharged Amount"].ToString()))
-                    {
-                        uAmount = Convert.ToDecimal(row["Uncharged Amount"]);
-                    }
-                    if (!string.IsNullOrEmpty(row["IsReccurring"].ToString()))
-                    {
-                        recurring = Convert.ToBoolean(row["IsReccurring"]);
-                    }
+        //            if (!string.IsNullOrEmpty(row["Budget End Date"].ToString()))
+        //            {
+        //                edate = Convert.ToDateTime(row["Budget End Date"]).Date;
+        //            }
+        //            if (!string.IsNullOrEmpty(row["Total Budget"].ToString()))
+        //            {
+        //                tbudget = Convert.ToDecimal(row["Total Budget"]);
+        //            }
+        //            if (!string.IsNullOrEmpty(row["Remaining Budget"].ToString()))
+        //            {
+        //                rbudget = Convert.ToDecimal(row["Remaining Budget"]);
+        //            }
+        //            if (!string.IsNullOrEmpty(row["Uncharged Amount"].ToString()))
+        //            {
+        //                uAmount = Convert.ToDecimal(row["Uncharged Amount"]);
+        //            }
+        //            if (!string.IsNullOrEmpty(row["IsReccurring"].ToString()))
+        //            {
+        //                recurring = Convert.ToBoolean(row["IsReccurring"]);
+        //            }
 
-                    if (!string.IsNullOrEmpty(row["IsRequireNoticeToCharge"].ToString()))
-                    {
-                        notice = Convert.ToBoolean(row["IsRequireNoticeToCharge"]);
-                    }
+        //            if (!string.IsNullOrEmpty(row["IsRequireNoticeToCharge"].ToString()))
+        //            {
+        //                notice = Convert.ToBoolean(row["IsRequireNoticeToCharge"]);
+        //            }
 
-                    BudgetModel s = new BudgetModel
-                    {
+        //            BudgetModel s = new BudgetModel
+        //            {
 
-                        CompanyId = cid,
-                        CompanyName = row["Company Name"].ToString(),
-                        AX = row["AX Number"].ToString(),
-                        InsertionOrderId = row["Budget Insertion ID"].ToString(),
-                        AgreementNumber = row["agreementNumber"].ToString(),
-                        AreaCodes = row["Area Code"].ToString(),
-                        StartDate = sdate,
-                        EndDate = edate,
-                        TotalBudget = tbudget,
-                        RemainingBudget = rbudget,
-                        UnchargedAmount = uAmount,
-                        ServiceId = sid,
-                        MinDaysToCharge = dcharge,
-                        IsRecurring = recurring,
-                        IsRequireNoticeToCharge = notice,
-                        ContactPerson = row["contactPerson"].ToString()
-                    };
-                    list.Add(s);
-                }
+        //                CompanyId = cid,
+        //                CompanyName = row["Company Name"].ToString(),
+        //                AX = row["AX Number"].ToString(),
+        //                InsertionOrderId = row["Budget Insertion ID"].ToString(),
+        //                AgreementNumber = row["agreementNumber"].ToString(),
+        //                AreaCodes = row["Area Code"].ToString(),
+        //                StartDate = sdate,
+        //                EndDate = edate,
+        //                TotalBudget = tbudget,
+        //                RemainingBudget = rbudget,
+        //                UnchargedAmount = uAmount,
+        //                ServiceId = sid,
+        //                MinDaysToCharge = dcharge,
+        //                IsRecurring = recurring,
+        //                IsRequireNoticeToCharge = notice,
+        //                ContactPerson = row["contactPerson"].ToString()
+        //            };
+        //            list.Add(s);
+        //        }
 
 
-                return list;
-            }
-        }
+        //        return list;
+        //    }
+        //}
 
         public static IEnumerable<SearchModel> SearchCompany(SearchModel search)
         {
             List<SearchModel> list = new List<SearchModel>();
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetCompany = new SqlCommand();
                 cmdGetCompany.Connection = dbCon;
@@ -336,7 +329,7 @@ namespace _123Movers.DataEntities
 
         public static DataTable GetServices()
         {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetService = new SqlCommand();
                 cmdGetService.Connection = dbCon;
@@ -358,37 +351,10 @@ namespace _123Movers.DataEntities
             }
 
         }
-        public static DataTable GetAvailableAreas(int? companyId, int? serviceId)
-        {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
-            {
-                SqlCommand cmdGetAvailableAreas = new SqlCommand();
-                cmdGetAvailableAreas.Connection = dbCon;
-                cmdGetAvailableAreas.CommandType = System.Data.CommandType.StoredProcedure;
-                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
-                cmdGetAvailableAreas.CommandText = "usp_availableAreas"; //"usp_availableAreacoded";
-                if (serviceId == null)
-                {
-                    serviceId = 1009;
-                }
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-
-                cmdGetAvailableAreas.Parameters.Add(paramCompanyId);
-                cmdGetAvailableAreas.Parameters.Add(paramService);
-
-                DataTable dtResults = new DataTable();
-
-                SqlDataReader drResults = cmdGetAvailableAreas.ExecuteReader();
-                dtResults.Load(drResults);
-
-                return dtResults;
-
-            }
-        }
+      
         public static DataTable GetAvailableZipCodes(int? companyId, int? serviceId,int? areaCode)
         {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetAvailableAreas = new SqlCommand();
                 cmdGetAvailableAreas.Connection = dbCon;
@@ -418,7 +384,7 @@ namespace _123Movers.DataEntities
         }
         public static DataTable GetCompanyAreasZipCodes(int? companyId, int? serviceId, int? areaCode)
         {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetAvailableAreas = new SqlCommand();
                 cmdGetAvailableAreas.Connection = dbCon;
@@ -446,85 +412,13 @@ namespace _123Movers.DataEntities
 
             }
         }
-        public static DataTable GetCompanyAdByArea(int? companyId, int? serviceId)
-        {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
-            {
-                SqlCommand cmdGetCompanyAdByArea = new SqlCommand();
-                cmdGetCompanyAdByArea.Connection = dbCon;
-                cmdGetCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
-                cmdGetCompanyAdByArea.CommandText = "usp_getCompanyStateAreacodePrice"; //"usp_getCompanyStateAreacode";
-                if (serviceId == null)
-                {
-                    serviceId = 1009;
-                }
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-
-                cmdGetCompanyAdByArea.Parameters.Add(paramCompanyId);
-                cmdGetCompanyAdByArea.Parameters.Add(paramService);
-
-                DataTable dtResults = new DataTable();
-
-                SqlDataReader drResults = cmdGetCompanyAdByArea.ExecuteReader();
-                dtResults.Load(drResults);
-
-                return dtResults;
-
-            }
-        }
-        public static void AddCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
-        {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
-            {
-                SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
-                cmdAddCompanyAdByArea.Connection = dbCon;
-                cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdAddCompanyAdByArea.CommandText = "up_companyAreacodeAdd";//"usp_companyAdByAreaAdd";
-              
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramAreaCode = new SqlParameter("areacode", areaCode);
-
-                cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
-                cmdAddCompanyAdByArea.Parameters.Add(paramService);
-                cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
-
-
-                var i = cmdAddCompanyAdByArea.ExecuteNonQuery();
-
-            }
-        }
-
-        public static void DeleteCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
-        {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
-            {
-                SqlCommand cmdDeleteCompanyAdByArea = new SqlCommand();
-                cmdDeleteCompanyAdByArea.Connection = dbCon;
-                cmdDeleteCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
-                cmdDeleteCompanyAdByArea.CommandText = "up_companyAreacodeDelete";//"usp_companyAdByAreaDelete";
-
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramAreaCode = new SqlParameter("areacode", areaCode);
-
-                cmdDeleteCompanyAdByArea.Parameters.Add(paramCompanyId);
-                cmdDeleteCompanyAdByArea.Parameters.Add(paramService);
-                cmdDeleteCompanyAdByArea.Parameters.Add(paramAreaCode);
-
-
-                var i = cmdDeleteCompanyAdByArea.ExecuteNonQuery();
-
-            }
-        }
+        
+        
 
         //public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, int? areaCode, decimal? price, int? moveWeightID)
         //{
         //    int i = 0;
-        //    using (SqlConnection dbCon = ConnectToDb(DBConnString))
+        //    using (SqlConnection dbCon = ConnectToDb())
         //    {
         //        SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
         //        cmdAddCompanyAdByArea.Connection = dbCon;
@@ -550,37 +444,11 @@ namespace _123Movers.DataEntities
         //    }
         //    return true;
         //}
-        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, string areaCodes, int? moveWeightID)
-        {
-            int i = 0;
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
-            {
-                SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
-                cmdAddCompanyAdByArea.Connection = dbCon;
-                cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyPricePerLead";
-
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramAreaCode = new SqlParameter("areacodes", areaCodes);
-                SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", moveWeightID);
-
-                cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
-                cmdAddCompanyAdByArea.Parameters.Add(paramService);
-                cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
-                cmdAddCompanyAdByArea.Parameters.Add(paramMoveWeight);
-
-
-                i = cmdAddCompanyAdByArea.ExecuteNonQuery();
-
-
-            }
-            return true;
-        }
+        
         public static bool AddCompanyLeadLimit(LeadLimitModel leadlimit)
         {
             int i = 0;
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
                 cmdAddCompanyAdByArea.Connection = dbCon;
@@ -669,7 +537,7 @@ namespace _123Movers.DataEntities
             List<LeadLimitModel> leadLimitData = new List<LeadLimitModel>();
 
 
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetCompanyLeadLimit = new SqlCommand();
                 cmdGetCompanyLeadLimit.Connection = dbCon;
@@ -745,7 +613,7 @@ namespace _123Movers.DataEntities
 
         public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
         {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetCompanyPricePerLead = new SqlCommand();
                 cmdGetCompanyPricePerLead.Connection = dbCon;
@@ -772,7 +640,7 @@ namespace _123Movers.DataEntities
         }
         public static DataTable GetReports(int? companyId, int? serviceId)
         {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetCompanyPricePerLead = new SqlCommand();
                 cmdGetCompanyPricePerLead.Connection = dbCon;
@@ -800,7 +668,7 @@ namespace _123Movers.DataEntities
         public static bool AddCompanyZipCodesPerAreaCodes(int companyId, int serviceId, string areaCodes, int IsOrigin)
         {
             int i = 0;
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
                 cmdAddCompanyAdByArea.Connection = dbCon;
@@ -828,7 +696,7 @@ namespace _123Movers.DataEntities
             GeographyModel OriginAreaZip = new GeographyModel();
             List<GeographyModel> areacodes = new List<GeographyModel>();
             List<GeographyModel> zipcodes = new List<GeographyModel>();
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetCompanyServiceAreaCodes = new SqlCommand();
                 cmdGetCompanyServiceAreaCodes.Connection = dbCon;
@@ -960,7 +828,7 @@ namespace _123Movers.DataEntities
         public static bool AddCompanyAreaZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
         {
             int i = 0;
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdAddCompanyAreaZipCodes = new SqlCommand();
                 cmdAddCompanyAreaZipCodes.Connection = dbCon;
@@ -988,7 +856,7 @@ namespace _123Movers.DataEntities
         public static bool DeleteCompanyAreaZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
         {
             int i = 0;
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = dbCon;
@@ -1017,7 +885,7 @@ namespace _123Movers.DataEntities
         public static bool SaveMoveDistance(DistanceModel model)
         {
             int i = 0;
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = dbCon;
@@ -1049,7 +917,7 @@ namespace _123Movers.DataEntities
 
         public static DataTable GetCompanyMoveDistance(int? companyId, int? serviceId)
         {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetCompanyLeadLimit = new SqlCommand();
                 cmdGetCompanyLeadLimit.Connection = dbCon;
@@ -1073,7 +941,7 @@ namespace _123Movers.DataEntities
         }
         public static DataSet GetMoveWeights(int? companyId, int? serviceId)
         {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = dbCon;
@@ -1104,7 +972,7 @@ namespace _123Movers.DataEntities
         public static bool SaveMoveWeight(MoveWeightModel model)
         {
             int i = 0;
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = dbCon;
@@ -1135,7 +1003,7 @@ namespace _123Movers.DataEntities
             DestinationZipModel DestinationAreaZip = new DestinationZipModel();
             List<DestinationZipModel> areacodes = new List<DestinationZipModel>();
             List<DestinationZipModel> zipcodes = new List<DestinationZipModel>();
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetCompanyServiceAreaCodes = new SqlCommand();
                 cmdGetCompanyServiceAreaCodes.Connection = dbCon;
@@ -1232,7 +1100,7 @@ namespace _123Movers.DataEntities
         public static bool AddCompanyAreaDestinationZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
         {
             int i = 0;
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdAddCompanyAreaZipCodes = new SqlCommand();
                 cmdAddCompanyAreaZipCodes.Connection = dbCon;
@@ -1261,7 +1129,7 @@ namespace _123Movers.DataEntities
         public static bool DeleteCompanyAreaDestinationZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
         {
             int i = 0;
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = dbCon;
@@ -1290,7 +1158,7 @@ namespace _123Movers.DataEntities
 
         public static DataTable GetAvailableDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
         {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetAvailableAreas = new SqlCommand();
                 cmdGetAvailableAreas.Connection = dbCon;
@@ -1320,7 +1188,7 @@ namespace _123Movers.DataEntities
         }
         public static DataTable GetCompanyAreasDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
         {
-            using (SqlConnection dbCon = ConnectToDb(DBConnString))
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetAvailableAreas = new SqlCommand();
                 cmdGetAvailableAreas.Connection = dbCon;
@@ -1348,7 +1216,38 @@ namespace _123Movers.DataEntities
 
             }
         }
+        public static DataTable GetFilterResult(int companyID, int? serviceID)
+        {
+            DataTable dtResults = new DataTable();
 
+            try
+            {
+                using (SqlConnection dbCon = ConnectToDb())
+                {
+                    SqlCommand cmdGetService = new SqlCommand();
+                    cmdGetService.Connection = dbCon;
+                    cmdGetService.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmdGetService.CommandText = "usp_FilterResult";
+
+                    cmdGetService.Parameters.Add(new SqlParameter("companyID", companyID));
+                    cmdGetService.Parameters.Add(new SqlParameter("serviceID", serviceID));
+
+
+                    SqlDataReader drResults = cmdGetService.ExecuteReader();
+
+                    dtResults.Load(drResults);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dtResults;
+
+        }
 
     }
 
