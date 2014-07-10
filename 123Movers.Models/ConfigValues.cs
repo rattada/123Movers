@@ -60,6 +60,23 @@ namespace _123Movers.Models
 
             return services;
         }
+
+        public static SelectList DataTableToSelectList(DataTable table, string valueField, string textField)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (DataRow row in table.Rows)
+            {
+                list.Add(new SelectListItem()
+                {
+                    //Text = row[textField].ToString() + "-" + row[valueField].ToString(),
+                    Text = row[textField].ToString(),
+                    Value = row[valueField].ToString()
+                });
+            }
+
+            return new SelectList(list, "Value", "Text");
+        }
     }
     
 }

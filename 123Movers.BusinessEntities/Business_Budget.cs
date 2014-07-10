@@ -9,7 +9,7 @@ namespace _123Movers.BusinessEntities
 {
     public partial class BusinessLayer
     {
-        public static List<BudgetModel> GetBudget(string companyid)
+        public static List<BudgetModel> GetBudget(int? companyid)
         {
             return DataLayer.GetBudget(companyid);
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using _123Movers.Models.Models;
+using _123Movers.Models;
 
 namespace _123Movers.Controllers
 {

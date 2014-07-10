@@ -61,7 +61,8 @@
   <ItemGroup>
     <Compile Include="ConfigValues.cs" />
     <Compile Include="Models\AccountModel.cs" />
-    <Compile Include="Models\BudgetModel.cs" />
+    <Compile Include="Models\AreaCodes\AreaCodeModel.cs" />
+    <Compile Include="Models\Budget\BudgetModel.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\DestinationZipModel.cs" />

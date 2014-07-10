@@ -11,7 +11,7 @@ namespace _123Movers.DataEntities
     public partial class DataLayer
     {
         static SqlCommand _cmd;
-        public static List<BudgetModel> GetBudget(string companyid)
+        public static List<BudgetModel> GetBudget(int? companyid)
         {
             List<BudgetModel> list = new List<BudgetModel>();
             using (SqlConnection dbCon = DataLayer.ConnectToDb())

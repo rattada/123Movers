@@ -70,7 +70,7 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.GetCompanyPricePerLead(companyId, serviceId);
         }
-        public static bool AddCompanyZipCodesPerAreaCodes(int companyId, int serviceId, string areaCodes, int IsOrigin)
+        public static bool AddCompanyZipCodesPerAreaCodes(int? companyId, int serviceId, string areaCodes, int IsOrigin)
         {
             return DataLayer.AddCompanyZipCodesPerAreaCodes(companyId, serviceId, areaCodes, IsOrigin);
         }
@@ -142,7 +142,7 @@ namespace _123Movers.BusinessEntities
             return DataLayer.GetCompanyDestinationServiceAreaCodes(companyId, serviceId);
         }
 
-        public static DataTable GetFilterResult(int companyID, int? serviceID)
+        public static DataTable GetFilterResult(int? companyID, int? serviceID)
         {
             return DataLayer.GetFilterResult(companyID, serviceID);
         }

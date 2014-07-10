@@ -55,5 +55,7 @@ namespace _123Movers.Models
 
         public IEnumerable<SearchModel> Companies { get; set; }
 
+        public CompanyModel _companyInfo { get; set; }
+
     }
 }

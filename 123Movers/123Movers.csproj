@@ -193,6 +193,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AreaCodeController.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -336,19 +337,20 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Search.cshtml" />
-    <Content Include="Views\Home\GetBudget.cshtml" />
-    <Content Include="Views\Home\AddBudget.cshtml" />
+    <Content Include="Views\Budget\AddBudget.cshtml" />
     <Content Include="Views\Home\AddCompany.cshtml" />
-    <Content Include="Views\Home\EditBudget.cshtml" />
+    <Content Include="Views\Budget\EditBudget.cshtml" />
     <Content Include="Views\Home\Notifications.cshtml" />
     <Content Include="Views\Home\ManageAreaCodes.cshtml" />
-    <Content Include="Views\Home\_CompanyInfo.cshtml" />
+    <Content Include="Views\Shared\_CompanyInfo.cshtml" />
     <Content Include="Views\Home\CompanyLeadLimit.cshtml" />
     <Content Include="Views\Home\Geography.cshtml" />
     <Content Include="Views\Home\Distance.cshtml" />
     <Content Include="Views\Home\MoveWeight.cshtml" />
     <Content Include="Views\Home\DestinationZipCodes.cshtml" />
     <Content Include="Views\Report\Reports.cshtml" />
+    <Content Include="Views\Budget\GetBudget.cshtml" />
+    <Content Include="Views\AreaCode\AreaCodes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

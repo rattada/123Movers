@@ -18,244 +18,9 @@ namespace _123Movers.Controllers
         {
             return View();
         }
-       
-
-        public JsonResult GetServices()
-        {
-            var services = BusinessLayer.GetServies();
-            List<List<string>> list = ConfigValues.retListTable(services);
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-        public JsonResult GetAvailableAreas(int? companyId, int? serviceId)
-        {
-            var services = BusinessLayer.GetAvailableAreas(companyId, serviceId);
-            List<List<string>> list = ConfigValues.retListTable(services);
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-        public JsonResult GetCompanyAreasWithPrices(int? companyId, int? serviceId)
-        {
-            var services = BusinessLayer.GetCompanyAreasWithPrices(companyId, serviceId);
-            List<List<string>> list = ConfigValues.retListTable(services);
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-        
-        [HttpGet]
-        public ActionResult AddBudget()
-        {
-            ViewBag.Terms = ConfigValues.Terms();
-
-            ViewBag.Services = ConfigValues.Services();
-
-            BudgetModel budgget = new BudgetModel();
-
-            //budgget.CompanyId = search.CompanyId;
-            //budgget.CompanyName = search.CompanyName;
-            //budgget.AX = search.AX;
-            //budgget.IsActive = search.IsActive;
-
-            //budgget.DisplayName = search.DisplayName;
-            //budgget.ContactPerson = search.ContactPerson;
-            //budgget.CompanyHandle = search.CompanyHandle;
-
-            //HttpContext.Application["CompanyId"] = budgget.CompanyId;
-            //HttpContext.Application["CompanyName"] = budgget.CompanyName;
-            //HttpContext.Application["Ax"] = budgget.AX;
-            //HttpContext.Application["IsActive"] = budgget.IsActive;
-            //HttpContext.Application["DisplayName"] = budgget.DisplayName;
-            //HttpContext.Application["ContactPerson"] = budgget.ContactPerson;
-            //HttpContext.Application["CompanyHandle"] = budgget.CompanyHandle;
 
 
-            return View(budgget);
-        }
-        //  [HttpGet]
-        //public ActionResult AddBudget(string companyid, string companyName, string ax, bool active, string contactperson, string companyHandle,string displayname)
-        //  {
-        //      ViewBag.Terms = Terms();
-
-        //      ViewBag.Services = Services();
-
-        //      BudgetModel budgget = new BudgetModel();
-
-        //      budgget.CompanyId = Convert.ToInt32(companyid);
-        //      budgget.CompanyName = companyName;
-        //      budgget.AX = ax;
-        //      budgget.IsActive = active;
-
-
-        //      HttpContext.Application["CompanyId"] = budgget.CompanyId;
-        //      HttpContext.Application["CompanyName"] = companyName;
-        //      HttpContext.Application["Ax"] = ax;
-        //      HttpContext.Application["IsActive"] = active;
-        //      HttpContext.Application["DisplayName"] = displayname;
-        //      HttpContext.Application["ContactPerson"] = contactperson;
-        //      HttpContext.Application["CompanyHandle"] = companyHandle;
-
-        //      return View(budgget);
-        //  }
-
-        [HttpPost]
-        // [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult AddBudget(BudgetModel budget)
-        {
-
-            ViewBag.Terms = ConfigValues.Terms();
-            ViewBag.Services = ConfigValues.Services();
-
-            try
-            {
-                
-                //if (ModelState.IsValid)
-                //{
-                var cmd = (string)Session["CompanyId"];
-                budget.CompanyId = Convert.ToInt32(cmd);
-                budget.CompanyName = (string)Session["CompanyName"];
-                budget.AX = (string)Session["Ax"];
-                budget.IsActive = (bool)Session["IsActive"];
-                //budget.DisplayName = (string)Session["DisplayName"];
-                budget.ContactPerson = (string)Session["ContactPerson"];
-                // budget.CompanyHandle = (string)Session["CompanyHandle"];
-                //budget.Type = "NEW";
-
-                if (budget.TermType == "0")
-                {
-                    budget.IsRecurring = true;
-                    budget.IsRequireNoticeToCharge = false;
-                }
-                else if (budget.TermType == "1")
-                {
-                    budget.IsRecurring = false;
-                    budget.IsRequireNoticeToCharge = false;
-                }
-                else
-                {
-                    budget.IsRecurring = true;
-                    budget.IsRequireNoticeToCharge = true;
-                }
-
-                BusinessLayer.SaveBudget(budget);
-                // ModelState.Clear();
-                ViewBag.Success = "Budget saved successfully..";
-                //return View();
-                return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX,  budget.ContactPerson, budget.Suspended, budget.IsActive });
-
-                //}
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-            }
-            return View(budget);
-
-
-        }
-        [HttpGet]
-        public ActionResult EditBudget(decimal? TotalBudget, bool IsRecurring, bool IsRequireNoticeToCharge, int? serviceId, string agnumber, int? minDaysToCharge)
-        {
-            BudgetModel budget = new BudgetModel();
-            ViewBag.Terms = ConfigValues.Terms();
-            ViewBag.Services = ConfigValues.Services();
-            int Service = (serviceId == 1009) ? 1009 : (serviceId == 1000) ? 1000 : 999;
-            string Recurring = (IsRecurring) ? (IsRequireNoticeToCharge) ? "2" : "0" : "1";
-            budget.TotalBudget = TotalBudget;
-            budget.IsRecurring = IsRecurring;
-            budget.IsRequireNoticeToCharge = IsRequireNoticeToCharge;
-            budget.ServiceId = Service;
-            budget.MinDaysToCharge = minDaysToCharge;
-            budget.AgreementNumber = agnumber;
-            budget.TermType = Recurring;
-
-            var cmd = (string)Session["CompanyId"];
-            budget.CompanyId = Convert.ToInt32(cmd);
-            budget.CompanyName = (string)Session["CompanyName"];
-            budget.AX = (string)Session["Ax"];
-            budget.IsActive = (bool)Session["IsActive"];
-            budget.Suspended = (string)Session["Suspended"];
-            budget.ContactPerson = (string)Session["ContactPerson"];
-
-            return View(budget);
-
-
-        }
-        [HttpPost]
-        public ActionResult EditBudget(BudgetModel budget)
-        {
-
-            ViewBag.Terms = ConfigValues.Terms();
-            ViewBag.Services = ConfigValues.Services();
-
-            try
-            {
-
-                var cmd = (string)Session["CompanyId"];
-                budget.CompanyId = Convert.ToInt32(cmd);
-                budget.CompanyName = (string)Session["CompanyName"];
-                budget.AX = (string)Session["Ax"];
-                budget.IsActive = (bool)Session["IsActive"];
-                budget.Suspended = (string)Session["    "];
-                budget.ContactPerson = (string)Session["ContactPerson"];
-                budget.BudgetAction = "RENEWAL INSERTION";
-                //budget.Type = "EDIT";
-
-                if (budget.TermType == "0")
-                {
-
-                    budget.IsRecurring = true;
-                    budget.IsRequireNoticeToCharge = false;
-                }
-                else if (budget.TermType == "1")
-                {
-                    budget.IsRecurring = false;
-                    budget.IsRequireNoticeToCharge = false;
-                }
-                else
-                {
-                    budget.IsRecurring = true;
-                    budget.IsRequireNoticeToCharge = true;
-                }
-
-                BusinessLayer.SaveBudget(budget);
-
-                return RedirectToAction("GetBudget", "Home", new { budget.CompanyId, budget.CompanyName, budget.AX, budget.ContactPerson, budget.Suspended, budget.IsActive });
-
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-            }
-            return View(budget);
-
-        }
-
-
-        [HttpGet]
-        public ActionResult GetBudget(string companyid, string companyName, string ax, string contactperson, string suspended, bool active = false)
-        {
-
-            // MoversEntities dc = new MoversEntities();
-            IEnumerable<BudgetModel> budgetList = new List<BudgetModel>();
-            SearchModel search = new SearchModel();
-            //var cmpid = Convert.ToInt32(companyid);
-            budgetList = BusinessLayer.GetBudget(companyid);
-
-            var tbilled = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.TotalBudget);
-            var uamount = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.UnchargedAmount);
-
-            ViewBag.TotalBilled = String.Format("{0:C}", tbilled);
-            ViewBag.UnchargedAmount = String.Format("{0:C}", uamount);
-
-            Session["CompanyId"] = companyid;
-            Session["CompanyName"] = companyName;
-            Session["Ax"] = ax;
-            Session["IsActive"] = active;
-            Session["Suspended"] = suspended;
-            Session["ContactPerson"] = contactperson;
-
-            search.budget = budgetList;
-           
-            return View(search);
-        }
-
+      
 
         [HttpGet]
         public ActionResult Search()
@@ -272,7 +37,7 @@ namespace _123Movers.Controllers
                 {
                     return View(search);
                 }
-
+                
                 var companies = BusinessLayer.SearchCompany(search);
                 search.Companies = companies;
                 //if (budget.Count() > 0)
@@ -300,137 +65,16 @@ namespace _123Movers.Controllers
             return View(search);
         }
 
-        public ActionResult ManageAreaCodes(int? companyId, int? serviceId, string companyName)
-        {
-            ViewBag.CompanyID = companyId;
-            ViewBag.CompanyName = companyName;
-            ViewBag.ServiceID = serviceId;
+        
 
-
-            return View();
-        }
-        public ActionResult AddAreaCodes(int? companyId, int? serviceId, string companyName, string areaCodes)
-        {
-            IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
-
-            foreach (var areacode in areacodelist)
-            {
-                BusinessLayer.AddCompanyAdByArea(companyId, serviceId, Convert.ToInt16(areacode));
-            }
-            return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
-        }
-
-        public ActionResult DeleteAreaCodes(int? companyId, int? serviceId, string companyName, string areaCodes)
-        {
-            IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
-
-            foreach (var areacode in areacodelist)
-            {
-                BusinessLayer.DeleteCompanyAdByArea(companyId, serviceId, Convert.ToInt16(areacode));
-            }
-            return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
-        }
-
-        [HttpPost]
-        public JsonResult AddCompanyPricePerLead(int? companyId, int? serviceId, string companyName, string areaCodes)
-        {
-            
-            JsonResult result;
-            try
-            {
-
-                BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, areaCodes, null);
-                result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
-                //IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
-
-                //foreach (var areacode in areacodelist)
-                //{
-                //    var s = areacode.Split('-');
-                //    //int? acode = s[0] != null ?  Convert.ToInt32(s[0]) : null;
-                //    if (s[0].ToString() == "null")
-                //    {
-                //        if (BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, null, Convert.ToDecimal(s[1]), null))
-                //        {
-                //            result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
-                //        }
-                //        else
-                //        {
-                //            throw new ApplicationException(string.Format("An error occurred while saving"));
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if (BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, Convert.ToInt16(s[0]), Convert.ToDecimal(s[1]), null))
-                //        {
-                //            result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
-                //        }
-                //        else
-                //        {
-                //            throw new ApplicationException(string.Format("An error occurred while saving"));
-                //        }
-                //    }
-                   
-                //}
-
-            }
-            catch (Exception ex)
-            {
-                result = Json(new { success = false, message = "An error occurred while saving."  + ex.Message}, JsonRequestBehavior.AllowGet);
-            }
-
-            return result;
-
-           // return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
-        }
-
-        //[HttpGet]
-        //public ActionResult CompanyLeadLimit(int? companyId, int? serviceId, string companyName)
-        //{
-        //    //ViewBag.CompanyID = companyId;
-        //    //ViewBag.CompanyName = companyName;
-        //    //ViewBag.ServiceID = serviceId;
-
-        //    ViewBag.Services = Services(null, true);
-
-        //    var avaAreaCodes = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
-
-        //    ViewBag.avaAreaCodes = DataTableToSelectList(avaAreaCodes, "areaCode", "state"); ;
-
-        //    var services = BusinessLayer.GetServies();
-
-        //    ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "state"); ;
-
-        //    LeadLimitModel ld = new LeadLimitModel();
-
-        //    return View(ld);
-        //}
-
-        //[HttpPost]
-        //public ActionResult CompanyLeadLimit(LeadLimitModel leadlimit)
-        //{
-        //    var cmd = (string)HttpContext.Application["CompanyId"];
-        //    leadlimit.CompanyId = Convert.ToInt32(cmd);
-        //    BusinessLayer.AddCompanyLeadLimit(leadlimit);
-        //    ViewBag.Services = Services(Convert.ToInt32(leadlimit.Services), true);
-            
-
-        //    var services = BusinessLayer.GetServies();
-
-        //    ViewBag.AreaCodes = DataTableToSelectList(services, "areaCode", "areaCode");
-
-        //    ModelState.Clear();
-        //    ViewBag.Success = "Lead saved successfully..";
-
-        //    return View(leadlimit);
-        //}
+    
 
         [HttpGet]
         public ActionResult CompanyLeadLimit(int? serviceId)
         {
-            int? companyId;
-            companyId = Convert.ToInt32((string)Session["CompanyId"]);
+                        
             LeadLimitModel ld = new LeadLimitModel();
-            var leadLimitData = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
+            var leadLimitData = BusinessLayer.GetCompanyLeadLimit(new CompanyModel().CurrentCompany.CompanyId, serviceId);
 
             return View(leadLimitData);
         }
@@ -443,10 +87,10 @@ namespace _123Movers.Controllers
             JsonResult result;
             try
             {
-                var cmd = (string)Session["CompanyId"];
+                
                 foreach (var ld in leadlimit)
                 {
-                    ld[0].CompanyId = Convert.ToInt32(cmd);
+                    ld[0].CompanyId = new CompanyModel().CurrentCompany.CompanyId;
                     BusinessLayer.AddCompanyLeadLimit(ld[0]);
                 }
                 ModelState.Clear();
@@ -535,22 +179,7 @@ namespace _123Movers.Controllers
         //    return Json(items, JsonRequestBehavior.AllowGet);
 
         //}
-        public  SelectList DataTableToSelectList(DataTable table, string valueField, string textField)
-        {
-            List<SelectListItem> list = new List<SelectListItem>();
-
-            foreach (DataRow row in table.Rows)
-            {
-                list.Add(new SelectListItem()
-                {
-                    //Text = row[textField].ToString() + "-" + row[valueField].ToString(),
-                    Text = row[textField].ToString(),
-                    Value = row[valueField].ToString()
-                });
-            }
-
-            return new SelectList(list, "Value", "Text");
-        }
+        
 
           [HttpPost]
         public JsonResult AddCompanyZipCodesPerAreaCodes(int serviceId, string areaCodes, int IsOrigin)
@@ -559,8 +188,8 @@ namespace _123Movers.Controllers
             JsonResult result;
             try
             {
-                string companyId = (string)Session["CompanyId"];
-                BusinessLayer.AddCompanyZipCodesPerAreaCodes(Convert.ToInt32(companyId), serviceId, areaCodes, IsOrigin);
+                
+                BusinessLayer.AddCompanyZipCodesPerAreaCodes(new CompanyModel().CurrentCompany.CompanyId, serviceId, areaCodes, IsOrigin);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
          
 
@@ -730,23 +359,23 @@ namespace _123Movers.Controllers
 
 
           [HttpPost]
-          public ActionResult Distance(DistanceModel model)
+          public JsonResult Distance(DistanceModel model)
           {
+              JsonResult result;
               ViewBag.Services = ConfigValues.Services().Take(2);
               try
               {
-                  var cmd = (string)Session["CompanyId"];
-                  model.CompanyId = Convert.ToInt32(cmd);
+                  model.CompanyId = new CompanyModel().CurrentCompany.CompanyId;
                   BusinessLayer.SaveMoveDistance(model);
 
-                  ViewBag.Success = "Saved Sucessfully";
+                  // ViewBag.Success = "Saved Sucessfully";
               }
               catch (Exception ex)
               {
 
               }
-              return View(model);
-              //return RedirectToAction("Distance", "Home", new { model.CompanyId, model.ServiceId });
+
+              return result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
           }
 
           [HttpGet]
@@ -757,14 +386,13 @@ namespace _123Movers.Controllers
 
               //ViewBag.MinMoveWeight = new SelectList(moveWeights, "Value", "Text", new { Value = 7 });
 
-              var cmd = (string)Session["CompanyId"];
+              int? cid = new CompanyModel().CurrentCompany.CompanyId;
+              DataSet ds = BusinessLayer.GetMoveWeights(cid, ServiceId);
 
-              DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), ServiceId);
-
-              ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
+              ViewBag.MinMoveWeight = ConfigValues.DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
               ViewBag.Services = ConfigValues.Services().Take(2);
               MoveWeightModel model = new MoveWeightModel();
-              model.CompanyId = Convert.ToInt32(cmd);
+              model.CompanyId = cid;
               if (ds.Tables[1].Rows.Count > 0)
               {
                   model.ServiceId = Convert.ToInt32(ds.Tables[1].Rows[0][1].ToString()); ;
@@ -774,36 +402,39 @@ namespace _123Movers.Controllers
               
               return View(model);
           }
-        [HttpPost]
-          public ActionResult MoveWeight(MoveWeightModel model)
-          {
-             var cmd = (string)Session["CompanyId"];
-              DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), model.ServiceId);
 
-              ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
+          [HttpPost]
+          public JsonResult MoveWeight(MoveWeightModel model)
+          {
+              JsonResult result;
+              int? cid = new CompanyModel().CurrentCompany.CompanyId;
+              DataSet ds = BusinessLayer.GetMoveWeights(cid, model.ServiceId);
+
+              ViewBag.MinMoveWeight = ConfigValues.DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
               ViewBag.Services = ConfigValues.Services().Take(2);
 
               try
               {
-                  model.CompanyId = Convert.ToInt32(cmd);
+                  model.CompanyId = cid;
                   BusinessLayer.SaveMoveWeight(model);
-                  ViewBag.Success = "Saved Sucessfully";
               }
-              catch {
+              catch
+              {
               }
-              return View(model);
+              return result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
           }
+
         public JsonResult GetMoveWeight(int? serviceId)
         {
-            var cmd = (string)Session["CompanyId"];
-            DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), serviceId);
+            
+            DataSet ds = BusinessLayer.GetMoveWeights(new CompanyModel().CurrentCompany.CompanyId, serviceId);
             List<List<string>> list = ConfigValues.retListTable(ds.Tables[1]);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetDistance(int? serviceId)
         {
-            var cmd = (string)Session["CompanyId"];
-            DataTable dt = BusinessLayer.GetCompanyMoveDistance(Convert.ToInt32(cmd), serviceId);
+            
+            DataTable dt = BusinessLayer.GetCompanyMoveDistance(new CompanyModel().CurrentCompany.CompanyId, serviceId);
             List<List<string>> list = ConfigValues.retListTable(dt);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -837,9 +468,8 @@ namespace _123Movers.Controllers
 
               try
               {
-                  var cmd = (string)Session["CompanyId"];
 
-                  var query = BusinessLayer.GetCompanyMoveDistance(Convert.ToInt32(cmd), ServiceId);
+                  var query = BusinessLayer.GetCompanyMoveDistance(new CompanyModel().CurrentCompany.CompanyId, ServiceId);
                   List<List<string>> list = ConfigValues.retListTable(query);
 
                   result = Json(list, JsonRequestBehavior.AllowGet);
@@ -855,13 +485,7 @@ namespace _123Movers.Controllers
 
           }
 
-          public JsonResult GetFilterResult(int? serviceId)
-          {
-              var cmd = (string)Session["CompanyId"];
-              DataTable dt = BusinessLayer.GetFilterResult(Convert.ToInt32(cmd), serviceId);
-              List<List<string>> list = ConfigValues.retListTable(dt);
-              return Json(list, JsonRequestBehavior.AllowGet);
-          }
+         
 
     }
 }

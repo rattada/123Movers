@@ -665,7 +665,7 @@ namespace _123Movers.DataEntities
 
             }
         }
-        public static bool AddCompanyZipCodesPerAreaCodes(int companyId, int serviceId, string areaCodes, int IsOrigin)
+        public static bool AddCompanyZipCodesPerAreaCodes(int? companyId, int serviceId, string areaCodes, int IsOrigin)
         {
             int i = 0;
             using (SqlConnection dbCon = ConnectToDb())
@@ -1216,7 +1216,7 @@ namespace _123Movers.DataEntities
 
             }
         }
-        public static DataTable GetFilterResult(int companyID, int? serviceID)
+        public static DataTable GetFilterResult(int? companyID, int? serviceID)
         {
             DataTable dtResults = new DataTable();
 

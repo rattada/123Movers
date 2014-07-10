@@ -116,10 +116,12 @@ namespace _123Movers.Models
          [Display(Name = "Insertion Order ID")]
          public string InsertionOrderId { get; set; }
 
-         //public string Type { get; set; }
 
         [Required]
         [Display(Name = "Terms")]
          public string TermType { get; set; }
+
+        public CompanyModel _companyInfo { get; set; }
+
     }
 }

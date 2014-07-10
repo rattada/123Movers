@@ -1,10 +1,11 @@
-﻿@{
-    ViewBag.Title = "ManageAreaCodes";
+﻿@model _123Movers.Models.AreaCodeModel
+@{
+    ViewBag.Title = "AreaCodes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
-    @Html.Partial("_CompanyInfo")
+     @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml", @Model._companyInfo)
 </div>
 
 <p class="clearfix"></p>
@@ -109,7 +110,7 @@
 
         function GetAvailableAreas(serviceId, ServiceType) {
             $.ajax({
-                url: '/Home/GetAvailableAreas',
+                url: '/AreaCode/GetAvailableAreas',
                 type: "GET",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId },
                 dataType: "json",
@@ -142,7 +143,7 @@
         function GetSelectedAreas(serviceId, ServiceType) {
 
             $.ajax({
-                url: '/Home/GetCompanyAreasWithPrices',
+                url: '/AreaCode/GetCompanyAreasWithPrices',
                 type: "GET",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId },
                 dataType: "json",
@@ -270,7 +271,7 @@
             var jsareacodes = JSON.stringify(areacodes);
 
             $.ajax({
-                url: '/Home/AddCompanyPricePerLead',
+                url: '/AreaCode/AddCompanyPricePerLead',
                 type: "POST",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: jsareacodes },
                 success: function (data) {
@@ -307,7 +308,7 @@
             }
             var data_to_send = JSON.stringify(selected);
             $.ajax({
-                url: '/Home/AddAreaCodes',
+                url: '/AreaCode/AddAreaCodes',
                 type: "POST",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
                 success: function (data) {
@@ -353,7 +354,7 @@
             }
             var data_to_send = JSON.stringify(selected);
             $.ajax({
-                url: '/Home/DeleteAreaCodes',
+                url: '/AreaCode/DeleteAreaCodes',
                 type: "POST",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
                 success: function (data) {
