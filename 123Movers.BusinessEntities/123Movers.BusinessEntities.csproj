@@ -56,6 +56,13 @@
     <Compile Include="BusinessLayer.cs" />
     <Compile Include="Business_AreaCodes.cs" />
     <Compile Include="Business_Budget.cs" />
+    <Compile Include="Business_DestinationZipCodes.cs" />
+    <Compile Include="Business_LeadLimit.cs" />
+    <Compile Include="Business_MoveDistance.cs" />
+    <Compile Include="Business_MoveWeight.cs" />
+    <Compile Include="Business_Notification.cs" />
+    <Compile Include="Business_OriginZipCodes.cs" />
+    <Compile Include="Business_Report.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

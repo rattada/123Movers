@@ -11,7 +11,7 @@
 
 <div class="row">
 
-    @Html.Partial("_CompanyInfo")
+     @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
 
 </div>
 <p class="clearfix"></p>
@@ -19,9 +19,6 @@
 
 @Html.AntiForgeryToken()
 @Html.ValidationSummary(true)
-
-@using (Html.BeginForm("Distance", "Home", FormMethod.Post, new { id = "frmDistance" }))
-{
 
     <p class="clearfix"></p>
     <div class="row">
@@ -47,14 +44,13 @@
             </div>
         </div>
     </div>
-    
 
     <div class="row">
-        <input type="submit" value='Save Distance' id='saveDistance' class="btn btn-primary pull-right" />
+        <input type="button" value='Save Distance' id='saveDistance' class="btn btn-primary pull-right" />
         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
 
     </div>
-}
+
 <script type="text/javascript">
     $(function () {
 
@@ -89,6 +85,26 @@
                 orgMinWeight = $("#MinMoveDistance").val();
                 orgMaxWeight = $("#MaxMoveDistance").val();
             }
+
+            var ModelData =
+                {
+                    ServiceId: serviceId,
+                    MinMoveDistance: orgMinWeight,
+                    MaxMoveDistance: orgMaxWeight
+
+                };
+            $.ajax({
+                url: '/Home/Distance',
+                type: "POST",
+                data: ModelData,
+                cache: false,
+                success: function (data) {
+                    alert("Distance data successfully saved");
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                }
+            });
         });
         $('#ddlServiceID').on("change", function () {
             var serviceId = $('#ddlServiceID option:selected').val();

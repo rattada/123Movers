@@ -166,6 +166,62 @@ namespace _123Movers.DataEntities
             }
 
         }
+        public static DataTable GetServices()
+        {
+            using (SqlConnection dbCon = ConnectToDb())
+            {
+                SqlCommand cmdGetService = new SqlCommand();
+                cmdGetService.Connection = dbCon;
+                cmdGetService.CommandType = System.Data.CommandType.StoredProcedure;
+                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
+                cmdGetService.CommandText = "usp_getAreaCodesStates";
+
+                SqlParameter paramType = new SqlParameter("queryType", 1);
+
+                cmdGetService.Parameters.Add(paramType);
+
+                DataTable dtResults = new DataTable();
+
+                SqlDataReader drResults = cmdGetService.ExecuteReader();
+                dtResults.Load(drResults);
+
+                return dtResults;
+
+            }
+
+        }
+        public static DataTable GetFilterResult(int? companyID, int? serviceID)
+        {
+            DataTable dtResults = new DataTable();
+
+            try
+            {
+                using (SqlConnection dbCon = ConnectToDb())
+                {
+                    SqlCommand cmdGetService = new SqlCommand();
+                    cmdGetService.Connection = dbCon;
+                    cmdGetService.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmdGetService.CommandText = "usp_FilterResult";
+
+                    cmdGetService.Parameters.Add(new SqlParameter("companyID", companyID));
+                    cmdGetService.Parameters.Add(new SqlParameter("serviceID", serviceID));
+
+
+                    SqlDataReader drResults = cmdGetService.ExecuteReader();
+
+                    dtResults.Load(drResults);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return dtResults;
+
+        }
 
     }
 }

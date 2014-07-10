@@ -1,4 +1,4 @@
-﻿@model  _123Movers.Models.DistanceModel
+﻿@model  _123Movers.Models.MoveDistanceModel
 
 @using _123Movers.Models;
 @{
@@ -94,7 +94,7 @@
 
                 };
             $.ajax({
-                url: '/Home/Distance',
+                url: '/MoveDistance/MoveDistance',
                 type: "POST",
                 data: ModelData,
                 cache: false,
@@ -110,7 +110,7 @@
             var serviceId = $('#ddlServiceID option:selected').val();
             if (serviceId != '') {
                 $.ajax({
-                    url: '/Home/GetDistance',
+                    url: '/MoveDistance/GetMoveDistance',
                     type: "GET",
                     data: { 'ServiceId': serviceId },
                     cache: false,

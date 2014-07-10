@@ -151,7 +151,7 @@ namespace _123Movers.Controllers
             budget.AgreementNumber = agnumber;
             budget.TermType = Recurring;
 
-            var cmd = (string)Session["CompanyId"];
+           
             budget._companyInfo = new CompanyModel().CurrentCompany;
             budget.CompanyId = budget._companyInfo.CompanyId;
             //budget.CompanyName = (string)Session["CompanyName"];

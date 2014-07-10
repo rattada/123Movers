@@ -56,6 +56,13 @@
     <Compile Include="DataLayer.cs" />
     <Compile Include="Data_AreaCodes.cs" />
     <Compile Include="Data_Budget.cs" />
+    <Compile Include="Data_DestinationZipCodes.cs" />
+    <Compile Include="Data_LeadLimit.cs" />
+    <Compile Include="Data_MoveDistance.cs" />
+    <Compile Include="Data_MoveWeight.cs" />
+    <Compile Include="Data_Notification.cs" />
+    <Compile Include="Data_OriginZipCodes.cs" />
+    <Compile Include="Data_Report.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -4,7 +4,7 @@
 }
 
 <div class="row">
-     @Html.Partial("_CompanyInfo")
+   @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
 </div>
 
 <p class="clearfix"></p>
@@ -47,7 +47,7 @@
     <div class="col-md-6">
         <div class="row">
             <b>Default Price:</b>
-                <input type="text" id="txtDefaultPrice" class="manageAreaCode-control">
+            <input type="text" id="txtDefaultPrice" class="manageAreaCode-control">
         </div>
         <br />
         <div class="row">
@@ -59,7 +59,7 @@
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <div id="selectedareas" class ="scrollable-table"></div>
+                            <div id="selectedareas" class="scrollable-table"></div>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
     $(function () {
         var serviceId;
         var ServiceType;
-
+        var k = 0;
         if ('@ViewBag.ServiceId' == 1000) {
             serviceId = 1000;
             ServiceType = 'long';
@@ -90,22 +90,22 @@
         }
         else if ('@ViewBag.ServiceId' == 1009) {
 
-             serviceId = 1009;
-             ServiceType = 'local';
-             $('#ServiceTab a:first').tab('show') // Select first 
-             $('li.cslong').hide();
-         }
-         else {
-             serviceId = 1009;
-             ServiceType = 'Both';
-             $('#ServiceTab a:first').tab('show') // Default first 
+            serviceId = 1009;
+            ServiceType = 'local';
+            $('#ServiceTab a:first').tab('show') // Select first 
+            $('li.cslong').hide();
+        }
+        else {
+            serviceId = 1009;
+            ServiceType = 'Both';
+            $('#ServiceTab a:first').tab('show') // Default first 
 
         }
 
         GetAvailableAreas(serviceId, ServiceType);
         GetSelectedAreas(serviceId, ServiceType);
 
-   
+
 
         function GetAvailableAreas(serviceId, ServiceType) {
             $.ajax({
@@ -130,8 +130,8 @@
                     if (json.length > 0) {
                         $('#areaCode').html(options);
                     }
-                      
-                   
+
+
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
@@ -161,41 +161,42 @@
                         } else {
                             options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                         }
-                        if (val[3] != null)
-                        {
+                        if (val[3] != null) {
                             $('#txtDefaultPrice').val(val[3].toString().slice(0, -2));
                         }
 
-                        if (i < Math.round(json.length / 2))
-                        {
+                        if (i < Math.round(json.length / 2)) {
                             var value = val[2].toString().slice(0, -2);
                             table1 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
                         }
-                        
+
                     });
                     table1 += "</tbody></table></div>";
 
                     var table2 = "<div class ='col-md-6' ><table class='table table-striped' id ='table2'><thead><tr><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
                     jQuery.each(json, function (i, val) {
-                        if (i >= Math.round(json.length / 2) && i < json.length)
-                        {
+                        if (i >= Math.round(json.length / 2) && i < json.length) {
                             var value = val[2].toString().slice(0, -2);
                             table2 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
                         }
                     });
 
-                    table2 += "</tbody></table></div>"; 
+                    table2 += "</tbody></table></div>";
                     table = table1 + table2;
 
                     $('#selectedareas').html(table);
 
                     if (json.length > 0) {
                         $('#areasSelected').html(options);
+                        $("#txtDefaultPrice").removeAttr("disabled");
                     }
-                    else
-                        $("#txtDefaultPrice").attr("disabled", "disabled")
+                    else {
+                        $("#txtDefaultPrice").attr("disabled", "disabled");
+                        $("#txtDefaultPrice").val('');
+                        $('#areasSelected').html('')
+                    }
 
-                  
+
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
@@ -216,7 +217,7 @@
                         alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                         return false;
                     }
-                    //areacodes.push(areacode + '-' + areaprice);
+
                     areacodes.push(areacode + '-' + 'NO-' + areaprice);
                 }
                 else {
@@ -226,12 +227,7 @@
                             return false;
                         }
                         areacodes.push(areacode + '-' + 'YES-' + defaultprice);
-                        //if (areacodes.length > 0)
-                        //{
-                        //    if (areacodes.indexOf('null-' + defaultprice) > -1) {
-                               
-                        //    } else { areacodes.push(null + '-' + defaultprice); }
-                        //}
+
                     }
                 }
 
@@ -245,7 +241,7 @@
                         alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                         return false;
                     }
-                    //areacodes.push(areacode + '-' + areaprice);
+
                     areacodes.push(areacode + '-' + 'NO-' + areaprice);
                 }
                 if (defaultprice.length > 0) {
@@ -255,11 +251,7 @@
                     }
 
                     areacodes.push(areacode + '-' + 'YES-' + defaultprice);
-                    //if (areacodes.length > 0) {
-                    //    if (areacodes.indexOf('null-' + defaultprice) > -1) {
 
-                    //    } else { areacodes.push(null + '-' + defaultprice); }
-                    //}
                 }
 
             });
@@ -270,15 +262,14 @@
                 alert('Please enter the price values');
                 return false;
             }
-            if (areacodes.length != rows && defaultprice.length == 0)
-            {
+            if (areacodes.length != rows && defaultprice.length == 0) {
                 alert('Please enter default price');
                 return false;
             }
 
             var jsareacodes = JSON.stringify(areacodes);
 
-           $.ajax({
+            $.ajax({
                 url: '/Home/AddCompanyPricePerLead',
                 type: "POST",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: jsareacodes },
@@ -289,7 +280,7 @@
                     } else {
                         alert("Error :" + data.message);
                     }
-                   
+
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     var errMessage = JSON.parse(xhr.responseText).customErrorMessage;
@@ -299,59 +290,99 @@
 
         });
 
-        $('#add').click(function (e) {
-            e.preventDefault();
+
+        $('#add').click(function () {
+
+            var Service = $("#ServiceTab > li.active >a").text();
+
             var selected = [];
             $('#areaCode :selected').each(function (i, el) {
                 selected[i] = $(this).val();
             });
+
+            if (selected.length == 0) {
+
+                alert("Please Select any Option to add");
+                return false;
+            }
             var data_to_send = JSON.stringify(selected);
             $.ajax({
                 url: '/Home/AddAreaCodes',
                 type: "POST",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
                 success: function (data) {
-                    location.reload();
+
+                    if (Service == "Local") {
+                        serviceId = 1009;
+                        GetAvailableAreas(serviceId, 'local');
+                        GetSelectedAreas(serviceId, 'local');
+                        $('#ServiceTab a:first').tab('show');
+
+                    }
+                    else {
+
+                        serviceId = 1000;
+                        GetAvailableAreas(serviceId, 'long');
+                        GetSelectedAreas(serviceId, 'long');
+                        $('#ServiceTab a:last').tab('show')
+
+                    }
+                    alert("Area Codes added Successfully");
+                    k = 1;
+
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
                 }
             });
-            if (serviceId == 1000) {
-                $('#ServiceTab a:last').tab('show') // Select last 
 
-            }
-            else {
 
-                $('#ServiceTab a:first').tab('show') // Select first 
-            }
         });
 
+
         $('#remove').click(function () {
+            var Service = $("#ServiceTab > li.active >a").text();
             var selected = [];
             $('#areasSelected :selected').each(function (i, el) {
                 selected[i] = $(this).val();
             });
+
+            if (selected.length == 0) {
+                alert("Please Select any Option to remove");
+                return false;
+            }
             var data_to_send = JSON.stringify(selected);
             $.ajax({
                 url: '/Home/DeleteAreaCodes',
                 type: "POST",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
                 success: function (data) {
-                    location.reload();
+
+                    if (Service == "Local") {
+
+                        serviceId = 1009;
+                        GetAvailableAreas(serviceId, 'local');
+                        GetSelectedAreas(serviceId, 'local');
+                        $('#ServiceTab a:first').tab('show')
+
+
+                    }
+                    else {
+
+                        serviceId = 1000;
+                        GetAvailableAreas(serviceId, 'long');
+                        GetSelectedAreas(serviceId, 'long');
+                        $('#ServiceTab a:last').tab('show')
+
+                    }
+                    alert("Area Codes removed Successfully");
+                    k = 1;
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
                 }
             });
-            if (serviceId == 1000) {
-                $('#ServiceTab a:last').tab('show') // Select last 
 
-            }
-            else {
-
-                $('#ServiceTab a:first').tab('show') // Select first 
-            }
         });
 
 
@@ -370,19 +401,23 @@
             }
 
         });
+        if (k == 0) {
+            $('#ServiceTab > li:first').click(function () {
 
-        $('#ServiceTab > li:first').click(function () {
+                serviceId = 1009;
+                GetAvailableAreas(serviceId, 'local');
+                GetSelectedAreas(serviceId, 'local');
+                $('#ServiceTab a:first').tab('show')
+            });
 
-            serviceId = 1009;
-            GetAvailableAreas(serviceId, 'local');
-            GetSelectedAreas(serviceId, 'local');
-        });
+            $('#ServiceTab > li:last').click(function () {
 
-        $('#ServiceTab > li:last').click(function () {
-            serviceId = 1000;
-            GetAvailableAreas(serviceId, 'long');
-            GetSelectedAreas(serviceId, 'long');
-        });
+                serviceId = 1000;
+                GetAvailableAreas(serviceId, 'long');
+                GetSelectedAreas(serviceId, 'long');
+                $('#ServiceTab a:last').tab('show')
+            });
+        }
 
         $("#saveprice").attr('disabled', 'disabled');
         $('#body').on('change keyup keydown', 'input, textarea', function (e) {

@@ -72,11 +72,11 @@
     <div class="row">
        <div class="col-md-12">
            @Html.ActionLink("Manage Area Codes", "AreaCodes", "AreaCode", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "managearea", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Lead Limit", "CompanyLeadLimit", "Home", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "leadlimit", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Origin", "Geography", "Home", new { companyid = @Model.CompanyId, serviceId = Service}, new { id = "geography", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Destination", "DestinationZipCodes", "Home", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Distance", "Distance", "Home", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "distance", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Move Weight", "MoveWeight", "Home", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Lead Limit", "LeadLimit", "LeadLimit", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "leadlimit", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Origin", "OriginZipCodes", "OriginZipCode", new { companyid = @Model.CompanyId, serviceId = Service}, new { id = "geography", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Destination", "DestinationZipCodes", "DestinationZipCode", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Distance", "MoveDistance", "MoveDistance", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "distance", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Move Weight", "MoveWeight", "MoveWeight", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default" })
        </div>
    </div>
 
@@ -301,49 +301,49 @@
         });
 
 
-        $("body").parent().on('click', "#btnGeography", function () {
-            var IsOrigin = '';
-            if ($('#anchorDestination').hasClass("btn btn-warning")) {
-                IsOrigin = 0;
-            }
-            else {
-                IsOrigin = 1;
-            }
+        //$("body").parent().on('click', "#btnGeography", function () {
+        //    var IsOrigin = '';
+        //    if ($('#anchorDestination').hasClass("btn btn-warning")) {
+        //        IsOrigin = 0;
+        //    }
+        //    else {
+        //        IsOrigin = 1;
+        //    }
 
-            var areacodes = [];
-            $('table tbody tr').each(function () {
-                $(this).find('input:checkbox:checked').each(function () {
+        //    var areacodes = [];
+        //    $('table tbody tr').each(function () {
+        //        $(this).find('input:checkbox:checked').each(function () {
 
-                    var textBoxValue = $(this).closest('tr').find('span').text();
-                    var areaCode = textBoxValue.split('--->');
-                    areacodes.push(areaCode[1]);
+        //            var textBoxValue = $(this).closest('tr').find('span').text();
+        //            var areaCode = textBoxValue.split('--->');
+        //            areacodes.push(areaCode[1]);
 
-                });
-            });
+        //        });
+        //    });
 
-            var jsareacodes = JSON.stringify(areacodes);
-            var serviceId = $('#services').val();
+        //    var jsareacodes = JSON.stringify(areacodes);
+        //    var serviceId = $('#services').val();
 
-            $.ajax({
-                url: '/Home/AddCompanyZipCodesPerAreaCodes',
-                type: "POST",
-                data: { 'serviceId': serviceId, areaCodes: jsareacodes, "IsOrigin": IsOrigin },
-                success: function (data) {
-                    if (data.success === true) {
-                        alert('AreaCodes Saved Suceessfully');
-                        //$("#btnGeography").attr('disabled', 'disabled');
-                    } else {
-                        alert("Error :" + data.message);
-                    }
+        //    $.ajax({
+        //        url: '/Home/AddCompanyZipCodesPerAreaCodes',
+        //        type: "POST",
+        //        data: { 'serviceId': serviceId, areaCodes: jsareacodes, "IsOrigin": IsOrigin },
+        //        success: function (data) {
+        //            if (data.success === true) {
+        //                alert('AreaCodes Saved Suceessfully');
+        //                //$("#btnGeography").attr('disabled', 'disabled');
+        //            } else {
+        //                alert("Error :" + data.message);
+        //            }
 
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    var errMessage = JSON.parse(xhr.responseText).customErrorMessage;
-                    alert('Error occurred while saving the AreaCodes' + errMessage);
-                }
-            });
+        //        },
+        //        error: function (xhr, ajaxOptions, thrownError) {
+        //            var errMessage = JSON.parse(xhr.responseText).customErrorMessage;
+        //            alert('Error occurred while saving the AreaCodes' + errMessage);
+        //        }
+        //    });
 
-        });
+        //});
 
 
 

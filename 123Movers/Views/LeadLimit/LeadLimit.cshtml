@@ -1,5 +1,5 @@
 ﻿@model _123Movers.Models.LeadLimitModel
-@using _123Movers.Models;
+
 @{
     ViewBag.Title = "Company Lead Limit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -294,7 +294,7 @@
             if (Filleddata.length != 0) {
                 $.ajax({
 
-                    url: '/Home/CompanyLeadLimit',
+                    url: '/LeadLimit/LeadLimit',
                     cache: false,
                     type: 'POST',
                     dataType: "json",

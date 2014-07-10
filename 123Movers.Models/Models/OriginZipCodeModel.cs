@@ -6,8 +6,9 @@ using System.Web;
 
 namespace _123Movers.Models
 {
-    public class GeographyModel
+    public class OriginZipCodeModel
     {
+
         [Display(Name = "Company ID")]
         public int? CompanyId { get; set; }
 
@@ -20,8 +21,8 @@ namespace _123Movers.Models
         [Display(Name = "ZipCode")]
         public int? ZipCode { get; set; }
 
-        public IEnumerable<GeographyModel> OriginAreaCodes { get; set; }
-        public IEnumerable<GeographyModel> OriginZipCodes { get; set; }
+        public IEnumerable<OriginZipCodeModel> OriginAreaCodes { get; set; }
+        public IEnumerable<OriginZipCodeModel> OriginZipCodes { get; set; }
         public CompanyModel _companyInfo { get; set; }
     }
 }

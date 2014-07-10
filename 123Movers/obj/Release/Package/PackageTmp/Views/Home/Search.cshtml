@@ -66,7 +66,7 @@
     //    {
     <div class="nav nav-pills navbar-inverse">
         <div class="container">
-            <h4 style="color: #fff">
+            <h4 style="color: #fff" id="CompanyCount">
                 @{
     var count = @Model.Companies != null ? @Model.Companies.Count() : 0;
                 }
@@ -117,10 +117,10 @@
 
                     <td class="text-center">
 
-                        @Html.ActionLink("Budget", "GetBudget", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Budget", "GetBudget", "Budget", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
                         @*<input type="button" value="Budgets" class="btn btn-primary" id ="btnBudget">*@
 
-                         @Html.ActionLink("Reports", "Reports", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
+                         @Html.ActionLink("Reports", "Reports", "Report", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
                         @*<input type="button" value="Reports" class="btn btn-primary btn-sm" id ="btnReports">*@
                     </td>
                 </tr>
@@ -162,11 +162,15 @@
             var insertionOrderId = $.trim($("#InsertionOrderId").val());
             //var agreementNumber = $.trim($("#AgreementNumber").val());
             //var areaCode = $.trim($("#AreaCode").val());
+
             if (companyname == "" && companyId == "" && ax == "" && insertionOrderId == "") {
                 alert('Please enter atleast one value');
-                //log("Please enter atleast one value");
-                return true;
+                $("#CompanyCount").text("0- Results");
+                $("#info").find("tr:gt(0)").remove();
+                $("#info tbody").append("<tr><td class='col-md-6 text-center' colspan='10'>No Results Found </td></tr>");
+                return false;
             }
+
 
 
         });

@@ -195,7 +195,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AreaCodeController.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
+    <Compile Include="Controllers\DestinationZipCodeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeadLimitController.cs" />
+    <Compile Include="Controllers\MoveDistanceController.cs" />
+    <Compile Include="Controllers\MoveWeightController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\OriginZipCodeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -340,17 +346,16 @@
     <Content Include="Views\Budget\AddBudget.cshtml" />
     <Content Include="Views\Home\AddCompany.cshtml" />
     <Content Include="Views\Budget\EditBudget.cshtml" />
-    <Content Include="Views\Home\Notifications.cshtml" />
-    <Content Include="Views\Home\ManageAreaCodes.cshtml" />
     <Content Include="Views\Shared\_CompanyInfo.cshtml" />
-    <Content Include="Views\Home\CompanyLeadLimit.cshtml" />
-    <Content Include="Views\Home\Geography.cshtml" />
-    <Content Include="Views\Home\Distance.cshtml" />
-    <Content Include="Views\Home\MoveWeight.cshtml" />
-    <Content Include="Views\Home\DestinationZipCodes.cshtml" />
     <Content Include="Views\Report\Reports.cshtml" />
     <Content Include="Views\Budget\GetBudget.cshtml" />
     <Content Include="Views\AreaCode\AreaCodes.cshtml" />
+    <Content Include="Views\LeadLimit\LeadLimit.cshtml" />
+    <Content Include="Views\OriginZipCode\OriginZipCodes.cshtml" />
+    <Content Include="Views\DestinationZipCode\DestinationZipCodes.cshtml" />
+    <Content Include="Views\MoveDistance\MoveDistance.cshtml" />
+    <Content Include="Views\MoveWeight\MoveWeight.cshtml" />
+    <Content Include="Views\Notification\Notifications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

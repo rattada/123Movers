@@ -61,17 +61,18 @@
   <ItemGroup>
     <Compile Include="ConfigValues.cs" />
     <Compile Include="Models\AccountModel.cs" />
-    <Compile Include="Models\AreaCodes\AreaCodeModel.cs" />
-    <Compile Include="Models\Budget\BudgetModel.cs" />
+    <Compile Include="Models\AreaCodeModel.cs" />
+    <Compile Include="Models\BudgetModel.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\DestinationZipModel.cs" />
-    <Compile Include="Models\DistanceModel.cs" />
-    <Compile Include="Models\GeographyModel.cs" />
     <Compile Include="Models\LeadLimitModel.cs" />
+    <Compile Include="Models\MoveDistanceModel.cs" />
     <Compile Include="Models\MoveWeightModel.cs" />
+    <Compile Include="Models\NotificationModel.cs" />
+    <Compile Include="Models\OriginZipCodeModel.cs" />
     <Compile Include="RegexPattern.cs" />
-    <Compile Include="Models\Report\ReportModel.cs" />
+    <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

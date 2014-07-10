@@ -10,7 +10,7 @@
 <script type="text/javascript" src="~/Scripts/jquery.tablesorter.min.js"></script>
  <div class="row">
     @* @Html.Partial("_CompanyInfo", @Model.budget.FirstOrDefault())*@
-      @Html.Partial("_CompanyInfo")
+      @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
                 </div>
  <p class="clearfix"></p>
 @if (@Model != null)
@@ -21,7 +21,7 @@
          <div class="col-md-12">
              @*<input type="button" id ="AddBudget" class="button" value="Add Budget" />*@
   @*<p>  @Html.ActionLink("Add a Budget", "AddBudget", "Home", new { companyid =(int?)@Session["CompanyId"], companyName = @Model.CompanyName, ax = @Model.AX, active = @Model.IsActive, displayname = @Model.DisplayName, contactperson = @Model.ContactPerson, companyHandle=@Model.CompanyHandle }, new {id = "AddBudget", @class = "btn btn-primary btn-lg btn-warning" })</p>*@
-             <p>  @Html.ActionLink("Add a Budget", "AddBudget", "Home", new {id = "AddBudget", @class = "btn btn-primary btn-lg btn-warning" })</p>
+             <p>  @Html.ActionLink("Add a Budget", "AddBudget", "Budget", new {id = "AddBudget", @class = "btn btn-primary btn-lg btn-warning" })</p>
              </div>
      </div>
     <div class="table-responsive">
@@ -103,7 +103,7 @@
                </td>
 
                 <td class="text-center">
-           <p> @Html.ActionLink("Edit", "EditBudget", "Home", new { TotalBudget =@lot.TotalBudget,IsRecurring =@lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge,ServiceId =@lot.ServiceId, agnumber=@lot.AgreementNumber,minDaysToCharge =@lot.MinDaysToCharge}, new {id = "EditBudget", @class = "btn btn-sm btn-primary" })</p>
+           <p> @Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget =@lot.TotalBudget,IsRecurring =@lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge,ServiceId =@lot.ServiceId, agnumber=@lot.AgreementNumber,minDaysToCharge =@lot.MinDaysToCharge}, new {id = "EditBudget", @class = "btn btn-sm btn-primary" })</p>
                                
                 </td>
             </tr>

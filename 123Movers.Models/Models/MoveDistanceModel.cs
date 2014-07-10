@@ -6,7 +6,7 @@ using System.Web;
 
 namespace _123Movers.Models
 {
-    public class DistanceModel
+    public class MoveDistanceModel
     {
         [Display(Name = "Company ID")]
         public int? CompanyId { get; set; }
@@ -25,7 +25,7 @@ namespace _123Movers.Models
         public decimal? MaxMoveDistance { get; set; }
 
         [Display(Name = "Move Weight Seq")]
-      //  [RegularExpression(RegexPattern.Decimal, ErrorMessage = "Max Move Weight must be a decimal.")]
+        //  [RegularExpression(RegexPattern.Decimal, ErrorMessage = "Max Move Weight must be a decimal.")]
         public decimal? MoveWeightSeq { get; set; }
 
         [Required]

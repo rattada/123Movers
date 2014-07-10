@@ -99,7 +99,7 @@
 
                };
             $.ajax({
-                url: '/Home/MoveWeight',
+                url: '/MoveWeight/MoveWeight',
                 type: "POST",
                 data: ModelData,
                 cache: false,
@@ -118,7 +118,7 @@
             var serviceId = $('#services option:selected').val();
             if (serviceId != '') {
                 $.ajax({
-                    url: '/Home/GetMoveWeight',
+                    url: '/MoveWeight/GetMoveWeight',
                     type: "GET",
                     data: { 'ServiceId': serviceId },
                     cache: false,

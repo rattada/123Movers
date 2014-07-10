@@ -11,8 +11,7 @@
 
 <div class="row">
 
-       @* @Html.Partial("_CompanyInfo", @Model)*@
-     @Html.Partial("_CompanyInfo")
+       @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
      
     </div>
 <p class="clearfix"></p>
@@ -44,7 +43,7 @@
 </div>
 
 <div class="row">
-    <input type="submit" id="savemoveweight" class="btn btn-primary pull-right" value="Save" />
+    <input type="button" id="savemoveweight" class="btn btn-primary pull-right" value="Save" />
     <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
 
 
@@ -91,6 +90,27 @@
                     orgMin = $('#minMoveWeight option:selected').val();
                 }
             }
+
+            var ModelData =
+               {
+                   ServiceId: serviceId,
+                   MinMoveWeightSeq: orgMin,
+                   MaxMoveWeightSeq: orgMax
+
+               };
+            $.ajax({
+                url: '/Home/MoveWeight',
+                type: "POST",
+                data: ModelData,
+                cache: false,
+                success: function (data) {
+                    alert("MoveWeight  data successfully saved");
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                }
+            });
+
 
 
         });

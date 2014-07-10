@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace _123Movers.Models.Models.Report
+namespace _123Movers.Models
 {
     public class ReportModel
     {

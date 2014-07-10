@@ -18,32 +18,25 @@
     <div class="row">
         <div class="col-md-5">
             <div class="form-group">
-                @Html.LabelFor(m => m.CompanyName, new { @class = "control-label col-md-4" })
+               <label class="control-label col-md-4">Name</label>
                 <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", id = "CompanyName" })</div>
                 @Html.ValidationMessageFor(m => m.CompanyName)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.CompanyId, new { @class = "control-label col-md-4" })
+               <label class="control-label col-md-4" id="lblCompanyId">Company ID</label>
                 <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyId, new { @class = "form-control", id = "CompanyId" })</div>
                 @Html.ValidationMessageFor(m => m.CompanyId)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.AX, new { @class = "control-label col-md-4" })
+               <label class="control-label col-md-4" id="lblAX">AX #</label>
                 <div class="col-md-8">@Html.TextBoxFor(m => m.AX, new { @class = "form-control", id = "AX" })</div>
                 @Html.ValidationMessageFor(m => m.AX)
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.InsertionOrderId, new { @class = "control-label col-md-4" })
+                <label class="control-label col-md-4" id="lblInsertionOrderId">Insertion Order ID</label>
                 <div class="col-md-8">@Html.TextBoxFor(m => m.InsertionOrderId, new { @class = "form-control", id = "InsertionOrderId" })</div>
                 @Html.ValidationMessageFor(m => m.InsertionOrderId)
-                @*  </div><div class="form-group">
-                        @Html.LabelFor(m => m.AgreementNumber, new { @class = "control-label col-md-4"})
-                        <div class="col-md-8">@Html.TextBoxFor(m => m.AgreementNumber, new { @class = "form-control" , id ="AgreementNumber" })</div>
-                        @Html.ValidationMessageFor(m => m.AgreementNumber)
-                     </div><div class="form-group">
-                        @Html.LabelFor(m => m.AreaCodes, new { @class = "control-label col-md-4"})
-                       <div class="col-md-8">@Html.TextBoxFor(m => m.AreaCodes, new { @class = "form-control", id ="AreaCode" })</div>
-                        @Html.ValidationMessageFor(m => m.AreaCodes)*@
+             
             </div>
 
         </div>
@@ -54,16 +47,10 @@
         </div>
     </div>
 
-   
-     
 }
 
 @if (@Model != null)
 {
-    //if (@Model.budget != null)
-    //{
-    //    if (@Model.budget.Count() > 0)
-    //    {
     <div class="nav nav-pills navbar-inverse">
         <div class="container">
             <h4 style="color: #fff" id="CompanyCount">
@@ -87,9 +74,7 @@
                 <th class="header text-center">AX #
                 </th>
 
-                @*            <th class="col-md-2">
-                Insertion Order ID
-            </th>*@
+                
                 <th class="header text-center" id="notSortID">Actions
                 </th>
             </tr>
@@ -110,17 +95,12 @@
                     <td class="text-center">
                         @lot.AX
                     </td>
-
-                    @* <td>
-                    @lot.InsertionOrderId
-                </td>*@
-
                     <td class="text-center">
 
-                        @Html.ActionLink("Budget", "GetBudget", "Budget", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Budget", "GetBudget", "Budget", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-info btn-sm" })
                         @*<input type="button" value="Budgets" class="btn btn-primary" id ="btnBudget">*@
 
-                         @Html.ActionLink("Reports", "Reports", "Report", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-primary btn-sm" })
+                         @Html.ActionLink("Reports", "Reports", "Report", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-info btn-sm" })
                         @*<input type="button" value="Reports" class="btn btn-primary btn-sm" id ="btnReports">*@
                     </td>
                 </tr>
@@ -129,23 +109,13 @@
             else
             {
                 <tr>
-                    <td class="col-md-6 text-center" colspan="10">No Results Found
+                    <td class="col-md-6 text-center" colspan="10"><b>No Results Found</b>
                     </td>
                 </tr>
             }
         </table>
     </div>
-@*   }
-        else
-        {
-    <table>
-        <tr>
-             <td class="col-md-6 text-center" colspan="10">No Results found
-            </td>
-        </tr>
-    </table>
-        }
-    }*@
+
 
 }
 
@@ -160,36 +130,16 @@
             var companyId = $.trim($("#CompanyId").val());
             var ax = $.trim($("#AX").val());
             var insertionOrderId = $.trim($("#InsertionOrderId").val());
-            //var agreementNumber = $.trim($("#AgreementNumber").val());
-            //var areaCode = $.trim($("#AreaCode").val());
-
             if (companyname == "" && companyId == "" && ax == "" && insertionOrderId == "") {
                 alert('Please enter atleast one value');
                 $("#CompanyCount").text("0- Results");
                 $("#info").find("tr:gt(0)").remove();
-                $("#info tbody").append("<tr><td class='col-md-6 text-center' colspan='10'>No Results Found </td></tr>");
+                $("#info tbody").append("<tr><td class='col-md-6 text-center' colspan='10'><b>No Results Found </b></td></tr>");
+                $("#info").sortable(false);
                 return false;
             }
 
-
-
         });
-        //$('#btnBudget').click(function () {
-
-        //    var id = $(this).parents('tr').children(':first').text();
-        //$.ajax({
-        //    url: '/Home/GetBudget',
-        //    type: "POST",
-        //    data: {
-        //        "companyid": id
-        //    }//,
-        //    //success: function (data) {
-
-        //    //},
-        //    //error: function (xhr, ajaxOptions, thrownError) {
-        //    //}
-        //});
-        //});
 
         function log(str) {
             var self = this,
