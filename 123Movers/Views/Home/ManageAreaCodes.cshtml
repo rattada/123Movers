@@ -81,7 +81,7 @@
     $(function () {
         var serviceId;
         var ServiceType;
-
+        debugger;
         if ('@ViewBag.ServiceId' == 1000) {
             serviceId = 1000;
             ServiceType = 'long';
@@ -191,9 +191,13 @@
 
                     if (json.length > 0) {
                         $('#areasSelected').html(options);
+                        $("#txtDefaultPrice").removeAttr("disabled");
                     }
-                    else
-                        $("#txtDefaultPrice").attr("disabled", "disabled")
+                    else {
+                        $("#txtDefaultPrice").attr("disabled", "disabled");
+                        $("#txtDefaultPrice").val('');
+                        $('#areasSelected').html('')
+                    }
 
                   
                 },
@@ -299,8 +303,8 @@
 
         });
 
-        $('#add').click(function (e) {
-            e.preventDefault();
+        $('#add').click(function () {
+            
             var selected = [];
             $('#areaCode :selected').each(function (i, el) {
                 selected[i] = $(this).val();
@@ -317,12 +321,11 @@
 
                 }
             });
+            //alert(serviceId);
             if (serviceId == 1000) {
                 $('#ServiceTab a:last').tab('show') // Select last 
-
             }
             else {
-
                 $('#ServiceTab a:first').tab('show') // Select first 
             }
         });
@@ -346,10 +349,8 @@
             });
             if (serviceId == 1000) {
                 $('#ServiceTab a:last').tab('show') // Select last 
-
             }
             else {
-
                 $('#ServiceTab a:first').tab('show') // Select first 
             }
         });
@@ -379,6 +380,7 @@
         });
 
         $('#ServiceTab > li:last').click(function () {
+            
             serviceId = 1000;
             GetAvailableAreas(serviceId, 'long');
             GetSelectedAreas(serviceId, 'long');

@@ -31,8 +31,8 @@ namespace _123Movers.Models
         public string InsertionOrderId { get; set; }
 
         //[Required]
-        [Display(Name = "Area Codes")]
-        public string AreaCodes { get; set; }
+        //[Display(Name = "Area Codes")]
+        //public string AreaCodes { get; set; }
 
         //[Required]
         [Display(Name = "Agreement")]

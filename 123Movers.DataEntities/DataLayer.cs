@@ -267,11 +267,11 @@ namespace _123Movers.DataEntities
                 cmdGetCompany.CommandText = "usp_companySearchv3";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", search.CompanyId);
-                SqlParameter paramCompanyName = new SqlParameter("companyName", search.CompanyName);
+                SqlParameter paramCompanyName = new SqlParameter("companyName", !string.IsNullOrWhiteSpace(search.CompanyName) ? search.CompanyName.Trim() : null);
                 //SqlParameter paramAreacode = new SqlParameter("areaCode", search.AreaCodes);
                 //SqlParameter paramAgreement = new SqlParameter("agreement", search.AgreementNumber);
-                SqlParameter paramAx = new SqlParameter("ax", search.AX);
-                SqlParameter paramInsertion = new SqlParameter("insertionOrderId", search.InsertionOrderId);
+                SqlParameter paramAx = new SqlParameter("ax", !string.IsNullOrWhiteSpace(search.AX) ? search.AX.Trim() : null);
+                SqlParameter paramInsertion = new SqlParameter("insertionOrderId", !string.IsNullOrWhiteSpace(search.InsertionOrderId) ? search.InsertionOrderId.Trim() : null);
 
                 cmdGetCompany.Parameters.Add(paramCompanyId);
                 cmdGetCompany.Parameters.Add(paramCompanyName);

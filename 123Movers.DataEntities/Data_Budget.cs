@@ -10,28 +10,28 @@ namespace _123Movers.DataEntities
 {
     public partial class DataLayer
     {
-        static SqlCommand cmd;
+        static SqlCommand _cmd;
         public static List<BudgetModel> GetBudget(string companyid)
         {
             List<BudgetModel> list = new List<BudgetModel>();
             using (SqlConnection dbCon = DataLayer.ConnectToDb())
             {
-                cmd = new SqlCommand();
-                cmd.Connection = dbCon;
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = "usp_GetCompanyBudget";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = "usp_GetCompanyBudget";
 
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyid);
 
 
-                cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramCompanyId);
 
 
 
                 DataTable dtResults = new DataTable();
 
-                SqlDataReader drResults = cmd.ExecuteReader();
+                SqlDataReader drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
                 foreach (DataRow row in dtResults.Rows)
@@ -125,10 +125,10 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = DataLayer.ConnectToDb())
             {
-                cmd = new SqlCommand();
-                cmd.Connection = dbCon;
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = "usp_SaveBudget";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = "usp_SaveBudget";
 
 
 
@@ -147,21 +147,21 @@ namespace _123Movers.DataEntities
                 //SqlParameter paramType = new SqlParameter("type", budget.Type);
 
 
-                cmd.Parameters.Add(paramCompanyId);
-                //cmd.Parameters.Add(paramCompanyName);
-                //cmd.Parameters.Add(paramCompanyHandle);
-                //cmd.Parameters.Add(paramActive);
-                cmd.Parameters.Add(paramTotalBudget);
-                cmd.Parameters.Add(paramRemainingBudget);
-                cmd.Parameters.Add(paramBudgetAction);
-                cmd.Parameters.Add(paramRecurring);
-                cmd.Parameters.Add(paramRequireNoticeToCharge);
-                cmd.Parameters.Add(paramAgreementNumber);
-                cmd.Parameters.Add(paramMinCharge);
-                cmd.Parameters.Add(paramServices);
-                //cmd.Parameters.Add(paramType);
+                _cmd.Parameters.Add(paramCompanyId);
+                //_cmd.Parameters.Add(paramCompanyName);
+                //_cmd.Parameters.Add(paramCompanyHandle);
+                //_cmd.Parameters.Add(paramActive);
+                _cmd.Parameters.Add(paramTotalBudget);
+                _cmd.Parameters.Add(paramRemainingBudget);
+                _cmd.Parameters.Add(paramBudgetAction);
+                _cmd.Parameters.Add(paramRecurring);
+                _cmd.Parameters.Add(paramRequireNoticeToCharge);
+                _cmd.Parameters.Add(paramAgreementNumber);
+                _cmd.Parameters.Add(paramMinCharge);
+                _cmd.Parameters.Add(paramServices);
+                //_cmd.Parameters.Add(paramType);
 
-                cmd.ExecuteNonQuery();
+                _cmd.ExecuteNonQuery();
 
             }
 

@@ -14,97 +14,37 @@ namespace _123Movers.Controllers
     public class HomeController : Controller
     {
 
-        public ActionResult Reports(string companyid, string companyName, string ax, string contactperson, string suspended, bool active = false)
-        {
-            Session["CompanyId"] = companyid;
-            Session["CompanyName"] = companyName;
-            Session["Ax"] = ax;
-            Session["IsActive"] = active;
-            Session["Suspended"] = suspended;
-            Session["ContactPerson"] = contactperson;
-
-            return View();
-        }
         public ActionResult Notifications()
         {
             return View();
         }
-        public List<List<string>> retListTable(DataTable dt)
-        {
-            List<List<string>> lstTable = new List<List<string>>();
-            foreach (DataRow row in dt.Rows)
-            {
-                List<string> lstRow = new List<string>();
-                foreach (var item in row.ItemArray)
-                {
-                    lstRow.Add(item.ToString().Replace("\r\n", string.Empty));
-                }
-                lstTable.Add(lstRow);
-            }
-
-            return lstTable;
-
-        }
+       
 
         public JsonResult GetServices()
         {
             var services = BusinessLayer.GetServies();
-            List<List<string>> list = retListTable(services);
+            List<List<string>> list = ConfigValues.retListTable(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetAvailableAreas(int? companyId, int? serviceId)
         {
             var services = BusinessLayer.GetAvailableAreas(companyId, serviceId);
-            List<List<string>> list = retListTable(services);
+            List<List<string>> list = ConfigValues.retListTable(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetCompanyAreasWithPrices(int? companyId, int? serviceId)
         {
             var services = BusinessLayer.GetCompanyAreasWithPrices(companyId, serviceId);
-            List<List<string>> list = retListTable(services);
+            List<List<string>> list = ConfigValues.retListTable(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        public List<SelectListItem> Terms(bool IsRecurring, bool IsRequireNoticeToCharge)
-        {
-            var listOption = new SelectListItem();
-            var terms = new List<SelectListItem>();
-
-            listOption = new SelectListItem { Text = "Recurring", Value = "0" };
-            terms.Add(listOption);
-
-            listOption = new SelectListItem { Text = "Non Recurring", Value = "1" };
-            terms.Add(listOption);
-
-            listOption = new SelectListItem { Text = "Recurring With Notice", Value = "2" };
-
-            terms.Add(listOption);
-
-            return terms;
-        }
-
-        public List<SelectListItem> Services(int? serviceId)
-        {
-            var listOption = new SelectListItem();
-            var services = new List<SelectListItem>();
-
-            listOption = new SelectListItem { Text = "Local", Value = "1009" };
-            services.Add(listOption);
-
-            listOption = new SelectListItem { Text = "Long", Value = "1000" };
-            services.Add(listOption);
-
-            listOption = new SelectListItem { Text = "Both", Value = "999" };
-            services.Add(listOption);
-
-            return services;
-        }
-
+        
         [HttpGet]
         public ActionResult AddBudget()
         {
-            ViewBag.Terms = Terms(false, false);
+            ViewBag.Terms = ConfigValues.Terms();
 
-            ViewBag.Services = Services(null);
+            ViewBag.Services = ConfigValues.Services();
 
             BudgetModel budgget = new BudgetModel();
 
@@ -159,8 +99,8 @@ namespace _123Movers.Controllers
         public ActionResult AddBudget(BudgetModel budget)
         {
 
-            ViewBag.Terms = Terms(false, false);
-            ViewBag.Services = Services(null);
+            ViewBag.Terms = ConfigValues.Terms();
+            ViewBag.Services = ConfigValues.Services();
 
             try
             {
@@ -213,8 +153,8 @@ namespace _123Movers.Controllers
         public ActionResult EditBudget(decimal? TotalBudget, bool IsRecurring, bool IsRequireNoticeToCharge, int? serviceId, string agnumber, int? minDaysToCharge)
         {
             BudgetModel budget = new BudgetModel();
-            ViewBag.Terms = Terms(budget.IsRecurring, budget.IsRequireNoticeToCharge);
-            ViewBag.Services = Services(budget.ServiceId);
+            ViewBag.Terms = ConfigValues.Terms();
+            ViewBag.Services = ConfigValues.Services();
             int Service = (serviceId == 1009) ? 1009 : (serviceId == 1000) ? 1000 : 999;
             string Recurring = (IsRecurring) ? (IsRequireNoticeToCharge) ? "2" : "0" : "1";
             budget.TotalBudget = TotalBudget;
@@ -241,8 +181,8 @@ namespace _123Movers.Controllers
         public ActionResult EditBudget(BudgetModel budget)
         {
 
-            ViewBag.Terms = Terms(false, false);
-            ViewBag.Services = Services(null);
+            ViewBag.Terms = ConfigValues.Terms();
+            ViewBag.Services = ConfigValues.Services();
 
             try
             {
@@ -657,7 +597,7 @@ namespace _123Movers.Controllers
           {
               var DestinationAreaCodes = BusinessLayer.GetCompanyAreasDestinationZipCodes(companyId, serviceId, areaCode);
 
-              List<List<string>> list = retListTable(DestinationAreaCodes);
+              List<List<string>> list = ConfigValues.retListTable(DestinationAreaCodes);
               return Json(list, JsonRequestBehavior.AllowGet);
 
 
@@ -666,7 +606,7 @@ namespace _123Movers.Controllers
           public JsonResult GetAvailableDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
           {
               var services = BusinessLayer.GetAvailableDestinationZipCodes(companyId, serviceId, areaCode);
-              List<List<string>> list = retListTable(services);
+              List<List<string>> list = ConfigValues.retListTable(services);
               return Json(list, JsonRequestBehavior.AllowGet);
           }
 
@@ -715,7 +655,7 @@ namespace _123Movers.Controllers
           {
               var OriginAreaCodes = BusinessLayer.GetCompanyAreasZipCodes(companyId, serviceId, areaCode);
 
-                 List<List<string>> list = retListTable(OriginAreaCodes);
+                 List<List<string>> list = ConfigValues.retListTable(OriginAreaCodes);
                  return Json(list, JsonRequestBehavior.AllowGet);
 
 
@@ -723,7 +663,7 @@ namespace _123Movers.Controllers
           public JsonResult GetAvailableZipCodes(int? companyId, int? serviceId, int? areaCode)
           {
               var services = BusinessLayer.GetAvailableZipCodes(companyId, serviceId, areaCode);
-              List<List<string>> list = retListTable(services);
+              List<List<string>> list = ConfigValues.retListTable(services);
               return Json(list, JsonRequestBehavior.AllowGet);
           }
 
@@ -772,9 +712,9 @@ namespace _123Movers.Controllers
           public ActionResult Distance(int? companyId,int? serviceId)
           {
 
-              ViewBag.Services = Services(null).Take(2);
+              ViewBag.Services = ConfigValues.Services().Take(2);
              DataTable dt = BusinessLayer.GetCompanyMoveDistance(companyId, serviceId);
-              //List<List<string>> list = retListTable(query);
+             //List<List<string>> list = ConfigValues.retListTable(query);
               DistanceModel model = new DistanceModel();
               model.CompanyId = companyId;
               if (dt.Rows.Count > 0)
@@ -792,7 +732,7 @@ namespace _123Movers.Controllers
           [HttpPost]
           public ActionResult Distance(DistanceModel model)
           {
-              ViewBag.Services = Services(null).Take(2);
+              ViewBag.Services = ConfigValues.Services().Take(2);
               try
               {
                   var cmd = (string)Session["CompanyId"];
@@ -822,7 +762,7 @@ namespace _123Movers.Controllers
               DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), ServiceId);
 
               ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
-              ViewBag.Services = Services(null).Take(2);
+              ViewBag.Services = ConfigValues.Services().Take(2);
               MoveWeightModel model = new MoveWeightModel();
               model.CompanyId = Convert.ToInt32(cmd);
               if (ds.Tables[1].Rows.Count > 0)
@@ -841,7 +781,7 @@ namespace _123Movers.Controllers
               DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), model.ServiceId);
 
               ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
-              ViewBag.Services = Services(null).Take(2);
+              ViewBag.Services = ConfigValues.Services().Take(2);
 
               try
               {
@@ -857,14 +797,14 @@ namespace _123Movers.Controllers
         {
             var cmd = (string)Session["CompanyId"];
             DataSet ds = BusinessLayer.GetMoveWeights(Convert.ToInt32(cmd), serviceId);
-            List<List<string>> list = retListTable(ds.Tables[1]);
+            List<List<string>> list = ConfigValues.retListTable(ds.Tables[1]);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetDistance(int? serviceId)
         {
             var cmd = (string)Session["CompanyId"];
             DataTable dt = BusinessLayer.GetCompanyMoveDistance(Convert.ToInt32(cmd), serviceId);
-            List<List<string>> list = retListTable(dt);
+            List<List<string>> list = ConfigValues.retListTable(dt);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         
@@ -900,7 +840,7 @@ namespace _123Movers.Controllers
                   var cmd = (string)Session["CompanyId"];
 
                   var query = BusinessLayer.GetCompanyMoveDistance(Convert.ToInt32(cmd), ServiceId);
-                  List<List<string>> list = retListTable(query);
+                  List<List<string>> list = ConfigValues.retListTable(query);
 
                   result = Json(list, JsonRequestBehavior.AllowGet);
 
@@ -919,7 +859,7 @@ namespace _123Movers.Controllers
           {
               var cmd = (string)Session["CompanyId"];
               DataTable dt = BusinessLayer.GetFilterResult(Convert.ToInt32(cmd), serviceId);
-              List<List<string>> list = retListTable(dt);
+              List<List<string>> list = ConfigValues.retListTable(dt);
               return Json(list, JsonRequestBehavior.AllowGet);
           }
 

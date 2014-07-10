@@ -193,7 +193,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -338,7 +340,6 @@
     <Content Include="Views\Home\AddBudget.cshtml" />
     <Content Include="Views\Home\AddCompany.cshtml" />
     <Content Include="Views\Home\EditBudget.cshtml" />
-    <Content Include="Views\Home\Reports.cshtml" />
     <Content Include="Views\Home\Notifications.cshtml" />
     <Content Include="Views\Home\ManageAreaCodes.cshtml" />
     <Content Include="Views\Home\_CompanyInfo.cshtml" />
@@ -347,6 +348,7 @@
     <Content Include="Views\Home\Distance.cshtml" />
     <Content Include="Views\Home\MoveWeight.cshtml" />
     <Content Include="Views\Home\DestinationZipCodes.cshtml" />
+    <Content Include="Views\Report\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

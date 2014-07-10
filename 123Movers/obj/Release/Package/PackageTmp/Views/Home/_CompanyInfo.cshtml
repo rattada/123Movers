@@ -1,21 +1,20 @@
 ﻿
 @{
     //var IsActive = (@Model.IsActive) ? "Active" : "Inactive";
-    var Suspended = ((string)@HttpContext.Current.Application["Suspended"] == "Yes") ? "Suspended" : ((bool)@HttpContext.Current.Application["IsActive"]) ? "Active" : "Inactive";
-    //var IsActive = ((bool)@Session["IsActive"]) ? "Active" : "Inactive";
+    var Suspended = ((string)@Session["Suspended"] == "Yes") ? "Suspended" : ((bool)@Session["IsActive"]) ? "Active" : "Inactive";
 }
 <div class="col-md-12">
             <p></p>
             <table class="table table-bordered" style="margin-bottom: 0px;">
                 <tbody>
                     <tr>
-                        <td class="col-md-6">Legal Name : <strong>@HttpContext.Current.Application["CompanyName"]</strong></td>
-                        <td class="col-md-6">CompanyID : <strong>@HttpContext.Current.Application["CompanyId"]</strong></td>
+                        <td class="col-md-6">Legal Name : <strong>@Session["CompanyName"]</strong></td>
+                        <td class="col-md-6">CompanyID : <strong>@Session["CompanyId"]</strong></td>
                     </tr>
                     <tr>
                         @*<td class="col-md-6">DBA Name :</td>*@
-                        <td class="col-md-6">AX # : <strong>@HttpContext.Current.Application["Ax"]</strong></td>
-                        <td class="col-md-6">Sales Person : <strong>@HttpContext.Current.Application["ContactPerson"]</strong></td>
+                        <td class="col-md-6">AX # : <strong>@Session["Ax"]</strong></td>
+                        <td class="col-md-6">Sales Person : <strong>@Session["ContactPerson"]</strong></td>
                     </tr>
                     <tr>
                         <td  class="col-md-6"> Status : <strong>@Suspended</strong></td>

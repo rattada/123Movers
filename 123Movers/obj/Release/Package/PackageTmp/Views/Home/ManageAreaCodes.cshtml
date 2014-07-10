@@ -2,8 +2,6 @@
     ViewBag.Title = "ManageAreaCodes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*@using (Html.BeginForm("ManageAreacodes", "Home", FormMethod.Post, new { id = "frmareacode" }))
-{*@
 
 <div class="row">
      @Html.Partial("_CompanyInfo")
@@ -79,9 +77,6 @@
 
 </div>
 
-
-@*}*@
-
 <script type="text/javascript">
     $(function () {
         var serviceId;
@@ -147,7 +142,7 @@
         function GetSelectedAreas(serviceId, ServiceType) {
 
             $.ajax({
-                url: '/Home/GetCompanyAdByArea',
+                url: '/Home/GetCompanyAreasWithPrices',
                 type: "GET",
                 data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId },
                 dataType: "json",
@@ -304,7 +299,8 @@
 
         });
 
-        $('#add').click(function () {
+        $('#add').click(function (e) {
+            e.preventDefault();
             var selected = [];
             $('#areaCode :selected').each(function (i, el) {
                 selected[i] = $(this).val();
