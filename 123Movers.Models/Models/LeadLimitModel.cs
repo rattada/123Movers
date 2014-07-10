@@ -52,6 +52,7 @@ namespace _123Movers.Models
         public string AreaCodes { get; set; }
 
         public IEnumerable<LeadLimitModel> LeadLimitData { get; set; }
+        public CompanyModel _companyInfo { get; set; }
 
     }
 }

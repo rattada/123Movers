@@ -32,6 +32,6 @@ namespace _123Movers.Models
         //[Required]
         //[Display(Name = "Services")]
         //public string Services { get; set; }
-
+        public CompanyModel _companyInfo { get; set; }
     }
 }

@@ -73,10 +73,11 @@ namespace _123Movers.Controllers
         public ActionResult CompanyLeadLimit(int? serviceId)
         {
                         
-            LeadLimitModel ld = new LeadLimitModel();
-            var leadLimitData = BusinessLayer.GetCompanyLeadLimit(new CompanyModel().CurrentCompany.CompanyId, serviceId);
+            LeadLimitModel model = new LeadLimitModel();
+            model = BusinessLayer.GetCompanyLeadLimit(new CompanyModel().CurrentCompany.CompanyId, serviceId);
+            model._companyInfo = new CompanyModel().CurrentCompany;
 
-            return View(leadLimitData);
+            return View(model);
         }
 
 
@@ -107,78 +108,6 @@ namespace _123Movers.Controllers
         }
 
 
-        //public JsonResult GetCompanyLeadLimitAreaCodeInfo(int? serviceId)
-        //{
-
-
-        //    int? companyId;
-        //    var cmd = (string)HttpContext.Application["CompanyId"];
-        //    companyId = Convert.ToInt32(cmd);
-        //    var query = from r in BusinessLayer.GetCompanyLeadLimit(companyId, serviceId).AsEnumerable()
-        //                //where r.Field<string>("areaCode") == area
-        //                select r;
-        //    var items = new List<LeadLimitModel>();
-        //    if (query.Any())
-        //    {
-        //        DataTable conversions = query.CopyToDataTable();
-
-        //        var Areacode = "";
-        //        var ServiceId = "";
-        //        //bool isMonth = false;
-        //        //bool isDaily = false;
-        //        //bool isTotal = false;
-        //        foreach (DataRow row in conversions.Rows)
-        //        {
-        //            if (String.IsNullOrEmpty(row["areaCode"].ToString()))
-        //            {
-        //                Areacode = null;
-
-        //            }
-        //            else
-        //            {
-        //                Areacode = row["areaCode"].ToString();
-        //            }
-        //            if (String.IsNullOrEmpty(row["serviceID"].ToString()))
-        //            {
-        //                ServiceId = null;
-
-        //            }
-        //            else
-        //            {
-        //                ServiceId = row["serviceID"].ToString();
-        //            }
-
-
-        //            //if (!string.IsNullOrEmpty(row["isDailyLeadLimit"].ToString()))
-        //            //{
-        //            //    isDaily = Convert.ToBoolean(row["isDailyLeadLimit"]);
-        //            //}
-
-        //            LeadLimitModel obj = new LeadLimitModel()
-        //            {
-
-        //                AreaCodes = Areacode,
-        //                ServiceId = Convert.ToInt32(ServiceId),
-        //                LeadFrequency = Convert.ToInt32(row["leadFrequency"].ToString()),
-        //                IsDailyLeadLimit = Convert.ToBoolean(row["isDailyLeadLimit"]),
-        //                DailyLeadLimit = Convert.ToInt32(row["dailyLeadLimit"].ToString()),
-        //                IsMonthlyLeadLimit = Convert.ToBoolean(row["isMonthlyLeadLimit"]),
-        //                MonthlyLeadLimit = Convert.ToInt32(row["monthlyLeadLimit"].ToString()),
-        //                IsTotalLeadLimit = Convert.ToBoolean(row["isTotalLeadLimit"]),
-        //                TotalLeadLimit = Convert.ToInt32(row["totalLeadLimit"].ToString())
-
-
-
-        //            };
-        //            items.Add(obj);
-
-        //        }
-        //    }
-
-
-        //    return Json(items, JsonRequestBehavior.AllowGet);
-
-        //}
         
 
           [HttpPost]
@@ -207,19 +136,23 @@ namespace _123Movers.Controllers
           public ActionResult Geography(int? companyId, int? serviceId)
           {
               GeographyModel Origin = new GeographyModel();
+              
+              Origin = BusinessLayer.GetCompanyServiceAreaCodes(companyId, serviceId);
+              Origin._companyInfo = new CompanyModel().CurrentCompany;
 
-              var OriginAreaCodes = BusinessLayer.GetCompanyServiceAreaCodes(companyId, serviceId);
-              return View(OriginAreaCodes);
+              return View(Origin);
           }
 
 
           [HttpGet]
           public ActionResult DestinationZipCodes(int? companyId, int? serviceId)
           {
-              DestinationZipModel Origin = new DestinationZipModel();
+              DestinationZipModel Destination = new DestinationZipModel();
 
-              var DestinationAreaCodes = BusinessLayer.GetCompanyDestinationServiceAreaCodes(companyId, serviceId);
-              return View(DestinationAreaCodes);
+              Destination = BusinessLayer.GetCompanyDestinationServiceAreaCodes(companyId, serviceId);
+              Destination._companyInfo = new CompanyModel().CurrentCompany;
+
+              return View(Destination);
           }
 
           public JsonResult GetCompanyAreasDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
@@ -345,6 +278,7 @@ namespace _123Movers.Controllers
              DataTable dt = BusinessLayer.GetCompanyMoveDistance(companyId, serviceId);
              //List<List<string>> list = ConfigValues.retListTable(query);
               DistanceModel model = new DistanceModel();
+              model._companyInfo = new CompanyModel().CurrentCompany;
               model.CompanyId = companyId;
               if (dt.Rows.Count > 0)
               {
@@ -392,6 +326,7 @@ namespace _123Movers.Controllers
               ViewBag.MinMoveWeight = ConfigValues.DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
               ViewBag.Services = ConfigValues.Services().Take(2);
               MoveWeightModel model = new MoveWeightModel();
+              model._companyInfo = new CompanyModel().CurrentCompany;
               model.CompanyId = cid;
               if (ds.Tables[1].Rows.Count > 0)
               {

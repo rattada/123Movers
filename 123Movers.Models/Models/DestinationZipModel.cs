@@ -22,5 +22,6 @@ namespace _123Movers.Models
 
         public IEnumerable<DestinationZipModel> DestinationAreaCodes { get; set; }
         public IEnumerable<DestinationZipModel> DestinationZipCodes { get; set; }
+        public CompanyModel _companyInfo { get; set; }
     }
 }

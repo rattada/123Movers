@@ -22,5 +22,6 @@ namespace _123Movers.Models
 
         public IEnumerable<GeographyModel> OriginAreaCodes { get; set; }
         public IEnumerable<GeographyModel> OriginZipCodes { get; set; }
+        public CompanyModel _companyInfo { get; set; }
     }
 }

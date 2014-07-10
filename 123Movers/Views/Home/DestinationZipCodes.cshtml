@@ -13,8 +13,8 @@
 <input type="hidden" id="orgzipcodes" value="@Model.DestinationZipCodes" />
 <div class="row">
 
-       @* @Html.Partial("_CompanyInfo", @Model)*@
-     @Html.Partial("_CompanyInfo")
+      
+      @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
      
     </div>
 <p class="clearfix"></p>

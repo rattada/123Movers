@@ -8,7 +8,9 @@
 <input type="hidden" id="message" value="@ViewBag.Success"/>
 <input type="hidden" id="hdnServiceId" value="@ViewBag.ServiceID"/>
 
-@Html.Partial("_CompanyInfo")
+<div class="row">
+      @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
+</div>
 
 <p class="clearfix"></p>
 @*@using (Html.BeginForm("CompanyLeadLimit", "Home", FormMethod.Post, new { id = "frmLeadLimit" }))
