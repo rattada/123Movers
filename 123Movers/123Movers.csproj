@@ -183,9 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="123Movers.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>123Movers.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -211,6 +211,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="123Movers.edmx.diagram">
+      <DependentUpon>123Movers.edmx</DependentUpon>
+    </Content>
     <Content Include="Content\jquery-ui-1.10.4.css" />
     <Content Include="Content\jquery-ui-1.10.4.min.css" />
     <Content Include="Content\themes\base\images\123movers.png" />
@@ -270,13 +273,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="123Movers.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>123Movers.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="123Movers.edmx.diagram">
-      <DependentUpon>123Movers.edmx</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\release.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\asc.gif" />
@@ -373,6 +369,12 @@
       <Project>{d73bb4a2-1e6e-494d-aee8-00ee677f55ab}</Project>
       <Name>123Movers.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="123Movers.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>123Movers.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

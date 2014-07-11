@@ -8,6 +8,6 @@ namespace _123Movers.Models
 {
     public static class Constants
     {
-        
+        public const string Url = "/Account/LogOff";
     }
 }

@@ -24,6 +24,10 @@ namespace _123Movers.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (returnUrl == Constants.Url)
+            {
+                returnUrl = "";
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -83,7 +87,7 @@ namespace _123Movers.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Search", "Home");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -340,7 +344,7 @@ namespace _123Movers.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Search", "Home");
             }
         }
 
