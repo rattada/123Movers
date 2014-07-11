@@ -39,30 +39,12 @@ namespace _123Movers.DataEntities
 
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    int? sid = null;
-                    int? areacode = null;
-                    int? cid = null;
-                    //int? zid = null;
-
-                    if (!string.IsNullOrEmpty(row["companyID"].ToString()))
-                    {
-                        cid = Convert.ToInt32(row["companyID"]);
-                    }
-
-                    if (!string.IsNullOrEmpty(row["serviceID"].ToString()))
-                    {
-                        sid = Convert.ToInt32(row["serviceID"]);
-                    }
-                    if (!string.IsNullOrEmpty(row["areaCode"].ToString()))
-                    {
-                        areacode = Convert.ToInt32(row["areaCode"]);
-                    }
 
                     DestinationZipModel s = new DestinationZipModel
                     {
-                        CompanyId = cid,
-                        ServiceId = sid,
-                        AreaCode = areacode,
+                        CompanyId = row["companyID"].ToString().IntNullOrEmpty(),
+                        ServiceId = row["serviceID"].ToString().IntNullOrEmpty(),
+                        AreaCode = row["areaCode"].ToString().IntNullOrEmpty(),
                     };
                     areacodes.Add(s);
                 }
@@ -71,33 +53,12 @@ namespace _123Movers.DataEntities
 
                 foreach (DataRow row in ds.Tables[2].Rows)
                 {
-                    int? sid = null;
-                    int? areacode = null;
-                    int? cid = null;
-                    int? zid = null;
-
-                    if (!string.IsNullOrEmpty(row["companyID"].ToString()))
-                    {
-                        cid = Convert.ToInt32(row["companyID"]);
-                    }
-                    if (!string.IsNullOrEmpty(row["serviceID"].ToString()))
-                    {
-                        sid = Convert.ToInt32(row["serviceID"]);
-                    }
-                    if (!string.IsNullOrEmpty(row["destinationAreaCode"].ToString()))
-                    {
-                        areacode = Convert.ToInt32(row["destinationAreaCode"]);
-                    }
-                    if (!string.IsNullOrEmpty(row["destinationZipCode"].ToString().Trim()))
-                    {
-                        zid = Convert.ToInt32(row["destinationZipCode"]);
-                    }
                     DestinationZipModel s = new DestinationZipModel
                     {
-                        CompanyId = cid,
-                        ServiceId = sid,
-                        AreaCode = areacode,
-                        ZipCode = zid
+                        CompanyId = row["companyID"].ToString().IntNullOrEmpty(),
+                        ServiceId = row["serviceID"].ToString().IntNullOrEmpty(),
+                        AreaCode = row["destinationAreaCode"].ToString().IntNullOrEmpty(),
+                        ZipCode = row["destinationZipCode"].ToString().IntNullOrEmpty()
                     };
                     zipcodes.Add(s);
                 }
@@ -177,7 +138,7 @@ namespace _123Movers.DataEntities
                 cmdGetAvailableAreas.Connection = dbCon;
                 cmdGetAvailableAreas.CommandType = System.Data.CommandType.StoredProcedure;
                 //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
-                cmdGetAvailableAreas.CommandText = "usp_GetCompanyAvailableAreasDestincationZipCodes"; //"usp_availableAreacoded";
+                cmdGetAvailableAreas.CommandText = "usp_GetCompanyAvailableAreasDestinationZipCodes"; //"usp_availableAreacoded";
                 if (serviceId == null)
                 {
                     serviceId = 1009;

@@ -123,8 +123,8 @@ namespace _123Movers.DataEntities
                 if (dtResults.Rows.Count > 0)
                 {
 
-                    var Areacode = "";
-                    var ServiceId = "";
+                    var Areacode = string.Empty;
+                    var ServiceId = string.Empty;
                     foreach (DataRow row in dtResults.Rows)
                     {
                         if (String.IsNullOrEmpty(row["areaCode"].ToString()))

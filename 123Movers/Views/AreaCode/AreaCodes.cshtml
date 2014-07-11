@@ -1,11 +1,12 @@
 ﻿@model _123Movers.Models.AreaCodeModel
+@using _123Movers.Models
 @{
     ViewBag.Title = "AreaCodes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
-     @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml", @Model._companyInfo)
+     @Html.Partial(Constants.VIEW, @Model._companyInfo)
 </div>
 
 <p class="clearfix"></p>

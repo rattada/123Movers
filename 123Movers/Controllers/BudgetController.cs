@@ -75,15 +75,15 @@ namespace _123Movers.Controllers
            
             try
             {
-                if (ModelState.IsValid)
-                {
+                //if (ModelState.IsValid)
+                //{
                     budget._companyInfo = new CompanyModel().CurrentCompany;
                     budget.CompanyId = budget._companyInfo.CompanyId;
 
                     BusinessLayer.SaveBudget(budget);
                     return RedirectToAction("GetBudget", budget._companyInfo.CurrentCompany);
 
-                }
+                //}
             }
             catch (Exception ex)
             {

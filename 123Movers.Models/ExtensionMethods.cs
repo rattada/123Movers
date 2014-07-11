@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace _123Movers.Models
 {
@@ -56,7 +57,13 @@ namespace _123Movers.Models
             {
                 return Constants.LOCAL;
             }
-            return null;
+            return value;
+        }
+
+        public static CompanyModel CompanyInfo(this HtmlHelper helper, string view, CompanyModel _company)
+        {
+            return _company;
+
         }
     }
 }
