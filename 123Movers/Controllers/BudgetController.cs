@@ -14,12 +14,6 @@ namespace _123Movers.Controllers
         // GET: /Budget/
 
 
-       
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public JsonResult GetServices()
         {
             var services = BusinessLayer.GetServies();
@@ -54,15 +48,6 @@ namespace _123Movers.Controllers
             company.CurrentCompany = CompanyInfo;
             search._companyInfo = company.CurrentCompany;
 
-            //Session["CurrentCompanyInfo"] = _companyInfo;
-
-            //Session["CompanyId"] = _companyInfo.CompanyId;
-            //Session["CompanyName"] = _companyInfo.CompanyName;
-            //Session["Ax"] = _companyInfo.AX;
-            //Session["IsActive"] = _companyInfo.IsActive;
-            //Session["Suspended"] = _companyInfo.Suspended;
-            //Session["ContactPerson"] = _companyInfo.ContactPerson;
-
             search.budget = budgetList;
 
             return View(search);
@@ -91,39 +76,15 @@ namespace _123Movers.Controllers
            
             try
             {
-                budget._companyInfo = new CompanyModel().CurrentCompany;
-                //if (ModelState.IsValid)
-                //{
-               // var cmd = (string)Session["CompanyId"];
-                budget.CompanyId = budget._companyInfo.CompanyId;
-                //budget.CompanyName = (string)Session["CompanyName"];
-                //budget.AX = (string)Session["Ax"];
-                //budget.IsActive = (bool)Session["IsActive"];
-                //budget.ContactPerson = (string)Session["ContactPerson"];
-
-                if (budget.TermType == "0")
+                if (ModelState.IsValid)
                 {
-                    budget.IsRecurring = true;
-                    budget.IsRequireNoticeToCharge = false;
-                }
-                else if (budget.TermType == "1")
-                {
-                    budget.IsRecurring = false;
-                    budget.IsRequireNoticeToCharge = false;
-                }
-                else
-                {
-                    budget.IsRecurring = true;
-                    budget.IsRequireNoticeToCharge = true;
-                }
+                    budget._companyInfo = new CompanyModel().CurrentCompany;
+                    budget.CompanyId = budget._companyInfo.CompanyId;
 
-                BusinessLayer.SaveBudget(budget);
-                // ModelState.Clear();
-                ViewBag.Success = "Budget saved successfully..";
-                //return View();
-                return RedirectToAction("GetBudget", budget._companyInfo.CurrentCompany);
+                    BusinessLayer.SaveBudget(budget);
+                    return RedirectToAction("GetBudget", budget._companyInfo.CurrentCompany);
 
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -154,11 +115,6 @@ namespace _123Movers.Controllers
            
             budget._companyInfo = new CompanyModel().CurrentCompany;
             budget.CompanyId = budget._companyInfo.CompanyId;
-            //budget.CompanyName = (string)Session["CompanyName"];
-            //budget.AX = (string)Session["Ax"];
-            //budget.IsActive = (bool)Session["IsActive"];
-            //budget.Suspended = (string)Session["Suspended"];
-            //budget.ContactPerson = (string)Session["ContactPerson"];
 
             return View(budget);
 
@@ -176,31 +132,8 @@ namespace _123Movers.Controllers
 
                 budget._companyInfo = new CompanyModel().CurrentCompany;
                 budget.CompanyId = budget._companyInfo.CompanyId;
+                budget.BudgetAction = Constants.RENEWL_BUDGET;
 
-                //budget.CompanyName = (string)Session["CompanyName"];
-                //budget.AX = (string)Session["Ax"];
-                //budget.IsActive = (bool)Session["IsActive"];
-                //budget.Suspended = (string)Session["    "];
-                //budget.ContactPerson = (string)Session["ContactPerson"];
-                budget.BudgetAction = "RENEWAL INSERTION";
-                //budget.Type = "EDIT";
-
-                if (budget.TermType == "0")
-                {
-
-                    budget.IsRecurring = true;
-                    budget.IsRequireNoticeToCharge = false;
-                }
-                else if (budget.TermType == "1")
-                {
-                    budget.IsRecurring = false;
-                    budget.IsRequireNoticeToCharge = false;
-                }
-                else
-                {
-                    budget.IsRecurring = true;
-                    budget.IsRequireNoticeToCharge = true;
-                }
 
                 BusinessLayer.SaveBudget(budget);
 

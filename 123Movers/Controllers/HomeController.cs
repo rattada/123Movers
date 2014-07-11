@@ -14,14 +14,6 @@ namespace _123Movers.Controllers
     public class HomeController : Controller
     {
 
-        public ActionResult Notifications()
-        {
-            return View();
-        }
-
-
-      
-
         [HttpGet]
         public ActionResult Search()
         {
@@ -40,21 +32,6 @@ namespace _123Movers.Controllers
                 
                 var companies = BusinessLayer.SearchCompany(search);
                 search.Companies = companies;
-                //if (budget.Count() > 0)
-                //{
-                //    foreach (var b in budget)
-                //    {
-                //        HttpContext.Application["CompanyId"] = b.CompanyId;
-                //        HttpContext.Application["CompanyName"] = b.CompanyName;
-                //        HttpContext.Application["Ax"] = b.AX;
-                //        HttpContext.Application["IsActive"] = b.IsActive;
-                //        //HttpContext.Application["DisplayName"] = b.DisplayName;
-                //        HttpContext.Application["ContactPerson"] = b.ContactPerson;
-                //        // HttpContext.Application["CompanyHandle"] = b.CompanyHandle;
-                //        break;
-                //    }
-
-                //}
 
                 return View(search);
             }
@@ -64,23 +41,6 @@ namespace _123Movers.Controllers
             }
             return View(search);
         }
-
-        
-
-    
-
-       
-
-
-        
-
-  
-
-         
-
-       
-
-         
 
     }
 }

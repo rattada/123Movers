@@ -21,7 +21,7 @@
          <div class="col-md-12">
              @*<input type="button" id ="AddBudget" class="button" value="Add Budget" />*@
   @*<p>  @Html.ActionLink("Add a Budget", "AddBudget", "Home", new { companyid =(int?)@Session["CompanyId"], companyName = @Model.CompanyName, ax = @Model.AX, active = @Model.IsActive, displayname = @Model.DisplayName, contactperson = @Model.ContactPerson, companyHandle=@Model.CompanyHandle }, new {id = "AddBudget", @class = "btn btn-primary btn-lg btn-warning" })</p>*@
-             <p>  @Html.ActionLink("Add a Budget", "AddBudget", "Budget", new {id = "AddBudget", @class = "btn btn-primary btn-lg btn-warning" })</p>
+             <p>  @Html.ActionLink("Add a Budget", "AddBudget", "Budget", new {id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
              </div>
      </div>
     <div class="table-responsive">
@@ -47,7 +47,7 @@
                 Terms
             </th>
             <th class="text-center">
-                Sevice
+                Service
             </th>
             <th class="text-center">
                 Filters
@@ -103,7 +103,7 @@
                </td>
 
                 <td class="text-center">
-           <p> @Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget =@lot.TotalBudget,IsRecurring =@lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge,ServiceId =@lot.ServiceId, agnumber=@lot.AgreementNumber,minDaysToCharge =@lot.MinDaysToCharge}, new {id = "EditBudget", @class = "btn btn-sm btn-primary" })</p>
+           <p> @Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget =@lot.TotalBudget,IsRecurring =@lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge,ServiceId =@lot.ServiceId, agnumber=@lot.AgreementNumber,minDaysToCharge =@lot.MinDaysToCharge}, new {id = "EditBudget", @class = "btn btn-sm btn-info" })</p>
                                
                 </td>
             </tr>
@@ -113,7 +113,7 @@
             else
             {
                 <tr>
-                <td class="col-md-6 text-center" colspan="10">No Active Bugdets found
+                <td class="col-md-6 text-center" colspan="10"><b>No Active Budgets found</b>
                 </td>
             </tr>
             }
@@ -161,11 +161,11 @@
                Terms
             </th>
             <th class="text-center">
-                Sevice
+                Service
             </th>
-            <th class="text-center">
+          @*  <th class="text-center">
                 Filters
-            </th>
+            </th>*@
         </tr>
          </thead>
           <tbody>
@@ -224,9 +224,9 @@
                </td>
 
 
-                <td class="text-center">
+               @* <td class="text-center">
                              
-                </td>
+                </td>*@
             </tr>
                 
                 }
@@ -234,7 +234,7 @@
              else
         {
             <tr>
-                <td colspan="10" class="text-center">No Exipred Bugdets found
+                <td colspan="10" class="text-center"><b>No Expired Budgets found</b>
                 </td>
             </tr>
         }
@@ -248,7 +248,7 @@
     
 }
 
-<a href="#" onclick="history.go(-1);return false;" class="btn btn-primary">BACK TO LIST</a> 
+<a href="#" onclick="history.go(-1);return false;" class="btn btn-primary pull-right">BACK TO LIST</a> 
 
 <script type="text/javascript">
     $(document).ready(function () {

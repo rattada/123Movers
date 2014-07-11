@@ -130,12 +130,23 @@ namespace _123Movers.DataEntities
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 _cmd.CommandText = "usp_SaveBudget";
 
-
+                if (budget.TermType == "0")
+                {
+                    budget.IsRecurring = true;
+                    budget.IsRequireNoticeToCharge = false;
+                }
+                else if (budget.TermType == "1")
+                {
+                    budget.IsRecurring = false;
+                    budget.IsRequireNoticeToCharge = false;
+                }
+                else
+                {
+                    budget.IsRecurring = true;
+                    budget.IsRequireNoticeToCharge = true;
+                }
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", budget.CompanyId);
-                //SqlParameter paramCompanyName = new SqlParameter("companyName", budget.CompanyName);
-                //SqlParameter paramCompanyHandle = new SqlParameter("companyHandle", budget.CompanyHandle);
-                // SqlParameter paramActive = new SqlParameter("isActive", budget.IsActive);
                 SqlParameter paramTotalBudget = new SqlParameter("totalBudget", budget.TotalBudget);
                 SqlParameter paramRemainingBudget = new SqlParameter("remainingBudget", budget.RemainingBudget);
                 SqlParameter paramBudgetAction = new SqlParameter("budgetAction", budget.BudgetAction);
@@ -144,13 +155,9 @@ namespace _123Movers.DataEntities
                 SqlParameter paramAgreementNumber = new SqlParameter("agreementNumber", budget.AgreementNumber);
                 SqlParameter paramMinCharge = new SqlParameter("minDaysToCharge", budget.MinDaysToCharge);
                 SqlParameter paramServices = new SqlParameter("service", budget.ServiceId);
-                //SqlParameter paramType = new SqlParameter("type", budget.Type);
 
 
                 _cmd.Parameters.Add(paramCompanyId);
-                //_cmd.Parameters.Add(paramCompanyName);
-                //_cmd.Parameters.Add(paramCompanyHandle);
-                //_cmd.Parameters.Add(paramActive);
                 _cmd.Parameters.Add(paramTotalBudget);
                 _cmd.Parameters.Add(paramRemainingBudget);
                 _cmd.Parameters.Add(paramBudgetAction);
@@ -159,7 +166,6 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramAgreementNumber);
                 _cmd.Parameters.Add(paramMinCharge);
                 _cmd.Parameters.Add(paramServices);
-                //_cmd.Parameters.Add(paramType);
 
                 _cmd.ExecuteNonQuery();
 
