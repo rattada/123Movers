@@ -21,12 +21,12 @@ namespace _123Movers.BusinessEntities
             DataLayer.SaveBudget(budget);
         }
 
-        public static DataTable GetServies()
+        public static List<List<string>> GetServies()
         {
             return DataLayer.GetServices();
         }
-        
-        public static DataTable GetFilterResult(int? companyID, int? serviceID)
+
+        public static List<List<string>> GetFilterResult(int? companyID, int? serviceID)
         {
             return DataLayer.GetFilterResult(companyID, serviceID);
         }

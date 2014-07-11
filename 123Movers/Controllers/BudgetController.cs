@@ -16,15 +16,15 @@ namespace _123Movers.Controllers
 
         public JsonResult GetServices()
         {
-            var services = BusinessLayer.GetServies();
-            List<List<string>> list = ConfigValues.retListTable(services);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            //var services = BusinessLayer.GetServies();
+            //List<List<string>> list = ConfigValues.TableToList(services);
+            return Json(BusinessLayer.GetServies(), JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetFilterResult(int? serviceId)
         {
-            int? cmd = new CompanyModel().CurrentCompany.CompanyId;
-            List<List<string>> list = ConfigValues.retListTable(BusinessLayer.GetFilterResult(cmd, serviceId));
-            return Json(list, JsonRequestBehavior.AllowGet);
+            //int? cid = new CompanyModel().CurrentCompany.CompanyId;
+            //List<List<string>> list = ConfigValues.TableToList(BusinessLayer.GetFilterResult(cmd, serviceId));
+            return Json(BusinessLayer.GetFilterResult(new CompanyModel().CurrentCompany.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
 
 
@@ -66,7 +66,6 @@ namespace _123Movers.Controllers
         }
 
         [HttpPost]
-        // [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult AddBudget(BudgetModel budget)
         {
             
@@ -129,11 +128,9 @@ namespace _123Movers.Controllers
 
             try
             {
-
                 budget._companyInfo = new CompanyModel().CurrentCompany;
                 budget.CompanyId = budget._companyInfo.CompanyId;
                 budget.BudgetAction = Constants.RENEWL_BUDGET;
-
 
                 BusinessLayer.SaveBudget(budget);
 

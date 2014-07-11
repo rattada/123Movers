@@ -64,7 +64,7 @@ namespace _123Movers.Controllers
         {
 
             DataTable dt = BusinessLayer.GetCompanyMoveDistance(new CompanyModel().CurrentCompany.CompanyId, serviceId);
-            List<List<string>> list = ConfigValues.retListTable(dt);
+            List<List<string>> list = ConfigValues.TableToList(dt);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

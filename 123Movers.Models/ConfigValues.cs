@@ -9,7 +9,7 @@ namespace _123Movers.Models
 {
     public static class ConfigValues
     {
-        public static List<List<string>> retListTable(DataTable dt)
+        public static List<List<string>> TableToList(DataTable dt)
         {
             List<List<string>> lstTable = new List<List<string>>();
             foreach (DataRow row in dt.Rows)
@@ -77,6 +77,8 @@ namespace _123Movers.Models
 
             return new SelectList(list, "Value", "Text");
         }
+
+       
     }
     
 }

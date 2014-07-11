@@ -14,24 +14,20 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmdGetAvailableAreas = new SqlCommand();
-                cmdGetAvailableAreas.Connection = dbCon;
-                cmdGetAvailableAreas.CommandType = System.Data.CommandType.StoredProcedure;
-                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
-                cmdGetAvailableAreas.CommandText = "usp_availableAreas"; //"usp_availableAreacoded";
-                if (serviceId == null)
-                {
-                    serviceId = 1009;
-                }
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_GET_AVAILABLE_AREAS; 
+                                
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
 
-                cmdGetAvailableAreas.Parameters.Add(paramCompanyId);
-                cmdGetAvailableAreas.Parameters.Add(paramService);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramService);
 
                 DataTable dtResults = new DataTable();
 
-                SqlDataReader drResults = cmdGetAvailableAreas.ExecuteReader();
+                SqlDataReader drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
                 return dtResults;
@@ -43,24 +39,20 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmdGetCompanyAdByArea = new SqlCommand();
-                cmdGetCompanyAdByArea.Connection = dbCon;
-                cmdGetCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
-                cmdGetCompanyAdByArea.CommandText = "usp_GetCompanyStateAreacodePrice"; //"usp_getCompanyStateAreacode";
-                if (serviceId == null)
-                {
-                    serviceId = 1009;
-                }
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = "usp_GetCompanyStateAreacodePrice"; 
+               
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
+                SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
 
-                cmdGetCompanyAdByArea.Parameters.Add(paramCompanyId);
-                cmdGetCompanyAdByArea.Parameters.Add(paramService);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramService);
 
                 DataTable dtResults = new DataTable();
 
-                SqlDataReader drResults = cmdGetCompanyAdByArea.ExecuteReader();
+                SqlDataReader drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
                 return dtResults;
@@ -72,21 +64,21 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
-                cmdAddCompanyAdByArea.Connection = dbCon;
-                cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdAddCompanyAdByArea.CommandText = "up_companyAreacodeAdd";//"usp_companyAdByAreaAdd";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = "up_companyAreacodeAdd";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
                 SqlParameter paramAreaCode = new SqlParameter("areacode", areaCode);
 
-                cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
-                cmdAddCompanyAdByArea.Parameters.Add(paramService);
-                cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramService);
+                _cmd.Parameters.Add(paramAreaCode);
 
 
-                var i = cmdAddCompanyAdByArea.ExecuteNonQuery();
+                var i = _cmd.ExecuteNonQuery();
 
             }
         }
@@ -95,22 +87,21 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmdDeleteCompanyAdByArea = new SqlCommand();
-                cmdDeleteCompanyAdByArea.Connection = dbCon;
-                cmdDeleteCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
-                cmdDeleteCompanyAdByArea.CommandText = "up_companyAreacodeDelete";//"usp_companyAdByAreaDelete";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = "up_companyAreacodeDelete";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
                 SqlParameter paramAreaCode = new SqlParameter("areacode", areaCode);
 
-                cmdDeleteCompanyAdByArea.Parameters.Add(paramCompanyId);
-                cmdDeleteCompanyAdByArea.Parameters.Add(paramService);
-                cmdDeleteCompanyAdByArea.Parameters.Add(paramAreaCode);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramService);
+                _cmd.Parameters.Add(paramAreaCode);
 
 
-                var i = cmdDeleteCompanyAdByArea.ExecuteNonQuery();
+                var i = _cmd.ExecuteNonQuery();
 
             }
         }
@@ -120,23 +111,23 @@ namespace _123Movers.DataEntities
             int i = 0;
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
-                cmdAddCompanyAdByArea.Connection = dbCon;
-                cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyPricePerLead";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = "usp_AddCompanyPricePerLead";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
                 SqlParameter paramAreaCode = new SqlParameter("areacodes", areaCodes);
                 SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", moveWeightID);
 
-                cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
-                cmdAddCompanyAdByArea.Parameters.Add(paramService);
-                cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
-                cmdAddCompanyAdByArea.Parameters.Add(paramMoveWeight);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramService);
+                _cmd.Parameters.Add(paramAreaCode);
+                _cmd.Parameters.Add(paramMoveWeight);
 
 
-                i = cmdAddCompanyAdByArea.ExecuteNonQuery();
+                i = _cmd.ExecuteNonQuery();
 
 
             }

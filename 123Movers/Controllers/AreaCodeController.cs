@@ -23,13 +23,13 @@ namespace _123Movers.Controllers
         public JsonResult GetAvailableAreas(int? companyId, int? serviceId)
         {
             var services = BusinessLayer.GetAvailableAreas(companyId, serviceId);
-            List<List<string>> list = ConfigValues.retListTable(services);
+            List<List<string>> list = ConfigValues.TableToList(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetCompanyAreasWithPrices(int? companyId, int? serviceId)
         {
             var services = BusinessLayer.GetCompanyAreasWithPrices(companyId, serviceId);
-            List<List<string>> list = ConfigValues.retListTable(services);
+            List<List<string>> list = ConfigValues.TableToList(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

@@ -13,6 +13,7 @@ namespace _123Movers.DataEntities
 {
     public partial class DataLayer
     {
+        static SqlCommand _cmd;
         public static SqlConnection ConnectToDb()
         {
             string strCon = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
@@ -106,20 +107,15 @@ namespace _123Movers.DataEntities
                 SqlCommand cmdGetCompany = new SqlCommand();
                 cmdGetCompany.Connection = dbCon;
                 cmdGetCompany.CommandType = System.Data.CommandType.StoredProcedure;
-                //cmdGetCompany.CommandText = "usp_GetCompanyDetails";
                 cmdGetCompany.CommandText = "usp_companySearchv3";
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", search.CompanyId);
-                SqlParameter paramCompanyName = new SqlParameter("companyName", !string.IsNullOrWhiteSpace(search.CompanyName) ? search.CompanyName.Trim() : null);
-                //SqlParameter paramAreacode = new SqlParameter("areaCode", search.AreaCodes);
-                //SqlParameter paramAgreement = new SqlParameter("agreement", search.AgreementNumber);
-                SqlParameter paramAx = new SqlParameter("ax", !string.IsNullOrWhiteSpace(search.AX) ? search.AX.Trim() : null);
-                SqlParameter paramInsertion = new SqlParameter("insertionOrderId", !string.IsNullOrWhiteSpace(search.InsertionOrderId) ? search.InsertionOrderId.Trim() : null);
+                SqlParameter paramCompanyName = new SqlParameter("companyName", search.CompanyName.TrimNullOrEmpty());
+                SqlParameter paramAx = new SqlParameter("ax", search.AX.TrimNullOrEmpty());
+                SqlParameter paramInsertion = new SqlParameter("insertionOrderId", search.InsertionOrderId.TrimNullOrEmpty());
 
                 cmdGetCompany.Parameters.Add(paramCompanyId);
                 cmdGetCompany.Parameters.Add(paramCompanyName);
-                //cmdGetCompany.Parameters.Add(paramAreacode);
-               // cmdGetCompany.Parameters.Add(paramAgreement);
                 cmdGetCompany.Parameters.Add(paramAx);
                 cmdGetCompany.Parameters.Add(paramInsertion);
 
@@ -131,32 +127,15 @@ namespace _123Movers.DataEntities
 
                 foreach (DataRow row in dtResults.Rows)
                 {
-                     int? cid = 0;
-                     bool isActive = false;
-
-                     if (!string.IsNullOrEmpty(row["CompanyID"].ToString()))
-                     {
-                         cid = Convert.ToInt32(row["CompanyID"]);
-                     }
-                     if (!string.IsNullOrEmpty(row["isActive"].ToString()))
-                     {
-                         isActive = Convert.ToBoolean(row["isActive"]);
-                     }
                      SearchModel s = new SearchModel
                      {
-                      //  CompanyId = row[""],
-
-                        CompanyId = cid,
+                         CompanyId = row["CompanyID"].ToString().IntNullOrEmpty(),
                         CompanyName = row["companyName"].ToString(),
                         AX = row["AbNumber"].ToString(),
                         InsertionOrderId = row["insertionOrderId"].ToString(),
-                        //DisplayName = row["displayName"].ToString(),
-                       // CompanyHandle = row["companyHandle"].ToString(),
                         ContactPerson = row["contactPerson"].ToString(),
-                        IsActive = isActive,
+                         IsActive = row["isActive"].ToString().BooleanNullOrEmpty(),
                         Suspended = row["suspended"].ToString()
-                        //AgreementNumber = row["agreementNumber"].ToString(),
-                       // AreaCodes = row["Area Code"].ToString()
 
                     };
                     list.Add(s);
@@ -166,51 +145,7 @@ namespace _123Movers.DataEntities
                 return list;
             }
 
-
-           
         }
-
-      
-      
-       
-        //public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
-        //{
-        //    using (SqlConnection dbCon = ConnectToDb())
-        //    {
-        //        SqlCommand cmdGetCompanyPricePerLead = new SqlCommand();
-        //        cmdGetCompanyPricePerLead.Connection = dbCon;
-        //        cmdGetCompanyPricePerLead.CommandType = System.Data.CommandType.StoredProcedure;
-        //        cmdGetCompanyPricePerLead.CommandText = "usp_GetCompanyPricePerLead";
-        //        if (serviceId == null)
-        //        {
-        //            serviceId = 1009;
-        //        }
-        //        SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-        //        SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-
-        //        cmdGetCompanyPricePerLead.Parameters.Add(paramCompanyId);
-        //        cmdGetCompanyPricePerLead.Parameters.Add(paramService);
-
-        //        DataTable dtResults = new DataTable();
-
-        //        SqlDataReader drResults = cmdGetCompanyPricePerLead.ExecuteReader();
-        //        dtResults.Load(drResults);
-
-        //        return dtResults;
-
-        //    }
-        //}
-      
-       
-       
-       
-
-
-       
-       
-
-        
-       
 
     }
 

@@ -10,7 +10,7 @@ namespace _123Movers.DataEntities
 {
     public partial class DataLayer
     {
-        static SqlCommand _cmd;
+        
         public static List<BudgetModel> GetBudget(int? companyid)
         {
             List<BudgetModel> list = new List<BudgetModel>();
@@ -19,15 +19,12 @@ namespace _123Movers.DataEntities
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = "usp_GetCompanyBudget";
+                _cmd.CommandText = Constants.SP_GET_COMPANY_BUDGET;
 
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyid);
 
-
                 _cmd.Parameters.Add(paramCompanyId);
-
-
 
                 DataTable dtResults = new DataTable();
 
@@ -36,84 +33,26 @@ namespace _123Movers.DataEntities
 
                 foreach (DataRow row in dtResults.Rows)
                 {
-                    int? cid = null;
-                    int? sid = null;
-                    int? dcharge = null;
-                    DateTime? sdate = null;
-                    DateTime? edate = null;
-                    decimal? tbudget = null;
-                    decimal? rbudget = null;
-                    decimal? uAmount = null;
-                    bool recurring = false;
-                    bool notice = false;
-
-                    if (!string.IsNullOrEmpty(row["CompanyID"].ToString()))
+                    BudgetModel budget = new BudgetModel
                     {
-                        cid = Convert.ToInt32(row["CompanyID"]);
-                    }
-
-                    if (!string.IsNullOrEmpty(row["ServiceID"].ToString()))
-                    {
-                        sid = Convert.ToInt32(row["ServiceID"]);
-                    }
-
-                    if (!string.IsNullOrEmpty(row["minDaysToCharge"].ToString()))
-                    {
-                        dcharge = Convert.ToInt32(row["minDaysToCharge"]);
-                    }
-
-                    if (!string.IsNullOrEmpty(row["Budget Start Date"].ToString()))
-                    {
-                        sdate = Convert.ToDateTime(row["Budget Start Date"]).Date;
-                    }
-
-                    if (!string.IsNullOrEmpty(row["Budget End Date"].ToString()))
-                    {
-                        edate = Convert.ToDateTime(row["Budget End Date"]).Date;
-                    }
-                    if (!string.IsNullOrEmpty(row["Total Budget"].ToString()))
-                    {
-                        tbudget = Convert.ToDecimal(row["Total Budget"]);
-                    }
-                    if (!string.IsNullOrEmpty(row["Remaining Budget"].ToString()))
-                    {
-                        rbudget = Convert.ToDecimal(row["Remaining Budget"]);
-                    }
-                    if (!string.IsNullOrEmpty(row["Uncharged Amount"].ToString()))
-                    {
-                        uAmount = Convert.ToDecimal(row["Uncharged Amount"]);
-                    }
-                    if (!string.IsNullOrEmpty(row["IsReccurring"].ToString()))
-                    {
-                        recurring = Convert.ToBoolean(row["IsReccurring"]);
-                    }
-
-                    if (!string.IsNullOrEmpty(row["IsRequireNoticeToCharge"].ToString()))
-                    {
-                        notice = Convert.ToBoolean(row["IsRequireNoticeToCharge"]);
-                    }
-
-                    BudgetModel s = new BudgetModel
-                    {
-
-                        CompanyId = cid,
+                        CompanyId = row["minDaysToCharge"].ToString().IntNullOrEmpty(),
                         CompanyName = row["Company Name"].ToString(),
                         AX = row["AX Number"].ToString(),
                         InsertionOrderId = row["Budget Insertion ID"].ToString(),
                         AgreementNumber = row["agreementNumber"].ToString(),
                         AreaCodes = row["Area Code"].ToString(),
-                        StartDate = sdate,
-                        EndDate = edate,
-                        TotalBudget = tbudget,
-                        RemainingBudget = rbudget,
-                        UnchargedAmount = uAmount,
-                        ServiceId = sid,
-                        MinDaysToCharge = dcharge,
-                        IsRecurring = recurring,
-                        IsRequireNoticeToCharge = notice,
+                        StartDate = row["Budget Start Date"].ToString().DateNullOrEmpty(),
+                        EndDate = row["Budget End Date"].ToString().DateNullOrEmpty(),
+                        TotalBudget = row["Total Budget"].ToString().DecimalNullOrEmpty(),
+                        RemainingBudget = row["Remaining Budget"].ToString().DecimalNullOrEmpty(),
+                        UnchargedAmount = row["Uncharged Amount"].ToString().DecimalNullOrEmpty(),
+                        ServiceId = row["ServiceID"].ToString().IntNullOrEmpty(),
+                        MinDaysToCharge = row["minDaysToCharge"].ToString().IntNullOrEmpty(),
+                        IsRecurring = row["IsReccurring"].ToString().BooleanNullOrEmpty(),
+                        IsRequireNoticeToCharge = row["IsRequireNoticeToCharge"].ToString().BooleanNullOrEmpty(),
                         ContactPerson = row["contactPerson"].ToString()
                     };
-                    list.Add(s);
+                    list.Add(budget);
                 }
 
 
@@ -128,7 +67,7 @@ namespace _123Movers.DataEntities
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = "usp_SaveBudget";
+                _cmd.CommandText = Constants.SP_SAVE_BUDGET;
 
                 if (budget.TermType == "0")
                 {
@@ -172,31 +111,30 @@ namespace _123Movers.DataEntities
             }
 
         }
-        public static DataTable GetServices()
+        public static List<List<string>> GetServices()
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmdGetService = new SqlCommand();
-                cmdGetService.Connection = dbCon;
-                cmdGetService.CommandType = System.Data.CommandType.StoredProcedure;
-                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
-                cmdGetService.CommandText = "usp_getAreaCodesStates";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_GET_AREACODES_STATES;
 
                 SqlParameter paramType = new SqlParameter("queryType", 1);
 
-                cmdGetService.Parameters.Add(paramType);
+                _cmd.Parameters.Add(paramType);
 
                 DataTable dtResults = new DataTable();
 
-                SqlDataReader drResults = cmdGetService.ExecuteReader();
+                SqlDataReader drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
-                return dtResults;
+                return ConfigValues.TableToList(dtResults);
 
             }
 
         }
-        public static DataTable GetFilterResult(int? companyID, int? serviceID)
+        public static List<List<string>> GetFilterResult(int? companyID, int? serviceID)
         {
             DataTable dtResults = new DataTable();
 
@@ -204,17 +142,17 @@ namespace _123Movers.DataEntities
             {
                 using (SqlConnection dbCon = ConnectToDb())
                 {
-                    SqlCommand cmdGetService = new SqlCommand();
-                    cmdGetService.Connection = dbCon;
-                    cmdGetService.CommandType = System.Data.CommandType.StoredProcedure;
+                    _cmd = new SqlCommand();
+                    _cmd.Connection = dbCon;
+                    _cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmdGetService.CommandText = "usp_FilterResult";
+                    _cmd.CommandText = Constants.SP_GET_FILTER_RESULT;
 
-                    cmdGetService.Parameters.Add(new SqlParameter("companyID", companyID));
-                    cmdGetService.Parameters.Add(new SqlParameter("serviceID", serviceID));
+                    _cmd.Parameters.Add(new SqlParameter("companyID", companyID));
+                    _cmd.Parameters.Add(new SqlParameter("serviceID", serviceID));
 
 
-                    SqlDataReader drResults = cmdGetService.ExecuteReader();
+                    SqlDataReader drResults = _cmd.ExecuteReader();
 
                     dtResults.Load(drResults);
 
@@ -225,7 +163,7 @@ namespace _123Movers.DataEntities
             {
 
             }
-            return dtResults;
+            return ConfigValues.TableToList(dtResults);
 
         }
 

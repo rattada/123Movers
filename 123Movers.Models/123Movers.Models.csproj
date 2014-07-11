@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigValues.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AreaCodeModel.cs" />
     <Compile Include="Models\BudgetModel.cs" />

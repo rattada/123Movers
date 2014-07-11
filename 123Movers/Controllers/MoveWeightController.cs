@@ -70,7 +70,7 @@ namespace _123Movers.Controllers
         {
 
             DataSet ds = BusinessLayer.GetMoveWeights(new CompanyModel().CurrentCompany.CompanyId, serviceId);
-            List<List<string>> list = ConfigValues.retListTable(ds.Tables[1]);
+            List<List<string>> list = ConfigValues.TableToList(ds.Tables[1]);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

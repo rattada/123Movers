@@ -32,7 +32,7 @@ namespace _123Movers.Controllers
         {
             var OriginAreaCodes = BusinessLayer.GetCompanyAreasZipCodes(new CompanyModel().CurrentCompany.CompanyId, serviceId, areaCode);
 
-            List<List<string>> list = ConfigValues.retListTable(OriginAreaCodes);
+            List<List<string>> list = ConfigValues.TableToList(OriginAreaCodes);
             return Json(list, JsonRequestBehavior.AllowGet);
 
 
@@ -40,7 +40,7 @@ namespace _123Movers.Controllers
         public JsonResult GetAvailableZipCodes(int? serviceId, int? areaCode)
         {
             var services = BusinessLayer.GetAvailableZipCodes(new CompanyModel().CurrentCompany.CompanyId, serviceId, areaCode);
-            List<List<string>> list = ConfigValues.retListTable(services);
+            List<List<string>> list = ConfigValues.TableToList(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
