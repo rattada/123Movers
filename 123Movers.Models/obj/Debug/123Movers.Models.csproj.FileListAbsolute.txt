@@ -36,6 +36,7 @@ D:\Movers123\123Movers\123Movers.Models\bin\EntityFramework.xml
 D:\Movers123\123Movers\123Movers.Models\bin\EntityFramework.SqlServer.xml
 D:\Movers123\123Movers\123Movers.Models\obj\Debug\123Movers.Models.dll
 D:\Movers123\123Movers\123Movers.Models\obj\Debug\123Movers.Models.pdb
+<<<<<<< HEAD
 D:\123Movers\123Movers\123Movers.Models\bin\123Movers.Models.dll
 D:\123Movers\123Movers\123Movers.Models\bin\123Movers.Models.pdb
 D:\123Movers\123Movers\123Movers.Models\bin\EntityFramework.dll
@@ -45,3 +46,6 @@ D:\123Movers\123Movers\123Movers.Models\bin\EntityFramework.SqlServer.xml
 D:\123Movers\123Movers\123Movers.Models\obj\Debug\123Movers.Models.dll
 D:\123Movers\123Movers\123Movers.Models\obj\Debug\123Movers.Models.pdb
 D:\123Movers\123Movers\123Movers.Models\obj\Debug\123Movers.Models.csprojResolveAssemblyReference.cache
+=======
+D:\Movers123\123Movers\123Movers.Models\obj\Debug\123Movers.Models.csprojResolveAssemblyReference.cache
+>>>>>>> 27ca6e58e05cb186891dc1d51cd8beafc8071648

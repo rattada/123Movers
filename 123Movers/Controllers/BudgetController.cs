@@ -78,7 +78,11 @@ namespace _123Movers.Controllers
                     BusinessLayer.SaveBudget(budget);
                     return RedirectToAction("GetBudget", budget._companyInfo.CurrentCompany);
 
+<<<<<<< HEAD
                // }
+=======
+                //}
+>>>>>>> 27ca6e58e05cb186891dc1d51cd8beafc8071648
             }
             catch (Exception ex)
             {

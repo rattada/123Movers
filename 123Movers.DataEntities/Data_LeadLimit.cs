@@ -109,6 +109,11 @@ namespace _123Movers.DataEntities
                 if (dtResults.Rows.Count > 0)
                 {
 
+<<<<<<< HEAD
+=======
+                    var Areacode = string.Empty;
+                    var ServiceId = string.Empty;
+>>>>>>> 27ca6e58e05cb186891dc1d51cd8beafc8071648
                     foreach (DataRow row in dtResults.Rows)
                     {
 

@@ -65,6 +65,7 @@
             var serviceId = $('#ddlServiceID').val();
             var minWeight = $.trim($("#MinMoveDistance").val());
             var maxWeight = $.trim($("#MaxMoveDistance").val());
+<<<<<<< HEAD
 
             if (serviceId == '' || serviceId == undefined) {
                 alert('Please Select Service Type');
@@ -72,8 +73,14 @@
                 return false;
             }
 
+=======
+>>>>>>> 27ca6e58e05cb186891dc1d51cd8beafc8071648
 
-            if (serviceId != null && serviceId != '') {
+            if (serviceId == '' || serviceId == undefined || serviceId == null) {
+                alert('Please Select Service Type');
+                $("#ddlServiceID").focus();
+                return false;
+            } else {
                 if ((minWeight.length == 0 && maxWeight.length == 0) || (parseInt(minWeight) == 0 && parseInt(maxWeight) == 0 )) {
                     alert('Please enter atleast one Distance');
                     return false;

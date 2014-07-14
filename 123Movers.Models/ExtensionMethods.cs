@@ -77,6 +77,15 @@ namespace _123Movers.Models
                 return Constants.LOCAL;
             }
             return value;
+<<<<<<< HEAD
+=======
+        }
+
+        public static CompanyModel CompanyInfo(this HtmlHelper helper, string view, CompanyModel _company)
+        {
+            return _company;
+
+>>>>>>> 27ca6e58e05cb186891dc1d51cd8beafc8071648
         }
 
     }

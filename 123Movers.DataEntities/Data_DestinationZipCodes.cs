@@ -39,7 +39,11 @@ namespace _123Movers.DataEntities
 
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> 27ca6e58e05cb186891dc1d51cd8beafc8071648
                     DestinationZipModel s = new DestinationZipModel
                     {
                         CompanyId = row["companyID"].ToString().IntNullOrEmpty(),
@@ -53,7 +57,10 @@ namespace _123Movers.DataEntities
 
                 foreach (DataRow row in ds.Tables[2].Rows)
                 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 27ca6e58e05cb186891dc1d51cd8beafc8071648
                     DestinationZipModel s = new DestinationZipModel
                     {
                         CompanyId = row["companyID"].ToString().IntNullOrEmpty(),
@@ -135,12 +142,24 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
+<<<<<<< HEAD
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 _cmd.CommandText = Constants.SP_GET_COMPANY_AVAILABLE_AREADEST_ZIPCODES; //"usp_availableAreacoded";
 
+=======
+                SqlCommand cmdGetAvailableAreas = new SqlCommand();
+                cmdGetAvailableAreas.Connection = dbCon;
+                cmdGetAvailableAreas.CommandType = System.Data.CommandType.StoredProcedure;
+                //cmdGetService.CommandText = "usp_GetAreaCodesAndStates";
+                cmdGetAvailableAreas.CommandText = "usp_GetCompanyAvailableAreasDestinationZipCodes"; //"usp_availableAreacoded";
+                if (serviceId == null)
+                {
+                    serviceId = 1009;
+                }
+>>>>>>> 27ca6e58e05cb186891dc1d51cd8beafc8071648
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
                 SqlParameter paramAreaCode = new SqlParameter("areaCode", areaCode);
