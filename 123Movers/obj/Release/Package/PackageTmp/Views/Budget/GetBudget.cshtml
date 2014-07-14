@@ -3,15 +3,13 @@
 
 @{
     ViewBag.Title = "GetBudget";
-    Layout = "~/Views/Shared/_Layout.cshtml";
    
 }
 
 <script type="text/javascript" src="~/Scripts/jquery.tablesorter.min.js"></script>
  <div class="row">
-    @* @Html.Partial("_CompanyInfo", @Model.budget.FirstOrDefault())*@
-      @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
-                </div>
+      @Html.Partial(Constants.VIEW,@Model._companyInfo)
+</div>
  <p class="clearfix"></p>
 @if (@Model != null)
 {
@@ -19,8 +17,6 @@
     
      <div class="row">
          <div class="col-md-12">
-             @*<input type="button" id ="AddBudget" class="button" value="Add Budget" />*@
-  @*<p>  @Html.ActionLink("Add a Budget", "AddBudget", "Home", new { companyid =(int?)@Session["CompanyId"], companyName = @Model.CompanyName, ax = @Model.AX, active = @Model.IsActive, displayname = @Model.DisplayName, contactperson = @Model.ContactPerson, companyHandle=@Model.CompanyHandle }, new {id = "AddBudget", @class = "btn btn-primary btn-lg btn-warning" })</p>*@
              <p>  @Html.ActionLink("Add a Budget", "AddBudget", "Budget", new {id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
              </div>
      </div>
@@ -59,7 +55,7 @@
             @{
            // DateTime currentDate = DateTime.UtcNow;
              List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget > 0).ToList();
-           // List<BudgetModel> activeBudget = Model.budget.Where(c => c.RemainingBudget > 0).ToList();
+
                 }   
             @if (activeBudget.Count > 0)
             {
@@ -96,7 +92,7 @@
                </td>
                  <td class="text-center">
                     @{
-                        var Service = (@lot.ServiceId == 1009) ? "Local" : (@lot.ServiceId == 1000) ? "Long" : "Both";
+                        var Service = (@lot.ServiceId ==Constants.LOCAL ) ? "Local" : (@lot.ServiceId == Constants.LONG) ? "Long" : "Both";
                     
                     }
                     @Service
@@ -173,7 +169,7 @@
             @{
     //List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now ).ToList();
              List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now || c.UnchargedAmount <= 0 || c.RemainingBudget <= 0).ToList();
-           // List<BudgetModel> expiredBudget = Model.budget.Where(c => c.RemainingBudget <= 0).ToList();
+        
                 } 
             @if (expiredBudget.Count > 0)
             {
@@ -217,16 +213,11 @@
                </td>
                  <td class="text-center">
                     @{
-                        var Service = (@lot.ServiceId == 1009) ? "Local" : (@lot.ServiceId == 1000) ? "Long" : "Both";
+                        var Service = (@lot.ServiceId == Constants.LOCAL) ? "Local" : (@lot.ServiceId == Constants.LONG) ? "Long" : "Both";
                     
                     }
                     @Service
                </td>
-
-
-               @* <td class="text-center">
-                             
-                </td>*@
             </tr>
                 
                 }

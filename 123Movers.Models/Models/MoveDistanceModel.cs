@@ -21,11 +21,11 @@ namespace _123Movers.Models
         public decimal? MinMoveDistance { get; set; }
 
         [Display(Name = "Max Move Distance")]
-        //[RegularExpression(RegexPattern.Decimal, ErrorMessage = "Min Move Weight must be a decimal.")]
+
         public decimal? MaxMoveDistance { get; set; }
 
         [Display(Name = "Move Weight Seq")]
-        //  [RegularExpression(RegexPattern.Decimal, ErrorMessage = "Max Move Weight must be a decimal.")]
+  
         public decimal? MoveWeightSeq { get; set; }
 
         [Required]

@@ -17,11 +17,6 @@ namespace _123Movers.Models
         [Display(Name = "Move Weight")]
         public string MoveWeight { get; set; }
 
-        //[Display(Name = "Min Move Weight")]
-        //public string MinMoveWeight { get; set; }
-
-        //[Display(Name = "Max Move Weight")]
-        //public string MaxMoveWeight { get; set; }
 
         [Display(Name = "Min Move Weight")]
         public int? MinMoveWeightSeq { get; set; }
@@ -29,9 +24,6 @@ namespace _123Movers.Models
         [Display(Name = "Max Move Weight")]
         public int? MaxMoveWeightSeq { get; set; }
 
-        //[Required]
-        //[Display(Name = "Services")]
-        //public string Services { get; set; }
         public CompanyModel _companyInfo { get; set; }
     }
 }

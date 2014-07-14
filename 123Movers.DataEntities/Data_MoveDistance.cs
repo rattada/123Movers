@@ -15,10 +15,10 @@ namespace _123Movers.DataEntities
             int i = 0;
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = dbCon;
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = "usp_SaveMoveDistance";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_ADD_COMPANY_MOVEDISTANCE;
 
 
 
@@ -28,14 +28,14 @@ namespace _123Movers.DataEntities
                 SqlParameter paramMaxWeight = new SqlParameter("maxMoveWeight", model.MaxMoveDistance);
 
 
-                cmd.Parameters.Add(paramCompanyId);
-                cmd.Parameters.Add(paramServiceID);
-                cmd.Parameters.Add(paramMinWeight);
-                cmd.Parameters.Add(paramMaxWeight);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramServiceID);
+                _cmd.Parameters.Add(paramMinWeight);
+                _cmd.Parameters.Add(paramMaxWeight);
 
 
 
-                i = cmd.ExecuteNonQuery();
+                i = _cmd.ExecuteNonQuery();
 
 
             }
@@ -47,20 +47,20 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmdGetCompanyLeadLimit = new SqlCommand();
-                cmdGetCompanyLeadLimit.Connection = dbCon;
-                cmdGetCompanyLeadLimit.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdGetCompanyLeadLimit.CommandText = "usp_GetCompanyMoveDistance";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_GET_COMPANY_MOVEDISTANCE;
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
 
-                cmdGetCompanyLeadLimit.Parameters.Add(paramCompanyId);
-                cmdGetCompanyLeadLimit.Parameters.Add(paramService);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramService);
 
                 DataTable dtResults = new DataTable();
 
-                SqlDataReader drResults = cmdGetCompanyLeadLimit.ExecuteReader();
+                SqlDataReader drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
                 return dtResults;

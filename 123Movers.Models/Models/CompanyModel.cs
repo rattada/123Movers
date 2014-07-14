@@ -20,8 +20,7 @@ namespace _123Movers.Models
         [Display(Name = "AX #")]
         public string AX { get; set; }
 
-        //[Display(Name = "Agreement")]
-        //public string AgreementNumber { get; set; }
+
 
         [Display(Name = "Active")]
         public bool IsActive { get; set; }
@@ -46,6 +45,5 @@ namespace _123Movers.Models
             }
         }
 
-        //public CompanyModel CurrentCompany { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model _123Movers.Models.MoveWeightModel
+@using _123Movers.Models
 @{
     ViewBag.Title = "MoveWeight";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -11,7 +11,7 @@
 
 <div class="row">
 
-       @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
+       @Html.Partial(Constants.VIEW,@Model._companyInfo)
      
     </div>
 <p class="clearfix"></p>
@@ -57,6 +57,7 @@
 
         var orgMax = $('#maxMoveWeight option:selected').val();
         var orgMin = $('#minMoveWeight option:selected').val();
+
 
         $('#savemoveweight').click(function () {
             var serviceId = $('#services').val().trim();
@@ -136,7 +137,6 @@
                             $("#minMoveWeight option:first").attr('selected', 'selected');
                             $("#maxMoveWeight option:first").attr('selected', 'selected');
                         }
-                        //  location.reload();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
 
@@ -148,33 +148,5 @@
                 $("#maxMoveWeight option:first").attr('selected', 'selected');
             }
         });
-        //$('#minMoveWeight').on("change", function () {
-        //    var max = $('#maxMoveWeight option:selected').val();
-        //    var min = $('#minMoveWeight option:selected').val();
-        //    if (parseInt(min) >= parseInt(max))
-        //    {
-        //        alert('Min Move Weight Should be Less Than Max Move Weight');
-        //        $('#minMoveWeight').val(orgMin).attr("selected", "selected");
-        //        return false;
-        //    } else {
-        //        orgMax = $('#maxMoveWeight option:selected').val();
-        //        orgMin = $('#minMoveWeight option:selected').val();
-        //    }
-        //});
-
-        //$('#maxMoveWeight').on("change", function () {
-        //    var max = $('#maxMoveWeight option:selected').val();
-        //    var min = $('#minMoveWeight option:selected').val();
-        //    if (parseInt(max) <= parseInt(min)) {
-        //        alert('Max Move Weight Should be Grater Than Min Move Weight');
-        //        $('#maxMoveWeight').val(orgMax).attr("selected", "selected");
-        //        return false;
-        //    }
-        //    else {
-        //        orgMax = $('#maxMoveWeight option:selected').val();
-        //        orgMin = $('#minMoveWeight option:selected').val();
-        //    }
-        //});
-
     });
 </script>

@@ -20,26 +20,25 @@ namespace _123Movers.Controllers
         }
 
         [HttpGet]
-        public ActionResult MoveWeight(int? ServiceId)
+        public ActionResult MoveWeight(int? serviceId)
         {
-            //var moveWeights = DataTableToSelectList(BusinessLayer.GetMoveWeights(), "moveWeightSeq", "moveweight");
-            //var selectedItem = moveWeights.First(x => x.Value == "7");
-
-            //ViewBag.MinMoveWeight = new SelectList(moveWeights, "Value", "Text", new { Value = 7 });
 
             int? cid = new CompanyModel().CurrentCompany.CompanyId;
-            DataSet ds = BusinessLayer.GetMoveWeights(cid, ServiceId);
+            DataSet ds = BusinessLayer.GetMoveWeights(cid, serviceId);
 
             ViewBag.MinMoveWeight = ConfigValues.DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
-            ViewBag.Services = ConfigValues.Services().Take(2);
+            if (ConfigValues.Services(serviceId).Count > 2)
+                ViewBag.Services = ConfigValues.Services(serviceId).Take(2);
+            else
+                ViewBag.Services = ConfigValues.Services(serviceId);
             MoveWeightModel model = new MoveWeightModel();
             model._companyInfo = new CompanyModel().CurrentCompany;
             model.CompanyId = cid;
             if (ds.Tables[1].Rows.Count > 0)
             {
-                model.ServiceId = Convert.ToInt32(ds.Tables[1].Rows[0][1].ToString()); ;
-                model.MinMoveWeightSeq = Convert.ToInt32(ds.Tables[1].Rows[0][2].ToString());
-                model.MaxMoveWeightSeq = Convert.ToInt32(ds.Tables[1].Rows[0][3].ToString());
+                model.ServiceId = ds.Tables[1].Rows[0][1].ToString().IntNullOrEmpty();
+                model.MinMoveWeightSeq = ds.Tables[1].Rows[0][2].ToString().IntNullOrEmpty();
+                model.MaxMoveWeightSeq = ds.Tables[1].Rows[0][3].ToString().IntNullOrEmpty();
             }
 
             return View(model);

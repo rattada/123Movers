@@ -30,9 +30,6 @@ namespace _123Movers.Models
         [Display(Name = "Insertion Order ID")]
         public string InsertionOrderId { get; set; }
 
-        //[Required]
-        //[Display(Name = "Area Codes")]
-        //public string AreaCodes { get; set; }
 
         //[Required]
         [Display(Name = "Agreement")]
@@ -41,11 +38,7 @@ namespace _123Movers.Models
         [Display(Name = "Active")]
         public bool IsActive { get; set; }
 
-        //[Display(Name = "Display Name")]
-        //public string DisplayName { get; set; }
-
-        //[Display(Name = "Company Handle")]
-        //public string CompanyHandle { get; set; }
+    
 
         [Display(Name = "Suspended")]
         public string Suspended { get; set; }

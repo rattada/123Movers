@@ -10,9 +10,6 @@ namespace _123Movers.Models
     public class BudgetModel
     {
 
-        //[Display(Name = "Tid")]
-        //public int Tid { get; set; }
-       // [Required]
         [Display(Name = "Company ID")]
         public int? CompanyId { get; set; }
 
@@ -27,40 +24,26 @@ namespace _123Movers.Models
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
 
-        //[Required]
-        //[Display(Name = "Display Name")]
-        //public string DisplayName { get; set; }
+
 
         [Display(Name = "Sales Person")]
         public string ContactPerson { get; set; }
 
-        //[Required]
-        //[Display(Name = "Company Handle")]
-        //public string CompanyHandle { get; set; }
 
         [Display(Name = "Suspended")]
         public string Suspended { get; set; }
 
-
         [Required]
-       // [DataType(DataType.Currency)]
-        //[DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = true)]
-       // [HtmlProperties(CssClass = "currency")]
-        //[RegularExpression(@"^\d+.\d{0,2}$")]
-        //[Range(0, 9999999999999999.99)]
         [Display(Name = "Budget Amount")]
         public decimal? TotalBudget { get; set; }
 
        // [Required]
         [Display(Name = "Remaining Budget")]
-        //[DataType(DataType.Currency)]
-       // [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = true)]
         public decimal? RemainingBudget { get; set; }
 
         [Required]
         [Display(Name = "Uncharged Amount")]
-        //[DataType(DataType.Currency)]
-        //[DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = true)]
+
         public decimal? UnchargedAmount { get; set; }
 
         //[Required]
@@ -70,11 +53,11 @@ namespace _123Movers.Models
 
         [Required]
         [Display(Name = "Start Date")]
-       // [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",  ApplyFormatInEditMode = true)]
+
         public DateTime? StartDate { get; set; }
 
         [Display(Name = "End Date")]
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        
         public DateTime? EndDate { get; set; }
 
         //[Required]
@@ -93,13 +76,6 @@ namespace _123Movers.Models
         [Display(Name = "Expire")]
         public bool Expire { get; set; }
 
-        //[Required]
-        //[Display(Name = "Terms")]
-        //public string Terms { get; set; }
-
-        //[Required]
-        //[Display(Name = "Services")]
-        //public string Services { get; set; }
 
        // [Required]
         [Display(Name = "Agreement Number")]
@@ -120,6 +96,8 @@ namespace _123Movers.Models
         [Required]
         [Display(Name = "Terms")]
          public string TermType { get; set; }
+
+        public string Type { get; set; }
 
         public CompanyModel _companyInfo { get; set; }
 

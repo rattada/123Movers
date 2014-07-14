@@ -16,14 +16,10 @@ namespace _123Movers.Controllers
 
         public JsonResult GetServices()
         {
-            //var services = BusinessLayer.GetServies();
-            //List<List<string>> list = ConfigValues.TableToList(services);
             return Json(BusinessLayer.GetServies(), JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetFilterResult(int? serviceId)
         {
-            //int? cid = new CompanyModel().CurrentCompany.CompanyId;
-            //List<List<string>> list = ConfigValues.TableToList(BusinessLayer.GetFilterResult(cmd, serviceId));
             return Json(BusinessLayer.GetFilterResult(new CompanyModel().CurrentCompany.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
 
@@ -32,7 +28,6 @@ namespace _123Movers.Controllers
         public ActionResult GetBudget(CompanyModel CompanyInfo)
         {
 
-            // MoversEntities dc = new MoversEntities();
             IEnumerable<BudgetModel> budgetList = new List<BudgetModel>();
             SearchModel search = new SearchModel();
             CompanyModel company = new CompanyModel();
@@ -75,15 +70,15 @@ namespace _123Movers.Controllers
            
             try
             {
-                if (ModelState.IsValid)
-                {
+                //if (ModelState.IsValid)
+                //{
                     budget._companyInfo = new CompanyModel().CurrentCompany;
                     budget.CompanyId = budget._companyInfo.CompanyId;
-
+                    budget.Type = "NEW";
                     BusinessLayer.SaveBudget(budget);
                     return RedirectToAction("GetBudget", budget._companyInfo.CurrentCompany);
 
-                }
+               // }
             }
             catch (Exception ex)
             {
@@ -101,12 +96,15 @@ namespace _123Movers.Controllers
             BudgetModel budget = new BudgetModel();
             ViewBag.Terms = ConfigValues.Terms();
             ViewBag.Services = ConfigValues.Services();
-            int Service = (serviceId == 1009) ? 1009 : (serviceId == 1000) ? 1000 : 999;
+            if(serviceId == null)
+            {
+                serviceId = 999;
+            }
             string Recurring = (IsRecurring) ? (IsRequireNoticeToCharge) ? "2" : "0" : "1";
             budget.TotalBudget = TotalBudget;
             budget.IsRecurring = IsRecurring;
             budget.IsRequireNoticeToCharge = IsRequireNoticeToCharge;
-            budget.ServiceId = Service;
+            budget.ServiceId = serviceId;
             budget.MinDaysToCharge = minDaysToCharge;
             budget.AgreementNumber = agnumber;
             budget.TermType = Recurring;
@@ -131,7 +129,7 @@ namespace _123Movers.Controllers
                 budget._companyInfo = new CompanyModel().CurrentCompany;
                 budget.CompanyId = budget._companyInfo.CompanyId;
                 budget.BudgetAction = Constants.RENEWL_BUDGET;
-
+                budget.Type = "EDIT";
                 BusinessLayer.SaveBudget(budget);
 
                 return RedirectToAction("GetBudget", budget._companyInfo.CurrentCompany);

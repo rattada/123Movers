@@ -1,15 +1,14 @@
 ﻿@model _123Movers.Models.LeadLimitModel
-
+@using _123Movers.Models
 @{
     ViewBag.Title = "Company Lead Limit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+  }
 
 <input type="hidden" id="message" value="@ViewBag.Success"/>
 <input type="hidden" id="hdnServiceId" value="@ViewBag.ServiceID"/>
 
 <div class="row">
-      @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
+    @Html.Partial(Constants.VIEW, @Model._companyInfo)
 </div>
 
 <p class="clearfix"></p>
@@ -47,19 +46,19 @@
                 {
                     if (@Model.LeadLimitData.Count() > 0)
                     {
-                        var bothservice = Model.LeadLimitData.Where(x => x.ServiceId == 0).SingleOrDefault();
+                        var bothservice = Model.LeadLimitData.Where(x => x.ServiceId==null).SingleOrDefault();
 
                         if (bothservice != null)
                         {
 
-                            var Service = "Both";
+                            
                             
                 <tr>
                     <td class="text-center">
                         <input type="checkbox" class='chkSelectClass' id="rdbtnboth"></td>
-                    <td id="tdBoth1" class="text-center">@Service
+                    <td id="tdBoth1" class="text-center">@Constants.BOTH
                     </td>
-                    <td class="text-center">Default
+                    <td class="text-center">@Constants.DEFAULT
                     </td>
                     <td class="text-center">
                         <input type="text" id="txtFrequencyboth" class="leadLimit-control text-center freqEnable " value="@bothservice.LeadFrequency" disabled="disabled" >
@@ -90,39 +89,35 @@
 
 
 
-                        var services = Model.LeadLimitData.Where(x => (x.ServiceId == 1009 || x.ServiceId == 1000) && x.AreaCodes == null).OrderByDescending(x => x.ServiceId).ToList();
+                        var services = Model.LeadLimitData.Where(x => (x.ServiceId == Constants.LOCAL || x.ServiceId == Constants.LONG) && x.AreaCodes == null).OrderByDescending(x => x.ServiceId).ToList();
                         if (services.Count > 0)
                         {
                             foreach (var service in services)
                             {
-                                var ServiceId = (@service.ServiceId == 1009) ? "Local" : "Long";
-                                var areaCode = "Default";
-                            
-                                     
                 <tr>
                     <td class="text-center">
-                        <input type="checkbox" class="chkSelectClass text-center" id="rdbtn@(ServiceId)"></td>
-                    <td id="tdLocalLong" class="text-center">@ServiceId
+                        <input type="checkbox" class="chkSelectClass text-center" id="rdbtn@(service.ServiceId.TernaryLocalLong())"></td>
+                    <td id="tdLocalLong" class="text-center">@service.ServiceId.TernaryLocalLong()
                     </td>
-                    <td class="text-center">@areaCode
-                    </td>
-                    <td class="text-center">
-                        <input type="text" id="txtFrequency@(ServiceId)" class=" text-center leadLimit-control freqEnable" value="@service.LeadFrequency"  disabled="disabled">
+                    <td class="text-center">@Constants.DEFAULT
                     </td>
                     <td class="text-center">
-                        <input type="checkbox" id="chkDaily@(areaCode)" class="chkInnerClass" checked="@service.IsDailyLeadLimit">
+                        <input type="text" id="txtFrequency@(service.ServiceId.TernaryLocalLong())" class=" text-center leadLimit-control freqEnable" value="@service.LeadFrequency"  disabled="disabled">
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox" id="chkDaily@(Constants.DEFAULT)" class="chkInnerClass" checked="@service.IsDailyLeadLimit">
                         Daily Lead Limit :
-                        <input type="text" id="txtDaily@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control"  value="@service.DailyLeadLimit" ><br>
+                        <input type="text" id="txtDaily@(Constants.DEFAULT)" disabled="disabled" class="classCheckVal  text-center leadLimit-control"  value="@service.DailyLeadLimit" ><br>
                     </td>
                     <td class="text-center">
-                        <input type="checkbox" id="chkMonthly@(areaCode)" class="chkInnerClass" checked="@service.IsMonthlyLeadLimit">
+                        <input type="checkbox" id="chkMonthly@(Constants.DEFAULT)" class="chkInnerClass" checked="@service.IsMonthlyLeadLimit">
                         Monthly Lead Limit :
-                        <input type="text" id="txtMonthly@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.MonthlyLeadLimit" ><br>
+                        <input type="text" id="txtMonthly@(Constants.DEFAULT)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.MonthlyLeadLimit" ><br>
                     </td>
                     <td class="text-center">
-                        <input type="checkbox" id="chkTotal@(areaCode)" class="chkInnerClass" checked="@service.IsTotalLeadLimit">
+                        <input type="checkbox" id="chkTotal@(Constants.DEFAULT)" class="chkInnerClass" checked="@service.IsTotalLeadLimit">
                         Total Lead Limit :
-                        <input type="text" id="txtTotal@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.TotalLeadLimit" ><br>
+                        <input type="text" id="txtTotal@(Constants.DEFAULT)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.TotalLeadLimit" ><br>
                     </td>
 
                 </tr>
@@ -139,33 +134,32 @@
                         {
                             foreach (var service in allServices)
                             {
-                                var Service = (@service.ServiceId == 1009) ? "Local" : "Long";
-                                var areaCode = @service.AreaCodes;
-                                 
+                               
+                                
                 <tr>
                     <td class="text-center">
-                        <input type="checkbox"  class="chkSelectClass" id="rdbtn@(Service)@(areaCode)"></td>
-                    <td id="tdBoth" class="text-center">@Service
+                        <input type="checkbox"  class="chkSelectClass" id="rdbtn@(service.ServiceId.TernaryLocalLong())@(service.AreaCodes)"></td>
+                    <td id="tdBoth" class="text-center">@(service.ServiceId.TernaryLocalLong())
                     </td>
-                    <td class="text-center">@areaCode
-                    </td>
-                    <td class="text-center">
-                        <input type="text" id="txtFrequency@(Service)" class=" text-center leadLimit-control freqEnable" value="@service.LeadFrequency"  disabled="disabled">
+                    <td class="text-center">@service.AreaCodes
                     </td>
                     <td class="text-center">
-                        <input type="checkbox" id="chkDaily@(areaCode)" class="chkInnerClass" checked="@service.IsDailyLeadLimit">
+                        <input type="text" id="txtFrequency@(service.ServiceId.TernaryLocalLong())" class=" text-center leadLimit-control freqEnable" value="@service.LeadFrequency"  disabled="disabled">
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox" id="chkDaily@(service.AreaCodes)" class="chkInnerClass" checked="@service.IsDailyLeadLimit">
                         Daily Lead Limit :
-                        <input type="text" id="txtDaily@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control"  value="@service.DailyLeadLimit" ><br>
+                        <input type="text" id="txtDaily@(service.AreaCodes)" disabled="disabled" class="classCheckVal  text-center leadLimit-control"  value="@service.DailyLeadLimit" ><br>
                     </td>
                     <td class="text-center">
-                        <input type="checkbox" id="chkMonthly@(areaCode)" class="chkInnerClass" checked="@service.IsMonthlyLeadLimit">
+                        <input type="checkbox" id="chkMonthly@(service.AreaCodes)" class="chkInnerClass" checked="@service.IsMonthlyLeadLimit">
                         Monthly Lead Limit :
-                        <input type="text" id="txtMonthly@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.MonthlyLeadLimit" ><br>
+                        <input type="text" id="txtMonthly@(service.AreaCodes)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.MonthlyLeadLimit" ><br>
                     </td>
                     <td class="text-center">
-                        <input type="checkbox" id="chkTotal@(areaCode)" class="chkInnerClass" checked="@service.IsTotalLeadLimit">
+                        <input type="checkbox" id="chkTotal@(service.AreaCodes)" class="chkInnerClass" checked="@service.IsTotalLeadLimit">
                         Total Lead Limit :
-                        <input type="text" id="txtTotal@(areaCode)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.TotalLeadLimit" ><br>
+                        <input type="text" id="txtTotal@(service.AreaCodes)" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="@service.TotalLeadLimit" ><br>
                     </td>
 
                 </tr>
@@ -228,8 +222,7 @@
                     $.each(columns, function (i, item) {
                         if (i > 2) {
                             values = values + "," + $(this).closest('td').find("input:text").val().trim();
-                            //var x = $(this).closest('td').find(".chkInnerClass:checkbox:checked");
-                            //values = values + "," + x;
+
                         }
                         else {
                             if (i == 0)
@@ -257,17 +250,14 @@
                     required[2] = null;
 
                 }
-                //if (required[3] == 'Default') {
-                //    required[3] = null;
 
-                //}
 
                 if (required[1] == 'Local') {
-                    required[1] = 1009;
+                    required[1] =parseInt(@Constants.LOCAL);
 
                 }
                 else if (required[1] == 'Long') {
-                    required[1] = 1000;
+                    required[1] =parseInt(@Constants.LONG);
 
                 }
                 else {
@@ -311,7 +301,7 @@
 
             }
             else {
-                alert("Please Select any");
+                alert("Please Select any ");
                 return false;
 
             }
@@ -322,7 +312,7 @@
         $("body #tblLeadLimit ").parent().on('change', ".chkInnerClass", function () {
 
             if ($(this).prop('checked') == true) {
-                //$(this).closest("td").find("input[type=text]").prop("value", "");
+    
                 $(this).closest("td").find("input[type=text]").prop("disabled", false);
             }
             else {

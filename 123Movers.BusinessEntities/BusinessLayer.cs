@@ -27,43 +27,8 @@ namespace _123Movers.BusinessEntities
         //}
         public static IEnumerable<SearchModel> SearchCompany(SearchModel search)
         {
-            //if (search.CompanyId)
-            //{
-            //    search.CompanyId = search.CompanyId.Trim();
-            //}
-            if (!string.IsNullOrEmpty(search.CompanyName))
-            {
-                search.CompanyName = search.CompanyName.Trim();
-            }
-
-            if (!string.IsNullOrEmpty(search.AX))
-            {
-                search.AX = search.AX.Trim();
-            }
-             if (!string.IsNullOrEmpty(search.InsertionOrderId))
-            {
-                search.InsertionOrderId = search.InsertionOrderId.Trim();
-            }
             return DataLayer.SearchCompany(search);
         }
-
-        
-       
-        //public static DataTable GetCompanyPricePerLead(int? companyId, int? serviceId)
-        //{
-        //    return DataLayer.GetCompanyPricePerLead(companyId, serviceId);
-        //}
-       
-  
-
-      
-      
-
-     
-
-        
-
-
 
     }
 }

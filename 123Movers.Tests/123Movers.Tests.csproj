@@ -113,6 +113,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BudgetControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -123,6 +124,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\123Movers.BusinessEntities\123Movers.BusinessEntities.csproj">
+      <Project>{f83aadb3-18d7-4a42-a772-a1b912808ea1}</Project>
+      <Name>123Movers.BusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\123Movers.Models\123Movers.Models.csproj">
+      <Project>{d73bb4a2-1e6e-494d-aee8-00ee677f55ab}</Project>
+      <Name>123Movers.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\123Movers\123Movers.csproj">
       <Project>{30D3FE16-F5C6-40CA-8FC9-A90A1D1AEE9C}</Project>
       <Name>123Movers</Name>

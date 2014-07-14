@@ -15,23 +15,12 @@ namespace _123Movers.DataEntities
             int i = 0;
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmdAddCompanyAdByArea = new SqlCommand();
-                cmdAddCompanyAdByArea.Connection = dbCon;
-                cmdAddCompanyAdByArea.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdAddCompanyAdByArea.CommandText = "usp_AddCompanyLeadLimit";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_ADD_COMPANY_LEADLIMIT;
 
-                int? serviceId = null;
-                int? areaCode = null;
-
-                if (leadlimit.ServiceId != null)
-                {
-                    serviceId = Convert.ToInt32(leadlimit.ServiceId);
-                }
-
-                if (!string.IsNullOrWhiteSpace(leadlimit.AreaCodes))
-                {
-                    areaCode = Convert.ToInt32(leadlimit.AreaCodes);
-                }
+          
                 if (leadlimit.DailyLeadLimit != null && leadlimit.DailyLeadLimit != 0)
                 {
                     leadlimit.IsDailyLeadLimit = true;
@@ -61,34 +50,30 @@ namespace _123Movers.DataEntities
                 }
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", leadlimit.CompanyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramAreaCode = new SqlParameter("areaCode", areaCode);
-                //SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", leadlimit.MoveWeightID);
+                SqlParameter paramService = new SqlParameter("serviceID", leadlimit.ServiceId.ToString().IntNullOrEmpty());
+                SqlParameter paramAreaCode = new SqlParameter("areaCode", leadlimit.AreaCodes.IntNullOrEmpty());
                 SqlParameter paramisDailyLeadLimit = new SqlParameter("isDailyLeadLimit", leadlimit.IsDailyLeadLimit);
                 SqlParameter paramisMonthlyLeadLimit = new SqlParameter("isMonthlyLeadLimit", leadlimit.IsMonthlyLeadLimit);
                 SqlParameter paramisTotalLeadLimit = new SqlParameter("isTotalLeadLimit", leadlimit.IsTotalLeadLimit);
                 SqlParameter paramdailyLeadLimit = new SqlParameter("dailyLeadLimit", leadlimit.DailyLeadLimit);
                 SqlParameter parammontlyLeadLimit = new SqlParameter("montlyLeadLimit", leadlimit.MonthlyLeadLimit);
                 SqlParameter paramtotalLeadLimit = new SqlParameter("totalLeadLimit", leadlimit.TotalLeadLimit);
-                // SqlParameter paramprice = new SqlParameter("price", leadlimit.Price);
                 SqlParameter paramleadFrq = new SqlParameter("leadFrq", leadlimit.LeadFrequency);
 
 
-                cmdAddCompanyAdByArea.Parameters.Add(paramCompanyId);
-                cmdAddCompanyAdByArea.Parameters.Add(paramService);
-                cmdAddCompanyAdByArea.Parameters.Add(paramAreaCode);
-                // cmdAddCompanyAdByArea.Parameters.Add(paramMoveWeight);
-                cmdAddCompanyAdByArea.Parameters.Add(paramisDailyLeadLimit);
-                cmdAddCompanyAdByArea.Parameters.Add(paramisMonthlyLeadLimit);
-                cmdAddCompanyAdByArea.Parameters.Add(paramisTotalLeadLimit);
-                cmdAddCompanyAdByArea.Parameters.Add(paramdailyLeadLimit);
-                cmdAddCompanyAdByArea.Parameters.Add(parammontlyLeadLimit);
-                cmdAddCompanyAdByArea.Parameters.Add(paramtotalLeadLimit);
-                //cmdAddCompanyAdByArea.Parameters.Add(paramprice);
-                cmdAddCompanyAdByArea.Parameters.Add(paramleadFrq);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramService);
+                _cmd.Parameters.Add(paramAreaCode);
+                _cmd.Parameters.Add(paramisDailyLeadLimit);
+                _cmd.Parameters.Add(paramisMonthlyLeadLimit);
+                _cmd.Parameters.Add(paramisTotalLeadLimit);
+                _cmd.Parameters.Add(paramdailyLeadLimit);
+                _cmd.Parameters.Add(parammontlyLeadLimit);
+                _cmd.Parameters.Add(paramtotalLeadLimit);
+                _cmd.Parameters.Add(paramleadFrq);
 
 
-                i = cmdAddCompanyAdByArea.ExecuteNonQuery();
+                i = _cmd.ExecuteNonQuery();
 
 
             }
@@ -104,62 +89,41 @@ namespace _123Movers.DataEntities
 
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmdGetCompanyLeadLimit = new SqlCommand();
-                cmdGetCompanyLeadLimit.Connection = dbCon;
-                cmdGetCompanyLeadLimit.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdGetCompanyLeadLimit.CommandText = "usp_GetCompanyLeadLimit";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_GET_COMPANY_LEADLIMIT;
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
 
-                cmdGetCompanyLeadLimit.Parameters.Add(paramCompanyId);
-                cmdGetCompanyLeadLimit.Parameters.Add(paramService);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramService);
 
                 DataTable dtResults = new DataTable();
 
-                SqlDataReader drResults = cmdGetCompanyLeadLimit.ExecuteReader();
+                SqlDataReader drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
+                List<List<string>> lst = new List<List<string>>();
 
                 if (dtResults.Rows.Count > 0)
                 {
 
-                    var Areacode = "";
-                    var ServiceId = "";
                     foreach (DataRow row in dtResults.Rows)
                     {
-                        if (String.IsNullOrEmpty(row["areaCode"].ToString()))
-                        {
-                            Areacode = null;
-
-                        }
-                        else
-                        {
-                            Areacode = row["areaCode"].ToString();
-                        }
-                        if (String.IsNullOrEmpty(row["serviceID"].ToString()))
-                        {
-                            ServiceId = null;
-
-                        }
-                        else
-                        {
-                            ServiceId = row["serviceID"].ToString();
-                        }
-
 
                         LeadLimitModel obj = new LeadLimitModel()
                         {
 
-                            AreaCodes = Areacode,
-                            ServiceId = Convert.ToInt32(ServiceId),
-                            LeadFrequency = Convert.ToInt32(row["leadFrequency"].ToString()),
-                            IsDailyLeadLimit = Convert.ToBoolean(row["isDailyLeadLimit"]),
-                            DailyLeadLimit = Convert.ToInt32(row["dailyLeadLimit"].ToString()),
-                            IsMonthlyLeadLimit = Convert.ToBoolean(row["isMonthlyLeadLimit"]),
-                            MonthlyLeadLimit = Convert.ToInt32(row["monthlyLeadLimit"].ToString()),
-                            IsTotalLeadLimit = Convert.ToBoolean(row["isTotalLeadLimit"]),
-                            TotalLeadLimit = Convert.ToInt32(row["totalLeadLimit"].ToString())
-
+                            AreaCodes = row["areaCode"].ToString().TrimNullOrEmpty(),
+                            ServiceId = row["serviceID"].ToString().IntNullOrEmpty(),
+                            LeadFrequency = row["leadFrequency"].ToString().IntNullOrEmpty(),
+                            IsDailyLeadLimit = row["isDailyLeadLimit"].ToString().BooleanNullOrEmpty(),
+                            DailyLeadLimit = row["dailyLeadLimit"].ToString().IntNullOrEmpty(),
+                            IsMonthlyLeadLimit = row["isMonthlyLeadLimit"].ToString().BooleanNullOrEmpty(),
+                            MonthlyLeadLimit = row["monthlyLeadLimit"].ToString().IntNullOrEmpty(),
+                            IsTotalLeadLimit = row["isTotalLeadLimit"].ToString().BooleanNullOrEmpty(),
+                            TotalLeadLimit = row["totalLeadLimit"].ToString().IntNullOrEmpty()
 
 
                         };

@@ -94,6 +94,7 @@ namespace _123Movers.DataEntities
                 SqlParameter paramAgreementNumber = new SqlParameter("agreementNumber", budget.AgreementNumber);
                 SqlParameter paramMinCharge = new SqlParameter("minDaysToCharge", budget.MinDaysToCharge);
                 SqlParameter paramServices = new SqlParameter("service", budget.ServiceId);
+                SqlParameter paramType = new SqlParameter("type", budget.Type);
 
 
                 _cmd.Parameters.Add(paramCompanyId);
@@ -105,6 +106,7 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramAgreementNumber);
                 _cmd.Parameters.Add(paramMinCharge);
                 _cmd.Parameters.Add(paramServices);
+                _cmd.Parameters.Add(paramType);
 
                 _cmd.ExecuteNonQuery();
 

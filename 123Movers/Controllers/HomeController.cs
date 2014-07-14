@@ -25,11 +25,6 @@ namespace _123Movers.Controllers
         {
             try
             {
-                if (search.CompanyId == null && search.CompanyName == null && search.InsertionOrderId == null && search.AX == null)
-                {
-                    return View(search);
-                }
-                
                 var companies = BusinessLayer.SearchCompany(search);
                 search.Companies = companies;
 

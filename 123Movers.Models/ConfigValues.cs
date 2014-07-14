@@ -44,22 +44,31 @@ namespace _123Movers.Models
             return terms;
         }
 
-        public static List<SelectListItem> Services()
+        public static List<SelectListItem> Services(int? serviceId = null)
         {
             var listOption = new SelectListItem();
             var services = new List<SelectListItem>();
 
-            listOption = new SelectListItem { Text = "Local", Value = "1009" };
-            services.Add(listOption);
+            if (serviceId == null || serviceId == Constants.LOCAL)
+            {
+                listOption = new SelectListItem { Text = "Local", Value = "1009" };
 
-            listOption = new SelectListItem { Text = "Long", Value = "1000" };
-            services.Add(listOption);
-
-            listOption = new SelectListItem { Text = "Both", Value = "999" };
-            services.Add(listOption);
+                services.Add(listOption);
+            }
+            if (serviceId == null || serviceId == Constants.LONG)
+            {
+                listOption = new SelectListItem { Text = "Long", Value = "1000" };
+                services.Add(listOption);
+            }
+            if (serviceId == null)
+            {
+                listOption = new SelectListItem { Text = "Both", Value = "999" };
+                services.Add(listOption);
+            }
 
             return services;
         }
+
 
         public static SelectList DataTableToSelectList(DataTable table, string valueField, string textField)
         {
@@ -69,7 +78,6 @@ namespace _123Movers.Models
             {
                 list.Add(new SelectListItem()
                 {
-                    //Text = row[textField].ToString() + "-" + row[valueField].ToString(),
                     Text = row[textField].ToString(),
                     Value = row[valueField].ToString()
                 });

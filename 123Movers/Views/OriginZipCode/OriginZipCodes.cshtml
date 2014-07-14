@@ -1,8 +1,7 @@
 ﻿@model _123Movers.Models.OriginZipCodeModel
-
+@using _123Movers.Models
 @{
     ViewBag.Title = "Geography";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @Html.AntiForgeryToken()
@@ -13,7 +12,7 @@
 <input type="hidden" id="orgzipcodes" value="@Model.OriginZipCodes" />
 <div class="row">
 
-      @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
+      @Html.Partial(Constants.VIEW,@Model._companyInfo)
      
     </div>
 <p class="clearfix"></p>
@@ -39,10 +38,10 @@
                       {
                           <tr>
                               <td class="text-center">
-                                  @{
-                                      var service = @OriginAreaCode.ServiceId == 1000 ? "Long" : "Local";
-                                  }
-                                  @service
+                                  
+                                   @OriginAreaCode.ServiceId.TernaryLocalLong()
+                                  
+                                
                               </td>
                               <td id ="areacode" class="text-center">
                                   @OriginAreaCode.AreaCode
@@ -72,7 +71,6 @@
  </div>
 
  <div class="row">
-        @*<input  type="button" id="saveleads" class="btn btn-primary pull-right" value="Save Leads" />*@
         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
     
     </div>
@@ -98,7 +96,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>
-        @*<button type="button" class="btn btn-primary" id="saveZipCodes">Save changes</button>*@
       </div>
     </div>
   </div>
@@ -106,9 +103,6 @@
 
 
 <script type="text/javascript">
-   // $(function () {
-        //var orgarea = $('#orgareacodes').val();
-        //alert(orgarea);
     var areacode;
     var serviceid;
     function GetZipCodes(areaCode, serviceId) {
@@ -180,12 +174,6 @@
     $('#add').click(function (e) {
         e.preventDefault();
         var selected = [];
-        //if ($('#areaZipSelected').length == 1 && $('#areaZipSelected option:first').val() != undefined)
-        //{
-        //    if ($('#areaZipSelected option:first').val().trim() == '')
-        //    { $('#areaZipSelected option:first').remove(); }
-            
-        //}
         $('#areaZipCode :selected').each(function (i, el) {
             selected[i] = $(this).val();
             $("#areaZipCode option:selected").remove();
@@ -211,7 +199,6 @@
                 } else {
                     alert("Error :" + data.message);
                 }
-                // location.reload();
             },
             error: function (xhr, ajaxOptions, thrownError) {
 
@@ -247,7 +234,6 @@
                     } else {
                         alert("Error :" + data.message);
                     }
-                    // location.reload();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
@@ -258,11 +244,6 @@
          
         });
     $('#close').click(function () {
-        //$('#body').on('change', 'select', function (e) {
-        //    location.reload();
-        //});
         location.reload();
     });
-       
-   // });
 </script>

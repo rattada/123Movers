@@ -12,6 +12,11 @@ namespace _123Movers.Models
         public static readonly string RENEWL_BUDGET = "RENEWAL INSERTION";
         public static readonly int LOCAL = 1009;
         public static readonly int LONG = 1000;
+        public static readonly string LOCAL_TEXT = "Local";
+        public static readonly string LONG_TEXT = "Long";
+        public static readonly string DEFAULT = "Default";
+        public static readonly string BOTH = "Both";
+        public static readonly string VIEW = "~/Views/Shared/_CompanyInfo.cshtml";
 
 
         #region All  Stored ProceduresConstants
@@ -44,7 +49,7 @@ namespace _123Movers.Models
         #region DestinationZipCodes Stored Procedures
         public static readonly string SP_ADD_COMPANY_AREADEST_ZIPCODES = "usp_AddCompanyAreasDestZipCodes";
         public static readonly string SP_DELETE_COMPANY_AREADEST_ZIPCODES = "usp_DeleteCompanyAreasDestZipCodes";
-        public static readonly string SP_GET_COMPANY_AVAILABLE_AREADEST_ZIPCODES = "usp_GetCompanyAvailableAreasDestincationZipCodes";//NEED TO CHECK SPELLING
+        public static readonly string SP_GET_COMPANY_AVAILABLE_AREADEST_ZIPCODES = "usp_GetCompanyAvailableAreasDestinationZipCodes";
         public static readonly string SP_GET_COMPANY_AREADEST_ZIPCODES = "usp_GetCompanyAreasDestinationZipCodes";
         #endregion
 

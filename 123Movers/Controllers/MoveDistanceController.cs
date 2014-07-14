@@ -22,17 +22,20 @@ namespace _123Movers.Controllers
         public ActionResult MoveDistance(int? companyId, int? serviceId)
         {
 
-            ViewBag.Services = ConfigValues.Services().Take(2);
-            DataTable dt = BusinessLayer.GetCompanyMoveDistance(companyId, serviceId);
-            //List<List<string>> list = ConfigValues.retListTable(query);
+            if (ConfigValues.Services(serviceId).Count > 2)
+                ViewBag.Services = ConfigValues.Services(serviceId).Take(2);
+            else
+                ViewBag.Services = ConfigValues.Services(serviceId);
+            List<List<string>> lstGetMoveDistance = ConfigValues.TableToList(BusinessLayer.GetCompanyMoveDistance(companyId, serviceId));
             MoveDistanceModel model = new MoveDistanceModel();
             model._companyInfo = new CompanyModel().CurrentCompany;
             model.CompanyId = companyId;
-            if (dt.Rows.Count > 0)
+
+            if (lstGetMoveDistance.Count > 0)
             {
-                model.ServiceId = string.IsNullOrWhiteSpace(dt.Rows[0][0].ToString()) ? 0 : Convert.ToInt32(dt.Rows[0][0]);
-                model.MinMoveDistance = string.IsNullOrWhiteSpace(dt.Rows[0][1].ToString()) ? 0 : Convert.ToDecimal(dt.Rows[0][1]);
-                model.MaxMoveDistance = string.IsNullOrWhiteSpace(dt.Rows[0][2].ToString()) ? 0 : Convert.ToDecimal(dt.Rows[0][2]);
+                model.ServiceId = lstGetMoveDistance[0][0].ToString().IntNullOrEmptyReturn0();
+                model.MinMoveDistance = lstGetMoveDistance[0][1].ToString().IntNullOrEmptyReturn0();
+                model.MaxMoveDistance = lstGetMoveDistance[0][2].ToString().IntNullOrEmptyReturn0();
             }
 
             return View(model);
@@ -50,7 +53,6 @@ namespace _123Movers.Controllers
                 model.CompanyId = new CompanyModel().CurrentCompany.CompanyId;
                 BusinessLayer.SaveMoveDistance(model);
 
-                // ViewBag.Success = "Saved Sucessfully";
             }
             catch (Exception ex)
             {
@@ -67,30 +69,6 @@ namespace _123Movers.Controllers
             List<List<string>> list = ConfigValues.TableToList(dt);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
-
-        //public JsonResult GetCompanyMoveDistance(int ServiceId)
-        //{
-
-        //    JsonResult result;
-
-        //    try
-        //    {
-        //        var query = BusinessLayer.GetCompanyMoveDistance(new CompanyModel().CurrentCompany.CompanyId, ServiceId);
-        //        List<List<string>> list = ConfigValues.retListTable(query);
-
-        //        result = Json(list, JsonRequestBehavior.AllowGet);
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
-        //    }
-
-        //    return result;
-
-
-        //}
 
     }
 }

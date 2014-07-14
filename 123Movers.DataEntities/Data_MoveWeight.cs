@@ -14,23 +14,18 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = dbCon;
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = "usp_GetMoveSizeLookup";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_GET_MOVESIZE_LOOKUP;
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
 
-                cmd.Parameters.Add(paramCompanyId);
-                cmd.Parameters.Add(paramService);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramService);
 
-                //DataTable dtResults = new DataTable();
-
-                //SqlDataReader drResults = cmd.ExecuteReader();
-                //dtResults.Load(drResults);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                SqlDataAdapter da = new SqlDataAdapter(_cmd);
 
                 DataSet ds = new DataSet();
                 da.Fill(ds);
@@ -45,23 +40,23 @@ namespace _123Movers.DataEntities
             int i = 0;
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = dbCon;
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.CommandText = "usp_SaveMoveWeight";
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_ADD_COMPANY_MOVEWEIGHT;
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", model.CompanyId);
                 SqlParameter paramService = new SqlParameter("serviceId", model.ServiceId);
                 SqlParameter parammin = new SqlParameter("minMoveWeight", model.MinMoveWeightSeq);
                 SqlParameter parammax = new SqlParameter("maxMoveWeight", model.MaxMoveWeightSeq);
 
-                cmd.Parameters.Add(paramCompanyId);
-                cmd.Parameters.Add(paramService);
-                cmd.Parameters.Add(parammin);
-                cmd.Parameters.Add(parammax);
+                _cmd.Parameters.Add(paramCompanyId);
+                _cmd.Parameters.Add(paramService);
+                _cmd.Parameters.Add(parammin);
+                _cmd.Parameters.Add(parammax);
 
 
-                i = cmd.ExecuteNonQuery();
+                i = _cmd.ExecuteNonQuery();
 
 
             }

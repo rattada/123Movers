@@ -1,11 +1,12 @@
 ﻿@model _123Movers.Models.AreaCodeModel
+@using _123Movers.Models
 @{
     ViewBag.Title = "AreaCodes";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 <div class="row">
-     @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml", @Model._companyInfo)
+     @Html.Partial(Constants.VIEW, @Model._companyInfo)
 </div>
 
 <p class="clearfix"></p>
@@ -83,21 +84,21 @@
         var serviceId;
         var ServiceType;
         var k = 0;
-        if ('@ViewBag.ServiceId' == 1000) {
-            serviceId = 1000;
+        if ('@ViewBag.ServiceId' ==parseInt(@Constants.LONG)) {
+            serviceId = parseInt(@Constants.LONG);
             ServiceType = 'long';
             $('#ServiceTab a:last').tab('show') // Select last 
             $('li.cslocal').hide();
         }
-        else if ('@ViewBag.ServiceId' == 1009) {
+        else if ('@ViewBag.ServiceId' == parseInt(@Constants.LOCAL)) {
 
-            serviceId = 1009;
+            serviceId = parseInt(@Constants.LOCAL);
             ServiceType = 'local';
             $('#ServiceTab a:first').tab('show') // Select first 
             $('li.cslong').hide();
         }
         else {
-            serviceId = 1009;
+            serviceId = parseInt(@Constants.LOCAL);
             ServiceType = 'Both';
             $('#ServiceTab a:first').tab('show') // Default first 
 
@@ -314,7 +315,7 @@
                 success: function (data) {
 
                     if (Service == "Local") {
-                        serviceId = 1009;
+                        serviceId = parseInt(@Constants.LOCAL);
                         GetAvailableAreas(serviceId, 'local');
                         GetSelectedAreas(serviceId, 'local');
                         $('#ServiceTab a:first').tab('show');
@@ -322,7 +323,7 @@
                     }
                     else {
 
-                        serviceId = 1000;
+                        serviceId = parseInt(@Constants.LONG);
                         GetAvailableAreas(serviceId, 'long');
                         GetSelectedAreas(serviceId, 'long');
                         $('#ServiceTab a:last').tab('show')
@@ -361,7 +362,7 @@
 
                     if (Service == "Local") {
 
-                        serviceId = 1009;
+                        serviceId = parseInt(@Constants.LOCAL);
                         GetAvailableAreas(serviceId, 'local');
                         GetSelectedAreas(serviceId, 'local');
                         $('#ServiceTab a:first').tab('show')
@@ -370,7 +371,7 @@
                     }
                     else {
 
-                        serviceId = 1000;
+                        serviceId = parseInt(@Constants.LONG);
                         GetAvailableAreas(serviceId, 'long');
                         GetSelectedAreas(serviceId, 'long');
                         $('#ServiceTab a:last').tab('show')
@@ -405,7 +406,7 @@
         if (k == 0) {
             $('#ServiceTab > li:first').click(function () {
 
-                serviceId = 1009;
+                serviceId = parseInt(@Constants.LOCAL);
                 GetAvailableAreas(serviceId, 'local');
                 GetSelectedAreas(serviceId, 'local');
                 $('#ServiceTab a:first').tab('show')
@@ -413,7 +414,7 @@
 
             $('#ServiceTab > li:last').click(function () {
 
-                serviceId = 1000;
+                serviceId = parseInt(@Constants.LONG);
                 GetAvailableAreas(serviceId, 'long');
                 GetSelectedAreas(serviceId, 'long');
                 $('#ServiceTab a:last').tab('show')

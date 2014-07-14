@@ -1,8 +1,8 @@
 ﻿@model _123Movers.Models.DestinationZipModel
+@using _123Movers.Models
 
 @{
     ViewBag.Title = "DestinationZipCodes";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @Html.AntiForgeryToken()
@@ -14,7 +14,7 @@
 <div class="row">
 
       
-      @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml",@Model._companyInfo)
+      @Html.Partial(Constants.VIEW,@Model._companyInfo)
      
     </div>
 <p class="clearfix"></p>
@@ -41,7 +41,7 @@
                           <tr>
                               <td class="text-center">
                                   @{
-                          var service = @DestinationAreaCode.ServiceId == 1000 ? "Long" : "Local";
+                          var service = @DestinationAreaCode.ServiceId == Constants.LONG ? "Long" : "Local";
                                   }
                                   @service
                               </td>
@@ -73,7 +73,7 @@
  </div>
 
  <div class="row">
-        @*<input  type="button" id="saveleads" class="btn btn-primary pull-right" value="Save Leads" />*@
+    
         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
     
     </div>
@@ -99,7 +99,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>
-        @*<button type="button" class="btn btn-primary" id="saveZipCodes">Save changes</button>*@
+    
       </div>
     </div>
   </div>
@@ -108,8 +108,7 @@
 
 
 <script type="text/javascript">
-   // $(function () {
-        //var orgarea = $('#orgareacodes').val();
+
     var areacode;
     var serviceid;
     function GetZipCodes(areaCode, serviceId) {
@@ -205,7 +204,7 @@
                 } else {
                     alert("Error :" + data.message);
                 }
-                // location.reload();
+
             },
             error: function (xhr, ajaxOptions, thrownError) {
 
@@ -241,7 +240,7 @@
                     } else {
                         alert("Error :" + data.message);
                     }
-                    // location.reload();
+
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
@@ -252,9 +251,7 @@
          
         });
     $('#close').click(function () {
-        //$('#body').on('change', 'select', function (e) {
-        //    location.reload();
-        //});
+      
         location.reload();
     });
        

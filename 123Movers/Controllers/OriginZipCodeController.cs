@@ -85,28 +85,5 @@ namespace _123Movers.Controllers
             return result;
         }
 
-        //[HttpPost]
-        //public JsonResult AddCompanyZipCodesPerAreaCodes(int serviceId, string areaCodes, int IsOrigin)
-        //{
-
-        //    JsonResult result;
-        //    try
-        //    {
-
-        //        BusinessLayer.AddCompanyZipCodesPerAreaCodes(new CompanyModel().CurrentCompany.CompanyId, serviceId, areaCodes, IsOrigin);
-        //        result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
-
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
-        //    }
-
-        //    return result;
-
-        //    // return RedirectToAction("ManageAreaCodes", "Home", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
-        //}
-
     }
 }
