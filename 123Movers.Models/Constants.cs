@@ -12,10 +12,11 @@ namespace _123Movers.Models
         public static readonly string RENEWL_BUDGET = "RENEWAL INSERTION";
         public static readonly int LOCAL = 1009;
         public static readonly int LONG = 1000;
+        public static readonly int BOTH = 999;
         public static readonly string LOCAL_TEXT = "Local";
         public static readonly string LONG_TEXT = "Long";
         public static readonly string DEFAULT = "Default";
-        public static readonly string BOTH = "Both";
+        public static readonly string BOTH_TEXT = "Both";
         public static readonly string VIEW = "~/Views/Shared/_CompanyInfo.cshtml";
 
 
