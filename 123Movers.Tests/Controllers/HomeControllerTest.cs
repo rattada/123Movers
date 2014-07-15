@@ -16,6 +16,15 @@ namespace _123Movers.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
+        public void Search_SearchWithEmpty_ReturnZeroRecords()
+        {
+            SearchModel model = new SearchModel();
+            var companies = BusinessLayer.SearchCompany(model);
+
+            Assert.IsFalse(companies.Count() > 0, "The returned collection is empty.");
+            Assert.AreEqual(0, companies.Count());
+        }
+        [TestMethod]
         public void Search_SearchWithCompanyId_ReturnOneCompany()
         {
             SearchModel model = new SearchModel();

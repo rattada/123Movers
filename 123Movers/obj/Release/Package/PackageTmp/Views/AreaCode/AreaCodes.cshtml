@@ -49,7 +49,7 @@
     <div class="col-md-6">
         <div class="row">
             <b>Default Price:</b>
-            <input type="text" id="txtDefaultPrice" class="manageAreaCode-control">
+            <input type="text" id="txtDefaultPrice" class="manageAreaCode-control" onkeypress="return validate(event)">
         </div>
         <br />
         <div class="row">
@@ -80,6 +80,13 @@
 </div>
 
 <script type="text/javascript">
+    function validate(key) {
+        var keycode = (key.which) ? key.which : key.keyCode;
+        if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57)) {
+            return false;
+        }
+    }
+
     $(function () {
         var serviceId;
         var ServiceType;
@@ -103,6 +110,8 @@
             $('#ServiceTab a:first').tab('show') // Default first 
 
         }
+
+        
 
         GetAvailableAreas(serviceId, ServiceType);
         GetSelectedAreas(serviceId, ServiceType);
@@ -169,7 +178,7 @@
 
                         if (i < Math.round(json.length / 2)) {
                             var value = val[2].toString().slice(0, -2);
-                            table1 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
+                            table1 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control' onkeypress='return validate(event)'/><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
                         }
 
                     });
@@ -179,7 +188,7 @@
                     jQuery.each(json, function (i, val) {
                         if (i >= Math.round(json.length / 2) && i < json.length) {
                             var value = val[2].toString().slice(0, -2);
-                            table2 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
+                            table2 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control'  onkeypress='return validate(event)'/><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
                         }
                     });
 
@@ -420,6 +429,9 @@
                 $('#ServiceTab a:last').tab('show')
             });
         }
+
+
+       
 
         $("#saveprice").attr('disabled', 'disabled');
         $('#body').on('change keyup keydown', 'input, textarea', function (e) {

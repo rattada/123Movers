@@ -123,7 +123,12 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $("#info").tablesorter();
+        var tableRows = 0;
+        tableRows = $('#info tr').length;
+
+        if (tableRows > 1) {
+            $("#info").tablesorter();
+        }
 
         $('#btnSearch').click(function () {
             var companyname = $.trim($("#CompanyName").val());
@@ -135,7 +140,15 @@
                 $("#CompanyCount").text("0- Results");
                 $("#info").find("tr:gt(0)").remove();
                 $("#info tbody").append("<tr><td class='col-md-6 text-center' colspan='10'><b>No Results Found </b></td></tr>");
-                $("#info").sortable(false);
+                $("#info").tablesorter({
+                    headers: {
+                        0: { sorter: false },
+                        1: { sorter: false },
+                        2: { sorter: false },
+                        3: { sorter: false }
+                    }
+                });
+                $('#info th').removeAttr('class');
                 return false;
             }
 
