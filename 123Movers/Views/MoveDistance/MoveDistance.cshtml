@@ -60,6 +60,13 @@
         var orgMinWeight = $.trim($("#MinMoveDistance").val());
         var orgMaxWeight = $.trim($("#MaxMoveDistance").val());
 
+        $("body input:text").on("keypress", function (event) {
+            var key = event.which;
+
+            if (!(key >= 48 && key <= 57))
+                event.preventDefault();
+        });
+
         $("body").parent().on('click', "#saveDistance", function () {
 
             var serviceId = $('#ddlServiceID').val();

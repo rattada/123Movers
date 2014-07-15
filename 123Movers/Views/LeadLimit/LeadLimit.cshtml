@@ -201,6 +201,17 @@
             });
         });
 
+        $("#saveleads").attr('disabled', true);
+
+        $("body").on("keypress", "input", function (event) {
+            var key = event.which;
+
+            if (!(key >= 48 && key <= 57))
+                event.preventDefault();
+            else
+                $("#saveleads").removeAttr('disabled');
+        });
+
         $("#saveleads").click(function () {
             var count = 0;
             var required = "";
