@@ -1346,4 +1346,4 @@
 	ns: http://specs.openid.net/auth/2.0
 
 2014-07-16 17:27:03,283 [33] INFO  DotNetOpenAuth.OpenId Received identity assertion for https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs via https://www.google.com/accounts/o8/ud.
-[Footer]\r\n
+[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n[Footer]\r\n

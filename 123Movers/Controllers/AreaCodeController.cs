@@ -14,11 +14,7 @@ namespace _123Movers.Controllers
         //
         // GET: /AreaCode/
         
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+       
       
         public JsonResult GetAvailableAreas(int? serviceId)
         {
@@ -35,6 +31,7 @@ namespace _123Movers.Controllers
 
         public ActionResult AreaCodes(int? serviceId)
         {
+            ViewBag.ServiceId = serviceId;
             AreaCodeModel areaCode = new AreaCodeModel();
             areaCode._companyInfo = CompanyInfo;
             return View(areaCode);
