@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace _123Movers.Controllers
 {
-    public class NotificationController : Controller
+    public class NotificationController : BaseController
     {
         //
         // GET: /Notification/

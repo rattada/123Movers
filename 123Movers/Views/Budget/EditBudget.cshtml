@@ -4,20 +4,19 @@
     ViewBag.Title = "Edit Budget";
    
 }
-<script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
 
-@Html.AntiForgeryToken()
-@Html.ValidationSummary(true)
 
-<input type="hidden" id="message" value="@ViewBag.Success"/>
+ @Html.Partial(Constants.VIEW,@Model._companyInfo)
 
-<div class="row">
+@section JavaScript{
+    @Html.Script("editBudget.js")
+ }
 
-     @Html.Partial(Constants.VIEW,@Model._companyInfo)
 
-</div>
 @using (Html.BeginForm("EditBudget", "Budget", FormMethod.Post, new { id = "frmeditbudget" }))
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
 
     <p class="clearfix"></p>
     <div class="row">
@@ -64,11 +63,11 @@
     var Service = (@Model.ServiceId == Constants.LOCAL) ? "1009" : (@Model.ServiceId == Constants.LONG) ? "1000" : null;
     <div class="row">
        <div class="col-md-12">
-           @Html.ActionLink("Manage Area Codes", "AreaCodes", "AreaCode", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "managearea", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Lead Limit", "LeadLimit", "LeadLimit", new { companyid = @Model.CompanyId, serviceId = Service, companyName = @Model.CompanyName }, new { id = "leadlimit", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Origin", "OriginZipCodes", "OriginZipCode", new { companyid = @Model.CompanyId, serviceId = Service}, new { id = "geography", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Destination", "DestinationZipCodes", "DestinationZipCode", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Distance", "MoveDistance", "MoveDistance", new { companyid = @Model.CompanyId, serviceId = Service }, new { id = "distance", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Area Codes", "AreaCodes", "AreaCode", new {serviceId = Service }, new { id = "managearea", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Lead Limit", "LeadLimit", "LeadLimit", new { serviceId = Service }, new { id = "leadlimit", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Origin", "OriginZipCodes", "OriginZipCode", new {serviceId = Service}, new { id = "geography", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Destination", "DestinationZipCodes", "DestinationZipCode", new { serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-default" })
+           @Html.ActionLink("Manage Distance", "MoveDistance", "MoveDistance", new { serviceId = Service }, new { id = "distance", @class = "btn btn-default" })
            @Html.ActionLink("Manage Move Weight", "MoveWeight", "MoveWeight", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default" })
        </div>
    </div>
@@ -81,7 +80,7 @@
     </div>
 }
 
-<script type="text/javascript">
+@*<script type="text/javascript">
 
 
     $(function () {
@@ -234,4 +233,4 @@
     });
 
 
-</script>
+</script>*@

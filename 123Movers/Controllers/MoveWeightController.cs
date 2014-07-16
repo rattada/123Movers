@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace _123Movers.Controllers
 {
-    public class MoveWeightController : Controller
+    public class MoveWeightController : BaseController
     {
         //
         // GET: /MoveWeight/
@@ -23,7 +23,7 @@ namespace _123Movers.Controllers
         public ActionResult MoveWeight(int? serviceId)
         {
 
-            int? cid = new CompanyModel().CurrentCompany.CompanyId;
+            int? cid = CompanyInfo.CompanyId;
             DataSet ds = BusinessLayer.GetMoveWeights(cid, serviceId);
 
             ViewBag.MinMoveWeight = ConfigValues.DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
@@ -32,7 +32,7 @@ namespace _123Movers.Controllers
             else
                 ViewBag.Services = ConfigValues.Services(serviceId);
             MoveWeightModel model = new MoveWeightModel();
-            model._companyInfo = new CompanyModel().CurrentCompany;
+            model._companyInfo = CompanyInfo;
             model.CompanyId = cid;
             if (ds.Tables[1].Rows.Count > 0)
             {
@@ -48,7 +48,7 @@ namespace _123Movers.Controllers
         public JsonResult MoveWeight(MoveWeightModel model)
         {
             JsonResult result;
-            int? cid = new CompanyModel().CurrentCompany.CompanyId;
+            int? cid = CompanyInfo.CompanyId;
             DataSet ds = BusinessLayer.GetMoveWeights(cid, model.ServiceId);
 
             ViewBag.MinMoveWeight = ConfigValues.DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
@@ -68,7 +68,7 @@ namespace _123Movers.Controllers
         public JsonResult GetMoveWeight(int? serviceId)
         {
 
-            DataSet ds = BusinessLayer.GetMoveWeights(new CompanyModel().CurrentCompany.CompanyId, serviceId);
+            DataSet ds = BusinessLayer.GetMoveWeights(CompanyInfo.CompanyId, serviceId);
             List<List<string>> list = ConfigValues.TableToList(ds.Tables[1]);
             return Json(list, JsonRequestBehavior.AllowGet);
         }

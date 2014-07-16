@@ -6,12 +6,15 @@
   
 }
 
+@section Javascript{
+    @Html.Script("moveDistance.js")
+ }
 
 <input type="hidden" id="message" value="@ViewBag.Success"/>
 
 <div class="row">
 
-     @Html.Partial(Constants.VIEW,@Model._companyInfo)
+     @Html.Partial(Constants.VIEW, @Model._companyInfo)
 
 </div>
 <p class="clearfix"></p>
@@ -51,7 +54,7 @@
 
     </div>
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(function () {
 
         var message = $.trim($('#message').val());
@@ -157,4 +160,4 @@
         });
 
     });
-</script>
+</script>*@

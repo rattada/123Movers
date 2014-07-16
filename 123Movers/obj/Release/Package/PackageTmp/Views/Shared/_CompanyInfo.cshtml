@@ -4,11 +4,12 @@
     //var Suspended = ((string)@Session["Suspended"] == "Yes") ? "Suspended" : ((bool)@Session["IsActive"]) ? "Active" : "Inactive";
     var Suspended = @Model.Suspended == "Yes" ? "Suspended" : @Model.IsActive ? "Active" : "Inactive";
 }
-<div class="col-md-12">
-            <p></p>
-            <table class="table table-bordered" style="margin-bottom: 0px;">
-                <tbody>
-                    @*<tr>
+<div class="row">
+    <div class="col-md-12">
+        <p></p>
+        <table class="table table-bordered" style="margin-bottom: 0px;">
+            <tbody>
+                @*<tr>
                         <td class="col-md-6">Legal Name : <strong>@Session["CompanyName"]</strong></td>
                         <td class="col-md-6">CompanyID : <strong>@Session["CompanyId"]</strong></td>
                     </tr>
@@ -21,23 +22,23 @@
                         <td class="col-md-6"></td>
                     </tr>*@
 
-                    <tr>
-                        <td class="col-md-6">Legal Name : <strong>@Model.CompanyName</strong></td>
-                        <td class="col-md-6">CompanyID : <strong>@Model.CompanyId</strong></td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-6">AX # : <strong>@Model.AX</strong></td>
-                        <td class="col-md-6">Sales Person : <strong>@Model.ContactPerson</strong></td>
-                    </tr>
-                    <tr>
-                        <td  class="col-md-6"> Status : <strong>@Suspended</strong></td>
-                        <td class="col-md-6"></td>
-                    </tr>
+                <tr>
+                    <td class="col-md-6">Legal Name : <strong>@Model.CompanyName</strong></td>
+                    <td class="col-md-6">CompanyID : <strong>@Model.CompanyId</strong></td>
+                </tr>
+                <tr>
+                    <td class="col-md-6">AX # : <strong>@Model.AX</strong></td>
+                    <td class="col-md-6">Sales Person : <strong>@Model.ContactPerson</strong></td>
+                </tr>
+                <tr>
+                    <td class="col-md-6">Status : <strong>@Suspended</strong></td>
+                    <td class="col-md-6"></td>
+                </tr>
 
-                   
-                </tbody>
-            </table>
-        </div>
 
+            </tbody>
+        </table>
+    </div>
+</div>
 
 

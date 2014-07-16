@@ -11,7 +11,7 @@ using System.Web.Script.Serialization;
 namespace _123Movers.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
 
         [HttpGet]

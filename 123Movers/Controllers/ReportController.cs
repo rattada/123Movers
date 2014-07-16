@@ -7,7 +7,7 @@ using _123Movers.Models;
 
 namespace _123Movers.Controllers
 {
-    public class ReportController : Controller
+    public class ReportController : BaseController
     {
         //
         // GET: /Report/

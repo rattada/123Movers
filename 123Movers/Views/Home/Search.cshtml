@@ -1,11 +1,14 @@
 ﻿@model _123Movers.Models.SearchModel
-
+@using _123Movers.Models
 @{
     ViewBag.Title = "Search";
 
 }
 
-<script src="~/Scripts/jquery.tablesorter.min.js"></script>
+@section JavaScript{
+    @Html.Script("search.js")
+    @Html.Script("jquery.tablesorter.min.js")
+ }
 
 <div class="alert-box error" style="display: none"></div>
 <h2>Search for Company </h2>
@@ -120,7 +123,7 @@
 }
 
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(document).ready(function () {
 
         var tableRows = 0;
@@ -171,6 +174,6 @@
         }
 
     });
-</script>
+</script>*@
 
 

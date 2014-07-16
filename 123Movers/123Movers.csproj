@@ -197,6 +197,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AreaCodeController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\DestinationZipCodeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -284,6 +285,9 @@
     <Content Include="Images\bg.png" />
     <Content Include="Images\desc.gif" />
     <Content Include="Images\desc.png" />
+    <Content Include="Scripts\areaCodes.js" />
+    <Content Include="Scripts\destZipCodes.js" />
+    <Content Include="Scripts\editBudget.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -301,8 +305,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\leadLimit.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moveDistance.js" />
+    <Content Include="Scripts\moveWeight.js" />
+    <Content Include="Scripts\reports.js" />
+    <Content Include="Scripts\search.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

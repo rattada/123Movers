@@ -5,21 +5,21 @@
 }
 
 
-@Html.AntiForgeryToken()
-@Html.ValidationSummary(true)
+@Html.Partial(Constants.VIEW,@Model._companyInfo)
+
+@section JavaScript{
+    @Html.Script("moveWeight.js")
+ }
 
 
-<div class="row">
-
-       @Html.Partial(Constants.VIEW,@Model._companyInfo)
-     
-    </div>
 <p class="clearfix"></p>
 <p class="clearfix"></p>
 
 <input type="hidden" id="message" value="@ViewBag.Success"/>
 @using (Html.BeginForm("MoveWeight", "Home", FormMethod.Post, new { id = "frmMoveWeight" }))
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
 <div class="row">
     <div class="col-lg-4">
         <div class="form-group">
@@ -50,7 +50,7 @@
 </div>
 }
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(function () {
         var message = $.trim($('#message').val());
         if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
@@ -151,4 +151,4 @@
             }
         });
     });
-</script>
+</script>*@

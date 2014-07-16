@@ -10,6 +10,11 @@
         @RenderSection("scripts", required: false)
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     @*   @Scripts.Render("~/bootstrap/jss")
+        @Styles.Render("~/bootstrap/css")*@
+
+
         <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <!-- Optional theme -->
@@ -21,7 +26,13 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-                <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+       <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+       
     </head>
     <body>
         <header>
@@ -56,6 +67,7 @@
         </header>
         <div id="body" class="container">
             @RenderSection("featured", required: false)
+            @RenderSection("Javascript", required: false)
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
             </section>

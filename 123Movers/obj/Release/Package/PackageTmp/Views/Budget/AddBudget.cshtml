@@ -4,8 +4,6 @@
     ViewBag.Title = "Add Budget";
       
 }
-<script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
-@*<script src="~/Scripts/jstree.js" type="text/javascript"></script>*@
 
 
 @Html.AntiForgeryToken()
@@ -73,15 +71,3 @@
 
 
 }
-
-
-
-
-<script type="text/javascript">
-    $(function () {
-
-        var message = $.trim($('#message').val());
-        if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
-
-    });
-</script>

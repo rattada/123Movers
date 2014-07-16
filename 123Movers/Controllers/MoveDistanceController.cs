@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace _123Movers.Controllers
 {
-    public class MoveDistanceController : Controller
+    public class MoveDistanceController : BaseController
     {
         //
         // GET: /MoveDistance/
@@ -19,17 +19,17 @@ namespace _123Movers.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult MoveDistance(int? companyId, int? serviceId)
+        public ActionResult MoveDistance(int? serviceId)
         {
 
             if (ConfigValues.Services(serviceId).Count > 2)
                 ViewBag.Services = ConfigValues.Services(serviceId).Take(2);
             else
                 ViewBag.Services = ConfigValues.Services(serviceId);
-            List<List<string>> lstGetMoveDistance = ConfigValues.TableToList(BusinessLayer.GetCompanyMoveDistance(companyId, serviceId));
+            List<List<string>> lstGetMoveDistance = ConfigValues.TableToList(BusinessLayer.GetCompanyMoveDistance(CompanyInfo.CompanyId, serviceId));
             MoveDistanceModel model = new MoveDistanceModel();
-            model._companyInfo = new CompanyModel().CurrentCompany;
-            model.CompanyId = companyId;
+            model._companyInfo = CompanyInfo;
+            model.CompanyId = model._companyInfo.CompanyId;
 
             if (lstGetMoveDistance.Count > 0)
             {
@@ -50,7 +50,7 @@ namespace _123Movers.Controllers
             ViewBag.Services = ConfigValues.Services().Take(2);
             try
             {
-                model.CompanyId = new CompanyModel().CurrentCompany.CompanyId;
+                model.CompanyId = CompanyInfo.CompanyId;
                 BusinessLayer.SaveMoveDistance(model);
 
             }
@@ -65,7 +65,7 @@ namespace _123Movers.Controllers
         public JsonResult GetMoveDistance(int? serviceId)
         {
 
-            DataTable dt = BusinessLayer.GetCompanyMoveDistance(new CompanyModel().CurrentCompany.CompanyId, serviceId);
+            DataTable dt = BusinessLayer.GetCompanyMoveDistance(CompanyInfo.CompanyId, serviceId);
             List<List<string>> list = ConfigValues.TableToList(dt);
             return Json(list, JsonRequestBehavior.AllowGet);
         }

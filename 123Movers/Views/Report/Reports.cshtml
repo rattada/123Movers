@@ -1,4 +1,5 @@
 ﻿@model _123Movers.Models.ReportModel
+@using _123Movers.Models
 @{
     ViewBag.Title = "Reports";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,10 +8,13 @@
 @Html.AntiForgeryToken()
 @Html.ValidationSummary(true)
 
-<div class="row">
-     @Html.Partial("~/Views/Shared/_CompanyInfo.cshtml", @Model._companyInfo)
-</div>
-<script type="text/javascript" src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+@Html.Partial(@Constants.VIEW, @Model._companyInfo)
+
+
+@section JavaScript{
+    @Html.Script("reports.js")
+    @Html.Script("jquery-ui-1.10.4.min.js")
+ }
  <p class="clearfix"></p>
 
 <div class="row">

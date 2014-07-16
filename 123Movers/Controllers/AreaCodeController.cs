@@ -9,69 +9,66 @@ using _123Movers.Models;
 
 namespace _123Movers.Controllers
 {
-    public class AreaCodeController : Controller
+    public class AreaCodeController : BaseController
     {
         //
         // GET: /AreaCode/
-
+        
         public ActionResult Index()
         {
             return View();
         }
 
       
-        public JsonResult GetAvailableAreas(int? companyId, int? serviceId)
+        public JsonResult GetAvailableAreas(int? serviceId)
         {
-            var services = BusinessLayer.GetAvailableAreas(companyId, serviceId);
+            var services = BusinessLayer.GetAvailableAreas(CompanyInfo.CompanyId, serviceId);
             List<List<string>> list = ConfigValues.TableToList(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetCompanyAreasWithPrices(int? companyId, int? serviceId)
+        public JsonResult GetCompanyAreasWithPrices( int? serviceId)
         {
-            var services = BusinessLayer.GetCompanyAreasWithPrices(companyId, serviceId);
+            var services = BusinessLayer.GetCompanyAreasWithPrices(CompanyInfo.CompanyId, serviceId);
             List<List<string>> list = ConfigValues.TableToList(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AreaCodes(int? companyId, int? serviceId, string companyName)
+        public ActionResult AreaCodes(int? serviceId)
         {
-            ViewBag.CompanyID = companyId;
-            ViewBag.CompanyName = companyName;
-            ViewBag.ServiceID = serviceId;
             AreaCodeModel areaCode = new AreaCodeModel();
-            areaCode._companyInfo = new CompanyModel().CurrentCompany;
+            areaCode._companyInfo = CompanyInfo;
             return View(areaCode);
         }
-        public ActionResult AddAreaCodes(int? companyId, int? serviceId, string companyName, string areaCodes)
+        public ActionResult AddAreaCodes(int? serviceId, string areaCodes)
         {
             IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
 
             foreach (var areacode in areacodelist)
             {
-                BusinessLayer.AddCompanyAdByArea(companyId, serviceId, Convert.ToInt16(areacode));
+                BusinessLayer.AddCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
             }
-            return RedirectToAction("AreaCodes", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
+            return RedirectToAction("AreaCodes", new { serviceId = serviceId });
         }
 
-        public ActionResult DeleteAreaCodes(int? companyId, int? serviceId, string companyName, string areaCodes)
+        public ActionResult DeleteAreaCodes(int? serviceId,string areaCodes)
         {
             IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
 
             foreach (var areacode in areacodelist)
             {
-                BusinessLayer.DeleteCompanyAdByArea(companyId, serviceId, Convert.ToInt16(areacode));
+                BusinessLayer.DeleteCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
             }
-            return RedirectToAction("AreaCodes", new { companyId = companyId, serviceId = serviceId, companyName = companyName });
+            return RedirectToAction("AreaCodes", new { serviceId = serviceId });
         }
 
         [HttpPost]
-        public JsonResult AddCompanyPricePerLead(int? companyId, int? serviceId, string companyName, string areaCodes)
+        public JsonResult AddCompanyPricePerLead(int? serviceId,string areaCodes)
         {
 
             JsonResult result;
             try
             {
-                BusinessLayer.AddCompanyPricePerLead(companyId, serviceId, areaCodes, null);
+                BusinessLayer.AddCompanyPricePerLead(CompanyInfo.CompanyId, serviceId, areaCodes, null);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

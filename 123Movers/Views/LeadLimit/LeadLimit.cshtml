@@ -7,9 +7,12 @@
 <input type="hidden" id="message" value="@ViewBag.Success"/>
 <input type="hidden" id="hdnServiceId" value="@ViewBag.ServiceID"/>
 
-<div class="row">
+
     @Html.Partial(Constants.VIEW, @Model._companyInfo)
-</div>
+@section JavaScript{
+    @Html.Script("leadLimit.js")
+ }
+
 
 <p class="clearfix"></p>
 @*@using (Html.BeginForm("CompanyLeadLimit", "Home", FormMethod.Post, new { id = "frmLeadLimit" }))
@@ -188,7 +191,7 @@
 
 @*}*@
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(function () {
 
         $('#tblLeadLimit tbody tr').each(function () {
@@ -363,4 +366,4 @@
 
 
     });
-</script>
+</script>*@

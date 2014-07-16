@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace _123Movers.Controllers
 {
-    public class LeadLimitController : Controller
+    public class LeadLimitController : BaseController
     {
         //
         // GET: /LeadLimit/
@@ -23,8 +23,8 @@ namespace _123Movers.Controllers
 
             LeadLimitModel model = new LeadLimitModel();
 
-            model = BusinessLayer.GetCompanyLeadLimit(new CompanyModel().CurrentCompany.CompanyId, serviceId);
-            model._companyInfo = new CompanyModel().CurrentCompany;
+            model = BusinessLayer.GetCompanyLeadLimit(CompanyInfo.CompanyId, serviceId);
+            model._companyInfo = CompanyInfo;
             
             return View(model);
         }
@@ -40,7 +40,7 @@ namespace _123Movers.Controllers
 
                 foreach (var ld in leadlimit)
                 {
-                    ld[0].CompanyId = new CompanyModel().CurrentCompany.CompanyId;
+                    ld[0].CompanyId = CompanyInfo.CompanyId;
                     BusinessLayer.AddCompanyLeadLimit(ld[0]);
                 }
                 ModelState.Clear();

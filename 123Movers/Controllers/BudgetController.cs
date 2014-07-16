@@ -9,7 +9,7 @@ using log4net;
 
 namespace _123Movers.Controllers
 {
-    public class BudgetController : Controller
+    public class BudgetController : BaseController
     {
         //
         // GET: /Budget/
@@ -21,17 +21,20 @@ namespace _123Movers.Controllers
         }
         public JsonResult GetFilterResult(int? serviceId)
         {
-            return Json(BusinessLayer.GetFilterResult(new CompanyModel().CurrentCompany.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetFilterResult(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
 
 
         [HttpGet]
-        public ActionResult GetBudget(CompanyModel CompanyInfo)
+        public ActionResult GetBudget(CompanyModel Company)
         {
 
             IEnumerable<BudgetModel> budgetList = new List<BudgetModel>();
             SearchModel search = new SearchModel();
-            CompanyModel company = new CompanyModel();
+           // CompanyModel company = new CompanyModel();
+
+            //SaveCompanyId(Company.CompanyId);
+            SaveCompanyInfo(Company);
 
             budgetList = BusinessLayer.GetBudget(CompanyInfo.CompanyId);
 
@@ -41,9 +44,11 @@ namespace _123Movers.Controllers
             ViewBag.TotalBilled =  String.Format("{0:C}", tbilled);
             ViewBag.UnchargedAmount = String.Format("{0:C}", uamount);
 
-            company.CurrentCompany = CompanyInfo;
-            search._companyInfo = company.CurrentCompany;
+            //company.CurrentCompany = Company;
 
+            
+
+            search._companyInfo = CompanyInfo;
             search.budget = budgetList;
 
             return View(search);
@@ -57,37 +62,38 @@ namespace _123Movers.Controllers
 
             BudgetModel budget = new BudgetModel();
 
-            budget._companyInfo = new CompanyModel().CurrentCompany;
+            budget._companyInfo = CompanyInfo;
             return View(budget);
         }
 
         [HttpPost]
         public ActionResult AddBudget(BudgetModel budget)
         {
-            logger.Debug("Here is a debug log.");
-            logger.Info("... and an Info log.");
-            logger.Warn("... and a warning.");
-            logger.Error("... and an error.");
-            logger.Fatal("... and a fatal error.");
+            
             ViewBag.Terms = ConfigValues.Terms();
             ViewBag.Services = ConfigValues.Services();
 
-           
+            CompanyModel c = CompanyInfo;
             try
             {
-                //if (ModelState.IsValid)
-                //{
-                    budget._companyInfo = new CompanyModel().CurrentCompany;
+                if (ModelState.IsValid)
+                {
+                    budget._companyInfo = CompanyInfo;
                     budget.CompanyId = budget._companyInfo.CompanyId;
                     budget.Type = Constants.NEW_BUDGET;
 
                     BusinessLayer.SaveBudget(budget);
 
                     return RedirectToAction("GetBudget", budget._companyInfo.CurrentCompany);
-               // }
+                }
             }
             catch (Exception ex)
             {
+                //logger.Debug("Here is a debug log.");
+                //logger.Info("... and an Info log.");
+                //logger.Warn("... and a warning.");
+                //logger.Error("... and an error.");
+                //logger.Fatal("... and a fatal error.");
                 logger.Error(ex.ToString());
                 ModelState.AddModelError("", ex.Message);
             }
@@ -114,7 +120,7 @@ namespace _123Movers.Controllers
             budget.TermType = Recurring;
 
            
-            budget._companyInfo = new CompanyModel().CurrentCompany;
+            budget._companyInfo = CompanyInfo;
             budget.CompanyId = budget._companyInfo.CompanyId;
 
             return View(budget);
@@ -130,7 +136,7 @@ namespace _123Movers.Controllers
 
             try
             {
-                budget._companyInfo = new CompanyModel().CurrentCompany;
+                budget._companyInfo = CompanyInfo;
                 budget.CompanyId = budget._companyInfo.CompanyId;
                 budget.BudgetAction = Constants.RENEWL_BUDGET;
                 budget.Type = Constants.EDIT_BUDGET;

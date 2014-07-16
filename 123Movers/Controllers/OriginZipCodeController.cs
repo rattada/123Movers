@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace _123Movers.Controllers
 {
-    public class OriginZipCodeController : Controller
+    public class OriginZipCodeController : BaseController
     {
         //
         // GET: /OriginZipCode/
@@ -18,19 +18,19 @@ namespace _123Movers.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult OriginZipCodes(int? companyId, int? serviceId)
+        public ActionResult OriginZipCodes(int? serviceId)
         {
             OriginZipCodeModel Origin = new OriginZipCodeModel();
 
-            Origin = BusinessLayer.GetCompanyServiceAreaCodes(companyId, serviceId);
-            Origin._companyInfo = new CompanyModel().CurrentCompany;
+            Origin = BusinessLayer.GetCompanyServiceAreaCodes(CompanyInfo.CompanyId, serviceId);
+            Origin._companyInfo = CompanyInfo;
 
             return View(Origin);
         }
 
         public JsonResult GetAreaCodeZipCodes(int? serviceId, int? areaCode)
         {
-            var OriginAreaCodes = BusinessLayer.GetCompanyAreasZipCodes(new CompanyModel().CurrentCompany.CompanyId, serviceId, areaCode);
+            var OriginAreaCodes = BusinessLayer.GetCompanyAreasZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
 
             List<List<string>> list = ConfigValues.TableToList(OriginAreaCodes);
             return Json(list, JsonRequestBehavior.AllowGet);
@@ -39,7 +39,7 @@ namespace _123Movers.Controllers
         }
         public JsonResult GetAvailableZipCodes(int? serviceId, int? areaCode)
         {
-            var services = BusinessLayer.GetAvailableZipCodes(new CompanyModel().CurrentCompany.CompanyId, serviceId, areaCode);
+            var services = BusinessLayer.GetAvailableZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
             List<List<string>> list = ConfigValues.TableToList(services);
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -52,7 +52,7 @@ namespace _123Movers.Controllers
             try
             {
 
-                BusinessLayer.AddCompanyAreaZipCodes(new CompanyModel().CurrentCompany.CompanyId, serviceId, areaCode, zipCodes);
+                BusinessLayer.AddCompanyAreaZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
 
 
@@ -72,7 +72,7 @@ namespace _123Movers.Controllers
             try
             {
 
-                BusinessLayer.DeleteCompanyAreaZipCodes(new CompanyModel().CurrentCompany.CompanyId, serviceId, areaCode, zipCodes);
+                BusinessLayer.DeleteCompanyAreaZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
 
 
