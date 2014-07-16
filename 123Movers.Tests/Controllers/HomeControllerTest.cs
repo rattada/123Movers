@@ -21,7 +21,7 @@ namespace _123Movers.Tests.Controllers
             SearchModel model = new SearchModel();
             var companies = BusinessLayer.SearchCompany(model);
 
-            Assert.IsFalse(companies.Count() > 0, "The returned collection is empty.");
+            Assert.IsFalse(companies.Count() > 0, "The returned collection is not empty.");
             Assert.AreEqual(0, companies.Count());
         }
         [TestMethod]

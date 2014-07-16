@@ -51,3 +51,5 @@ D:\123Movers\123Movers\123Movers.DataEntities\bin\EntityFramework.xml
 D:\123Movers\123Movers\123Movers.DataEntities\obj\Debug\123Movers.DataEntities.csprojResolveAssemblyReference.cache
 D:\123Movers\123Movers\123Movers.DataEntities\obj\Debug\123Movers.DataEntities.dll
 D:\123Movers\123Movers\123Movers.DataEntities\obj\Debug\123Movers.DataEntities.pdb
+D:\Movers123\123Movers\123Movers.DataEntities\bin\log4net.dll
+D:\Movers123\123Movers\123Movers.DataEntities\bin\log4net.xml

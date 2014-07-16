@@ -26,6 +26,8 @@ namespace _123Movers
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

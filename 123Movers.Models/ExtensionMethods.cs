@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 
 namespace _123Movers.Models
 {
@@ -70,6 +71,7 @@ namespace _123Movers.Models
             }
             return null;
         }
+      
         public static int? IfServiceNullLocal(this int? value)
         {
             if (value == null)
@@ -77,6 +79,16 @@ namespace _123Movers.Models
                 return Constants.LOCAL;
             }
             return value;
+        }
+
+        public static MvcHtmlString Script(this HtmlHelper helper, string src)
+        {
+            var builder = new TagBuilder("script");
+            builder.MergeAttribute("src",Constants.BASE_JS_FOLDER + src);
+            builder.MergeAttribute("type", "text/javascript");
+            var tag = MvcHtmlString.Create(builder.ToString(TagRenderMode.Normal));
+
+            return tag;
         }
 
     }

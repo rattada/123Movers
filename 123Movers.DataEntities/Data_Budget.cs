@@ -69,12 +69,12 @@ namespace _123Movers.DataEntities
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 _cmd.CommandText = Constants.SP_SAVE_BUDGET;
 
-                if (budget.TermType == "0")
+                if (budget.TermType == Constants.Recurring)
                 {
                     budget.IsRecurring = true;
                     budget.IsRequireNoticeToCharge = false;
                 }
-                else if (budget.TermType == "1")
+                else if (budget.TermType == Constants.NonRecurring)
                 {
                     budget.IsRecurring = false;
                     budget.IsRequireNoticeToCharge = false;
