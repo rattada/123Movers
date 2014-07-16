@@ -11,10 +11,12 @@ namespace _123Movers.Controllers
 {
     public class BudgetController : BaseController
     {
-        //
-        // GET: /Budget/
 
-        private ILog logger = LogManager.GetLogger(typeof(BudgetController)); 
+        //protected ILog logger = LogManager.GetLogger(typeof(BudgetController)); 
+        public BudgetController() 
+        {
+            logger = LogManager.GetLogger(typeof(BudgetController)); 
+        }
 
         public JsonResult GetServices()
         {

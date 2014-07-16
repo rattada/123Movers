@@ -11,6 +11,7 @@ using WebMatrix.WebData;
 using _123Movers.Filters;
 using _123Movers.Models;
 using _123Movers.BusinessEntities;
+using log4net;
 
 namespace _123Movers.Controllers
 {
@@ -18,6 +19,11 @@ namespace _123Movers.Controllers
     [InitializeSimpleMembership]
     public class AccountController : BaseController
     {
+        //protected ILog logger = LogManager.GetLogger(typeof(AccountController)); ;
+        public AccountController() 
+        {
+            logger = LogManager.GetLogger(typeof(AccountController)); 
+        }
         //
         // GET: /Account/Login
 

@@ -1,5 +1,6 @@
 ﻿using _123Movers.BusinessEntities;
 using _123Movers.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,13 +12,12 @@ namespace _123Movers.Controllers
 {
     public class MoveDistanceController : BaseController
     {
-        //
-        // GET: /MoveDistance/
-
-        public ActionResult Index()
+       // protected ILog logger;
+        public MoveDistanceController() 
         {
-            return View();
+            logger = LogManager.GetLogger(typeof(MoveDistanceController)); 
         }
+
         [HttpGet]
         public ActionResult MoveDistance(int? serviceId)
         {
@@ -50,13 +50,16 @@ namespace _123Movers.Controllers
             ViewBag.Services = ConfigValues.Services().Take(2);
             try
             {
-                model.CompanyId = CompanyInfo.CompanyId;
-                BusinessLayer.SaveMoveDistance(model);
+                if (ModelState.IsValid)
+                {
+                    model.CompanyId = CompanyInfo.CompanyId;
+                    BusinessLayer.SaveMoveDistance(model);
+                }
 
             }
             catch (Exception ex)
             {
-
+                logger.Error(ex.ToString());
             }
 
             return result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
@@ -64,10 +67,8 @@ namespace _123Movers.Controllers
 
         public JsonResult GetMoveDistance(int? serviceId)
         {
-
             DataTable dt = BusinessLayer.GetCompanyMoveDistance(CompanyInfo.CompanyId, serviceId);
-            List<List<string>> list = ConfigValues.TableToList(dt);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(ConfigValues.TableToList(dt), JsonRequestBehavior.AllowGet);
         }
 
     }

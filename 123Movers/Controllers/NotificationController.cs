@@ -10,6 +10,10 @@ namespace _123Movers.Controllers
     {
         //
         // GET: /Notification/
+        //protected NotificationController() 
+        //{
+        //    //logger = LogManager.GetLogger(typeof(NotificationController)); 
+        //}
 
         public ActionResult Index()
         {

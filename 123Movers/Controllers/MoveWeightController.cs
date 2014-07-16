@@ -1,5 +1,6 @@
 ﻿using _123Movers.BusinessEntities;
 using _123Movers.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,13 +12,11 @@ namespace _123Movers.Controllers
 {
     public class MoveWeightController : BaseController
     {
-        //
-        // GET: /MoveWeight/
-
-        public ActionResult Index()
+        //protected ILog logger;
+        public MoveWeightController() 
         {
-            return View();
-        }
+            logger = LogManager.GetLogger(typeof(MoveWeightController)); 
+        } 
 
         [HttpGet]
         public ActionResult MoveWeight(int? serviceId)
@@ -67,10 +66,8 @@ namespace _123Movers.Controllers
 
         public JsonResult GetMoveWeight(int? serviceId)
         {
-
             DataSet ds = BusinessLayer.GetMoveWeights(CompanyInfo.CompanyId, serviceId);
-            List<List<string>> list = ConfigValues.TableToList(ds.Tables[1]);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(ConfigValues.TableToList(ds.Tables[1]), JsonRequestBehavior.AllowGet);
         }
     }
 }

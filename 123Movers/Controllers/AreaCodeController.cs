@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using _123Movers.Models;
+using log4net;
 
 namespace _123Movers.Controllers
 {
@@ -13,20 +14,23 @@ namespace _123Movers.Controllers
     {
         //
         // GET: /AreaCode/
-        
-       
+
+        //protected readonly ILog logger = LogManager.GetLogger(typeof(AreaCodeController)); 
+
+        public AreaCodeController() 
+        {
+            logger = LogManager.GetLogger(typeof(AreaCodeController)); 
+        }
       
         public JsonResult GetAvailableAreas(int? serviceId)
         {
             var services = BusinessLayer.GetAvailableAreas(CompanyInfo.CompanyId, serviceId);
-            List<List<string>> list = ConfigValues.TableToList(services);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetCompanyAreasWithPrices( int? serviceId)
         {
             var services = BusinessLayer.GetCompanyAreasWithPrices(CompanyInfo.CompanyId, serviceId);
-            List<List<string>> list = ConfigValues.TableToList(services);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult AreaCodes(int? serviceId)
@@ -39,11 +43,18 @@ namespace _123Movers.Controllers
         public ActionResult AddAreaCodes(int? serviceId, string areaCodes)
         {
             IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
-
-            foreach (var areacode in areacodelist)
+            try
             {
-                BusinessLayer.AddCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
+                foreach (var areacode in areacodelist)
+                {
+                    BusinessLayer.AddCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
+                }
             }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+            }
+            
             return RedirectToAction("AreaCodes", new { serviceId = serviceId });
         }
 
@@ -51,9 +62,16 @@ namespace _123Movers.Controllers
         {
             IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
 
-            foreach (var areacode in areacodelist)
+            try
             {
-                BusinessLayer.DeleteCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
+                foreach (var areacode in areacodelist)
+                {
+                    BusinessLayer.DeleteCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
             }
             return RedirectToAction("AreaCodes", new { serviceId = serviceId });
         }
@@ -70,6 +88,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 

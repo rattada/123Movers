@@ -3,13 +3,13 @@ $(function () {
     var serviceId;
     var ServiceType;
     var k = 0;
-    if ('@ViewBag.ServiceId' ==1000) {
-        serviceId = parseInt(1000);
+    if ($('#serviceid').val() == 1000) {
+        serviceId =1000;
         ServiceType = 'long';
         $('#ServiceTab a:last').tab('show') // Select last 
         $('li.cslocal').hide();
     }
-    else if ('@ViewBag.ServiceId' == 1009) {
+    else if ($('#serviceid').val() == 1009) {
 
         serviceId = 1009;
         ServiceType = 'local';
@@ -344,7 +344,7 @@ $(function () {
 
         $('#ServiceTab > li:last').click(function () {
 
-            serviceId = parseInt(1000);
+            serviceId = 1000;
             GetAvailableAreas(serviceId, 'long');
             GetSelectedAreas(serviceId, 'long');
             $('#ServiceTab a:last').tab('show')

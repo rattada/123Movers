@@ -11,11 +11,10 @@ namespace _123Movers.Controllers
     {
         //
         // GET: /Report/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
+        //protected ReportController() 
+        //{
+        //    //logger = LogManager.GetLogger(typeof(ReportController)); 
+        //} 
 
         public ActionResult Reports(CompanyModel _companyInfo)
         {

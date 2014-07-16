@@ -1,5 +1,6 @@
 ﻿using _123Movers.BusinessEntities;
 using _123Movers.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,12 @@ namespace _123Movers.Controllers
 {
     public class LeadLimitController : BaseController
     {
-        //
-        // GET: /LeadLimit/
-
-        public ActionResult Index()
+        //protected ILog logger = LogManager.GetLogger(typeof(LeadLimitController));
+        public LeadLimitController() 
         {
-            return View();
+            logger = LogManager.GetLogger(typeof(LeadLimitController)); 
         }
+
         [HttpGet]
         public ActionResult LeadLimit(int? serviceId)
         {
@@ -48,6 +48,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 

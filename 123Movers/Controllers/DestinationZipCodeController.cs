@@ -1,5 +1,6 @@
 ﻿using _123Movers.BusinessEntities;
 using _123Movers.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,13 @@ namespace _123Movers.Controllers
     {
         //
         // GET: /DestinationZipCode/
+       // protected ILog logger = LogManager.GetLogger(typeof(DestinationZipCodeController));
 
-        
-        public ActionResult Index()
+        public DestinationZipCodeController()
         {
-            return View();
+            logger = LogManager.GetLogger(typeof(DestinationZipCodeController));
         }
+
         [HttpGet]
         public ActionResult DestinationZipCodes(int? serviceId)
         {
@@ -32,18 +34,13 @@ namespace _123Movers.Controllers
         public JsonResult GetCompanyAreasDestinationZipCodes(int? serviceId, int? areaCode)
         {
             var DestinationAreaCodes = BusinessLayer.GetCompanyAreasDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
-
-            List<List<string>> list = ConfigValues.TableToList(DestinationAreaCodes);
-            return Json(list, JsonRequestBehavior.AllowGet);
-
-
+            return Json(ConfigValues.TableToList(DestinationAreaCodes), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetAvailableDestinationZipCodes(int? serviceId, int? areaCode)
         {
             var services = BusinessLayer.GetAvailableDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
-            List<List<string>> list = ConfigValues.TableToList(services);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -58,6 +55,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 
@@ -76,6 +74,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 

@@ -1,5 +1,6 @@
 ﻿using _123Movers.BusinessEntities;
 using _123Movers.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,12 @@ namespace _123Movers.Controllers
 {
     public class OriginZipCodeController : BaseController
     {
-        //
-        // GET: /OriginZipCode/
-
-        public ActionResult Index()
+       // protected ILog logger;
+        public OriginZipCodeController() 
         {
-            return View();
-        }
+            logger = LogManager.GetLogger(typeof(OriginZipCodeController)); 
+        } 
+
         [HttpGet]
         public ActionResult OriginZipCodes(int? serviceId)
         {
@@ -31,17 +31,13 @@ namespace _123Movers.Controllers
         public JsonResult GetAreaCodeZipCodes(int? serviceId, int? areaCode)
         {
             var OriginAreaCodes = BusinessLayer.GetCompanyAreasZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
-
-            List<List<string>> list = ConfigValues.TableToList(OriginAreaCodes);
-            return Json(list, JsonRequestBehavior.AllowGet);
-
-
+            return Json(ConfigValues.TableToList(OriginAreaCodes), JsonRequestBehavior.AllowGet);
         }
+
         public JsonResult GetAvailableZipCodes(int? serviceId, int? areaCode)
         {
             var services = BusinessLayer.GetAvailableZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
-            List<List<string>> list = ConfigValues.TableToList(services);
-            return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -59,6 +55,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 
@@ -79,6 +76,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 

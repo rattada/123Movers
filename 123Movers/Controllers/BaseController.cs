@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using _123Movers.Models;
+using log4net;
 
 namespace _123Movers.Controllers
 {
@@ -11,12 +12,12 @@ namespace _123Movers.Controllers
     {
         //protected int? _companyId;
         protected CompanyModel  _companyInfo;
+        public ILog logger;
 
-        public ActionResult Index()
+        public BaseController()
         {
-            return View();
+            //logger = LogManager.GetLogger(typeof(controller));
         }
-
         //public int? CompanyId
         //{
         //    get
