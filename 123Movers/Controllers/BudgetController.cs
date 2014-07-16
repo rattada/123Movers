@@ -15,6 +15,7 @@ namespace _123Movers.Controllers
         // GET: /Budget/
 
         private ILog logger = LogManager.GetLogger(typeof(BudgetController)); 
+
         public JsonResult GetServices()
         {
             return Json(BusinessLayer.GetServies(), JsonRequestBehavior.AllowGet);
@@ -84,7 +85,7 @@ namespace _123Movers.Controllers
 
                     BusinessLayer.SaveBudget(budget);
 
-                    return RedirectToAction("GetBudget", budget._companyInfo.CurrentCompany);
+                    return RedirectToAction("GetBudget", budget._companyInfo);
                 }
             }
             catch (Exception ex)
@@ -136,18 +137,22 @@ namespace _123Movers.Controllers
 
             try
             {
-                budget._companyInfo = CompanyInfo;
-                budget.CompanyId = budget._companyInfo.CompanyId;
-                budget.BudgetAction = Constants.RENEWL_BUDGET;
-                budget.Type = Constants.EDIT_BUDGET;
-               
-                BusinessLayer.SaveBudget(budget);
+                if (ModelState.IsValid)
+                {
+                    budget._companyInfo = CompanyInfo;
+                    budget.CompanyId = budget._companyInfo.CompanyId;
+                    budget.BudgetAction = Constants.RENEWL_BUDGET;
+                    budget.Type = Constants.EDIT_BUDGET;
 
-                return RedirectToAction("GetBudget", budget._companyInfo.CurrentCompany);
+                    BusinessLayer.SaveBudget(budget);
+                }
+
+                return RedirectToAction("GetBudget", budget._companyInfo);
 
             }
             catch (Exception ex)
             {
+                logger.Error(ex.ToString());
                 ModelState.AddModelError("", ex.Message);
             }
             return View(budget);

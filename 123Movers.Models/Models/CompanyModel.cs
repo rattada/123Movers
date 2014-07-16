@@ -20,8 +20,6 @@ namespace _123Movers.Models
         [Display(Name = "AX #")]
         public string AX { get; set; }
 
-
-
         [Display(Name = "Active")]
         public bool IsActive { get; set; }
 
@@ -29,21 +27,21 @@ namespace _123Movers.Models
         public string Suspended { get; set; }
 
 
-        public CompanyModel CurrentCompany
-        {
-            get
-            {
-                if (HttpContext.Current.Session["CurrentCompanyInfo"] == null)
-                    return null;
-                else
-                    return (CompanyModel)HttpContext.Current.Session["CurrentCompanyInfo"];
-            }
+        //public CompanyModel CurrentCompany
+        //{
+        //    get
+        //    {
+        //        if (HttpContext.Current.Session["CurrentCompanyInfo"] == null)
+        //            return null;
+        //        else
+        //            return (CompanyModel)HttpContext.Current.Session["CurrentCompanyInfo"];
+        //    }
 
-            set
-            {
-                HttpContext.Current.Session["CurrentCompanyInfo"] = value;
-            }
-        }
+        //    set
+        //    {
+        //        HttpContext.Current.Session["CurrentCompanyInfo"] = value;
+        //    }
+        //}
 
     }
 }

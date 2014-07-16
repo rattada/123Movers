@@ -1212,4 +1212,138 @@
 	ns: http://specs.openid.net/auth/2.0
 
 2014-07-16 17:00:38,482 [5] INFO  DotNetOpenAuth.OpenId Received identity assertion for https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs via https://www.google.com/accounts/o8/ud.
+[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n2014-07-16 17:23:27,309 [37] INFO  DotNetOpenAuth.Yadis Performing discovery on user-supplied identifier: https://www.google.com/accounts/o8/id
+2014-07-16 17:23:27,429 [37] INFO  DotNetOpenAuth.Messaging.Channel Prepared outgoing CheckIdRequest (2.0) message for https://www.google.com/accounts/o8/ud: 
+	openid.claimed_id: http://specs.openid.net/auth/2.0/identifier_select
+	openid.identity: http://specs.openid.net/auth/2.0/identifier_select
+	openid.return_to: http://localhost:50542/Account/ExternalLoginCallback?ReturnUrl=%2F&__provider__=google&__sid__=1ec084df6d964482944c00f26f1c55e4&dnoa.userSuppliedIdentifier=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid
+	openid.realm: http://localhost:50542/
+	openid.mode: checkid_setup
+	openid.ns: http://specs.openid.net/auth/2.0
+	openid.ns.alias3: http://openid.net/srv/ax/1.0
+	openid.alias3.if_available: alias2,alias3,alias4
+	openid.alias3.required: alias1
+	openid.alias3.mode: fetch_request
+	openid.alias3.type.alias1: http://axschema.org/contact/email
+	openid.alias3.count.alias1: 1
+	openid.alias3.type.alias2: http://axschema.org/contact/country/home
+	openid.alias3.count.alias2: 1
+	openid.alias3.type.alias3: http://axschema.org/namePerson/first
+	openid.alias3.count.alias3: 1
+	openid.alias3.type.alias4: http://axschema.org/namePerson/last
+	openid.alias3.count.alias4: 1
+
+2014-07-16 17:23:40,683 [40] INFO  DotNetOpenAuth.Messaging.Channel Scanning incoming request for messages: http://localhost:50542/Account/ExternalLoginCallback?ReturnUrl=/&__provider__=google&__sid__=1ec084df6d964482944c00f26f1c55e4&dnoa.userSuppliedIdentifier=https://www.google.com/accounts/o8/id&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=id_res&openid.op_endpoint=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fud&openid.response_nonce=2014-07-16T11%3A48%3A41ZYOUMRCOCR59mKw&openid.return_to=http%3A%2F%2Flocalhost%3A50542%2FAccount%2FExternalLoginCallback%3FReturnUrl%3D%2F%26__provider__%3Dgoogle%26__sid__%3D1ec084df6d964482944c00f26f1c55e4%26dnoa.userSuppliedIdentifier%3Dhttps%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid&openid.assoc_handle=1.AMlYA9UD6UTR8gGNLM92ByVtw3CGyaDNg0YOEw9bfRzRp9JT1xmFe_QPrK3ysjTs&openid.signed=op_endpoint%2Cclaimed_id%2Cidentity%2Creturn_to%2Cresponse_nonce%2Cassoc_handle%2Cns.ext1%2Cext1.mode%2Cext1.type.alias1%2Cext1.value.alias1&openid.sig=WC72bJ5Y2%2BZZ7PjQV84DcovirV0%3D&openid.identity=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs&openid.claimed_id=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs&openid.ns.ext1=http%3A%2F%2Fopenid.net%2Fsrv%2Fax%2F1.0&openid.ext1.mode=fetch_response&openid.ext1.type.alias1=http%3A%2F%2Faxschema.org%2Fcontact%2Femail&openid.ext1.value.alias1=attada09ravi%40gmail.com
+2014-07-16 17:23:40,702 [40] INFO  DotNetOpenAuth.Messaging.Channel Processing incoming PositiveAssertionResponse (2.0) message:
+	openid.claimed_id: https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs
+	openid.identity: https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs
+	openid.sig: WC72bJ5Y2+ZZ7PjQV84DcovirV0=
+	openid.signed: op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle,ns.ext1,ext1.mode,ext1.type.alias1,ext1.value.alias1
+	openid.assoc_handle: 1.AMlYA9UD6UTR8gGNLM92ByVtw3CGyaDNg0YOEw9bfRzRp9JT1xmFe_QPrK3ysjTs
+	openid.op_endpoint: https://www.google.com/accounts/o8/ud
+	openid.return_to: http://localhost:50542/Account/ExternalLoginCallback?ReturnUrl=/&__provider__=google&__sid__=1ec084df6d964482944c00f26f1c55e4&dnoa.userSuppliedIdentifier=https://www.google.com/accounts/o8/id
+	openid.response_nonce: 2014-07-16T11:48:41ZYOUMRCOCR59mKw
+	openid.mode: id_res
+	openid.ns: http://specs.openid.net/auth/2.0
+	ReturnUrl: /
+	__provider__: google
+	__sid__: 1ec084df6d964482944c00f26f1c55e4
+	dnoa.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+	openid.ns.ext1: http://openid.net/srv/ax/1.0
+	openid.ext1.mode: fetch_response
+	openid.ext1.type.alias1: http://axschema.org/contact/email
+	openid.ext1.value.alias1: attada09ravi@gmail.com
+
+2014-07-16 17:23:40,716 [40] INFO  DotNetOpenAuth.Messaging.Channel Prepared outgoing CheckAuthenticationRequest (2.0) message for https://www.google.com/accounts/o8/ud: 
+	openid.return_to: http://localhost:50542/Account/ExternalLoginCallback?ReturnUrl=/&__provider__=google&__sid__=1ec084df6d964482944c00f26f1c55e4&dnoa.userSuppliedIdentifier=https://www.google.com/accounts/o8/id
+	openid.mode: check_authentication
+	openid.ns: http://specs.openid.net/auth/2.0
+	openid.claimed_id: https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs
+	openid.identity: https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs
+	openid.sig: WC72bJ5Y2+ZZ7PjQV84DcovirV0=
+	openid.signed: op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle,ns.ext1,ext1.mode,ext1.type.alias1,ext1.value.alias1
+	openid.assoc_handle: 1.AMlYA9UD6UTR8gGNLM92ByVtw3CGyaDNg0YOEw9bfRzRp9JT1xmFe_QPrK3ysjTs
+	openid.op_endpoint: https://www.google.com/accounts/o8/ud
+	openid.response_nonce: 2014-07-16T11:48:41ZYOUMRCOCR59mKw
+	ReturnUrl: /
+	__provider__: google
+	__sid__: 1ec084df6d964482944c00f26f1c55e4
+	dnoa.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+	openid.ns.ext1: http://openid.net/srv/ax/1.0
+	openid.ext1.mode: fetch_response
+	openid.ext1.type.alias1: http://axschema.org/contact/email
+	openid.ext1.value.alias1: attada09ravi@gmail.com
+
+2014-07-16 17:23:41,659 [40] INFO  DotNetOpenAuth.Messaging.Channel Processing incoming CheckAuthenticationResponse (2.0) message:
+	is_valid: true
+	ns: http://specs.openid.net/auth/2.0
+
+2014-07-16 17:23:41,962 [40] INFO  DotNetOpenAuth.OpenId Received identity assertion for https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs via https://www.google.com/accounts/o8/ud.
+[Footer]\r\n[Header]\r\n[Footer]\r\n[Header]\r\n2014-07-16 17:26:49,288 [33] INFO  DotNetOpenAuth.Yadis Performing discovery on user-supplied identifier: https://www.google.com/accounts/o8/id
+2014-07-16 17:26:49,412 [33] INFO  DotNetOpenAuth.Messaging.Channel Prepared outgoing CheckIdRequest (2.0) message for https://www.google.com/accounts/o8/ud: 
+	openid.claimed_id: http://specs.openid.net/auth/2.0/identifier_select
+	openid.identity: http://specs.openid.net/auth/2.0/identifier_select
+	openid.return_to: http://localhost:50542/Account/ExternalLoginCallback?ReturnUrl=%2F&__provider__=google&__sid__=ca6a2c97808f406abf21c473555e68bf&dnoa.userSuppliedIdentifier=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid
+	openid.realm: http://localhost:50542/
+	openid.mode: checkid_setup
+	openid.ns: http://specs.openid.net/auth/2.0
+	openid.ns.alias3: http://openid.net/srv/ax/1.0
+	openid.alias3.if_available: alias2,alias3,alias4
+	openid.alias3.required: alias1
+	openid.alias3.mode: fetch_request
+	openid.alias3.type.alias1: http://axschema.org/contact/email
+	openid.alias3.count.alias1: 1
+	openid.alias3.type.alias2: http://axschema.org/contact/country/home
+	openid.alias3.count.alias2: 1
+	openid.alias3.type.alias3: http://axschema.org/namePerson/first
+	openid.alias3.count.alias3: 1
+	openid.alias3.type.alias4: http://axschema.org/namePerson/last
+	openid.alias3.count.alias4: 1
+
+2014-07-16 17:27:02,262 [33] INFO  DotNetOpenAuth.Messaging.Channel Scanning incoming request for messages: http://localhost:50542/Account/ExternalLoginCallback?ReturnUrl=/&__provider__=google&__sid__=ca6a2c97808f406abf21c473555e68bf&dnoa.userSuppliedIdentifier=https://www.google.com/accounts/o8/id&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.mode=id_res&openid.op_endpoint=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fud&openid.response_nonce=2014-07-16T11%3A52%3A03ZSr118epGGOAW-A&openid.return_to=http%3A%2F%2Flocalhost%3A50542%2FAccount%2FExternalLoginCallback%3FReturnUrl%3D%2F%26__provider__%3Dgoogle%26__sid__%3Dca6a2c97808f406abf21c473555e68bf%26dnoa.userSuppliedIdentifier%3Dhttps%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid&openid.assoc_handle=1.AMlYA9VpNt5G2rwanAlp07KqRTwFq7D2TIFNu2kFoNEp9jqeCQKp02eX7r6p6B6g&openid.signed=op_endpoint%2Cclaimed_id%2Cidentity%2Creturn_to%2Cresponse_nonce%2Cassoc_handle%2Cns.ext1%2Cext1.mode%2Cext1.type.alias1%2Cext1.value.alias1&openid.sig=mKIZi1vJaTwpfEHFDMiHaRnC1UY%3D&openid.identity=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs&openid.claimed_id=https%3A%2F%2Fwww.google.com%2Faccounts%2Fo8%2Fid%3Fid%3DAItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs&openid.ns.ext1=http%3A%2F%2Fopenid.net%2Fsrv%2Fax%2F1.0&openid.ext1.mode=fetch_response&openid.ext1.type.alias1=http%3A%2F%2Faxschema.org%2Fcontact%2Femail&openid.ext1.value.alias1=attada09ravi%40gmail.com
+2014-07-16 17:27:02,295 [33] INFO  DotNetOpenAuth.Messaging.Channel Processing incoming PositiveAssertionResponse (2.0) message:
+	openid.claimed_id: https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs
+	openid.identity: https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs
+	openid.sig: mKIZi1vJaTwpfEHFDMiHaRnC1UY=
+	openid.signed: op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle,ns.ext1,ext1.mode,ext1.type.alias1,ext1.value.alias1
+	openid.assoc_handle: 1.AMlYA9VpNt5G2rwanAlp07KqRTwFq7D2TIFNu2kFoNEp9jqeCQKp02eX7r6p6B6g
+	openid.op_endpoint: https://www.google.com/accounts/o8/ud
+	openid.return_to: http://localhost:50542/Account/ExternalLoginCallback?ReturnUrl=/&__provider__=google&__sid__=ca6a2c97808f406abf21c473555e68bf&dnoa.userSuppliedIdentifier=https://www.google.com/accounts/o8/id
+	openid.response_nonce: 2014-07-16T11:52:03ZSr118epGGOAW-A
+	openid.mode: id_res
+	openid.ns: http://specs.openid.net/auth/2.0
+	ReturnUrl: /
+	__provider__: google
+	__sid__: ca6a2c97808f406abf21c473555e68bf
+	dnoa.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+	openid.ns.ext1: http://openid.net/srv/ax/1.0
+	openid.ext1.mode: fetch_response
+	openid.ext1.type.alias1: http://axschema.org/contact/email
+	openid.ext1.value.alias1: attada09ravi@gmail.com
+
+2014-07-16 17:27:02,323 [33] INFO  DotNetOpenAuth.Messaging.Channel Prepared outgoing CheckAuthenticationRequest (2.0) message for https://www.google.com/accounts/o8/ud: 
+	openid.return_to: http://localhost:50542/Account/ExternalLoginCallback?ReturnUrl=/&__provider__=google&__sid__=ca6a2c97808f406abf21c473555e68bf&dnoa.userSuppliedIdentifier=https://www.google.com/accounts/o8/id
+	openid.mode: check_authentication
+	openid.ns: http://specs.openid.net/auth/2.0
+	openid.claimed_id: https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs
+	openid.identity: https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs
+	openid.sig: mKIZi1vJaTwpfEHFDMiHaRnC1UY=
+	openid.signed: op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle,ns.ext1,ext1.mode,ext1.type.alias1,ext1.value.alias1
+	openid.assoc_handle: 1.AMlYA9VpNt5G2rwanAlp07KqRTwFq7D2TIFNu2kFoNEp9jqeCQKp02eX7r6p6B6g
+	openid.op_endpoint: https://www.google.com/accounts/o8/ud
+	openid.response_nonce: 2014-07-16T11:52:03ZSr118epGGOAW-A
+	ReturnUrl: /
+	__provider__: google
+	__sid__: ca6a2c97808f406abf21c473555e68bf
+	dnoa.userSuppliedIdentifier: https://www.google.com/accounts/o8/id
+	openid.ns.ext1: http://openid.net/srv/ax/1.0
+	openid.ext1.mode: fetch_response
+	openid.ext1.type.alias1: http://axschema.org/contact/email
+	openid.ext1.value.alias1: attada09ravi@gmail.com
+
+2014-07-16 17:27:02,955 [33] INFO  DotNetOpenAuth.Messaging.Channel Processing incoming CheckAuthenticationResponse (2.0) message:
+	is_valid: true
+	ns: http://specs.openid.net/auth/2.0
+
+2014-07-16 17:27:03,283 [33] INFO  DotNetOpenAuth.OpenId Received identity assertion for https://www.google.com/accounts/o8/id?id=AItOawmW74_vRkoA9dT-pYAGJG5DHNIyP1SqvNs via https://www.google.com/accounts/o8/ud.
 [Footer]\r\n
