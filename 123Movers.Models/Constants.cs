@@ -38,6 +38,10 @@ namespace _123Movers.Models
 
         #region All  Stored ProceduresConstants
 
+        #region Search Stored Procedures
+        public static readonly string SP_COMPANY_SEARCH = "usp_CompanySearchv3";
+        #endregion
+
         #region AreaCode Stored Procedures
         public static readonly string SP_GET_COMPANY_STATE_AREACODE_PRICE = "usp_GetCompanyStateAreacodePrice";
         public static readonly string SP_COMPANY_AREACODE_ADD = "up_companyAreacodeAdd";

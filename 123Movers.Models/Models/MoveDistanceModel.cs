@@ -11,6 +11,7 @@ namespace _123Movers.Models
         [Display(Name = "Company ID")]
         public int? CompanyId { get; set; }
 
+        [Required]
         [Display(Name = "Service")]
         public int? ServiceId { get; set; }
 
@@ -25,10 +26,8 @@ namespace _123Movers.Models
         public decimal? MaxMoveDistance { get; set; }
 
         [Display(Name = "Move Weight Seq")]
-  
         public decimal? MoveWeightSeq { get; set; }
 
-        [Required]
         [Display(Name = "Services")]
         public string Services { get; set; }
 

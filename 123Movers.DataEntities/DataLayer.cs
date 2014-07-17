@@ -107,7 +107,7 @@ namespace _123Movers.DataEntities
                 SqlCommand cmdGetCompany = new SqlCommand();
                 cmdGetCompany.Connection = dbCon;
                 cmdGetCompany.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdGetCompany.CommandText = "usp_companySearchv3";
+                cmdGetCompany.CommandText = Constants.SP_COMPANY_SEARCH;
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", search.CompanyId);
                 SqlParameter paramCompanyName = new SqlParameter("companyName", search.CompanyName.TrimNullOrEmpty());

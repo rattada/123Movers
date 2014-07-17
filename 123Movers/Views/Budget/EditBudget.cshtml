@@ -5,13 +5,11 @@
    
 }
 
-
- @Html.Partial(Constants.VIEW, @Model._companyInfo)
+@Html.Partial(Constants.VIEW, @Model._companyInfo)
 
 @section JavaScript{
     @Html.Script("editBudget.js")
- }
-
+}
 
 @using (Html.BeginForm("EditBudget", "Budget", FormMethod.Post, new { id = "frmeditbudget" }))
 {
@@ -31,7 +29,6 @@
                 @Html.TextBoxFor(m => m.AgreementNumber, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.AgreementNumber)
             </div>
-
         </div>
         <div class="col-lg-4">
             <div class="form-group">
@@ -39,7 +36,6 @@
                 @Html.DropDownListFor(m => m.TermType, ViewBag.Terms as IEnumerable<SelectListItem>, new { @class = "form-control dropdown", @title = "Select Terms" })
                 @Html.ValidationMessageFor(m => m.TermType)
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(m => m.ServiceId)
                 @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
@@ -56,24 +52,21 @@
             <p class="clearfix"></p>
             <p class="clearfix"></p>
             <p class="clearfix"></p>
-      
+
         </div>
     </div>
    
     var Service = (@Model.ServiceId == Constants.LOCAL) ? "1009" : (@Model.ServiceId == Constants.LONG) ? "1000" : null;
     <div class="row">
-       <div class="col-md-12">
-           @Html.ActionLink("Manage Area Codes", "AreaCodes", "AreaCode", new {serviceId = Service }, new { id = "managearea", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Lead Limit", "LeadLimit", "LeadLimit", new { serviceId = Service }, new { id = "leadlimit", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Origin", "OriginZipCodes", "OriginZipCode", new {serviceId = Service}, new { id = "geography", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Destination", "DestinationZipCodes", "DestinationZipCode", new { serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Distance", "MoveDistance", "MoveDistance", new { serviceId = Service }, new { id = "distance", @class = "btn btn-default" })
-           @Html.ActionLink("Manage Move Weight", "MoveWeight", "MoveWeight", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default" })
-       </div>
-   </div>
-
-
-    
+        <div class="col-md-12">
+            @Html.ActionLink("Manage Area Codes", "AreaCodes", "AreaCode", new { serviceId = Service }, new { id = "managearea", @class = "btn btn-default" })
+            @Html.ActionLink("Manage Lead Limit", "LeadLimit", "LeadLimit", new { serviceId = Service }, new { id = "leadlimit", @class = "btn btn-default" })
+            @Html.ActionLink("Manage Origin", "OriginZipCodes", "OriginZipCode", new { serviceId = Service }, new { id = "geography", @class = "btn btn-default" })
+            @Html.ActionLink("Manage Destination", "DestinationZipCodes", "DestinationZipCode", new { serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-default" })
+            @Html.ActionLink("Manage Distance", "MoveDistance", "MoveDistance", new { serviceId = Service }, new { id = "distance", @class = "btn btn-default" })
+            @Html.ActionLink("Manage Move Weight", "MoveWeight", "MoveWeight", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default" })
+        </div>
+    </div>
     <div class="row">
         <input type="submit" id="save" class="btn btn-primary pull-right" value="Save Budget" />
         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List</a>

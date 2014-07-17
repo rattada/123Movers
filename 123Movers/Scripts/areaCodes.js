@@ -146,7 +146,7 @@ $(function () {
             var areacode = $(this).closest('tr').find('.areacode').val();
             if (areaprice.length > 0) {
                 if (!areaprice.match(decimal)) {
-                    alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
+                    log('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                     return false;
                 }
 
@@ -155,7 +155,7 @@ $(function () {
             else {
                 if (defaultprice.length > 0) {
                     if (!defaultprice.match(decimal)) {
-                        alert('Please Enter a Valid Default Price');
+                        log('Please Enter a Valid Default Price');
                         return false;
                     }
                     areacodes.push(areacode + '-' + 'YES-' + defaultprice);
@@ -170,7 +170,7 @@ $(function () {
             var areacode = $(this).closest('tr').find('.areacode').val();
             if (areaprice.length > 0) {
                 if (!areaprice.match(decimal)) {
-                    alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
+                    log('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                     return false;
                 }
 
@@ -178,7 +178,7 @@ $(function () {
             }
             if (defaultprice.length > 0) {
                 if (!defaultprice.match(decimal)) {
-                    alert('Please Enter a Valid Default Price');
+                    log('Please Enter a Valid Default Price');
                     return false;
                 }
 
@@ -191,11 +191,11 @@ $(function () {
         var rows = $("#table1 tbody tr").length + $("#table2 tbody tr").length;
 
         if (areacodes.length == 0) {
-            alert('Please enter the price values');
+            log('Please enter the price values');
             return false;
         }
         if (areacodes.length != rows && defaultprice.length == 0) {
-            alert('Please enter default price');
+            log('Please enter default price');
             return false;
         }
 
@@ -207,16 +207,16 @@ $(function () {
             data: {  'serviceId': serviceId, areaCodes: jsareacodes },
             success: function (data) {
                 if (data.success === true) {
-                    alert('Prices Saved Suceessfully');
+                    log('Prices Saved Suceessfully');
                     $("#saveprice").attr('disabled', 'disabled');
                 } else {
-                    alert("Error :" + data.message);
+                    log("Error :" + data.message);
                 }
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 var errMessage = JSON.parse(xhr.responseText).customErrorMessage;
-                alert('Error occurred while saving the prices' + errMessage);
+                log('Error occurred while saving the prices' + errMessage);
             }
         });
 
@@ -234,7 +234,7 @@ $(function () {
 
         if (selected.length == 0) {
 
-            alert("Please Select any Option to add");
+            log("Please Select any Option to add");
             return false;
         }
         var data_to_send = JSON.stringify(selected);
@@ -259,7 +259,7 @@ $(function () {
                     $('#ServiceTab a:last').tab('show')
 
                 }
-                alert("Area Codes added Successfully");
+                log("Area Codes added Successfully");
                 k = 1;
 
             },
@@ -280,7 +280,7 @@ $(function () {
         });
 
         if (selected.length == 0) {
-            alert("Please Select any Option to remove");
+            log("Please Select any Option to Remove")
             return false;
         }
         var data_to_send = JSON.stringify(selected);
@@ -307,7 +307,7 @@ $(function () {
                     $('#ServiceTab a:last').tab('show')
 
                 }
-                alert("Area Codes removed Successfully");
+                log("Area Codes removed Successfully");
                 k = 1;
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -317,25 +317,21 @@ $(function () {
 
     });
 
-
     $('#accordion span').parent().click(function () {
 
         if ($('#accordion span').hasClass('glyphicon glyphicon-plus')) {
             $('#accordion span').removeClass("glyphicon glyphicon-plus");
             $('#accordion span').addClass("glyphicon glyphicon-minus");
-
         }
         else {
 
             $('#accordion span').removeClass("glyphicon glyphicon-minus");
             $('#accordion span').addClass("glyphicon glyphicon-plus");
-
         }
 
     });
     if (k == 0) {
         $('#ServiceTab > li:first').click(function () {
-
             serviceId = 1009;
             GetAvailableAreas(serviceId, 'local');
             GetSelectedAreas(serviceId, 'local');
@@ -357,4 +353,19 @@ $(function () {
         $("#saveprice").removeAttr('disabled');
     });
 
+    function log(str) {
+        var self = this,
+            settings = {
+                hide: 'fadeOut',
+                show: 'fadeIn',
+                speed: 'fast',
+                timeout: 2000
+            };
+
+        $('.alert-box').html(str)[settings.show]();
+
+        setTimeout(function () {
+            $('.alert-box')[settings.hide]();
+        }, settings.timeout);
+    }
 });
