@@ -1,15 +1,16 @@
 ﻿$(function () {
     var areacode;
     var serviceid;
-    $(".DestAreaCode").click(function () {
+    $(".OriginAreaCode").click(function () {
         var paramAreaCode = $(this).data("areacode");
         var paramServiceId = $(this).data("serviceid");
         areacode = paramAreaCode;
         serviceid = paramServiceId;
         GetZipCodes(areacode, serviceid);
-  
+
     });
-    $('#add').click(function () {
+    $('#add').click(function (e) {
+        e.preventDefault();
         var selected = [];
         $('#areaZipCode :selected').each(function (i, el) {
             selected[i] = $(this).val();
@@ -23,14 +24,13 @@
         else {
             var zipcodes = JSON.stringify(selected);
             $.ajax({
-                url: '/DestinationZipCode/AddCompanyAreaDestinationZipCodes',
+                url: '/OriginZipCode/AddCompanyAreaZipCodes',
                 type: "POST",
                 data: { 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
                 success: function (data) {
                     if (data.success === true) {
                         var x = $('#areaZipCode > option').length;
                         $('#areaZipCode').scrollTop(x);
-
                         alert('Zip Codes Successfully Added');
                     } else {
                         alert("Error :" + data.message);
@@ -55,7 +55,7 @@
         } else {
             var zipcodes = JSON.stringify(selected);
             $.ajax({
-                url: '/DestinationZipCode/DeleteCompanyAreaDestinationZipCodes',
+                url: '/OriginZipCode/DeleteCompanyAreaZipCodes',
                 type: "POST",
                 data: { 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
                 success: function (data) {
@@ -74,17 +74,17 @@
         }
     });
     $('#close').click(function () {
-
         location.reload();
     });
 });
-function GetZipCodes(areaCode, serviceid) {
-    //serviceid = serviceId;
-    //areacode = areaCode;
+
+function GetZipCodes(areaCode, serviceId) {
+    serviceid = serviceId;
+    areacode = areaCode
     $.ajax({
-        url: '/DestinationZipCode/GetAvailableDestinationZipCodes',
+        url: '/OriginZipCode/GetAvailableZipCodes',
         type: "GET",
-        data: { 'serviceId': serviceid, 'areaCode': areaCode },
+        data: { 'serviceId': serviceId, 'areaCode': areaCode },
         dataType: "json",
         cache: false,
         success: function (data) {
@@ -99,19 +99,18 @@ function GetZipCodes(areaCode, serviceid) {
                     options += '<option value="' + val[0] + '">' + val[0] + '</option>';
                 }
             });
+
             if (json.length > 0) {
                 $('#areaZipCode').html(options);
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
-
         }
     });
-
     $.ajax({
-        url: '/DestinationZipCode/GetCompanyAreasDestinationZipCodes',
+        url: '/OriginZipCode/GetAreaCodeZipCodes',
         type: "GET",
-        data: { 'serviceId': serviceid, 'areaCode': areaCode },
+        data: { 'serviceId': serviceId, 'areaCode': areaCode },
         dataType: "json",
         cache: false,
         success: function (data) {
@@ -133,4 +132,5 @@ function GetZipCodes(areaCode, serviceid) {
         error: function (xhr, ajaxOptions, thrownError) {
         }
     });
+
 }

@@ -10,6 +10,10 @@
 
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 
+@section JavaScript{
+   @Html.Script("destZipCodes.js");
+}
+
 <p class="clearfix"></p>
 <p class="clearfix"></p>
 <div class="table-responsive" id="divOrigin">
@@ -49,11 +53,11 @@
 
                         @if (@zipcodes.Count() > 0)
                         {
-                            <b>YES --> @zipcodes.Count() ZipCodes - </b> <a id="zipcodes" href="#" data-toggle="modal" data-target="#myModal" data-id="@DestinationAreaCode.AreaCode" onclick="GetZipCodes(@DestinationAreaCode.AreaCode,@DestinationAreaCode.ServiceId)">View</a>
+                            <b>YES --> @zipcodes.Count() ZipCodes - </b> <a id="zipcodes" href="#" data-toggle="modal" data-target="#myModal" class="DestAreaCode"  data-serviceid="@DestinationAreaCode.ServiceId" data-AREACODE="@DestinationAreaCode.AreaCode">View</a>
                         }
                         else
                         {
-                            <a id="zipcodes1" href="#" data-toggle="modal" data-target="#myModal" data-id="@DestinationAreaCode.AreaCode" onclick="GetZipCodes(@DestinationAreaCode.AreaCode,@DestinationAreaCode.ServiceId)">Add Destination ZipCodes</a>
+                            <a id="zipcodes1" href="#" data-toggle="modal" data-target="#myModal" class="DestAreaCode"  data-serviceid="@DestinationAreaCode.ServiceId" data-AREACODE="@DestinationAreaCode.AreaCode">Add Destination ZipCodes</a>
                         }
 
                     </td>
@@ -95,7 +99,7 @@
 
 
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     var areacode;
     var serviceid;
     function GetZipCodes(areaCode, serviceId) {
@@ -241,4 +245,4 @@
     });
 
     // });
-</script>
+</script>*@

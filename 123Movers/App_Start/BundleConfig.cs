@@ -19,15 +19,15 @@ namespace _123Movers
                          "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
-            //bundles.Add(new ScriptBundle("~/bootstrap/jss").Include(
-            //    "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js",
-            //    "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"
-            //    ));
+            bundles.Add(new ScriptBundle("~/bootstrap/jss").Include(
+                //"//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js",
+                "~/Scripts/bootstrap.min.js"
+                ));
 
-            //bundles.Add(new StyleBundle("~/bootstrap/css").Include(
-            //    "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css",
-            //    "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"
-            //    ));
+            bundles.Add(new StyleBundle("~/bootstrap/css").Include(
+                "~/Content/bootstrap.min.css",
+                "~/Content/bootstrap-theme.min.css"
+                ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

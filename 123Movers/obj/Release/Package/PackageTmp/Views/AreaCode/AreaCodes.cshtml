@@ -5,23 +5,21 @@
     
 }
 <input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
-<div class="row">
-     @Html.Partial(Constants.VIEW, @Model._companyInfo)
-</div>
+
+@Html.Partial(Constants.VIEW, @Model._companyInfo)
 
 <p class="clearfix"></p>
 <p class="clearfix"></p>
 
 @section JavaScript{
-    @Html.Script("areaCodes.js");
- }
+    @Html.Script("areaCodes.js")
+}
 
+<div class="alert-box error" style="display: none"></div>
 <div class="row">
-
     <ul class="nav nav-tabs" id="ServiceTab">
         <li class="cslocal"><a href="#local" data-toggle="tab">Local</a></li>
         <li class="cslong"><a href="#local" data-toggle="tab">Long</a></li>
-
     </ul>
     <br />
 </div>
@@ -30,24 +28,15 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane" id="local">
-
-
                 <select name="areaCode" id="areaCode" size="20" style="width: 150px" multiple>
                 </select>
-
 
                 <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
                 <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
 
-
                 <select name="areasSelected" id="areasSelected" style="width: 150px" size="20" multiple>
                 </select>
-
-
             </div>
-
-
-
         </div>
     </div>
     <div class="col-md-6">
@@ -71,380 +60,10 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
 </div>
 <div class="row">
     <input type="button" id="saveprice" class="btn btn-primary pull-right" value="Save Prices" />
     <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
-
-
 </div>
 
-@*<script type="text/javascript">
-    
-
-    $(function () {
-        var serviceId;
-        var ServiceType;
-        var k = 0;
-        if ('@ViewBag.ServiceId' ==parseInt(@Constants.LONG)) {
-            serviceId = parseInt(@Constants.LONG);
-            ServiceType = 'long';
-            $('#ServiceTab a:last').tab('show') // Select last 
-            $('li.cslocal').hide();
-        }
-        else if ('@ViewBag.ServiceId' == parseInt(@Constants.LOCAL)) {
-
-            serviceId = parseInt(@Constants.LOCAL);
-            ServiceType = 'local';
-            $('#ServiceTab a:first').tab('show') // Select first 
-            $('li.cslong').hide();
-        }
-        else {
-            serviceId = parseInt(@Constants.LOCAL);
-            ServiceType = 'Both';
-            $('#ServiceTab a:first').tab('show') // Default first 
-
-        }
-
-        $("#saveprice").attr('disabled', 'disabled');
-
-        $("#body").on("keypress", "input", function (event) {
-            var key = event.which;
-
-            if (!(key >= 48 && key <= 57))
-                event.preventDefault();
-            else
-                $("#saveprice").removeAttr('disabled');
-        });
-
-        GetAvailableAreas(serviceId, ServiceType);
-        GetSelectedAreas(serviceId, ServiceType);
-
-
-
-        function GetAvailableAreas(serviceId, ServiceType) {
-            $.ajax({
-                url: '/AreaCode/GetAvailableAreas',
-                type: "GET",
-                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId },
-                dataType: "json",
-                cache: false,
-                success: function (data) {
-                    var strigifyJson = JSON.stringify(data);
-                    var json = $.parseJSON(strigifyJson);
-                    var table;
-                    var options = '<option value=""></option>';
-                    jQuery.each(json, function (i, val) {
-                        if (i == 0) {
-                            options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                        } else {
-                            options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                        }
-                    });
-
-                    if (json.length > 0) {
-                        $('#areaCode').html(options);
-                    }
-
-
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-
-                }
-            });
-        }
-
-        function GetSelectedAreas(serviceId, ServiceType) {
-
-            $.ajax({
-                url: '/AreaCode/GetCompanyAreasWithPrices',
-                type: "GET",
-                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId },
-                dataType: "json",
-                cache: false,
-                success: function (data) {
-                    var strigifyJson = JSON.stringify(data);
-                    var json = $.parseJSON(strigifyJson);
-
-
-                    var table;
-                    var table1 = "<div class ='col-md-6' ><table class='table table-striped' id ='table1' ><thead><tr><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
-                    var options = '<option value=""></option>';
-                    jQuery.each(json, function (i, val) {
-                        if (i == 0) {
-                            options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                        } else {
-                            options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                        }
-                        if (val[3] != null) {
-                            $('#txtDefaultPrice').val(val[3].toString().slice(0, -2));
-                        }
-
-                        if (i < Math.round(json.length / 2)) {
-                            var value = val[2].toString().slice(0, -2);
-                            table1 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control'/><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
-                        }
-
-                    });
-                    table1 += "</tbody></table></div>";
-
-                    var table2 = "<div class ='col-md-6' ><table class='table table-striped' id ='table2'><thead><tr><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
-                    jQuery.each(json, function (i, val) {
-                        if (i >= Math.round(json.length / 2) && i < json.length) {
-                            var value = val[2].toString().slice(0, -2);
-                            table2 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control' /><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
-                        }
-                    });
-
-                    table2 += "</tbody></table></div>";
-                    table = table1 + table2;
-
-                    $('#selectedareas').html(table);
-
-                    if (json.length > 0) {
-                        $('#areasSelected').html(options);
-                        $("#txtDefaultPrice").removeAttr("disabled");
-                    }
-                    else {
-                        $("#txtDefaultPrice").attr("disabled", "disabled");
-                        $("#txtDefaultPrice").val('');
-                        $('#areasSelected').html('')
-                    }
-
-
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-
-                }
-            });
-        }
-
-        $('#saveprice').on("click", function () {
-            var defaultprice = $.trim($('#txtDefaultPrice').val());
-            var decimal = /^(\d*\.?\d*)$/;
-            var areacodes = [];
-
-            $("#table1 tbody tr").each(function () {
-                var areaprice = $(this).closest('tr').find('.form-control').val();
-                var areacode = $(this).closest('tr').find('.areacode').val();
-                if (areaprice.length > 0) {
-                    if (!areaprice.match(decimal)) {
-                        alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
-                        return false;
-                    }
-
-                    areacodes.push(areacode + '-' + 'NO-' + areaprice);
-                }
-                else {
-                    if (defaultprice.length > 0) {
-                        if (!defaultprice.match(decimal)) {
-                            alert('Please Enter a Valid Default Price');
-                            return false;
-                        }
-                        areacodes.push(areacode + '-' + 'YES-' + defaultprice);
-
-                    }
-                }
-
-            });
-
-            $("#table2 tbody tr").each(function () {
-                var areaprice = $(this).closest('tr').find('.form-control').val();
-                var areacode = $(this).closest('tr').find('.areacode').val();
-                if (areaprice.length > 0) {
-                    if (!areaprice.match(decimal)) {
-                        alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
-                        return false;
-                    }
-
-                    areacodes.push(areacode + '-' + 'NO-' + areaprice);
-                }
-                if (defaultprice.length > 0) {
-                    if (!defaultprice.match(decimal)) {
-                        alert('Please Enter a Valid Default Price');
-                        return false;
-                    }
-
-                    areacodes.push(areacode + '-' + 'YES-' + defaultprice);
-
-                }
-
-            });
-
-            var rows = $("#table1 tbody tr").length + $("#table2 tbody tr").length;
-
-            if (areacodes.length == 0) {
-                alert('Please enter the price values');
-                return false;
-            }
-            if (areacodes.length != rows && defaultprice.length == 0) {
-                alert('Please enter default price');
-                return false;
-            }
-
-            var jsareacodes = JSON.stringify(areacodes);
-
-            $.ajax({
-                url: '/AreaCode/AddCompanyPricePerLead',
-                type: "POST",
-                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: jsareacodes },
-                success: function (data) {
-                    if (data.success === true) {
-                        alert('Prices Saved Suceessfully');
-                        $("#saveprice").attr('disabled', 'disabled');
-                    } else {
-                        alert("Error :" + data.message);
-                    }
-
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    var errMessage = JSON.parse(xhr.responseText).customErrorMessage;
-                    alert('Error occurred while saving the prices' + errMessage);
-                }
-            });
-
-        });
-
-
-        $('#add').click(function () {
-
-            var Service = $("#ServiceTab > li.active >a").text();
-
-            var selected = [];
-            $('#areaCode :selected').each(function (i, el) {
-                selected[i] = $(this).val();
-            });
-
-            if (selected.length == 0) {
-
-                alert("Please Select any Option to add");
-                return false;
-            }
-            var data_to_send = JSON.stringify(selected);
-            $.ajax({
-                url: '/AreaCode/AddAreaCodes',
-                type: "POST",
-                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
-                success: function (data) {
-
-                    if (Service == "Local") {
-                        serviceId = parseInt(@Constants.LOCAL);
-                        GetAvailableAreas(serviceId, 'local');
-                        GetSelectedAreas(serviceId, 'local');
-                        $('#ServiceTab a:first').tab('show');
-
-                    }
-                    else {
-
-                        serviceId = parseInt(@Constants.LONG);
-                        GetAvailableAreas(serviceId, 'long');
-                        GetSelectedAreas(serviceId, 'long');
-                        $('#ServiceTab a:last').tab('show')
-
-                    }
-                    alert("Area Codes added Successfully");
-                    k = 1;
-
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-
-                }
-            });
-
-
-        });
-
-
-        $('#remove').click(function () {
-            var Service = $("#ServiceTab > li.active >a").text();
-            var selected = [];
-            $('#areasSelected :selected').each(function (i, el) {
-                selected[i] = $(this).val();
-            });
-
-            if (selected.length == 0) {
-                alert("Please Select any Option to remove");
-                return false;
-            }
-            var data_to_send = JSON.stringify(selected);
-            $.ajax({
-                url: '/AreaCode/DeleteAreaCodes',
-                type: "POST",
-                data: { 'companyId': '@ViewBag.CompanyID', 'serviceId': serviceId, 'companyName': '@ViewBag.CompanyName', areaCodes: data_to_send },
-                success: function (data) {
-
-                    if (Service == "Local") {
-
-                        serviceId = parseInt(@Constants.LOCAL);
-                        GetAvailableAreas(serviceId, 'local');
-                        GetSelectedAreas(serviceId, 'local');
-                        $('#ServiceTab a:first').tab('show')
-
-
-                    }
-                    else {
-
-                        serviceId = parseInt(@Constants.LONG);
-                        GetAvailableAreas(serviceId, 'long');
-                        GetSelectedAreas(serviceId, 'long');
-                        $('#ServiceTab a:last').tab('show')
-
-                    }
-                    alert("Area Codes removed Successfully");
-                    k = 1;
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-
-                }
-            });
-
-        });
-
-
-        $('#accordion span').parent().click(function () {
-
-            if ($('#accordion span').hasClass('glyphicon glyphicon-plus')) {
-                $('#accordion span').removeClass("glyphicon glyphicon-plus");
-                $('#accordion span').addClass("glyphicon glyphicon-minus");
-
-            }
-            else {
-
-                $('#accordion span').removeClass("glyphicon glyphicon-minus");
-                $('#accordion span').addClass("glyphicon glyphicon-plus");
-
-            }
-
-        });
-        if (k == 0) {
-            $('#ServiceTab > li:first').click(function () {
-
-                serviceId = parseInt(@Constants.LOCAL);
-                GetAvailableAreas(serviceId, 'local');
-                GetSelectedAreas(serviceId, 'local');
-                $('#ServiceTab a:first').tab('show')
-            });
-
-            $('#ServiceTab > li:last').click(function () {
-
-                serviceId = parseInt(@Constants.LONG);
-                GetAvailableAreas(serviceId, 'long');
-                GetSelectedAreas(serviceId, 'long');
-                $('#ServiceTab a:last').tab('show')
-            });
-        }
-
-
-       
-
-        $("#saveprice").attr('disabled', 'disabled');
-        $('#body').on('change keyup keydown', 'input, textarea', function (e) {
-            $("#saveprice").removeAttr('disabled');
-        });
-
-    });
-</script>*@

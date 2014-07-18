@@ -88,8 +88,8 @@
                         @lot.AX
                     </td>
                     <td class="text-center">
-                        @Html.ActionLink("Budget", "GetBudget", "Budget", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-info btn-sm" })
-                        @Html.ActionLink("Reports", "Reports", "Report", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, active = @lot.IsActive }, new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Budget", "GetBudget", "Budget", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, isactive = @lot.IsActive }, new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Reports", "Reports", "Report", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, isactive = @lot.IsActive }, new { @class = "btn btn-info btn-sm" })
                     </td>
                 </tr>
                 }

@@ -218,6 +218,8 @@
     <Content Include="123Movers.edmx.diagram">
       <DependentUpon>123Movers.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-ui-1.10.4.css" />
     <Content Include="Content\jquery-ui-1.10.4.min.css" />
     <Content Include="Content\themes\base\images\123movers.png" />
@@ -286,6 +288,7 @@
     <Content Include="Images\desc.gif" />
     <Content Include="Images\desc.png" />
     <Content Include="Scripts\areaCodes.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\destZipCodes.js" />
     <Content Include="Scripts\editBudget.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -309,6 +312,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moveDistance.js" />
     <Content Include="Scripts\moveWeight.js" />
+    <Content Include="Scripts\originZipCodes.js" />
     <Content Include="Scripts\reports.js" />
     <Content Include="Scripts\search.js" />
     <Content Include="Web.config">
