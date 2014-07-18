@@ -9,6 +9,10 @@
 
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 
+@section JavaScript{
+   @Html.Script("originZipCodes.js");
+}
+
 <p class="clearfix"></p>
 <p class="clearfix"></p>
 <div class="table-responsive" id="divOrigin">
@@ -44,11 +48,11 @@
                         }
                         @if (@zipcodes.Count() > 0)
                         {
-                            <b>YES --> @zipcodes.Count() ZipCodes - </b> <a id="zipcodes" href="#" data-toggle="modal" data-target="#myModal" data-id="@OriginAreaCode.AreaCode" onclick="GetZipCodes(@OriginAreaCode.AreaCode,@OriginAreaCode.ServiceId)">View</a>
+                            <b>YES --> @zipcodes.Count() ZipCodes - </b> <a id="zipcodes" href="#" data-toggle="modal" data-target="#myModal" class="OriginAreaCode"  data-serviceid="@OriginAreaCode.ServiceId" data-AREACODE="@OriginAreaCode.AreaCode">View</a>
                         }
                         else
                         {
-                            <a id="zipcodes1" href="#" data-toggle="modal" data-target="#myModal" data-id="@OriginAreaCode.AreaCode" onclick="GetZipCodes(@OriginAreaCode.AreaCode,@OriginAreaCode.ServiceId)">Add Origin ZipCodes</a>
+                            <a id="zipcodes1" href="#" data-toggle="modal" data-target="#myModal" class="OriginAreaCode"  data-serviceid="@OriginAreaCode.ServiceId" data-AREACODE="@OriginAreaCode.AreaCode">Add Origin ZipCodes</a>
                         }
 
                     </td>
@@ -89,7 +93,7 @@
 </div>
 
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     var areacode;
     var serviceid;
     function GetZipCodes(areaCode, serviceId) {
@@ -217,4 +221,4 @@
     $('.cross').click(function () {
         location.reload();
     });
-</script>
+</script>*@

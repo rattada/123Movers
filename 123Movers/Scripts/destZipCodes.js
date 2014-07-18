@@ -7,7 +7,6 @@
         areacode = paramAreaCode;
         serviceid = paramServiceId;
         GetZipCodes(areacode, serviceid);
-  
     });
     $('#add').click(function () {
         var selected = [];
@@ -73,14 +72,14 @@
             });
         }
     });
-    $('#close').click(function () {
-
+    $('.cross ').click(function () {
+        $('#myModal').modal({
+            backdrop: null
+        });
         location.reload();
     });
 });
 function GetZipCodes(areaCode, serviceid) {
-    //serviceid = serviceId;
-    //areacode = areaCode;
     $.ajax({
         url: '/DestinationZipCode/GetAvailableDestinationZipCodes',
         type: "GET",
@@ -133,4 +132,6 @@ function GetZipCodes(areaCode, serviceid) {
         error: function (xhr, ajaxOptions, thrownError) {
         }
     });
+
+   
 }
