@@ -48,10 +48,11 @@ table input[type="text"] {
    height:25px;
 }
 .scrollable-table {
-max-height:235px;
-overflow-y:scroll;
-overflow-x:hidden;
+   max-height: 500px!important;
+   overflow-y: scroll!important;
+   overflow-x: hidden!important;
 }
+
 
 .validation-summary-errors {
     color: #e80c4d;
@@ -279,3 +280,14 @@ tbody {
        width: 100%;
        table-layout: fixed;
    }
+ .marginTop {
+   margin-top: 0px!important;
+}
+
+.divBorder {
+   border: 1px solid #ddd;
+}
+
+#accordion {
+   width: 560px;
+}
