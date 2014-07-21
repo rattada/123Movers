@@ -12,7 +12,7 @@
     color: #e80c4d;
     font-size: 1.3em;
     font-weight: bold;
-    margin: 20px 0 10px 0;
+    /*margin: 20px 0 10px 0;*/
 }
 
 .message-success {
@@ -249,3 +249,33 @@ background-color: #8dbdd8;
 
    background-color:rgb(217, 222, 247) !important;
 }*/
+
+.bkgImage {
+     background: url(/Images/movers4.jpg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+body {
+background: url(/Images/movers.jpg) no-repeat ;
+/*background-size: 100% 100%;*/
+background-size: cover;
+/*background-position:center;*/
+/*overflow:hidden*/
+/*min-height: 700px;*/
+}
+
+tbody {
+   display: block;
+   max-height: 300px;
+ overflow-x:hidden;
+   overflow-y:scroll;
+}
+
+   thead, tbody  tr {
+       display: table;
+       width: 100%;
+       table-layout: fixed;
+   }

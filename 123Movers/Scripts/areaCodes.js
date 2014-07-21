@@ -83,7 +83,6 @@ $(function () {
                 var strigifyJson = JSON.stringify(data);
                 var json = $.parseJSON(strigifyJson);
 
-
                 var table;
                 var table1 = "<div class ='col-md-6' ><table class='table table-striped' id ='table1' ><thead><tr><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
                 var options = '<option value=""></option>';
@@ -93,7 +92,7 @@ $(function () {
                     } else {
                         options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                     }
-                    if (val[3] != null) {
+                    if (val[3] != null && val[3] != ''){//  $('#txtDefaultPrice').val().length == 0) {
                         $('#txtDefaultPrice').val(val[3].toString().slice(0, -2));
                     }
 

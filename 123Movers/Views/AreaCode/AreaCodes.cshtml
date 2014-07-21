@@ -16,45 +16,47 @@
 }
 
 <div class="alert-box error" style="display: none"></div>
-<div class="row">
-    <ul class="nav nav-tabs" id="ServiceTab">
-        <li class="cslocal"><a href="#local" data-toggle="tab">Local</a></li>
-        <li class="cslong"><a href="#local" data-toggle="tab">Long</a></li>
-    </ul>
-    <br />
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div class="tab-pane" id="local">
-                <select name="areaCode" id="areaCode" size="20" style="width: 150px" multiple>
-                </select>
+<div>
+    <div class="row">
+        <ul class="nav nav-tabs" id="ServiceTab">
+            <li class="cslocal"><a href="#local" data-toggle="tab">Local</a></li>
+            <li class="cslong"><a href="#local" data-toggle="tab">Long</a></li>
+        </ul>
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane" id="local">
+                    <select name="areaCode" id="areaCode" size="20" style="width: 150px" multiple>
+                    </select>
 
-                <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
-                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
+                    <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
+                    <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
 
-                <select name="areasSelected" id="areasSelected" style="width: 150px" size="20" multiple>
-                </select>
+                    <select name="areasSelected" id="areasSelected" style="width: 150px" size="20" multiple>
+                    </select>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="row">
-            <b>Default Price:</b>
-            <input type="text" id="txtDefaultPrice" class="manageAreaCode-control">
-        </div>
-        <br />
-        <div class="row">
-            <div class='panel-group' id='accordion'>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Selected Areas <span class="glyphicon glyphicon-plus  pull-right"></span></a></h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div id="selectedareas" class="scrollable-table"></div>
+        <div class="col-md-6">
+            <div class="row">
+                <b>Default Price:</b>
+                <input type="text" id="txtDefaultPrice" class="manageAreaCode-control">
+            </div>
+            <br />
+            <div class="row">
+                <div class='panel-group' id='accordion'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Selected Areas <span class="glyphicon glyphicon-plus  pull-right"></span></a></h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div id="selectedareas" class="scrollable-table"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

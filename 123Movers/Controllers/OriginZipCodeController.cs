@@ -47,8 +47,7 @@ namespace _123Movers.Controllers
             JsonResult result;
             try
             {
-
-                BusinessLayer.AddCompanyAreaZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes);
+                BusinessLayer.AddCompanyAreaZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
 
 
@@ -69,7 +68,7 @@ namespace _123Movers.Controllers
             try
             {
 
-                BusinessLayer.DeleteCompanyAreaZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes);
+                BusinessLayer.DeleteCompanyAreaZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
 
 

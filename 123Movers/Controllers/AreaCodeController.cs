@@ -83,7 +83,7 @@ namespace _123Movers.Controllers
             JsonResult result;
             try
             {
-                BusinessLayer.AddCompanyPricePerLead(CompanyInfo.CompanyId, serviceId, areaCodes, null);
+                BusinessLayer.AddCompanyPricePerLead(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace(), null);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

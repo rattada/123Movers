@@ -9,13 +9,13 @@
     @Html.Script("search.js")
     @Html.Script("jquery.tablesorter.min.js")
 }
-
-<div class="alert-box message-error text-center" style="display: none"></div>
 <h2>Search for Company </h2>
+
 @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { id = "frmsearch", @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    <div class="alert-box message-error row" style="margin-left:160px"></div>
     <div class="row">
         <div class="col-md-5">
             <div class="form-group">

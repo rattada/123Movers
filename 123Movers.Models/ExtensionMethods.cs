@@ -71,6 +71,15 @@ namespace _123Movers.Models
             }
             return null;
         }
+
+        public static string StrReplace(this string value)
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                return value.Replace("[", "").Replace("]", "").Replace("\"", "");
+            }
+            return null;
+        }
       
         public static int? IfServiceNullLocal(this int? value)
         {

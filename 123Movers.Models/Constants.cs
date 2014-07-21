@@ -55,7 +55,7 @@ namespace _123Movers.Models
         public static readonly string SP_GET_COMPANY_BUDGET = "usp_GetCompanyBudget";
         public static readonly string SP_SAVE_BUDGET = "usp_SaveBudget";
         public static readonly string SP_GET_AREACODES_STATES = "usp_getAreaCodesStates";
-        public static readonly string SP_GET_FILTER_RESULT = "usp_FilterResult";
+        public static readonly string SP_GET_FILTER_RESULT = "usp_GetFiltersInfo";
         #endregion
 
         #region OriginZipCodes Stored Procedures
