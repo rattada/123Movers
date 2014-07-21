@@ -3,161 +3,48 @@
 @using _123Movers.Models;
 @{
     ViewBag.Title = "Move Distance";
-  
 }
 
 @section Javascript{
     @Html.Script("moveDistance.js")
- }
+}
 
 <input type="hidden" id="message" value="@ViewBag.Success"/>
 
-<div class="row">
+@Html.Partial(Constants.VIEW, @Model._companyInfo)
 
-     @Html.Partial(Constants.VIEW, @Model._companyInfo)
-
-</div>
 <p class="clearfix"></p>
 <p class="clearfix"></p>
 
 @Html.AntiForgeryToken()
 @Html.ValidationSummary(true)
 
-    <p class="clearfix"></p>
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="form-group">
-                @Html.LabelFor(m => m.ServiceId)
-                @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, "--Choose One--", new { id = "ddlServiceID", @class = "form-control dropdown", @title = "Select Services" })
-                @Html.ValidationMessageFor(m => m.ServiceId)
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                @Html.LabelFor(m => m.MinMoveDistance)
-                @Html.TextBoxFor(m => m.MinMoveDistance, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.MinMoveDistance)
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                @Html.LabelFor(m => m.MaxMoveDistance)
-                @Html.TextBoxFor(m => m.MaxMoveDistance, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.MaxMoveDistance)
-            </div>
+<p class="clearfix"></p>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(m => m.ServiceId)
+            @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, "--Choose One--", new { id = "ddlServiceID", @class = "form-control dropdown", @title = "Select Services" })
+            @Html.ValidationMessageFor(m => m.ServiceId)
         </div>
     </div>
-
-    <div class="row">
-        <input type="button" value='Save Distance' id='saveDistance' class="btn btn-primary pull-right" />
-        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
-
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(m => m.MinMoveDistance)
+            @Html.TextBoxFor(m => m.MinMoveDistance, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.MinMoveDistance)
+        </div>
     </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(m => m.MaxMoveDistance)
+            @Html.TextBoxFor(m => m.MaxMoveDistance, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.MaxMoveDistance)
+        </div>
+    </div>
+</div>
 
-@*<script type="text/javascript">
-    $(function () {
-
-        var message = $.trim($('#message').val());
-        if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
-
-        var orgMinWeight = $.trim($("#MinMoveDistance").val());
-        var orgMaxWeight = $.trim($("#MaxMoveDistance").val());
-
-        $("body input:text").on("keypress", function (event) {
-            var key = event.which;
-
-            if (!(key >= 48 && key <= 57))
-                event.preventDefault();
-        });
-
-        $("body").parent().on('click', "#saveDistance", function () {
-
-            var serviceId = $('#ddlServiceID').val();
-            var minWeight = $.trim($("#MinMoveDistance").val());
-            var maxWeight = $.trim($("#MaxMoveDistance").val());
-
-            if (serviceId == '' || serviceId == undefined) {
-                alert('Please Select Service Type');
-                $("#ddlServiceID").focus();
-                return false;
-            }
-
-
-            if (serviceId != null && serviceId != '') {
-                if ((minWeight.length == 0 && maxWeight.length == 0) || (parseInt(minWeight) == 0 && parseInt(maxWeight) == 0 )) {
-                    alert('Please enter atleast one Distance');
-                    return false;
-
-                }
-
-            }
-            if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0 && parseInt(maxWeight) != 0) {
-                alert('Min Move Distance Should be Less Than Max Move Distance');
-                $("#MinMoveDistance").val(orgMinWeight);
-                $("#MaxMoveDistance").val(orgMaxWeight);
-                $("#MinMoveDistance").focus();
-                return false;
-            }
-            else {
-                orgMinWeight = $("#MinMoveDistance").val();
-                orgMaxWeight = $("#MaxMoveDistance").val();
-            }
-
-            var ModelData =
-                {
-                    ServiceId: serviceId,
-                    MinMoveDistance: orgMinWeight,
-                    MaxMoveDistance: orgMaxWeight
-
-                };
-            $.ajax({
-                url: '/MoveDistance/MoveDistance',
-                type: "POST",
-                data: ModelData,
-                cache: false,
-                success: function (data) {
-                    alert("Distance data successfully saved");
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-
-                }
-            });
-        });
-        $('#ddlServiceID').on("change", function () {
-            var serviceId = $('#ddlServiceID option:selected').val();
-            if (serviceId != '') {
-                $.ajax({
-                    url: '/MoveDistance/GetMoveDistance',
-                    type: "GET",
-                    data: { 'ServiceId': serviceId },
-                    cache: false,
-                    success: function (data) {
-                        var strigifyJson = JSON.stringify(data);
-                        var json = $.parseJSON(strigifyJson);
-                        if (json.length > 0) {
-                            $("#MinMoveDistance").val(json[0][1]);
-                            $("#MaxMoveDistance").val(json[0][2]);
-
-                            orgMinWeight = $("#MinMoveDistance").val();
-                            orgMaxWeight = $("#MaxMoveDistance").val();
-                        }
-                        else {
-                            orgMinWeight = '';
-                            orgMaxWeight = '';
-                            $("#MinMoveDistance").val('');
-                            $("#MaxMoveDistance").val('');
-                        }
-                        //  location.reload();
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-
-                    }
-                });
-            } else {
-                $("#MinMoveDistance").val('');
-                $("#MaxMoveDistance").val('');
-            }
-        });
-
-    });
-</script>*@
+<div class="row">
+    <input type="button" value='Save Distance' id='saveDistance' class="btn btn-primary pull-right" />
+    <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+</div>

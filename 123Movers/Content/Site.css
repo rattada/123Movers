@@ -51,6 +51,8 @@ table input[type="text"] {
    max-height: 500px!important;
    overflow-y: scroll!important;
    overflow-x: hidden!important;
+    border: 1px solid #ddd;
+   background-color:white;
 }
 
 
@@ -268,7 +270,7 @@ background-size: cover;
 /*min-height: 700px;*/
 }
 
-tbody {
+/*tbody {
    display: block;
    max-height: 300px;
  overflow-x:hidden;
@@ -279,15 +281,28 @@ tbody {
        display: table;
        width: 100%;
        table-layout: fixed;
-   }
+   }*/
  .marginTop {
    margin-top: 0px!important;
 }
 
 .divBorder {
    border: 1px solid #ddd;
+   background-color:white;
 }
 
 #accordion {
    width: 560px;
+}
+thead {
+    background-color:#e6EEEE;
+}
+tbody{
+    background-color:white;
+}
+.topheader {
+    text-align: center;
+    background-color: beige;
+    -webkit-column-span: all;
+    column-span: all;
 }

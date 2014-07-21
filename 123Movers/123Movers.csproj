@@ -288,8 +288,6 @@
     <Content Include="Images\desc.gif" />
     <Content Include="Images\desc.png" />
     <Content Include="Images\movers.jpg" />
-    <Content Include="Images\movers2.jpg" />
-    <Content Include="Images\movers3.jpg" />
     <Content Include="Scripts\areaCodes.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\destZipCodes.js" />
