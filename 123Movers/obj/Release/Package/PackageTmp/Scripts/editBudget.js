@@ -56,4 +56,10 @@
 
         }
     });
+    $("#save").attr("disabled", true);
+    $('body').on('change keyup keydown', 'input, textarea, select', function (e) {
+        $("#save").attr("disabled", false);
+    });
+
+
 });

@@ -19,22 +19,22 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label class="control-label col-md-4">Name</label>
-                <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", id = "CompanyName", @placeholder = "Enter Comapany Name" })</div>
+                <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", id = "CompanyName", @placeholder = "Enter Company Name" })</div>
                 @Html.ValidationMessageFor(m => m.CompanyName)
             </div>
             <div class="form-group">
                 <label class="control-label col-md-4" id="lblCompanyId">Company ID</label>
-                <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyId, new { @class = "form-control", id = "CompanyId", @placeholder = "Enter Comapany Id" })</div>
+                <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyId, new { @class = "form-control", id = "CompanyId", @placeholder = "Enter Company Id" })</div>
                 @Html.ValidationMessageFor(m => m.CompanyId)
             </div>
             <div class="form-group">
                 <label class="control-label col-md-4" id="lblAX">AX #</label>
-                <div class="col-md-8">@Html.TextBoxFor(m => m.AX, new { @class = "form-control", id = "AX", @placeholder = "Enter Comapany AX"  })</div>
+                <div class="col-md-8">@Html.TextBoxFor(m => m.AX, new { @class = "form-control", id = "AX", @placeholder = "Enter Company AX"  })</div>
                 @Html.ValidationMessageFor(m => m.AX)
             </div>
             <div class="form-group">
                 <label class="control-label col-md-4" id="lblInsertionOrderId">Insertion Order ID</label>
-                <div class="col-md-8">@Html.TextBoxFor(m => m.InsertionOrderId, new { @class = "form-control", id = "InsertionOrderId", @placeholder = "Enter Comapany Insertion"   })</div>
+                <div class="col-md-8">@Html.TextBoxFor(m => m.InsertionOrderId, new { @class = "form-control", id = "InsertionOrderId", @placeholder = "Enter Company Insertion"   })</div>
                 @Html.ValidationMessageFor(m => m.InsertionOrderId)
             </div>
         </div>
@@ -45,6 +45,7 @@
          </div>
     </div>
 }
+<br />
 @if (@Model != null)
 {
     <div class="nav nav-pills navbar-inverse">
@@ -58,7 +59,7 @@
         </div>
     </div>
     <div class="table-responsive scrollable-table">
-        <table id="info" class="table table-striped table-bordered tablesorter  marginTop ">
+        <table id="info" class="table table-hover table-bordered tablesorter  marginTop ">
             <thead>
                 <tr>
                     <th class="header text-center">Company ID

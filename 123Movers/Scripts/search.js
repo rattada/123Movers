@@ -66,7 +66,7 @@
                     3: { sorter: false }
                 }
             });
-            $('#info th').removeAttr('header');
+            $('#info th').removeClass('header');
             return false;
         }
         else {
