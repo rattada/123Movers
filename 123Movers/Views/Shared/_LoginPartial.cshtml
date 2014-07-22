@@ -1,13 +1,13 @@
 ﻿@if (Request.IsAuthenticated) {
-    <text>
-       <div class="col-md-9"> <p class="pull-right" style="margin-top:8px;">Hello, @User.Identity.Name!</p> </div> <div class="col-md-3"> @*@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!*@
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-        {
-            @Html.AntiForgeryToken()
-           <button onclick="javascript:document.getElementById('logoutForm').submit()" class="btn btn-primary">Log off</button>
-        }</div>
-    </text>
+   <text>
+      <div class="col-md-9"> <p class="pull-right" style="margin-top:8px;">Hello,<span class="glyphicon glyphicon-user"></span> @User.Identity.Name!</p> </div> <div class="col-md-3"> @*@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!*@
+       @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+       {
+           @Html.AntiForgeryToken()
+          <button onclick="javascript:document.getElementById('logoutForm').submit()" class="btn btn-danger" title="Log Off"><span class="glyphicon glyphicon-off"></span></button>
+       }</div>
+   </text>
 } else {
-   @* @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" ,@class = "btn btn-primary"})*@
-    
+  @* @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" ,@class = "btn btn-primary"})*@
+
 }

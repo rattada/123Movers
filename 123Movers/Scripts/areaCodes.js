@@ -83,6 +83,8 @@ $(function () {
                 var strigifyJson = JSON.stringify(data);
                 var json = $.parseJSON(strigifyJson);
 
+                $('#txtDefaultPrice').val('');
+
                 var table;
                 var table1 = "<div class ='col-md-6' ><table class='table table-hover' id ='table1' ><thead><tr><th class='col-md-2 text-center'>" + 'Area Code' + "</th><th class='col-md-2 text-center'>" + 'Price' + "</th></tr> </thead><tbody>";
                 var options = '<option value=""></option>';
@@ -95,12 +97,10 @@ $(function () {
                     if (val[3] != null && val[3] != ''){//  $('#txtDefaultPrice').val().length == 0) {
                         $('#txtDefaultPrice').val(val[3].toString().slice(0, -2));
                     }
-
                     if (i < Math.round(json.length / 2)) {
                         var value = val[2].toString().slice(0, -2);
                         table1 += "<tr><td>" + val[1] + " ---> " + val[0] + "</td><td><input type='text' id='txt" + val[0] + "' value ='" + value + "' class='form-control'/><input type='hidden' value='" + val[0] + "' class='areacode' /> </td></tr>";
                     }
-
                 });
                 table1 += "</tbody></table></div>";
 
@@ -126,11 +126,8 @@ $(function () {
                     $("#txtDefaultPrice").val('');
                     $('#areasSelected').html('')
                 }
-
-
             },
             error: function (xhr, ajaxOptions, thrownError) {
-
             }
         });
     }
@@ -148,7 +145,6 @@ $(function () {
                     alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                     return false;
                 }
-
                 areacodes.push(areacode + '-' + 'NO-' + areaprice);
             }
             else {
@@ -158,12 +154,10 @@ $(function () {
                         return false;
                     }
                     areacodes.push(areacode + '-' + 'YES-' + defaultprice);
-
                 }
             }
 
         });
-
         $("#table2 tbody tr").each(function () {
             var areaprice = $(this).closest('tr').find('.form-control').val();
             var areacode = $(this).closest('tr').find('.areacode').val();
@@ -172,7 +166,6 @@ $(function () {
                     alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                     return false;
                 }
-
                 areacodes.push(areacode + '-' + 'NO-' + areaprice);
             }
             if (defaultprice.length > 0) {
@@ -180,9 +173,7 @@ $(function () {
                     alert('Please Enter a Valid Default Price');
                     return false;
                 }
-
                 areacodes.push(areacode + '-' + 'YES-' + defaultprice);
-
             }
 
         });
