@@ -14,179 +14,176 @@
 <p class="clearfix"></p>
 @if (@Model != null)
 {
-    <h2>Active Budgets</h2> 
-    <div class="row">
-        <div class="col-md-12">
-            <p>@Html.ActionLink("Add a Budget", "AddBudget", "Budget", new { id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
+    <div>
+        <h2>Active Budgets</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Html.ActionLink("Add a Budget", "AddBudget", "Budget", new { id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
+            </div>
         </div>
-    </div>
-    <p class="clearfix"></p>
-    <div class="table-responsive">
-        <table id="ActiveInfo" class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th class="text-center">Insertion Order Id
-                    </th>
-                    <th class="text-center">Start Date
-                    </th>
-                    <th class="text-center">Budget Amount
-                    </th>
-                    <th class="text-center">Remaining Budget
-                    </th>
-                    <th class="text-center">Terms
-                    </th>
-                    <th class="text-center">Service
-                    </th>
-                    <th class="text-center">Filters
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
+        <p class="clearfix"></p>
+        <div class="table-responsive">
+            <table id="ActiveInfo" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">Insertion Order Id
+                        </th>
+                        <th class="text-center">Start Date
+                        </th>
+                        <th class="text-center">Budget Amount
+                        </th>
+                        <th class="text-center">Remaining Budget
+                        </th>
+                        <th class="text-center">Terms
+                        </th>
+                        <th class="text-center">Service
+                        </th>
+                        <th class="text-center">Filters
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
     List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget > 0).ToList();
-                }
-                @if (activeBudget.Count > 0)
-                {
-                    foreach (var lot in activeBudget)
-                    {
-                    <tr>
-                        <td class="text-center">
-                            @lot.InsertionOrderId
-                        </td>
-                        <td class="text-center">
-                            @{
-                                var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
-                            }
-                            @sdate
-                        </td>
-                        <td class="text-center">
-                            @string.Format("{0:c}", @lot.TotalBudget)
-                        </td>
-                        <td class="text-center">
-                            @string.Format("{0:c}", @lot.RemainingBudget)
-                        </td>
-                        <td class="text-center">
-                            @{
-                                var Recurring = (@lot.IsRecurring) ? (@lot.IsRequireNoticeToCharge) ? "Recurring With Notice" : "Recurring" : "Non Recurring";
-                            }
-                            @Recurring
-                        </td>
-                        <td class="text-center">
-                            @{
-                                var Service = (@lot.ServiceId == Constants.LOCAL) ? "Local" : (@lot.ServiceId == Constants.LONG) ? "Long" : "Both";
-                            }
-                            @Service
-                        </td>
-                        <td class="text-center">
-                            <p>@Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget = @lot.TotalBudget, IsRecurring = @lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge, ServiceId = @lot.ServiceId, agnumber = @lot.AgreementNumber, minDaysToCharge = @lot.MinDaysToCharge }, new { id = "EditBudget", @class = "btn btn-sm btn-info" })</p>
-                        </td>
-                    </tr>
                     }
-                }
-                else
-                {
-                    <tr>
-                        <td class="col-md-6 text-center" colspan="10"><b>No Active Budgets found</b>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    
-    <h2>Expired Budgets</h2> 
-     
-    <div class="row">
-        <div class="col-md-6">
-            <p><strong>Total Billed :</strong> @ViewBag.TotalBilled</p>
-        </div>
-        <div class="col-md-6">
-            <p><strong>Total Uncharged :</strong> @ViewBag.UnchargedAmount</p>
-        </div>
-    </div>
-    <div class="table-responsive">
-        <table id="ExpiredInfo" class="table table-striped table-bordered tablesorter">
-            <thead>
-                <tr>
-                    <th class="text-center">Insertion Order ID
-                    </th>
-                    <th class="text-center">Start Date
-                    </th>
-                    <th class="text-center">End Date
-                    </th>
-                    <th class="text-center">Total Budget
-                    </th>
-                    <th class="text-center">Uncharged Amount
-                    </th>
-                    <th class="text-center">Terms
-                    </th>
-                    <th class="text-center">Service
-                    </th>
-                    @*  <th class="text-center">
-                Filters
-            </th>*@
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now || c.UnchargedAmount <= 0 || c.RemainingBudget <= 0).ToList();
-                }
-                @if (expiredBudget.Count > 0)
-                {
-                    foreach (var lot in expiredBudget)
+                    @if (activeBudget.Count > 0)
                     {
-                    <tr>
-                        <td class="text-center">
-                            @lot.InsertionOrderId
-                        </td>
-                        <td class="text-center">
-                            @{
-                                var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
-                            }
-                            @sdate
-                        </td>
-                        <td class="text-center">
-                            @{
-                                var edate = @lot.EndDate.HasValue ? @DateTime.Parse(@lot.EndDate.ToString()).ToShortDateString() : null;
-                            }
-                            @edate
-                        </td>
-                        <td class="text-center">
-                            @string.Format("{0:c}", @lot.TotalBudget)
-                        </td>
+                        foreach (var lot in activeBudget)
+                        {
+                        <tr>
+                            <td class="text-center">
+                                @lot.InsertionOrderId
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
+                                }
+                                @sdate
+                            </td>
+                            <td class="text-center">
+                                @string.Format("{0:c}", @lot.TotalBudget)
+                            </td>
+                            <td class="text-center">
+                                @string.Format("{0:c}", @lot.RemainingBudget)
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var Recurring = (@lot.IsRecurring) ? (@lot.IsRequireNoticeToCharge) ? "Recurring With Notice" : "Recurring" : "Non Recurring";
+                                }
+                                @Recurring
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var Service = (@lot.ServiceId == Constants.LOCAL) ? "Local" : (@lot.ServiceId == Constants.LONG) ? "Long" : "Both";
+                                }
+                                @Service
+                            </td>
+                            <td class="text-center">
+                                <p>@Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget = @lot.TotalBudget, IsRecurring = @lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge, ServiceId = @lot.ServiceId, agnumber = @lot.AgreementNumber, minDaysToCharge = @lot.MinDaysToCharge }, new { id = "EditBudget", @class = "btn btn-sm btn-info" })</p>
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="col-md-6 text-center" colspan="10"><b>No Active Budgets found</b>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 
-                        <td class="text-center">
-                            @string.Format("{0:c}", @lot.UnchargedAmount)
-                        </td>
-                        <td class="text-center">
-                            @{
-                                var Recurring = (@lot.IsRecurring) ? (@lot.IsRequireNoticeToCharge) ? "Recurring With Notice" : "Recurring" : "Non Recurring";
-                            }
-                            @Recurring
-                        </td>
-                        <td class="text-center">
-                            @{
-                                var Service = (@lot.ServiceId == Constants.LOCAL) ? "Local" : (@lot.ServiceId == Constants.LONG) ? "Long" : "Both";
-                            }
-                            @Service
-                        </td>
-                    </tr>
-                    }
-                }
-                else
-                {
+        <h2>Expired Budgets</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p style="color: white"><strong>Total Billed :</strong> @ViewBag.TotalBilled</p>
+            </div>
+            <div class="col-md-6">
+                <p style="color: white"><strong>Total Uncharged :</strong> @ViewBag.UnchargedAmount</p>
+            </div>
+        </div>
+        <div class="table-responsive scrollable-table">
+            <table id="ExpiredInfo" class="table table-striped table-bordered tablesorter">
+                <thead>
                     <tr>
-                        <td colspan="7" class="text-center"><b>No Expired Budgets found</b>
-                        </td>
+                        <th class="text-center">Insertion Order ID
+                        </th>
+                        <th class="text-center">Start Date
+                        </th>
+                        <th class="text-center">End Date
+                        </th>
+                        <th class="text-center">Total Budget
+                        </th>
+                        <th class="text-center">Uncharged Amount
+                        </th>
+                        <th class="text-center">Terms
+                        </th>
+                        <th class="text-center">Service
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @{
+                    List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now || c.UnchargedAmount <= 0 || c.RemainingBudget <= 0).ToList();
+                    }
+                    @if (expiredBudget.Count > 0)
+                    {
+                        foreach (var lot in expiredBudget)
+                        {
+                        <tr>
+                            <td class="text-center">
+                                @lot.InsertionOrderId
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
+                                }
+                                @sdate
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var edate = @lot.EndDate.HasValue ? @DateTime.Parse(@lot.EndDate.ToString()).ToShortDateString() : null;
+                                }
+                                @edate
+                            </td>
+                            <td class="text-center">
+                                @string.Format("{0:c}", @lot.TotalBudget)
+                            </td>
+
+                            <td class="text-center">
+                                @string.Format("{0:c}", @lot.UnchargedAmount)
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var Recurring = (@lot.IsRecurring) ? (@lot.IsRequireNoticeToCharge) ? "Recurring With Notice" : "Recurring" : "Non Recurring";
+                                }
+                                @Recurring
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var Service = (@lot.ServiceId == Constants.LOCAL) ? Constants.LOCAL_TEXT : (@lot.ServiceId == Constants.LONG) ? Constants.LONG_TEXT : Constants.BOTH_TEXT;
+                                }
+                                @Service
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center"><b>No Expired Budgets found</b>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-         
-    
 }
-
+<p class="clear-fix"></p>
 <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary pull-right">Back To List</a>
 
 <script type="text/javascript">

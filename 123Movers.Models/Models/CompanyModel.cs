@@ -11,6 +11,8 @@ namespace _123Movers.Models
         [Display(Name = "Company ID")]
         public int? CompanyId { get; set; }
 
+        public int? ServieId { get; set; }
+
         [Display(Name = "Name")]
         public string CompanyName { get; set; }
 

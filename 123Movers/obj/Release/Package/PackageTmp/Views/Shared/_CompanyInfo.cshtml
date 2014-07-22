@@ -4,10 +4,10 @@
     //var Suspended = ((string)@Session["Suspended"] == "Yes") ? "Suspended" : ((bool)@Session["IsActive"]) ? "Active" : "Inactive";
     var Suspended = @Model.Suspended == "Yes" ? "Suspended" : @Model.IsActive ? "Active" : "Inactive";
 }
-<div class="row">
+<div class="row" >
     <div class="col-md-12">
         <p></p>
-        <table class="table table-bordered" style="margin-bottom: 0px;">
+        <table class="table table-bordered" style="margin-bottom: 0px; ">
             <tbody>
                 @*<tr>
                         <td class="col-md-6">Legal Name : <strong>@Session["CompanyName"]</strong></td>

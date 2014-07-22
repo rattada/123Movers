@@ -31,20 +31,23 @@
     <div class="col-lg-4">
         <div class="form-group">
             @Html.LabelFor(m => m.MinMoveDistance)
-            @Html.TextBoxFor(m => m.MinMoveDistance, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.MinMoveDistance, new { @class = "form-control", @placeholder = "Enter Min Move Distance" })
             @Html.ValidationMessageFor(m => m.MinMoveDistance)
         </div>
     </div>
     <div class="col-lg-4">
         <div class="form-group">
             @Html.LabelFor(m => m.MaxMoveDistance)
-            @Html.TextBoxFor(m => m.MaxMoveDistance, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.MaxMoveDistance, new { @class = "form-control", @placeholder = "Enter Max Move Distance" })
             @Html.ValidationMessageFor(m => m.MaxMoveDistance)
         </div>
     </div>
 </div>
 
-<div class="row">
-    <input type="button" value='Save Distance' id='saveDistance' class="btn btn-primary pull-right" />
+<p class="clear-fix"></p>
+<div class="row ">
+    <div class="col-md-12">
+        <input type="button" id="saveDistance" class="btn btn-primary pull-right" value="Save Distance" />&nbsp;&nbsp;
     <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+    </div>
 </div>

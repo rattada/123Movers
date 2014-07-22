@@ -7,7 +7,6 @@
         areacode = paramAreaCode;
         serviceid = paramServiceId;
         GetZipCodes(areacode, serviceid);
-
     });
     $('#add').click(function (e) {
         e.preventDefault();
@@ -73,7 +72,10 @@
             });
         }
     });
-    $('#close').click(function () {
+    $('.cross ').click(function () {
+        $('#myModal').modal({
+            backdrop: null
+        });
         location.reload();
     });
 });
@@ -132,5 +134,4 @@ function GetZipCodes(areaCode, serviceId) {
         error: function (xhr, ajaxOptions, thrownError) {
         }
     });
-
 }

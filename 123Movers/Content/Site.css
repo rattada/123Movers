@@ -245,8 +245,9 @@ background-color: #8dbdd8;
    width: 90px;
 }
 #ServiceTab {
-    margin-left: 15px;
+    margin-left: 25px;
     margin-right: 15px;
+    margin-top:4PX;
 }
 /*body {
 
@@ -305,4 +306,8 @@ tbody{
     background-color: beige;
     -webkit-column-span: all;
     column-span: all;
+}
+.divService {
+    margin-left:10px;
+    margin-bottom:10px;
 }

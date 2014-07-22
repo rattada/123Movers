@@ -21,12 +21,12 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(m => m.TotalBudget)
-                @Html.TextBoxFor(m => m.TotalBudget, new { @class = "form-control", @readonly = "readonly", Value = String.Format("{0:0.00}", Model.TotalBudget) })
+                @Html.TextBoxFor(m => m.TotalBudget, new { @class = "form-control", @readonly = "readonly", Value = String.Format("{0:0.00}", Model.TotalBudget), @placeholder = "Enter Comapany Budget"  })
                 @Html.ValidationMessageFor(m => m.TotalBudget)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.AgreementNumber)
-                @Html.TextBoxFor(m => m.AgreementNumber, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.AgreementNumber, new { @class = "form-control" , @placeholder = "Enter Agreement Number" })
                 @Html.ValidationMessageFor(m => m.AgreementNumber)
             </div>
         </div>
@@ -38,14 +38,14 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.ServiceId)
-                @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, new { id = "services", @class = "form-control dropdown", @title = "Select Services" })
+                @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, new { id = "services", @class = "form-control dropdown", @title = "Select Services", @disabled = "disabled" })
                 @Html.ValidationMessageFor(m => m.ServiceId)
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(m => m.MinDaysToCharge)
-                @Html.TextBoxFor(m => m.MinDaysToCharge, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.MinDaysToCharge, new { @class = "form-control", @placeholder = "Enter Min Days To Charge" })
                 @Html.ValidationMessageFor(m => m.MinDaysToCharge)
             </div>
 
@@ -67,163 +67,11 @@
             @Html.ActionLink("Manage Move Weight", "MoveWeight", "MoveWeight", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default" })
         </div>
     </div>
+    <p class="clear-fix"></p>
     <div class="row">
-        <input type="submit" id="save" class="btn btn-primary pull-right" value="Save Budget" />
-        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List</a>
+        <div class="col-md-12">
+            <input type="submit" id="save" class="btn btn-primary pull-right" value="Save Budget" />
+            <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List</a>
+        </div>
     </div>
 }
-
-@*<script type="text/javascript">
-
-
-    $(function () {
-
-        var message = $.trim($('#message').val());
-        if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
-
-        var ddlservice = $("#services").val();
-        var ServiceId = (ddlservice == 1009) ? "1009" : (ddlservice == 1000) ? "1000" : null;
-
-        $.ajax({
-            url: '/Budget/GetFilterResult',
-            type: "GET",
-            data: { 'serviceId': ServiceId },
-            dataType: "json",
-            cache: false,
-            success: function (data) {
-                var strigifyJson = JSON.stringify(data);
-                var json = $.parseJSON(strigifyJson);
-
-                jQuery.each(json, function (i, val) {
-                    var ID = val[0];
-                    var value = val[2];
-
-                    if (ID == 1 && val[2] == "True") {
-
-                        $('#managearea').removeClass('btn-default');
-                        $('#managearea').addClass('btn-warning');
-                    }
-                    else
-                        if (ID == 2 && val[2] == "True") {
-                            $('#destzipcodes').removeClass('btn-default');
-                            $('#destzipcodes').addClass('btn-warning');
-                        }
-
-                        else if (ID == 3 && val[2] == "True") {
-                            $('#distance').removeClass('btn-default');
-                            $('#distance').addClass('btn-warning');
-                        }
-                        else
-                            if (ID == 4 && val[2] == "True") {
-                                $('#leadlimit').removeClass('btn-default');
-                                $('#leadlimit').addClass('btn-warning');
-                            }
-
-                            else
-                                if (ID == 5 && val[2] == "True") {
-                                    $('#movewight').removeClass('btn-default');
-                                    $('#movewight').addClass('btn-warning');
-                                }
-                                else
-                                    if (ID == 6 && val[2] == "True") {
-                                        $('#geography').removeClass('btn-default');
-                                        $('#geography').addClass('btn-warning');
-
-                                    }
-
-                });
-
-
-
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-
-            }
-        });
-
-        $("body").parent().on('click', "a", function () {
-
-            if ($(this).attr('id') == 'anchorOrigin' || $(this).attr('id') == 'anchorDestination') {
-                if ($(this).attr('id') == 'anchorOrigin') {
-                    $(this).addClass("btn btn-warning");
-                    $('#anchorDestination').removeClass("btn btn-warning");
-                    $('input:checkbox').removeAttr('checked');
-                }
-                else {
-                    $('#anchorDestination').addClass("btn btn-warning");
-                    $('#anchorOrigin').removeClass("btn btn-warning");
-                    $('input:checkbox').removeAttr('checked');
-
-                }
-
-
-            }
-
-            if ($(this).children().hasClass('glyphicon glyphicon-plus')) {
-                $(this).children().removeClass("glyphicon glyphicon-plus");
-                $(this).children().addClass("glyphicon glyphicon-minus");
-
-            }
-            else {
-
-                $(this).children().removeClass("glyphicon glyphicon-minus");
-                $(this).children().addClass("glyphicon glyphicon-plus");
-
-            }
-        });
-
-
-
-        $("body").parent().on('click', "#saveDistance", function () {
-
-            var serviceId = $('#ddlServiceID').val();
-            var MinWeight = $("#txtMinWeight").val();
-            var MaxWeight = $("#txtMaxWeight").val();
-
-            if (serviceId != $("#services").val()) {
-                alert('Please choose right  Service Type');
-                $('#ddlServiceID').focus();
-                return false;
-
-            }
-
-            if (serviceId == '' || serviceId == null) {
-                alert('Please choose any Service Type');
-                $('#ddlServiceID').focus();
-                return false;
-            }
-            if (serviceId != null && serviceId != '') {
-
-                if ($("#txtMinWeight").val().length == 0 && $("#txtMaxWeight").val().length == 0) {
-                    alert('Please enter atleast one Weight');
-                    return false;
-
-                }
-
-
-
-
-                $.ajax({
-                    url: '/Home/AddCompanyMoveDistance',
-                    type: "POST",
-                    data: { 'ServiceId': serviceId, 'MinWeight': MinWeight, "MaxWeight": MaxWeight },
-                    success: function (data) {
-                        alert('Move Distance  Saved Suceessfully');
-                        // $("#service").attr("checked", false);
-
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        var errMessage = JSON.parse(xhr.responseText).customErrorMessage;
-                        alert('Error occurred while saving the AreaCodes' + errMessage);
-                    }
-
-
-                });
-
-            }
-        });
-
-    });
-
-
-</script>*@

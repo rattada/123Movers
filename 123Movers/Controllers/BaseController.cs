@@ -10,7 +10,7 @@ namespace _123Movers.Controllers
 {
     public class BaseController : Controller
     {
-        //protected int? _companyId;
+        protected int? _serviceId;
         protected CompanyModel  _companyInfo;
         public ILog logger;
 
@@ -18,43 +18,43 @@ namespace _123Movers.Controllers
         {
             //logger = LogManager.GetLogger(typeof(controller));
         }
-        //public int? CompanyId
-        //{
-        //    get
-        //    {
-        //        if (_companyId == null) { RetrieveCurrentCompanyId(); }
-        //        return _companyId;
-        //    }
-        //}
+        public int? ServiceId
+        {
+            get
+            {
+                if (_serviceId == null) { RetrieveCurrentCompanyId(); }
+                return _serviceId;
+            }
+        }
 
-        //public void SaveCompanyId(int? id)
-        //{
-        //    var cookie = new HttpCookie("CompanyId")
-        //    {
-        //        Value = Convert.ToString(id)
-        //    };
-        //    _companyId = id;
+        public void SaveCompanyId(int? id)
+        {
+            var cookie = new HttpCookie("ServiceId")
+            {
+                Value = Convert.ToString(id)
+            };
+            _serviceId = id;
 
-        //    Response.Cookies.Add(cookie);
-        //}
+            Response.Cookies.Add(cookie);
+        }
 
-        //protected string RetrieveCurrentCompanyId()
-        //{
-        //    var companyCookieVal = _companyId.ToString();
+        protected string RetrieveCurrentCompanyId()
+        {
+            var companyCookieVal = _serviceId.ToString();
 
-        //    if (_companyId == null)
-        //    {
+            if (_serviceId == null)
+            {
 
-        //        if (Request.Cookies.AllKeys.Contains("CompanyId"))
-        //        {
-        //            companyCookieVal = Request.Cookies["CompanyId"].Value;
-        //        }
+                if (Request.Cookies.AllKeys.Contains("ServiceId"))
+                {
+                    companyCookieVal = Request.Cookies["ServiceId"].Value;
+                }
 
-        //        _companyId = int.Parse(companyCookieVal);
-        //    }
+                _serviceId = int.Parse(companyCookieVal);
+            }
 
-        //    return companyCookieVal;
-        //}
+            return companyCookieVal;
+        }
 
 
 

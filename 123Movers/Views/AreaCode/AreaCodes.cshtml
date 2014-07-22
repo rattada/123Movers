@@ -2,7 +2,6 @@
 @using _123Movers.Models
 @{
     ViewBag.Title = "AreaCodes";
-    
 }
 <input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
 
@@ -27,9 +26,9 @@
     <div class="row">
         <div class="col-md-6">
             <!-- Tab panes -->
-            <div class="tab-content">
+            <div class="tab-content divService">
                 <div class="tab-pane" id="local">
-                    <select name="areaCode" id="areaCode" size="20" style="width: 150px" multiple>
+                    <select name="areaCode" id="areaCode" size="20" style="width: 150px;" multiple>
                     </select>
 
                     <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
@@ -66,7 +65,8 @@
 </div>
 <p class="clear-fix"></p>
 <div class="row ">
-    <input type="button" id="saveprice" class="btn btn-primary pull-right" value="Save Prices" />
-    <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+    <div class="col-md-12">
+        <input type="button" id="saveprice" class="btn btn-primary pull-right" value="Save Prices" />
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+    </div>
 </div>
-

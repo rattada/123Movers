@@ -83,9 +83,8 @@ $(function () {
                 var strigifyJson = JSON.stringify(data);
                 var json = $.parseJSON(strigifyJson);
 
-
                 var table;
-                var table1 = "<div class ='col-md-6' ><table class='table table-striped' id ='table1' ><thead><tr><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                var table1 = "<div class ='col-md-6' ><table class='table table-striped' id ='table1' ><thead><tr><th class='col-md-2 text-center'>" + 'Area Code' + "</th><th class='col-md-2 text-center'>" + 'Price' + "</th></tr> </thead><tbody>";
                 var options = '<option value=""></option>';
                 jQuery.each(json, function (i, val) {
                     if (i == 0) {
@@ -93,7 +92,7 @@ $(function () {
                     } else {
                         options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                     }
-                    if (val[3] != null) {
+                    if (val[3] != null && val[3] != ''){//  $('#txtDefaultPrice').val().length == 0) {
                         $('#txtDefaultPrice').val(val[3].toString().slice(0, -2));
                     }
 
@@ -105,7 +104,7 @@ $(function () {
                 });
                 table1 += "</tbody></table></div>";
 
-                var table2 = "<div class ='col-md-6' ><table class='table table-striped' id ='table2'><thead><tr><th class='col-md-2'>" + 'Area Code' + "</th><th class='col-md-2'>" + 'Price' + "</th></tr> </thead><tbody>";
+                var table2 = "<div class ='col-md-6' ><table class='table table-striped' id ='table2'><thead><tr><th class='col-md-2 text-center'>" + 'Area Code' + "</th><th class='col-md-2 text-center'>" + 'Price' + "</th></tr> </thead><tbody>";
                 jQuery.each(json, function (i, val) {
                     if (i >= Math.round(json.length / 2) && i < json.length) {
                         var value = val[2].toString().slice(0, -2);
@@ -146,7 +145,7 @@ $(function () {
             var areacode = $(this).closest('tr').find('.areacode').val();
             if (areaprice.length > 0) {
                 if (!areaprice.match(decimal)) {
-                    log('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
+                    alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                     return false;
                 }
 
@@ -155,7 +154,7 @@ $(function () {
             else {
                 if (defaultprice.length > 0) {
                     if (!defaultprice.match(decimal)) {
-                        log('Please Enter a Valid Default Price');
+                        alert('Please Enter a Valid Default Price');
                         return false;
                     }
                     areacodes.push(areacode + '-' + 'YES-' + defaultprice);
@@ -170,7 +169,7 @@ $(function () {
             var areacode = $(this).closest('tr').find('.areacode').val();
             if (areaprice.length > 0) {
                 if (!areaprice.match(decimal)) {
-                    log('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
+                    alert('Please Enter a Valid Numeric Price :' + areacode + '-' + areaprice);
                     return false;
                 }
 
@@ -178,7 +177,7 @@ $(function () {
             }
             if (defaultprice.length > 0) {
                 if (!defaultprice.match(decimal)) {
-                    log('Please Enter a Valid Default Price');
+                    alert('Please Enter a Valid Default Price');
                     return false;
                 }
 
@@ -191,11 +190,11 @@ $(function () {
         var rows = $("#table1 tbody tr").length + $("#table2 tbody tr").length;
 
         if (areacodes.length == 0) {
-            log('Please enter the price values');
+            alert('Please enter the price values');
             return false;
         }
         if (areacodes.length != rows && defaultprice.length == 0) {
-            log('Please enter default price');
+            alert('Please enter default price');
             return false;
         }
 
@@ -207,16 +206,16 @@ $(function () {
             data: {  'serviceId': serviceId, areaCodes: jsareacodes },
             success: function (data) {
                 if (data.success === true) {
-                    log('Prices Saved Suceessfully');
+                    alert('Prices Saved Suceessfully');
                     $("#saveprice").attr('disabled', 'disabled');
                 } else {
-                    log("Error :" + data.message);
+                    alert("Error :" + data.message);
                 }
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 var errMessage = JSON.parse(xhr.responseText).customErrorMessage;
-                log('Error occurred while saving the prices' + errMessage);
+                alert('Error occurred while saving the prices' + errMessage);
             }
         });
 
@@ -234,7 +233,7 @@ $(function () {
 
         if (selected.length == 0) {
 
-            log("Please Select any Option to add");
+            alert("Please Select any Option to add");
             return false;
         }
         var data_to_send = JSON.stringify(selected);
@@ -259,7 +258,7 @@ $(function () {
                     $('#ServiceTab a:last').tab('show')
 
                 }
-                log("Area Codes added Successfully");
+                alert("Area Codes added Successfully");
                 k = 1;
 
             },
@@ -280,7 +279,7 @@ $(function () {
         });
 
         if (selected.length == 0) {
-            log("Please Select any Option to Remove")
+            alert("Please Select any Option to Remove")
             return false;
         }
         var data_to_send = JSON.stringify(selected);
@@ -307,7 +306,7 @@ $(function () {
                     $('#ServiceTab a:last').tab('show')
 
                 }
-                log("Area Codes removed Successfully");
+                alert("Area Codes removed Successfully");
                 k = 1;
             },
             error: function (xhr, ajaxOptions, thrownError) {

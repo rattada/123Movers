@@ -54,7 +54,7 @@
         var ax = $.trim($("#AX").val());
         var insertionOrderId = $.trim($("#InsertionOrderId").val());
         if (companyname == "" && companyId == "" && ax == "" && insertionOrderId == "") {
-            log('Please enter atleast one value');
+            alert('Please enter atleast one value');
             $("#CompanyCount").text("0- Results");
             $("#info").find("tr:gt(0)").remove();
             $("#info tbody").append("<tr><td class='col-md-6 text-center' colspan='10'><b>No Results Found </b></td></tr>");

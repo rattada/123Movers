@@ -2,7 +2,6 @@
 @using _123Movers.Models
 @{
     ViewBag.Title = "Search";
-
 }
 
 @section JavaScript{
@@ -20,33 +19,32 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label class="control-label col-md-4">Name</label>
-                <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", id = "CompanyName" })</div>
+                <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", id = "CompanyName", @placeholder = "Enter Comapany Name" })</div>
                 @Html.ValidationMessageFor(m => m.CompanyName)
             </div>
             <div class="form-group">
                 <label class="control-label col-md-4" id="lblCompanyId">Company ID</label>
-                <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyId, new { @class = "form-control", id = "CompanyId" })</div>
+                <div class="col-md-8">@Html.TextBoxFor(m => m.CompanyId, new { @class = "form-control", id = "CompanyId", @placeholder = "Enter Comapany Id" })</div>
                 @Html.ValidationMessageFor(m => m.CompanyId)
             </div>
             <div class="form-group">
                 <label class="control-label col-md-4" id="lblAX">AX #</label>
-                <div class="col-md-8">@Html.TextBoxFor(m => m.AX, new { @class = "form-control", id = "AX" })</div>
+                <div class="col-md-8">@Html.TextBoxFor(m => m.AX, new { @class = "form-control", id = "AX", @placeholder = "Enter Comapany AX"  })</div>
                 @Html.ValidationMessageFor(m => m.AX)
             </div>
             <div class="form-group">
                 <label class="control-label col-md-4" id="lblInsertionOrderId">Insertion Order ID</label>
-                <div class="col-md-8">@Html.TextBoxFor(m => m.InsertionOrderId, new { @class = "form-control", id = "InsertionOrderId" })</div>
+                <div class="col-md-8">@Html.TextBoxFor(m => m.InsertionOrderId, new { @class = "form-control", id = "InsertionOrderId", @placeholder = "Enter Comapany Insertion"   })</div>
                 @Html.ValidationMessageFor(m => m.InsertionOrderId)
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="top-buffer">
-                <input type="submit" value="Search" class="btn btn-primary btn-lg" id="btnSearch">
-            </div>
-        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+              <input type="submit" value="Search" class="btn btn-primary btn-lg pull-right" id="btnSearch">
+         </div>
     </div>
 }
-
 @if (@Model != null)
 {
     <div class="nav nav-pills navbar-inverse">

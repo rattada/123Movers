@@ -12,7 +12,7 @@
     color: #e80c4d;
     font-size: 1.3em;
     font-weight: bold;
-    margin: 20px 0 10px 0;
+    /*margin: 20px 0 10px 0;*/
 }
 
 .message-success {
@@ -48,10 +48,13 @@ table input[type="text"] {
    height:25px;
 }
 .scrollable-table {
-max-height:235px;
-overflow-y:scroll;
-overflow-x:hidden;
+   max-height: 500px!important;
+   overflow-y: scroll!important;
+   overflow-x: hidden!important;
+    border: 1px solid #ddd;
+   background-color:white;
 }
+
 
 .validation-summary-errors {
     color: #e80c4d;
@@ -242,10 +245,69 @@ background-color: #8dbdd8;
    width: 90px;
 }
 #ServiceTab {
-    margin-left: 15px;
+    margin-left: 25px;
     margin-right: 15px;
+    margin-top:4PX;
 }
 /*body {
 
    background-color:rgb(217, 222, 247) !important;
 }*/
+
+.bkgImage {
+     background: url(/Images/movers4.jpg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+body {
+background: url(/Images/movers.jpg) no-repeat ;
+/*background-size: 100% 100%;*/
+background-size: cover;
+/*background-position:center;*/
+/*overflow:hidden*/
+/*min-height: 700px;*/
+}
+
+/*tbody {
+   display: block;
+   max-height: 300px;
+ overflow-x:hidden;
+   overflow-y:scroll;
+}
+
+   thead, tbody  tr {
+       display: table;
+       width: 100%;
+       table-layout: fixed;
+   }*/
+ .marginTop {
+   margin-top: 0px!important;
+}
+
+.divBorder {
+   border: 1px solid #ddd;
+   background-color:white;
+}
+
+#accordion {
+   width: 560px;
+}
+thead {
+    background-color:#e6EEEE;
+}
+tbody{
+    background-color:white;
+}
+.topheader {
+    text-align: center;
+    background-color: beige;
+    -webkit-column-span: all;
+    column-span: all;
+}
+.divService {
+    margin-left:10px;
+    margin-bottom:10px;
+}
