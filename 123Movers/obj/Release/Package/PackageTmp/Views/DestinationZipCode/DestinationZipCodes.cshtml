@@ -11,17 +11,24 @@
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 
 @section JavaScript{
-   @Html.Script("destZipCodes.js");
+   @Html.Script("destZipCodes.js")
 }
 
 <p class="clearfix"></p>
 <p class="clearfix"></p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="topheader">
+            <p><strong>Destination Zip To Multiple Area Code</strong></p>
+        </div>
+    </div>
+</div>
 <div class="table-responsive scrollable-table" id="divOrigin">
     <table id="tbOrigin" class="table table-hover table-bordered">
         <thead>
-            <tr>
+            @*<tr>
                 <th class="topheader" colspan="3">Destination Zip To Multiple Area Code</th>
-            </tr>
+            </tr>*@
             <tr>
                 <th class="text-center">Service</th>
                 <th class="text-center">Area Code</th>

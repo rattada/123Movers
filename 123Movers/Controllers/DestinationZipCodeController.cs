@@ -46,7 +46,6 @@ namespace _123Movers.Controllers
         [HttpPost]
         public JsonResult AddCompanyAreaDestinationZipCodes(int? serviceId, int? areaCode, string zipCodes)
         {
-
             JsonResult result;
             try
             {
@@ -65,7 +64,6 @@ namespace _123Movers.Controllers
         [HttpPost]
         public JsonResult DeleteCompanyAreaDestinationZipCodes(int? serviceId, int? areaCode, string zipCodes)
         {
-
             JsonResult result;
             try
             {

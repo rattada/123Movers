@@ -66,6 +66,8 @@
     <Compile Include="Data_Notification.cs" />
     <Compile Include="Data_OriginZipCodes.cs" />
     <Compile Include="Data_Report.cs" />
+    <Compile Include="Data_SpcfcOriginDestAreaCodes.cs" />
+    <Compile Include="Data_SpcfcStates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

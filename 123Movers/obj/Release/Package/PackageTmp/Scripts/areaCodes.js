@@ -26,10 +26,10 @@ $(function () {
     $("#saveprice").attr('disabled', 'disabled');
 
     $("#body").on("keypress", "input", function (event) {
-        var key = event.which;
-
-        if (!(key >= 48 && key <= 57))
+        //$(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
             event.preventDefault();
+        }
         else
             $("#saveprice").removeAttr('disabled');
     });
@@ -58,15 +58,11 @@ $(function () {
                         options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                     }
                 });
-
                 if (json.length > 0) {
                     $('#areaCode').html(options);
                 }
-
-
             },
             error: function (xhr, ajaxOptions, thrownError) {
-
             }
         });
     }

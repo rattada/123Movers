@@ -66,6 +66,8 @@
     <Compile Include="Business_Notification.cs" />
     <Compile Include="Business_OriginZipCodes.cs" />
     <Compile Include="Business_Report.cs" />
+    <Compile Include="Business_SpcfcStates.cs" />
+    <Compile Include="Busines_SpcfcOriginAreaCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

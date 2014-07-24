@@ -100,6 +100,23 @@ namespace _123Movers.Models
 
         #endregion
 
+        #region SpecificOriginDestAreaCodes Stored Procedures
+
+        public static readonly string SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_ADD = "usp_AddCompanySpecificOriginDestinationAreacode";
+        public static readonly string SP_COMPANY__SPCFC_ORIGINDEST_AREACODE_DELETE = "usp_DeleteCompanySpecificOriginDestinationAreacode";
+        public static readonly string SP_COMPANY__SPCFC_ORIGINDEST_AREACODE_GET = "usp_GetCompanySpecificOriginDestinationAreacode";
+        public static readonly string SP_COMPANY__SPCFC_AVAIL_ORIGINDEST_AREACODE_GET = "usp_getCompanyStateAreacode";
+
+        #region Specific States Stored Procedures
+        public static readonly string SP_COMPANY_SPCFC_STATES_ADD = "usp_AddCompanySpecificOriginDestinationState";
+        public static readonly string SP_COMPANY__SPCFC_STATES_DELETE = "usp_DeleteCompanySpecificOriginDestinationState";
+        public static readonly string SP_COMPANY__SPCFC_STATES_GET = "usp_GetCompanySpecificOriginDestinationState";
+        public static readonly string SP_COMPANY_AVAIL_STATES__GET = "usp_GetCompanyStates";
+        #endregion
+
+
+        #endregion
+
         #endregion
     }
 }

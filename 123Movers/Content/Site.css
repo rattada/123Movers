@@ -302,6 +302,7 @@ tbody{
     background-color: beige;
     -webkit-column-span: all;
     column-span: all;
+    border: 1px solid #ddd;
 }
 .divService {
     margin-left:10px;

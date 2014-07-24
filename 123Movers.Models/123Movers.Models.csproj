@@ -76,6 +76,8 @@
     <Compile Include="Models\MoveWeightModel.cs" />
     <Compile Include="Models\NotificationModel.cs" />
     <Compile Include="Models\OriginZipCodeModel.cs" />
+    <Compile Include="Models\SpecificOriginAreaCodeModel.cs" />
+    <Compile Include="Models\SpecificStatesModel.cs" />
     <Compile Include="RegexPattern.cs" />
     <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Models\SearchModel.cs" />

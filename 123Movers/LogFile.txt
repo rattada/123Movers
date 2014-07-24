@@ -15,3 +15,66 @@
    at _123Movers.BusinessEntities.BusinessLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.BusinessEntities\BusinessLayer.cs:line 30
    at _123Movers.Controllers.HomeController.Search(SearchModel search) in d:\Movers123\123Movers\123Movers\Controllers\HomeController.cs:line 33
 ClientConnectionId:ca510c9e-f244-407e-bb8e-4fcb1b525465
+2014-07-24 19:14:43,048 [68] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+String or binary data would be truncated.
+String or binary data would be truncated.
+The statement has been terminated.
+The statement has been terminated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_SpcfcOriginDestAreaCodes.cs:line 57
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanySpcfcOriginAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Busines_SpcfcOriginAreaCodes.cs:line 15
+   at _123Movers.Controllers.SpecificOriginAreaCodesController.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\SpecificOriginAreaCodesController.cs:line 45
+ClientConnectionId:2cba36ca-4657-401a-9fd4-d557972c6b61
+2014-07-24 19:14:51,467 [68] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+String or binary data would be truncated.
+String or binary data would be truncated.
+String or binary data would be truncated.
+String or binary data would be truncated.
+The statement has been terminated.
+The statement has been terminated.
+The statement has been terminated.
+The statement has been terminated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_SpcfcOriginDestAreaCodes.cs:line 57
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanySpcfcOriginAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Busines_SpcfcOriginAreaCodes.cs:line 15
+   at _123Movers.Controllers.SpecificOriginAreaCodesController.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\SpecificOriginAreaCodesController.cs:line 45
+ClientConnectionId:2cba36ca-4657-401a-9fd4-d557972c6b61
+2014-07-24 19:15:09,908 [7] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+String or binary data would be truncated.
+String or binary data would be truncated.
+String or binary data would be truncated.
+The statement has been terminated.
+The statement has been terminated.
+The statement has been terminated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_SpcfcOriginDestAreaCodes.cs:line 57
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanySpcfcOriginAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Busines_SpcfcOriginAreaCodes.cs:line 15
+   at _123Movers.Controllers.SpecificOriginAreaCodesController.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\SpecificOriginAreaCodesController.cs:line 45
+ClientConnectionId:2cba36ca-4657-401a-9fd4-d557972c6b61

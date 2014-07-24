@@ -48,6 +48,18 @@
                                     $('#geography').addClass('btn-warning');
 
                                 }
+                                else if (ID == 7 && val[2] == "True") {
+                                    $('#specificAreas').removeClass('btn-default');
+                                    $('#specificAreas').addClass('btn-warning');
+
+                                }
+
+                                else if (ID == 8 && val[2] == "True") {
+                                    $('#specificStates').removeClass('btn-default');
+                                    $('#specificStates').addClass('btn-warning');
+
+                                }
+
 
             });
 

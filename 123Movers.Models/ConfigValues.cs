@@ -26,6 +26,27 @@ namespace _123Movers.Models
 
         }
 
+        public static List<List<string>> DataSetToList(DataSet ds)
+        {
+            List<List<string>> lstTable = new List<List<string>>();
+            foreach (DataTable dt in ds.Tables)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    List<string> lstRow = new List<string>();
+                    lstRow.Add(dt.TableName);
+                    foreach (var item in row.ItemArray)
+                    {
+                        lstRow.Add(item.ToString().Replace("\r\n", string.Empty));
+                    }
+                    lstTable.Add(lstRow);
+                }
+            }
+
+            return lstTable;
+
+        }
+
         //public static readonly IEnumerable<KeyValuePair<string, string>> Terms = new List<KeyValuePair<string, string>>()
         //{
         //    new KeyValuePair<string, string>("Recurring", "0"),

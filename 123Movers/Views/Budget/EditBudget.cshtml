@@ -59,12 +59,15 @@
     var Service = (@Model.ServiceId == Constants.LOCAL) ? "1009" : (@Model.ServiceId == Constants.LONG) ? "1000" : null;
     <div class="row">
         <div class="col-md-12">
-            @Html.ActionLink("Manage Area Codes", "AreaCodes", "AreaCode", new { serviceId = Service }, new { id = "managearea", @class = "btn btn-default" })
-            @Html.ActionLink("Manage Lead Limit", "LeadLimit", "LeadLimit", new { serviceId = Service }, new { id = "leadlimit", @class = "btn btn-default" })
-            @Html.ActionLink("Manage Origin", "OriginZipCodes", "OriginZipCode", new { serviceId = Service }, new { id = "geography", @class = "btn btn-default" })
-            @Html.ActionLink("Manage Destination", "DestinationZipCodes", "DestinationZipCode", new { serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-default" })
-            @Html.ActionLink("Manage Distance", "MoveDistance", "MoveDistance", new { serviceId = Service }, new { id = "distance", @class = "btn btn-default" })
-            @Html.ActionLink("Manage Move Weight", "MoveWeight", "MoveWeight", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default" })
+            @Html.ActionLink("Area Codes", "AreaCodes", "AreaCode", new { serviceId = Service }, new { id = "managearea", @class = "btn btn-default" })
+            @Html.ActionLink("Lead Limit", "LeadLimit", "LeadLimit", new { serviceId = Service }, new { id = "leadlimit", @class = "btn btn-default" })
+            @Html.ActionLink("Origin Zip", "OriginZipCodes", "OriginZipCode", new { serviceId = Service }, new { id = "geography", @class = "btn btn-default" })
+            @Html.ActionLink("Destination Zip", "DestinationZipCodes", "DestinationZipCode", new { serviceId = Service }, new { id = "destzipcodes", @class = "btn btn-default" })
+            @Html.ActionLink("Distance", "MoveDistance", "MoveDistance", new { serviceId = Service }, new { id = "distance", @class = "btn btn-default" })
+            @Html.ActionLink("Move Weight", "MoveWeight", "MoveWeight", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default" })
+            @Html.ActionLink("Destination Area", "DestinationArea", "DestinationArea", new { serviceId = Service }, new { id = "destinationarea", @class = "btn btn-default" })
+            @Html.ActionLink("Specific Areas", "SpecificOriginAreaCodes", "SpecificOriginAreaCodes", new { serviceId = Service }, new { id = "specificAreas", @class = "btn btn-default" })
+            @Html.ActionLink("Specific State", "SpecificStates", "SpecificStates", new { serviceId = Service }, new { id = "specificStates", @class = "btn btn-default" })
         </div>
     </div>
     <p class="clear-fix"></p>
