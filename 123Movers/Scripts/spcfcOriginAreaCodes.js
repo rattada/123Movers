@@ -1,14 +1,12 @@
-﻿var jQury = $.noConflict();
+﻿$(function () {
 
-jQury(function () {
-    var serviceId;
-    var ServiceType;
-    var k = 0;
-    serviceId = jQury('#ddlServiceID').val();
-    spcfcareacode = jQury('#ddlareaCode').val();
-    // GetAvailableAreas(serviceId);
+    var serviceId = $('#ddlServiceID').val();
+    if (serviceId != '') {
+        GetAvailableAreas(serviceId);
+    } else { $('#ddlareaCode').attr("disabled", true); }
+
     function GetAvailableAreas(serviceId) {
-        jQury.ajax({
+        $.ajax({
             url: '/SpecificOriginAreaCodes/GetAvailSpcfcOriginDestAreas',
             type: "GET",
             data: { 'serviceId': serviceId },
@@ -16,11 +14,10 @@ jQury(function () {
             cache: false,
             success: function (data) {
                 var strigifyJson = JSON.stringify(data);
-                var json = jQury.parseJSON(strigifyJson);
-                var table;
-                var options = '<option value=""></option>';
-                jQury.each(json, function (i, val) {
-                    if (i == 0) {
+                var json = $.parseJSON(strigifyJson);
+                var options;
+                $.each(json, function (i, val) {
+                    if (options == undefined) {
                         options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                     } else {
                         options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
@@ -29,9 +26,16 @@ jQury(function () {
 
                 if (json.length > 0) {
                     options = '<option value="">' + "--Choose One--" + '</option>' + options;
-                    jQury('#ddlareaCode').html(options);
-                    jQury('#areasSelected').html('');
-                    jQury('#areaCode').html('');
+                    $('#ddlareaCode').html(options);
+                    $('#destAreaCodes').html('');
+                    $('#originAreaCodes').html('');
+                    $('#ddlareaCode').attr("disabled", false);
+                }
+                else {
+                    $('#ddlareaCode').html('');
+                    $('#destAreaCodes').html('');
+                    $('#originAreaCodes').html('');
+                    $('#ddlareaCode').attr("disabled", true);
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -40,7 +44,7 @@ jQury(function () {
     }
     function GetSelectedAreas(serviceId, spfcareacode) {
         //OriginAreaCodes
-        jQury.ajax({
+        $.ajax({
             url: '/SpecificOriginAreaCodes/GetCompanySpcfcOriginDestAreas',
             type: "GET",
             data: { 'serviceId': serviceId, "spcfcareacode": spfcareacode, "originAreaCode": false },
@@ -48,143 +52,129 @@ jQury(function () {
             cache: false,
             success: function (data) {
                 var strigifyJson = JSON.stringify(data);
-                var json = jQury.parseJSON(strigifyJson);
-                var table;
-                var options = '<option value=""></option>';
-                jQury.each(json, function (i, val) {
-                    if (i == 0) {
-                        options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                var json = $.parseJSON(strigifyJson);
+                var options;
+                var destoptions;
+                $.each(json, function (i, val) {
+                    if (val[2] == 'Table')
+                    {
+                        if (options == undefined) {
+                            options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        } else {
+                            options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        }
                     } else {
-                        options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        if (destoptions == undefined) {
+                            destoptions = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        } else {
+                            destoptions += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                        }
                     }
                 });
-                if (json.length > 0) {
-                    jQury('#areaCode').html(options);
+               
+                if (options != undefined) {
+                    $('#originAreaCodes').html(options);
                 }
                 else {
-                    jQury('#areaCode').html('');
+                    $('#originAreaCodes').html('');
                 }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-            }
-        });
 
-        //DestinationAreaCodes
-        jQury.ajax({
-            url: '/SpecificOriginAreaCodes/GetCompanySpcfcOriginDestAreas',
-            type: "GET",
-            data: { 'serviceId': serviceId, "spcfcareacode": spfcareacode, "originAreaCode": true },
-            dataType: "json",
-            cache: false,
-            success: function (data) {
-                var strigifyJson = JSON.stringify(data);
-                var json = jQury.parseJSON(strigifyJson);
-                var options = '<option value=""></option>';
-                jQury.each(json, function (i, val) {
-                    if (i == 0) {
-                        options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                    } else {
-                        options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                    }
-                });
-                if (json.length > 0) {
-                    jQury('#areasSelected').html(options);
+                if (destoptions != undefined) {
+                    $('#destAreaCodes').html(destoptions);
                 }
                 else {
-                    jQury('#areasSelected').html('');
+                    $('#destAreaCodes').html('');
                 }
+              
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
         });
     }
-    jQury('#add').click(function () {
-
-        var serviceId = jQury('#ddlServiceID').val();
-        var SpcfcAreaCode = jQury('#ddlareaCode').val();
-
+    $('#add').click(function () {
+        var serviceId = $('#ddlServiceID').val();
+        var originAreaCode = $('#ddlareaCode').val();
         var selected = [];
-        jQury('#areaCode :selected').each(function (i, el) {
-            selected[i] = jQury(this).val();
+        $('#originAreaCodes :selected').each(function (i, el) {
+            selected[i] = $(this).val();
         });
-
         if (serviceId == '') {
             alert("Please Select Service Type");
-            jQury('#ddlServiceID').focus();
+            $('#ddlServiceID').focus();
             return false;
         }
-        if (SpcfcAreaCode == '') {
+        if (originAreaCode == '') {
 
             alert("Please Select Origin AreaCode");
-            jQury('#ddlareaCode').focus();
+            $('#ddlareaCode').focus();
             return false;
         }
         if (selected.length == 0) {
 
             alert("Please Select any Option to add");
-            jQury('#areaCode').focus();
+            $('#originAreaCodes').focus();
             return false;
         }
-        var areaCodes = JSON.stringify(selected);
-        jQury.ajax({
+        var data_to_send = JSON.stringify(selected);
+        $.ajax({
             url: '/SpecificOriginAreaCodes/AddCompanySpcfcOriginDestAreaCodes',
             type: "POST",
-            data: { 'serviceId': serviceId, "spcfcareacode": SpcfcAreaCode, 'areaCodes': areaCodes },
+            data: { 'serviceId': serviceId, "spcfcareacode": originAreaCode, 'areaCodes': data_to_send },
             success: function (data) {
-                GetSelectedAreas(serviceId, SpcfcAreaCode);
+                GetSelectedAreas(serviceId, originAreaCode);
                 alert("Area Codes added Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
         });
     });
-    jQury('#remove').click(function () {
-        var serviceId = jQury('#ddlServiceID').val();
-        var SpcfcAreaCode = jQury('#ddlareaCode').val();
+    $('#remove').click(function () {
+        var serviceId = $('#ddlServiceID').val();
+        var originAreaCode = $('#ddlareaCode').val();
         var selected = [];
-        jQury('#areasSelected :selected').each(function (i, el) {
-            selected[i] = jQury(this).val();
+        $('#destAreaCodes :selected').each(function (i, el) {
+            selected[i] = $(this).val();
         });
         if (selected.length == 0) {
             alert("Please Select any Option to Remove")
-            jQury('#areasSelected').focus();
+            $('#destAreaCodes').focus();
             return false;
         }
-        var areaCodes = JSON.stringify(selected);
-        jQury.ajax({
+        var data_to_send = JSON.stringify(selected);
+        $.ajax({
             url: '/SpecificOriginAreaCodes/DeleteCompanySpcfcOriginDestAreaCodes',
             type: "POST",
-            data: { 'serviceId': serviceId, "spcfcareacode": SpcfcAreaCode, areaCodes: areaCodes },
+            data: { 'serviceId': serviceId, "spcfcareacode": originAreaCode, areaCodes: data_to_send },
             success: function (data) {
-                GetSelectedAreas(serviceId, SpcfcAreaCode);
+                GetSelectedAreas(serviceId, originAreaCode);
                 alert("Area Codes removed Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
         });
     });
-    jQury("body").parent().on("change", "#ddlServiceID", function () {
-        var serviceId = jQury('#ddlServiceID').val();
-        var SpcfcAreaCode = jQury('#ddlareaCode').val();
-
+    $("body").parent().on("change", "#ddlServiceID", function () {
+        var serviceId = $('#ddlServiceID').val();
         if (serviceId != '') {
             GetAvailableAreas(serviceId);
+            $('#ddlareaCode').attr("disabled", false);
         }
         else {
-            jQury('#ddlareaCode').html('');
-            jQury('#areasSelected').html('');
-            jQury('#areaCode').html('');
+            $('#ddlareaCode').attr("disabled", true)
+            $('#ddlareaCode').html('');
+            $('#destAreaCodes').html('');
+            $('#originAreaCodes').html('');
         }
     });
-    jQury("body").parent().on("change", "#ddlareaCode", function () {
-        var serviceId = jQury('#ddlServiceID').val();
-        var SpcfcAreaCode = jQury('#ddlareaCode').val();
-        if (SpcfcAreaCode != '') {
-            GetSelectedAreas(serviceId, SpcfcAreaCode);
+    $("body").parent().on("change", "#ddlareaCode", function () {
+        var serviceId = $('#ddlServiceID').val();
+        var originAreaCode = $('#ddlareaCode').val();
+        if (originAreaCode != '') {
+            GetSelectedAreas(serviceId, originAreaCode);
         }
         else {
-            jQury('#areaCode').html('');
-            jQury('#areasSelected').html('');
+            $('#originAreaCodes').html('');
+            $('#destAreaCodes').html('');
         }
     });
 });

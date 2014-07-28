@@ -24,8 +24,7 @@ namespace _123Movers.Controllers
         }
         public JsonResult GetCompanySpcfcOriginDestAreas(int? serviceId,int spcfcareacode,bool originAreaCode)
         {
-            var services = BusinessLayer.GetCompanySpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId, spcfcareacode, originAreaCode);
-            return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanySpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId, spcfcareacode, originAreaCode), JsonRequestBehavior.AllowGet);
         }
         public ActionResult SpecificOriginAreaCodes(int? serviceId)
         {

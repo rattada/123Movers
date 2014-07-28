@@ -1,7 +1,7 @@
 ﻿@model _123Movers.Models.SpecificOriginAreaCode
 @using _123Movers.Models
 @{
-    ViewBag.Title = "Specific Areas";
+    ViewBag.Title = "SpecificOriginAreaCodes";
 }
 <input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
 
@@ -14,30 +14,39 @@
     @Html.Script("spcfcOriginAreaCodes.js")
 }
 <div class="row">
- <div class="col-md-4">
+    <div class="col-lg-4">
         <div class="form-group">
             @Html.LabelFor(m => m.ServiceId)
             @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, "--Choose One--", new { id = "ddlServiceID", @class = "form-control dropdown", @title = "Select Services" })
             @Html.ValidationMessageFor(m => m.ServiceId)
         </div>
-          
-      <strong>Select Origin AreaCode</strong><br /><select name="areaCode" id="ddlareaCode"  class = "form-control dropdown" >
-                    </select>
+        <strong>Origin Area Code</strong><br />
+        <select name="areaCode" id="ddlareaCode" class="form-control dropdown">
+        </select>
     </div>
-      
-          <div class="col-md-5">
-                <div class="tab-pane" id="local">
-                    <select name="areaCode"  title="Aviailable Areas" id="areaCode" size="20" style="width: 150px;" multiple>
-                    </select>
 
-                    <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
-                    <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
 
-                    <select name="areasSelected" title="Destination Areas" id="areasSelected" style="width: 150px" size="20" multiple>
-                    </select>
-                </div>
+     <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <div class="row text-center">
+            <strong>Destination Area Code</strong>
+        </div>
+        <div class="row" style="margin-left: 15px;">
+            <div class="tab-pane" id="local">
+                <select name="originAreaCodes" id="originAreaCodes" size="20" style="width: 150px;" multiple>
+            </select>
+
+            <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
+            <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
+
+            <select name="destAreaCodes" id="destAreaCodes" style="width: 150px" size="20" multiple>
+            </select>
             </div>
+        </div>
     </div>
+</div>
+
+
 <p class="clear-fix"></p>
 <div class="row ">
     <div class="col-md-12">

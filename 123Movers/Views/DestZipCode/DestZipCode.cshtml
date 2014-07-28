@@ -1,0 +1,54 @@
+﻿@model _123Movers.Models.DestZipCodeModel
+@using _123Movers.Models
+@{
+    ViewBag.Title = "Destination AreaCode";
+}
+<input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
+@section JavaScript{
+    @Html.Script("destZipCodesNew.js")
+}
+@Html.Partial(Constants.VIEW, @Model._companyInfo)
+<p class="clearfix"></p>
+<p class="clearfix"></p>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(m => m.ServiceId)
+            @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, "--Choose One--", new { id = "ddlServiceID", @class = "form-control dropdown", @title = "Select Services" })
+            @Html.ValidationMessageFor(m => m.ServiceId)
+        </div>
+
+        <strong>Destination AreaCode(s)</strong><br />
+        <select name="ddldestareaCode" id="ddldestareaCode" class="form-control dropdown" title="Select Destination Area">
+        </select>
+        <p class="clear-fix"></p>
+        <strong>Existing AreaCode(s)</strong><br />
+        <select name="ddlexstngareaCode" id="ddlexstngareaCode" class="form-control dropdown" title="Select Existing Area">
+        </select>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <div class="row text-center">
+            <strong>Destination Zip Codes</strong>
+        </div>
+        <div class="row" style="margin-left: 15px;">
+            <div class="tab-pane" id="local">
+                <select name="existingZipCodes" id="existingZipCodes" size="20" style="width: 150px;" multiple>
+                </select>
+
+                <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
+                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
+
+                <select name="destZipCodes" id="destZipCodes" style="width: 150px" size="20" multiple>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="clear-fix"></p>
+<div class="row ">
+    <div class="col-md-12">
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+    </div>
+</div>

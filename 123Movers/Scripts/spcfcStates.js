@@ -1,5 +1,9 @@
 ﻿$(function () {
-    $('#ddlState').attr("disabled", true);
+    var serviceId = $('#ddlServiceID').val();
+    if (serviceId != '') {
+        GetAvailStates(serviceId);
+    } else { $('#ddlState').attr("disabled", true); }
+   
     function GetAvailStates(serviceId) {
         $.ajax({
             url: '/SpecificStates/GetAvailStates',
@@ -38,7 +42,6 @@
         });
     }
     function GetCompanySpcfcStates(serviceId, originState) {
-        //Originstates
         $.ajax({
             url: '/SpecificStates/GetCompanySpcfcOriginDestStates',
             type: "GET",
@@ -48,45 +51,33 @@
             success: function (data) {
                 var strigifyJson = JSON.stringify(data);
                 var json = $.parseJSON(strigifyJson);
-                var table;
-                var options = '<option value=""></option>';
+                var options;
+                var destoptions;
                 $.each(json, function (i, val) {
-                    if (i == 0) {
-                        options = '<option value="' + val[0] + '">' + val[0] + '</option>';
+                    if (val[1] == 'Table') {
+                        if (options == undefined) {
+                            options = '<option value="' + val[0] + '">' +  val[0] + '</option>';
+                        } else {
+                            options += '<option value="' + val[0] + '">' +  val[0] + '</option>';
+                        }
                     } else {
-                        options += '<option value="' + val[0] + '">' + val[0] + '</option>';
+                        if (destoptions == undefined) {
+                            destoptions = '<option value="' + val[0] + '">' +  val[0] + '</option>';
+                        } else {
+                            destoptions += '<option value="' + val[0] + '">' +  val[0] + '</option>';
+                        }
                     }
                 });
-                if (json.length > 0) {
+
+                if (options != undefined) {
                     $('#originStates').html(options);
                 }
                 else {
                     $('#originStates').html('');
                 }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-            }
-        });
-        //Destinationstates
-        $.ajax({
-            url: '/SpecificStates/GetCompanySpcfcOriginDestStates',
-            type: "GET",
-            data: { 'serviceId': serviceId, "originState": originState, "IsOriginState": true },
-            dataType: "json",
-            cache: false,
-            success: function (data) {
-                var strigifyJson = JSON.stringify(data);
-                var json = $.parseJSON(strigifyJson);
-                var options = '<option value=""></option>';
-                $.each(json, function (i, val) {
-                    if (i == 0) {
-                        options = '<option value="' + val[0] + '">' + val[0] + '</option>';
-                    } else {
-                        options += '<option value="' + val[0] + '">' + val[0] + '</option>';
-                    }
-                });
-                if (json.length > 0) {
-                    $('#destStates').html(options);
+
+                if (destoptions != undefined) {
+                    $('#destStates').html(destoptions);
                 }
                 else {
                     $('#destStates').html('');
@@ -96,6 +87,7 @@
             }
         });
     }
+
     $('#add').click(function () {
         var serviceId = $('#ddlServiceID').val();
         var Spcfcstate = $('#ddlState').val();
@@ -118,11 +110,11 @@
             $('#originStates').focus();
             return false;
         }
-        var data_to_send = JSON.stringify(selected);
+        var states = JSON.stringify(selected);
         $.ajax({
             url: '/SpecificStates/AddCompanySpcfcOriginDeststates',
             type: "POST",
-            data: { 'serviceId': serviceId, "originState": Spcfcstate, 'destStates': data_to_send },
+            data: { 'serviceId': serviceId, "originState": Spcfcstate, 'destStates': states },
             success: function (data) {
                 GetCompanySpcfcStates(serviceId, Spcfcstate);
                 alert("States added Successfully");
@@ -143,11 +135,11 @@
             $('#destStates').focus();
             return false;
         }
-        var data_to_send = JSON.stringify(selected);
+        var states = JSON.stringify(selected);
         $.ajax({
             url: '/Specificstates/DeleteCompanySpcfcOriginDeststates',
             type: "POST",
-            data: { 'serviceId': serviceId, "originState": Spcfcstate, "destStates": data_to_send },
+            data: { 'serviceId': serviceId, "originState": Spcfcstate, "destStates": states },
             success: function (data) {
                 GetCompanySpcfcStates(serviceId, Spcfcstate);
                 alert("States removed Successfully");

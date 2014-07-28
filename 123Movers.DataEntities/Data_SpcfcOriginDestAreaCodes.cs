@@ -80,7 +80,7 @@ namespace _123Movers.DataEntities
 
             }
         }
-        public static DataTable GetCompanySpcfcOriginDestAreas(int? companyId, int? serviceId,int spfcfAreaCode,bool originAreaCodes)
+        public static List<List<string>> GetCompanySpcfcOriginDestAreas(int? companyId, int? serviceId, int spfcfAreaCode, bool originAreaCodes)
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
@@ -105,12 +105,12 @@ namespace _123Movers.DataEntities
 
                 DataSet ds = new DataSet();
                 da.Fill(ds);
-
-                List<List<string>> s = ConfigValues.DataSetToList(ds);
-                if (originAreaCodes)
-                    return ds.Tables[1];
-                else
-                    return ds.Tables[0];
+                
+                return ConfigValues.DataSetToList(ds);
+                //if (originAreaCodes)
+                //    return ds.Tables[1];
+                //else
+                //    return ds.Tables[0];
 
             }
         }

@@ -27,8 +27,7 @@ namespace _123Movers.Controllers
 
         public JsonResult GetCompanySpcfcOriginDestStates(int? serviceId, string originState, bool IsOriginState)
         {
-            var services = BusinessLayer.GetCompanySpcfcStates(CompanyInfo.CompanyId, serviceId, originState, IsOriginState);
-            return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanySpcfcStates(CompanyInfo.CompanyId, serviceId, originState, IsOriginState), JsonRequestBehavior.AllowGet);
         }
 
 

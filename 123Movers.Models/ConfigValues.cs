@@ -34,11 +34,11 @@ namespace _123Movers.Models
                 foreach (DataRow row in dt.Rows)
                 {
                     List<string> lstRow = new List<string>();
-                    lstRow.Add(dt.TableName);
                     foreach (var item in row.ItemArray)
                     {
                         lstRow.Add(item.ToString().Replace("\r\n", string.Empty));
                     }
+                    lstRow.Add(dt.TableName);
                     lstTable.Add(lstRow);
                 }
             }

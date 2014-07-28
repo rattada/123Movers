@@ -91,21 +91,16 @@ function GetZipCodes(areaCode, serviceid) {
             var strigifyJson = JSON.stringify(data);
             var json = $.parseJSON(strigifyJson);
             var table;
-            //var options = '<select name=areaZipCode" id="areaZipCode" size="20" style="width: 150px" multiple> <option value=""></option>';
             var options = '<option value=""></option>';
             jQuery.each(json, function (i, val) {
                 if (i == 0) {
-                    //options = '<option value="' + val[0] + '">' + val[0] + '</option>';
                     options = '<option value="' + val[0] + '">' + val[1] + '-' + val[0] + '</option>';
                 } else {
-                    //options = '<option value="' + val[0] + '">' + val[0] + '</option>';
                     options += '<option value="' + val[0] + '">' + val[1] + '-' + val[0] + '</option>';
                 }
             });
-            //options += '<select>';
             if (json.length > 0) {
                
-               // $('#divzip').html(options);
                 $('#areaZipCode').html(options);
                 //$('body').unmask();
             }

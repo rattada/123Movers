@@ -80,7 +80,7 @@ namespace _123Movers.DataEntities
 
             }
         }
-        public static DataTable GetCompanySpcfcStates(int? companyId, int? serviceId, string originState, bool IsoriginState)
+        public static List<List<string>> GetCompanySpcfcStates(int? companyId, int? serviceId, string originState, bool IsoriginState)
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
@@ -98,10 +98,7 @@ namespace _123Movers.DataEntities
                 SqlDataAdapter da = new SqlDataAdapter(_cmd);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
-                if (IsoriginState)
-                    return ds.Tables[1];
-                else
-                    return ds.Tables[0];
+                return ConfigValues.DataSetToList(ds);
 
             }
         }

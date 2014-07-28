@@ -71,6 +71,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\DestinationZipModel.cs" />
+    <Compile Include="Models\DestZipCodeModel.cs" />
     <Compile Include="Models\LeadLimitModel.cs" />
     <Compile Include="Models\MoveDistanceModel.cs" />
     <Compile Include="Models\MoveWeightModel.cs" />

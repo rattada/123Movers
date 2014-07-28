@@ -22,7 +22,7 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.GetAvailSpcfcOriginDestAreas(companyId, serviceId);
         }
-        public static DataTable GetCompanySpcfcOriginDestAreas(int? companyId, int? serviceId, int spcfcareacode, bool originAreaCodes)
+        public static List<List<string>> GetCompanySpcfcOriginDestAreas(int? companyId, int? serviceId, int spcfcareacode, bool originAreaCodes)
         {
             return DataLayer.GetCompanySpcfcOriginDestAreas(companyId, serviceId, spcfcareacode, originAreaCodes);
         }

@@ -21,7 +21,7 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.GetAvailStates(companyId, serviceId);
         }
-        public static DataTable GetCompanySpcfcStates(int? companyId, int? serviceId, string originState, bool destSates)
+        public static List<List<string>> GetCompanySpcfcStates(int? companyId, int? serviceId, string originState, bool destSates)
         {
             return DataLayer.GetCompanySpcfcStates(companyId, serviceId, originState, destSates);
         }
