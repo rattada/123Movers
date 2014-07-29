@@ -131,7 +131,7 @@ namespace _123Movers.DataEntities
 
 
 
-        public static DataTable GetAvailableDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
+        public static List<List<string>> GetAvailableDestinationZipCodes(int? companyId, int? serviceId, int? areaCode, int? destAreaCode = null)
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
@@ -144,17 +144,19 @@ namespace _123Movers.DataEntities
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
                 SqlParameter paramAreaCode = new SqlParameter("areaCode", areaCode);
+                SqlParameter paramDestAreaCode = new SqlParameter("destAreaCode", destAreaCode);
 
                 _cmd.Parameters.Add(paramCompanyId);
                 _cmd.Parameters.Add(paramService);
                 _cmd.Parameters.Add(paramAreaCode);
+                _cmd.Parameters.Add(paramDestAreaCode);
 
                 DataTable dtResults = new DataTable();
 
                 SqlDataReader drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
-                return dtResults;
+                return ConfigValues.TableToList(dtResults); ;
 
             }
         }

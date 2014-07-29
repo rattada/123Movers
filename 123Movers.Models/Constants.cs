@@ -22,6 +22,8 @@ namespace _123Movers.Models
         public static readonly string NEW_BUDGET = "NEW";
         public static readonly string RENEWL_BUDGET = "RENEWAL INSERTION";
         public static readonly string EDIT_BUDGET = "EDIT";
+        //public static readonly string AREA = "AREA";
+        //public static readonly string ZIP = "ZIP";
 
         public static readonly int LOCAL = 1009;
         public static readonly int LONG = 1000;
@@ -48,6 +50,14 @@ namespace _123Movers.Models
         public static readonly string SP_COMPANY_AREACODE_DELETE = "up_companyAreacodeDelete";
         public static readonly string SP_ADD_COMPANY_PRICE_PERLEAD = "usp_AddCompanyPricePerLead";
         public static readonly string SP_GET_AVAILABLE_AREAS = "usp_availableAreas";
+        #endregion
+
+        #region Destination AreaCode Stored Procedures
+        public static readonly string SP_GET_COMPANY_DEST_AREACODE = "usp_GetCompanyDestinationAreacode";
+        public static readonly string SP_COMPANY_DEST_AREACODE_ADD = "usp_AddCompanyDestAreaCodes";
+        public static readonly string SP_COMPANY_DEST_AREACODE_DELETE = "usp_DeleteCompanyDestAreaCodes";
+        //public static readonly string SP_ADD_COMPANY_PRICE_PERLEAD = "usp_AddCompanyPricePerLead";
+        //public static readonly string SP_GET_AVAILABLE_AREAS = "usp_availableAreas";
         #endregion
 
 

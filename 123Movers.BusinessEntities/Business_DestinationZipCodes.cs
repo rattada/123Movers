@@ -19,9 +19,9 @@ namespace _123Movers.BusinessEntities
             return DataLayer.DeleteCompanyAreaDestinationZipCodes(companyId, serviceId, areaCode, zipCodes);
         }
 
-        public static DataTable GetAvailableDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
+        public static List<List<string>> GetAvailableDestinationZipCodes(int? companyId, int? serviceId, int? areaCode, int? destAreaCode = null)
         {
-            return DataLayer.GetAvailableDestinationZipCodes(companyId, serviceId, areaCode);
+            return DataLayer.GetAvailableDestinationZipCodes(companyId, serviceId, areaCode, destAreaCode);
         }
 
         public static DataTable GetCompanyAreasDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)

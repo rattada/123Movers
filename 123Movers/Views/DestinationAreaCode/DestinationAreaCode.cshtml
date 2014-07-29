@@ -1,5 +1,52 @@
-﻿@{
-    ViewBag.Title = "Destination AreaCode";
+﻿@model _123Movers.Models.DestinationAreaCodeModel
+@using _123Movers.Models
+@{
+    ViewBag.Title = "Destination Area";
 }
+<input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
 
-<h2>DestinationAreaCode</h2>
+@Html.Partial(Constants.VIEW, @Model._companyInfo)
+
+<p class="clearfix"></p>
+<p class="clearfix"></p>
+
+@section JavaScript{
+    @Html.Script("destAreaCode.js")
+}
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(m => m.ServiceId)
+            @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, "--Choose One--", new { id = "ddlServiceID", @class = "form-control dropdown", @title = "Select Services" })
+            @Html.ValidationMessageFor(m => m.ServiceId)
+        </div>
+    </div>
+
+
+     <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <div class="row text-center">
+            <strong>Destination Area Code</strong>
+        </div>
+        <div class="row" style="margin-left: 15px;">
+            <div class="tab-pane" id="local">
+                <select name="originAreaCodes" id="originAreaCodes" size="20" class="selectItem"  multiple>
+            </select>
+
+            <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
+            <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
+
+            <select name="destAreaCodes" id="destAreaCodes" class="selectItem"  size="20" multiple>
+            </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p class="clear-fix"></p>
+<div class="row ">
+    <div class="col-md-12">
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+    </div>
+</div>

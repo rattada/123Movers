@@ -18,7 +18,7 @@ namespace _123Movers.BusinessEntities
         {
             DataLayer.DeleteCompanySpcfcOriginDestAreaCodes(companyId, serviceId,spcfcareacode, areaCodes);
         }
-        public static DataTable GetAvailSpcfcOriginDestAreas(int? companyId, int? serviceId)
+        public static List<List<string>> GetAvailSpcfcOriginDestAreas(int? companyId, int? serviceId)
         {
             return DataLayer.GetAvailSpcfcOriginDestAreas(companyId, serviceId);
         }

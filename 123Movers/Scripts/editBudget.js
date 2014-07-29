@@ -13,65 +13,58 @@
             var json = $.parseJSON(strigifyJson);
 
             jQuery.each(json, function (i, val) {
-                var ID = val[0];
+                var id = val[0];
                 var value = val[2];
 
-                if (ID == 1 && val[2] == "True") {
-
+                if (id == 1 && val[2] == "True") {
                     $('#managearea').removeClass('btn-default');
                     $('#managearea').addClass('btn-warning');
                 }
-                else
-                    if (ID == 2 && val[2] == "True") {
-                        $('#destzipcodes').removeClass('btn-default');
-                        $('#destzipcodes').addClass('btn-warning');
-                    }
-
-                    else if (ID == 3 && val[2] == "True") {
-                        $('#distance').removeClass('btn-default');
-                        $('#distance').addClass('btn-warning');
-                    }
-                    else
-                        if (ID == 4 && val[2] == "True") {
-                            $('#leadlimit').removeClass('btn-default');
-                            $('#leadlimit').addClass('btn-warning');
-                        }
-
-                        else
-                            if (ID == 5 && val[2] == "True") {
-                                $('#movewight').removeClass('btn-default');
-                                $('#movewight').addClass('btn-warning');
-                            }
-                            else
-                                if (ID == 6 && val[2] == "True") {
-                                    $('#geography').removeClass('btn-default');
-                                    $('#geography').addClass('btn-warning');
-
-                                }
-                                else if (ID == 7 && val[2] == "True") {
-                                    $('#specificAreas').removeClass('btn-default');
-                                    $('#specificAreas').addClass('btn-warning');
-
-                                }
-
-                                else if (ID == 8 && val[2] == "True") {
-                                    $('#specificStates').removeClass('btn-default');
-                                    $('#specificStates').addClass('btn-warning');
-
-                                }
-
-
+                else if (id == 2 && val[2] == "True") {
+                    $('#destarea').removeClass('btn-default');
+                    $('#destarea').addClass('btn-warning');
+                }
+                else if (id == 3 && val[2] == "True") {
+                    $('#destareazip').removeClass('btn-default');
+                    $('#destareazip').addClass('btn-warning');
+                }
+                else if (id == 4 && val[2] == "True") {
+                    $('#destzip').removeClass('btn-default');
+                    $('#destzip').addClass('btn-warning');
+                }
+                else if (id == 5 && val[2] == "True") {
+                    $('#distance').removeClass('btn-default');
+                    $('#distance').addClass('btn-warning');
+                }
+                else if (id == 6 && val[2] == "True") {
+                    $('#leadlimit').removeClass('btn-default');
+                    $('#leadlimit').addClass('btn-warning');
+                }
+                else if (id == 7 && val[2] == "True") {
+                    $('#movewight').removeClass('btn-default');
+                    $('#movewight').addClass('btn-warning');
+                }
+                else if (id == 8 && val[2] == "True") {
+                    $('#originzip').removeClass('btn-default');
+                    $('#originzip').addClass('btn-warning');
+                }
+                else if (id == 9 && val[2] == "True") {
+                    $('#specificAreas').removeClass('btn-default');
+                    $('#specificAreas').addClass('btn-warning');
+                }
+                else if (id == 10 && val[2] == "True") {
+                    $('#specificStates').removeClass('btn-default');
+                    $('#specificStates').addClass('btn-warning');
+                }
             });
-
         },
         error: function (xhr, ajaxOptions, thrownError) {
-
         }
     });
+
     $("#save").attr("disabled", true);
     $('body').on('change keyup keydown', 'input, textarea, select', function (e) {
         $("#save").attr("disabled", false);
     });
-
 
 });

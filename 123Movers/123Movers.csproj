@@ -294,6 +294,7 @@
     <Content Include="Images\movers.jpg" />
     <Content Include="Scripts\areaCodes.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\destAreaCode.js" />
     <Content Include="Scripts\destZipCodes.js" />
     <Content Include="Scripts\destZipCodesNew.js" />
     <Content Include="Scripts\editBudget.js" />

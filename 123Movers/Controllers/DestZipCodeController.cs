@@ -18,6 +18,18 @@ namespace _123Movers.Controllers
         {
             logger = LogManager.GetLogger(typeof(SpecificOriginAreaCodesController));
         }
+
+        public JsonResult GetAvailDestAreas(int? serviceId)
+        {
+            return Json(BusinessLayer.GetAvailSpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCompanyAreasDestinationZipCodes(int? serviceId, int? areaCode)
+        {
+            var DestinationAreaCodes = BusinessLayer.GetCompanyAreasDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
+            return Json(ConfigValues.TableToList(DestinationAreaCodes), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult DestZipCode(int? serviceId)
         {
             var Services = ConfigValues.Services(serviceId);
@@ -28,26 +40,29 @@ namespace _123Movers.Controllers
 
             DestZipCodeModel destZipCodes = new DestZipCodeModel();
             destZipCodes._companyInfo = CompanyInfo;
+            destZipCodes.ServiceId = serviceId == null ? Constants.LOCAL : serviceId;
             return View(destZipCodes);
         }
 
 
-        public JsonResult GetAvailableDestinationZipCodes(int? serviceId, int? areaCode)
+        public JsonResult GetAvailableDestinationZipCodes(int? serviceId, int? areaCode, int? destAreaCode)
         {
-            var services = BusinessLayer.GetAvailableDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
-            return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetAvailableDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, destAreaCode), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetCompanySpcfcOriginDestAreas(int? serviceId,int spcfcareacode,bool originAreaCode)
+        public JsonResult GetCompanyDestAreas(int? serviceId)
         {
-            return Json(BusinessLayer.GetCompanySpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId, spcfcareacode, originAreaCode), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanyAreasCodes(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult AddCompanySpcfcOriginDestAreaCodes(int? serviceId,int spcfcareacode, string areaCodes)
+
+
+        [HttpPost]
+        public JsonResult AddCompanyAreaDestinationZipCodes(int? serviceId, int? areaCode, string zipCodes)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.AddCompanySpcfcOriginAreaCodes(CompanyInfo.CompanyId, serviceId, spcfcareacode, areaCodes.StrReplace());
+                BusinessLayer.AddCompanyAreaDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -58,12 +73,14 @@ namespace _123Movers.Controllers
 
             return result;
         }
-        public JsonResult DeleteCompanySpcfcOriginDestAreaCodes(int? serviceId, int spcfcareacode, string areaCodes)
+
+        [HttpPost]
+        public JsonResult DeleteCompanyAreaDestinationZipCodes(int? serviceId, int? areaCode, string zipCodes)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.DeleteCompanySpcfcOriginDestAreaCodes(CompanyInfo.CompanyId, serviceId,spcfcareacode, areaCodes.StrReplace());
+                BusinessLayer.DeleteCompanyAreaDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -71,6 +88,7 @@ namespace _123Movers.Controllers
                 logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
+
             return result;
         }
     }

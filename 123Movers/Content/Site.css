@@ -308,3 +308,7 @@ tbody{
     margin-left:10px;
     margin-bottom:10px;
 }
+.selectItem {
+    width:150px;
+    padding:5px;
+}

@@ -39,8 +39,7 @@ namespace _123Movers.Controllers
 
         public JsonResult GetAvailableDestinationZipCodes(int? serviceId, int? areaCode)
         {
-            var services = BusinessLayer.GetAvailableDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
-            return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetAvailableDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

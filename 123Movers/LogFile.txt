@@ -78,3 +78,177 @@ The statement has been terminated.
    at _123Movers.BusinessEntities.BusinessLayer.AddCompanySpcfcOriginAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Busines_SpcfcOriginAreaCodes.cs:line 15
    at _123Movers.Controllers.SpecificOriginAreaCodesController.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\SpecificOriginAreaCodesController.cs:line 45
 ClientConnectionId:2cba36ca-4657-401a-9fd4-d557972c6b61
+2014-07-28 16:34:47,772 [13] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+Conversion failed when converting the varchar value '["270"' to data type smallint.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
+   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
+ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
+2014-07-28 16:34:53,394 [36] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+Conversion failed when converting the varchar value '["209"' to data type smallint.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
+   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
+ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
+2014-07-28 16:40:00,237 [13] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+Conversion failed when converting the varchar value '["334"' to data type smallint.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
+   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
+ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
+2014-07-28 16:40:01,571 [38] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+Conversion failed when converting the varchar value '["334"' to data type smallint.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
+   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
+ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
+2014-07-28 16:40:49,011 [13] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+Conversion failed when converting the varchar value '["209"' to data type smallint.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
+   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
+ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
+2014-07-28 16:40:49,872 [38] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+Conversion failed when converting the varchar value '["209"' to data type smallint.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
+   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
+ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
+2014-07-28 16:40:50,138 [36] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+Conversion failed when converting the varchar value '["209"' to data type smallint.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
+   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
+ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
+2014-07-28 16:40:50,369 [38] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+Conversion failed when converting the varchar value '["209"' to data type smallint.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
+   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
+ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
+2014-07-28 16:40:50,626 [36] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+Conversion failed when converting the varchar value '["209"' to data type smallint.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
+   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
+ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
+2014-07-28 16:41:20,078 [38] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+Conversion failed when converting the varchar value '["209"' to data type smallint.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
+   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
+ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
+2014-07-29 00:57:40,675 [51] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'usp_AddCompanyAreasDestZipCodes' expects parameter '@areaCode', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddCompanyAreaDestinationZipCodes(Nullable`1 companyId, Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestinationZipCodes.cs:line 96
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyAreaDestinationZipCodes(Nullable`1 companyId, Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestinationZipCodes.cs:line 15
+   at _123Movers.Controllers.DestZipCodeController.AddCompanyAreaDestinationZipCodes(Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestZipCodeController.cs:line 66
+ClientConnectionId:5fa227af-d4d3-4eda-9cad-752b3acb318b
