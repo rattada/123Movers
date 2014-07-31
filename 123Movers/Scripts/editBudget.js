@@ -44,6 +44,7 @@
                     $('#movewight').removeClass('btn-default');
                     $('#movewight').addClass('btn-warning');
                 }
+
                 else if (id == 8 && val[2] == "True") {
                     $('#originzip').removeClass('btn-default');
                     $('#originzip').addClass('btn-warning');
@@ -56,6 +57,12 @@
                     $('#specificStates').removeClass('btn-default');
                     $('#specificStates').addClass('btn-warning');
                 }
+
+                if ($('#managearea').hasClass('btn-default')) {
+                    $('.clsdisable').attr("disabled", "disabled");
+                    return false;
+                }
+
             });
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -66,5 +73,7 @@
     $('body').on('change keyup keydown', 'input, textarea, select', function (e) {
         $("#save").attr("disabled", false);
     });
+
+
 
 });
