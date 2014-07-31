@@ -252,3 +252,93 @@ ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
    at _123Movers.BusinessEntities.BusinessLayer.AddCompanyAreaDestinationZipCodes(Nullable`1 companyId, Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestinationZipCodes.cs:line 15
    at _123Movers.Controllers.DestZipCodeController.AddCompanyAreaDestinationZipCodes(Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestZipCodeController.cs:line 66
 ClientConnectionId:5fa227af-d4d3-4eda-9cad-752b3acb318b
+2014-07-30 20:21:08,397 [242] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
+   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
+   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
+ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
+2014-07-30 20:21:59,856 [222] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
+   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
+   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
+ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
+2014-07-30 20:22:39,362 [224] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
+   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
+   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
+ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
+2014-07-30 20:23:58,525 [224] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
+   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
+   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
+ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
+2014-07-30 20:24:35,878 [224] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
+   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
+   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
+ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
+2014-07-30 20:25:02,852 [242] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
+   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
+   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
+ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443

@@ -11,7 +11,8 @@
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 
 @section JavaScript{
-   @Html.Script("destZipCodes.js")
+    @Html.Script("destZipCodes.js")
+    @Html.Script("jquery.loadmask.min.js");
 }
 
 <p class="clearfix"></p>
@@ -55,7 +56,7 @@
                     </td>
                     <td class="text-center">
                         @{
-                        var zipcodes = @Model.DestinationZipCodes.Where(x => x.AreaCode == @DestinationAreaCode.AreaCode && x.ServiceId == @DestinationAreaCode.ServiceId).Select(x => x.ZipCode).ToList();
+                        var zipcodes = @Model.DestinationZipCodes.Where(x => x.AreaCode == @DestinationAreaCode.AreaCode && x.ZipCode != null && x.ServiceId == @DestinationAreaCode.ServiceId).Select(x => x.ZipCode).ToList();
                         }
 
                         @if (@zipcodes.Count() > 0)
@@ -79,11 +80,11 @@
 <p class="clear-fix"></p>
 <div class="row">
     <div class="col-md-12">
-    <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary  pull-right">Back To Edit</a>
-</div>
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary  pull-right">Back To Edit</a>
     </div>
+</div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"  data-keyboard="false">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -91,13 +92,13 @@
                 <h4 class="modal-title text-center" id="myModalLabel">Destination Zip Codes</h4>
             </div>
             <div class="modal-body text-center">
-                <select name="areaZipCode" id="areaZipCode" size="20" style="width: 150px" multiple>
+                <select name="areaZipCode" id="areaZipCode" size="20" class="selectItem"  multiple>
                 </select>
 
                 <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
                 <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
 
-                <select name="areaZipSelected" id="areaZipSelected" style="width: 150px" size="20" multiple>
+                <select name="areaZipSelected" id="areaZipSelected" class="selectItem"  size="20" multiple>
                 </select>
             </div>
             <div class="modal-footer">

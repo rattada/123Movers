@@ -1,5 +1,4 @@
-﻿
-$(function () {
+﻿$(function () {
     var serviceId;
     var ServiceType;
     var k = 0;
@@ -10,7 +9,6 @@ $(function () {
         $('li.cslocal').hide();
     }
     else if ($('#serviceid').val() == 1009) {
-
         serviceId = 1009;
         ServiceType = 'local';
         $('#ServiceTab a:first').tab('show') // Select first 
@@ -20,24 +18,24 @@ $(function () {
         serviceId = 1009;
         ServiceType = 'Both';
         $('#ServiceTab a:first').tab('show') // Default first 
-
     }
 
     $("#saveprice").attr('disabled', 'disabled');
 
     $("#body").on("keypress", "input", function (event) {
-        //$(this).val($(this).val().replace(/[^0-9\.]/g, ''));
         if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
             event.preventDefault();
         }
         else
+        {
+            //$(this).val('$' + $(this).val().toFixed(2));
             $("#saveprice").removeAttr('disabled');
+        }
+            
     });
 
     GetAvailableAreas(serviceId, ServiceType);
     GetSelectedAreas(serviceId, ServiceType);
-
-
 
     function GetAvailableAreas(serviceId, ServiceType) {
         $.ajax({
@@ -68,7 +66,6 @@ $(function () {
     }
 
     function GetSelectedAreas(serviceId, ServiceType) {
-
         $.ajax({
             url: '/AreaCode/GetCompanyAreasWithPrices',
             type: "GET",
@@ -171,7 +168,6 @@ $(function () {
                 }
                 areacodes.push(areacode + '-' + 'YES-' + defaultprice);
             }
-
         });
 
         var rows = $("#table1 tbody tr").length + $("#table2 tbody tr").length;
@@ -198,7 +194,6 @@ $(function () {
                 } else {
                     alert("Error :" + data.message);
                 }
-
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 var errMessage = JSON.parse(xhr.responseText).customErrorMessage;
@@ -208,9 +203,7 @@ $(function () {
 
     });
 
-
     $('#add').click(function () {
-
         var Service = $("#ServiceTab > li.active >a").text();
 
         var selected = [];
@@ -235,32 +228,25 @@ $(function () {
                     GetAvailableAreas(serviceId, 'local');
                     GetSelectedAreas(serviceId, 'local');
                     $('#ServiceTab a:first').tab('show');
-
                 }
                 else {
-
                     serviceId = parseInt(1000);
                     GetAvailableAreas(serviceId, 'long');
                     GetSelectedAreas(serviceId, 'long');
                     $('#ServiceTab a:last').tab('show')
-
                 }
                 alert("Area Codes added Successfully");
                 k = 1;
-
             },
             error: function (xhr, ajaxOptions, thrownError) {
-
             }
         });
-
-
     });
-
 
     $('#remove').click(function () {
         var Service = $("#ServiceTab > li.active >a").text();
         var selected = [];
+
         $('#areasSelected :selected').each(function (i, el) {
             selected[i] = $(this).val();
         });
@@ -282,22 +268,17 @@ $(function () {
                     GetAvailableAreas(serviceId, 'local');
                     GetSelectedAreas(serviceId, 'local');
                     $('#ServiceTab a:first').tab('show')
-
-
                 }
                 else {
-
                     serviceId = parseInt(1000);
                     GetAvailableAreas(serviceId, 'long');
                     GetSelectedAreas(serviceId, 'long');
                     $('#ServiceTab a:last').tab('show')
-
                 }
                 alert("Area Codes removed Successfully");
                 k = 1;
             },
             error: function (xhr, ajaxOptions, thrownError) {
-
             }
         });
 
@@ -314,7 +295,6 @@ $(function () {
             $('#accordion span').removeClass("glyphicon glyphicon-minus");
             $('#accordion span').addClass("glyphicon glyphicon-plus");
         }
-
     });
     if (k == 0) {
         $('#ServiceTab > li:first').click(function () {
@@ -325,7 +305,6 @@ $(function () {
         });
 
         $('#ServiceTab > li:last').click(function () {
-
             serviceId = 1000;
             GetAvailableAreas(serviceId, 'long');
             GetSelectedAreas(serviceId, 'long');

@@ -1,0 +1,52 @@
+﻿@model _123Movers.Models.SpecificStatesModel
+@using _123Movers.Models
+@{
+    ViewBag.Title = "SpecificStates";
+}
+<input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
+
+@Html.Partial(Constants.VIEW, @Model._companyInfo)
+
+<p class="clearfix"></p>
+<p class="clearfix"></p>
+
+@section JavaScript{
+    @Html.Script("spcfcStates.js")
+}
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            @Html.LabelFor(m => m.ServiceId)
+            @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, "--Choose One--", new { id = "ddlServiceID", @class = "form-control dropdown", @title = "Select Services" })
+            @Html.ValidationMessageFor(m => m.ServiceId)
+        </div>
+        <strong>Origin State</strong><br />
+        <select name="state" id="ddlState" class="form-control dropdown">
+        </select>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <div class="row text-center">
+            <strong>Destination State</strong>
+        </div>
+        <div class="row" style="margin-left: 15px;">
+            <div class="tab-pane" id="local">
+                <select name="originStates" id="originStates" size="20" class="selectItem"  multiple>
+                </select>
+
+                <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
+                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
+
+                <select name="destStates" id="destStates" class="selectItem"  size="20" multiple>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="clear-fix"></p>
+<div class="row ">
+    <div class="col-md-12">
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+    </div>
+</div>

@@ -66,6 +66,7 @@
     <Compile Include="Business_MoveWeight.cs" />
     <Compile Include="Business_Notification.cs" />
     <Compile Include="Business_OriginZipCodes.cs" />
+    <Compile Include="Business_Radius.cs" />
     <Compile Include="Business_Report.cs" />
     <Compile Include="Business_SpcfcStates.cs" />
     <Compile Include="Busines_DestZipCodes.cs" />

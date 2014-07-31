@@ -124,6 +124,10 @@ namespace _123Movers.Models
         public static readonly string SP_COMPANY_AVAIL_STATES__GET = "usp_GetCompanyStates";
         #endregion
 
+        #region Radius  Stored Procedures
+        public static readonly string SP_COMPANY__ZIPCODES_BY_RADIUS_GET = "usp_AddZipCodesByRadius";
+        #endregion
+
 
         #endregion
 

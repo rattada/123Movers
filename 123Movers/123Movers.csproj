@@ -208,6 +208,7 @@
     <Compile Include="Controllers\MoveWeightController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\OriginZipCodeController.cs" />
+    <Compile Include="Controllers\RadiusController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SpecificOriginAreaCodesController.cs" />
     <Compile Include="Controllers\SpecificStatesController.cs" />
@@ -322,6 +323,7 @@
     <Content Include="Scripts\moveDistance.js" />
     <Content Include="Scripts\moveWeight.js" />
     <Content Include="Scripts\originZipCodes.js" />
+    <Content Include="Scripts\radius.js" />
     <Content Include="Scripts\reports.js" />
     <Content Include="Scripts\search.js" />
     <Content Include="Scripts\spcfcOriginAreaCodes.js" />
@@ -381,6 +383,7 @@
     <Content Include="Views\SpecificOriginAreaCodes\SpecificOriginAreaCodes.cshtml" />
     <Content Include="Views\SpecificStates\SpecificStates.cshtml" />
     <Content Include="Views\DestZipCode\DestZipCode.cshtml" />
+    <Content Include="Views\Radius\Radius.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
