@@ -1,12 +1,8 @@
 ﻿$(function () {
-
     $('#tblLeadLimit tbody tr').each(function () {
         $(this).find(".classCheckVal:input[type=text]").each(function () {
-
             if ($(this).val() != 0 && $(this).val() != '')
                 $(this).attr("disabled", false);
-
-
         });
     });
 
@@ -14,7 +10,6 @@
 
     $("body").on("keypress", "input", function (event) {
         var key = event.which;
-
         if (!(key >= 48 && key <= 57))
             event.preventDefault();
         else
@@ -22,88 +17,62 @@
     });
 
     $("#saveleads").click(function () {
-        var count = 0;
-        var required = "";
-        var Array = [];
         var values = "";
         var LeadLimitData = [];
         var Filleddata = [];
 
         $('#tblLeadLimit tbody tr').each(function () {
-
             //Checking for Only checked checkboxes
-
             $(this).find('.chkSelectClass:checkbox:checked').each(function () {
-
-
                 var row = $(this).closest('tr');
                 var columns = row.find('td');
-
+                //var t = $(this).closest('tr').find('td')[i].textContent;
+                //var tt = $(this).closest('tr').find('td').find("input:text").val();
                 $.each(columns, function (i, item) {
-                    if (i > 2) {
-                        values = values + "," + $(this).closest('td').find("input:text").val().trim();
-
+                    if (i == 1) {
+                        var service = $.trim(item.textContent);
+                        if (service == 'Local') ServiceId = 1009;
+                        else if (service = 'Long') ServiceId = 1000;
+                        else ServiceId = null;
                     }
-                    else {
-                        if (i == 0)
-                            values = item.textContent;
-                        else
-                            values = values + "," + item.textContent.trim();
+                    else if (i == 2) {
+                        if ($.trim(item.textContent) == 'Default') AreaCodes = null;
+                        else AreaCodes = $.trim(item.textContent);
                     }
-
-
-
+                    else if (i == 3) {
+                        LeadFrequency = $.trim($(this).closest('td').find("input:text").val());
+                    }
+                    else if (i == 4) {
+                        DailyLeadLimit = $.trim($(this).closest('td').find("input:text").val());
+                    }
+                    else if (i == 5) {
+                        MonthlyLeadLimit = $.trim($(this).closest('td').find("input:text").val());
+                    }
+                    else if (i == 6) {
+                        TotalLeadLimit = $.trim($(this).closest('td').find("input:text").val());
+                    }
                 });
+
+                LeadLimitData =
+                          [{
+                              AreaCodes: AreaCodes,
+                              ServiceId: ServiceId,
+                              LeadFrequency: LeadFrequency,
+                              DailyLeadLimit: DailyLeadLimit,
+                              MonthlyLeadLimit: MonthlyLeadLimit,
+                              TotalLeadLimit: TotalLeadLimit
+                          }]
+                Filleddata.push(LeadLimitData);
+
                 //saving lsit of checked item data in a Array.
-                Array.push(values);
+                //Array.push(values);
             });
-        });1009
-
-
-        //looping through the Array  and storing in a Array list 
-        $.each(Array, function (i, item) {
-
-            required = item.split(",")
-
-
-            if (required[2] == 'Default') {
-                required[2] = null;
-
-            }
-
-
-            if (required[1] == 'Local') {
-                required[1] =1009;
-
-            }
-            else if (required[1] == 'Long') {
-                required[1] =1000;
-
-            }
-            else {
-                required[1] = null;
-            }
-
-
-            LeadLimitData =
-           [{
-               AreaCodes: required[2],
-               ServiceId: required[1],
-               LeadFrequency: required[3],
-               DailyLeadLimit: required[4],
-               MonthlyLeadLimit: required[5],
-               TotalLeadLimit: required[6]
-           }]
-
-            Filleddata.push(LeadLimitData);
-
         });
 
         //Saving the  entire data in DB with Ajax call
 
         if (Filleddata.length != 0) {
             $.ajax({
-
                 url: '/LeadLimit/LeadLimit',
                 cache: false,
                 type: 'POST',
@@ -118,21 +87,15 @@
                     alert('Service call failed');
                 }
             });
-
         }
         else {
-            alert("Please Select any ");
+            alert("Please Select atleast one lead");
             return false;
-
         }
-
     });
 
-
     $("body #tblLeadLimit ").parent().on('change', ".chkInnerClass", function () {
-
         if ($(this).prop('checked') == true) {
-    
             $(this).closest("td").find("input[type=text]").prop("disabled", false);
         }
         else {
@@ -140,7 +103,6 @@
             $(this).closest("td").find("input[type=text]").prop("disabled", true);
         }
     });
-
 
     $("#rdbtnboth").on("change", function () {
         if ($(this).prop('checked') == true) {
@@ -154,7 +116,6 @@
     $("#rdbtnLocal,#rdbtnLong").on("change", function () {
         $("#rdbtnboth").prop("checked", false);
         $("#txtFrequencyboth").attr("disabled", true);
-
     });
 
     $("body #tblLeadLimit ").parent().on('change', ".chkSelectClass", function () {
@@ -165,10 +126,5 @@
         else {
             $(this).closest('tr').find(".freqEnable").attr("disabled", true);
         }
-
-
     });
-
-
-
 });

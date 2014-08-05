@@ -4,7 +4,6 @@
         GetAvailableAreas(serviceId);
     } else { $('#ddlareaCode').attr("disabled", true); }
 
-
     function GetAvailableZipCodes() {
         var serviceId = $('#ddlServiceID').val();
         var extAreaCode = $('#ddlexstngareaCode').val();
@@ -28,7 +27,6 @@
                     } else {
                         options += '<option value="' + val[0] + '">' + val[0] + '</option>';
                     }
-                    
                 });
                 if (json.length > 0) {
                     $('#destZipCodes').html(options);
@@ -52,7 +50,6 @@
                 var json = $.parseJSON(strigifyJson);
                 var options;
                 $.each(json, function (i, val) {
-                    
                     if (options == undefined) {
                         options = '<option value="' + val[0] + '">' + val[0] + '</option>';
                     } else {
@@ -81,18 +78,12 @@
             success: function (data) {
                 var strigifyJson = JSON.stringify(data);
                 var json = $.parseJSON(strigifyJson);
-                var table;
-                var options ;
+                var options = '<option value="">' + "--Choose One--" + '</option>';
                 $.each(json, function (i, val) {
-                    if (options == undefined) {
-                        options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                    } else {
                         options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
-                    }
                 });
 
                 if (json.length > 0) {
-                    options = '<option value="">' + "--Choose One--" + '</option>' + options;
                     $('#ddldestareaCode').html(options);
                     $('#ddlexstngareaCode').html(options);
                     $('#existingZipCodes').html('');

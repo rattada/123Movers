@@ -13,5 +13,10 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.AddZipCodesByRadius(companyId,serviceId,zipcode,radius,category,type);
         }
+        public static List<List<string>> GetZipCodesByRadius(int? companyId, int? serviceId, int zipcode, decimal radius, string category)
+        {
+            return DataLayer.GetZipCodesByRadius(companyId, serviceId, zipcode, radius, category);
+        }
+
     }
 }

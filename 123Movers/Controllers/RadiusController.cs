@@ -48,5 +48,10 @@ namespace _123Movers.Controllers
             }
             return result;
         }
+
+        public JsonResult GetZipCodesByRadius(int? service, int zipcode, decimal radius, string category)
+        {
+            return Json(BusinessLayer.GetZipCodesByRadius(CompanyInfo.CompanyId, service, zipcode, radius, category), JsonRequestBehavior.AllowGet);
+        }
     }
 }
