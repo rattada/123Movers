@@ -117,7 +117,6 @@ function AddZipCodesByRadius(RadiusData) {
     });
 };
 function GetZipCodesByRadius(RadiusData) {
-    alert('ASD');
     $.ajax({
         url: '/Radius/GetZipCodesByRadius',
         type: 'GET',
@@ -144,7 +143,6 @@ function GetZipCodesByRadius(RadiusData) {
                 $('#tblRadius').html("<tr><td class='text-center'><b></b>No record(s) found with above Combination.Try with different Combination.</td></tr>");
                 $("#btnRadius").prop("disabled", true);
             }
-
         },
         error: function (xhr, ajaxOptions, thrownError) {
         }
