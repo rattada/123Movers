@@ -450,3 +450,31 @@ ClientConnectionId:483618c4-6717-4d12-bf4b-f7e60b044ed9
    at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
    at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
 ClientConnectionId:483618c4-6717-4d12-bf4b-f7e60b044ed9
+2014-08-05 19:09:44,893 [277] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
+   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
+   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
+ClientConnectionId:7c7fe8c5-bff9-4e69-b91b-b66518d3148f
+2014-08-05 19:10:03,787 [277] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
+   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
+   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
+ClientConnectionId:7c7fe8c5-bff9-4e69-b91b-b66518d3148f

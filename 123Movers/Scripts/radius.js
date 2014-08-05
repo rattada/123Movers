@@ -133,15 +133,16 @@ function GetZipCodesByRadius(RadiusData) {
                 jQuery.each(json, function (i, val) {
                     table2 += "<tr><td class='text-center'>" + val[0] + "</td><td class='text-center'>" + val[1] + "</td><td class='text-center'>" + val[2] + "</td><td class='text-center'>" + val[3] + "</td></tr>";
                 });
-                table1 = "<thead><tr><th class='header text-center'>Origin Zip</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>ZipCode</th><th class='header text-center'>Distance</th></tr></thead>";
+                table1 = "<thead><tr><th class='header text-center'>Origin</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>ZipCode</th><th class='header text-center'>Distance</th></tr></thead>";
                 table = table1 + table2;
                 $('#tblRadius').html(table);
+                $('#tblRadius').dataTable({ "sPaginationType": "full_numbers" });
                 $("#btnRadius").prop("disabled", false);
             }
             else {
-
-                $('#tblRadius').html("<tr><td class='text-center'><b></b>No record(s) found with above Combination.Try with different Combination.</td></tr>");
+                $('#tblRadius_wrapper').html('');
                 $("#btnRadius").prop("disabled", true);
+                alert("No record(s) found with above Combination.Please try with another Combination");
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {

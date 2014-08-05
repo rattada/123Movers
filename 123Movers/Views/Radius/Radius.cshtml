@@ -5,7 +5,7 @@
 }
 @section JavaScript{
     @Html.Script("radius.js")
-    @Html.Script("jquery.tablesorter.min.js")
+    @Html.Script("jquery.dataTables.min.js")
 }
 <input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
@@ -54,9 +54,10 @@
         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
     </div>
 </div>
+<p class="clear-fix"></p>
 <div class="row" id="divGetRecords">
-    <div class="table-responsive scrollable-table">
-        <table id="tblRadius" class="table  table-striped table-hover table-bordered tablesorter">
+    <div class="table-responsive">
+        <table id="tblRadius" class="table table-bordered table-striped table-hover">
         </table>
     </div>
 </div>

@@ -286,13 +286,10 @@
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\release.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Images\asc.gif" />
-    <Content Include="Images\asc.png" />
-    <Content Include="Images\bg.gif" />
-    <Content Include="Images\bg.png" />
-    <Content Include="Images\desc.gif" />
-    <Content Include="Images\desc.png" />
     <Content Include="Images\movers.jpg" />
+    <Content Include="Images\sort_asc.png" />
+    <Content Include="Images\sort_both.png" />
+    <Content Include="Images\sort_desc.png" />
     <Content Include="Scripts\areaCodes.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\destAreaCode.js" />
@@ -307,9 +304,9 @@
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.loadmask.js" />
     <Content Include="Scripts\jquery.loadmask.min.js" />
-    <Content Include="Scripts\jquery.tablesorter.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
