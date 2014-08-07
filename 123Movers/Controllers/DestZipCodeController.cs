@@ -40,7 +40,7 @@ namespace _123Movers.Controllers
 
             DestZipCodeModel destZipCodes = new DestZipCodeModel();
             destZipCodes._companyInfo = CompanyInfo;
-            destZipCodes.ServiceId = serviceId == null ? Constants.LOCAL : serviceId;
+            destZipCodes.ServiceId = serviceId == null ? (int) ServiceType.Local : serviceId;
             return View(destZipCodes);
         }
 

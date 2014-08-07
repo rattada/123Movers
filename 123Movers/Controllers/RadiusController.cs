@@ -28,7 +28,7 @@ namespace _123Movers.Controllers
                 ViewBag.Services = Service;
             RadiusModel radius = new RadiusModel();
             radius._companyInfo = CompanyInfo;
-            radius.ServiceId = serviceId == null ? Constants.BOTH : serviceId;
+            radius.ServiceId = serviceId == null ? (int)ServiceType.Both : serviceId;// Constants.BOTH : serviceId;
             return View(radius);
         }
 

@@ -107,7 +107,7 @@ namespace _123Movers.Controllers
             budget.TotalBudget = TotalBudget;
             budget.IsRecurring = IsRecurring;
             budget.IsRequireNoticeToCharge = IsRequireNoticeToCharge;
-            budget.ServiceId = serviceId == null ? Constants.BOTH : serviceId;
+            budget.ServiceId = serviceId == null ? (int)ServiceType.Both : serviceId;
             budget.MinDaysToCharge = minDaysToCharge;
             budget.AgreementNumber = agnumber;
             budget.TermType = Recurring;
