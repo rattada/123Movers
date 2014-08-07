@@ -131,25 +131,25 @@ namespace _123Movers.Models
             #region SpecificOriginDestAreaCodes Stored Procedures
 
             public static readonly string SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_ADD = "usp_AddCompanySpecificOriginDestinationAreacode";
-            public static readonly string SP_COMPANY__SPCFC_ORIGINDEST_AREACODE_DELETE = "usp_DeleteCompanySpecificOriginDestinationAreacode";
-            public static readonly string SP_COMPANY__SPCFC_ORIGINDEST_AREACODE_GET = "usp_GetCompanySpecificOriginDestinationAreacode";
-            public static readonly string SP_COMPANY__SPCFC_AVAIL_ORIGINDEST_AREACODE_GET = "usp_getCompanyStateAreacode";
+            public static readonly string SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_DELETE = "usp_DeleteCompanySpecificOriginDestinationAreacode";
+            public static readonly string SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_GET = "usp_GetCompanySpecificOriginDestinationAreacode";
+            public static readonly string SP_COMPANY_SPCFC_AVAIL_ORIGINDEST_AREACODE_GET = "usp_getCompanyStateAreacode";
 
             #endregion
 
             #region Specific States Stored Procedures
 
             public static readonly string SP_COMPANY_SPCFC_STATES_ADD = "usp_AddCompanySpecificOriginDestinationState";
-            public static readonly string SP_COMPANY__SPCFC_STATES_DELETE = "usp_DeleteCompanySpecificOriginDestinationState";
-            public static readonly string SP_COMPANY__SPCFC_STATES_GET = "usp_GetCompanySpecificOriginDestinationState";
+            public static readonly string SP_COMPANY_SPCFC_STATES_DELETE = "usp_DeleteCompanySpecificOriginDestinationState";
+            public static readonly string SP_COMPANY_SPCFC_STATES_GET = "usp_GetCompanySpecificOriginDestinationState";
             public static readonly string SP_COMPANY_AVAIL_STATES__GET = "usp_GetCompanyStates";
 
             #endregion
 
             #region Radius  Stored Procedures
 
-            public static readonly string SP_COMPANY__ZIPCODES_BY_RADIUS_ADD = "usp_AddZipCodesByRadius";
-            public static readonly string SP_COMPANY__ZIPCODES_BY_RADIUS_GET = "usp_GetZipCodesByRadius";
+            public static readonly string SP_COMPANY_ZIPCODES_BY_RADIUS_ADD = "usp_AddZipCodesByRadius";
+            public static readonly string SP_COMPANY_ZIPCODES_BY_RADIUS_GET = "usp_GetZipCodesByRadius";
 
             #endregion
 

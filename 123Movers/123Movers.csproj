@@ -286,6 +286,7 @@
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\release.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\loadingSG.gif" />
     <Content Include="Images\movers.jpg" />
     <Content Include="Images\sort_asc.png" />
     <Content Include="Images\sort_both.png" />

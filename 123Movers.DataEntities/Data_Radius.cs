@@ -17,7 +17,7 @@ namespace _123Movers.DataEntities
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY__ZIPCODES_BY_RADIUS_GET;
+                _cmd.CommandText = Constants.SP_COMPANY_ZIPCODES_BY_RADIUS_ADD;
                 _cmd.Parameters.AddWithValue("companyID", companyId);
                 _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
                 _cmd.Parameters.AddWithValue("zipCode", zipcode);
@@ -50,7 +50,7 @@ namespace _123Movers.DataEntities
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY__ZIPCODES_BY_RADIUS_GET;
+                _cmd.CommandText = Constants.SP_COMPANY_ZIPCODES_BY_RADIUS_GET;
                 _cmd.Parameters.AddWithValue("companyID", companyId);
                 _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
                 _cmd.Parameters.AddWithValue("zipCode", zipcode);

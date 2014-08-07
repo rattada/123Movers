@@ -91,12 +91,13 @@
             radius: radius,
             category: category
         };
-
+       
         GetZipCodesByRadius(RadiusData);
 
     });
 
     function AddZipCodesByRadius(RadiusData) {
+        $("body").mask('Saving...');
         $.ajax({
             url: '/Radius/AddZipCodesByRadius',
             type: 'POST',
@@ -106,20 +107,26 @@
             success: function (data) {
 
                 if (data.success) {
+                    $("body").unmask();
                     alert("Record(s) saved successfully");
-                    $("input:text").val('');
-                    $('select').prop('selectedIndex', 0);
+                    $("#btnRadius").prop("disabled", true);
+                   // $("input:text").val('');
+                   // $('select').prop('selectedIndex', 0);
                 }
                 else {
 
                     alert("You are trying to Insert duplicate Record(s)");
                 }
+               
             },
             error: function (xhr, ajaxOptions, thrownError) {
+                $("body").unmask();
             }
         });
+        
     };
     function GetZipCodesByRadius(RadiusData) {
+        $("body").mask('Loading...');
         $.ajax({
             url: '/Radius/GetZipCodesByRadius',
             type: 'GET',
@@ -127,7 +134,6 @@
             dataType: "json",
             cache: false,
             success: function (data) {
-                $(body).mask('Loading....')
                 var strigifyJson = JSON.stringify(data);
                 var json = $.parseJSON(strigifyJson);
                 var table = "<table class='table table-bordered table-striped table-hover' id ='tblRadius'> <thead><tr><th class='header text-center'>Origin</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>ZipCode</th><th class='header text-center'>Distance</th></tr></thead><tbody>";
@@ -138,17 +144,22 @@
                     table += "</tbody></table>";
                     $('.table-responsive').html(table);
                     $('#tblRadius').dataTable({ "sPaginationType": "full_numbers" });
-                    $("#btnRadius").css('display', 'block'); $("#ddlorigordest").prop("disabled", false);
+                    $("#btnRadius").css('display', 'block');
+                    $("#ddlorigordest").prop("disabled", false);
+                    $("#btnRadius").prop("disabled", false);
                 }
                 else {
                    // $('#tblRadius_wrapper').html('');
-                    $("#btnRadius").css('display', 'none'); $("#ddlorigordest").prop("disabled", true);
+                    $("#btnRadius").css('display', 'none');
+                    $("#ddlorigordest").prop("disabled", true);
                     alert("No record(s) found with above Combination.Please try with another Combination");
                 }
+                $("body").unmask();
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
         });
+       
     };
 });
 

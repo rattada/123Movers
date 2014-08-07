@@ -17,7 +17,7 @@ namespace _123Movers.DataEntities
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY__SPCFC_AVAIL_ORIGINDEST_AREACODE_GET; 
+                _cmd.CommandText = Constants.SP_COMPANY_SPCFC_AVAIL_ORIGINDEST_AREACODE_GET; 
                                 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
@@ -65,7 +65,7 @@ namespace _123Movers.DataEntities
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY__SPCFC_ORIGINDEST_AREACODE_DELETE;
+                _cmd.CommandText = Constants.SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_DELETE;
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
@@ -87,7 +87,7 @@ namespace _123Movers.DataEntities
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY__SPCFC_ORIGINDEST_AREACODE_GET;
+                _cmd.CommandText = Constants.SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_GET;
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
