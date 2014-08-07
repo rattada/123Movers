@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $("#txtzipcode").prop("disabled", true);
+    $("#ddlorigordest").prop("disabled", true);
     //Allow decimal values.
     $("#body").on("keypress", "#txtradius", function (event) {
         if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
@@ -138,11 +138,11 @@
                     table += "</tbody></table>";
                     $('.table-responsive').html(table);
                     $('#tblRadius').dataTable({ "sPaginationType": "full_numbers" });
-                    $("#btnRadius").css('display', 'block');  $("#txtzipcode").prop("disabled", false);
+                    $("#btnRadius").css('display', 'block'); $("#ddlorigordest").prop("disabled", false);
                 }
                 else {
-                    $('#tblRadius_wrapper').html('');
-                    $("#btnRadius").css('display', 'none'); $("#txtzipcode").prop("disabled", true);
+                   // $('#tblRadius_wrapper').html('');
+                    $("#btnRadius").css('display', 'none'); $("#ddlorigordest").prop("disabled", true);
                     alert("No record(s) found with above Combination.Please try with another Combination");
                 }
             },

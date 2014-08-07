@@ -7,6 +7,7 @@
         $('#info').addClass('thead')
     }
     $('#btnSearch').click(function () {
+        $("body").mask('Searching...');
         if (CheckForInputs() == false)
             return false;
 
