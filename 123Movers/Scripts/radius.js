@@ -33,7 +33,7 @@
             return false;
         }
         else if (type == "") {
-            alert('Please select type');
+            alert('Please Select Category');
             $("#ddlorigordest").focus();
             return false;
         }
@@ -136,7 +136,7 @@
             success: function (data) {
                 var strigifyJson = JSON.stringify(data);
                 var json = $.parseJSON(strigifyJson);
-                var table = "<table class='table table-bordered table-striped table-hover' id ='tblRadius'> <thead><tr><th class='header text-center'>Origin</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>ZipCode</th><th class='header text-center'>Distance</th></tr></thead><tbody>";
+                var table = "<table class='table table-bordered table-striped table-hover' id ='tblRadius'> <thead><tr><th class='header text-center'>Origin Zip</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>ZipCode</th><th class='header text-center'>Distance</th></tr></thead><tbody>";
                 if (json.length > 0) {
                     jQuery.each(json, function (i, val) {
                         table += "<tr><td class='text-center'>" + val[0] + "</td><td class='text-center'>" + val[1] + "</td><td class='text-center'>" + val[2] + "</td><td class='text-center'>" + val[3] + "</td></tr>";
