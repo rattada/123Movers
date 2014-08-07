@@ -6,6 +6,7 @@
 @section JavaScript{
     @Html.Script("radius.js")
     @Html.Script("jquery.dataTables.min.js")
+    @Html.Script("jquery.loadmask.min.js");
 }
 <input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
 @*<div id="wait" style="display: none;"><img src="~/Images/windows8.gif" /></div>*@
@@ -69,8 +70,7 @@
 <p class="clear-fix"></p>
 <div class="row" id="divGetRecords">
     <div class="table-responsive">
-        <table id="tblRadius" class="table table-bordered table-striped table-hover">
-        </table>
+      
     </div>
 </div>
 <p class="clear-fix"></p>

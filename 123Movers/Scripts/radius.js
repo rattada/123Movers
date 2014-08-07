@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $("#btnRadius").prop("disabled", true);
+    $("#txtzipcode").prop("disabled", true);
     //Allow decimal values.
     $("#body").on("keypress", "#txtradius", function (event) {
         if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
@@ -127,25 +127,22 @@
             dataType: "json",
             cache: false,
             success: function (data) {
+                $(body).mask('Loading....')
                 var strigifyJson = JSON.stringify(data);
                 var json = $.parseJSON(strigifyJson);
-                var table1;
-                var table2;
-                var table;
+                var table = "<table class='table table-bordered table-striped table-hover' id ='tblRadius'> <thead><tr><th class='header text-center'>Origin</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>ZipCode</th><th class='header text-center'>Distance</th></tr></thead><tbody>";
                 if (json.length > 0) {
-
                     jQuery.each(json, function (i, val) {
-                        table2 += "<tr><td class='text-center'>" + val[0] + "</td><td class='text-center'>" + val[1] + "</td><td class='text-center'>" + val[2] + "</td><td class='text-center'>" + val[3] + "</td></tr>";
+                        table += "<tr><td class='text-center'>" + val[0] + "</td><td class='text-center'>" + val[1] + "</td><td class='text-center'>" + val[2] + "</td><td class='text-center'>" + val[3] + "</td></tr>";
                     });
-                    table1 = "<thead><tr><th class='header text-center'>Origin</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>ZipCode</th><th class='header text-center'>Distance</th></tr></thead>";
-                    table = table1 + table2;
-                    $('#tblRadius').html(table);
+                    table += "</tbody></table>";
+                    $('.table-responsive').html(table);
                     $('#tblRadius').dataTable({ "sPaginationType": "full_numbers" });
-                    $("#btnRadius").prop("disabled", false);
+                    $("#btnRadius").css('display', 'block');  $("#txtzipcode").prop("disabled", false);
                 }
                 else {
                     $('#tblRadius_wrapper').html('');
-                    $("#btnRadius").prop("disabled", true);
+                    $("#btnRadius").css('display', 'none'); $("#txtzipcode").prop("disabled", true);
                     alert("No record(s) found with above Combination.Please try with another Combination");
                 }
             },
