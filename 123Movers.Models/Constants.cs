@@ -1,11 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Web;
 
 namespace _123Movers.Models
 {
+    public enum TermType
+    {
+        [Description("Recurring")]
+        Recurring = 0,
+        [Description("Non Recurring")]
+        NonRecurring = 1,
+        [Description("Recurring With Notice")]
+        RecurringWithNotice = 2
+    }
+
+    public enum ServiceType
+    {
+        Local = 1009,
+        Long = 1000,
+        Both = 999
+    }
+
     public static class Constants
     {
         public const string BASE_JS_FOLDER = "/Scripts/";

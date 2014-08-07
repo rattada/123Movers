@@ -59,6 +59,7 @@
     });
 
     $('#btnGetRadius').on("click", function () {
+        //StartSpin();
         var service = $.trim($("#ddlServiceID").val());
         var category = $.trim($("#ddllessorgreate").val());
         var radius = $.trim($("#txtradius").val());
@@ -90,62 +91,68 @@
             radius: radius,
             category: category
         };
+
         GetZipCodesByRadius(RadiusData);
+
     });
+
+    function AddZipCodesByRadius(RadiusData) {
+        $.ajax({
+            url: '/Radius/AddZipCodesByRadius',
+            type: 'POST',
+            data: RadiusData,
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+
+                if (data.success) {
+                    alert("Record(s) saved successfully");
+                    $("input:text").val('');
+                    $('select').prop('selectedIndex', 0);
+                }
+                else {
+
+                    alert("You are trying to Insert duplicate Record(s)");
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            }
+        });
+    };
+    function GetZipCodesByRadius(RadiusData) {
+        $.ajax({
+            url: '/Radius/GetZipCodesByRadius',
+            type: 'GET',
+            data: RadiusData,
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                var strigifyJson = JSON.stringify(data);
+                var json = $.parseJSON(strigifyJson);
+                var table1;
+                var table2;
+                var table;
+                if (json.length > 0) {
+
+                    jQuery.each(json, function (i, val) {
+                        table2 += "<tr><td class='text-center'>" + val[0] + "</td><td class='text-center'>" + val[1] + "</td><td class='text-center'>" + val[2] + "</td><td class='text-center'>" + val[3] + "</td></tr>";
+                    });
+                    table1 = "<thead><tr><th class='header text-center'>Origin</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>ZipCode</th><th class='header text-center'>Distance</th></tr></thead>";
+                    table = table1 + table2;
+                    $('#tblRadius').html(table);
+                    $('#tblRadius').dataTable({ "sPaginationType": "full_numbers" });
+                    $("#btnRadius").prop("disabled", false);
+                }
+                else {
+                    $('#tblRadius_wrapper').html('');
+                    $("#btnRadius").prop("disabled", true);
+                    alert("No record(s) found with above Combination.Please try with another Combination");
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            }
+        });
+    };
 });
-function AddZipCodesByRadius(RadiusData) {
-    $.ajax({
-        url: '/Radius/AddZipCodesByRadius',
-        type: 'POST',
-        data: RadiusData,
-        dataType: "json",
-        cache: false,
-        success: function (data) {
 
-            if (data.success) {
-                alert("Record(s) saved successfully");
-                $("input:text").val('');
-                $('select').prop('selectedIndex', 0);
-            }
-            else {
 
-                alert("You are trying to Insert duplicate Record(s)");
-            }
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-        }
-    });
-};
-function GetZipCodesByRadius(RadiusData) {
-    $.ajax({
-        url: '/Radius/GetZipCodesByRadius',
-        type: 'GET',
-        data: RadiusData,
-        dataType: "json",
-        cache: false,
-        success: function (data) {
-            var strigifyJson = JSON.stringify(data);
-            var json = $.parseJSON(strigifyJson);
-            var table1;
-            var table2;
-            var table;
-            if (json.length > 0) {
-                jQuery.each(json, function (i, val) {
-                    table2 += "<tr><td class='text-center'>" + val[0] + "</td><td class='text-center'>" + val[1] + "</td><td class='text-center'>" + val[2] + "</td><td class='text-center'>" + val[3] + "</td></tr>";
-                });
-                table1 = "<thead><tr><th class='header text-center'>Origin</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>ZipCode</th><th class='header text-center'>Distance</th></tr></thead>";
-                table = table1 + table2;
-                $('#tblRadius').html(table);
-                $('#tblRadius').dataTable({ "sPaginationType": "full_numbers" });
-                $("#btnRadius").prop("disabled", false);
-            }
-            else {
-                $('#tblRadius_wrapper').html('');
-                $("#btnRadius").prop("disabled", true);
-                alert("No record(s) found with above Combination.Please try with another Combination");
-            }
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-        }
-    });
-};

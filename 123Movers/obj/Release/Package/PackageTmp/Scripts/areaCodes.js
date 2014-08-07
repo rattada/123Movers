@@ -79,7 +79,7 @@
                 $('#txtDefaultPrice').val('');
 
                 var table;
-                var table1 = "<div class ='col-md-6' ><table class='table table-hover' id ='table1' ><thead><tr><th class='col-md-2 text-center'>" + 'Area Code' + "</th><th class='col-md-2 text-center'>" + 'Price' + "</th></tr> </thead><tbody>";
+                var table1 = "<div class ='col-md-6' ><table class='table table-hover table-striped' id ='table1' ><thead><tr><th class='col-md-2 text-center'>" + 'Area Code' + "</th><th class='col-md-2 text-center'>" + 'Price' + "</th></tr> </thead><tbody>";
                 var options = '<option value=""></option>';
                 jQuery.each(json, function (i, val) {
                     if (i == 0) {
@@ -97,7 +97,7 @@
                 });
                 table1 += "</tbody></table></div>";
 
-                var table2 = "<div class ='col-md-6' ><table class='table table-hover' id ='table2'><thead><tr><th class='col-md-2 text-center'>" + 'Area Code' + "</th><th class='col-md-2 text-center'>" + 'Price' + "</th></tr> </thead><tbody>";
+                var table2 = "<div class ='col-md-6' ><table class='table table-hover table-striped' id ='table2'><thead><tr><th class='col-md-2 text-center'>" + 'Area Code' + "</th><th class='col-md-2 text-center'>" + 'Price' + "</th></tr> </thead><tbody>";
                 jQuery.each(json, function (i, val) {
                     if (i >= Math.round(json.length / 2) && i < json.length) {
                         var value = val[2].toString().slice(0, -2);
@@ -109,6 +109,7 @@
                 table = table1 + table2;
 
                 $('#selectedareas').html(table);
+               
 
                 if (json.length > 0) {
                     $('#areasSelected').html(options);

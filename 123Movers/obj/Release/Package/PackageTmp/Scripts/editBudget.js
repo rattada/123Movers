@@ -62,7 +62,6 @@
                     $('.clsdisable').attr("disabled", "disabled");
                     return false;
                 }
-
             });
         },
         error: function (xhr, ajaxOptions, thrownError) {

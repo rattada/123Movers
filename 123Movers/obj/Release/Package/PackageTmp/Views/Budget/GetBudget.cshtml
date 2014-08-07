@@ -6,7 +6,7 @@
    
 }
 @section JavaScript{
-    @Html.Script("jquery.tablesorter.min.js")
+      @Html.Script("jquery.dataTables.min.js")
 }
 
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
@@ -106,8 +106,8 @@
                 <p><strong>Total Uncharged :</strong> @ViewBag.UnchargedAmount</p>
             </div>*@
         </div>
-        <div class="table-responsive scrollable-table">
-            <table id="ExpiredInfo" class="table table-hover table-bordered tablesorter">
+        <div class="table-responsive ">
+            <table id="ExpiredInfo" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th class="text-center">Insertion Order ID
@@ -172,23 +172,20 @@
                         </tr>
                         }
                     }
-                    else
-                    {
-                        <tr>
-                            <td colspan="7" class="text-center"><b>No Expired Budgets found</b>
-                            </td>
-                        </tr>
-                    }
                 </tbody>
             </table>
         </div>
     </div>
 }
-<p class="clear-fix"></p>
-<a href="#" onclick="history.go(-1);return false;" class="btn btn-primary pull-right">Back To List</a>
+<div class="row">
+           <div class="col-md-12">
+ <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List<span class="glyphicon-class glyphicon glyphicon-circle-arrow-left"/></a>
+
+    </div>
+    </div>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#ExpiredInfo").tablesorter();
+        $('#ExpiredInfo').dataTable({ "sPaginationType": "full_numbers" });
     });
 </script>

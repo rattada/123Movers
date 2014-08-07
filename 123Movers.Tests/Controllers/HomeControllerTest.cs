@@ -34,7 +34,6 @@ namespace _123Movers.Tests.Controllers
             Assert.IsNotNull(companies, "The request did not return any results.");
             Assert.IsTrue(companies.Count() > 0, "The returned collection is empty.");
             Assert.AreEqual(1, companies.Count());
-            Assert.Fail("test");
         }
 
     }

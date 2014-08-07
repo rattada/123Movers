@@ -502,3 +502,8 @@ thead {
     background-color: lavender;
     cursor:hand;
 }
+#wait
+{	position: absolute;
+	margin-left: 600px;
+	margin-top: 120px;
+}

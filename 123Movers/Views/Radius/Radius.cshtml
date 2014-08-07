@@ -8,26 +8,27 @@
     @Html.Script("jquery.dataTables.min.js")
 }
 <input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
+@*<div id="wait" style="display: none;"><img src="~/Images/windows8.gif" /></div>*@
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 <p class="clearfix"></p>
 <p class="clearfix"></p>
 <div class="row">
     <div class="col-lg-4">
         <div class="form-group">
-            @Html.LabelFor(m => m.ServiceId)
+            <strong>Service</strong><br />
             @Html.DropDownListFor(m => m.ServiceId, ViewBag.Services as IEnumerable<SelectListItem>, "--Choose One--", new { id = "ddlServiceID", @class = "form-control dropdown", @title = "Select Services" })
             @Html.ValidationMessageFor(m => m.ServiceId)
         </div>
+        @*<div class="form-group">
+            <strong>Category</strong><br />
+            <select name="lesserorgreater" id="ddllessorgreate1" class="form-control dropdown" size="1" title="Select category">
+                <option value="">--Choose One--</option>
+                <option value="GREATER">></option>
+                <option value="LESSER"><</option>
+            </select>
+        </div>*@
         <div class="form-group">
             <strong>Category</strong><br />
-            <select name="lesserorgreater" id="ddllessorgreate" class="form-control dropdown" size="1" title="Select category">
-                <option value="">--Choose One--</option>
-                <option value="GREATER">Greater</option>
-                <option value="LESSER">Lesser</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <strong>Type</strong><br />
             <select name="origordest" id="ddlorigordest" class="form-control dropdown" size="1" title="Select Type">
                 <option value="">--Choose One--</option>
                 <option value="ORIGIN">Origin</option>
@@ -37,21 +38,32 @@
     </div>
     <div class="col-lg-4">
         <div class="form-group">
-            <strong>Radius(Miles)</strong><br />
-            <input type="text" id="txtradius" class="form-control" title="Enter Radius" />
+            <strong style="margin-left:15px">Radius(Miles)</strong><br />
+            <div class="col-lg-8" style="padding-right:2px !important">
+                <input type="text" id="txtradius" title="Enter Radius" class="form-control" />
+            </div>
+             <div class="col-lg-4">
+                <select name="lesserorgreater" id="ddllessorgreate" class="dropdown form-control" size="1" title="Select category">
+                    <option value="LESSER"><</option>
+                    <option value="GREATER">></option>
+                </select>
+            </div>
         </div>
         <div class="form-group">
-            <strong>Origin Zip Code</strong><br />
-            <input type="text" id="txtzipcode" class="form-control" title="Enter Zip Code" />
+            <div class="col-md-12" style="margin-top:15px" >
+                <strong>Origin Zip Code</strong><br />
+                <input type="text" id="txtzipcode" class="form-control" title="Enter Zip Code" />
+            </div>
         </div>
     </div>
 </div>
-<div class="col-md-1"></div>
+
 <p class="clear-fix"></p>
 <div class="row">
     <div class="col-md-12">
-        <input type="submit" id="btnGetRadius" class="btn btn-primary pull-right" value="Get" />
-        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+        <input type="submit" id="btnGetRadius" class="btn btn-primary pull-right" value="Get Data" />
+         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit<span class="glyphicon-class glyphicon glyphicon-circle-arrow-left"/></a>
+
     </div>
 </div>
 <p class="clear-fix"></p>
@@ -64,7 +76,7 @@
 <p class="clear-fix"></p>
 <div class="row">
     <div class="col-md-12">
-        <input type="submit" id="btnRadius" class="btn btn-primary pull-right " value="Save" />
+        <input type="submit" id="btnRadius" class="btn btn-primary pull-right btn-lg " value="Save" style="display: none" />
 
     </div>
 </div>

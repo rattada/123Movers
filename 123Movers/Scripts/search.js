@@ -1,13 +1,14 @@
 ﻿$(document).ready(function () {
     var rows_Count = $('#info tr').length;
-    if (rows_Count > 2)
+    if (rows_Count > 2) {
         $('#info').dataTable({ "sPaginationType": "full_numbers" });
-    else $('#info').addClass('thead')
-
+    }
+    else {
+        $('#info').addClass('thead')
+    }
     $('#btnSearch').click(function () {
         if (CheckForInputs() == false)
             return false;
-        
 
     });
     $("body").parent().on("keypress", "#CompanyId,#InsertionOrderId", function (event) {
@@ -17,12 +18,14 @@
     });
     //Getting the records when "Enter" key is Pressed.. 
     $(document).keypress(function (e) {
+
         if (e.which === 13) {
             if (CheckForInputs() == true) {
                 $("form").submit();
             }
             else
                 $('#info').html('');
+
         }
     });
     //Check for all TextBox values whether they are empty or not returns boolean value...
@@ -33,6 +36,7 @@
         var insertionOrderId = $.trim($("#InsertionOrderId").val());
         if (companyname == "" && companyId == "" && ax == "" && insertionOrderId == "") {
             alert('Please enter atleast one value');
+            $('#info').html('');
             $('#info_wrapper').html('');
             return false;
         }
@@ -41,5 +45,6 @@
             $("#AX").val(ax);
             return true;
         }
+
     }
 });
