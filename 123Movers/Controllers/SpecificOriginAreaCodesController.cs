@@ -35,7 +35,7 @@ namespace _123Movers.Controllers
 
             SpecificOriginAreaCode spcfcOriginAreaCodes = new SpecificOriginAreaCode();
             spcfcOriginAreaCodes._companyInfo = CompanyInfo;
-            spcfcOriginAreaCodes.ServiceId = serviceId;
+            spcfcOriginAreaCodes.ServiceId = serviceId == null ? (int)ServiceType.Local : serviceId; ;
             return View(spcfcOriginAreaCodes);
         }
         public JsonResult AddCompanySpcfcOriginDestAreaCodes(int? serviceId,int spcfcareacode, string areaCodes)

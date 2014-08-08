@@ -41,7 +41,7 @@ namespace _123Movers.Controllers
 
             SpecificStatesModel spcfcstates = new SpecificStatesModel();
             spcfcstates._companyInfo = CompanyInfo;
-            spcfcstates.ServiceId = serviceId;
+            spcfcstates.ServiceId = serviceId == null ? (int)ServiceType.Local : serviceId;
             return View(spcfcstates);
         }
 
