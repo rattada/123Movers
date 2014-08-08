@@ -21,7 +21,7 @@ namespace _123Movers.Controllers
 
         public ActionResult Radius(int? serviceId)
         {
-            var Service = ConfigValues.Services(serviceId);
+            var Service =GetServices(serviceId);
             if (Service.Count > 2)
                 ViewBag.Services = Service.Take(2);
             else

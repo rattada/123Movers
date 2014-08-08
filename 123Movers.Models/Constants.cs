@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -17,7 +16,7 @@ namespace _123Movers.Models
         RecurringWithNotice = 2
     }
 
-    public enum ServiceType
+    public enum ServiceType : int
     {
         Local = 1009,
         Long = 1000,

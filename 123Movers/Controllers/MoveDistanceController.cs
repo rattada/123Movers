@@ -22,10 +22,10 @@ namespace _123Movers.Controllers
         public ActionResult MoveDistance(int? serviceId)
         {
 
-            if (ConfigValues.Services(serviceId).Count > 2)
-                ViewBag.Services = ConfigValues.Services(serviceId).Take(2);
+            if (GetServices(serviceId).Count > 2)
+                ViewBag.Services =GetServices(serviceId).Take(2);
             else
-                ViewBag.Services = ConfigValues.Services(serviceId);
+                ViewBag.Services =GetServices(serviceId);
             List<List<string>> lstGetMoveDistance = ConfigValues.TableToList(BusinessLayer.GetCompanyMoveDistance(CompanyInfo.CompanyId, serviceId));
             MoveDistanceModel model = new MoveDistanceModel();
             model._companyInfo = CompanyInfo;
@@ -47,7 +47,7 @@ namespace _123Movers.Controllers
         public JsonResult MoveDistance(MoveDistanceModel model)
         {
             JsonResult result;
-            ViewBag.Services = ConfigValues.Services().Take(2);
+            ViewBag.Services = GetServices().Take(2);
             try
             {
                 if (ModelState.IsValid)

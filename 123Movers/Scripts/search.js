@@ -7,11 +7,14 @@
         $('#info').addClass('thead')
     }
     $('#btnSearch').click(function () {
-        $("body").mask('Searching...');
+
         if (CheckForInputs() == false)
             return false;
+        else
+            $("body").mask('Searching...');
 
     });
+
     $("body").parent().on("keypress", "#CompanyId,#InsertionOrderId", function (event) {
         if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
             event.preventDefault();
@@ -19,16 +22,16 @@
     });
     //Getting the records when "Enter" key is Pressed.. 
     $(document).keypress(function (e) {
-
         if (e.which === 13) {
-            if (CheckForInputs() == true) {
-                $("form").submit();
+            if (CheckForInputs() == false) {
+                $('#info').html('');
+                return false;
             }
             else
-                $('#info').html('');
-
+                $("form").submit();
         }
     });
+
     //Check for all TextBox values whether they are empty or not returns boolean value...
     function CheckForInputs() {
         var companyname = $.trim($("#CompanyName").val());

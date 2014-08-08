@@ -56,7 +56,7 @@
         </div>
     </div>
    
-    var Service = (@Model.ServiceId == Constants.LOCAL) ? "1009" : (@Model.ServiceId == Constants.LONG) ? "1000" : null;
+    var Service = (@Model.ServiceId == (int)ServiceType.Both) ? null : @Model.ServiceId;
     <div class="row">
         <div class="col-md-12">
             @Html.ActionLink("Area Codes", "AreaCodes", "AreaCode", new { serviceId = Service }, new { id = "managearea", @class = "btn btn-default" })
@@ -76,7 +76,7 @@
     <div class="row">
         <div class="col-md-12">
             <input type="submit" id="save" class="btn btn-primary pull-right" value="Save Budget" />
-             <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List<span class="glyphicon-class glyphicon glyphicon-circle-arrow-left"/></a>
+             <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List</a>
 
         </div>
     </div>

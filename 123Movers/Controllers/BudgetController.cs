@@ -16,15 +16,15 @@ namespace _123Movers.Controllers
             logger = LogManager.GetLogger(typeof(BudgetController)); 
         }
 
-        public JsonResult GetServices()
-        {
-            return Json(BusinessLayer.GetServies(), JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult GetServices()
+        //{
+        //    return Json(BusinessLayer.GetServies(), JsonRequestBehavior.AllowGet);
+        //}
         public JsonResult GetFilterResult(int? serviceId)
         {
             return Json(BusinessLayer.GetFilterResult(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
-
+        
 
         [HttpGet]
         public ActionResult GetBudget(CompanyModel Company)
@@ -52,8 +52,8 @@ namespace _123Movers.Controllers
         [HttpGet]
         public ActionResult AddBudget()
         {
-            ViewBag.Terms = ConfigValues.Terms();
-            ViewBag.Services = ConfigValues.Services();
+            ViewBag.Terms = GetTerms();// ConfigValues.Terms();
+            ViewBag.Services = GetServices();
 
             BudgetModel budget = new BudgetModel();
 
@@ -64,8 +64,8 @@ namespace _123Movers.Controllers
         [HttpPost]
         public ActionResult AddBudget(BudgetModel budget)
         {
-            ViewBag.Terms = ConfigValues.Terms();
-            ViewBag.Services = ConfigValues.Services();
+            ViewBag.Terms = GetTerms();
+            ViewBag.Services = GetServices();
 
             try
             {
@@ -100,8 +100,8 @@ namespace _123Movers.Controllers
         public ActionResult EditBudget(decimal? TotalBudget, bool IsRecurring, bool IsRequireNoticeToCharge, int? serviceId, string agnumber, int? minDaysToCharge)
         {
             BudgetModel budget = new BudgetModel();
-            ViewBag.Terms = ConfigValues.Terms();
-            ViewBag.Services = ConfigValues.Services();
+            ViewBag.Terms = GetTerms();
+            ViewBag.Services = GetServices();
            
             string Recurring = (IsRecurring) ? (IsRequireNoticeToCharge) ? Constants.RecurringWithNotice : Constants.Recurring : Constants.NonRecurring;
             budget.TotalBudget = TotalBudget;
@@ -123,8 +123,8 @@ namespace _123Movers.Controllers
         public ActionResult EditBudget(BudgetModel budget)
         {
 
-            ViewBag.Terms = ConfigValues.Terms();
-            ViewBag.Services = ConfigValues.Services();
+            ViewBag.Terms = GetTerms();
+            ViewBag.Services = GetServices();
 
             try
             {

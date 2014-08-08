@@ -33,7 +33,7 @@ namespace _123Movers.Controllers
 
         public ActionResult SpecificStates(int? serviceId)
         {
-            var Service = ConfigValues.Services(serviceId);
+            var Service = GetServices(serviceId);
             if (Service.Count > 2)
                 ViewBag.Services = Service.Take(2);
             else
@@ -41,6 +41,7 @@ namespace _123Movers.Controllers
 
             SpecificStatesModel spcfcstates = new SpecificStatesModel();
             spcfcstates._companyInfo = CompanyInfo;
+            spcfcstates.ServiceId = serviceId;
             return View(spcfcstates);
         }
 

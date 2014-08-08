@@ -185,8 +185,9 @@
         var serviceId = $('#ddlServiceID').val();
         var destAreaCode = $('#ddldestareaCode').val();
         if (destAreaCode != '') {
-            GetAvailableZipCodes();
             $('#ddlexstngareaCode').attr("disabled", false)
+            $('#ddlexstngareaCode option:first').prop('selected', true);
+            GetAvailableZipCodes();
         }
         else {
             $('#ddlexstngareaCode option:first').prop('selected', true);

@@ -27,7 +27,7 @@ namespace _123Movers.Controllers
         }
         public ActionResult SpecificOriginAreaCodes(int? serviceId)
         {
-            var Services = ConfigValues.Services(serviceId);
+            var Services = GetServices(serviceId);
             if (Services.Count > 2)
                 ViewBag.Services = Services.Take(2);
             else
@@ -35,6 +35,7 @@ namespace _123Movers.Controllers
 
             SpecificOriginAreaCode spcfcOriginAreaCodes = new SpecificOriginAreaCode();
             spcfcOriginAreaCodes._companyInfo = CompanyInfo;
+            spcfcOriginAreaCodes.ServiceId = serviceId;
             return View(spcfcOriginAreaCodes);
         }
         public JsonResult AddCompanySpcfcOriginDestAreaCodes(int? serviceId,int spcfcareacode, string areaCodes)

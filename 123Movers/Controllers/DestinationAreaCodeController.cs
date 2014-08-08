@@ -28,7 +28,7 @@ namespace _123Movers.Controllers
         }
         public ActionResult DestinationAreaCode(int? serviceId)
         {
-            var Services = ConfigValues.Services(serviceId);
+            var Services =GetServices(serviceId);
             if (Services.Count > 2)
                 ViewBag.Services = Services.Take(2);
             else

@@ -55,10 +55,12 @@
                 var destoptions;
                 $.each(json, function (i, val) {
                     if (val[1] == 'Table') {
-                        if (options == undefined) {
-                            options = '<option value="' + val[0] + '">' +  val[0] + '</option>';
-                        } else {
-                            options += '<option value="' + val[0] + '">' +  val[0] + '</option>';
+                        if ($('#ddlState').val() != val[0]) {
+                            if (options == undefined) {
+                                options = '<option value="' + val[0] + '">' + val[0] + '</option>';
+                            } else {
+                                options += '<option value="' + val[0] + '">' + val[0] + '</option>';
+                            }
                         }
                     } else {
                         if (destoptions == undefined) {

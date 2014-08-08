@@ -26,13 +26,11 @@
             $(this).find('.chkSelectClass:checkbox:checked').each(function () {
                 var row = $(this).closest('tr');
                 var columns = row.find('td');
-                //var t = $(this).closest('tr').find('td')[i].textContent;
-                //var tt = $(this).closest('tr').find('td').find("input:text").val();
                 $.each(columns, function (i, item) {
                     if (i == 1) {
                         var service = $.trim(item.textContent);
                         if (service == 'Local') ServiceId = 1009;
-                        else if (service = 'Long') ServiceId = 1000;
+                        else if (service == 'Long') ServiceId = 1000;
                         else ServiceId = null;
                     }
                     else if (i == 2) {
@@ -63,9 +61,6 @@
                               TotalLeadLimit: TotalLeadLimit
                           }]
                 Filleddata.push(LeadLimitData);
-
-                //saving lsit of checked item data in a Array.
-                //Array.push(values);
             });
         });
 

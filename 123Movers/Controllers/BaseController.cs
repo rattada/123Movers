@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using _123Movers.Models;
 using log4net;
+using System.Data;
 
 namespace _123Movers.Controllers
 {
@@ -91,6 +92,72 @@ namespace _123Movers.Controllers
             }
 
             return companyCookieVal;
+        }
+        public List<SelectListItem> GetTerms()
+        {
+            //var values = Enum.GetValues(typeof(DayOfWeek))
+            //                            .Cast<DayOfWeek>()
+            //                            .Select(d => Tuple.Create(((int)d).ToString(), d.ToString()))
+            //                            .ToList();
+
+            var Terms = new List<SelectListItem>();
+
+            Terms = ConfigValues.Terms.Select(p => new SelectListItem
+                                                            {
+                                                                Text = p.Key,
+                                                                Value = p.Value
+                                                            }).ToList();
+
+            // var priceNames = ConfigValues.Terms1.Select(p => p.Value).ToList();
+            return Terms;
+        }
+        public List<SelectListItem> GetServices(int? serviceId = null)
+        {
+
+            //var Services = new List<SelectListItem>();
+
+            //Services = ConfigValues.Services.Select(p => new SelectListItem
+            //                                                        {
+            //                                                            Text = p.Key,
+            //                                                            Value = p.Value
+            //                                                        }).ToList();
+
+            var listOption = new SelectListItem();
+            var services = new List<SelectListItem>();
+
+            if (serviceId == null || serviceId == Constants.LOCAL)
+            {
+                listOption = new SelectListItem { Text = "Local", Value = "1009" };
+
+                services.Add(listOption);
+            }
+            if (serviceId == null || serviceId == Constants.LONG)
+            {
+                listOption = new SelectListItem { Text = "Long", Value = "1000" };
+                services.Add(listOption);
+            }
+            if (serviceId == null)
+            {
+                listOption = new SelectListItem { Text = "Both", Value = "999" };
+                services.Add(listOption);
+            }
+
+            return services;
+        }
+        public SelectList DataTableToSelectList(DataTable table, string valueField, string textField)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (DataRow row in table.Rows)
+            {
+                list.Add(new SelectListItem()
+                {
+                    Text = row[textField].ToString(),
+                    Value = row[valueField].ToString()
+                });
+            }
+
+            return new SelectList(list, "Value", "Text");
         }
 
     }

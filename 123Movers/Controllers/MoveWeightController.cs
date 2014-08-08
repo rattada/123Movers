@@ -25,11 +25,11 @@ namespace _123Movers.Controllers
             int? cid = CompanyInfo.CompanyId;
             DataSet ds = BusinessLayer.GetMoveWeights(cid, serviceId);
 
-            ViewBag.MinMoveWeight = ConfigValues.DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
-            if (ConfigValues.Services(serviceId).Count > 2)
-                ViewBag.Services = ConfigValues.Services(serviceId).Take(2);
+            ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
+            if (GetServices(serviceId).Count > 2)
+                ViewBag.Services = GetServices(serviceId).Take(2);
             else
-                ViewBag.Services = ConfigValues.Services(serviceId);
+                ViewBag.Services = GetServices(serviceId);
             MoveWeightModel model = new MoveWeightModel();
             model._companyInfo = CompanyInfo;
             model.CompanyId = cid;
@@ -50,8 +50,8 @@ namespace _123Movers.Controllers
             int? cid = CompanyInfo.CompanyId;
             DataSet ds = BusinessLayer.GetMoveWeights(cid, model.ServiceId);
 
-            ViewBag.MinMoveWeight = ConfigValues.DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
-            ViewBag.Services = ConfigValues.Services().Take(2);
+            ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
+            ViewBag.Services = GetServices().Take(2);
 
             try
             {

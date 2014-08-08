@@ -32,7 +32,9 @@ namespace _123Movers.Controllers
 
         public ActionResult DestZipCode(int? serviceId)
         {
-            var Services = ConfigValues.Services(serviceId);
+            
+
+            var Services =GetServices(serviceId);
             if (Services.Count > 2)
                 ViewBag.Services = Services.Take(2);
             else
@@ -40,7 +42,7 @@ namespace _123Movers.Controllers
 
             DestZipCodeModel destZipCodes = new DestZipCodeModel();
             destZipCodes._companyInfo = CompanyInfo;
-            destZipCodes.ServiceId = serviceId == null ? (int) ServiceType.Local : serviceId;
+            destZipCodes.ServiceId = serviceId == null ? (int)ServiceType.Local : serviceId;
             return View(destZipCodes);
         }
 
