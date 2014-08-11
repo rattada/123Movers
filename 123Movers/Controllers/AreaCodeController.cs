@@ -39,21 +39,35 @@ namespace _123Movers.Controllers
             areaCode._companyInfo = CompanyInfo;
             return View(areaCode);
         }
+        //public ActionResult AddAreaCodes(int? serviceId, string areaCodes)
+        //{
+        //    IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
+        //    try
+        //    {
+        //        foreach (var areacode in areacodelist)
+        //        {
+        //            BusinessLayer.AddCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logger.Error(ex.ToString());
+        //    }
+            
+        //    return RedirectToAction("AreaCodes", new { serviceId = serviceId });
+        //}
+
         public ActionResult AddAreaCodes(int? serviceId, string areaCodes)
         {
-            IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
             try
             {
-                foreach (var areacode in areacodelist)
-                {
-                    BusinessLayer.AddCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
-                }
+                BusinessLayer.AddCompanyAreaCodes(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace());
             }
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());
             }
-            
+
             return RedirectToAction("AreaCodes", new { serviceId = serviceId });
         }
 
