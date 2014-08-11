@@ -24,7 +24,7 @@ namespace _123Movers.BusinessEntities
             return DataLayer.GetAvailableDestinationZipCodes(companyId, serviceId, areaCode, destAreaCode);
         }
 
-        public static DataTable GetCompanyAreasDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
+        public static List<List<string>> GetCompanyAreasDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
         {
             return DataLayer.GetCompanyAreasDestinationZipCodes(companyId, serviceId, areaCode);
         }
@@ -32,6 +32,10 @@ namespace _123Movers.BusinessEntities
         public static DestinationZipModel GetCompanyDestinationServiceAreaCodes(int? companyId, int? serviceId)
         {
             return DataLayer.GetCompanyDestinationServiceAreaCodes(companyId, serviceId);
+        }
+        public static List<List<string>> GetAllAreaCodes()
+        {
+            return DataLayer.GetAllAreaCodes();
         }
     }
 }

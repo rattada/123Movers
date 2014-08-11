@@ -53,12 +53,15 @@
                 var json = $.parseJSON(strigifyJson);
                 var options;
                 var destoptions;
+                var state = $.trim($('#ddlState').val());
                 $.each(json, function (i, val) {
                     if (val[1] == 'Table') {
-                        if (options == undefined) {
-                            options = '<option value="' + val[0] + '">' +  val[0] + '</option>';
-                        } else {
-                            options += '<option value="' + val[0] + '">' +  val[0] + '</option>';
+                        if (state != val[0]) {
+                            if (options == undefined) {
+                                options = '<option value="' + val[0] + '">' + val[0] + '</option>';
+                            } else {
+                                options += '<option value="' + val[0] + '">' + val[0] + '</option>';
+                            }
                         }
                     } else {
                         if (destoptions == undefined) {

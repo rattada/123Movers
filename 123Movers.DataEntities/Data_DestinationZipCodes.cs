@@ -160,7 +160,7 @@ namespace _123Movers.DataEntities
 
             }
         }
-        public static DataTable GetCompanyAreasDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
+        public static List<List<string>> GetCompanyAreasDestinationZipCodes(int? companyId, int? serviceId, int? areaCode)
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
@@ -181,9 +181,32 @@ namespace _123Movers.DataEntities
                 SqlDataReader drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
-                return dtResults;
+                return ConfigValues.TableToList(dtResults); ;
 
             }
+        }
+        public static List<List<string>> GetAllAreaCodes()
+        {
+            using (SqlConnection dbCon = ConnectToDb())
+            {
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_GET_AREACODES_STATES;
+
+                SqlParameter paramType = new SqlParameter("queryType", 1);
+
+                _cmd.Parameters.Add(paramType);
+
+                DataTable dtResults = new DataTable();
+
+                SqlDataReader drResults = _cmd.ExecuteReader();
+                dtResults.Load(drResults);
+
+                return ConfigValues.TableToList(dtResults);
+
+            }
+
         }
     }
 }

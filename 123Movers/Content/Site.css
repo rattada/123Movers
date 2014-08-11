@@ -533,7 +533,7 @@ thead {
     height:120px;
     border-radius:15px;
     border: solid 9px #999;
-    background: #fff url('../images/loadingSG.gif') no-repeat 50% 35%;
+    background: #fff url('../Images/loadingSG.gif') no-repeat 50% 35%;
 }
 .loadmask-msg div {  
     color:#000;

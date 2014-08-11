@@ -11,7 +11,7 @@ namespace _123Movers.BusinessEntities
     public partial class BusinessLayer
     {
 
-        public static DataTable GetAvailableAreas(int? companyId, int? serviceId)
+        public static List<List<string>> GetAvailableAreas(int? companyId, int? serviceId)
         {
             return DataLayer.GetAvailableAreas(companyId, serviceId);
         }

@@ -6,6 +6,7 @@
 @section JavaScript{
     @Html.Script("radius.js")
     @Html.Script("jquery.dataTables.min.js")
+    @Html.Script("jquery.loadmask.min.js")
 }
 <input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
 @*<div id="wait" style="display: none;"><img src="~/Images/windows8.gif" /></div>*@
@@ -29,7 +30,7 @@
         </div>*@
         <div class="form-group">
             <strong>Category</strong><br />
-            <select name="origordest" id="ddlorigordest" class="form-control dropdown" size="1" title="Select Type">
+            <select name="origordest" id="ddlorigordest" class="form-control dropdown" size="1" title="Select Category">
                 <option value="">--Choose One--</option>
                 <option value="ORIGIN">Origin</option>
                 <option value="DEST">Destination</option>
@@ -39,13 +40,13 @@
     <div class="col-lg-4">
         <div class="form-group">
             <strong style="margin-left:15px">Radius(Miles)</strong><br />
-            <div class="col-lg-8" style="padding-right:2px !important">
+            <div class="col-lg-6" style="padding-right:2px !important">
                 <input type="text" id="txtradius" title="Enter Radius" class="form-control" />
             </div>
-             <div class="col-lg-4">
-                <select name="lesserorgreater" id="ddllessorgreate" class="dropdown form-control" size="1" title="Select category">
-                    <option value="LESSER"><</option>
-                    <option value="GREATER">></option>
+             <div class="col-lg-6">
+                <select name="lesserorgreater" id="ddllessorgreate" class="dropdown form-control" size="1" title="Select One">
+                    <option value="LESSER">Lesser(<)</option>
+                    <option value="GREATER">Greater(>)</option>
                 </select>
             </div>
         </div>
@@ -62,15 +63,14 @@
 <div class="row">
     <div class="col-md-12">
         <input type="submit" id="btnGetRadius" class="btn btn-primary pull-right" value="Get Data" />
-         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit<span class="glyphicon-class glyphicon glyphicon-circle-arrow-left"/></a>
+         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
 
     </div>
 </div>
 <p class="clear-fix"></p>
 <div class="row" id="divGetRecords">
     <div class="table-responsive">
-        <table id="tblRadius" class="table table-bordered table-striped table-hover">
-        </table>
+      
     </div>
 </div>
 <p class="clear-fix"></p>

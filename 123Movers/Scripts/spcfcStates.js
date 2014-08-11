@@ -53,9 +53,10 @@
                 var json = $.parseJSON(strigifyJson);
                 var options;
                 var destoptions;
+                var state = $.trim($('#ddlState').val());
                 $.each(json, function (i, val) {
                     if (val[1] == 'Table') {
-                        if ($('#ddlState').val() != val[0]) {
+                        if (state != val[0]) {
                             if (options == undefined) {
                                 options = '<option value="' + val[0] + '">' + val[0] + '</option>';
                             } else {

@@ -24,8 +24,7 @@ namespace _123Movers.Controllers
       
         public JsonResult GetAvailableAreas(int? serviceId)
         {
-            var services = BusinessLayer.GetAvailableAreas(CompanyInfo.CompanyId, serviceId);
-            return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetAvailableAreas(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetCompanyAreasWithPrices( int? serviceId)
         {

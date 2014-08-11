@@ -618,3 +618,7 @@ ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
    at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
    at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
 ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
+2014-08-11 14:15:05,508 [14] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.NullReferenceException: Object reference not set to an instance of an object.
+   at _123Movers.Controllers.DestZipCodeController.AddCompanyAreaDestinationZipCodes(Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestZipCodeController.cs:line 70
+2014-08-11 14:15:14,618 [11] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.NullReferenceException: Object reference not set to an instance of an object.
+   at _123Movers.Controllers.DestZipCodeController.AddCompanyAreaDestinationZipCodes(Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestZipCodeController.cs:line 70

@@ -55,11 +55,11 @@
                 var json = $.parseJSON(strigifyJson);
                 var options;
                 var destoptions;
-                debugger;
+                var areacode = $.trim($('#ddlareaCode').val());
                 $.each(json, function (i, val) {
                     if (val[2] == 'Table')
                     {
-                        if ($('#ddlareaCode').val() != val[0]) {
+                        if (areacode != val[0]) {
                             if (options == undefined) {
                                 options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                             } else {

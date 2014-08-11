@@ -10,7 +10,7 @@ namespace _123Movers.DataEntities
 {
     public partial class DataLayer
     {
-        public static DataTable GetAvailableAreas(int? companyId, int? serviceId)
+        public static List<List<string>> GetAvailableAreas(int? companyId, int? serviceId)
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
@@ -30,7 +30,7 @@ namespace _123Movers.DataEntities
                 SqlDataReader drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
-                return dtResults;
+                return ConfigValues.TableToList(dtResults); ;
 
             }
         }

@@ -23,11 +23,14 @@ namespace _123Movers.Controllers
         {
             return Json(BusinessLayer.GetAvailSpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
+        public JsonResult GetAllAreaCodes(int? serviceId)
+        {
+            return Json(BusinessLayer.GetAllAreaCodes(), JsonRequestBehavior.AllowGet);
+        }
 
         public JsonResult GetCompanyAreasDestinationZipCodes(int? serviceId, int? areaCode)
         {
-            var DestinationAreaCodes = BusinessLayer.GetCompanyAreasDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
-            return Json(ConfigValues.TableToList(DestinationAreaCodes), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanyAreasDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult DestZipCode(int? serviceId)
