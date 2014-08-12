@@ -1,10 +1,8 @@
 ﻿$(function () {
-
     var serviceId = $('#ddlServiceID').val();
     if (serviceId != '') {
         GetAvailableAreas(serviceId);
     } else { $('#ddlareaCode').attr("disabled", true); }
-
     function GetAvailableAreas(serviceId) {
         $.ajax({
             url: '/SpecificOriginAreaCodes/GetAvailSpcfcOriginDestAreas',
@@ -23,7 +21,6 @@
                         options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                     }
                 });
-
                 if (json.length > 0) {
                     options = '<option value="">' + "--Choose One--" + '</option>' + options;
                     $('#ddlareaCode').html(options);
@@ -57,8 +54,7 @@
                 var destoptions;
                 var areacode = $.trim($('#ddlareaCode').val());
                 $.each(json, function (i, val) {
-                    if (val[2] == 'Table')
-                    {
+                    if (val[2] == 'Table') {
                         if (areacode != val[0]) {
                             if (options == undefined) {
                                 options = '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
@@ -74,21 +70,18 @@
                         }
                     }
                 });
-               
                 if (options != undefined) {
                     $('#originAreaCodes').html(options);
                 }
                 else {
                     $('#originAreaCodes').html('');
                 }
-
                 if (destoptions != undefined) {
                     $('#destAreaCodes').html(destoptions);
                 }
                 else {
                     $('#destAreaCodes').html('');
                 }
-              
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
@@ -107,14 +100,13 @@
             return false;
         }
         if (originAreaCode == '') {
-
-            alert("Please Select Origin AreaCode");
+            alert("Please select Origin Areacode");
             $('#ddlareaCode').focus();
             return false;
         }
         if (selected.length == 0) {
 
-            alert("Please Select any Option to add");
+            alert("Please Select any Option to Add");
             $('#originAreaCodes').focus();
             return false;
         }
@@ -125,7 +117,7 @@
             data: { 'serviceId': serviceId, "spcfcareacode": originAreaCode, 'areaCodes': data_to_send },
             success: function (data) {
                 GetSelectedAreas(serviceId, originAreaCode);
-                alert("Area Codes added Successfully");
+                alert("Area Code(s) added Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
@@ -135,11 +127,21 @@
         var serviceId = $('#ddlServiceID').val();
         var originAreaCode = $('#ddlareaCode').val();
         var selected = [];
+        if (serviceId == '') {
+            alert("Please select Service Type");
+            $('#ddlServiceID').focus();
+            return false;
+        }
+        if (originAreaCode == '') {
+            alert("Please select Origin Areacode");
+            $('#ddlareaCode').focus();
+            return false;
+        }
         $('#destAreaCodes :selected').each(function (i, el) {
             selected[i] = $(this).val();
         });
         if (selected.length == 0) {
-            alert("Please Select any Option to Remove")
+            alert("Please select any Option to Remove")
             $('#destAreaCodes').focus();
             return false;
         }
@@ -150,7 +152,7 @@
             data: { 'serviceId': serviceId, "spcfcareacode": originAreaCode, areaCodes: data_to_send },
             success: function (data) {
                 GetSelectedAreas(serviceId, originAreaCode);
-                alert("Area Codes removed Successfully");
+                alert("Area Code(s) removed Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }

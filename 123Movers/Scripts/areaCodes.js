@@ -137,7 +137,6 @@
                     areacodes.push(areacode + '-' + 'YES-' + defaultprice);
                 }
             }
-
         });
         $("#table2 tbody tr").each(function () {
             var areaprice = $(this).closest('tr').find('.form-control').val();
@@ -185,7 +184,6 @@
             }
         });
     });
-
     $('#add').click(function () {
         var Service = $("#ServiceTab > li.active >a").text();
         var selected = [];
@@ -193,7 +191,7 @@
             selected[i] = $(this).val();
         });
         if (selected.length == 0) {
-            alert("Please Select any Option to add");
+            alert("Please select any Option to Add");
             return false;
         }
         var data_to_send = JSON.stringify(selected);
@@ -207,7 +205,7 @@
                         serviceId = 1009;
                         GetAvailableAreas(serviceId, 'local');
                         GetSelectedAreas(serviceId, 'local');
-                        $('#ServiceTab a:first').tab('show');   
+                        $('#ServiceTab a:first').tab('show');
                     }
                     else {
                         serviceId = parseInt(1000);
@@ -215,7 +213,7 @@
                         GetSelectedAreas(serviceId, 'long');
                         $('#ServiceTab a:last').tab('show')
                     }
-                    alert("Area Codes added Successfully");
+                    alert("Area Code(s) added Successfully");
                     k = 1;
                 }
                 else {
@@ -230,13 +228,11 @@
     $('#remove').click(function () {
         var Service = $("#ServiceTab > li.active >a").text();
         var selected = [];
-
         $('#areasSelected :selected').each(function (i, el) {
             selected[i] = $(this).val();
         });
-
         if (selected.length == 0) {
-            alert("Please Select any Option to Remove")
+            alert("Please select any Option to Remove")
             return false;
         }
         var data_to_send = JSON.stringify(selected);
@@ -257,14 +253,13 @@
                     GetSelectedAreas(serviceId, 'long');
                     $('#ServiceTab a:last').tab('show')
                 }
-                alert("Area Codes removed Successfully");
+                alert("Area Code(s) removed Successfully");
                 k = 1;
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
         });
     });
-
     $('#accordion span').parent().click(function () {
 
         if ($('#accordion span').hasClass('glyphicon glyphicon-plus')) {

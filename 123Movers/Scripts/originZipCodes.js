@@ -17,7 +17,7 @@
             $("#areaZipSelected").append($(this));
         });
         if (selected.length == 0) {
-            alert('Please Select ZipCode');
+            alert('Please select any Option to Add');
             return false;
         }
         else {
@@ -30,7 +30,7 @@
                     if (data.success === true) {
                         var x = $('#areaZipCode > option').length;
                         $('#areaZipCode').scrollTop(x);
-                        alert('Zip Codes Successfully Added');
+                        alert('Zip Code(s) Successfully Added');
                     } else {
                         alert("Error :" + data.message);
                     }
@@ -40,7 +40,6 @@
             });
         }
     });
-
     $('#remove').click(function () {
         var selected = [];
         $('#areaZipSelected :selected').each(function (i, el) {
@@ -49,7 +48,7 @@
             $("#areaZipCode").append($(this));
         });
         if (selected.length == 0) {
-            alert('Please Select ZipCode');
+            alert('Please select any Option to Remove');
             return false;
         } else {
             var zipcodes = JSON.stringify(selected);
@@ -62,7 +61,7 @@
                         var x = $('#areaZipSelected > option').length;
                         $('#areaZipSelected').scrollTop(x);
 
-                        alert('Zip Codes Successfully Deleted');
+                        alert('Zip Code(s) Successfully Deleted');
                     } else {
                         alert("Error :" + data.message);
                     }
@@ -79,7 +78,6 @@
         location.reload();
     });
 });
-
 function GetZipCodes(areaCode, serviceId) {
     serviceid = serviceId;
     areacode = areaCode
@@ -101,7 +99,6 @@ function GetZipCodes(areaCode, serviceId) {
                     options += '<option value="' + val[0] + '">' + val[0] + '</option>';
                 }
             });
-
             if (json.length > 0) {
                 $('#areaZipCode').html(options);
             }

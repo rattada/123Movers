@@ -1,7 +1,6 @@
 ﻿$(function () {
     var ddlservice = $("#services").val();
     var ServiceId = (ddlservice == 1009) ? "1009" : (ddlservice == 1000) ? "1000" : null;
-
     $.ajax({
         url: '/Budget/GetFilterResult',
         type: "GET",
@@ -57,7 +56,6 @@
                     $('#specificStates').removeClass('btn-default');
                     $('#specificStates').addClass('btn-warning');
                 }
-
                 if ($('#managearea').hasClass('btn-default')) {
                     $('.clsdisable').attr("disabled", "disabled");
                     return false;
@@ -67,12 +65,8 @@
         error: function (xhr, ajaxOptions, thrownError) {
         }
     });
-
     $("#save").attr("disabled", true);
     $('body').on('change keyup keydown', 'input, textarea, select', function (e) {
         $("#save").attr("disabled", false);
     });
-
-
-
 });

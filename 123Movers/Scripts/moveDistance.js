@@ -1,7 +1,6 @@
 ﻿(function ($) {
     var message = $.trim($('#message').val());
     if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
-
     var orgMinWeight = $.trim($("#MinMoveDistance").val());
     var orgMaxWeight = $.trim($("#MaxMoveDistance").val());
 
@@ -11,29 +10,24 @@
         if (!(key >= 48 && key <= 57))
             event.preventDefault();
     });
-
     $("body").parent().on('click', "#saveDistance", function () {
         var serviceId = $('#ddlServiceID').val();
         var minWeight = $.trim($("#MinMoveDistance").val());
         var maxWeight = $.trim($("#MaxMoveDistance").val());
 
         if (serviceId == '' || serviceId == undefined) {
-            alert('Please Select Service Type');
+            alert('Please select Service Type');
             $("#ddlServiceID").focus();
             return false;
         }
-
-
         if (serviceId != null && serviceId != '') {
             if ((minWeight.length == 0 && maxWeight.length == 0) || (parseInt(minWeight) == 0 && parseInt(maxWeight) == 0)) {
                 alert('Please enter atleast one Distance');
                 return false;
-
             }
-
         }
         if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0 && parseInt(maxWeight) != 0) {
-            alert('Min Move Distance Should be Less Than Max Move Distance');
+            alert('Min Move Distance should be less than Max Move Distance');
             $("#MinMoveDistance").val(orgMinWeight);
             $("#MaxMoveDistance").val(orgMaxWeight);
             $("#MinMoveDistance").focus();
@@ -43,13 +37,11 @@
             orgMinWeight = $("#MinMoveDistance").val();
             orgMaxWeight = $("#MaxMoveDistance").val();
         }
-
         var ModelData =
             {
                 ServiceId: serviceId,
                 MinMoveDistance: orgMinWeight,
                 MaxMoveDistance: orgMaxWeight
-
             };
         $.ajax({
             url: '/MoveDistance/MoveDistance',
@@ -60,7 +52,6 @@
                 alert("Distance data successfully saved");
             },
             error: function (xhr, ajaxOptions, thrownError) {
-
             }
         });
     });
@@ -88,10 +79,8 @@
                         $("#MinMoveDistance").val('');
                         $("#MaxMoveDistance").val('');
                     }
-                    //  location.reload();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-
                 }
             });
         } else {
@@ -99,5 +88,4 @@
             $("#MaxMoveDistance").val('');
         }
     });
-
 }(jQuery));

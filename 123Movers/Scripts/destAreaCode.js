@@ -1,16 +1,13 @@
 ﻿$(function () {
-
     var serviceId = $('#ddlServiceID').val();
     if (serviceId != '') {
         GetSelectedAreas(serviceId);
     } else { $('#ddlareaCode').attr("disabled", true); }
-
- 
     function GetSelectedAreas(serviceId) {
         $.ajax({
             url: '/DestinationAreaCode/GetCompanyDestAreas',
             type: "GET",
-            data: { 'serviceId': serviceId},
+            data: { 'serviceId': serviceId },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -33,7 +30,6 @@
                         }
                     }
                 });
-
                 if (options != undefined) {
                     $('#originAreaCodes').html(options);
                 }
@@ -47,7 +43,6 @@
                 else {
                     $('#destAreaCodes').html('');
                 }
-
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
@@ -60,13 +55,13 @@
             selected[i] = $(this).val();
         });
         if (serviceId == '') {
-            alert("Please Select Service Type");
+            alert("Please select Service Type");
             $('#ddlServiceID').focus();
             return false;
         }
         if (selected.length == 0) {
 
-            alert("Please Select any Option to add");
+            alert("Please select any Option to add");
             $('#originAreaCodes').focus();
             return false;
         }
@@ -77,21 +72,25 @@
             data: { 'serviceId': serviceId, 'areaCodes': data_to_send },
             success: function (data) {
                 GetSelectedAreas(serviceId);
-                alert("Area Codes added Successfully");
+                alert("Area Code(s) added Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
         });
     });
-
     $('#remove').click(function () {
         var serviceId = $('#ddlServiceID').val();
         var selected = [];
+        if (serviceId == '') {
+            alert("Please select Service Type");
+            $('#ddlServiceID').focus();
+            return false;
+        }
         $('#destAreaCodes :selected').each(function (i, el) {
             selected[i] = $(this).val();
         });
         if (selected.length == 0) {
-            alert("Please Select any Option to Remove")
+            alert("Please select any Option to Remove")
             $('#destAreaCodes').focus();
             return false;
         }
@@ -102,13 +101,12 @@
             data: { 'serviceId': serviceId, 'areaCodes': data_to_send },
             success: function (data) {
                 GetSelectedAreas(serviceId);
-                alert("Area Codes removed Successfully");
+                alert("Area Code(s) removed Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
         });
     });
-
     $("body").parent().on("change", "#ddlServiceID", function () {
         var serviceId = $('#ddlServiceID').val();
         if (serviceId != '') {
@@ -122,5 +120,4 @@
             $('#originAreaCodes').html('');
         }
     });
-
 });

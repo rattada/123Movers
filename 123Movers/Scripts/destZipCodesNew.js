@@ -4,13 +4,11 @@
         GetAvailableAreas(serviceId);
         GetAllAreaCodes(serviceId);
     } else { $('#ddlareaCode').attr("disabled", true); }
-
     function GetAvailableZipCodes() {
         var serviceId = $('#ddlServiceID').val();
         var extAreaCode = $('#ddlexstngareaCode').val();
         var destAreaCode = $('#ddldestareaCode').val();
         if (extAreaCode == '' || extAreaCode == null) { extAreaCode = destAreaCode; }
-
         $.ajax({
             url: '/DestZipCode/GetCompanyAreasDestinationZipCodes',
             type: "GET",
@@ -38,7 +36,6 @@
             error: function (xhr, ajaxOptions, thrownError) {
             }
         });
-
         $.ajax({
             url: '/DestZipCode/GetAvailableDestinationZipCodes',
             type: "GET",
@@ -67,7 +64,6 @@
             }
         });
     }
-
     function GetAvailableAreas(serviceId) {
         $.ajax({
             url: '/DestZipCode/GetAvailDestAreas',
@@ -80,9 +76,8 @@
                 var json = $.parseJSON(strigifyJson);
                 var options = '<option value="">' + "--Choose One--" + '</option>';
                 $.each(json, function (i, val) {
-                        options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
+                    options += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                 });
-
                 if (json.length > 0) {
                     $('#ddldestareaCode').html(options);
                     $('#existingZipCodes').html('');
@@ -102,11 +97,8 @@
             error: function (xhr, ajaxOptions, thrownError) {
             }
         });
-
-       
     }
-    function GetAllAreaCodes(serviceId)
-    {
+    function GetAllAreaCodes(serviceId) {
         $.ajax({
             url: '/DestZipCode/GetAllAreaCodes',
             type: "GET",
@@ -142,7 +134,6 @@
             }
         });
     }
-
     $('#add').click(function () {
         var serviceId = $('#ddlServiceID').val();
         var destAreaCode = $('#ddldestareaCode').val();
@@ -151,17 +142,17 @@
             selected[i] = $(this).val();
         });
         if (serviceId == '') {
-            alert("Please Select Service Type");
+            alert("Please select Service Type");
             $('#ddlServiceID').focus();
             return false;
         }
         if (destAreaCode == '') {
-            alert("Please Select Destination AreaCode");
+            alert("Please select Destination AreaCode");
             $('#ddldestareaCode').focus();
             return false;
         }
         if (selected.length == 0) {
-            alert("Please Select any Zip Code to Add");
+            alert("Please select any Option to Add");
             $('#existingZipCodes').focus();
             return false;
         }
@@ -182,11 +173,21 @@
         var serviceId = $('#ddlServiceID').val();
         var destAreaCode = $('#ddldestareaCode').val();
         var selected = [];
+        if (serviceId == '') {
+            alert("Please select Service Type");
+            $('#ddlServiceID').focus();
+            return false;
+        }
+        if (destAreaCode == '') {
+            alert("Please select Destination AreaCode");
+            $('#ddldestareaCode').focus();
+            return false;
+        }
         $('#destZipCodes :selected').each(function (i, el) {
             selected[i] = $(this).val();
         });
         if (selected.length == 0) {
-            alert("Please Select any Zip Code to Remove")
+            alert("Please select  any Option to Remove")
             $('#destZipCodes').focus();
             return false;
         }

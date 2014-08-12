@@ -629,3 +629,17 @@ ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
    at _123Movers.Controllers.BaseController.RetrieveCurrentCompanyId() in d:\Movers123\123Movers\123Movers\Controllers\BaseController.cs:line 54
    at _123Movers.Controllers.BaseController.get_ServiceId() in d:\Movers123\123Movers\123Movers\Controllers\BaseController.cs:line 26
    at _123Movers.Controllers.BudgetController.RenewBudget() in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 155
+2014-08-12 17:12:19,982 [23] ERROR _123Movers.Controllers.BudgetController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'usp_RenewalBudget' expects parameter '@serviceId', which was not supplied.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 165
+   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
+   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 155
+ClientConnectionId:2835ae8d-1296-4535-a586-165213ac174f
