@@ -297,6 +297,7 @@
     <Content Include="Scripts\destZipCodes.js" />
     <Content Include="Scripts\destZipCodesNew.js" />
     <Content Include="Scripts\editBudget.js" />
+    <Content Include="Scripts\getBudget.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

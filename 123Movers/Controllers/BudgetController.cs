@@ -145,5 +145,24 @@ namespace _123Movers.Controllers
             }
             return View(budget);
         }
+
+        [HttpPost]
+        public JsonResult RenewBudget(int? ServiceId)
+        {
+            JsonResult result;
+            try
+            {
+                BusinessLayer.RenewBudget(CompanyInfo.CompanyId, ServiceId);
+                result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+            return result;
+
+        }
     }
 }

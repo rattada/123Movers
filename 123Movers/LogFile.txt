@@ -622,3 +622,10 @@ ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
    at _123Movers.Controllers.DestZipCodeController.AddCompanyAreaDestinationZipCodes(Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestZipCodeController.cs:line 70
 2014-08-11 14:15:14,618 [11] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.NullReferenceException: Object reference not set to an instance of an object.
    at _123Movers.Controllers.DestZipCodeController.AddCompanyAreaDestinationZipCodes(Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestZipCodeController.cs:line 70
+2014-08-12 16:03:26,124 [16] ERROR _123Movers.Controllers.BudgetController – System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at _123Movers.Controllers.BaseController.RetrieveCurrentCompanyId() in d:\Movers123\123Movers\123Movers\Controllers\BaseController.cs:line 54
+   at _123Movers.Controllers.BaseController.get_ServiceId() in d:\Movers123\123Movers\123Movers\Controllers\BaseController.cs:line 26
+   at _123Movers.Controllers.BudgetController.RenewBudget() in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 155

@@ -10,7 +10,6 @@ namespace _123Movers.DataEntities
 {
     public partial class DataLayer
     {
-        
         public static List<BudgetModel> GetBudget(int? companyid)
         {
             List<BudgetModel> list = new List<BudgetModel>();
@@ -20,7 +19,6 @@ namespace _123Movers.DataEntities
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 _cmd.CommandText = Constants.SP_GET_COMPANY_BUDGET;
-
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyid);
 
@@ -54,8 +52,6 @@ namespace _123Movers.DataEntities
                     };
                     list.Add(budget);
                 }
-
-
                 return list;
             }
         }
@@ -109,7 +105,6 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramType);
 
                 _cmd.ExecuteNonQuery();
-
             }
 
         }
@@ -139,34 +134,36 @@ namespace _123Movers.DataEntities
         public static List<List<string>> GetFilterResult(int? companyID, int? serviceID)
         {
             DataTable dtResults = new DataTable();
-
-            try
+            using (SqlConnection dbCon = ConnectToDb())
             {
-                using (SqlConnection dbCon = ConnectToDb())
-                {
-                    _cmd = new SqlCommand();
-                    _cmd.Connection = dbCon;
-                    _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_GET_FILTER_RESULT;
 
-                    _cmd.CommandText = Constants.SP_GET_FILTER_RESULT;
+                _cmd.Parameters.Add(new SqlParameter("companyID", companyID));
+                _cmd.Parameters.Add(new SqlParameter("serviceID", serviceID));
 
-                    _cmd.Parameters.Add(new SqlParameter("companyID", companyID));
-                    _cmd.Parameters.Add(new SqlParameter("serviceID", serviceID));
+                SqlDataReader drResults = _cmd.ExecuteReader();
 
-
-                    SqlDataReader drResults = _cmd.ExecuteReader();
-
-                    dtResults.Load(drResults);
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-
+                dtResults.Load(drResults);
             }
             return ConfigValues.TableToList(dtResults);
+        }
+        public static void RenewBudget(int? companyId, int? serviceId)
+        {
+            using (SqlConnection dbCon = ConnectToDb())
+            {
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_RENEWAL_BUDGET;
 
+                _cmd.Parameters.Add(new SqlParameter("companyID", companyId));
+                _cmd.Parameters.Add(new SqlParameter("serviceID", serviceId));
+
+               _cmd.ExecuteNonQuery();
+            }
         }
 
     }

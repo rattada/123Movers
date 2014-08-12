@@ -6,7 +6,8 @@
    
 }
 @section JavaScript{
-      @Html.Script("jquery.dataTables.min.js")
+    @Html.Script("jquery.dataTables.min.js")
+    @Html.Script("getBudget.js")
 }
 
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
@@ -80,7 +81,10 @@
                             </td>
                             <td class="text-center">
                                 <p>@Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget = @lot.TotalBudget, IsRecurring = @lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge, ServiceId = @lot.ServiceId, agnumber = @lot.AgreementNumber, minDaysToCharge = @lot.MinDaysToCharge }, new { id = "EditBudget", @class = "btn btn-sm btn-info" })</p>
-                                @*<p>@Html.ActionLink("Renew", "EditBudget", "Budget", new { TotalBudget = @lot.TotalBudget, IsRecurring = @lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge, ServiceId = @lot.ServiceId, agnumber = @lot.AgreementNumber, minDaysToCharge = @lot.MinDaysToCharge }, new { id = "EditBudget", @class = "btn btn-sm btn-info" })</p>*@
+                                @if(@Recurring == "Recurring With Notice"){
+                                @*<p>@Html.ActionLink("Renew", "RenewBudget", "Budget", new { ServiceId = @lot.ServiceId}, new { id = "renewBudget", @class = "btn btn-sm btn-info" })</p>*@
+                                     <p><input type="button" value="Renew" id="activeRenew" data-id ="@lot.ServiceId" class = "btn btn-sm btn-info"/></p>
+                                }
                             </td>
                         </tr>
                         }
@@ -124,6 +128,8 @@
                         <th class="text-center">Terms
                         </th>
                         <th class="text-center">Service
+                        </th>
+                         <th class="text-center">Renew
                         </th>
                     </tr>
                 </thead>
@@ -170,6 +176,13 @@
                                 }
                                 @Service
                             </td>
+                            <td class="text-center">
+                                @if (@Recurring == "Recurring With Notice" && @lot.TotalBudget == 0)
+                                {
+                                     @*<p>@Html.ActionLink("Renew", "RenewBudget", "Budget", new { ServiceId = @lot.ServiceId}, new { id = "renewBudget", @class = "btn btn-sm btn-info" })</p>*@
+                                <p><input type="button" id="expireRenew" data-id ="@lot.ServiceId" class = "btn btn-sm btn-info"/></p>
+                                }
+                            </td>
                         </tr>
                         }
                     }
@@ -186,8 +199,18 @@
     </div>
     </div>
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(document).ready(function () {
         $('#ExpiredInfo').dataTable({ "sPaginationType": "full_numbers" });
+
+        $('#renewBudget').click(function () {
+
+            $.ajax(function () {
+
+
+            });
+
+        });
+
     });
-</script>
+</script>*@

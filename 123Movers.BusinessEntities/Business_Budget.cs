@@ -30,5 +30,9 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.GetFilterResult(companyID, serviceID);
         }
+        public static void RenewBudget(int? companyId, int? serviceId)
+        {
+            DataLayer.RenewBudget(companyId, serviceId);
+        }
     }
 }
