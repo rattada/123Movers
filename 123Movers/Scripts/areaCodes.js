@@ -207,7 +207,7 @@
                         serviceId = 1009;
                         GetAvailableAreas(serviceId, 'local');
                         GetSelectedAreas(serviceId, 'local');
-                        $('#ServiceTab a:first').tab('show');
+                        $('#ServiceTab a:first').tab('show');   
                     }
                     else {
                         serviceId = parseInt(1000);

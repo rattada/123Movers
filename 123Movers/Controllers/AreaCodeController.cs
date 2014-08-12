@@ -57,18 +57,21 @@ namespace _123Movers.Controllers
         //    return RedirectToAction("AreaCodes", new { serviceId = serviceId });
         //}
 
-        public ActionResult AddAreaCodes(int? serviceId, string areaCodes)
+        public JsonResult AddAreaCodes(int? serviceId, string areaCodes)
         {
+            JsonResult result;
             try
             {
                 BusinessLayer.AddCompanyAreaCodes(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace());
+                result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());
+                result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 
-            return RedirectToAction("AreaCodes", new { serviceId = serviceId });
+            return result;
         }
 
         public ActionResult DeleteAreaCodes(int? serviceId,string areaCodes)
