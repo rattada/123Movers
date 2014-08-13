@@ -100,7 +100,7 @@
             return false;
         }
         if (Spcfcstate == '') {
-            alert("Please select Origin originStates");
+            alert("Please select OriginStates");
             $('#ddlState').focus();
             return false;
         }
@@ -132,7 +132,7 @@
             return false;
         }
         if (Spcfcstate == '') {
-            alert("Please select Origin originStates");
+            alert("Please select OriginStates");
             $('#ddlState').focus();
             return false;
         }

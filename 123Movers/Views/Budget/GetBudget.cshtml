@@ -16,10 +16,10 @@
 @if (@Model != null)
 {
     <div>
-        <h2>Active Budgets</h2>
+        <h2>Current Budgets</h2>
         <div class="row">
             <div class="col-md-12">
-                <p>@Html.ActionLink("Add a Budget", "AddBudget", "Budget", new { id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
+                <p>@Html.ActionLink("Add Budget", "AddBudget", "Budget", new { id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
             </div>
         </div>
         <p class="clearfix"></p>
@@ -47,7 +47,7 @@
                 </thead>
                 <tbody>
                     @{
-    List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget > 0).ToList();
+    List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget >= 0).ToList();
                     }
                     @if (activeBudget.Count > 0)
                     {
@@ -106,12 +106,11 @@
             </table>
         </div>
 
-        <h2>Expired Budgets</h2>
+        <h2>Past Budgets</h2>
 
         <div class="row">
             <div class="col-md-6">
                 <p><strong>Total Billed    :</strong> @ViewBag.TotalBilled</p>
-                @*<p><strong>Total Uncharged :</strong> @ViewBag.UnchargedAmount</p>*@
             </div>
             <div class="col-md-6">
                 <p><strong>Total Uncharged :</strong> @ViewBag.UnchargedAmount</p>
@@ -164,7 +163,6 @@
                                 @edate
                             </td>
                             <td class="text-center">
-                                @lot.TotalBudget = 0;
                                 @string.Format("{0:c}", @lot.TotalBudget)
                             </td>
 
