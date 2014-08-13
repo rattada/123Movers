@@ -164,5 +164,10 @@ namespace _123Movers.Controllers
             return result;
 
         }
+
+        public JsonResult GetBudgetFilterInfo(int? ServiceId)
+        {
+            return Json(BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, ServiceId), JsonRequestBehavior.AllowGet);
+        }
     }
 }

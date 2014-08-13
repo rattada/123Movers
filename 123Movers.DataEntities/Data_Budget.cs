@@ -166,5 +166,25 @@ namespace _123Movers.DataEntities
             }
         }
 
+        public static List<List<string>> GetBudgetFilterInfo(int? companyID, int? serviceID)
+        {
+            DataTable dtResults = new DataTable();
+            using (SqlConnection dbCon = ConnectToDb())
+            {
+                _cmd = new SqlCommand();
+                _cmd.Connection = dbCon;
+                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                _cmd.CommandText = Constants.SP_GET_BUDGET_FILTER;
+
+                _cmd.Parameters.Add(new SqlParameter("companyID", companyID));
+                _cmd.Parameters.Add(new SqlParameter("serviceID", serviceID));
+
+                SqlDataReader drResults = _cmd.ExecuteReader();
+
+                dtResults.Load(drResults);
+            }
+            return ConfigValues.TableToList(dtResults);
+        }
+
     }
 }

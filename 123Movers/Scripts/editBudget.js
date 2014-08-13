@@ -69,4 +69,22 @@
     $('body').on('change keyup keydown', 'input, textarea, select', function (e) {
         $("#save").attr("disabled", false);
     });
+
+    $('#btnfilter').click(function () {
+        $.ajax({
+            url: '/Budget/GetBudgetFilterInfo',
+            type: 'GET',
+            data: { 'serviceId': ServiceId },
+            dataType: 'Json',
+            cache: false,
+            success: function (data) {
+                var strigifyJson = JSON.stringify(data);
+                var json = $.parseJSON(strigifyJson);
+               // $('#divfilter').html(json);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+            }
+        });
+    });
+
 });

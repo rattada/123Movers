@@ -10,7 +10,6 @@
             dataType: "json",
             cache: false,
             success: function (data) {
-                debugger;
                 if (data.success) {
                     alert('Renewed The Budget');
                     $(this).attr('disabled', true)

@@ -81,6 +81,7 @@ namespace _123Movers.Models
             public static readonly string SP_GET_AREACODES_STATES = "usp_getAreaCodesStates";
             public static readonly string SP_GET_FILTER_RESULT = "usp_GetFiltersInfo";
             public static readonly string SP_RENEWAL_BUDGET = "usp_RenewalBudget";
+            public static readonly string SP_GET_BUDGET_FILTER = "usp_GetBudgetFilterInfo";
 
             #endregion
 
