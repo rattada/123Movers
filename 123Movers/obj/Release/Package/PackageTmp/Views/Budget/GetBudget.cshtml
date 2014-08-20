@@ -16,10 +16,10 @@
 @if (@Model != null)
 {
     <div>
-        <h2>Active Budgets</h2>
+        <h2>Current Budgets</h2>
         <div class="row">
             <div class="col-md-12">
-                <p>@Html.ActionLink("Add a Budget", "AddBudget", "Budget", new { id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
+                <p>@Html.ActionLink("Add Budget", "AddBudget", "Budget", new { id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
             </div>
         </div>
         <p class="clearfix"></p>
@@ -41,11 +41,13 @@
                         </th>
                         <th class="text-center">Filters
                         </th>
+                        <th class="text-center">Renew
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @{
-    List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget > 0).ToList();
+    List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget >= 0).ToList();
                     }
                     @if (activeBudget.Count > 0)
                     {
@@ -81,9 +83,20 @@
                             </td>
                             <td class="text-center">
                                 <p>@Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget = @lot.TotalBudget, IsRecurring = @lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge, ServiceId = @lot.ServiceId, agnumber = @lot.AgreementNumber, minDaysToCharge = @lot.MinDaysToCharge }, new { id = "EditBudget", @class = "btn btn-sm btn-info" })</p>
-                               @* @if(@Recurring == "Recurring With Notice"){
-                                <p>@Html.ActionLink("Renew", "RenewBudget", "Budget", new { ServiceId = @lot.ServiceId}, new { id = "renewBudget", @class = "btn btn-sm btn-info" })</p>
-                                }*@
+                            </td>
+                            <td class="text-center">
+                                @if (@Recurring == "Recurring With Notice")
+                                {
+@*<p>@Html.ActionLink("Renew", "RenewBudget", "Budget", new { ServiceId = @lot.ServiceId}, new { id = "renewBudget", @class = "btn btn-sm btn-info" })</p>*@
+                                    if(@lot.IsOneTimeRenew)
+                                    {
+                                        <p><input type="button" value="Renewed" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>
+                                    }
+                                    else
+                                    {
+                                        <p><input type="button" value="Renew" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>
+                                    }
+                                }
                             </td>
                         </tr>
                         }
@@ -99,17 +112,16 @@
             </table>
         </div>
 
-        <h2>Expired Budgets</h2>
+        <h2>Past Budgets</h2>
 
-        <div class="row" >
-            <div class="col-md-6" >
+        @*<div class="row">
+            <div class="col-md-6">
                 <p><strong>Total Billed    :</strong> @ViewBag.TotalBilled</p>
+            </div>
+            <div class="col-md-6">
                 <p><strong>Total Uncharged :</strong> @ViewBag.UnchargedAmount</p>
             </div>
-            @*<div class="col-md-6">
-                <p><strong>Total Uncharged :</strong> @ViewBag.UnchargedAmount</p>
-            </div>*@
-        </div>
+        </div>*@
         <div class="table-responsive ">
             <table id="ExpiredInfo" class="table table-bordered table-striped table-hover">
                 <thead>
@@ -128,7 +140,7 @@
                         </th>
                         <th class="text-center">Service
                         </th>
-                         <th class="text-center">Renew
+                        <th class="text-center">Renew
                         </th>
                     </tr>
                 </thead>
@@ -176,10 +188,15 @@
                                 @Service
                             </td>
                             <td class="text-center">
-                                @*@if (@Recurring == "Recurring With Notice" && @lot.TotalBudget == 0)
+                                @{
+                            var amount = 0;
+                                }
+                                @if (@Recurring == "Recurring With Notice" && @amount == 0)
                                 {
-                                <p><input type="button" id="renewBudget" class = "btn btn-sm btn-info"/></p>
-                                }*@
+@*<p>@Html.ActionLink("Renew", "RenewBudget", "Budget", new { ServiceId = @lot.ServiceId}, new { id = "renewBudget", @class = "btn btn-sm btn-info" })</p>*@
+                                    <p>
+                                        <input type="button" id="expireRenew@(lot.ServiceId)" value="Renew" data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>
+                                }
                             </td>
                         </tr>
                         }
@@ -190,25 +207,9 @@
     </div>
 }
 <div class="row">
-           <div class="col-md-12">
-               <p class="clearfix"></p>
- <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List</a>
+    <div class="col-md-12">
+        <p class="clearfix"></p>
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List</a>
 
     </div>
-    </div>
-
-@*<script type="text/javascript">
-    $(document).ready(function () {
-        $('#ExpiredInfo').dataTable({ "sPaginationType": "full_numbers" });
-
-        $('#renewBudget').click(function () {
-
-            $.ajax(function () {
-
-
-            });
-
-        });
-
-    });
-</script>*@
+</div>

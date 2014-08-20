@@ -57,7 +57,6 @@
         };
         AddZipCodesByRadius(RadiusData);
     });
-
     $('#btnGetRadius').on("click", function () {
         //StartSpin();
         var service = $.trim($("#ddlServiceID").val());
@@ -91,11 +90,8 @@
             radius: radius,
             category: category
         };
-       
         GetZipCodesByRadius(RadiusData);
-
     });
-
     function AddZipCodesByRadius(RadiusData) {
         $("body").mask('Saving...');
         $.ajax({
@@ -105,25 +101,19 @@
             dataType: "json",
             cache: false,
             success: function (data) {
-
                 if (data.success) {
                     $("body").unmask();
                     alert("Record(s) saved successfully");
                     $("#btnRadius").prop("disabled", true);
-                   // $("input:text").val('');
-                   // $('select').prop('selectedIndex', 0);
                 }
                 else {
-
                     alert("You are trying to Insert duplicate Record(s)");
                 }
-               
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 $("body").unmask();
             }
         });
-        
     };
     function GetZipCodesByRadius(RadiusData) {
         $("body").mask('Loading...');
@@ -149,7 +139,7 @@
                     $("#btnRadius").prop("disabled", false);
                 }
                 else {
-                   // $('#tblRadius_wrapper').html('');
+                    // $('#tblRadius_wrapper').html('');
                     $("#btnRadius").css('display', 'none');
                     $("#ddlorigordest").prop("disabled", true);
                     alert("No record(s) found with above Combination.Please try with another Combination");
@@ -159,7 +149,6 @@
             error: function (xhr, ajaxOptions, thrownError) {
             }
         });
-       
     };
 });
 

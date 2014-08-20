@@ -5,9 +5,7 @@
                 $(this).attr("disabled", false);
         });
     });
-
     $("#saveleads").attr('disabled', true);
-
     $("body").on("keypress", "input", function (event) {
         var key = event.which;
         if (!(key >= 48 && key <= 57))
@@ -15,12 +13,10 @@
         else
             $("#saveleads").removeAttr('disabled');
     });
-
     $("#saveleads").click(function () {
         var values = "";
         var LeadLimitData = [];
         var Filleddata = [];
-
         $('#tblLeadLimit tbody tr').each(function () {
             //Checking for Only checked checkboxes
             $(this).find('.chkSelectClass:checkbox:checked').each(function () {
@@ -50,7 +46,6 @@
                         TotalLeadLimit = $.trim($(this).closest('td').find("input:text").val());
                     }
                 });
-
                 LeadLimitData =
                           [{
                               AreaCodes: AreaCodes,
@@ -63,9 +58,7 @@
                 Filleddata.push(LeadLimitData);
             });
         });
-
         //Saving the  entire data in DB with Ajax call
-
         if (Filleddata.length != 0) {
             $.ajax({
                 url: '/LeadLimit/LeadLimit',
@@ -88,7 +81,6 @@
             return false;
         }
     });
-
     $("body #tblLeadLimit ").parent().on('change', ".chkInnerClass", function () {
         if ($(this).prop('checked') == true) {
             $(this).closest("td").find("input[type=text]").prop("disabled", false);
@@ -98,7 +90,6 @@
             $(this).closest("td").find("input[type=text]").prop("disabled", true);
         }
     });
-
     $("#rdbtnboth").on("change", function () {
         if ($(this).prop('checked') == true) {
             $("#txtFrequencyLocal").attr("disabled", true);
@@ -107,12 +98,10 @@
             $("#rdbtnLong").prop("checked", false);
         };
     });
-
     $("#rdbtnLocal,#rdbtnLong").on("change", function () {
         $("#rdbtnboth").prop("checked", false);
         $("#txtFrequencyboth").attr("disabled", true);
     });
-
     $("body #tblLeadLimit ").parent().on('change', ".chkSelectClass", function () {
         if ($(this).prop('checked') == true) {
             //Enable the frequency texboxes

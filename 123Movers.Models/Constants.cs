@@ -70,6 +70,7 @@ namespace _123Movers.Models
             public static readonly string SP_GET_COMPANY_DEST_AREACODE = "usp_GetCompanyDestinationAreacode";
             public static readonly string SP_COMPANY_DEST_AREACODE_ADD = "usp_AddCompanyDestAreaCodes";
             public static readonly string SP_COMPANY_DEST_AREACODE_DELETE = "usp_DeleteCompanyDestAreaCodes";
+            public static readonly string SP_COMPANY_DEST_AREACODE_TURN_ON_OFF = "usp_DestinationAreaFilterOnOff";
 
             #endregion
 

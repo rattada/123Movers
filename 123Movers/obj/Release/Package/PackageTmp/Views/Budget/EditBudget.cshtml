@@ -2,15 +2,15 @@
 @using _123Movers.Models
 @{
     ViewBag.Title = "Edit Budget";
-   
 }
 
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 
 @section JavaScript{
     @Html.Script("editBudget.js")
+    @Html.Script("jquery.dataTables.min.js")
+    @Html.Script("jquery.loadmask.min.js")
 }
-
 @using (Html.BeginForm("EditBudget", "Budget", FormMethod.Post, new { id = "frmeditbudget" }))
 {
     @Html.AntiForgeryToken()
@@ -21,12 +21,12 @@
         <div class="col-lg-4">
             <div class="form-group">
                 @Html.LabelFor(m => m.TotalBudget)
-                @Html.TextBoxFor(m => m.TotalBudget, new { @class = "form-control", @readonly = "readonly", Value = String.Format("{0:0.00}", Model.TotalBudget), @placeholder = "Enter Company Budget"  })
+                @Html.TextBoxFor(m => m.TotalBudget, new { @class = "form-control", @readonly = "readonly", Value = String.Format("{0:0.00}", Model.TotalBudget), @placeholder = "Enter Company Budget" })
                 @Html.ValidationMessageFor(m => m.TotalBudget)
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.AgreementNumber)
-                @Html.TextBoxFor(m => m.AgreementNumber, new { @class = "form-control" , @placeholder = "Enter Agreement Number" })
+                @Html.TextBoxFor(m => m.AgreementNumber, new { @class = "form-control", @placeholder = "Enter Agreement Number" })
                 @Html.ValidationMessageFor(m => m.AgreementNumber)
             </div>
         </div>
@@ -62,8 +62,8 @@
             @Html.ActionLink("Area Codes", "AreaCodes", "AreaCode", new { serviceId = Service }, new { id = "managearea", @class = "btn btn-default" })
             @Html.ActionLink("Lead Limit", "LeadLimit", "LeadLimit", new { serviceId = Service }, new { id = "leadlimit", @class = "btn btn-default clsdisable" })
             @Html.ActionLink("Origin Zip", "OriginZipCodes", "OriginZipCode", new { serviceId = Service }, new { id = "originzip", @class = "btn btn-default clsdisable" })
-           @*@Html.ActionLink("Destination Zip", "DestinationZipCodes", "DestinationZipCode", new { serviceId = Service }, new { id = "destzip", @class = "btn btn-default" })*@
-            @Html.ActionLink("Destination Zip", "DestZipCode", "DestZipCode", new { serviceId = Service }, new { id = "destareazip", @class = "btn btn-default clsdisable" })
+            @*@Html.ActionLink("Destination Zip", "DestinationZipCodes", "DestinationZipCode", new { serviceId = Service }, new { id = "destzip", @class = "btn btn-default" })*@
+            @*@Html.ActionLink("Destination Zip", "DestZipCode", "DestZipCode", new { serviceId = Service }, new { id = "destareazip", @class = "btn btn-default clsdisable" })*@
             @Html.ActionLink("Destination Area", "DestinationAreaCode", "DestinationAreaCode", new { serviceId = Service }, new { id = "destarea", @class = "btn btn-default clsdisable" })
             @Html.ActionLink("Distance", "MoveDistance", "MoveDistance", new { serviceId = Service }, new { id = "distance", @class = "btn btn-default clsdisable" })
             @Html.ActionLink("Move Weight", "MoveWeight", "MoveWeight", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default clsdisable" })
@@ -74,10 +74,30 @@
     </div>
     <p class="clear-fix"></p>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
+             <a id="btnfilter"  class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal" >Get Filter Info</a>
+        </div>
+        <div class="col-md-6">
             <input type="submit" id="save" class="btn btn-primary pull-right" value="Save Budget" />
-             <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List</a>
+            <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List</a>
 
         </div>
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" >
+    <div class="modal-dialog-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close cross" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title text-center" id="myModalLabel"><b>Filter Information:</b></h4>
+            </div>
+            <div class="modal-body text-center">
+                <div class="modal-content" id="divfilter" style="height:300px;overflow:auto;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default cross" data-dismiss="modal" id="close">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 }

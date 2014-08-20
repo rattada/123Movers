@@ -12,7 +12,7 @@
             success: function (data) {
                 if (data.success) {
                     alert('Renewed The Budget');
-                    $(this).attr('disabled', true)
+                    location.reload();
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {

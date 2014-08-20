@@ -48,7 +48,8 @@ namespace _123Movers.DataEntities
                         MinDaysToCharge = row["minDaysToCharge"].ToString().IntNullOrEmpty(),
                         IsRecurring = row["IsReccurring"].ToString().BooleanNullOrEmpty(),
                         IsRequireNoticeToCharge = row["IsRequireNoticeToCharge"].ToString().BooleanNullOrEmpty(),
-                        ContactPerson = row["contactPerson"].ToString()
+                        ContactPerson = row["contactPerson"].ToString(),
+                        IsOneTimeRenew = row["isOneTimeRenew"].ToString().BooleanNullOrEmpty(),
                     };
                     list.Add(budget);
                 }

@@ -3,7 +3,6 @@
     if (serviceId != '') {
         GetAvailStates(serviceId);
     } else { $('#ddlState').attr("disabled", true); }
-   
     function GetAvailStates(serviceId) {
         $.ajax({
             url: '/SpecificStates/GetAvailStates',
@@ -65,20 +64,18 @@
                         }
                     } else {
                         if (destoptions == undefined) {
-                            destoptions = '<option value="' + val[0] + '">' +  val[0] + '</option>';
+                            destoptions = '<option value="' + val[0] + '">' + val[0] + '</option>';
                         } else {
-                            destoptions += '<option value="' + val[0] + '">' +  val[0] + '</option>';
+                            destoptions += '<option value="' + val[0] + '">' + val[0] + '</option>';
                         }
                     }
                 });
-
                 if (options != undefined) {
                     $('#originStates').html(options);
                 }
                 else {
                     $('#originStates').html('');
                 }
-
                 if (destoptions != undefined) {
                     $('#destStates').html(destoptions);
                 }
@@ -90,7 +87,6 @@
             }
         });
     }
-
     $('#add').click(function () {
         var serviceId = $('#ddlServiceID').val();
         var Spcfcstate = $('#ddlState').val();
@@ -99,17 +95,17 @@
             selected[i] = $(this).val();
         });
         if (serviceId == '') {
-            alert("Please Select Service Type");
+            alert("Please select Service Type");
             $('#ddlServiceID').focus();
             return false;
         }
         if (Spcfcstate == '') {
-            alert("Please Select Origin originStates");
+            alert("Please select OriginStates");
             $('#ddlState').focus();
             return false;
         }
         if (selected.length == 0) {
-            alert("Please Select any Option to add");
+            alert("Please select any Option to Add");
             $('#originStates').focus();
             return false;
         }
@@ -120,7 +116,7 @@
             data: { 'serviceId': serviceId, "originState": Spcfcstate, 'destStates': states },
             success: function (data) {
                 GetCompanySpcfcStates(serviceId, Spcfcstate);
-                alert("States added Successfully");
+                alert("State(s) added Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
@@ -130,11 +126,21 @@
         var serviceId = $('#ddlServiceID').val();
         var Spcfcstate = $('#ddlState').val();
         var selected = [];
+        if (serviceId == '') {
+            alert("Please select Service Type");
+            $('#ddlServiceID').focus();
+            return false;
+        }
+        if (Spcfcstate == '') {
+            alert("Please select OriginStates");
+            $('#ddlState').focus();
+            return false;
+        }
         $('#destStates :selected').each(function (i, el) {
             selected[i] = $(this).val();
         });
         if (selected.length == 0) {
-            alert("Please Select any Option to Remove")
+            alert("Please select any Option to Remove")
             $('#destStates').focus();
             return false;
         }
@@ -145,7 +151,7 @@
             data: { 'serviceId': serviceId, "originState": Spcfcstate, "destStates": states },
             success: function (data) {
                 GetCompanySpcfcStates(serviceId, Spcfcstate);
-                alert("States removed Successfully");
+                alert("State(s) removed Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }

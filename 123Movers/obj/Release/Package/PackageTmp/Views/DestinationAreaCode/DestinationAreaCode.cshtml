@@ -4,12 +4,9 @@
     ViewBag.Title = "Destination Area";
 }
 <input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
-
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
-
 <p class="clearfix"></p>
 <p class="clearfix"></p>
-
 @section JavaScript{
     @Html.Script("destAreaCode.js")
 }
@@ -21,32 +18,44 @@
             @Html.ValidationMessageFor(m => m.ServiceId)
         </div>
     </div>
-
-
-     <div class="col-md-1"></div>
+</div>
+<div class="row">
     <div class="col-md-5">
         <div class="row text-center">
             <strong>Destination Area Code</strong>
         </div>
         <div class="row" style="margin-left: 15px;">
             <div class="tab-pane" id="local">
-                <select name="originAreaCodes" id="originAreaCodes" size="20" class="selectItem"  multiple>
-            </select>
-
-            <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
-            <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
-
-            <select name="destAreaCodes" id="destAreaCodes" class="selectItem"  size="20" multiple>
-            </select>
+                <select name="originAreaCodes" id="originAreaCodes" size="20" class="selectItem" multiple>
+                </select>
+                <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
+                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
+                <select name="destAreaCodes" id="destAreaCodes" class="selectItem" size="20" multiple>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class='panel-group' id='accordion_tblCompanyAreas'>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><b>Avail.AreaCodes</b><span class="glyphicon glyphicon-plus  pull-right"></span></a></h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body" id="pnlBody">
+                        <div class="multiselect" id="divTblAreas"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <p class="clear-fix"></p>
 <div class="row ">
     <div class="col-md-12">
-         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+        <input type="button" id="saveSettings" class="btn btn-primary pull-right" value="Save Settings" />
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
     </div>
 </div>
+

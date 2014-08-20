@@ -1,4 +1,6 @@
 ﻿$(function () {
+    var areaCodes = [];
+    var serviceId;
     $("#ddlorigordest").prop("disabled", true);
     //Allow decimal values.
     $("#body").on("keypress", "#txtradius", function (event) {
@@ -17,26 +19,26 @@
         }
     });
     $('#btnRadius').click(function () {
-        var service = $.trim($("#ddlServiceID").val());
-        var category = $.trim($("#ddllessorgreate").val());
-        var type = $.trim($("#ddlorigordest").val());
+       // var service = $.trim($("#ddlServiceID").val());
+        var lessergreater = $.trim($("#ddllessorgreate").val());
+        var type = 'ORIGIN'// $.trim($("#ddlorigordest").val());
         var radius = $.trim($("#txtradius").val());
         var zipcode = $.trim($("#txtzipcode").val());
-        if (service == "") {
+        if (serviceId == "") {
             alert('Please select Service type');
             $("#ddlServiceID").focus();
             return false;
         }
-        else if (category == "") {
-            alert('Please select Category');
-            $("#ddllessorgreate").focus();
-            return false;
-        }
-        else if (type == "") {
-            alert('Please Select Category');
-            $("#ddlorigordest").focus();
-            return false;
-        }
+        //else if (category == "") {
+        //    alert('Please select Lesser Or Greater');
+        //    $("#ddllessorgreate").focus();
+        //    return false;
+        //}
+        //else if (type == "") {
+        //    alert('Please Select Category');
+        //    $("#ddlorigordest").focus();
+        //    return false;
+        //}
         else if (radius == "") {
             alert('Please enter Radius');
             $("#txtradius").focus();
@@ -49,30 +51,49 @@
         }
         var RadiusData =
         {
-            service: service,
+            service: serviceId,
             zipcode: zipcode,
             radius: radius,
-            category: category,
+            category: lessergreater,
             type: type
         };
         AddZipCodesByRadius(RadiusData);
     });
+
+    $('#addAreaCode').on('click', function () {
+        var areacode;
+        var jareaCodes;
+
+        jareaCodes = JSON.stringify(areaCodes);
+
+        $.ajax({
+            url: '/radius/AddAreaCodes',
+            data: { 'ServiceId': serviceId, 'AreaCodes': jareaCodes },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                if (data.success) {
+                    $("#addAreaCode").prop("disabled", true);
+                    alert('Area Codes Successfully Added');
+                }
+            }
+        });
+    });
     $('#btnGetRadius').on("click", function () {
-        //StartSpin();
-        var service = $.trim($("#ddlServiceID").val());
-        var category = $.trim($("#ddllessorgreate").val());
+        serviceId = $.trim($("#ddlServiceID").val());
+        var lessergreater = $.trim($("#ddllessorgreate").val());
         var radius = $.trim($("#txtradius").val());
         var zipcode = $.trim($("#txtzipcode").val());
-        if (service == "") {
+        if (serviceId == "") {
             alert('Please select Service type');
             $("#ddlServiceID").focus();
             return false;
         }
-        else if (category == "") {
-            alert('Please select Category');
-            $("#ddllessorgreate").focus();
-            return false;
-        }
+        //else if (category == "") {
+        //    alert('Please select Category');
+        //    $("#ddllessorgreate").focus();
+        //    return false;
+        //}
         else if (radius == "") {
             alert('Please enter Radius');
             $("#txtradius").focus();
@@ -85,10 +106,10 @@
         }
         var RadiusData =
         {
-            service: service,
+            service: serviceId,
             zipcode: zipcode,
             radius: radius,
-            category: category
+            category: lessergreater
         };
         GetZipCodesByRadius(RadiusData);
     });
@@ -129,7 +150,10 @@
                 var table = "<table class='table table-bordered table-striped table-hover' id ='tblRadius'> <thead><tr><th class='header text-center'>Origin Zip</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>ZipCode</th><th class='header text-center'>Distance</th></tr></thead><tbody>";
                 if (json.length > 0) {
                     jQuery.each(json, function (i, val) {
-                        table += "<tr><td class='text-center'>" + val[0] + "</td><td class='text-center'>" + val[1] + "</td><td class='text-center'>" + val[2] + "</td><td class='text-center'>" + val[3] + "</td></tr>";
+                        table += "<tr><td class='text-center'>" + val[0] + "</td><td class='text-center areacode'>" + val[1] + "</td><td class='text-center'>" + val[2] + "</td><td class='text-center'>" + val[3] + "</td></tr>";
+                        if ($.inArray(val[1], areaCodes) < 0) {
+                            areaCodes.push(val[1]);
+                        }
                     });
                     table += "</tbody></table>";
                     $('.table-responsive').html(table);
@@ -137,6 +161,7 @@
                     $("#btnRadius").css('display', 'block');
                     $("#ddlorigordest").prop("disabled", false);
                     $("#btnRadius").prop("disabled", false);
+                    $("#addAreaCode").prop("disabled", false);
                 }
                 else {
                     // $('#tblRadius_wrapper').html('');

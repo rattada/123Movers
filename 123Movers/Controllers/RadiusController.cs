@@ -54,5 +54,19 @@ namespace _123Movers.Controllers
         {
             return Json(BusinessLayer.GetZipCodesByRadius(CompanyInfo.CompanyId, service, zipcode, radius, category), JsonRequestBehavior.AllowGet);
         }
+        public JsonResult AddAreaCodes(int? ServiceId, string areaCodes)
+        {
+            JsonResult result;
+            try {
+                BusinessLayer.AddCompanyAreaCodes(CompanyInfo.CompanyId, ServiceId, areaCodes.StrReplace());
+                result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+            return result;
+        }
     }
 }

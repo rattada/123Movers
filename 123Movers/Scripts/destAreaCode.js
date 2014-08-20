@@ -2,7 +2,7 @@
     $("#accordion_tblCompanyAreas").hide();
     var serviceId = $('#ddlServiceID').val();
     if (serviceId != '') {
-        GetSelectedAreas(serviceId);
+        GetSelectedAreas(serviceId, false);
         //GettblCompanyAreas(serviceId);
 
     } else { $('#ddlareaCode').attr("disabled", true); }
@@ -57,7 +57,7 @@
     //        }
     //    });
     //}
-    function GetSelectedAreas(serviceId) {
+    function GetSelectedAreas(serviceId, bool) {
         $.ajax({
             url: '/DestinationAreaCode/GetCompanyDestAreas',
             type: "GET",
@@ -69,7 +69,8 @@
                 var json = $.parseJSON(strigifyJson);
                 var options;
                 var destoptions;
-                var table;
+                $("#accordion_tblCompanyAreas").show();
+
                 $.each(json, function (i, val) {
                     if (val[2] == 'Table') {
                         if (options == undefined) {
@@ -84,24 +85,17 @@
                             destoptions += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                         }
                     }
+
                     else {
-                        //if (val[2] == 1) {
-                        //    $('#test').prop('checked', true);
-                        //}
-
-                        if (table == undefined) {
-
-                            table = "<label><input type='checkbox' name='option[]'  id=" + val[0] + " />" + val[1] + ' - ' + val[0] + "</label>";
-                        } else {
-                            table += "<label><input type='checkbox' name='option[]'  id=" + val[0] + " />" + val[1] + ' - ' + val[0] + "</label>";
+                        if (bool == false) {
+                            $("#divTblAreas").append("<label><input type='checkbox' name='option[]'   id=" + val[0] + " />" + val[1] + ' - ' + val[0] + "</label>");
+                            if (val[2] == "1") {
+                                $('#' + val[0]).attr("checked", "checked");
+                            }
                         }
-                        $("#accordion_tblCompanyAreas").show();
-                        $('#divTblAreas').html(table);
-                        $(".multiselect").multiselect();
-
-
                     }
                 });
+                $(".multiselect").multiselect();
                 if (options != undefined) {
                     $('#originAreaCodes').html(options);
                 }
@@ -143,7 +137,7 @@
             type: "POST",
             data: { 'serviceId': serviceId, 'areaCodes': data_to_send },
             success: function (data) {
-                GetSelectedAreas(serviceId);
+                GetSelectedAreas(serviceId, true);
                 alert("Area Code(s) added Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -172,7 +166,7 @@
             type: "POST",
             data: { 'serviceId': serviceId, 'areaCodes': data_to_send },
             success: function (data) {
-                GetSelectedAreas(serviceId);
+                GetSelectedAreas(serviceId, true);
                 alert("Area Code(s) removed Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -182,8 +176,9 @@
     $("body").parent().on("change", "#ddlServiceID", function () {
         var serviceId = $('#ddlServiceID').val();
         if (serviceId != '') {
-            GetSelectedAreas(serviceId);
-           // GettblCompanyAreas(serviceId);
+            $("#divTblAreas").html('');
+            GetSelectedAreas(serviceId, false);
+            //GettblCompanyAreas(serviceId);
             $('#ddlareaCode').attr("disabled", false);
         }
         else {
@@ -192,6 +187,7 @@
             $('#destAreaCodes').html('');
             $('#originAreaCodes').html('');
             $('#divTblAreas').html('');
+            $("#accordion_tblCompanyAreas").hide();
         }
     });
 
@@ -204,14 +200,12 @@
             $('#ddlServiceID').focus();
             return false;
         }
-
         $(".multiselect").each(function (i, item) {
 
             var checkboxes = $(this).find("input:checkbox");
             checkboxes.each(function () {
                 var checkbox = $(this);
                 if (checkbox.prop("checked")) {
-                    alert(this.id);
                     var areacode = this.id;
                     selected.push(areacode);
                 }

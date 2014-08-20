@@ -57,6 +57,8 @@ namespace _123Movers.Models
         [Display(Name = "Require Notice To Chagrge")]
         public bool IsRequireNoticeToCharge { get; set; }
 
+        public bool IsOneTimeRenew { get; set; }
+
         [Display(Name = "Expire")]
         public bool Expire { get; set; }
 

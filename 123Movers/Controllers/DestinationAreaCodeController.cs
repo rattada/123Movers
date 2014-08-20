@@ -11,24 +11,31 @@ namespace _123Movers.Controllers
 {
     public class DestinationAreaCodeController : BaseController
     {
-        
 
-        public DestinationAreaCodeController() 
+
+        public DestinationAreaCodeController()
         {
-            logger = LogManager.GetLogger(typeof(SpecificOriginAreaCodesController)); 
+            logger = LogManager.GetLogger(typeof(SpecificOriginAreaCodesController));
         }
 
-        //public JsonResult GetAvailDestAreas(int? serviceId)
-        //{
-        //    return Json(BusinessLayer.GetAvailSpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
-        //}
         public JsonResult GetCompanyDestAreas(int? serviceId)
         {
             return Json(BusinessLayer.GetCompanyAreasCodes(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
+
+        //public JsonResult GetAllAreaCodes(int? serviceId)
+        //{
+        //    return Json(BusinessLayer.GetAllAreaCodes(), JsonRequestBehavior.AllowGet);
+        //}
+
+        //public JsonResult GetCompanyAreas(int? serviceId)
+        //{            
+        //   return Json(BusinessLayer.GetAvailSpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
+        //}
+
         public ActionResult DestinationAreaCode(int? serviceId)
         {
-            var Services =GetServices(serviceId);
+            var Services = GetServices(serviceId);
             if (Services.Count > 2)
                 ViewBag.Services = Services.Take(2);
             else
@@ -69,7 +76,24 @@ namespace _123Movers.Controllers
             }
             return result;
         }
-       
+
+        public JsonResult Turn_ON_OFF_CompanyDestAreaCodes(int? serviceId, string areaCodes)
+        {
+            JsonResult result;
+            try
+            {
+                BusinessLayer.Turn_ON_OFF_CompanyDestAreaCodes(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace());
+                result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+            return result;
+        }
+
 
     }
 }
