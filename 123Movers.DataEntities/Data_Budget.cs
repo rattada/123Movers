@@ -33,12 +33,12 @@ namespace _123Movers.DataEntities
                 {
                     BudgetModel budget = new BudgetModel
                     {
-                        CompanyId = row["minDaysToCharge"].ToString().IntNullOrEmpty(),
+                        CompanyId = row["CompanyId"].ToString().IntNullOrEmpty(),
                         CompanyName = row["Company Name"].ToString(),
                         AX = row["AX Number"].ToString(),
                         InsertionOrderId = row["Budget Insertion ID"].ToString(),
                         AgreementNumber = row["agreementNumber"].ToString(),
-                        AreaCodes = row["Area Code"].ToString(),
+                        //AreaCodes = row["Area Code"].ToString(),
                         StartDate = row["Budget Start Date"].ToString().DateNullOrEmpty(),
                         EndDate = row["Budget End Date"].ToString().DateNullOrEmpty(),
                         TotalBudget = row["Total Budget"].ToString().DecimalNullOrEmpty(),
@@ -48,8 +48,9 @@ namespace _123Movers.DataEntities
                         MinDaysToCharge = row["minDaysToCharge"].ToString().IntNullOrEmpty(),
                         IsRecurring = row["IsReccurring"].ToString().BooleanNullOrEmpty(),
                         IsRequireNoticeToCharge = row["IsRequireNoticeToCharge"].ToString().BooleanNullOrEmpty(),
-                        ContactPerson = row["contactPerson"].ToString(),
+                        //ContactPerson = row["contactPerson"].ToString(),
                         IsOneTimeRenew = row["isOneTimeRenew"].ToString().BooleanNullOrEmpty(),
+                        IsActive = row["isActive"].ToString().BooleanNullOrEmpty()
                     };
                     list.Add(budget);
                 }

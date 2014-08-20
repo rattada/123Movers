@@ -12,7 +12,7 @@
             success: function (data) {
                 if (data.success) {
                     alert('Renewed The Budget');
-                    location.reload();
+                    //location.reload();
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {

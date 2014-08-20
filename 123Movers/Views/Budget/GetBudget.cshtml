@@ -27,8 +27,8 @@
             <table id="ActiveInfo" class="table table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th class="text-center">Insertion Order Id
-                        </th>
+                       @* <th class="text-center">Insertion Order Id
+                        </th>*@
                         <th class="text-center">Start Date
                         </th>
                         <th class="text-center">Budget Amount
@@ -47,16 +47,17 @@
                 </thead>
                 <tbody>
                     @{
-    List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget >= 0).OrderByDescending(c => c.ServiceId).ToList();
+    //List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget >= 0).OrderByDescending(c => c.ServiceId).ToList();
+    List<BudgetModel> activeBudget = Model.budget.Where(c => c.IsActive).ToList();
                     }
                     @if (activeBudget.Count > 0)
                     {
                         foreach (var lot in activeBudget)
                         {
                         <tr>
-                            <td class="text-center">
+                            @*<td class="text-center">
                                 @lot.InsertionOrderId
-                            </td>
+                            </td>*@
                             <td class="text-center">
                                 @{
                             var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
@@ -87,15 +88,15 @@
                             <td class="text-center">
                                 @if (@Recurring == "Recurring With Notice")
                                 {
-                                    <p><input type="button" value="Renew" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>
-                                   @* if(@lot.IsOneTimeRenew)
+                                    @*<p><input type="button" value="Renew" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>*@
+                                   if(@lot.IsOneTimeRenew)
                                     {
                                         <p><input type="button" value="Renewed" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"  disabled="disabled"/></p>
                                     }
                                     else
                                     {
                                         <p><input type="button" value="Renew" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>
-                                    }*@
+                                    }
                                 }
                             </td>
                         </tr>
@@ -126,8 +127,8 @@
             <table id="ExpiredInfo" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th class="text-center">Insertion Order ID
-                        </th>
+                        @*<th class="text-center">Insertion Order ID
+                        </th>*@
                         <th class="text-center">Start Date
                         </th>
                         <th class="text-center">End Date
@@ -140,22 +141,22 @@
                         </th>
                         <th class="text-center">Service
                         </th>
-                        <th class="text-center">Renew
-                        </th>
+                       @* <th class="text-center">Renew
+                        </th>*@
                     </tr>
                 </thead>
                 <tbody>
                     @{
-                    List<BudgetModel> expiredBudget = Model.budget.Where(c => c.EndDate < DateTime.Now || c.UnchargedAmount <= 0 || c.RemainingBudget < 0).ToList();
+                    List<BudgetModel> expiredBudget = Model.budget.Where(c => c.IsActive == false).ToList();
                     }
                     @if (expiredBudget.Count > 0)
                     {
                         foreach (var lot in expiredBudget)
                         {
                         <tr>
-                            <td class="text-center">
+                            @*<td class="text-center">
                                 @lot.InsertionOrderId
-                            </td>
+                            </td>*@
                             <td class="text-center">
                                 @{
                             var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
@@ -187,11 +188,10 @@
                                 }
                                 @Service
                             </td>
-                            <td class="text-center">
+                            @*<td class="text-center">
                            
                                 @if (@Recurring == "Recurring With Notice" && @lot.RemainingBudget == 0)
                                 {
-                                    <p><input type="button" value="Renew" id="expireRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>@*
                                     
                                     if(@lot.IsOneTimeRenew)
                                     {
@@ -200,9 +200,9 @@
                                     else
                                     {
                                         <p><input type="button" value="Renew" id="expireRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>
-                                    }*@
+                                    }
                                 }
-                            </td>
+                            </td>*@
                         </tr>
                         }
                     }
