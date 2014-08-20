@@ -75,7 +75,7 @@ namespace _123Movers.Models
 
         public static readonly IEnumerable<KeyValuePair<string, string>> Terms = new List<KeyValuePair<string, string>>()
         {
-            new KeyValuePair<string, string>("Recurring", "0"),
+            new KeyValuePair<string, string>(TermType.Recurring.ToString(), Convert.ToString(TermType.Recurring)),
             new KeyValuePair<string, string>("Non Recurring", "1"),
             new KeyValuePair<string, string>("Recurring With Notice", "2"),
         };

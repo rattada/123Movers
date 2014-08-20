@@ -23,12 +23,12 @@ namespace _123Movers.Controllers
         {
             get
             {
-                if (_serviceId == null) { RetrieveCurrentCompanyId(); }
+                if (_serviceId == null) { RetrieveCurrentServiceId(); }
                 return _serviceId;
             }
         }
 
-        public void SaveCompanyId(int? id)
+        public void SaveSeviceId(int? id)
         {
             var cookie = new HttpCookie("ServiceId")
             {
@@ -39,7 +39,7 @@ namespace _123Movers.Controllers
             Response.Cookies.Add(cookie);
         }
 
-        protected string RetrieveCurrentCompanyId()
+        protected string RetrieveCurrentServiceId()
         {
             var companyCookieVal = _serviceId.ToString();
 
@@ -78,19 +78,24 @@ namespace _123Movers.Controllers
 
         protected CompanyModel RetrieveCurrentCompanyInfo()
         {
+         
             var companyCookieVal = _companyInfo;
-
-            if (_companyInfo == null)
+            try
             {
-
-                if (Session["CurrentCompanyInfo"] != null)
+                if (_companyInfo == null)
                 {
-                    companyCookieVal = (CompanyModel)Session["CurrentCompanyInfo"];
+
+                    if (Session["CurrentCompanyInfo"] != null)
+                    {
+                        companyCookieVal = (CompanyModel)Session["CurrentCompanyInfo"];
+                    }
+
+                    _companyInfo = companyCookieVal;
                 }
-
-                _companyInfo = companyCookieVal;
             }
-
+            catch(Exception ex){
+                logger.Error(ex.ToString());
+            }
             return companyCookieVal;
         }
         public List<SelectListItem> GetTerms()

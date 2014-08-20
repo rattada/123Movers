@@ -6,7 +6,7 @@ using System.Web;
 
 namespace _123Movers.Models
 {
-    public enum TermType
+    public enum TermType : int
     {
         [Description("Recurring")]
         Recurring = 0,

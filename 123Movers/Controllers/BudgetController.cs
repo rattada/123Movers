@@ -11,10 +11,11 @@ namespace _123Movers.Controllers
 {
     public class BudgetController : BaseController
     {
-        public BudgetController() 
-        {
-            logger = LogManager.GetLogger(typeof(BudgetController)); 
-        }
+        private static ILog logger = LogManager.GetLogger(typeof(BudgetController));
+        //public BudgetController() 
+        //{
+        //    logger = LogManager.GetLogger(typeof(BudgetController)); 
+        //}
 
         //public JsonResult GetServices()
         //{
@@ -112,13 +113,14 @@ namespace _123Movers.Controllers
             budget.AgreementNumber = agnumber;
             budget.TermType = Recurring;
 
-            SaveCompanyId(budget.ServiceId);
+            SaveSeviceId(budget.ServiceId);
            
             budget._companyInfo = CompanyInfo;
             budget.CompanyId = budget._companyInfo.CompanyId;
 
             return View(budget);
         }
+
         [HttpPost]
         public ActionResult EditBudget(BudgetModel budget)
         {
@@ -169,5 +171,6 @@ namespace _123Movers.Controllers
         {
             return Json(BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, ServiceId), JsonRequestBehavior.AllowGet);
         }
+       
     }
 }
