@@ -1,4 +1,5 @@
 ﻿$(function () {
+ 
     $('#ExpiredInfo').dataTable({ "sPaginationType": "full_numbers" });
 
     $('.renewBudget').click(function () {

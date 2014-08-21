@@ -84,6 +84,8 @@
     $("body #tblLeadLimit ").parent().on('change', ".chkInnerClass", function () {
         if ($(this).prop('checked') == true) {
             $(this).closest("td").find("input[type=text]").prop("disabled", false);
+            if ($(this).closest("td").find("input[type=text]").val() == "0")
+                $(this).closest("td").find("input[type=text]").val('');
         }
         else {
             $(this).closest("td").find("input[type=text]").prop("value", "");
@@ -106,6 +108,7 @@
         if ($(this).prop('checked') == true) {
             //Enable the frequency texboxes
             $(this).closest('tr').find(".freqEnable").attr("disabled", false);
+            $("#saveleads").removeAttr('disabled');
         }
         else {
             $(this).closest('tr').find(".freqEnable").attr("disabled", true);

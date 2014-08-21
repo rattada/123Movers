@@ -148,6 +148,17 @@
                 <tbody>
                     @{
                     List<BudgetModel> expiredBudget = Model.budget.Where(c => c.IsActive == false).ToList();
+                    for (int i = 0; i < expiredBudget.Count; i++)
+                    {
+                        for (int j = 0; j < activeBudget.Count; j++)
+                        {
+                            if (activeBudget[j].TotalBudget == expiredBudget[i].TotalBudget && activeBudget[j].StartDate == expiredBudget[i].StartDate && activeBudget[j].TermType == expiredBudget[i].TermType && activeBudget[j].ServiceId == expiredBudget[i].ServiceId)
+                            {
+                                expiredBudget.RemoveAt(i);
+                            }
+
+                        }
+                    }
                     }
                     @if (expiredBudget.Count > 0)
                     {

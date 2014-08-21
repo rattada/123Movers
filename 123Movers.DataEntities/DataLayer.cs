@@ -14,6 +14,7 @@ namespace _123Movers.DataEntities
     public partial class DataLayer
     {
         static SqlCommand _cmd;
+
         public static SqlConnection ConnectToDb()
         {
             string strCon = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();

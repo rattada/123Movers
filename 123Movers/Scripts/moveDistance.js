@@ -1,4 +1,4 @@
-﻿(function ($) {
+﻿$(document).ready(function () {
     var message = $.trim($('#message').val());
     if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
     var orgMinWeight = $.trim($("#MinMoveDistance").val());
@@ -88,4 +88,4 @@
             $("#MaxMoveDistance").val('');
         }
     });
-}(jQuery));
+});

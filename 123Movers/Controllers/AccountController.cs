@@ -274,28 +274,46 @@ namespace _123Movers.Controllers
 
             if (ModelState.IsValid)
             {
-                // Insert a new user into the database
-                using (MoversEntities db = new MoversEntities())
+                try 
                 {
-                    
-                    UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
-                    // Check if user already exists
-                    if (user == null)
+                    if (BusinessLayer.AddExternalUser(model.UserName))
                     {
-                        // Insert name into the profile table
-                        db.UserProfiles.AddObject(new UserProfile { UserName = model.UserName });
-                        db.SaveChanges();
-
                         OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                         OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
 
                         return RedirectToLocal(returnUrl);
                     }
-                    else
-                    {
+                    else {
                         ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
                     }
+                    
                 }
+                catch(Exception ex) {
+                    logger.Error(ex.Message);
+                }
+              
+                //// Insert a new user into the database
+                //using (MoversEntities db = new MoversEntities())
+                //{
+                    
+                //    UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+                //    // Check if user already exists
+                //    if (user == null)
+                //    {
+                //        // Insert name into the profile table
+                //        db.UserProfiles.AddObject(new UserProfile { UserName = model.UserName });
+                //        db.SaveChanges();
+
+                //        OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
+                //        OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
+
+                //        return RedirectToLocal(returnUrl);
+                //    }
+                //    else
+                //    {
+                //        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                //    }
+                //}
             }
 
             ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(provider).DisplayName;

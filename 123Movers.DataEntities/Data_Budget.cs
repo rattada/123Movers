@@ -157,35 +157,39 @@ namespace _123Movers.DataEntities
         }
         public static void RenewBudget(int? companyId, int? serviceId)
         {
-            //tbl_companyBudget budget;
-            //using (MoversDBEntities db = new MoversDBEntities())
-            //{
-            //    budget = db.tbl_companyBudget.FirstOrDefault(u => u.companyID == companyId && u.serviceID == serviceId);
-            //}
-
-            //if (budget != null)
-            //{
-            //    budget.isOneTimeRenew = true;
-            //}
-            //using (MoversDBEntities db = new MoversDBEntities())
-            //{
-            //    db.tbl_companyBudget.Attach(budget);
-            //    db.ObjectStateManager.ChangeObjectState(budget, System.Data.EntityState.Modified);
-            //    db.SaveChanges();
-            //}
-            
-            using (SqlConnection dbCon = ConnectToDb())
+            tbl_companyBudget budget;
+            using (MoversDBEntities db = new MoversDBEntities())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_RENEWAL_BUDGET;
+                if (serviceId == null)
+                {
+                    budget = db.tbl_companyBudget.FirstOrDefault(u => u.companyID == companyId && u.serviceID == null);
+                }
+                else
+                {
+                    budget = db.tbl_companyBudget.FirstOrDefault(u => u.companyID == companyId && u.serviceID == serviceId);
+                }
+                if (budget != null)
+                {
+                    budget.isOneTimeRenew = true;
 
-                _cmd.Parameters.Add(new SqlParameter("companyID", companyId));
-                _cmd.Parameters.Add(new SqlParameter("serviceID", serviceId));
-
-               _cmd.ExecuteNonQuery();
+                    db.tbl_companyBudget.Attach(budget);
+                    db.ObjectStateManager.ChangeObjectState(budget, System.Data.EntityState.Modified);
+                    db.SaveChanges();
+                }
             }
+            
+            //using (SqlConnection dbCon = ConnectToDb())
+            //{
+            //    _cmd = new SqlCommand();
+            //    _cmd.Connection = dbCon;
+            //    _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            //    _cmd.CommandText = Constants.SP_RENEWAL_BUDGET;
+
+            //    _cmd.Parameters.Add(new SqlParameter("companyID", companyId));
+            //    _cmd.Parameters.Add(new SqlParameter("serviceID", serviceId));
+
+            //   _cmd.ExecuteNonQuery();
+            //}
         }
 
         public static List<List<string>> GetBudgetFilterInfo(int? companyID, int? serviceID)

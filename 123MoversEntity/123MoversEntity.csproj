@@ -47,7 +47,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>123MoversEntity.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="MoversDBEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

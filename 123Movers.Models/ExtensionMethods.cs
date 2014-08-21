@@ -83,11 +83,13 @@ namespace _123Movers.Models
       
         public static int? IfServiceNullLocal(this int? value)
         {
-            if (value == null)
-            {
-                return Constants.LOCAL;
-            }
-            return value;
+            //if (value == null)
+            //{
+            //    return Constants.LOCAL;
+            //}
+            //return value;
+
+            return value ?? Constants.LOCAL;
         }
 
         public static MvcHtmlString Script(this HtmlHelper helper, string src)

@@ -176,3 +176,5 @@ D:\123Movers\123Movers\123Movers.Tests\bin\Debug\zh-Hans\System.Spatial.resource
 D:\123Movers\123Movers\123Movers.Tests\bin\Debug\zh-Hant\System.Spatial.resources.dll
 D:\Movers123\123Movers\123Movers.Tests\bin\Debug\log4net.dll
 D:\Movers123\123Movers\123Movers.Tests\bin\Debug\log4net.xml
+D:\Movers123\123Movers\123Movers.Tests\bin\Debug\123MoversEntity.dll
+D:\Movers123\123Movers\123Movers.Tests\bin\Debug\123MoversEntity.pdb

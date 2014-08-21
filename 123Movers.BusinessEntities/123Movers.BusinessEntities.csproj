@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer.cs" />
+    <Compile Include="Business_Account.cs" />
     <Compile Include="Business_AreaCodes.cs" />
     <Compile Include="Business_Budget.cs" />
     <Compile Include="Business_DestAreaCodes.cs" />
@@ -69,8 +70,8 @@
     <Compile Include="Business_Radius.cs" />
     <Compile Include="Business_Report.cs" />
     <Compile Include="Business_SpcfcStates.cs" />
-    <Compile Include="Busines_DestZipCodes.cs" />
-    <Compile Include="Busines_SpcfcOriginAreaCodes.cs" />
+    <Compile Include="Business_DestZipCodes.cs" />
+    <Compile Include="Business_SpcfcOriginAreaCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

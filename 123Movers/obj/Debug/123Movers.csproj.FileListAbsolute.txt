@@ -196,7 +196,6 @@ D:\Movers123\123Movers\123Movers\bin\DotNetOpenAuth.OAuth.dll
 D:\Movers123\123Movers\123Movers\bin\DotNetOpenAuth.OpenId.dll
 D:\Movers123\123Movers\123Movers\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
 D:\Movers123\123Movers\123Movers\bin\EntityFramework.dll
-D:\Movers123\123Movers\123Movers\bin\EntityFramework.SqlServer.dll
 D:\Movers123\123Movers\123Movers\bin\Microsoft.Data.Edm.dll
 D:\Movers123\123Movers\123Movers\bin\Microsoft.Data.OData.dll
 D:\Movers123\123Movers\123Movers\bin\Microsoft.Web.Infrastructure.dll
@@ -222,7 +221,6 @@ D:\Movers123\123Movers\123Movers\bin\123Movers.DataEntities.dll
 D:\Movers123\123Movers\123Movers\bin\123Movers.BusinessEntities.pdb
 D:\Movers123\123Movers\123Movers\bin\123Movers.Models.pdb
 D:\Movers123\123Movers\123Movers\bin\EntityFramework.xml
-D:\Movers123\123Movers\123Movers\bin\EntityFramework.SqlServer.xml
 D:\Movers123\123Movers\123Movers\bin\Newtonsoft.Json.xml
 D:\Movers123\123Movers\123Movers\bin\System.Net.Http.Formatting.xml
 D:\Movers123\123Movers\123Movers\bin\System.Web.Helpers.xml
@@ -372,3 +370,7 @@ D:\123Movers\123Movers\123Movers\obj\Debug\123Movers.dll
 D:\123Movers\123Movers\123Movers\obj\Debug\123Movers.pdb
 D:\Movers123\123Movers\123Movers\bin\log4net.dll
 D:\Movers123\123Movers\123Movers\bin\log4net.xml
+D:\Movers123\123Movers\123Movers\bin\123MoversEntity.dll
+D:\Movers123\123Movers\123Movers\bin\123MoversEntity.pdb
+D:\Movers123\123Movers\123Movers\bin\EntityFramework.SqlServer.dll
+D:\Movers123\123Movers\123Movers\bin\EntityFramework.SqlServer.xml
