@@ -151,6 +151,34 @@ namespace _123Movers.Controllers
         [HttpPost]
         public JsonResult RenewBudget(int? ServiceId)
         {
+            //JsonResult result;
+            //tbl_companyBudget budget;
+            //try
+            //{
+            //    using (MoversEntities db = new MoversEntities())
+            //    {
+            //        budget = db.tbl_companyBudget.FirstOrDefault(u => u.companyID == CompanyInfo.CompanyId && u.serviceID == ServiceId);
+            //    }
+
+            //    if (budget != null)
+            //    {
+            //        budget.isOneTimeRenew = true;
+            //    }
+            //    using (MoversEntities db = new MoversEntities())
+            //    {
+            //        db.tbl_companyBudget.Attach(budget);
+            //        db.ObjectStateManager.ChangeObjectState(budget, System.Data.EntityState.Modified);
+            //        db.SaveChanges();
+            //        result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            //    }
+            //}
+            //catch (Exception ex) 
+            //{     
+            //    logger.Error(ex.ToString());
+            //    result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
+            //}
+
+
             JsonResult result;
             try
             {

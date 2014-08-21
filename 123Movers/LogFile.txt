@@ -643,3 +643,30 @@ ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
    at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
    at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 155
 ClientConnectionId:2835ae8d-1296-4535-a586-165213ac174f
+2014-08-21 17:25:02,602 [9] ERROR _123Movers.Controllers.BudgetController – System.ArgumentException: The specified named connection is either not found in the configuration, not intended to be used with the EntityClient provider, or not valid.
+   at System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
+   at System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
+   at _123MoversEntity.MoversDBEntities..ctor() in d:\Movers123\123Movers\123MoversEntity\123MoversEntity.Designer.cs:line 44
+   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 161
+   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
+   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 185
+2014-08-21 17:27:21,117 [14] ERROR _123Movers.Controllers.BudgetController – System.ArgumentException: The specified named connection is either not found in the configuration, not intended to be used with the EntityClient provider, or not valid.
+   at System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
+   at System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
+   at _123MoversEntity.MoversDBEntities..ctor() in d:\Movers123\123Movers\123MoversEntity\123MoversEntity.Designer.cs:line 44
+   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 161
+   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
+   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 185
+2014-08-21 17:29:32,578 [12] ERROR _123Movers.Controllers.BudgetController – System.ArgumentException: The specified named connection is either not found in the configuration, not intended to be used with the EntityClient provider, or not valid.
+   at System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   at System.Data.EntityClient.EntityConnection..ctor(String connectionString)
+   at System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
+   at System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
+   at _123MoversEntity.MoversDBEntities..ctor() in d:\Movers123\123Movers\123MoversEntity\123MoversEntity.Designer.cs:line 44
+   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 161
+   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
+   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 185

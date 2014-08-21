@@ -5,6 +5,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using _123Movers.DataEntities;
+using _123MoversEntity;
+using System.Data.Entity;
 
 namespace _123Movers.DataEntities
 {
@@ -13,7 +16,7 @@ namespace _123Movers.DataEntities
         public static List<BudgetModel> GetBudget(int? companyid)
         {
             List<BudgetModel> list = new List<BudgetModel>();
-            using (SqlConnection dbCon = DataLayer.ConnectToDb())
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
@@ -60,7 +63,7 @@ namespace _123Movers.DataEntities
 
         public static void SaveBudget(BudgetModel budget)
         {
-            using (SqlConnection dbCon = DataLayer.ConnectToDb())
+            using (SqlConnection dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
@@ -154,6 +157,23 @@ namespace _123Movers.DataEntities
         }
         public static void RenewBudget(int? companyId, int? serviceId)
         {
+            //tbl_companyBudget budget;
+            //using (MoversDBEntities db = new MoversDBEntities())
+            //{
+            //    budget = db.tbl_companyBudget.FirstOrDefault(u => u.companyID == companyId && u.serviceID == serviceId);
+            //}
+
+            //if (budget != null)
+            //{
+            //    budget.isOneTimeRenew = true;
+            //}
+            //using (MoversDBEntities db = new MoversDBEntities())
+            //{
+            //    db.tbl_companyBudget.Attach(budget);
+            //    db.ObjectStateManager.ChangeObjectState(budget, System.Data.EntityState.Modified);
+            //    db.SaveChanges();
+            //}
+            
             using (SqlConnection dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand();

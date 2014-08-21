@@ -81,7 +81,7 @@
             success: function (data) {
                 var strigifyJson = JSON.stringify(data);
                 var json = $.parseJSON(strigifyJson);
-                var table = "<table class='table table-bordered table-striped table-hover' id ='tblFilterInfo'> <thead><tr><th class='header text-center'>ServiceID</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>IsForce</th><th class='header text-center'>IsDest.AreaCode</th><th class='header text-center'>IsDest.ZipCode</th><th class='header text-center'>IsMoveDistance</th><th class='header text-center'>IsMoveWeight</th><th class='header text-center'>IsOriginZipCode</th><th class='header text-center'>IsSpcfcOriginDest.Areacode</th><th class='header text-center'>IsSpcfcOriginDest.State</th></tr></thead><tbody>";
+                var table = "<table class='table table-bordered table-striped table-hover' id ='tblFilterInfo'> <thead><tr><th class='header text-center'>ServiceID</th> <th class='header text-center'>AreaCode</th><th class='header text-center'>IsForce</th><th class='header text-center'>IsDest.AreaCode</th><th class='header text-center'>IsDest.ZipCode</th><th class='header text-center'>IsMoveDistance</th><th class='header text-center'>IsMoveWeight</th><th class='header text-center'>IsOriginZipCode</th><th class='header text-center'>IsSpcfcOriginDestAreacode</th><th class='header text-center'>IsSpcfcOriginDestState</th></tr></thead><tbody>";
                 if (json.length > 0) {
                     jQuery.each(json, function (i, val) {
                         var ServiceId = (val[1] == 1009) ? "Local" : "Long";
@@ -95,11 +95,8 @@
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
-
         });
-        
     });
-
 });
 
 $(window).load(function () {

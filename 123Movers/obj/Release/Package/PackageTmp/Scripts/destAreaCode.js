@@ -65,6 +65,7 @@
             dataType: "json",
             cache: false,
             success: function (data) {
+                debugger;
                 var strigifyJson = JSON.stringify(data);
                 var json = $.parseJSON(strigifyJson);
                 var options;

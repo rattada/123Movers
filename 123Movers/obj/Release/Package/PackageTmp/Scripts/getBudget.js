@@ -2,7 +2,6 @@
     $('#ExpiredInfo').dataTable({ "sPaginationType": "full_numbers" });
 
     $('.renewBudget').click(function () {
-        debugger;
         var serviceId = $(this).attr('data-id');
         $.ajax({
             url: '/Budget/RenewBudget',
@@ -13,10 +12,7 @@
             success: function (data) {
                 if (data.success) {
                     alert('Renewed The Budget');
-                    $(this).val('test');
-                   // $(this).prop('value', 'Renewed');
-                    $(this).button("refresh");
-                    
+                    location.reload();
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {

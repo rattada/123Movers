@@ -27,7 +27,7 @@
                 <option value="GREATER">></option>
                 <option value="LESSER"><</option>
             </select>
-        </div>*@
+        </div>
         <div class="form-group">
             <strong>Category</strong><br />
             <select name="origordest" id="ddlorigordest" class="form-control dropdown" size="1" title="Select Category">
@@ -35,6 +35,10 @@
                 <option value="ORIGIN">Origin</option>
                 <option value="DEST">Destination</option>
             </select>
+        </div>*@
+        <div class="form-group">
+            <strong>Origin Zip Code</strong><br />
+            <input type="text" id="txtzipcode" class="form-control" title="Enter Zip Code" />
         </div>
     </div>
     <div class="col-lg-4">
@@ -50,18 +54,21 @@
                 </select>
             </div>
         </div>
-        <div class="form-group">
+        @*<div class="form-group">
             <div class="col-md-12" style="margin-top:15px" >
                 <strong>Origin Zip Code</strong><br />
                 <input type="text" id="txtzipcode" class="form-control" title="Enter Zip Code" />
             </div>
-        </div>
+        </div>*@
     </div>
 </div>
 
 <p class="clear-fix"></p>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
+        <input type="submit" id="addAreaCode" class="btn btn-primary" value="Add AreaCodes" disabled="disabled" />
+    </div>
+    <div class="col-md-6">
         <input type="submit" id="btnGetRadius" class="btn btn-primary pull-right" value="Get Data" />
          <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
 
