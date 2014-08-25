@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using _123MoversEntity;
 
 namespace _123Movers.DataEntities
 {
@@ -84,6 +85,17 @@ namespace _123Movers.DataEntities
         //}
         public static void AddCompanyAreaCodes(int? companyId, int? serviceId, string areaCodes)
         {
+            //using (MoversDBEntities db = new MoversDBEntities())
+            //{
+            //    var arrayAreas = areaCodes.Split(',');
+
+            //    foreach (var areaCode in arrayAreas)
+            //    {
+            //        db.tbl_companyAreacode.AddObject(new tbl_companyAreacode {companyID = companyId.GetValueOrDefault(), serviceID = serviceId.GetValueOrDefault(), areaCode = short.Parse(areaCode), status = "queue" });
+            //    }
+            //    db.SaveChanges();
+            //}
+
             using (SqlConnection dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand();

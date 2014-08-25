@@ -683,3 +683,106 @@ ClientConnectionId:2835ae8d-1296-4535-a586-165213ac174f
    at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 162
    at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
    at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 185
+2014-08-25 12:38:38,282 [10] ERROR _123Movers.Controllers.BudgetController – System.InvalidOperationException: The object cannot be attached because it is already in the object context. An object can only be reattached when it is in an unchanged state. 
+   at System.Data.Objects.ObjectContext.VerifyRootForAdd(Boolean doAttach, String entitySetName, IEntityWrapper wrappedEntity, EntityEntry existingEntry, EntitySet& entitySet, Boolean& isNoOperation)
+   at System.Data.Objects.ObjectContext.AttachTo(String entitySetName, Object entity)
+   at System.Data.Objects.ObjectSet`1.Attach(TEntity entity)
+   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 175
+   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
+   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 157
+2014-08-25 12:41:13,182 [37] ERROR _123Movers.Controllers.BudgetController – System.InvalidOperationException: The object cannot be attached because it is already in the object context. An object can only be reattached when it is in an unchanged state. 
+   at System.Data.Objects.ObjectContext.VerifyRootForAdd(Boolean doAttach, String entitySetName, IEntityWrapper wrappedEntity, EntityEntry existingEntry, EntitySet& entitySet, Boolean& isNoOperation)
+   at System.Data.Objects.ObjectContext.AttachTo(String entitySetName, Object entity)
+   at System.Data.Objects.ObjectSet`1.Attach(TEntity entity)
+   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 175
+   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
+   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 157
+2014-08-25 12:41:41,596 [25] ERROR _123Movers.Controllers.BudgetController – System.InvalidOperationException: The object cannot be attached because it is already in the object context. An object can only be reattached when it is in an unchanged state. 
+   at System.Data.Objects.ObjectContext.VerifyRootForAdd(Boolean doAttach, String entitySetName, IEntityWrapper wrappedEntity, EntityEntry existingEntry, EntitySet& entitySet, Boolean& isNoOperation)
+   at System.Data.Objects.ObjectContext.AttachTo(String entitySetName, Object entity)
+   at System.Data.Objects.ObjectSet`1.Attach(TEntity entity)
+   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 175
+   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
+   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 157
+2014-08-25 12:42:27,321 [35] ERROR _123Movers.Controllers.BudgetController – System.InvalidOperationException: The object cannot be attached because it is already in the object context. An object can only be reattached when it is in an unchanged state. 
+   at System.Data.Objects.ObjectContext.VerifyRootForAdd(Boolean doAttach, String entitySetName, IEntityWrapper wrappedEntity, EntityEntry existingEntry, EntitySet& entitySet, Boolean& isNoOperation)
+   at System.Data.Objects.ObjectContext.AttachTo(String entitySetName, Object entity)
+   at System.Data.Objects.ObjectSet`1.Attach(TEntity entity)
+   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 175
+   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
+   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 157
+2014-08-25 15:39:23,403 [132] ERROR _123Movers.Controllers.AreaCodeController – System.Data.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'status', table '123movers.dbo.tbl_companyAreacode'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Mapping.Update.Internal.DynamicUpdateCommand.Execute(UpdateTranslator translator, EntityConnection connection, Dictionary`2 identifierValues, List`1 generatedValues)
+   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
+   --- End of inner exception stack trace ---
+   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
+   at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Objects.ObjectContext.SaveChanges()
+   at _123Movers.DataEntities.DataLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_AreaCodes.cs:line 96
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_AreaCodes.cs:line 28
+   at _123Movers.Controllers.AreaCodeController.AddAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\AreaCodeController.cs:line 65
+2014-08-25 15:44:25,384 [144] ERROR _123Movers.Controllers.AreaCodeController – System.Data.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'status', table '123movers.dbo.tbl_companyAreacode'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Mapping.Update.Internal.DynamicUpdateCommand.Execute(UpdateTranslator translator, EntityConnection connection, Dictionary`2 identifierValues, List`1 generatedValues)
+   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
+   --- End of inner exception stack trace ---
+   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
+   at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Objects.ObjectContext.SaveChanges()
+   at _123Movers.DataEntities.DataLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_AreaCodes.cs:line 96
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_AreaCodes.cs:line 28
+   at _123Movers.Controllers.AreaCodeController.AddAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\AreaCodeController.cs:line 65
+2014-08-25 15:50:56,555 [144] ERROR _123Movers.Controllers.AreaCodeController – System.Data.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The conversion of a datetime2 data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Mapping.Update.Internal.DynamicUpdateCommand.Execute(UpdateTranslator translator, EntityConnection connection, Dictionary`2 identifierValues, List`1 generatedValues)
+   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
+   --- End of inner exception stack trace ---
+   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
+   at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Objects.ObjectContext.SaveChanges()
+   at _123Movers.DataEntities.DataLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_AreaCodes.cs:line 96
+   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_AreaCodes.cs:line 28
+   at _123Movers.Controllers.AreaCodeController.AddAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\AreaCodeController.cs:line 65

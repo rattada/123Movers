@@ -172,9 +172,10 @@ namespace _123Movers.DataEntities
                 {
                     budget.isOneTimeRenew = true;
 
-                    db.tbl_companyBudget.Attach(budget);
+                    //db.tbl_companyBudget.Attach(budget);
                     db.ObjectStateManager.ChangeObjectState(budget, System.Data.EntityState.Modified);
                     db.SaveChanges();
+                    
                 }
             }
             

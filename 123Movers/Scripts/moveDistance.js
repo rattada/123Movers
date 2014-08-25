@@ -14,7 +14,8 @@
         var serviceId = $('#ddlServiceID').val();
         var minWeight = $.trim($("#MinMoveDistance").val());
         var maxWeight = $.trim($("#MaxMoveDistance").val());
-
+        minWeight = parseInt(minWeight);
+        maxWeight = parseInt(maxWeight);
         if (serviceId == '' || serviceId == undefined) {
             alert('Please select Service Type');
             $("#ddlServiceID").focus();
@@ -26,7 +27,7 @@
                 return false;
             }
         }
-        if (parseInt(minWeight) >= parseInt(maxWeight) && parseInt(minWeight) != 0 && parseInt(maxWeight) != 0) {
+        if (minWeight >= maxWeight) {
             alert('Min Move Distance should be less than Max Move Distance');
             $("#MinMoveDistance").val(orgMinWeight);
             $("#MaxMoveDistance").val(orgMaxWeight);

@@ -18,6 +18,8 @@
                 if (id == 1 && val[2] == "True") {
                     $('#managearea').removeClass('btn-default');
                     $('#managearea').addClass('btn-warning');
+                    $('#btnfilter').removeClass('btn-default');
+                    $('#btnfilter').addClass('btn-primary');
                 }
                 else if (id == 2 && val[2] == "True") {
                     $('#destarea').removeClass('btn-default');

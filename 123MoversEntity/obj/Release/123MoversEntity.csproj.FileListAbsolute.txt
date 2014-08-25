@@ -3,3 +3,4 @@ D:\Movers123\123Movers\123MoversEntity\bin\Release\123MoversEntity.dll
 D:\Movers123\123Movers\123MoversEntity\bin\Release\123MoversEntity.pdb
 D:\Movers123\123Movers\123MoversEntity\obj\Release\123MoversEntity.dll
 D:\Movers123\123Movers\123MoversEntity\obj\Release\123MoversEntity.pdb
+D:\Movers123\123Movers\123MoversEntity\obj\Release\123MoversEntity.csprojResolveAssemblyReference.cache

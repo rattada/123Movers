@@ -260,33 +260,33 @@
     </AssociationSet>
     <FunctionImport Name="areaCodeToCityState" ReturnType="Collection(MoversDBModel.areaCodeToCityState_Result)" IsComposable="true" />
     <FunctionImport Name="fn_GetAllInsertionOrderDetails" ReturnType="Collection(MoversDBModel.fn_GetAllInsertionOrderDetails_Result)" IsComposable="true">
-      <Parameter Name="dateFrom" Type="DateTime" />
-      <Parameter Name="dateTo" Type="DateTime" />
-      <Parameter Name="companyID" Type="Int32" />
+      <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+      <Parameter Name="companyID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="fn_GetLeadDetails" ReturnType="Collection(MoversDBModel.fn_GetLeadDetails_Result)" IsComposable="true">
-      <Parameter Name="quoteID" Type="Int32" />
-      <Parameter Name="userCookie" Type="String" />
+      <Parameter Name="quoteID" Mode="In" Type="Int32" />
+      <Parameter Name="userCookie" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="fnCompanyInfoOnlyDB123movers" ReturnType="Collection(MoversDBModel.fnCompanyInfoOnlyDB123movers_Result)" IsComposable="true" />
     <FunctionImport Name="fnCompanyInfoOnlyDB123moversV2" ReturnType="Collection(MoversDBModel.fnCompanyInfoOnlyDB123moversV2_Result)" IsComposable="true" />
     <FunctionImport Name="fnCompanyPricePerLeadAndBudgetInsertionID" ReturnType="Collection(MoversDBModel.fnCompanyPricePerLeadAndBudgetInsertionID_Result)" IsComposable="true">
-      <Parameter Name="companyID" Type="Int32" />
-      <Parameter Name="serviceID" Type="Int32" />
-      <Parameter Name="areaCode" Type="String" />
-      <Parameter Name="moveWeightID" Type="Int32" />
-      <Parameter Name="quoteID" Type="Int32" />
+      <Parameter Name="companyID" Mode="In" Type="Int32" />
+      <Parameter Name="serviceID" Mode="In" Type="Int32" />
+      <Parameter Name="areaCode" Mode="In" Type="String" />
+      <Parameter Name="moveWeightID" Mode="In" Type="Int32" />
+      <Parameter Name="quoteID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="fnCompanyPricePerLeadAndBudgetInsertionIDTest" ReturnType="Collection(MoversDBModel.fnCompanyPricePerLeadAndBudgetInsertionIDTest_Result)" IsComposable="true">
-      <Parameter Name="companyID" Type="Int32" />
-      <Parameter Name="serviceID" Type="Int32" />
-      <Parameter Name="areaCode" Type="String" />
-      <Parameter Name="moveWeightID" Type="Int32" />
-      <Parameter Name="quoteID" Type="Int32" />
+      <Parameter Name="companyID" Mode="In" Type="Int32" />
+      <Parameter Name="serviceID" Mode="In" Type="Int32" />
+      <Parameter Name="areaCode" Mode="In" Type="String" />
+      <Parameter Name="moveWeightID" Mode="In" Type="Int32" />
+      <Parameter Name="quoteID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="Split" ReturnType="Collection(MoversDBModel.Split_Result)" IsComposable="true">
-      <Parameter Name="RowData" Type="String" />
-      <Parameter Name="SplitOn" Type="String" />
+      <Parameter Name="RowData" Mode="In" Type="String" />
+      <Parameter Name="SplitOn" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="areaCodeToCityState_Result">
@@ -562,7 +562,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="companyId" Type="Int32" Nullable="false" />
     <Property Name="isaliasmail" Type="Byte" Nullable="false" />
-    <Property Name="logDate" Type="DateTime" Nullable="false" />
+    <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="Log">
     <Key>
@@ -574,7 +574,7 @@
       <PropertyRef Name="Message" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="Date" Type="DateTime" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Thread" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="Level" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Logger" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
@@ -599,7 +599,7 @@
     <Property Name="C_total1" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="companyID" Type="Int32" />
     <Property Name="formatDate" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
-    <Property Name="insertDate" Type="DateTime" Nullable="false" />
+    <Property Name="insertDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="STATES_NAME">
     <Key>
@@ -727,7 +727,7 @@
     <Property Name="state" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
     <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="formatDate" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
-    <Property Name="insertDate" Type="DateTime" />
+    <Property Name="insertDate" Type="DateTime" Precision="0" />
     <Property Name="areacode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
   </EntityType>
   <EntityType Name="tbl_affilaiteLoginTrack">
@@ -737,7 +737,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="affiliateID" Type="Int32" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_affiliate">
     <Key>
@@ -752,7 +752,7 @@
     <Property Name="isCobrand" Type="Byte" />
     <Property Name="url_prefix" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="se_id" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
-    <Property Name="dateCreated" Type="DateTime" Nullable="false" />
+    <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_affiliate_coBrand">
     <Key>
@@ -786,7 +786,7 @@
     <Property Name="buttonImagePath" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="imageAlt" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="thankYouMessage" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_affiliateAutoPricingByAreaCode">
     <Key>
@@ -807,8 +807,8 @@
     <Property Name="areaCode" Type="Int32" />
     <Property Name="affiliateID" Type="Int32" />
     <Property Name="price" Type="Decimal" Precision="5" Scale="2" />
-    <Property Name="dateSubmitted" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_affiliateMain">
     <Key>
@@ -830,7 +830,7 @@
     <Property Name="affiliateType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
     <Property Name="isPaidFlaggedLeads" Type="Boolean" Nullable="false" />
-    <Property Name="dateCreated" Type="DateTime" Nullable="false" />
+    <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_affiliateNotifyAfterLeadSold">
     <Key>
@@ -844,11 +844,11 @@
     <Property Name="soldCount" Type="Int32" />
     <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="isSent" Type="Boolean" Nullable="false" />
-    <Property Name="sentAt" Type="DateTime" />
+    <Property Name="sentAt" Type="DateTime" Precision="3" />
     <Property Name="postURL" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="postData" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="postResponse" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_affiliatePricingByAreaCode">
     <Key>
@@ -898,8 +898,8 @@
     <Property Name="serviceName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="affiliateID" Type="Int32" />
     <Property Name="price" Type="Decimal" Precision="5" Scale="2" />
-    <Property Name="dateSubmitted" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_affiliateReport">
     <Key>
@@ -915,7 +915,7 @@
     <Property Name="refererUrl" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
     <Property Name="quoteID" Type="Int32" />
-    <Property Name="dateSubmitted" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_affiliateReportClicks">
     <Key>
@@ -926,7 +926,7 @@
     <Property Name="httpRef" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
     <Property Name="se_id" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
-    <Property Name="dateCreated" Type="DateTime" />
+    <Property Name="dateCreated" Type="DateTime" Precision="3" />
     <Property Name="duplicate" Type="Int32" />
   </EntityType>
   <EntityType Name="tbl_affiliateReportSE">
@@ -942,7 +942,7 @@
     <Property Name="refererUrl" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
     <Property Name="quoteID" Type="Int32" />
-    <Property Name="dateSubmitted" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_agentsAdvertise">
     <Key>
@@ -970,7 +970,7 @@
     <Property Name="state" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
     <Property Name="zip" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
     <Property Name="zip_4" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
-    <Property Name="dateEntered" Type="DateTime" />
+    <Property Name="dateEntered" Type="DateTime" Precision="0" />
     <Property Name="serviceID" Type="Int32" />
     <Property Name="phone" Type="String" MaxLength="12" Unicode="false" FixedLength="true" />
     <Property Name="isActive" Type="Int32" />
@@ -991,7 +991,7 @@
     <Property Name="state" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
     <Property Name="zip" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
     <Property Name="zip_4" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
-    <Property Name="dateEntered" Type="DateTime" />
+    <Property Name="dateEntered" Type="DateTime" Precision="0" />
     <Property Name="serviceID" Type="Int32" />
     <Property Name="phone" Type="String" MaxLength="12" Unicode="false" FixedLength="true" />
     <Property Name="isActive" Type="Int32" />
@@ -1028,7 +1028,7 @@
     <Property Name="type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="totalLeads" Type="Int32" Nullable="false" />
     <Property Name="cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_areaCodeLeadsCount">
     <Key>
@@ -1039,7 +1039,7 @@
     <Property Name="areaCode" Type="String" Nullable="false" MaxLength="35" Unicode="false" FixedLength="false" />
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="leadsLast30Days" Type="Int32" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_areacodeserviceWithNoMovers">
     <Key>
@@ -1049,7 +1049,7 @@
     <Property Name="areaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="numCompanies" Type="Int32" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_articlesForHomePage">
     <Key>
@@ -1063,7 +1063,7 @@
     <Property Name="title" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="href" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
     <Property Name="category" Type="Int32" Nullable="false" />
-    <Property Name="datesubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="datesubmitted" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_Auto">
     <Key>
@@ -1074,7 +1074,7 @@
     <Property Name="companyID" Type="Int32" />
     <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="formatDate" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
-    <Property Name="dateInsert" Type="DateTime" Nullable="false" />
+    <Property Name="dateInsert" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_auto_opt_companyMain">
     <Key>
@@ -1088,8 +1088,8 @@
     <Property Name="MaxMontlyLeads" Type="Int32" Nullable="false" />
     <Property Name="DailyLeadsCount" Type="Int32" Nullable="false" />
     <Property Name="MonthlyLeadsCount" Type="Int32" Nullable="false" />
-    <Property Name="LastLeadDate" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="LastLeadDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_availabilityListArchives">
     <Key>
@@ -1109,8 +1109,8 @@
     <Property Name="avgPriceOfLeadPerCompany" Type="Decimal" Precision="6" Scale="2" />
     <Property Name="desiredMaxAvgPricePerLeadPerCompany" Type="Decimal" Precision="6" Scale="2" />
     <Property Name="isFlagged" Type="Boolean" />
-    <Property Name="dateSubmitted" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_availabilityListExclusiveLeadCount">
     <Key>
@@ -1124,8 +1124,8 @@
     <Property Name="AreaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="numLeads" Type="Int32" Nullable="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_badName">
     <Key>
@@ -1135,7 +1135,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="firstName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="lastName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_badPhoneNumbers">
     <Key>
@@ -1143,7 +1143,7 @@
     </Key>
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="phone" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_ballot">
     <Key>
@@ -1153,7 +1153,7 @@
     <Property Name="pollID" Type="Int32" Nullable="false" />
     <Property Name="voteID" Type="Int32" Nullable="false" />
     <Property Name="result" Type="Int32" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="tbl_poll" Relationship="MoversDBModel.FK_tbl_ballot_tbl_poll" FromRole="tbl_ballot" ToRole="tbl_poll" />
     <NavigationProperty Name="tbl_vote" Relationship="MoversDBModel.FK_tbl_ballot_tbl_vote" FromRole="tbl_ballot" ToRole="tbl_vote" />
   </EntityType>
@@ -1179,7 +1179,7 @@
     <Property Name="vbScriptSupported" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
     <Property Name="javascriptSupported" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
     <Property Name="dhtml" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
-    <Property Name="dateEntered" Type="DateTime" Nullable="false" />
+    <Property Name="dateEntered" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_bkUpgradeDowngradeCancellation">
     <Key>
@@ -1192,8 +1192,8 @@
     <Property Name="table" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Action" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
     <Property Name="who" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
-    <Property Name="dateLog" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="dateLog" Type="DateTime" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_blackListIPnEmail">
     <Key>
@@ -1203,7 +1203,7 @@
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
     <Property Name="email" Type="String" MaxLength="75" Unicode="true" FixedLength="false" />
     <Property Name="phone" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
-    <Property Name="stampdate" Type="DateTime" Nullable="false" />
+    <Property Name="stampdate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_blockedSe">
     <Key>
@@ -1212,7 +1212,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="se" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="numOfPosts" Type="Int32" Nullable="false" />
-    <Property Name="datesubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="datesubmitted" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_broadband">
     <Key>
@@ -1227,7 +1227,7 @@
     <Property Name="zip" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
     <Property Name="phone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="email" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
-    <Property Name="dateSub" Type="DateTime" />
+    <Property Name="dateSub" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_callsource">
     <Key>
@@ -1239,7 +1239,7 @@
     <Property Name="callerNumber" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="trackNumber" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="targetNumber" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
-    <Property Name="callTime" Type="DateTime" />
+    <Property Name="callTime" Type="DateTime" Precision="3" />
     <Property Name="duration" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="callResult" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="VoiceID" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
@@ -1265,7 +1265,7 @@
     <Property Name="campaignName" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
     <Property Name="adSource" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="dateInsert" Type="DateTime" Nullable="false" />
+    <Property Name="dateInsert" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="offset" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
   </EntityType>
   <EntityType Name="tbl_campaignInfo">
@@ -1282,7 +1282,7 @@
     <Property Name="serviceType" Type="Int32" />
     <Property Name="unitCost" Type="Single" />
     <Property Name="type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="dateStarted" Type="DateTime" Nullable="false" />
+    <Property Name="dateStarted" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="isActive" Type="Byte" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_campaignVerification">
@@ -1315,10 +1315,10 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="companyID" Type="Int32" Nullable="false" />
     <Property Name="amountOwed" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
-    <Property Name="dateAddedInCollection" Type="DateTime" Nullable="false" />
+    <Property Name="dateAddedInCollection" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="reason" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
     <Property Name="contactPerson" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_company">
     <Key>
@@ -1349,8 +1349,8 @@
     <Property Name="Other" Type="Boolean" Nullable="false" />
     <Property Name="se" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="leadType" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
-    <Property Name="leadDate" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="leadDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="keyword" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
   </EntityType>
@@ -1396,7 +1396,7 @@
     <Property Name="areaCode" Type="Int16" Nullable="false" />
     <Property Name="position" Type="Int16" />
     <Property Name="status" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
-    <Property Name="dateLastBatch" Type="DateTime" Nullable="false" />
+    <Property Name="dateLastBatch" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="numLeads" Type="Int32" Nullable="false" />
     <Property Name="isForceSelect" Type="Int32" Nullable="false" />
     <Property Name="isOriginZipCode" Type="Int32" Nullable="false" />
@@ -1418,7 +1418,7 @@
     <Property Name="areaCode" Type="Int16" Nullable="false" />
     <Property Name="position" Type="Int16" />
     <Property Name="status" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
-    <Property Name="dateLastBatch" Type="DateTime" Nullable="false" />
+    <Property Name="dateLastBatch" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="numLeads" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_companyAssociation">
@@ -1429,7 +1429,7 @@
     <Property Name="companyHandle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="AssociatedCompanyHandle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="ReasonOfAssociation" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_companyBudget">
     <Key>
@@ -1444,8 +1444,8 @@
     <Property Name="remainingBudget" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="lastQuoteID" Type="Int32" />
     <Property Name="lastQuotePrice" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="lastModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="budgetAction" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="budgetNote" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="isRecurring" Type="Boolean" Nullable="false" />
@@ -1464,7 +1464,7 @@
     <Property Name="isPayingAfter" Type="Boolean" Nullable="false" />
     <Property Name="groupID" Type="Int32" />
     <Property Name="startID" Type="Int32" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyBudgetAutoRenewBySPOnlyForReference">
     <Key>
@@ -1481,8 +1481,8 @@
     <Property Name="remainingBudget" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="lastQuoteID" Type="Int32" />
     <Property Name="lastQuotePrice" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="lastModified" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" />
+    <Property Name="lastModified" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
     <Property Name="budgetAction" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="budgetNote" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="isRecurring" Type="Boolean" />
@@ -1491,7 +1491,7 @@
     <Property Name="minDaysToCharge" Type="Int32" />
     <Property Name="agreementNumber" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
     <Property Name="notes" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="logDate" Type="DateTime" Nullable="false" />
+    <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyBudgetRenew">
     <Key>
@@ -1504,7 +1504,7 @@
     <Property Name="moveWeightID" Type="Int32" />
     <Property Name="totalBudget" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="remainingBudget" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="budgetAction" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="budgetNote" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="isRecurring" Type="Boolean" Nullable="false" />
@@ -1520,7 +1520,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="companyID" Type="Int32" Nullable="false" />
     <Property Name="who" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_companyCancellationsLog">
     <Key>
@@ -1533,7 +1533,7 @@
     <Property Name="reason" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="cpl" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="lostRevenue" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyCountries">
     <Key>
@@ -1553,7 +1553,7 @@
     <Property Name="budgetID" Type="Int32" Nullable="false" />
     <Property Name="creditAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="creditReason" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyDestinationAreaCodesZipCodes">
     <Key>
@@ -1564,7 +1564,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="destinationAreaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="destinationZipCode" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_companyDifferentTextFormat">
     <Key>
@@ -1572,7 +1572,7 @@
     </Key>
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="companyID" Type="Int32" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyLeadLimit">
     <Key>
@@ -1595,8 +1595,8 @@
     <Property Name="leadCounter" Type="Int32" Nullable="false" />
     <Property Name="leadFrequency" Type="Int32" Nullable="false" />
     <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="lastModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyLoginTrack">
     <Key>
@@ -1604,7 +1604,7 @@
       <PropertyRef Name="loggedIn" />
     </Key>
     <Property Name="companyID" Type="Int32" Nullable="false" />
-    <Property Name="loggedIn" Type="DateTime" Nullable="false" />
+    <Property Name="loggedIn" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="tbl_companyMain">
@@ -1628,7 +1628,7 @@
     <Property Name="mailBcc" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
     <Property Name="infoByArea" Type="Boolean" Nullable="false" />
     <Property Name="who" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="dateLog" Type="DateTime" Nullable="false" />
+    <Property Name="dateLog" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_companyMinDistance">
     <Key>
@@ -1638,7 +1638,7 @@
     <Property Name="companyID" Type="Int32" Nullable="false" />
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="minDistance" Type="Double" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_companyMoveDate">
     <Key>
@@ -1649,7 +1649,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="minMoveDateFromNow" Type="Int32" />
     <Property Name="maxMoveDateFromNow" Type="Int32" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyMoveDistance">
     <Key>
@@ -1660,7 +1660,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="minMoveDistance" Type="Double" />
     <Property Name="maxMoveDistance" Type="Double" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_companyMoveWeight">
     <Key>
@@ -1671,7 +1671,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="minMoveWeight" Type="Int32" Nullable="false" />
     <Property Name="maxMoveWeight" Type="Int32" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_companyMultiAreas">
     <Key>
@@ -1693,7 +1693,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="originAreaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="originZipCode" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="true" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_companyPhoneAreaMapping">
     <Key>
@@ -1705,7 +1705,7 @@
     <Property Name="companyID" Type="Int32" Nullable="false" />
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="areaCode" Type="Int16" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="tbl_companyAreacode" Relationship="MoversDBModel.FK_tbl_companyPhoneAreaMapping_tbl_companyAreacode" FromRole="tbl_companyPhoneAreaMapping" ToRole="tbl_companyAreacode" />
   </EntityType>
   <EntityType Name="tbl_companyPricePerLead">
@@ -1718,8 +1718,8 @@
     <Property Name="areaCode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="moveWeightID" Type="Int32" />
     <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="lastModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyQuoteTrack">
     <Key>
@@ -1729,7 +1729,7 @@
     <Property Name="quoteID" Type="Int32" />
     <Property Name="companyID" Type="Int32" />
     <Property Name="userCookie" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
     <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="budgetInsertionID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
   </EntityType>
@@ -1746,9 +1746,9 @@
     <Property Name="refundRequest" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
     <Property Name="notes" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="creditApprovedBy" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-    <Property Name="approveDate" Type="DateTime" />
-    <Property Name="creditAppliedDate" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="approveDate" Type="DateTime" Precision="3" />
+    <Property Name="creditAppliedDate" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyRefundLeadsReasons">
     <Key>
@@ -1757,7 +1757,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="leadID" Type="Int32" Nullable="false" />
     <Property Name="refundReasonID" Type="Int32" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyRefundReasons">
     <Key>
@@ -1767,7 +1767,7 @@
     <Property Name="reason" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
     <Property Name="reasonDescription" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companySpecificOriginDestinationAreacode">
     <Key>
@@ -1778,7 +1778,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="originAreacode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="destinationAreacode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companySpecificOriginDestinationState">
     <Key>
@@ -1789,7 +1789,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="OriginState" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
     <Property Name="DestinationState" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_companyVlAgents">
     <Key>
@@ -1797,7 +1797,7 @@
     </Key>
     <Property Name="vlAgentID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="vlAgentName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_complaints">
     <Key>
@@ -1813,8 +1813,8 @@
     <Property Name="companyID" Type="Int64" Nullable="false" />
     <Property Name="subject" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="comments" Type="String" Nullable="false" MaxLength="1500" Unicode="false" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
-    <Property Name="dateAdded" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dateAdded" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="reviewID" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_confirmInfo">
@@ -1832,7 +1832,7 @@
     <Property Name="moveDate" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
     <Property Name="isDup" Type="Boolean" Nullable="false" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_consentSeValue">
     <Key>
@@ -1841,7 +1841,7 @@
     </Key>
     <Property Name="rid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="seValue" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_content">
     <Key>
@@ -1854,7 +1854,7 @@
     <Property Name="urlHandle" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
     <Property Name="content" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
     <Property Name="author" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="dateadded" Type="DateTime" />
+    <Property Name="dateadded" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_countries">
     <Key>
@@ -1889,7 +1889,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="campaignName" Type="String" Nullable="false" MaxLength="700" Unicode="false" FixedLength="false" />
     <Property Name="serviceType" Type="Int32" Nullable="false" />
-    <Property Name="dateSub" Type="DateTime" Nullable="false" />
+    <Property Name="dateSub" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="daySub" Type="Int32" p1:StoreGeneratedPattern="Computed" />
     <Property Name="monthSub" Type="Int32" p1:StoreGeneratedPattern="Computed" />
     <Property Name="yearSub" Type="Int32" p1:StoreGeneratedPattern="Computed" />
@@ -1897,7 +1897,7 @@
     <Property Name="clicks" Type="Single" />
     <Property Name="leads" Type="Single" />
     <Property Name="OS_clicks" Type="Single" Nullable="false" />
-    <Property Name="dateImported" Type="DateTime" Nullable="false" />
+    <Property Name="dateImported" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="dup_clicks" Type="Single" />
   </EntityType>
   <EntityType Name="tbl_cpcContent">
@@ -1917,7 +1917,7 @@
     <Property Name="alt" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="h1" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="newWindow" Type="Boolean" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_cpcContentHandle">
     <Key>
@@ -1942,7 +1942,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="cpmName" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
     <Property Name="serviceType" Type="Int32" Nullable="false" />
-    <Property Name="dateSub" Type="DateTime" Nullable="false" />
+    <Property Name="dateSub" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="daySub" Type="Int32" p1:StoreGeneratedPattern="Computed" />
     <Property Name="monthSub" Type="Int32" p1:StoreGeneratedPattern="Computed" />
     <Property Name="yearSub" Type="Int32" p1:StoreGeneratedPattern="Computed" />
@@ -1950,7 +1950,7 @@
     <Property Name="clicks" Type="Single" />
     <Property Name="leads" Type="Single" />
     <Property Name="OS_impressions" Type="Single" />
-    <Property Name="dateImported" Type="DateTime" Nullable="false" />
+    <Property Name="dateImported" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="dup_clicks" Type="Single" />
   </EntityType>
   <EntityType Name="tbl_customerMain">
@@ -1976,11 +1976,11 @@
     <Property Name="notificationTotal" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="maxTotal" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="isNotification" Type="Int32" Nullable="false" />
-    <Property Name="lastNotificationAt" Type="DateTime" />
+    <Property Name="lastNotificationAt" Type="DateTime" Precision="3" />
     <Property Name="isBlocked" Type="Int32" Nullable="false" />
     <Property Name="blockedIDs" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-    <Property Name="blockedAt" Type="DateTime" Nullable="false" />
-    <Property Name="stampdate" Type="DateTime" Nullable="false" />
+    <Property Name="blockedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampdate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_dailyBudgetAffiliateData">
     <Key>
@@ -1991,8 +1991,8 @@
     <Property Name="leads" Type="Int32" />
     <Property Name="clicks" Type="Int32" />
     <Property Name="cost" Type="Decimal" Precision="7" Scale="2" />
-    <Property Name="orignalDate" Type="DateTime" Nullable="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="orignalDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_dailyBudgetConfig">
     <Key>
@@ -2005,7 +2005,7 @@
     <Property Name="isMonthly" Type="Boolean" Nullable="false" />
     <Property Name="monthlyRate" Type="Decimal" Precision="7" Scale="2" />
     <Property Name="affiliateID" Type="Int32" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="isDeleted" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_dailyBudgetReport">
@@ -2022,8 +2022,8 @@
     <Property Name="conversion" Type="Decimal" Precision="6" Scale="2" />
     <Property Name="isReportGenerated" Type="Boolean" Nullable="false" />
     <Property Name="monthlyBudget" Type="Decimal" Precision="10" Scale="2" />
-    <Property Name="orignalDate" Type="DateTime" Nullable="false" />
-    <Property Name="datesubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="orignalDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="datesubmitted" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_desiredAreaCodePrices">
     <Key>
@@ -2081,8 +2081,8 @@
     <Property Name="isGood" Type="Int32" />
     <Property Name="isBogus" Type="Int32" />
     <Property Name="isVulgar" Type="Int32" />
-    <Property Name="lastModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_emailFilterAPI">
     <Key>
@@ -2097,8 +2097,8 @@
     <Property Name="ApplyEmailFilter" Type="Boolean" Nullable="false" />
     <Property Name="totalAllowedCalls" Type="Int32" Nullable="false" />
     <Property Name="monthlyCallsCounter" Type="Int32" Nullable="false" />
-    <Property Name="dateModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_EmailFormatAffiliate">
     <Key>
@@ -2106,7 +2106,7 @@
     </Key>
     <Property Name="affiliateID" Type="Int32" Nullable="false" />
     <Property Name="formatType" Type="Int32" Nullable="false" />
-    <Property Name="stampdate" Type="DateTime" Nullable="false" />
+    <Property Name="stampdate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_emailValidationDetails">
     <Key>
@@ -2134,8 +2134,8 @@
     <Property Name="errorTypeCode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
     <Property Name="errorDesc" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="errorDescCode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-    <Property Name="lastModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_exclusiveCompany">
     <Key>
@@ -2150,8 +2150,8 @@
     <Property Name="isActive" Type="Boolean" Nullable="false" />
     <Property Name="leadsNum" Type="Int32" Nullable="false" />
     <Property Name="minMoveWeightCat" Type="Int32" Nullable="false" />
-    <Property Name="dateModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_exclusiveCompany_log">
     <Key>
@@ -2163,9 +2163,9 @@
     <Property Name="areaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
     <Property Name="leadsNum" Type="Int32" Nullable="false" />
-    <Property Name="dateModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDateOrignal" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampDateOrignal" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_exclusiveCompanyZipAreaException">
     <Key>
@@ -2179,7 +2179,7 @@
     <Property Name="areaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="zipCode" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="true" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_exclusiveLeadCounter">
     <Key>
@@ -2192,8 +2192,8 @@
     <Property Name="counter" Type="Int32" Nullable="false" />
     <Property Name="dailyLeadsCount" Type="Int32" />
     <Property Name="monthlyLeadCount" Type="Int32" Nullable="false" />
-    <Property Name="dateModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_exclusivePricing">
     <Key>
@@ -2205,7 +2205,7 @@
     <Property Name="areaCode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="State" Type="String" MaxLength="35" Unicode="false" FixedLength="false" />
     <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_exclusiveService">
     <Key>
@@ -2222,8 +2222,8 @@
     <Property Name="maxCPLForCompany" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="isAutoAdjust" Type="Boolean" Nullable="false" />
     <Property Name="isMoveWeightLimit" Type="Boolean" Nullable="false" />
-    <Property Name="dateModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="dateModified" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_exclusiveService_log">
     <Key>
@@ -2238,7 +2238,7 @@
     <Property Name="monthlyLeadLimit" Type="Int32" Nullable="false" />
     <Property Name="frequency" Type="Int32" Nullable="false" />
     <Property Name="maxCPLForCompany" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_exclusiveSirvaCompanyLookUp">
     <Key>
@@ -2272,14 +2272,14 @@
     <Property Name="locale" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="profileUrl" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="email" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
-    <Property Name="birthdayDate" Type="DateTime" />
+    <Property Name="birthdayDate" Type="DateTime" Precision="0" />
     <Property Name="city" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="state" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="country" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="zip" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="timezone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="lastmodifiedDate" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" />
+    <Property Name="lastmodifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_farmerBannerResponse">
     <Key>
@@ -2291,7 +2291,7 @@
     <Property Name="httpReferer" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="userAgent" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="pageUrl" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_fileNamePerm">
     <Key>
@@ -2311,7 +2311,7 @@
     <Property Name="stateTo" Type="String" Nullable="false" MaxLength="35" Unicode="false" FixedLength="false" />
     <Property Name="ZipTo" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
     <Property Name="moveWeight" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_homePagePhone">
     <Key>
@@ -2330,7 +2330,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="keyword" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
     <Property Name="se" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
-    <Property Name="stampdate" Type="DateTime" Nullable="false" />
+    <Property Name="stampdate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_Intl">
     <Key>
@@ -2341,7 +2341,7 @@
     <Property Name="companyID" Type="Int32" />
     <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="formatDate" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
-    <Property Name="dateInsert" Type="DateTime" Nullable="false" />
+    <Property Name="dateInsert" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_invalidQuotes">
     <Key>
@@ -2371,7 +2371,7 @@
     <Property Name="keyword" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Se" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="postRequestID" Type="Int32" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_inValidQuotes_displayReasons">
     <Key>
@@ -2380,7 +2380,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="mainReason" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
     <Property Name="displayReason" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_inValidQuotes_reasons">
     <Key>
@@ -2391,7 +2391,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="postID" Type="Int32" Nullable="false" />
     <Property Name="reason" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="datesubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="datesubmitted" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_keywordIdentity">
     <Key>
@@ -2414,8 +2414,8 @@
     <Property Name="cheader" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
     <Property Name="content" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
     <Property Name="isdeleted" Type="Boolean" Nullable="false" />
-    <Property Name="lastmodifydate" Type="DateTime" Nullable="false" />
-    <Property Name="stampdate" Type="DateTime" Nullable="false" />
+    <Property Name="lastmodifydate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampdate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_leadPostResponse">
     <Key>
@@ -2426,7 +2426,7 @@
     <Property Name="quoteID" Type="Int32" />
     <Property Name="postRequest" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="postResponse" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_LeadsReport">
     <Key>
@@ -2446,8 +2446,8 @@
     <Property Name="Mort" Type="Int32" />
     <Property Name="total" Type="Int32" Nullable="false" />
     <Property Name="weekNum" Type="Int32" Nullable="false" />
-    <Property Name="dateStart" Type="DateTime" Nullable="false" />
-    <Property Name="dateEnd" Type="DateTime" Nullable="false" />
+    <Property Name="dateStart" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateEnd" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_listLinks">
     <Key>
@@ -2459,7 +2459,7 @@
     <Property Name="zipcode" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="true" />
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="link" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="tbl_listMain" Relationship="MoversDBModel.FK_tbl_listLinks_tbl_listMain" FromRole="tbl_listLinks" ToRole="tbl_listMain" />
   </EntityType>
   <EntityType Name="tbl_listMain">
@@ -2468,7 +2468,7 @@
     </Key>
     <Property Name="listID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="listName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="tbl_listLinks" Relationship="MoversDBModel.FK_tbl_listLinks_tbl_listMain" FromRole="tbl_listMain" ToRole="tbl_listLinks" />
   </EntityType>
   <EntityType Name="tbl_lookUpAffiliatePricing">
@@ -2514,7 +2514,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="numOfTotalSales" Type="Int32" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_manageUpgradeDowngradeAds">
     <Key>
@@ -2526,7 +2526,7 @@
     <Property Name="areaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="action" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
     <Property Name="who" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_manageUpgradeDowngradeArea">
     <Key>
@@ -2538,7 +2538,7 @@
     <Property Name="areaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="action" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
     <Property Name="who" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_monthly">
     <Key>
@@ -2550,14 +2550,14 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="campaignName" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
     <Property Name="serviceType" Type="Int32" Nullable="false" />
-    <Property Name="datesub" Type="DateTime" Nullable="false" />
+    <Property Name="datesub" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="daySub" Type="Int32" />
     <Property Name="monthSub" Type="Int32" />
     <Property Name="yearSub" Type="Int32" />
     <Property Name="unitCost" Type="Single" />
     <Property Name="clicks" Type="Single" />
     <Property Name="leads" Type="Single" />
-    <Property Name="dateImported" Type="DateTime" />
+    <Property Name="dateImported" Type="DateTime" Precision="0" />
     <Property Name="dup_clicks" Type="Single" />
   </EntityType>
   <EntityType Name="tbl_monthlyAreaCodeLeadCount">
@@ -2580,7 +2580,7 @@
     <Property Name="numCompaniesLeadSent" Type="Int32" Nullable="false" />
     <Property Name="month" Type="Int32" Nullable="false" />
     <Property Name="year" Type="Int32" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_mortgageLeadInfo">
     <Key>
@@ -2606,7 +2606,7 @@
     <Property Name="brrwrworkphone1" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
     <Property Name="brrwrworkphone2" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
     <Property Name="brrwrworkphone3" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
-    <Property Name="dateLead" Type="DateTime" Nullable="false" />
+    <Property Name="dateLead" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="propcity" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="propzip" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
     <Property Name="propaddress" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
@@ -2623,7 +2623,7 @@
     <Property Name="numLead" Type="Int32" />
     <Property Name="totalLeadPerArea" Type="Int32" />
     <Property Name="formatDate" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
-    <Property Name="insertDate" Type="DateTime" />
+    <Property Name="insertDate" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_MoveSizelookup">
     <Key>
@@ -2662,7 +2662,7 @@
     <Property Name="Ans_toQ3" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
     <Property Name="Ans_toQ4" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
     <Property Name="Ans_toQ5" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
-    <Property Name="dateAns" Type="DateTime" Nullable="false" />
+    <Property Name="dateAns" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_newsletter">
     <Key>
@@ -2676,7 +2676,7 @@
     </Key>
     <Property Name="Nid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="Newsletter_Name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="datecreated" Type="DateTime" Nullable="false" />
+    <Property Name="datecreated" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="from" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="subject" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
     <Property Name="body" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
@@ -2693,7 +2693,7 @@
       <PropertyRef Name="dateUnSub" />
     </Key>
     <Property Name="email" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
-    <Property Name="dateUnSub" Type="DateTime" Nullable="false" />
+    <Property Name="dateUnSub" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_NewStateDesc">
     <Key>
@@ -2720,7 +2720,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="areaCode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="caseType" Type="Int32" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_numCompPerArea">
     <Key>
@@ -2731,7 +2731,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="numComp" Type="Int32" Nullable="false" />
     <Property Name="lastModifiedBy" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="stampdate" Type="DateTime" Nullable="false" />
+    <Property Name="stampdate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_p4pOffers">
     <Key>
@@ -2744,8 +2744,8 @@
     <Property Name="moversName" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
     <Property Name="offeredPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="isOfferAccepted" Type="Boolean" Nullable="false" />
-    <Property Name="timeStamp" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="timeStamp" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_p4pOffersPostLog">
     <Key>
@@ -2757,7 +2757,7 @@
     <Property Name="code" Type="Int32" />
     <Property Name="message" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
     <Property Name="step" Type="Int32" />
-    <Property Name="stampDate" Type="DateTime" />
+    <Property Name="stampDate" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_p4pPostLog">
     <Key>
@@ -2771,7 +2771,7 @@
     <Property Name="code" Type="Int32" Nullable="false" />
     <Property Name="isOfferAccepted" Type="Boolean" />
     <Property Name="step" Type="Byte" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_pageContent">
     <Key>
@@ -2799,7 +2799,7 @@
     <Property Name="GeoLocation" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="listID" Type="Int32" Nullable="false" />
     <Property Name="pageName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_paidComp">
     <Key>
@@ -2818,7 +2818,7 @@
     <Property Name="zip_4" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
     <Property Name="linkEx" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="longstate" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="datecreated" Type="DateTime" />
+    <Property Name="datecreated" Type="DateTime" Precision="0" />
     <Property Name="serviceid" Type="Int32" />
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
   </EntityType>
@@ -2839,7 +2839,7 @@
     <Property Name="zip_4" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
     <Property Name="linkEx" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="longstate" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="datecreated" Type="DateTime" />
+    <Property Name="datecreated" Type="DateTime" Precision="0" />
     <Property Name="serviceid" Type="Int32" />
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
   </EntityType>
@@ -2897,7 +2897,7 @@
     <Property Name="title" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="handle" Type="String" MaxLength="60" Unicode="false" FixedLength="false" />
     <Property Name="description" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
     <Property Name="isPublic" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="tbl_ballot" Relationship="MoversDBModel.FK_tbl_ballot_tbl_poll" FromRole="tbl_poll" ToRole="tbl_ballot" />
@@ -2910,7 +2910,7 @@
     <Property Name="processName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="propName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="propValue" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_quoteAnalysis">
     <Key>
@@ -2930,8 +2930,8 @@
     <Property Name="type" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="affiliateID" Type="Int32" />
     <Property Name="cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_quoteAuto">
     <Key>
@@ -2959,7 +2959,7 @@
     <Property Name="title" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
     <Property Name="userCookie" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="wPhone" Type="String" MaxLength="12" Unicode="false" FixedLength="true" />
-    <Property Name="dateSubmitted" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_quoteDestinationzip">
     <Key>
@@ -2969,7 +2969,7 @@
     <Property Name="quoteID" Type="Int32" Nullable="false" />
     <Property Name="destinationZip" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
     <Property Name="leadType" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_quoteMoving">
     <Key>
@@ -2994,7 +2994,7 @@
     <Property Name="title" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
     <Property Name="userCookie" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="wPhone" Type="String" MaxLength="12" Unicode="false" FixedLength="true" />
-    <Property Name="dateSubmitted" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_quoteRequests">
     <Key>
@@ -3023,11 +3023,11 @@
     <Property Name="httpreferer" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
     <Property Name="userAgent" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
-    <Property Name="servingCompaniesFountAt" Type="DateTime" />
+    <Property Name="servingCompaniesFountAt" Type="DateTime" Precision="3" />
     <Property Name="consent" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="checkAt" Type="DateTime" />
-    <Property Name="postRequestAt" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="checkAt" Type="DateTime" Precision="3" />
+    <Property Name="postRequestAt" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_quoteSelfMoving">
     <Key>
@@ -3053,7 +3053,7 @@
     <Property Name="title" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
     <Property Name="userCookie" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="wPhone" Type="String" MaxLength="12" Unicode="false" FixedLength="true" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_quoteStorage">
     <Key>
@@ -3076,7 +3076,7 @@
     <Property Name="title" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
     <Property Name="userCookie" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="wPhone" Type="String" MaxLength="12" Unicode="false" FixedLength="true" />
-    <Property Name="dateSubmitted" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_realEstateAgents">
     <Key>
@@ -3103,7 +3103,7 @@
     <Property Name="agentDesc" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
     <Property Name="agentImage" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
-    <Property Name="insertDate" Type="DateTime" Nullable="false" />
+    <Property Name="insertDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="isFeatured" Type="Byte" Nullable="false" />
   </EntityType>
   <EntityType Name="tbl_realtimeReversePhoneLookup">
@@ -3135,8 +3135,8 @@
     <Property Name="errorDesc" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="errorDescCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="postRequestID" Type="Int32" />
-    <Property Name="lastModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_recordPostInformation">
     <Key>
@@ -3153,8 +3153,8 @@
     <Property Name="phone" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
     <Property Name="quoteID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="referenceID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="lastModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_RecPostData">
     <Key>
@@ -3167,7 +3167,7 @@
     <Property Name="remoteHost" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="leadType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="retResponse" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_RestrictServiceAreaPerSE">
     <Key>
@@ -3179,7 +3179,7 @@
     <Property Name="se" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="areaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="serviceID" Type="Int32" Nullable="false" />
-    <Property Name="stampdate" Type="DateTime" Nullable="false" />
+    <Property Name="stampdate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_resultPageContent">
     <Key>
@@ -3200,7 +3200,7 @@
     <Property Name="bcState" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="bcCity" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="content" Type="String" MaxLength="5000" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_reverseVerificationCheck">
     <Key>
@@ -3233,8 +3233,8 @@
     <Property Name="frequency" Type="Int32" Nullable="false" />
     <Property Name="counter" Type="Int32" Nullable="false" />
     <Property Name="isActive" Type="Int32" Nullable="false" />
-    <Property Name="lastLeadDate" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastLeadDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_reverseVerificationLeads">
     <Key>
@@ -3269,7 +3269,7 @@
     <Property Name="isVerifiedByPhone" Type="Int32" />
     <Property Name="isVerifiedByEmail" Type="Int32" />
     <Property Name="notes" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_reverseVerificationLeadsCall">
     <Key>
@@ -3282,9 +3282,9 @@
     <Property Name="callFlow" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="verificationResponse" Type="Int32" />
     <Property Name="FailedResponse" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
-    <Property Name="lastModified" Type="DateTime" Nullable="false" />
-    <Property Name="callEnds" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="callEnds" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_reverseVerificationLeadsCallLog">
     <Key>
@@ -3298,10 +3298,10 @@
     <Property Name="callFlow" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="verificationResponse" Type="Int32" />
     <Property Name="FailedResponse" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
-    <Property Name="lastModified" Type="DateTime" />
-    <Property Name="callEnds" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" />
-    <Property Name="logDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Precision="3" />
+    <Property Name="callEnds" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
+    <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_reverseVerificationLeadsEmail">
     <Key>
@@ -3318,8 +3318,8 @@
     <Property Name="userAgent" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
     <Property Name="httpreferer" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
-    <Property Name="lastModified" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_reverseVerificationLeadsEmailLog">
     <Key>
@@ -3334,9 +3334,9 @@
     <Property Name="userAgent" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
     <Property Name="httpreferer" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
-    <Property Name="lastModified" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" />
-    <Property Name="logDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
+    <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_reverseVerificationMaskPhone">
     <Key>
@@ -3349,7 +3349,7 @@
     <Property Name="leadType" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
     <Property Name="originalPhone" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
     <Property Name="maskPhone" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_reverseVerifiedLeadsLog">
     <Key>
@@ -3385,10 +3385,10 @@
     <Property Name="isVerifiedByPhone" Type="Int32" />
     <Property Name="isVerifiedByEmail" Type="Int32" />
     <Property Name="notes" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="3" />
     <Property Name="isInValid" Type="Int32" />
     <Property Name="loggedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="logDate" Type="DateTime" Nullable="false" />
+    <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_reviews">
     <Key>
@@ -3405,8 +3405,8 @@
     <Property Name="subject" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="description" Type="String" Nullable="false" MaxLength="7500" Unicode="false" FixedLength="false" />
     <Property Name="isPub" Type="Byte" />
-    <Property Name="displayDate" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="displayDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="isActive" Type="Byte" Nullable="false" />
     <Property Name="IP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
     <Property Name="isFree" Type="Boolean" Nullable="false" />
@@ -3429,11 +3429,11 @@
     <Property Name="email" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
     <Property Name="subject" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="reply" Type="String" Nullable="false" MaxLength="7000" Unicode="false" FixedLength="false" />
-    <Property Name="replyDate" Type="DateTime" Nullable="false" />
+    <Property Name="replyDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
     <Property Name="isPub" Type="Boolean" Nullable="false" />
     <Property Name="IP" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_Satellite">
     <Key>
@@ -3446,7 +3446,7 @@
     <Property Name="email" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
     <Property Name="phone" Type="String" MaxLength="20" Unicode="false" FixedLength="true" />
     <Property Name="promo" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-    <Property Name="sDate" Type="DateTime" Nullable="false" />
+    <Property Name="sDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_service">
     <Key>
@@ -3472,8 +3472,8 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="totalLeads" Type="Int32" Nullable="false" />
     <Property Name="Type" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_serviceMain">
     <Key>
@@ -3493,7 +3493,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="se" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
     <Property Name="totalLeads" Type="Int32" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_sirvaZipCodes">
     <Key>
@@ -3528,7 +3528,7 @@
     <Property Name="numLead" Type="Int32" />
     <Property Name="totalLeadPerArea" Type="Int32" />
     <Property Name="formatDate" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
-    <Property Name="insertDate" Type="DateTime" />
+    <Property Name="insertDate" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_TexasProject">
     <Key>
@@ -3539,7 +3539,7 @@
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="ip" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
     <Property Name="refType" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="dateEntered" Type="DateTime" Nullable="false" />
+    <Property Name="dateEntered" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_tips">
     <Key>
@@ -3554,8 +3554,8 @@
     <Property Name="content" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
     <Property Name="ispublished" Type="Boolean" Nullable="false" />
     <Property Name="isdeleted" Type="Boolean" Nullable="false" />
-    <Property Name="lastmodifydate" Type="DateTime" Nullable="false" />
-    <Property Name="stampdate" Type="DateTime" Nullable="false" />
+    <Property Name="lastmodifydate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="stampdate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_trackAdsMaster">
     <Key>
@@ -3565,7 +3565,7 @@
     <Property Name="httpRef" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
     <Property Name="se" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
-    <Property Name="dateCreated" Type="DateTime" />
+    <Property Name="dateCreated" Type="DateTime" Precision="3" />
     <Property Name="duplicate" Type="Int32" />
   </EntityType>
   <EntityType Name="tbl_trackCompPage">
@@ -3587,7 +3587,7 @@
     <Property Name="companyID" Type="Int32" Nullable="false" />
     <Property Name="referer" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
-    <Property Name="dateTrack" Type="DateTime" Nullable="false" />
+    <Property Name="dateTrack" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_trackCompPageOdd">
     <Key>
@@ -3599,7 +3599,7 @@
     <Property Name="companyID" Type="Int32" Nullable="false" />
     <Property Name="referer" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
-    <Property Name="dateTrack" Type="DateTime" Nullable="false" />
+    <Property Name="dateTrack" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_trackOffers">
     <Key>
@@ -3610,7 +3610,7 @@
     <Property Name="offer" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
     <Property Name="email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="dateClick" Type="DateTime" Nullable="false" />
+    <Property Name="dateClick" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_trackSePosts">
     <Key>
@@ -3618,7 +3618,7 @@
     </Key>
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="se" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="datesubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="datesubmitted" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_upgradeDowngradesCancelStatusLog">
     <Key>
@@ -3631,7 +3631,7 @@
     <Property Name="errorProcedure" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="errorMessage" Type="String" MaxLength="3000" Unicode="false" FixedLength="false" />
     <Property Name="isSucceeded" Type="Boolean" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_URLshortenAPI">
     <Key>
@@ -3642,8 +3642,8 @@
     <Property Name="emailRowID" Type="Int32" Nullable="false" />
     <Property Name="longURL" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
     <Property Name="shortURL" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
-    <Property Name="responseTime" Type="DateTime" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="responseTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tbl_userConsentSold">
     <Key>
@@ -3654,7 +3654,7 @@
     <Property Name="quoteID" Type="Int32" Nullable="false" />
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="userConsent" Type="Boolean" Nullable="false" />
-    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="tbl_vote">
     <Key>
@@ -3662,7 +3662,7 @@
     </Key>
     <Property Name="voteID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="description" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="isActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="tbl_ballot" Relationship="MoversDBModel.FK_tbl_ballot_tbl_vote" FromRole="tbl_vote" ToRole="tbl_ballot" />
   </EntityType>
@@ -3808,7 +3808,7 @@
     <Property Name="location" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="propName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="propValue" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-    <Property Name="dateLog" Type="DateTime" Nullable="false" />
+    <Property Name="dateLog" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="emailLogged" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="tl_company_advertisement_log">
@@ -3825,7 +3825,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="adminAction" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
     <Property Name="states" Type="String" MaxLength="1300" Unicode="false" FixedLength="false" />
-    <Property Name="dateLog" Type="DateTime" Nullable="false" />
+    <Property Name="dateLog" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="emailLogged" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="tl_company_areacodes_log">
@@ -3842,7 +3842,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="adminAction" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
     <Property Name="areaCodes" Type="String" MaxLength="1300" Unicode="false" FixedLength="false" />
-    <Property Name="dateLog" Type="DateTime" Nullable="false" />
+    <Property Name="dateLog" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="emailLogged" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="tl_company_countries_log">
@@ -3859,7 +3859,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="adminAction" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
     <Property Name="countries" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
-    <Property Name="dateLog" Type="DateTime" Nullable="false" />
+    <Property Name="dateLog" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="emailLogged" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="tl_company_deletelistings_log">
@@ -3878,7 +3878,7 @@
     <Property Name="city" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
     <Property Name="areacode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="country" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="dateLog" Type="DateTime" Nullable="false" />
+    <Property Name="dateLog" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tl_company_storage_log">
     <Key>
@@ -3895,7 +3895,7 @@
     <Property Name="adminAction" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="state" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
     <Property Name="cities" Type="String" Nullable="false" MaxLength="7000" Unicode="false" FixedLength="false" />
-    <Property Name="dateLog" Type="DateTime" Nullable="false" />
+    <Property Name="dateLog" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="emailLogged" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="tl_companyBudget">
@@ -3911,9 +3911,9 @@
     <Property Name="remainingBudget" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="lastQuoteID" Type="Int32" />
     <Property Name="lastQuotePrice" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="lastModified" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" />
-    <Property Name="logDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
+    <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="action" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
     <Property Name="budgetAction" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="budgetNote" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
@@ -3937,11 +3937,11 @@
     <Property Name="moveWeightID" Type="Int32" />
     <Property Name="totalBudget" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="remainingBudget" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="stampDate" Type="DateTime" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
     <Property Name="budgetAction" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="budgetNote" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="isRecurring" Type="Boolean" />
-    <Property Name="logDate" Type="DateTime" Nullable="false" />
+    <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="isRequireNoticeToCharge" Type="Boolean" />
     <Property Name="isOneTimeRenew" Type="Boolean" />
     <Property Name="minDaysToCharge" Type="Int32" />
@@ -3959,8 +3959,8 @@
     <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="action" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
     <Property Name="notes" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="stampDate" Type="DateTime" />
-    <Property Name="loggedDate" Type="DateTime" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
+    <Property Name="loggedDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="tl_numCompPerArea_log">
     <Key>
@@ -3971,7 +3971,7 @@
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="numComp" Type="Int32" Nullable="false" />
     <Property Name="command" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="dateLog" Type="DateTime" Nullable="false" />
+    <Property Name="dateLog" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="emailLogged" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="tl_postInformation">
@@ -3989,9 +3989,9 @@
     <Property Name="quoteID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="landingPage" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="referenceID" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
-    <Property Name="lastModified" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" />
-    <Property Name="logDate" Type="DateTime" Nullable="false" />
+    <Property Name="lastModified" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
+    <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tl_quoteRequests">
     <Key>
@@ -4023,12 +4023,12 @@
     <Property Name="httpreferer" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
     <Property Name="remoteHost" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
     <Property Name="userAgent" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
-    <Property Name="servingCompaniesFountAt" Type="DateTime" />
+    <Property Name="servingCompaniesFountAt" Type="DateTime" Precision="3" />
     <Property Name="consent" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="checkAt" Type="DateTime" />
-    <Property Name="postRequestAt" Type="DateTime" />
-    <Property Name="stampDate" Type="DateTime" />
-    <Property Name="logDate" Type="DateTime" Nullable="false" />
+    <Property Name="checkAt" Type="DateTime" Precision="3" />
+    <Property Name="postRequestAt" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
+    <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="tlk_companiesWith25pctDiscount">
     <Key>
@@ -4063,16 +4063,16 @@
       <PropertyRef Name="UserId" />
     </Key>
     <Property Name="UserId" Type="Int32" Nullable="false" />
-    <Property Name="CreateDate" Type="DateTime" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
     <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
     <Property Name="IsConfirmed" Type="Boolean" />
-    <Property Name="LastPasswordFailureDate" Type="DateTime" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
     <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-    <Property Name="PasswordChangedDate" Type="DateTime" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
     <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
     <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
-    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="webpages_OAuthMembership">
     <Key>
@@ -4117,7 +4117,7 @@
     <Property Name="title" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
     <Property Name="userCookie" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="wPhone" Type="String" MaxLength="12" Unicode="false" FixedLength="true" />
-    <Property Name="dateSubmitted" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
     <Property Name="httpReferer" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
     <Property Name="keyword" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
@@ -4132,7 +4132,7 @@
     <Property Name="serviceID" Type="Int32" />
     <Property Name="state" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
     <Property Name="formatDate" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
-    <Property Name="insertDate" Type="DateTime" />
+    <Property Name="insertDate" Type="DateTime" Precision="0" />
     <Property Name="price" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="vw_company_areacode_phones">
@@ -4148,7 +4148,7 @@
     <Property Name="companyID" Type="Int32" Nullable="false" />
     <Property Name="serviceID" Type="Int32" Nullable="false" />
     <Property Name="areaCode" Type="Int16" Nullable="false" />
-    <Property Name="stampDate" Type="DateTime" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Expr1" Type="Int32" />
     <Property Name="service" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="longstate" Type="String" MaxLength="35" Unicode="false" FixedLength="false" />
@@ -4163,8 +4163,8 @@
     <Property Name="avgPriceOfLeadPerCompany" Type="Decimal" Precision="6" Scale="2" />
     <Property Name="desiredMaxAvgPricePerLeadPerCompany" Type="Decimal" Precision="6" Scale="2" />
     <Property Name="isFlagged" Type="Boolean" />
-    <Property Name="dateSubmitted" Type="DateTime" />
-    <Property Name="Expr3" Type="DateTime" Nullable="false" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
+    <Property Name="Expr3" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="vw_CompanyByAX">
     <Key>
@@ -4192,7 +4192,7 @@
     <Property Name="categoryname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="serviceName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="httpReferer" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
-    <Property Name="dateSubmitted" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
     <Property Name="quoteID" Type="Int32" Nullable="false" />
     <Property Name="se" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="email" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
@@ -4207,7 +4207,7 @@
     <Property Name="serviceID" Type="Int32" />
     <Property Name="areacode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="formatDate" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
-    <Property Name="insertDate" Type="DateTime" />
+    <Property Name="insertDate" Type="DateTime" Precision="0" />
     <Property Name="price" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="vw_moving">
@@ -4233,7 +4233,7 @@
     <Property Name="title" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
     <Property Name="userCookie" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="wPhone" Type="String" MaxLength="12" Unicode="false" FixedLength="true" />
-    <Property Name="dateSubmitted" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
     <Property Name="httpReferer" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
     <Property Name="keyword" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
@@ -4263,7 +4263,7 @@
     <Property Name="title" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
     <Property Name="userCookie" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
     <Property Name="wPhone" Type="String" MaxLength="12" Unicode="false" FixedLength="true" />
-    <Property Name="dateSubmitted" Type="DateTime" />
+    <Property Name="dateSubmitted" Type="DateTime" Precision="0" />
     <Property Name="remoteHost" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
     <Property Name="httpReferer" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
     <Property Name="keyword" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
@@ -4276,7 +4276,7 @@
     <Property Name="companyID" Type="Int32" />
     <Property Name="areacode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
     <Property Name="formatDate" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
-    <Property Name="insertDate" Type="DateTime" />
+    <Property Name="insertDate" Type="DateTime" Precision="0" />
     <Property Name="price" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_tbl_ballot_tbl_poll">

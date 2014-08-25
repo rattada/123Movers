@@ -83,7 +83,7 @@
                                 @Service
                             </td>
                             <td class="text-center">
-                                <p>@Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget = @lot.TotalBudget, IsRecurring = @lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge, ServiceId = @lot.ServiceId, agnumber = @lot.AgreementNumber, minDaysToCharge = @lot.MinDaysToCharge }, new { id = "EditBudget", @class = "btn btn-sm btn-info" })</p>
+                                @Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget = @lot.TotalBudget, IsRecurring = @lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge, ServiceId = @lot.ServiceId, agnumber = @lot.AgreementNumber, minDaysToCharge = @lot.MinDaysToCharge }, new { id = "EditBudget", @class = "btn btn-sm btn-info" })
                             </td>
                             <td class="text-center">
                                 @if (@Recurring == "Recurring With Notice")
@@ -91,11 +91,11 @@
                                     @*<p><input type="button" value="Renew" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>*@
                                    if(@lot.IsOneTimeRenew)
                                     {
-                                        <p><input type="button" value="Renewed" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"  disabled="disabled"/></p>
+                                        <input type="button" value="Renewed" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"  disabled="disabled"/>
                                     }
                                     else
                                     {
-                                        <p><input type="button" value="Renew" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>
+                                        <input type="button" value="Renew" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/>
                                     }
                                 }
                             </td>
