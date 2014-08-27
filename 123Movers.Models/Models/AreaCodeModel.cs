@@ -5,7 +5,7 @@ using System.Web;
 
 namespace _123Movers.Models
 {
-    public class AreaCodeModel
+    public class AreaCodeModel 
     {
         public CompanyModel _companyInfo { get; set; }
     }

@@ -8,6 +8,7 @@
 @section JavaScript{
     @Html.Script("jquery.dataTables.min.js")
     @Html.Script("getBudget.js")
+    @Html.Script("jquery.loadmask.min.js")
 }
 
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
@@ -83,7 +84,7 @@
                                 @Service
                             </td>
                             <td class="text-center">
-                                @Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget = @lot.TotalBudget, IsRecurring = @lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge, ServiceId = @lot.ServiceId, agnumber = @lot.AgreementNumber, minDaysToCharge = @lot.MinDaysToCharge }, new { id = "EditBudget", @class = "btn btn-sm btn-info" })
+                                @Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget = @lot.TotalBudget, IsRecurring = @lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge, ServiceId = @lot.ServiceId, agnumber = @lot.AgreementNumber, minDaysToCharge = @lot.MinDaysToCharge }, new { @class = "btn btn-sm btn-info editBudget" })
                             </td>
                             <td class="text-center">
                                 @if (@Recurring == "Recurring With Notice")

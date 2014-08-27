@@ -9,7 +9,7 @@ using _123MoversEntity;
 
 namespace _123Movers.DataEntities
 {
-    public partial class DataLayer
+    public partial class DataLayer 
     {
         public static List<List<string>> GetAvailableAreas(int? companyId, int? serviceId)
         {
@@ -167,5 +167,6 @@ namespace _123Movers.DataEntities
             }
             return true;
         }
+       
     }
 }

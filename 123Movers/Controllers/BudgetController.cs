@@ -12,21 +12,22 @@ namespace _123Movers.Controllers
     public class BudgetController : BaseController
     {
         private static ILog logger = LogManager.GetLogger(typeof(BudgetController));
-        //public BudgetController() 
-        //{
-        //    logger = LogManager.GetLogger(typeof(BudgetController)); 
-        //}
-
-        //public JsonResult GetServices()
-        //{
-        //    return Json(BusinessLayer.GetServies(), JsonRequestBehavior.AllowGet);
-        //}
+     
+        /// <summary>
+        /// Get Filter information
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <returns>Updated Filter Information</returns>
         public JsonResult GetFilterResult(int? serviceId)
         {
             return Json(BusinessLayer.GetFilterResult(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
         
-
+        /// <summary>
+        /// Get All budgets for company
+        /// </summary>
+        /// <param name="Company">Company Details</param>
+        /// <returns>List Of BudgetModel</returns>
         [HttpGet]
         public ActionResult GetBudget(CompanyModel Company)
         {
@@ -38,11 +39,11 @@ namespace _123Movers.Controllers
 
             budgetList = BusinessLayer.GetBudget(CompanyInfo.CompanyId);
 
-            var tbilled = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.TotalBudget);
-            var uamount = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.UnchargedAmount);
+            //var tbilled = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.TotalBudget);
+            //var uamount = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.UnchargedAmount);
 
-            ViewBag.TotalBilled =  String.Format("{0:C}", tbilled);
-            ViewBag.UnchargedAmount = String.Format("{0:C}", uamount);
+            //ViewBag.TotalBilled =  String.Format("{0:C}", tbilled);
+            //ViewBag.UnchargedAmount = String.Format("{0:C}", uamount);
 
             search._companyInfo = CompanyInfo;
             search.budget = budgetList;
@@ -50,6 +51,7 @@ namespace _123Movers.Controllers
             return View(search);
         }
 
+        
         [HttpGet]
         public ActionResult AddBudget()
         {
@@ -62,6 +64,10 @@ namespace _123Movers.Controllers
             return View(budget);
         }
 
+        /// <summary>
+        /// Add new budget to company
+        /// </summary>
+        /// <param name="budget">Budget Model</param>
         [HttpPost]
         public ActionResult AddBudget(BudgetModel budget)
         {
@@ -148,6 +154,10 @@ namespace _123Movers.Controllers
             return View(budget);
         }
 
+        /// <summary>
+        /// Renewal the budget
+        /// </summary>
+        /// <param name="ServiceId">Type of Service</param>
         [HttpPost]
         public JsonResult RenewBudget(int? ServiceId)
         {
@@ -167,6 +177,10 @@ namespace _123Movers.Controllers
 
         }
 
+        /// <summary>
+        /// Get Budget filter information
+        /// </summary>
+        /// <param name="ServiceId">Type of Service</param>
         public JsonResult GetBudgetFilterInfo(int? ServiceId)
         {
             return Json(BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, ServiceId), JsonRequestBehavior.AllowGet);

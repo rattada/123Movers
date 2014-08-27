@@ -13,6 +13,11 @@ namespace _123Movers.DataEntities
 {
     public partial class DataLayer
     {
+        /// <summary>
+        /// Get All budgets for company
+        /// </summary>
+        /// <param name="Company">Company Details</param>
+        /// <returns>List Of BudgetModel</returns>
         public static List<BudgetModel> GetBudget(int? companyid)
         {
             List<BudgetModel> list = new List<BudgetModel>();
@@ -60,7 +65,10 @@ namespace _123Movers.DataEntities
                 return list;
             }
         }
-
+        /// <summary>
+        /// Save the budget to company
+        /// </summary>
+        /// <param name="budget">Budget Model</param>
         public static void SaveBudget(BudgetModel budget)
         {
             using (SqlConnection dbCon = ConnectToDb())
@@ -95,7 +103,7 @@ namespace _123Movers.DataEntities
                 SqlParameter paramAgreementNumber = new SqlParameter("agreementNumber", budget.AgreementNumber);
                 SqlParameter paramMinCharge = new SqlParameter("minDaysToCharge", budget.MinDaysToCharge);
                 SqlParameter paramServices = new SqlParameter("service", budget.ServiceId == Constants.BOTH ? null:budget.ServiceId);
-                SqlParameter paramType = new SqlParameter("type", budget.Type);
+                //SqlParameter paramType = new SqlParameter("type", budget.Type);
 
 
                 _cmd.Parameters.Add(paramCompanyId);
@@ -107,35 +115,13 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramAgreementNumber);
                 _cmd.Parameters.Add(paramMinCharge);
                 _cmd.Parameters.Add(paramServices);
-                _cmd.Parameters.Add(paramType);
+               // _cmd.Parameters.Add(paramType);
 
                 _cmd.ExecuteNonQuery();
             }
 
         }
-        //public static List<List<string>> GetServices()
-        //{
-        //    using (SqlConnection dbCon = ConnectToDb())
-        //    {
-        //        _cmd = new SqlCommand();
-        //        _cmd.Connection = dbCon;
-        //        _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //        _cmd.CommandText = Constants.SP_GET_AREACODES_STATES;
-
-        //        SqlParameter paramType = new SqlParameter("queryType", 1);
-
-        //        _cmd.Parameters.Add(paramType);
-
-        //        DataTable dtResults = new DataTable();
-
-        //        SqlDataReader drResults = _cmd.ExecuteReader();
-        //        dtResults.Load(drResults);
-
-        //        return ConfigValues.TableToList(dtResults);
-
-        //    }
-
-        //}
+      
         public static List<List<string>> GetFilterResult(int? companyID, int? serviceID)
         {
             DataTable dtResults = new DataTable();

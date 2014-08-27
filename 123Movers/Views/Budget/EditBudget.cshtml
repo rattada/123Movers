@@ -59,23 +59,23 @@
     var Service = (@Model.ServiceId == (int)ServiceType.Both) ? null : @Model.ServiceId;
     <div class="row">
         <div class="col-md-12">
-            @Html.ActionLink("Area Codes", "AreaCodes", "AreaCode", new { serviceId = Service }, new { id = "managearea", @class = "btn btn-default" })
-            @Html.ActionLink("Lead Limit", "LeadLimit", "LeadLimit", new { serviceId = Service }, new { id = "leadlimit", @class = "btn btn-default clsdisable" })
-            @Html.ActionLink("Origin Zip", "OriginZipCodes", "OriginZipCode", new { serviceId = Service }, new { id = "originzip", @class = "btn btn-default clsdisable" })
-            @*@Html.ActionLink("Destination Zip", "DestinationZipCodes", "DestinationZipCode", new { serviceId = Service }, new { id = "destzip", @class = "btn btn-default" })*@
-            @*@Html.ActionLink("Destination Zip", "DestZipCode", "DestZipCode", new { serviceId = Service }, new { id = "destareazip", @class = "btn btn-default clsdisable" })*@
-            @Html.ActionLink("Destination Area", "DestinationAreaCode", "DestinationAreaCode", new { serviceId = Service }, new { id = "destarea", @class = "btn btn-default clsdisable" })
-            @Html.ActionLink("Distance", "MoveDistance", "MoveDistance", new { serviceId = Service }, new { id = "distance", @class = "btn btn-default clsdisable" })
-            @Html.ActionLink("Move Weight", "MoveWeight", "MoveWeight", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default clsdisable" })
-            @Html.ActionLink("Specific Areas", "SpecificOriginAreaCodes", "SpecificOriginAreaCodes", new { serviceId = Service }, new { id = "specificAreas", @class = "btn btn-default clsdisable" })
-            @Html.ActionLink("Specific States", "SpecificStates", "SpecificStates", new { serviceId = Service }, new { id = "specificStates", @class = "btn btn-default clsdisable" })
-            @Html.ActionLink("Radius", "Radius", "Radius", new { serviceId = Service }, new { id = "Radius", @class = "btn btn-default clsdisable" })
+            @Html.ActionLink("Area Codes", "AreaCodes", "AreaCode", new { serviceId = Service }, new { id = "managearea", @class = "btn btn-default spnload" })
+            @Html.ActionLink("Lead Limit", "LeadLimit", "LeadLimit", new { serviceId = Service }, new { id = "leadlimit", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Origin Zip", "OriginZipCodes", "OriginZipCode", new { serviceId = Service }, new { id = "originzip", @class = "btn btn-default clsdisable spnload" })
+            @*@Html.ActionLink("Destination Zip", "DestinationZipCodes", "DestinationZipCode", new { serviceId = Service }, new { id = "destzip", @class = "btn btn-default spnload" })*@
+            @*@Html.ActionLink("Destination Zip", "DestZipCode", "DestZipCode", new { serviceId = Service }, new { id = "destareazip", @class = "btn btn-default clsdisable spnload" })*@
+            @Html.ActionLink("Destination Area", "DestinationAreaCode", "DestinationAreaCode", new { serviceId = Service }, new { id = "destarea", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Distance", "MoveDistance", "MoveDistance", new { serviceId = Service }, new { id = "distance", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Move Weight", "MoveWeight", "MoveWeight", new { serviceId = Service }, new { id = "movewight", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Specific Areas", "SpecificOriginAreaCodes", "SpecificOriginAreaCodes", new { serviceId = Service }, new { id = "specificAreas", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Specific States", "SpecificStates", "SpecificStates", new { serviceId = Service }, new { id = "specificStates", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Radius", "Radius", "Radius", new { serviceId = Service }, new { id = "radius", @class = "btn btn-default clsdisable spnload" })
         </div>
     </div>
     <p class="clear-fix"></p>
     <div class="row">
         <div class="col-md-6">
-             <a id="btnfilter"  class="btn btn-default clsdisable" href="#" data-toggle="modal" data-target="#myModal" >Get Filter Info</a>
+             <a id="btnfilter"  class="btn btn-default clsdisable spnload" href="#" data-toggle="modal" data-target="#myModal" >Get Filter Info</a>
         </div>
         <div class="col-md-6">
             <input type="submit" id="save" class="btn btn-primary pull-right" value="Save Budget" />
@@ -91,7 +91,7 @@
                 <h4 class="modal-title text-center" id="myModalLabel"><b>Filter Information</b></h4>
             </div>
             <div class="modal-body text-center">
-                <div class="modal-content" id="divfilter" style="height:480px;overflow:hidden;">
+                <div class="modal-content" id="divfilter" style="overflow-y:auto;">
                 </div>
             </div>
             <div class="modal-footer">

@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>123Movers</name>
+    </assembly>
+    <members>
+        <member name="M:_123Movers.Controllers.BaseController.SaveSeviceId(System.Nullable{System.Int32})">
+            <summary>
+            Store Service Type
+            </summary>
+        </member>
+        <member name="M:_123Movers.Controllers.BaseController.RetrieveCurrentServiceId">
+            <summary>
+            Get Service from Cookie
+            </summary>
+        </member>
+        <member name="M:_123Movers.Controllers.BaseController.SaveCompanyInfo(_123Movers.Models.CompanyModel)">
+            <summary>
+            Store Company Inforamtion
+            </summary>
+            <param name="companyInfo"></param>
+        </member>
+        <member name="M:_123Movers.Controllers.BaseController.RetrieveCurrentCompanyInfo">
+            <summary>
+            Get company information from Session
+            </summary>
+        </member>
+        <member name="M:_123Movers.Controllers.BaseController.GetTerms">
+            <summary>
+            Generate Term Types (Recurring, Non Recurring and Recurring with Notice)
+            </summary>
+            <returns> List of Term Types</returns>
+        </member>
+        <member name="M:_123Movers.Controllers.BaseController.GetServices(System.Nullable{System.Int32})">
+            <summary>
+            Generate Service Types(Local, Long and Both)
+            </summary>
+            <param name="serviceId">Select Service</param>
+            <returns>List Of Services</returns>
+        </member>
+        <member name="M:_123Movers.Controllers.BaseController.DataTableToSelectList(System.Data.DataTable,System.String,System.String)">
+            <summary>
+            Convert Datat Table to Select List
+            </summary>
+        </member>
+        <member name="M:_123Movers.Controllers.AreaCodeController.GetAvailableAreas(System.Nullable{System.Int32})">
+            <summary>
+            Get Available Areas for compnay by service
+            </summary>
+            <param name="serviceId">Type of Service</param>
+            <returns>List of Area Codes</returns>
+        </member>
+        <member name="M:_123Movers.Controllers.AreaCodeController.GetCompanyAreasWithPrices(System.Nullable{System.Int32})">
+            <summary>
+            Get Prices Per Lead
+            </summary>
+            <param name="serviceId">Type of Service</param>
+            <returns>Area Codes With Prices</returns>
+        </member>
+        <member name="M:_123Movers.Controllers.AreaCodeController.AddAreaCodes(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Add Area Codes to Active Budget
+            </summary>
+            <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+            <param name="areaCodes">Selected Area Codes</param>
+        </member>
+        <member name="M:_123Movers.Controllers.AreaCodeController.DeleteAreaCodes(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Delete Area Codes from Active Budget
+            </summary>
+            <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+            <param name="areaCodes">Selected Area Codes</param>
+        </member>
+        <member name="M:_123Movers.Controllers.AreaCodeController.AddCompanyPricePerLead(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Add price per lead to budget
+            </summary>
+            <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+            <param name="areaCodes">Selected Area Codes</param>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.GetFilterResult(System.Nullable{System.Int32})">
+            <summary>
+            Get Filter information
+            </summary>
+            <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+            <returns>Updated Filter Information</returns>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.GetBudget(_123Movers.Models.CompanyModel)">
+            <summary>
+            Get All budgets for company
+            </summary>
+            <param name="Company">Company Details</param>
+            <returns>List Of BudgetModel</returns>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.AddBudget(_123Movers.Models.BudgetModel)">
+            <summary>
+            Add new budget to company
+            </summary>
+            <param name="budget">Budget Model</param>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.RenewBudget(System.Nullable{System.Int32})">
+            <summary>
+            Renewal the budget
+            </summary>
+            <param name="ServiceId">Type of Service</param>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.GetBudgetFilterInfo(System.Nullable{System.Int32})">
+            <summary>
+            Get Budget filter information
+            </summary>
+            <param name="ServiceId">Type of Service</param>
+        </member>
+        <member name="M:_123Movers.Controllers.DestinationAreaCodeController.GetCompanyDestAreas(System.Nullable{System.Int32})">
+            <summary>
+            Get Company Destination Area Codes by service
+            </summary>
+            <param name="serviceId">Type of Service</param>
+            <returns>List of Destination Area Codes</returns>
+        </member>
+    </members>
+</doc>

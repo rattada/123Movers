@@ -19,6 +19,7 @@ namespace _123Movers.Controllers
         {
             //logger = LogManager.GetLogger(typeof(controller));
         }
+        
         public int? ServiceId
         {
             get
@@ -28,6 +29,9 @@ namespace _123Movers.Controllers
             }
         }
 
+        /// <summary>
+        /// Store Service Type
+        /// </summary>
         public void SaveSeviceId(int? id)
         {
             var cookie = new HttpCookie("ServiceId")
@@ -38,7 +42,9 @@ namespace _123Movers.Controllers
 
             Response.Cookies.Add(cookie);
         }
-
+        /// <summary>
+        /// Get Service from Cookie
+        /// </summary>
         protected string RetrieveCurrentServiceId()
         {
             var companyCookieVal = _serviceId.ToString();
@@ -67,7 +73,10 @@ namespace _123Movers.Controllers
                 return _companyInfo;
             }
         }
-
+        /// <summary>
+        /// Store Company Inforamtion
+        /// </summary>
+        /// <param name="companyInfo"></param>
         public void SaveCompanyInfo(CompanyModel companyInfo)
         {
             HttpContext.Session.Add("CurrentCompanyInfo", companyInfo);
@@ -75,7 +84,9 @@ namespace _123Movers.Controllers
             _companyInfo = companyInfo;
 
         }
-
+        /// <summary>
+        /// Get company information from Session
+        /// </summary>
         protected CompanyModel RetrieveCurrentCompanyInfo()
         {
          
@@ -98,6 +109,10 @@ namespace _123Movers.Controllers
             }
             return companyCookieVal;
         }
+        /// <summary>
+        /// Generate Term Types (Recurring, Non Recurring and Recurring with Notice)
+        /// </summary>
+        /// <returns> List of Term Types</returns>
         public List<SelectListItem> GetTerms()
         {
             //var values = Enum.GetValues(typeof(DayOfWeek))
@@ -116,17 +131,14 @@ namespace _123Movers.Controllers
             // var priceNames = ConfigValues.Terms1.Select(p => p.Value).ToList();
             return Terms;
         }
+
+        /// <summary>
+        /// Generate Service Types(Local, Long and Both)
+        /// </summary>
+        /// <param name="serviceId">Select Service</param>
+        /// <returns>List Of Services</returns>
         public List<SelectListItem> GetServices(int? serviceId = null)
         {
-
-            //var Services = new List<SelectListItem>();
-
-            //Services = ConfigValues.Services.Select(p => new SelectListItem
-            //                                                        {
-            //                                                            Text = p.Key,
-            //                                                            Value = p.Value
-            //                                                        }).ToList();
-
             var listOption = new SelectListItem();
             var services = new List<SelectListItem>();
 
@@ -149,6 +161,9 @@ namespace _123Movers.Controllers
 
             return services;
         }
+        /// <summary>
+        /// Convert Datat Table to Select List
+        /// </summary>
         public SelectList DataTableToSelectList(DataTable table, string valueField, string textField)
         {
             List<SelectListItem> list = new List<SelectListItem>();

@@ -11,13 +11,13 @@ namespace _123Movers.Controllers
 {
     public class DestinationAreaCodeController : BaseController
     {
+        private static ILog logger = LogManager.GetLogger(typeof(DestinationAreaCodeController)); 
 
-
-        public DestinationAreaCodeController()
-        {
-            logger = LogManager.GetLogger(typeof(SpecificOriginAreaCodesController));
-        }
-
+        /// <summary>
+        /// Get Company Destination Area Codes by service
+        /// </summary>
+        /// <param name="serviceId">Type of Service</param>
+        /// <returns>List of Destination Area Codes</returns>
         public JsonResult GetCompanyDestAreas(int? serviceId)
         {
             return Json(BusinessLayer.GetCompanyAreasCodes(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);

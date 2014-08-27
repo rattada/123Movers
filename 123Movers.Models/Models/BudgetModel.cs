@@ -59,8 +59,8 @@ namespace _123Movers.Models
 
         public bool IsOneTimeRenew { get; set; }
 
-        [Display(Name = "Expire")]
-        public bool Expire { get; set; }
+        //[Display(Name = "Expire")]
+        //public bool Expire { get; set; }
 
         [Display(Name = "Agreement Number")]
         public string AgreementNumber { get; set; }
@@ -82,6 +82,26 @@ namespace _123Movers.Models
         public string Type { get; set; }
 
         public CompanyModel _companyInfo { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            
+            return null;
+            //if (validationContext.Items.Count() > 0)
+            //{
+
+            //    //Match coupon data elements with the same name, same coupon type, different id and same site id.
+            //    var duplicateData = ((ICmsEntities)validationContext.Items["Context"]).Coupons.Where(
+            //        c => c.Name.ToLower() == this.Name.ToLower() && c.Id != this.Id
+            //            && c.CouponType == this.CouponType && c.SiteId == this.SiteId && !c.IsDeleted);
+
+            //    if (duplicateData.Count() > 0)
+            //    {
+            //        yield return
+            //            new ValidationResult("The coupon already exists for this site and type.");
+            //    }
+            //}
+        }
 
     }
 }
