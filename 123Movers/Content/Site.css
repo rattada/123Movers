@@ -565,13 +565,12 @@ thead {
 .masked-relative {position: relative !important;}
 .masked-hidden {visibility: hidden !important;}
 
-#accordion_tblCompanyAreas {
+/*#accordion_tblCompanyAreas {
    width: 203px;
    margin-top:18px;
-}
+}*/
 .multiselect {
-width: 13em;
-height: 21em;
+height: 330px;
 border: solid 1px #c0c0c0;
 overflow: auto;
 }
