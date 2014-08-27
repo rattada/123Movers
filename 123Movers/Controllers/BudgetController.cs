@@ -177,11 +177,18 @@ namespace _123Movers.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult BudgetFilterInfo(int? serviceId)
+        {
+            BudgetModel budget = new BudgetModel();
+            budget._companyInfo = CompanyInfo;
+            return View(budget);
+        }
         /// <summary>
         /// Get Budget filter information
         /// </summary>
         /// <param name="ServiceId">Type of Service</param>
-        public JsonResult GetBudgetFilterInfo(int? ServiceId)
+        public JsonResult GetBudgetFilterInfo()
         {
             return Json(BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, ServiceId), JsonRequestBehavior.AllowGet);
         }

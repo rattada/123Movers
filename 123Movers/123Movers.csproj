@@ -276,6 +276,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="Properties\PublishProfiles\release.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\loadingSG.gif" />
@@ -374,6 +375,7 @@
     <Content Include="Views\SpecificStates\SpecificStates.cshtml" />
     <Content Include="Views\DestZipCode\DestZipCode.cshtml" />
     <Content Include="Views\Radius\Radius.cshtml" />
+    <Content Include="Views\Budget\BudgetFilterInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,14 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="_123Movers.Controllers.BudgetController">
-    <Position X="0.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAJAAAAAAAAAAAACIAAAAAABCQAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Controllers\BudgetController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="_123Movers.BusinessEntities.BusinessLayer">
-    <Position X="4.25" Y="1.5" Width="1.75" />
+  <Class Name="_123Movers.DataEntities.DataLayer">
+    <Position X="0.5" Y="0.5" Width="1.75" />
     <Members>
       <Method Name="AddCompanyAreaCodes" Hidden="true" />
       <Method Name="AddCompanyAreaDestinationZipCodes" Hidden="true" />
@@ -16,11 +9,11 @@
       <Method Name="AddCompanyDestAreaCodes" Hidden="true" />
       <Method Name="AddCompanyLeadLimit" Hidden="true" />
       <Method Name="AddCompanyPricePerLead" Hidden="true" />
-      <Method Name="AddCompanySpcfcOriginAreaCodes" Hidden="true" />
+      <Method Name="AddCompanySpcfcOriginDestAreaCodes" Hidden="true" />
       <Method Name="AddCompanySpcfcStates" Hidden="true" />
       <Method Name="AddExternalUser" Hidden="true" />
       <Method Name="AddZipCodesByRadius" Hidden="true" />
-      <Method Name="BusinessLayer" Hidden="true" />
+      <Method Name="ConnectToDb" Hidden="true" />
       <Method Name="DeleteCompanyAdByArea" Hidden="true" />
       <Method Name="DeleteCompanyAreaDestinationZipCodes" Hidden="true" />
       <Method Name="DeleteCompanyAreaZipCodes" Hidden="true" />
@@ -51,7 +44,10 @@
       <Method Name="SearchCompany" Hidden="true" />
       <Method Name="Turn_ON_OFF_CompanyDestAreaCodes" Hidden="true" />
     </Members>
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>EA4AAAkAAKMAACAAPEgQiBgJGQIDkQCEKaACCAQAAIA=</HashCode>
+      <FileName>Data_Account.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

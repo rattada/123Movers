@@ -7,8 +7,50 @@
       <FileName>Controllers\BudgetController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="_123Movers.BusinessEntities.BusinessLayer" Collapsed="true">
-    <Position X="4.25" Y="1.5" Width="4" />
+  <Class Name="_123Movers.BusinessEntities.BusinessLayer">
+    <Position X="4.25" Y="1.5" Width="1.75" />
+    <Members>
+      <Method Name="AddCompanyAreaCodes" Hidden="true" />
+      <Method Name="AddCompanyAreaDestinationZipCodes" Hidden="true" />
+      <Method Name="AddCompanyAreaZipCodes" Hidden="true" />
+      <Method Name="AddCompanyDestAreaCodes" Hidden="true" />
+      <Method Name="AddCompanyLeadLimit" Hidden="true" />
+      <Method Name="AddCompanyPricePerLead" Hidden="true" />
+      <Method Name="AddCompanySpcfcOriginAreaCodes" Hidden="true" />
+      <Method Name="AddCompanySpcfcStates" Hidden="true" />
+      <Method Name="AddExternalUser" Hidden="true" />
+      <Method Name="AddZipCodesByRadius" Hidden="true" />
+      <Method Name="BusinessLayer" Hidden="true" />
+      <Method Name="DeleteCompanyAdByArea" Hidden="true" />
+      <Method Name="DeleteCompanyAreaDestinationZipCodes" Hidden="true" />
+      <Method Name="DeleteCompanyAreaZipCodes" Hidden="true" />
+      <Method Name="DeleteCompanyDestAreaCodes" Hidden="true" />
+      <Method Name="DeleteCompanySpcfcOriginDestAreaCodes" Hidden="true" />
+      <Method Name="DeleteCompanySpcfcStates" Hidden="true" />
+      <Method Name="GetAllAreaCodes" Hidden="true" />
+      <Method Name="GetAvailableAreas" Hidden="true" />
+      <Method Name="GetAvailableDestinationZipCodes" Hidden="true" />
+      <Method Name="GetAvailableZipCodes" Hidden="true" />
+      <Method Name="GetAvailSpcfcOriginDestAreas" Hidden="true" />
+      <Method Name="GetAvailStates" Hidden="true" />
+      <Method Name="GetCompanyAreasCodes" Hidden="true" />
+      <Method Name="GetCompanyAreasDestinationZipCodes" Hidden="true" />
+      <Method Name="GetCompanyAreasWithPrices" Hidden="true" />
+      <Method Name="GetCompanyAreasZipCodes" Hidden="true" />
+      <Method Name="GetCompanyDestinationServiceAreaCodes" Hidden="true" />
+      <Method Name="GetCompanyLeadLimit" Hidden="true" />
+      <Method Name="GetCompanyMoveDistance" Hidden="true" />
+      <Method Name="GetCompanyServiceAreaCodes" Hidden="true" />
+      <Method Name="GetCompanySpcfcOriginDestAreas" Hidden="true" />
+      <Method Name="GetCompanySpcfcStates" Hidden="true" />
+      <Method Name="GetMoveWeights" Hidden="true" />
+      <Method Name="GetReports" Hidden="true" />
+      <Method Name="GetZipCodesByRadius" Hidden="true" />
+      <Method Name="SaveMoveDistance" Hidden="true" />
+      <Method Name="SaveMoveWeight" Hidden="true" />
+      <Method Name="SearchCompany" Hidden="true" />
+      <Method Name="Turn_ON_OFF_CompanyDestAreaCodes" Hidden="true" />
+    </Members>
     <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />
