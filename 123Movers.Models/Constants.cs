@@ -59,7 +59,8 @@ namespace _123Movers.Models
             public static readonly string SP_GET_COMPANY_STATE_AREACODE_PRICE = "usp_GetCompanyStateAreacodePrice";
             //public static readonly string SP_COMPANY_AREACODE_ADD = "up_companyAreacodeAdd";
             public static readonly string SP_COMPANY_AREACODE_ADD = "usp_AddCompanyAreasCodes";
-            public static readonly string SP_COMPANY_AREACODE_DELETE = "up_companyAreacodeDelete";
+            //public static readonly string SP_COMPANY_AREACODE_DELETE = "up_companyAreacodeDelete";
+            public static readonly string SP_COMPANY_AREACODE_DELETE = "usp_DeleteCompanyAreasCodes";
             public static readonly string SP_ADD_COMPANY_PRICE_PERLEAD = "usp_AddCompanyPricePerLead";
             public static readonly string SP_GET_AVAILABLE_AREAS = "usp_availableAreas";
 

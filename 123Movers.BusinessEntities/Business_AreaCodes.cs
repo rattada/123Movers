@@ -27,9 +27,13 @@ namespace _123Movers.BusinessEntities
         {
             DataLayer.AddCompanyAreaCodes(companyId, serviceId, areaCodes);
         }
-        public static void DeleteCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
+        //public static void DeleteCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
+        //{
+        //    DataLayer.DeleteCompanyAdByArea(companyId, serviceId, areaCode);
+        //}
+        public static void DeleteCompanyAreaCodes(int? companyId, int? serviceId, string areaCodes)
         {
-            DataLayer.DeleteCompanyAdByArea(companyId, serviceId, areaCode);
+            DataLayer.DeleteCompanyAreaCodes(companyId, serviceId, areaCodes);
         }
 
         public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, string areaCodes, int? moveWeightID)

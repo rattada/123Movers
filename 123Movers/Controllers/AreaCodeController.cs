@@ -66,27 +66,49 @@ namespace _123Movers.Controllers
 
             return result;
         }
+        ///// <summary>
+        ///// Delete Area Codes from Active Budget
+        ///// </summary>
+        ///// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        ///// <param name="areaCodes">Selected Area Codes</param>
+        //public ActionResult DeleteAreaCodes(int? serviceId,string areaCodes)
+        //{
+        //    IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
+
+        //    try
+        //    {
+        //        foreach (var areacode in areacodelist)
+        //        {
+        //            BusinessLayer.DeleteCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logger.Error(ex.ToString());
+        //    }
+        //    return RedirectToAction("AreaCodes", new { serviceId = serviceId });
+        //}
+
         /// <summary>
         /// Delete Area Codes from Active Budget
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <param name="areaCodes">Selected Area Codes</param>
-        public ActionResult DeleteAreaCodes(int? serviceId,string areaCodes)
+        public ActionResult DeleteAreaCodes(int? serviceId, string areaCodes)
         {
-            IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
-
+            JsonResult result;
             try
             {
-                foreach (var areacode in areacodelist)
-                {
-                    BusinessLayer.DeleteCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
-                }
+                BusinessLayer.DeleteCompanyAreaCodes(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace());
+                result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());
+                result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
-            return RedirectToAction("AreaCodes", new { serviceId = serviceId });
+
+            return result;
         }
         /// <summary>
         /// Add price per lead to budget
