@@ -1,4 +1,4 @@
-﻿@model _123Movers.Models.SearchModel
+﻿@model _123Movers.Models.BudgetModel
 @using _123Movers.Models;
 
 @{
@@ -49,54 +49,55 @@
                 <tbody>
                     @{
     //List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget >= 0).OrderByDescending(c => c.ServiceId).ToList();
-    List<BudgetModel> activeBudget = Model.budget.Where(c => c.IsActive).ToList();
+    //List<BudgetModel> activeBudget = Model.budget.Where(c => c.IsActive).ToList();
+    List<BudgetModel> activeBudget = Model._currentBudgets;
                     }
                     @if (activeBudget.Count > 0)
                     {
-                        foreach (var lot in activeBudget)
+                        foreach (var budget in activeBudget)
                         {
                         <tr>
                             @*<td class="text-center">
-                                @lot.InsertionOrderId
+                                @budget.InsertionOrderId
                             </td>*@
                             <td class="text-center">
                                 @{
-                            var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
+                            var sdate = @budget.StartDate.HasValue ? @DateTime.Parse(@budget.StartDate.ToString()).ToShortDateString() : null;
                                 }
                                 @sdate
                             </td>
                             <td class="text-center">
-                                @string.Format("{0:c}", @lot.TotalBudget)
+                                @string.Format("{0:c}", @budget.TotalBudget)
                             </td>
                             <td class="text-center">
-                                @string.Format("{0:c}", @lot.RemainingBudget)
+                                @string.Format("{0:c}", @budget.RemainingBudget)
                             </td>
                             <td class="text-center">
                                 @{
-                            var Recurring = (@lot.IsRecurring) ? (@lot.IsRequireNoticeToCharge) ? "Recurring With Notice" : "Recurring" : "Non Recurring";
+                            var Recurring = ((bool)@budget.IsRecurring) ? ((bool)@budget.IsRequireNoticeToCharge) ? "Recurring With Notice" : "Recurring" : "Non Recurring";
                                 }
                                 @Recurring
                             </td>
                             <td class="text-center">
                                 @{
-                            var Service = (@lot.ServiceId == Constants.LOCAL) ? "Local" : (@lot.ServiceId == Constants.LONG) ? "Long" : "Both";
+                            var Service = (@budget.ServiceId == Constants.LOCAL) ? "Local" : (@budget.ServiceId == Constants.LONG) ? "Long" : "Both";
                                 }
                                 @Service
                             </td>
                             <td class="text-center">
-                                @Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget = @lot.TotalBudget, IsRecurring = @lot.IsRecurring, IsRequireNoticeToCharge = @lot.IsRequireNoticeToCharge, ServiceId = @lot.ServiceId, agnumber = @lot.AgreementNumber, minDaysToCharge = @lot.MinDaysToCharge }, new { @class = "btn btn-sm btn-info editBudget" })
+                                @Html.ActionLink("Edit", "EditBudget", "Budget", new { TotalBudget = @budget.TotalBudget, IsRecurring = @budget.IsRecurring, IsRequireNoticeToCharge = @budget.IsRequireNoticeToCharge, ServiceId = @budget.ServiceId, agnumber = @budget.AgreementNumber, minDaysToCharge = @budget.MinDaysToCharge, id = @budget.tId }, new { @class = "btn btn-sm btn-info editBudget" })
                             </td>
                             <td class="text-center">
                                 @if (@Recurring == "Recurring With Notice")
                                 {
-                                    @*<p><input type="button" value="Renew" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>*@
-                                   if(@lot.IsOneTimeRenew)
+                                    @*<p><input type="button" value="Renew" id="activeRenew@(budget.ServiceId)"  data-id ="@budget.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>*@
+                                   if(@budget.IsOneTimeRenew)
                                     {
-                                        <input type="button" value="Renewed" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"  disabled="disabled"/>
+                                        <input type="button" value="Renewed" id="activeRenew@(budget.ServiceId)"  data-id ="@budget.ServiceId" class = "btn btn-sm btn-info renewBudget"  disabled="disabled"/>
                                     }
                                     else
                                     {
-                                        <input type="button" value="Renew" id="activeRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/>
+                                        <input type="button" value="Renew" id="activeRenew@(budget.ServiceId)"  data-id ="@budget.ServiceId" class = "btn btn-sm btn-info renewBudget"/>
                                     }
                                 }
                             </td>
@@ -136,8 +137,8 @@
                         </th>
                         <th class="text-center">Total Budget
                         </th>
-                        <th class="text-center">Uncharged Amount
-                        </th>
+                        @*<th class="text-center">Uncharged Amount
+                        </th>*@
                         <th class="text-center">Terms
                         </th>
                         <th class="text-center">Service
@@ -148,70 +149,72 @@
                 </thead>
                 <tbody>
                     @{
-                    List<BudgetModel> expiredBudget = Model.budget.Where(c => c.IsActive == false).ToList();
-                    for (int i = 0; i < expiredBudget.Count; i++)
-                    {
-                        for (int j = 0; j < activeBudget.Count; j++)
-                        {
-                            if (activeBudget[j].TotalBudget == expiredBudget[i].TotalBudget && activeBudget[j].StartDate == expiredBudget[i].StartDate && activeBudget[j].TermType == expiredBudget[i].TermType && activeBudget[j].ServiceId == expiredBudget[i].ServiceId)
-                            {
-                                expiredBudget.RemoveAt(i);
-                            }
+                    //List<BudgetModel> expiredBudget = Model.budget.Where(c => c.IsActive == false).ToList();
+    List<BudgetModel> expiredBudget = Model._pastBudgets;
+                    //for (int i = 0; i < expiredBudget.Count; i++)
+                    //{
+                        
+                    //    for (int j = 0; j < activeBudget.Count; j++)
+                    //    {
+                    //        if (activeBudget[j].TotalBudget == expiredBudget[i].TotalBudget && activeBudget[j].StartDate == expiredBudget[i].StartDate && activeBudget[j].TermType == expiredBudget[i].TermType && activeBudget[j].ServiceId == expiredBudget[i].ServiceId)
+                    //        {
+                    //            expiredBudget.RemoveAt(i);
+                    //        }
 
-                        }
-                    }
+                    //    }
+                    //}
                     }
                     @if (expiredBudget.Count > 0)
                     {
-                        foreach (var lot in expiredBudget)
+                        foreach (var budget in expiredBudget)
                         {
                         <tr>
                             @*<td class="text-center">
-                                @lot.InsertionOrderId
+                                @budget.InsertionOrderId
                             </td>*@
                             <td class="text-center">
                                 @{
-                            var sdate = @lot.StartDate.HasValue ? @DateTime.Parse(@lot.StartDate.ToString()).ToShortDateString() : null;
+                            var sdate = @budget.StartDate.HasValue ? @DateTime.Parse(@budget.StartDate.ToString()).ToShortDateString() : null;
                                 }
                                 @sdate
                             </td>
                             <td class="text-center">
                                 @{
-                            var edate = @lot.EndDate.HasValue ? @DateTime.Parse(@lot.EndDate.ToString()).ToShortDateString() : null;
+                            var edate = @budget.EndDate.HasValue ? @DateTime.Parse(@budget.EndDate.ToString()).ToShortDateString() : null;
                                 }
                                 @edate
                             </td>
                             <td class="text-center">
-                                @string.Format("{0:c}", @lot.TotalBudget)
+                                @string.Format("{0:c}", @budget.TotalBudget)
                             </td>
 
-                            <td class="text-center">
-                                @string.Format("{0:c}", @lot.UnchargedAmount)
-                            </td>
+                            @*<td class="text-center">
+                                @string.Format("{0:c}", @budget.UnchargedAmount)
+                            </td>*@
                             <td class="text-center">
                                 @{
-                            var Recurring = (@lot.IsRecurring) ? (@lot.IsRequireNoticeToCharge) ? "Recurring With Notice" : "Recurring" : "Non Recurring";
+                            var Recurring = ((bool)@budget.IsRecurring) ? ((bool)@budget.IsRequireNoticeToCharge) ? "Recurring With Notice" : "Recurring" : "Non Recurring";
                                 }
                                 @Recurring
                             </td>
                             <td class="text-center">
                                 @{
-                            var Service = (@lot.ServiceId == Constants.LOCAL) ? Constants.LOCAL_TEXT : (@lot.ServiceId == Constants.LONG) ? Constants.LONG_TEXT : Constants.BOTH_TEXT;
+                            var Service = (@budget.ServiceId == Constants.LOCAL) ? Constants.LOCAL_TEXT : (@budget.ServiceId == Constants.LONG) ? Constants.LONG_TEXT : Constants.BOTH_TEXT;
                                 }
                                 @Service
                             </td>
                             @*<td class="text-center">
                            
-                                @if (@Recurring == "Recurring With Notice" && @lot.RemainingBudget == 0)
+                                @if (@Recurring == "Recurring With Notice" && @budget.RemainingBudget == 0)
                                 {
                                     
-                                    if(@lot.IsOneTimeRenew)
+                                    if(@budget.IsOneTimeRenew)
                                     {
-                                        <p><input type="button" value="Renewed" id="expireRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"  disabled="disabled"/></p>
+                                        <p><input type="button" value="Renewed" id="expireRenew@(budget.ServiceId)"  data-id ="@budget.ServiceId" class = "btn btn-sm btn-info renewBudget"  disabled="disabled"/></p>
                                     }
                                     else
                                     {
-                                        <p><input type="button" value="Renew" id="expireRenew@(lot.ServiceId)"  data-id ="@lot.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>
+                                        <p><input type="button" value="Renew" id="expireRenew@(budget.ServiceId)"  data-id ="@budget.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>
                                     }
                                 }
                             </td>*@

@@ -31,24 +31,31 @@ namespace _123Movers.Controllers
         [HttpGet]
         public ActionResult GetBudget(CompanyModel Company)
         {
-
-            IEnumerable<BudgetModel> budgetList = new List<BudgetModel>();
-            SearchModel search = new SearchModel();
+            BudgetModel budget = new BudgetModel();
+            //IEnumerable<BudgetModel> budgetList = new List<BudgetModel>();
+            //SearchModel search = new SearchModel();
 
             SaveCompanyInfo(Company);
 
-            budgetList = BusinessLayer.GetBudget(CompanyInfo.CompanyId);
+            //budgetList = BusinessLayer.GetBudget(CompanyInfo.CompanyId);
 
+            var _currentBudgets = BusinessLayer.GetCureentBudgets(CompanyInfo.CompanyId);
+            var _pastBudgets = BusinessLayer.GetPastBudgets(CompanyInfo.CompanyId);
+
+            budget._currentBudgets = _currentBudgets;
+            budget._pastBudgets = _pastBudgets;
+
+            budget._companyInfo = CompanyInfo;
             //var tbilled = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.TotalBudget);
             //var uamount = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.UnchargedAmount);
 
             //ViewBag.TotalBilled =  String.Format("{0:C}", tbilled);
             //ViewBag.UnchargedAmount = String.Format("{0:C}", uamount);
 
-            search._companyInfo = CompanyInfo;
-            search.budget = budgetList;
+            //search._companyInfo = CompanyInfo;
+            //search.budget = budgetList;
 
-            return View(search);
+            return View(budget);
         }
 
         
@@ -95,7 +102,7 @@ namespace _123Movers.Controllers
                 //logger.Error("... and an error.");
                 //logger.Fatal("... and a fatal error.");
                 logger.Error(ex.ToString());
-                ModelState.AddModelError("", ex.Message);
+                ModelState.AddModelError("Error", ex.Message);
             }
             return View(budget);
 
@@ -104,8 +111,9 @@ namespace _123Movers.Controllers
         
 
         [HttpGet]
-        public ActionResult EditBudget(decimal? TotalBudget, bool IsRecurring, bool IsRequireNoticeToCharge, int? serviceId, string agnumber, int? minDaysToCharge)
+        public ActionResult EditBudget(decimal? TotalBudget, bool IsRecurring, bool IsRequireNoticeToCharge, int? serviceId, string agnumber, int? minDaysToCharge, int? id)
         {
+
             BudgetModel budget = new BudgetModel();
             ViewBag.Terms = GetTerms();
             ViewBag.Services = GetServices();
@@ -187,7 +195,7 @@ namespace _123Movers.Controllers
         /// <summary>
         /// Get Budget filter information
         /// </summary>
-        /// <param name="ServiceId">Type of Service</param>
+       
         public JsonResult GetBudgetFilterInfo()
         {
             return Json(BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, ServiceId), JsonRequestBehavior.AllowGet);

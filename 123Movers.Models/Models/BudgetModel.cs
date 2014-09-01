@@ -10,6 +10,8 @@ namespace _123Movers.Models
     public class BudgetModel
     {
 
+        public int? tId { get; set; }
+
         [Display(Name = "Company ID")]
         public int? CompanyId { get; set; }
 
@@ -52,10 +54,10 @@ namespace _123Movers.Models
         public bool IsActive { get; set; }
 
         [Display(Name = "Recurring")]
-        public bool IsRecurring { get; set; }
+        public bool? IsRecurring { get; set; }
 
         [Display(Name = "Require Notice To Chagrge")]
-        public bool IsRequireNoticeToCharge { get; set; }
+        public bool? IsRequireNoticeToCharge { get; set; }
 
         public bool IsOneTimeRenew { get; set; }
 
@@ -82,6 +84,10 @@ namespace _123Movers.Models
         public string Type { get; set; }
 
         public CompanyModel _companyInfo { get; set; }
+
+        public List<BudgetModel> _currentBudgets { get; set; }
+
+        public List<BudgetModel> _pastBudgets { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

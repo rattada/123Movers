@@ -104,7 +104,7 @@
             </summary>
             <param name="ServiceId">Type of Service</param>
         </member>
-        <member name="M:_123Movers.Controllers.BudgetController.GetBudgetFilterInfo(System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.BudgetController.GetBudgetFilterInfo">
             <summary>
             Get Budget filter information
             </summary>

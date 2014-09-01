@@ -38,5 +38,13 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.GetBudgetFilterInfo(companyId, serviceId);
         }
+        public static List<BudgetModel> GetCureentBudgets(int? companyID)
+        {
+            return DataLayer.GetCureentBudgets(companyID);
+        }
+        public static List<BudgetModel> GetPastBudgets(int? companyID)
+        {
+            return DataLayer.GetPastBudgets(companyID);
+        }
     }
 }

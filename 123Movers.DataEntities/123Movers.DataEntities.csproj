@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Budget.cs" />
     <Compile Include="DataLayer.cs" />
     <Compile Include="Data_Account.cs" />
     <Compile Include="Data_AreaCodes.cs" />

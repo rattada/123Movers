@@ -47,7 +47,7 @@ table input[type="text"] {
 }
 
 .scrollable-table {
-    max-height: 500px!important;
+    max-height: 757!important;
     overflow-y: auto;
     overflow-x: hidden!important;
     background-color: white;
@@ -164,7 +164,9 @@ table input[type="text"] {
 
 #selectedareas {
     border-style: ridge;
-    height: 210px;
+    height: 757px;
+    width: 387px;
+    font-size: 11px;
 }
 
 .btnSpacing {
@@ -190,16 +192,16 @@ table input[type="text"] {
 }
 
 .btn-Remove {
-    margin-top: -369px;
-    margin-left: -96px;
-    margin-right: 8px;
-    width: 93px;
+   margin-top: -750px;
+   margin-left: -96px;
+   margin-right: 8px;
+   width: 93px;
 }
 
 .btn-Add {
-    margin-top: -488px;
-    margin-left: 12px;
-    width: 93px;
+   margin-top: -871px;
+   margin-left: 12px;
+   width: 93px;
 }
 
 .manageAreaCode-control {
@@ -570,9 +572,10 @@ thead {
    margin-top:18px;
 }*/
 .multiselect {
-height: 330px;
+height: 800px!important;
 border: solid 1px #c0c0c0;
 overflow: auto;
+font-size:11px;
 }
 .multiselect label {
    display:block;
@@ -586,4 +589,11 @@ overflow: auto;
 }
 #pnlBody {
    height: 318px;
+}
+select[multiple] {
+   font-size:11px!important;
+  
+}
+select[size][multiple] {
+   height: 800px!important;
 }

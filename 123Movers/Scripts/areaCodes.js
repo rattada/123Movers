@@ -54,6 +54,9 @@
                 if (json.length > 0) {
                     $('#areaCode').html(options);
                 }
+                else {
+                    $('#areaCode').html('');
+                }
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }

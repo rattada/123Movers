@@ -41,6 +41,7 @@ namespace _123Movers.DataEntities
                 {
                     BudgetModel budget = new BudgetModel
                     {
+                        tId = row["BudgetID"].ToString().IntNullOrEmpty(),
                         CompanyId = row["CompanyId"].ToString().IntNullOrEmpty(),
                         CompanyName = row["Company Name"].ToString(),
                         AX = row["AX Number"].ToString(),
@@ -103,7 +104,7 @@ namespace _123Movers.DataEntities
                 SqlParameter paramAgreementNumber = new SqlParameter("agreementNumber", budget.AgreementNumber);
                 SqlParameter paramMinCharge = new SqlParameter("minDaysToCharge", budget.MinDaysToCharge);
                 SqlParameter paramServices = new SqlParameter("service", budget.ServiceId == Constants.BOTH ? null:budget.ServiceId);
-                //SqlParameter paramType = new SqlParameter("type", budget.Type);
+                SqlParameter paramType = new SqlParameter("type", budget.Type);
 
 
                 _cmd.Parameters.Add(paramCompanyId);
@@ -115,7 +116,7 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramAgreementNumber);
                 _cmd.Parameters.Add(paramMinCharge);
                 _cmd.Parameters.Add(paramServices);
-               // _cmd.Parameters.Add(paramType);
+                _cmd.Parameters.Add(paramType);
 
                 _cmd.ExecuteNonQuery();
             }
@@ -190,7 +191,7 @@ namespace _123Movers.DataEntities
                 _cmd.CommandText = Constants.SP_GET_BUDGET_FILTER;
 
                 _cmd.Parameters.Add(new SqlParameter("companyID", companyID));
-                _cmd.Parameters.Add(new SqlParameter("serviceID", serviceID));
+                _cmd.Parameters.Add(new SqlParameter("serviceID", serviceID.IfServiceBothReturnNull()));
 
                 SqlDataReader drResults = _cmd.ExecuteReader();
 
@@ -199,5 +200,111 @@ namespace _123Movers.DataEntities
             return ConfigValues.TableToList(dtResults);
         }
 
+        public static BudgetModel GetBudgetById(int? id)
+        {
+            BudgetModel budget = new BudgetModel();
+            using (MoversDBEntities db = new MoversDBEntities())
+            {
+                var _budget = db.tbl_companyBudget.Where(b => b.tid == id).FirstOrDefault();
+
+                budget.tId = _budget.tid;
+                budget.CompanyId = _budget.companyID;
+                budget.ServiceId = _budget.serviceID;
+            }
+            return budget;
+        }
+
+        public static List<BudgetModel> GetCureentBudgets(int? companyID)
+        {
+            List<BudgetModel> budgets = new List<BudgetModel>();
+            using(MoversDBEntities db = new MoversDBEntities())
+            {
+                var _budgets = db.tbl_companyBudget.Where(b => b.companyID == companyID).ToList();
+                foreach (var _budget in _budgets)
+                {
+                    BudgetModel budget = new BudgetModel
+                    {
+                        tId = _budget.tid,
+                        CompanyId = _budget.companyID,
+                        ServiceId = _budget.serviceID,
+                        TotalBudget = _budget.totalBudget,
+                        RemainingBudget = _budget.remainingBudget,
+                        StartDate = _budget.stampDate,
+                        EndDate = _budget.lastModified,
+                        IsRecurring = _budget.isRecurring,
+                        IsRequireNoticeToCharge = _budget.isRequireNoticeToCharge,
+                        IsOneTimeRenew = _budget.isOneTimeRenew
+                    };
+                    budgets.Add(budget);
+                }
+            }
+            return budgets;
+        }
+
+        public static List<BudgetModel> GetPastBudgets(int? companyID)
+        {
+            List<BudgetModel> budgets = new List<BudgetModel>();
+            using (MoversDBEntities db = new MoversDBEntities())
+            {
+                //var sdate = from cb in db.tbl_companyBudget
+                //            where cb.companyID == companyID
+                //            select new{
+                //                cb.stampDate
+                //            };
+
+                //var bb = (from pb in db.tl_companyBudget 
+                var count = db.tbl_companyBudget.Where(cb => cb.companyID == companyID).ToList().Count();
+                var _budgets = db.tl_companyBudget.Where(pb => pb.companyID == companyID && pb.action == "insert").OrderByDescending(pb => pb.stampDate).Skip(count).ToList();
+                //bd = bd.Where(pb => !sdate.Contains(pb.stampDate));
+                //var b = (from pb in db.tl_companyBudget
+                //        where !db.tbl_companyBudget.Any(cb => cb.stampDate == pb.stampDate)
+                //        && pb.action == "insert"
+                //        select new { 
+                //            pb.tid,
+                //             pb.companyID,
+                //             pb.serviceID,
+                //             pb.totalBudget,
+                //             pb.remainingBudget,
+                //             pb.stampDate,
+                //             pb.lastModified,
+                //             pb.isRecurring,
+                //             pb.isRequireNoticeToCharge
+                //         }).Distinct().ToList();
+
+                //var _budgets = (from pb in db.tl_companyBudget
+                //         join cb in db.tbl_companyBudget on pb.companyID equals cb.companyID
+                //         where  (pb.companyID == companyID && pb.stampDate != cb.stampDate && pb.action == "insert" )
+                //         orderby pb.lastModified descending
+                //         select new { 
+                //             pb.tid,
+                //             pb.companyID,
+                //             pb.serviceID,
+                //             pb.totalBudget,
+                //             pb.remainingBudget,
+                //             pb.stampDate,
+                //             pb.lastModified,
+                //             pb.isRecurring,
+                //             pb.isRequireNoticeToCharge
+                //         }).Distinct().ToList();
+               
+                foreach (var _budget in _budgets)
+                {
+                    BudgetModel budget = new BudgetModel
+                    {
+                        tId = _budget.tid,
+                        CompanyId = _budget.companyID,
+                        ServiceId = _budget.serviceID,
+                        TotalBudget = _budget.totalBudget,
+                        RemainingBudget = _budget.remainingBudget,
+                        StartDate = _budget.stampDate,
+                        EndDate = _budget.lastModified,
+                        IsRecurring = _budget.isRecurring.ToString().BooleanNullOrEmpty(),
+                        IsRequireNoticeToCharge = _budget.isRequireNoticeToCharge.ToString().BooleanNullOrEmpty(),
+                    };
+                    budgets.Add(budget);
+                }
+            }
+            return budgets;
+        }
     }
 }

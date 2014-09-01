@@ -1,8 +1,14 @@
 ﻿$(document).ready(function () {
     var message = $.trim($('#message').val());
     if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
-    var orgMinWeight = $.trim($("#MinMoveDistance").val());
-    var orgMaxWeight = $.trim($("#MaxMoveDistance").val());
+    if ($("#MinMoveDistance").val() == 0) {
+        $("#MinMoveDistance").val("");
+    }
+    if ($("#MaxMoveDistance").val() == 0) {
+        $("#MaxMoveDistance").val("");
+    }
+    var orgMinDistance = $.trim($("#MinMoveDistance").val());
+    var orgMaxDistance = $.trim($("#MaxMoveDistance").val());
 
     $("body").parent().on("keypress", "input:text", function (event) {
         var key = event.which;
@@ -12,37 +18,50 @@
     });
     $("body").parent().on('click', "#saveDistance", function () {
         var serviceId = $('#ddlServiceID').val();
-        var minWeight = $.trim($("#MinMoveDistance").val());
-        var maxWeight = $.trim($("#MaxMoveDistance").val());
-        minWeight = parseInt(minWeight);
-        maxWeight = parseInt(maxWeight);
+        var minDistance = $.trim($("#MinMoveDistance").val());
+        var maxDistance = $.trim($("#MaxMoveDistance").val());
+        var msg = 'Please enter atleast one Distance';
         if (serviceId == '' || serviceId == undefined) {
             alert('Please select Service Type');
             $("#ddlServiceID").focus();
             return false;
         }
+
         if (serviceId != null && serviceId != '') {
-            if ((minWeight.length == 0 && maxWeight.length == 0) || (parseInt(minWeight) == 0 && parseInt(maxWeight) == 0)) {
-                alert('Please enter atleast one Distance');
+
+            if (minDistance == "" && maxDistance == "") {
+                alert(msg);
+                $("#MinMoveDistance").val(orgMinDistance);
+                $("#MaxMoveDistance").val(orgMaxDistance);
+                return false;
+            }
+
+            if (minDistance == 0 && maxDistance == 0) {
+                alert(msg);
                 return false;
             }
         }
-        if (minWeight >= maxWeight) {
+        minDistance = parseInt(minDistance);
+
+        maxDistance = parseInt(maxDistance);
+
+
+        if (minDistance >= maxDistance) {
             alert('Min Move Distance should be less than Max Move Distance');
-            $("#MinMoveDistance").val(orgMinWeight);
-            $("#MaxMoveDistance").val(orgMaxWeight);
+            $("#MinMoveDistance").val(orgMinDistance);
+            $("#MaxMoveDistance").val(orgMaxDistance);
             $("#MinMoveDistance").focus();
             return false;
         }
         else {
-            orgMinWeight = $("#MinMoveDistance").val();
-            orgMaxWeight = $("#MaxMoveDistance").val();
+            orgMinDistance = $("#MinMoveDistance").val();
+            orgMaxDistance = $("#MaxMoveDistance").val();
         }
         var ModelData =
             {
                 ServiceId: serviceId,
-                MinMoveDistance: orgMinWeight,
-                MaxMoveDistance: orgMaxWeight
+                MinMoveDistance: orgMinDistance,
+                MaxMoveDistance: orgMaxDistance
             };
         $.ajax({
             url: '/MoveDistance/MoveDistance',
@@ -71,12 +90,12 @@
                         $("#MinMoveDistance").val(json[0][1]);
                         $("#MaxMoveDistance").val(json[0][2]);
 
-                        orgMinWeight = $("#MinMoveDistance").val();
-                        orgMaxWeight = $("#MaxMoveDistance").val();
+                        orgMinDistance = $("#MinMoveDistance").val();
+                        orgMaxDistance = $("#MaxMoveDistance").val();
                     }
                     else {
-                        orgMinWeight = '';
-                        orgMaxWeight = '';
+                        orgMinDistance = '';
+                        orgMaxDistance = '';
                         $("#MinMoveDistance").val('');
                         $("#MaxMoveDistance").val('');
                     }
