@@ -113,12 +113,12 @@ namespace _123Movers.DataEntities
                 SqlParameter paramCompanyId = new SqlParameter("companyID", search.CompanyId);
                 SqlParameter paramCompanyName = new SqlParameter("companyName", search.CompanyName.TrimNullOrEmpty());
                 SqlParameter paramAx = new SqlParameter("ax", search.AX.TrimNullOrEmpty());
-                SqlParameter paramInsertion = new SqlParameter("insertionOrderId", search.InsertionOrderId.TrimNullOrEmpty());
+               // SqlParameter paramInsertion = new SqlParameter("insertionOrderId", search.InsertionOrderId.TrimNullOrEmpty());
 
                 cmdGetCompany.Parameters.Add(paramCompanyId);
                 cmdGetCompany.Parameters.Add(paramCompanyName);
                 cmdGetCompany.Parameters.Add(paramAx);
-                cmdGetCompany.Parameters.Add(paramInsertion);
+               // cmdGetCompany.Parameters.Add(paramInsertion);
 
 
                 DataTable dtResults = new DataTable();
@@ -133,7 +133,7 @@ namespace _123Movers.DataEntities
                          CompanyId = row["CompanyID"].ToString().IntNullOrEmpty(),
                         CompanyName = row["companyName"].ToString(),
                         AX = row["AbNumber"].ToString(),
-                        InsertionOrderId = row["insertionOrderId"].ToString(),
+                       // InsertionOrderId = row["insertionOrderId"].ToString(),
                         ContactPerson = row["contactPerson"].ToString(),
                          IsActive = row["isActive"].ToString().BooleanNullOrEmpty(),
                         Suspended = row["suspended"].ToString()

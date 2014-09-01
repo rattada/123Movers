@@ -233,7 +233,9 @@ namespace _123Movers.DataEntities
                         EndDate = _budget.lastModified,
                         IsRecurring = _budget.isRecurring,
                         IsRequireNoticeToCharge = _budget.isRequireNoticeToCharge,
-                        IsOneTimeRenew = _budget.isOneTimeRenew
+                        IsOneTimeRenew = _budget.isOneTimeRenew,
+                        AgreementNumber = _budget.agreementNumber,
+                        MinDaysToCharge = _budget.minDaysToCharge
                     };
                     budgets.Add(budget);
                 }
@@ -246,13 +248,6 @@ namespace _123Movers.DataEntities
             List<BudgetModel> budgets = new List<BudgetModel>();
             using (MoversDBEntities db = new MoversDBEntities())
             {
-                //var sdate = from cb in db.tbl_companyBudget
-                //            where cb.companyID == companyID
-                //            select new{
-                //                cb.stampDate
-                //            };
-
-                //var bb = (from pb in db.tl_companyBudget 
                 var count = db.tbl_companyBudget.Where(cb => cb.companyID == companyID).ToList().Count();
                 var _budgets = db.tl_companyBudget.Where(pb => pb.companyID == companyID && pb.action == "insert").OrderByDescending(pb => pb.stampDate).Skip(count).ToList();
                 //bd = bd.Where(pb => !sdate.Contains(pb.stampDate));
