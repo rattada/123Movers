@@ -69,20 +69,20 @@ namespace _123Movers.Models
             #region Destination AreaCode Stored Procedures
 
             public static readonly string SP_GET_COMPANY_DEST_AREACODE = "usp_GetCompanyDestinationAreacode";
-            public static readonly string SP_COMPANY_DEST_AREACODE_ADD = "usp_AddCompanyDestAreaCodes";
-            public static readonly string SP_COMPANY_DEST_AREACODE_DELETE = "usp_DeleteCompanyDestAreaCodes";
-            public static readonly string SP_COMPANY_DEST_AREACODE_TURN_ON_OFF = "usp_DestinationAreaFilterOnOff";
+            //public static readonly string SP_COMPANY_DEST_AREACODE_ADD = "usp_AddCompanyDestAreaCodes";
+            //public static readonly string SP_COMPANY_DEST_AREACODE_DELETE = "usp_DeleteCompanyDestAreaCodes";
+            //public static readonly string SP_COMPANY_DEST_AREACODE_TURN_ON_OFF = "usp_DestinationAreaFilterOnOff";
 
             #endregion
 
 
             #region Budget Stored Procedures
 
-            public static readonly string SP_GET_COMPANY_BUDGET = "usp_GetCompanyBudget";
+            //public static readonly string SP_GET_COMPANY_BUDGET = "usp_GetCompanyBudget";
             public static readonly string SP_SAVE_BUDGET = "usp_SaveBudget";
             public static readonly string SP_GET_AREACODES_STATES = "usp_getAreaCodesStates";
             public static readonly string SP_GET_FILTER_RESULT = "usp_GetFiltersInfo";
-            public static readonly string SP_RENEWAL_BUDGET = "usp_RenewalBudget";
+            //public static readonly string SP_RENEWAL_BUDGET = "usp_RenewalBudget";
             public static readonly string SP_GET_BUDGET_FILTER = "usp_GetBudgetFilterInfo";
 
             #endregion

@@ -94,11 +94,18 @@ function GetZipCodes(areaCode, serviceId) {
             var table;
             var options = '<option value=""></option>';
             jQuery.each(json, function (i, val) {
+                //if (i == 0) {
+                //    options = '<option value="' + val[0] + '">' + val[0] + '</option>';
+                //} else {
+                //    options += '<option value="' + val[0] + '">' + val[0] + '</option>';
+                //}
+
                 if (i == 0) {
-                    options = '<option value="' + val[0] + '">' + val[0] + '</option>';
+                    options = '<option value="' + val[2] + '">' + val[0] + "-" + val[1] + "-" + val[2] + '</option>';
                 } else {
-                    options += '<option value="' + val[0] + '">' + val[0] + '</option>';
+                    options += '<option value="' + val[2] + '">' + val[0] + "-" + val[1] + "-" + val[2] + '</option>';
                 }
+
             });
             if (json.length > 0) {
                 $('#areaZipCode').html(options);
@@ -120,9 +127,9 @@ function GetZipCodes(areaCode, serviceId) {
             var options = '<option value=""></option>';
             jQuery.each(json, function (i, val) {
                 if (i == 0) {
-                    options = '<option value="' + val[0] + '">' + val[0] + '</option>';
+                    options = '<option value="' + val[2] + '">' + val[0] + "-" + val[1] + "-" + val[2] + '</option>';
                 } else {
-                    options += '<option value="' + val[0] + '">' + val[0] + '</option>';
+                    options += '<option value="' + val[2] + '">' + val[0] + "-" + val[1] + "-" + val[2] + '</option>';
                 }
             });
             if (json.length > 0) {

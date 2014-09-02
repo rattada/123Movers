@@ -88,69 +88,6 @@ namespace _123Movers.Models
         //    new KeyValuePair<string, string>("Both", null),
         //};
 
-  
-
-        //public static List<SelectListItem> Terms()
-        //{
-        //    var listOption = new SelectListItem();
-        //    var terms = new List<SelectListItem>();
-
-        //    listOption = new SelectListItem { Text = "Recurring", Value = "0" };
-        //    terms.Add(listOption);
-
-        //    listOption = new SelectListItem { Text = "Non Recurring", Value = "1" };
-        //    terms.Add(listOption);
-
-        //    listOption = new SelectListItem { Text = "Recurring With Notice", Value = "2" };
-
-        //    terms.Add(listOption);
-
-        //    return terms;
-        //}
-
-        //public static List<SelectListItem> Services(int? serviceId = null)
-        //{
-        //    var listOption = new SelectListItem();
-        //    var services = new List<SelectListItem>();
-
-        //    if (serviceId == null || serviceId == Constants.LOCAL)
-        //    {
-        //        listOption = new SelectListItem { Text = "Local", Value = "1009" };
-
-        //        services.Add(listOption);
-        //    }
-        //    if (serviceId == null || serviceId == Constants.LONG)
-        //    {
-        //        listOption = new SelectListItem { Text = "Long", Value = "1000" };
-        //        services.Add(listOption);
-        //    }
-        //    if (serviceId == null)
-        //    {
-        //        listOption = new SelectListItem { Text = "Both", Value = "999" };
-        //        services.Add(listOption);
-        //    }
-
-        //    return services;
-        //}
-
-
-        //public static SelectList DataTableToSelectList(DataTable table, string valueField, string textField)
-        //{
-        //    List<SelectListItem> list = new List<SelectListItem>();
-
-        //    foreach (DataRow row in table.Rows)
-        //    {
-        //        list.Add(new SelectListItem()
-        //        {
-        //            Text = row[textField].ToString(),
-        //            Value = row[valueField].ToString()
-        //        });
-        //    }
-
-        //    return new SelectList(list, "Value", "Text");
-        //}
-
-       
     }
     
 }

@@ -188,18 +188,19 @@ namespace _123Movers.Controllers
         [HttpGet]
         public ActionResult BudgetFilterInfo(int? serviceId)
         {
-            BudgetModel budget = new BudgetModel();
-            budget._companyInfo = CompanyInfo;
-            return View(budget);
+            AreaCodeModel areaCode = new AreaCodeModel();
+            areaCode._companyInfo = CompanyInfo;
+            areaCode._areaCodes = BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, serviceId);
+            return View(areaCode);
         }
         /// <summary>
         /// Get Budget filter information
         /// </summary>
        
-        public JsonResult GetBudgetFilterInfo()
-        {
-            return Json(BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, ServiceId), JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult GetBudgetFilterInfo()
+        //{
+        //    return Json(BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, ServiceId), JsonRequestBehavior.AllowGet);
+        //}
        
     }
 }

@@ -34,7 +34,7 @@ namespace _123Movers.BusinessEntities
         {
             DataLayer.RenewBudget(companyId, serviceId);
         }
-        public static List<List<string>> GetBudgetFilterInfo(int? companyId, int? serviceId)
+        public static List<AreaCodeModel> GetBudgetFilterInfo(int? companyId, int? serviceId)
         {
             return DataLayer.GetBudgetFilterInfo(companyId, serviceId);
         }

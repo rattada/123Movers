@@ -184,24 +184,49 @@ namespace _123Movers.DataEntities
             //}
         }
 
-        public static List<List<string>> GetBudgetFilterInfo(int? companyID, int? serviceID)
+        public static List<AreaCodeModel> GetBudgetFilterInfo(int? companyID, int? serviceID)
         {
-            DataTable dtResults = new DataTable();
-            using (SqlConnection dbCon = ConnectToDb())
+
+            using (MoversDBEntities db = new MoversDBEntities())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_GET_BUDGET_FILTER;
-
-                _cmd.Parameters.Add(new SqlParameter("companyID", companyID));
-                _cmd.Parameters.Add(new SqlParameter("serviceID", serviceID.IfServiceBothReturnNull()));
-
-                SqlDataReader drResults = _cmd.ExecuteReader();
-
-                dtResults.Load(drResults);
+                var budgetFilter = db.tbl_companyAreacode.Where(a => a.companyID == companyID && a.serviceID == serviceID).ToList();
+                List<AreaCodeModel> _areaCodes = new List<AreaCodeModel>();
+                foreach (var areaCode in budgetFilter)
+                {
+                    AreaCodeModel _areaCode = new AreaCodeModel { 
+                        companyID = areaCode.companyID,
+                        serviceID = areaCode.serviceID,
+                        areaCode = areaCode.areaCode,
+                        isForceSelect = areaCode.isForceSelect,
+                        isDestinationAreaCode = areaCode.isDestinationAreaCode,
+                        isDestinationZipCode = areaCode.isDestinationZipCode,
+                        isMoveDistanceSelect = areaCode.isMoveDistanceSelect,
+                        isMoveWeightSelect = areaCode.isMoveWeightSelect,
+                        isOriginZipCode = areaCode.isOriginZipCode,
+                        isSpecificOriginDestinationAreacode = areaCode.isSpecificOriginDestinationAreacode,
+                        isSpecificOriginDestinationState = areaCode.isSpecificOriginDestinationState
+                    };
+                    _areaCodes.Add(_areaCode);
+                }
+                return _areaCodes;
             }
-            return ConfigValues.TableToList(dtResults);
+            //DataTable dtResults = new DataTable();
+            //using (SqlConnection dbCon = ConnectToDb())
+            //{
+            //    _cmd = new SqlCommand();
+            //    _cmd.Connection = dbCon;
+            //    _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            //    _cmd.CommandText = Constants.SP_GET_BUDGET_FILTER;
+
+            //    _cmd.Parameters.Add(new SqlParameter("companyID", companyID));
+            //    _cmd.Parameters.Add(new SqlParameter("serviceID", serviceID.IfServiceBothReturnNull()));
+
+            //    SqlDataReader drResults = _cmd.ExecuteReader();
+
+            //    dtResults.Load(drResults);
+            //}
+            //return ConfigValues.TableToList(dtResults);
+            
         }
 
         public static BudgetModel GetBudgetById(int? id)
