@@ -1,4 +1,5 @@
 ﻿$(function () {
+    $('.TitleStyle').text('Origin Zip Codes');
     var areacode;
     var serviceid;
     $(".OriginAreaCode").click(function () {

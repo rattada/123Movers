@@ -1,4 +1,5 @@
 ﻿$(function () {
+    $(".TitleStyle").text("Lead Limit");
     $('#tblLeadLimit tbody tr').each(function () {
         $(this).find(".classCheckVal:input[type=text]").each(function () {
             if ($(this).val() != 0 && $(this).val() != '')

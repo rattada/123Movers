@@ -1,4 +1,5 @@
 ﻿$(function () {
+  
     var ddlservice = $("#services").val();
     var ServiceId = (ddlservice == 1009) ? "1009" : (ddlservice == 1000) ? "1000" : null;
     $.ajax({

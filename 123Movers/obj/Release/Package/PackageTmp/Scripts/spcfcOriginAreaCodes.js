@@ -1,4 +1,5 @@
 ﻿$(function () {
+    $('.TitleStyle').text('Specific AreaCodes');
     var serviceId = $('#ddlServiceID').val();
     if (serviceId != '') {
         GetAvailableAreas(serviceId);

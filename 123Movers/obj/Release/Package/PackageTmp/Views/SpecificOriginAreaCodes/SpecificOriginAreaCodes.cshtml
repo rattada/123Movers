@@ -4,7 +4,6 @@
     ViewBag.Title = "SpecificOriginAreaCodes";
 }
 <input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
-
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 
 <p class="clearfix"></p>
@@ -26,21 +25,21 @@
     </div>
 
 
-     <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
     <div class="col-md-5">
         <div class="row text-center">
             <strong>Destination Area Code</strong>
         </div>
         <div class="row" style="margin-left: 15px;">
             <div class="tab-pane" id="local">
-                <select name="originAreaCodes" id="originAreaCodes" size="20" class="selectItem"  multiple>
-            </select>
+                <select name="originAreaCodes" id="originAreaCodes" size="20" class="selectItem" multiple>
+                </select>
 
-            <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
-            <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
+                <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
+                <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
 
-            <select name="destAreaCodes" id="destAreaCodes" class="selectItem"  size="20" multiple>
-            </select>
+                <select name="destAreaCodes" id="destAreaCodes" class="selectItem" size="20" multiple>
+                </select>
             </div>
         </div>
     </div>
@@ -50,6 +49,6 @@
 <p class="clear-fix"></p>
 <div class="row ">
     <div class="col-md-12">
-         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+        <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
     </div>
 </div>

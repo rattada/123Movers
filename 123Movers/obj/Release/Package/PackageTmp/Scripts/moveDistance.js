@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    $('.TitleStyle').text('Move Distance');
     var message = $.trim($('#message').val());
     if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
     if ($("#MinMoveDistance").val() == 0) {

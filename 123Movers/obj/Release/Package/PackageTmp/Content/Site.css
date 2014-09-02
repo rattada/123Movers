@@ -597,3 +597,9 @@ select[multiple] {
 select[size][multiple] {
    height: 800px!important;
 }
+.TitleStyle {
+    font-style:italic!important;
+    color:blue;
+    text-align: center;
+    text-decoration:underline;
+}

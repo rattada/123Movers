@@ -1,4 +1,5 @@
 ﻿$(function () {
+    $('.TitleStyle').text('Specific States');
     var serviceId = $('#ddlServiceID').val();
     if (serviceId != '') {
         GetAvailStates(serviceId);

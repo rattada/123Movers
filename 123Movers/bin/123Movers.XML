@@ -116,5 +116,19 @@
             <param name="serviceId">Type of Service</param>
             <returns>List of Destination Area Codes</returns>
         </member>
+        <member name="M:_123Movers.Controllers.MoveWeightController.MoveWeight(_123Movers.Models.MoveWeightModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:_123Movers.Controllers.MoveWeightController.GetMoveWeight(System.Nullable{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="serviceId"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
