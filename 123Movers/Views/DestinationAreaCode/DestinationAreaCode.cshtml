@@ -4,8 +4,6 @@
     ViewBag.Title = "Destination Area";
 }
 <input type="hidden" id="serviceid" value="@ViewBag.ServiceId"/>
-
-<h2 class="TitleStyle">Destination Area Code</h2>
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 <p class="clearfix"></p>
 <p class="clearfix"></p>
@@ -22,11 +20,10 @@
     </div>
 </div>
 <div class="row">
-      <div class="col-md-2">
-          <strong>Avail.AreaCodes</strong>
-          <div class="multiselect selectItem" id="divTblAreas">
-
-          </div>
+    <div class="col-md-2">
+        <strong>Avail.AreaCodes</strong>
+        <div class="multiselect selectItem" id="divTblAreas">
+        </div>
         @*<div class='panel-group' id='accordion_tblCompanyAreas'>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -40,7 +37,7 @@
                 </div>
             </div>
         </div>*@
-        </div>
+    </div>
     <div class="col-md-6">
         <div class="row text-center">
             <strong>Destination Area Code</strong>

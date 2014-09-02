@@ -3,8 +3,6 @@
 @{
     ViewBag.Title = "Budget Filter Info";
 }
-
-<h2 class="TitleStyle">Get Filter Information</h2>
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 
 @section JavaScript{
@@ -26,6 +24,7 @@
 </div>
 
 <script type="text/javascript">
+    $(".TitleStyle").text("Get Filter Information");
         $.ajax({
             url: '/Budget/GetBudgetFilterInfo',
             type: 'GET',

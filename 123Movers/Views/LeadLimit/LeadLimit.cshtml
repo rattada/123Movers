@@ -6,7 +6,6 @@
 
 <input type="hidden" id="hdnServiceId" value="@ViewBag.ServiceID"/>
 
-<h2 class="TitleStyle">Lead Limit</h2>
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 @section JavaScript{
     @Html.Script("leadLimit.js")
@@ -164,5 +163,5 @@
 <p class="clear-fix"></p>
 <div class="row">
     <input type="button" id="saveleads" class="btn btn-primary pull-right" value="Save Leads" />
-     <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
+    <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To Edit</a>
 </div>

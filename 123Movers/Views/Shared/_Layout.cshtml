@@ -34,8 +34,11 @@
     <header>
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-4">
                     @Html.Raw(@Html.ActionLink("[replacetext]", "Search", "Home").ToHtmlString().Replace("[replacetext]", "<img src=\"../../Content/themes/base/images/123movers.png\" />"))
+                </div>
+                <div class="col-md-4">
+                    <h3 class="TitleStyle"></h3>
                 </div>
                 <div class="col-md-4">
                     <section id="login" class="">

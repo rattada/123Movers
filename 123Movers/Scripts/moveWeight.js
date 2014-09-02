@@ -1,4 +1,5 @@
 ﻿$(function () {
+    $('.TitleStyle').text('Move Weight');
     var message = $.trim($('#message').val());
     if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
     var orgMax = $('#maxMoveWeight option:selected').val();

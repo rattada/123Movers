@@ -18,54 +18,54 @@ namespace _123Movers.DataEntities
         /// </summary>
         /// <param name="Company">Company Details</param>
         /// <returns>List Of BudgetModel</returns>
-        public static List<BudgetModel> GetBudget(int? companyid)
-        {
-            List<BudgetModel> list = new List<BudgetModel>();
-            using (SqlConnection dbCon = ConnectToDb())
-            {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_GET_COMPANY_BUDGET;
+        //public static List<BudgetModel> GetBudget(int? companyid)
+        //{
+        //    List<BudgetModel> list = new List<BudgetModel>();
+        //    using (SqlConnection dbCon = ConnectToDb())
+        //    {
+        //        _cmd = new SqlCommand();
+        //        _cmd.Connection = dbCon;
+        //        _cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //        _cmd.CommandText = Constants.SP_GET_COMPANY_BUDGET;
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyid);
+        //        SqlParameter paramCompanyId = new SqlParameter("companyID", companyid);
 
-                _cmd.Parameters.Add(paramCompanyId);
+        //        _cmd.Parameters.Add(paramCompanyId);
 
-                DataTable dtResults = new DataTable();
+        //        DataTable dtResults = new DataTable();
 
-                SqlDataReader drResults = _cmd.ExecuteReader();
-                dtResults.Load(drResults);
+        //        SqlDataReader drResults = _cmd.ExecuteReader();
+        //        dtResults.Load(drResults);
 
-                foreach (DataRow row in dtResults.Rows)
-                {
-                    BudgetModel budget = new BudgetModel
-                    {
-                        tId = row["BudgetID"].ToString().IntNullOrEmpty(),
-                        CompanyId = row["CompanyId"].ToString().IntNullOrEmpty(),
-                        CompanyName = row["Company Name"].ToString(),
-                        AX = row["AX Number"].ToString(),
-                        InsertionOrderId = row["Budget Insertion ID"].ToString(),
-                        AgreementNumber = row["agreementNumber"].ToString(),
-                        //AreaCodes = row["Area Code"].ToString(),
-                        StartDate = row["Budget Start Date"].ToString().DateNullOrEmpty(),
-                        EndDate = row["Budget End Date"].ToString().DateNullOrEmpty(),
-                        TotalBudget = row["Total Budget"].ToString().DecimalNullOrEmpty(),
-                        RemainingBudget = row["Remaining Budget"].ToString().DecimalNullOrEmpty(),
-                        UnchargedAmount = row["Uncharged Amount"].ToString().DecimalNullOrEmpty(),
-                        ServiceId = row["ServiceID"].ToString().IntNullOrEmpty(),
-                        MinDaysToCharge = row["minDaysToCharge"].ToString().IntNullOrEmpty(),
-                        IsRecurring = row["IsReccurring"].ToString().BooleanNullOrEmpty(),
-                        IsRequireNoticeToCharge = row["IsRequireNoticeToCharge"].ToString().BooleanNullOrEmpty(),
-                        //ContactPerson = row["contactPerson"].ToString(),
-                        IsOneTimeRenew = row["isOneTimeRenew"].ToString().BooleanNullOrEmpty(),
-                        IsActive = row["isActive"].ToString().BooleanNullOrEmpty()
-                    };
-                    list.Add(budget);
-                }
-                return list;
-            }
-        }
+        //        foreach (DataRow row in dtResults.Rows)
+        //        {
+        //            BudgetModel budget = new BudgetModel
+        //            {
+        //                tId = row["BudgetID"].ToString().IntNullOrEmpty(),
+        //                CompanyId = row["CompanyId"].ToString().IntNullOrEmpty(),
+        //                CompanyName = row["Company Name"].ToString(),
+        //                AX = row["AX Number"].ToString(),
+        //                InsertionOrderId = row["Budget Insertion ID"].ToString(),
+        //                AgreementNumber = row["agreementNumber"].ToString(),
+        //                //AreaCodes = row["Area Code"].ToString(),
+        //                StartDate = row["Budget Start Date"].ToString().DateNullOrEmpty(),
+        //                EndDate = row["Budget End Date"].ToString().DateNullOrEmpty(),
+        //                TotalBudget = row["Total Budget"].ToString().DecimalNullOrEmpty(),
+        //                RemainingBudget = row["Remaining Budget"].ToString().DecimalNullOrEmpty(),
+        //                UnchargedAmount = row["Uncharged Amount"].ToString().DecimalNullOrEmpty(),
+        //                ServiceId = row["ServiceID"].ToString().IntNullOrEmpty(),
+        //                MinDaysToCharge = row["minDaysToCharge"].ToString().IntNullOrEmpty(),
+        //                IsRecurring = row["IsReccurring"].ToString().BooleanNullOrEmpty(),
+        //                IsRequireNoticeToCharge = row["IsRequireNoticeToCharge"].ToString().BooleanNullOrEmpty(),
+        //                //ContactPerson = row["contactPerson"].ToString(),
+        //                IsOneTimeRenew = row["isOneTimeRenew"].ToString().BooleanNullOrEmpty(),
+        //                IsActive = row["isActive"].ToString().BooleanNullOrEmpty()
+        //            };
+        //            list.Add(budget);
+        //        }
+        //        return list;
+        //    }
+        //}
         /// <summary>
         /// Save the budget to company
         /// </summary>
@@ -122,6 +122,10 @@ namespace _123Movers.DataEntities
             }
 
         }
+        //public static void AddBudget(BudgetModel budget)
+        //{ 
+
+        //}
       
         public static List<List<string>> GetFilterResult(int? companyID, int? serviceID)
         {

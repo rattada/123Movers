@@ -42,7 +42,11 @@ namespace _123Movers.Controllers
 
             return View(model);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult MoveWeight(MoveWeightModel model)
         {
@@ -63,7 +67,11 @@ namespace _123Movers.Controllers
             }
             return result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serviceId"></param>
+        /// <returns></returns>
         public JsonResult GetMoveWeight(int? serviceId)
         {
             DataSet ds = BusinessLayer.GetMoveWeights(CompanyInfo.CompanyId, serviceId);

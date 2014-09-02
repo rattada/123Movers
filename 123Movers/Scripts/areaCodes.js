@@ -2,6 +2,7 @@
     var serviceId;
     var ServiceType;
     var k = 0;
+    $(".TitleStyle").text("Area Codes");
     if ($('#serviceid').val() == 1000) {
         serviceId = 1000;
         ServiceType = 'long';

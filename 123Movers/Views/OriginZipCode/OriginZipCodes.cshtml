@@ -6,8 +6,6 @@
 
 @Html.AntiForgeryToken()
 @Html.ValidationSummary(true)
-
-<h2 class="TitleStyle">Origin Zip Codes</h2>
 @Html.Partial(Constants.VIEW, @Model._companyInfo)
 
 @section JavaScript{
@@ -85,13 +83,13 @@
                 <h4 class="modal-title text-center" id="myModalLabel">Origin Zip Codes</h4>
             </div>
             <div class="modal-body text-center">
-                <select name="areaZipCode" id="areaZipCode" size="20" class="selectItem"  multiple>
+                <select name="areaZipCode" id="areaZipCode" size="20" class="selectItem" multiple>
                 </select>
 
                 <input type="button" id="add" value="Add -->" class="btn btn-primary btn-Add" />
                 <input type="button" id="remove" value="<-- Remove" class="btn btn-primary btn-Remove">
 
-                <select name="areaZipSelected" id="areaZipSelected" class="selectItem"  size="20" multiple>
+                <select name="areaZipSelected" id="areaZipSelected" class="selectItem" size="20" multiple>
                 </select>
             </div>
             <div class="modal-footer">

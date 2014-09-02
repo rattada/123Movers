@@ -91,6 +91,8 @@ namespace _123Movers.DataEntities
 
         public static bool Turn_ON_OFF_CompanyDestAreaCodes(int? companyId, int? serviceId, string areaCodes)
         {
+
+
             int i = 0;
 
             using (SqlConnection dbCon = ConnectToDb())

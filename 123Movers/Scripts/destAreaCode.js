@@ -1,4 +1,5 @@
 ﻿$(function () {
+    $('.TitleStyle').text('Destination Area Code');
     $("#accordion_tblCompanyAreas").hide();
     var serviceId = $('#ddlServiceID').val();
     if (serviceId != '') {
