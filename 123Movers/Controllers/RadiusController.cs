@@ -12,13 +12,12 @@ namespace _123Movers.Controllers
 {
     public class RadiusController : BaseController
     {
-        //
-        // GET: /Radius/
-        public RadiusController() 
-        {
-            logger = LogManager.GetLogger(typeof(SpecificStatesController)); 
-        }
+        private static ILog logger = LogManager.GetLogger(typeof(SpecificStatesController)); 
 
+        /// <summary>
+        /// Get Method for Radius
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         public ActionResult Radius(int? serviceId)
         {
             var Service =GetServices(serviceId);
@@ -32,13 +31,22 @@ namespace _123Movers.Controllers
             return View(radius);
         }
 
+        /// <summary>
+        /// Add the Zip Codes to Company
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="zipcode"></param>
+        /// <param name="radius"></param>
+        /// <param name="category"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         [HttpPost]
-        public JsonResult AddZipCodesByRadius(int? service, int zipcode, decimal radius, string category, string type)
+        public JsonResult AddZipCodesByRadius(int? service, int zipcode, decimal radius, string category)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.AddZipCodesByRadius(CompanyInfo.CompanyId, service, zipcode, radius, category, type);
+                BusinessLayer.AddZipCodesByRadius(CompanyInfo.CompanyId, service, zipcode, radius, category);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

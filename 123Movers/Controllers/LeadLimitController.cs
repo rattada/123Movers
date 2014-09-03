@@ -11,12 +11,12 @@ namespace _123Movers.Controllers
 {
     public class LeadLimitController : BaseController
     {
-        //protected ILog logger = LogManager.GetLogger(typeof(LeadLimitController));
-        public LeadLimitController() 
-        {
-            logger = LogManager.GetLogger(typeof(LeadLimitController)); 
-        }
+        private static ILog logger = LogManager.GetLogger(typeof(LeadLimitController));
 
+        /// <summary>
+        /// Display the Leads Information of the Company
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         [HttpGet]
         public ActionResult LeadLimit(int? serviceId)
         {
@@ -29,7 +29,10 @@ namespace _123Movers.Controllers
             return View(model);
         }
 
-
+        /// <summary>
+        /// Save the Leads Information
+        /// </summary>
+        /// <param name="leadlimit">Lead Limit Model</param>
         [HttpPost]
         public JsonResult LeadLimit(List<List<LeadLimitModel>> leadlimit)
         {

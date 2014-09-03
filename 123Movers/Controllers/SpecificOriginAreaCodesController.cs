@@ -12,19 +12,33 @@ namespace _123Movers.Controllers
 {
     public class SpecificOriginAreaCodesController : BaseController
     {
-        public SpecificOriginAreaCodesController() 
-        {
-            logger = LogManager.GetLogger(typeof(SpecificOriginAreaCodesController)); 
-        }
-        // GET: /SpecificOriginAreaCode/
+       private static ILog logger = LogManager.GetLogger(typeof(SpecificOriginAreaCodesController)); 
+        
+        /// <summary>
+        /// Get All Specific Origin Destination Area Codes
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         public JsonResult GetAvailSpcfcOriginDestAreas(int? serviceId)
         {
             return Json(BusinessLayer.GetAvailSpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetCompanySpcfcOriginDestAreas(int? serviceId,int spcfcareacode,bool originAreaCode)
+
+        /// <summary>
+        /// Get Existing Specific Origin Destination Area Codes
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="spcfcareacode"> Selected Area Code</param>
+        /// <param name="originAreaCode"></param>
+        /// <returns></returns>
+        public JsonResult GetCompanySpcfcOriginDestAreas(int? serviceId,int spcfcareacode)
         {
-            return Json(BusinessLayer.GetCompanySpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId, spcfcareacode, originAreaCode), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanySpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId, spcfcareacode), JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// Display the Specific Origin Area Codes by Service
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         public ActionResult SpecificOriginAreaCodes(int? serviceId)
         {
             var Services = GetServices(serviceId);
@@ -38,6 +52,13 @@ namespace _123Movers.Controllers
             spcfcOriginAreaCodes.ServiceId = serviceId == null ? (int)ServiceType.Local : serviceId; ;
             return View(spcfcOriginAreaCodes);
         }
+
+        /// <summary>
+        /// Add Specific Origin Destination Area Codes to Company
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="spcfcareacode">Specific Origin Area Code</param>
+        /// <param name="areaCodes">Selected Destincation Area Codes</param>
         public JsonResult AddCompanySpcfcOriginDestAreaCodes(int? serviceId,int spcfcareacode, string areaCodes)
         {
             JsonResult result;
@@ -54,6 +75,13 @@ namespace _123Movers.Controllers
 
             return result;
         }
+
+        /// <summary>
+        /// Delete Specific Origin Destination Area Codes from Company
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="spcfcareacode">Specific Origin Area Code</param>
+        /// <param name="areaCodes">Selected Destincation Area Codes</param>
         public JsonResult DeleteCompanySpcfcOriginDestAreaCodes(int? serviceId, int spcfcareacode, string areaCodes)
         {
             JsonResult result;

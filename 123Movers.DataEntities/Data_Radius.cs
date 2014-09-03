@@ -9,7 +9,15 @@ namespace _123Movers.DataEntities
 {
     public  partial class DataLayer
     {
-        public static void  AddZipCodesByRadius(int? companyId, int? serviceId, int zipcode, decimal radius, string category, string type)
+        /// <summary>
+        /// Add Zip Codes to company by radius
+        /// </summary>
+        /// <param name="companyId">Company Id</param>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="zipcode">Zip Code</param>
+        /// <param name="radius">Radius</param>
+        /// <param name="category">Lesser Or Gratter</param>
+        public static void  AddZipCodesByRadius(int? companyId, int? serviceId, int zipcode, decimal radius, string category)
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
@@ -23,16 +31,18 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.AddWithValue("radius", radius);
                 _cmd.Parameters.AddWithValue("category", category);
 
-                //SqlParameter precords = new SqlParameter();
-                //precords.ParameterName = "records";
-                //precords.DbType = DbType.Int32;
-                //precords.Direction = ParameterDirection.Output;
-                //_cmd.Parameters.Add(precords);
-
                 _cmd.ExecuteNonQuery();
             }
         }
 
+        /// <summary>
+        /// Get Zip Codes to company by radius
+        /// <param name="companyId">Company Id</param>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="zipcode">Zip Code</param>
+        /// <param name="radius">Radius</param>
+        /// <param name="category">Lesser Or Gratter</param>
+        /// <returns></returns>
         public static List<List<string>> GetZipCodesByRadius(int? companyId, int? serviceId, int zipcode, decimal radius, string category)
         {
             using (SqlConnection dbCon = ConnectToDb())

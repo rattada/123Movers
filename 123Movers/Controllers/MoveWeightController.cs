@@ -12,12 +12,12 @@ namespace _123Movers.Controllers
 {
     public class MoveWeightController : BaseController
     {
-        //protected ILog logger;
-        public MoveWeightController() 
-        {
-            logger = LogManager.GetLogger(typeof(MoveWeightController)); 
-        } 
+        private static ILog logger = LogManager.GetLogger(typeof(MoveWeightController));
 
+        /// <summary>
+        /// Display the Existing Data
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         [HttpGet]
         public ActionResult MoveWeight(int? serviceId)
         {
@@ -43,10 +43,9 @@ namespace _123Movers.Controllers
             return View(model);
         }
         /// <summary>
-        /// 
+        /// Save Move Weight Data
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="model">Move Weight Model</param>
         [HttpPost]
         public JsonResult MoveWeight(MoveWeightModel model)
         {
@@ -68,10 +67,9 @@ namespace _123Movers.Controllers
             return result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
-        /// 
+        /// Get Move Weight Information for company by service
         /// </summary>
-        /// <param name="serviceId"></param>
-        /// <returns></returns>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         public JsonResult GetMoveWeight(int? serviceId)
         {
             DataSet ds = BusinessLayer.GetMoveWeights(CompanyInfo.CompanyId, serviceId);

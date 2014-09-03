@@ -66,28 +66,6 @@ namespace _123Movers.Controllers
 
             return result;
         }
-        ///// <summary>
-        ///// Delete Area Codes from Active Budget
-        ///// </summary>
-        ///// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
-        ///// <param name="areaCodes">Selected Area Codes</param>
-        //public ActionResult DeleteAreaCodes(int? serviceId,string areaCodes)
-        //{
-        //    IList<string> areacodelist = new JavaScriptSerializer().Deserialize<IList<string>>(areaCodes);
-
-        //    try
-        //    {
-        //        foreach (var areacode in areacodelist)
-        //        {
-        //            BusinessLayer.DeleteCompanyAdByArea(CompanyInfo.CompanyId, serviceId, Convert.ToInt16(areacode));
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        logger.Error(ex.ToString());
-        //    }
-        //    return RedirectToAction("AreaCodes", new { serviceId = serviceId });
-        //}
 
         /// <summary>
         /// Delete Area Codes from Active Budget

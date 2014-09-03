@@ -12,12 +12,12 @@ namespace _123Movers.Controllers
 {
     public class MoveDistanceController : BaseController
     {
-       // protected ILog logger;
-        public MoveDistanceController() 
-        {
-            logger = LogManager.GetLogger(typeof(MoveDistanceController)); 
-        }
+        private static ILog logger = LogManager.GetLogger(typeof(MoveDistanceController));
 
+        /// <summary>
+        /// Display the Existing Information
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         [HttpGet]
         public ActionResult MoveDistance(int? serviceId)
         {
@@ -42,7 +42,10 @@ namespace _123Movers.Controllers
 
         }
 
-
+        /// <summary>
+        /// Save Modified Data
+        /// </summary>
+        /// <param name="model">Move Distance Model</param>
         [HttpPost]
         public JsonResult MoveDistance(MoveDistanceModel model)
         {
@@ -65,6 +68,10 @@ namespace _123Movers.Controllers
             return result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Get the Move Distance information for company by service
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         public JsonResult GetMoveDistance(int? serviceId)
         {
             DataTable dt = BusinessLayer.GetCompanyMoveDistance(CompanyInfo.CompanyId, serviceId);

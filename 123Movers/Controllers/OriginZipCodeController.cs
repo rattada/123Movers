@@ -11,12 +11,12 @@ namespace _123Movers.Controllers
 {
     public class OriginZipCodeController : BaseController
     {
-       // protected ILog logger;
-        public OriginZipCodeController() 
-        {
-            logger = LogManager.GetLogger(typeof(OriginZipCodeController)); 
-        } 
+       private static ILog logger = LogManager.GetLogger(typeof(OriginZipCodeController)); 
 
+        /// <summary>
+        /// Display the Origin Zip Codes for Company by Service
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         [HttpGet]
         public ActionResult OriginZipCodes(int? serviceId)
         {
@@ -28,18 +28,36 @@ namespace _123Movers.Controllers
             return View(Origin);
         }
 
+        /// <summary>
+        /// Get Existing Origin Zip Codes for Service by Area Code
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="areaCode">Selected Area Code</param>
+        /// <retun>List of Origin Zip Codes</retun>
         public JsonResult GetAreaCodeZipCodes(int? serviceId, int? areaCode)
         {
             var OriginAreaCodes = BusinessLayer.GetCompanyAreasZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
             return Json(ConfigValues.TableToList(OriginAreaCodes), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Get All Origin Zip Codes for Service by Area Code
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="areaCode">Selected Area Code</param>
+        /// <retun>List of Origin Zip Codes</retun>
         public JsonResult GetAvailableZipCodes(int? serviceId, int? areaCode)
         {
             var services = BusinessLayer.GetAvailableZipCodes(CompanyInfo.CompanyId, serviceId, areaCode);
             return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Add Origin Zip codes to company by service and area code
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="areaCode">Origin Area Code</param>
+        /// <param name="zipCodes">Selected Zip Codes</param>
         [HttpPost]
         public JsonResult AddCompanyAreaZipCodes(int? serviceId, int? areaCode, string zipCodes)
         {
@@ -60,6 +78,13 @@ namespace _123Movers.Controllers
 
             return result;
         }
+
+        /// <summary>
+        /// Delete Origin Zip codes to company by service and area code
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="areaCode">Origin Area Code</param>
+        /// <param name="zipCodes">Selected Zip Codes</param>
         [HttpPost]
         public JsonResult DeleteCompanyAreaZipCodes(int? serviceId, int? areaCode, string zipCodes)
         {

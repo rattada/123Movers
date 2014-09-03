@@ -14,17 +14,22 @@ namespace _123Movers.Controllers
     [Authorize]
     public class HomeController : BaseController
     {
-        //protected ILog logger = LogManager.GetLogger(typeof(HomeController));
-        public HomeController()
-        {
-            logger = LogManager.GetLogger(typeof(HomeController));
-        }
+        private static ILog logger = LogManager.GetLogger(typeof(HomeController)); 
+
+        /// <summary>
+        /// Get Method
+        /// </summary>
         [HttpGet]
         public ActionResult Search()
         {
             return View();
         }
 
+        /// <summary>
+        /// Search the Company Information
+        /// </summary>
+        /// <param name="search">Search Model</param>
+        /// <returns>List of Companies</returns>
         [HttpPost]
         public ActionResult Search(SearchModel search)
         {

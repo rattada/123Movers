@@ -30,16 +30,6 @@
             $("#ddlServiceID").focus();
             return false;
         }
-        //else if (category == "") {
-        //    alert('Please select Lesser Or Greater');
-        //    $("#ddllessorgreate").focus();
-        //    return false;
-        //}
-        //else if (type == "") {
-        //    alert('Please Select Category');
-        //    $("#ddlorigordest").focus();
-        //    return false;
-        //}
         else if (radius == "") {
             alert('Please enter Radius');
             $("#txtradius").focus();
@@ -56,7 +46,6 @@
             zipcode: zipcode,
             radius: radius,
             category: lessergreater,
-            type: type
         };
         AddZipCodesByRadius(RadiusData);
     });

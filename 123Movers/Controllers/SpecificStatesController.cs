@@ -13,24 +13,33 @@ namespace _123Movers.Controllers
 {
     public class SpecificStatesController : BaseController
     {
-        //
-        public SpecificStatesController() 
-        {
-            logger = LogManager.GetLogger(typeof(SpecificStatesController)); 
-        }
-        // GET: /SpecificStates/
+        private static ILog logger = LogManager.GetLogger(typeof(SpecificStatesController)); 
+        
+        /// <summary>
+        /// Get All States for company by service
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <returns>List of States</returns>
         public JsonResult GetAvailStates(int? serviceId)
         {
             var services = BusinessLayer.GetAvailStates(CompanyInfo.CompanyId, serviceId);
             return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Get Existing States for company by service
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <returns>List of States</returns>
         public JsonResult GetCompanySpcfcOriginDestStates(int? serviceId, string originState, bool IsOriginState)
         {
             return Json(BusinessLayer.GetCompanySpcfcStates(CompanyInfo.CompanyId, serviceId, originState, IsOriginState), JsonRequestBehavior.AllowGet);
         }
 
-
+        /// <summary>
+        /// Display the Specific States by Service
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         public ActionResult SpecificStates(int? serviceId)
         {
             var Service = GetServices(serviceId);
@@ -45,6 +54,13 @@ namespace _123Movers.Controllers
             return View(spcfcstates);
         }
 
+
+       /// <summary>
+       /// Add Specific States to Company
+       /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+       /// <param name="originState">Specific State</param>
+       /// <param name="destStates">Selected Destination States</param>
         public JsonResult AddCompanySpcfcOriginDeststates(int? serviceId, string originState, string destStates)
         {
             JsonResult result;
@@ -62,6 +78,13 @@ namespace _123Movers.Controllers
             return result;
 
         }
+
+        /// <summary>
+        /// Delete Specific States to Company
+        /// </summary>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="originState">Specific State</param>
+        /// <param name="destStates">Selected Destination States</param>
         public JsonResult DeleteCompanySpcfcOriginDeststates(int? serviceId, string originState, string destStates)
         {
             JsonResult result;

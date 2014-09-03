@@ -22,17 +22,11 @@ namespace _123Movers.Controllers
         {
             return Json(BusinessLayer.GetCompanyAreasCodes(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
-
-        //public JsonResult GetAllAreaCodes(int? serviceId)
-        //{
-        //    return Json(BusinessLayer.GetAllAreaCodes(), JsonRequestBehavior.AllowGet);
-        //}
-
-        //public JsonResult GetCompanyAreas(int? serviceId)
-        //{            
-        //   return Json(BusinessLayer.GetAvailSpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
-        //}
-
+        /// <summary>
+        /// Display the Destination Area Codes
+        /// </summary>
+        /// <param name="serviceId">Type of Service(Local, Long and Both)</param>
+        /// <returns></returns>
         public ActionResult DestinationAreaCode(int? serviceId)
         {
             var Services = GetServices(serviceId);
@@ -45,6 +39,12 @@ namespace _123Movers.Controllers
             DestAreaCode._companyInfo = CompanyInfo;
             return View(DestAreaCode);
         }
+        
+        /// <summary>
+        /// Add Selected Area Codes to company by Service
+        /// </summary>
+        /// <param name="serviceId">Type of Service(Local, Long and Both)</param>
+        /// <param name="areaCodes">Selected Area Codes</param>
         public JsonResult AddCompanyDestAreaCodes(int? serviceId, string areaCodes)
         {
             JsonResult result;
@@ -61,6 +61,11 @@ namespace _123Movers.Controllers
 
             return result;
         }
+        /// <summary>
+        /// Delete Selected Area Codes to company by Service
+        /// </summary>
+        /// <param name="serviceId">Type of Service(Local, Long and Both)</param>
+        /// <param name="areaCodes">Selected Area Codes</param>
         public JsonResult DeleteCompanyDestAreaCodes(int? serviceId, string areaCodes)
         {
             JsonResult result;
@@ -76,7 +81,11 @@ namespace _123Movers.Controllers
             }
             return result;
         }
-
+        /// <summary>
+        /// Turn on/off the filter 
+        /// </summary>
+        /// <param name="serviceId">Type of Service(Local, Long and Both)</param>
+        /// <param name="areaCodes">Selected Area Codes</param>
         public JsonResult Turn_ON_OFF_CompanyDestAreaCodes(int? serviceId, string areaCodes)
         {
             JsonResult result;
