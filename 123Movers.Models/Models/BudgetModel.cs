@@ -64,7 +64,6 @@ namespace _123Movers.Models
         //[Display(Name = "Expire")]
         //public bool Expire { get; set; }
 
-        [StringLength(20)]
         [Display(Name = "Agreement Number")]
         public string AgreementNumber { get; set; }
 

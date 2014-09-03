@@ -48,7 +48,7 @@
                 <tr>
                     <td class="text-center">
                         <input type="checkbox" class='chkSelectClass chkBoth'></td>
-                    <td id="tdBoth1" class="text-center">@Constants.BOTH_TEXT
+                    <td  class="text-center">@Constants.BOTH_TEXT
                     </td>
                     <td class="text-center">@Constants.DEFAULT
                     </td>
@@ -76,6 +76,38 @@
                     </td>
                 </tr>
                         }
+                        else{
+                            <tr>
+                    <td class="text-center">
+                        <input type="checkbox" class='chkSelectClass chkBoth'></td>
+                    <td class="text-center">@Constants.BOTH_TEXT
+                    </td>
+                    <td class="text-center">@Constants.DEFAULT
+                    </td>
+                    <td class="text-center">
+                        <input type="text" class="leadLimit-control text-center freqEnable txtFrqBoth" value="1" disabled="disabled" >
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox" class="chkInnerClass">
+                        Daily Lead Limit :
+                        <input type="text" disabled="disabled" class="classCheckVal  text-center leadLimit-control"  value="0" ><br>
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox" class="chkInnerClass">
+                        Monthly Lead Limit :
+                        <input type="text" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="0" ><br>
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox" class="chkInnerClass">
+                        Total Lead Limit :
+                        <input type="text" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="0" ><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-6 text-center" colspan="7">----OR----
+                    </td>
+                </tr>
+            }
                         var services = Model.LeadLimitData.Where(x => (x.ServiceId == Constants.LOCAL || x.ServiceId == Constants.LONG) && x.AreaCodes == null).OrderByDescending(x => x.ServiceId).ToList();
                         if (services.Count > 0)
                         {
@@ -84,7 +116,7 @@
                 <tr>
                     <td class="text-center">
                         <input type="checkbox" class="chkSelectClass text-center chkLocalLong"></td>
-                    <td id="tdLocalLong" class="text-center">@service.ServiceId.TernaryLocalLong()
+                    <td class="text-center">@service.ServiceId.TernaryLocalLong()
                     </td>
                     <td class="text-center">@Constants.DEFAULT
                     </td>
@@ -113,6 +145,74 @@
                     </td>
                 </tr>
                         }
+                        else{
+                            
+                            
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox" class="chkSelectClass text-center chkLocalLong"></td>
+                    <td class="text-center">@Constants.LOCAL_TEXT
+                    </td>
+                    <td class="text-center">@Constants.DEFAULT
+                    </td>
+                    <td class="text-center">
+                        <input type="text" class=" text-center leadLimit-control freqEnable txtFrqLocalLong" value="1"  disabled="disabled">
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox"  class="chkInnerClass">
+                        Daily Lead Limit :
+                        <input type="text"  disabled="disabled" class="classCheckVal  text-center leadLimit-control"  value="0" ><br>
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox"  class="chkInnerClass">
+                        Monthly Lead Limit :
+                        <input type="text"  disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="0" ><br>
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox"  class="chkInnerClass" >
+                        Total Lead Limit :
+                        <input type="text" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="0" ><br>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox" class="chkSelectClass text-center chkLocalLong"></td>
+                    <td class="text-center">@Constants.LONG_TEXT
+                    </td>
+                    <td class="text-center">@Constants.DEFAULT
+                    </td>
+                    <td class="text-center">
+                        <input type="text" class=" text-center leadLimit-control freqEnable txtFrqLocalLong" value="1"  disabled="disabled">
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox"  class="chkInnerClass">
+                        Daily Lead Limit :
+                        <input type="text"  disabled="disabled" class="classCheckVal  text-center leadLimit-control"  value="0" ><br>
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox"  class="chkInnerClass">
+                        Monthly Lead Limit :
+                        <input type="text"  disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="0" ><br>
+                    </td>
+                    <td class="text-center">
+                        <input type="checkbox"  class="chkInnerClass">
+                        Total Lead Limit :
+                        <input type="text" disabled="disabled" class="classCheckVal  text-center leadLimit-control" value="0" ><br>
+                    </td>
+                </tr>
+                
+                
+                            
+                <tr>
+                    <td class="col-md-6 text-center" colspan="7">----OR----
+                    </td>
+                </tr>
+                        }
+                        
+                        
+                        
+                        
                         var allServices = Model.LeadLimitData.Where(x => x.ServiceId != 0 && x.AreaCodes != null).OrderByDescending(x => x.ServiceId).ToList();
                         if (allServices.Count > 0)
                         {

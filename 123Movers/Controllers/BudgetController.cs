@@ -91,7 +91,7 @@ namespace _123Movers.Controllers
 
                     BusinessLayer.SaveBudget(budget);
 
-                    return RedirectToAction("GetBudget", budget._companyInfo);
+                    return RedirectToAction("GetBudget", budget);
                 }
             }
             catch (Exception ex)

@@ -30,28 +30,28 @@
                     $('#destareazip').removeClass('btn-default');
                     $('#destareazip').addClass('btn-warning');
                 }
-                else if (id == 5 && val[2] == "True") {
+                else if (id == 4 && val[2] == "True") {
                     $('#distance').removeClass('btn-default');
                     $('#distance').addClass('btn-warning');
                 }
-                else if (id == 6 && val[2] == "True") {
+                else if (id == 5 && val[2] == "True") {
                     $('#leadlimit').removeClass('btn-default');
                     $('#leadlimit').addClass('btn-warning');
                 }
-                else if (id == 7 && val[2] == "True") {
+                else if (id == 6 && val[2] == "True") {
                     $('#movewight').removeClass('btn-default');
                     $('#movewight').addClass('btn-warning');
                 }
 
-                else if (id == 8 && val[2] == "True") {
+                else if (id == 7 && val[2] == "True") {
                     $('#originzip').removeClass('btn-default');
                     $('#originzip').addClass('btn-warning');
                 }
-                else if (id == 9 && val[2] == "True") {
+                else if (id == 8 && val[2] == "True") {
                     $('#specificAreas').removeClass('btn-default');
                     $('#specificAreas').addClass('btn-warning');
                 }
-                else if (id == 10 && val[2] == "True") {
+                else if (id == 9 && val[2] == "True") {
                     $('#specificStates').removeClass('btn-default');
                     $('#specificStates').addClass('btn-warning');
                 }
