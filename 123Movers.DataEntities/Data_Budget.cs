@@ -169,19 +169,6 @@ namespace _123Movers.DataEntities
                     
                 }
             }
-            
-            //using (SqlConnection dbCon = ConnectToDb())
-            //{
-            //    _cmd = new SqlCommand();
-            //    _cmd.Connection = dbCon;
-            //    _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            //    _cmd.CommandText = Constants.SP_RENEWAL_BUDGET;
-
-            //    _cmd.Parameters.Add(new SqlParameter("companyID", companyId));
-            //    _cmd.Parameters.Add(new SqlParameter("serviceID", serviceId));
-
-            //   _cmd.ExecuteNonQuery();
-            //}
         }
 
         public static List<AreaCodeModel> GetBudgetFilterInfo(int? companyID, int? serviceID)
