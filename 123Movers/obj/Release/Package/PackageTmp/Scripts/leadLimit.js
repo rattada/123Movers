@@ -93,17 +93,23 @@
             $(this).closest("td").find("input[type=text]").prop("disabled", true);
         }
     });
-    $("#rdbtnboth").on("change", function () {
+    $(".chkBoth").on("change", function () {
         if ($(this).prop('checked') == true) {
-            $("#txtFrequencyLocal").attr("disabled", true);
-            $("#txtFrequencyLong").attr("disabled", true);
-            $("#rdbtnLocal").prop("checked", false);
-            $("#rdbtnLong").prop("checked", false);
+            //$("#txtFrequencyLocal").attr("disabled", true);
+            //$("#txtFrequencyLong").attr("disabled", true);
+            //$("#rdbtnLocal").prop("checked", false);
+            //$("#rdbtnLong").prop("checked", false);
+            $(".chkLocalLong").prop("checked", false);
+            $(".txtFrqLocalLong").attr("disabled", true);
+
         };
     });
-    $("#rdbtnLocal,#rdbtnLong").on("change", function () {
-        $("#rdbtnboth").prop("checked", false);
-        $("#txtFrequencyboth").attr("disabled", true);
+    $(".chkLocalLong").on("change", function () {
+        //$("#rdbtnboth").prop("checked", false);
+        //$("#txtFrequencyboth").attr("disabled", true);
+
+        $(".chkBoth").prop("checked", false);
+        $(".txtFrqBoth").attr("disabled", true);
     });
     $("body #tblLeadLimit ").parent().on('change', ".chkSelectClass", function () {
         if ($(this).prop('checked') == true) {
