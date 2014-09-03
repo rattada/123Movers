@@ -20,8 +20,6 @@
                         </th>
                         <th class="text-center">Destination Area
                         </th>
-                        <th class="text-center">Destination Zip
-                        </th>
                         <th class="text-center">Distance
                         </th>
                           <th class="text-center">Weight 
@@ -63,12 +61,6 @@
                             </td>
                             <td class="text-center">
                                 @{
-                            var DestZip = (@areaCode.isDestinationZipCode == 1) ? "Yes" : "No";
-                                }
-                                @DestZip
-                            </td>
-                            <td class="text-center">
-                                @{
                             var MoveDistance = (@areaCode.isMoveDistanceSelect == 1) ? "Yes" : "No";
                                 }
                                 @MoveDistance
@@ -104,7 +96,7 @@
                     else
                     {
                         <tr>
-                            <td class="col-md-6 text-center" colspan="10"><b>No record(s) found</b>
+                            <td class="col-md-6 text-center" colspan="9"><b>No record(s) found</b>
                             </td>
                         </tr>
                     }

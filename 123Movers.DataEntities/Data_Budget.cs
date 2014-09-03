@@ -44,7 +44,7 @@ namespace _123Movers.DataEntities
                 SqlParameter paramBudgetAction = new SqlParameter("budgetAction", budget.BudgetAction);
                 SqlParameter paramRecurring = new SqlParameter("isRecurring", budget.IsRecurring);
                 SqlParameter paramRequireNoticeToCharge = new SqlParameter("isRequireNoticeToCharge", budget.IsRequireNoticeToCharge);
-                SqlParameter paramAgreementNumber = new SqlParameter("agreementNumber", budget.AgreementNumber);
+                SqlParameter paramAgreementNumber = new SqlParameter("agreementNumber", budget.AgreementNumber.TrimNullOrEmpty());
                 SqlParameter paramMinCharge = new SqlParameter("minDaysToCharge", budget.MinDaysToCharge);
                 SqlParameter paramServices = new SqlParameter("service", budget.ServiceId == Constants.BOTH ? null:budget.ServiceId);
                 SqlParameter paramType = new SqlParameter("type", budget.Type);
@@ -116,7 +116,7 @@ namespace _123Movers.DataEntities
                 List<tbl_companyAreacode> budgetFilter;
                 if (serviceID == null)
                 {
-                    budgetFilter = db.tbl_companyAreacode.Where(a => a.companyID == companyID).ToList();
+                    budgetFilter = db.tbl_companyAreacode.Where(a => a.companyID == companyID).OrderByDescending(a => a.serviceID).ToList();
                 }
                 else { 
                     budgetFilter = db.tbl_companyAreacode.Where(a => a.companyID == companyID && a.serviceID == serviceID).ToList();
@@ -131,7 +131,6 @@ namespace _123Movers.DataEntities
                         areaCode = areaCode.areaCode,
                         isForceSelect = areaCode.isForceSelect,
                         isDestinationAreaCode = areaCode.isDestinationAreaCode,
-                        isDestinationZipCode = areaCode.isDestinationZipCode,
                         isMoveDistanceSelect = areaCode.isMoveDistanceSelect,
                         isMoveWeightSelect = areaCode.isMoveWeightSelect,
                         isOriginZipCode = areaCode.isOriginZipCode,
