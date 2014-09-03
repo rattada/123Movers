@@ -189,7 +189,15 @@ namespace _123Movers.DataEntities
 
             using (MoversDBEntities db = new MoversDBEntities())
             {
-                var budgetFilter = db.tbl_companyAreacode.Where(a => a.companyID == companyID && a.serviceID == serviceID).ToList();
+                List<tbl_companyAreacode> budgetFilter;
+                if (serviceID == null)
+                {
+                    budgetFilter = db.tbl_companyAreacode.Where(a => a.companyID == companyID).ToList();
+                }
+                else { 
+                    budgetFilter = db.tbl_companyAreacode.Where(a => a.companyID == companyID && a.serviceID == serviceID).ToList();
+                }
+                
                 List<AreaCodeModel> _areaCodes = new List<AreaCodeModel>();
                 foreach (var areaCode in budgetFilter)
                 {

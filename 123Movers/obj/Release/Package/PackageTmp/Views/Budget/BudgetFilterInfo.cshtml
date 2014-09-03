@@ -1,4 +1,4 @@
-﻿@model _123Movers.Models.BudgetModel
+﻿@model _123Movers.Models.AreaCodeModel
 @using _123Movers.Models
 @{
     ViewBag.Title = "Budget Filter Info";
@@ -8,11 +8,111 @@
 @section JavaScript{
     @Html.Script("editBudget.js")
 }
- <p class="clearfix"></p>
+<p class="clearfix"></p>
 <div class="row">
     <div class="col-md-12">
-        <div id="divfilter">
+        <div class="table-responsive">
+            <table id="bfilter" class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">Service
+                        </th>
+                        <th class="text-center">Area Code
+                        </th>
+                        <th class="text-center">Forced
+                        </th>
+                        <th class="text-center">Destination Area
+                        </th>
+                        <th class="text-center">Destination Zip
+                        </th>
+                        <th class="text-center">Distance
+                        </th>
+                        <th class="text-center">Origin
+                        </th>
+                        <th class="text-center">Weight 
+                        </th>
+                        <th class="text-center">Specific Origin Dest. By Area 
+                        </th>
+                        <th class="text-center">Specific Origin Dest. By State 
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model._areaCodes.Count > 0)
+                    {
+                        foreach (var areaCode in Model._areaCodes)
+                        {
+                        <tr>
+                            <td class="text-center">
+                                @{
+                            var Service = (@areaCode.serviceID == Constants.LOCAL) ? "Local" : (@areaCode.serviceID == Constants.LONG) ? "Long" : "Both";
+                                }
+                                @Service
+                            </td>
+                            <td class="text-center">
+                                @areaCode.areaCode
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var Force = (@areaCode.isForceSelect == 1) ? "Yes" : "No";
+                                }
+                                @Force
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var DestArea = (@areaCode.isDestinationAreaCode == 1) ? "Yes" : "No";
+                                }
+                                @DestArea
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var DestZip = (@areaCode.isDestinationZipCode == 1) ? "Yes" : "No";
+                                }
+                                @DestZip
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var MoveDistance = (@areaCode.isMoveDistanceSelect == 1) ? "Yes" : "No";
+                                }
+                                @MoveDistance
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var MoveWeight = (@areaCode.isMoveWeightSelect == 1) ? "Yes" : "No";
+                                }
+                                @MoveWeight
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var OriginZip = (@areaCode.isOriginZipCode == 1) ? "Yes" : "No";
+                                }
+                                @OriginZip
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var SpDestArea = (@areaCode.isSpecificOriginDestinationAreacode == 1) ? "Yes" : "No";
+                                }
+                                @SpDestArea
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var SpOrgDestState = (@areaCode.isSpecificOriginDestinationState == 1) ? "Yes" : "No";
+                                }
+                                @SpOrgDestState
+                            </td>
+                        </tr>
+                        }
 
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="col-md-6 text-center" colspan="10"><b>No record(s) found</b>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -23,76 +123,3 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    $(".TitleStyle").text("Get Filter Information");
-        $.ajax({
-            url: '/Budget/GetBudgetFilterInfo',
-            type: 'GET',
-            dataType: 'Json',
-            cache: false,
-            success: function (data) {
-                var strigifyJson = JSON.stringify(data);
-                var json = $.parseJSON(strigifyJson);
-                var temp;
-                var table = "<table class='table table-bordered table-striped table-hover' id ='tblFilterInfo'> <thead><tr><th class='header text-center'>Service</th> <th class='header text-center'>Area Code</th><th class='header text-center'>Forced</th><th class='header text-center'>Destination Area</th><th class='header text-center'>Destination Zip</th><th class='header text-center'>Distance</th><th class='header text-center'>Weight</th><th class='header text-center'>Origin Zip</th><th class='header text-center'>Specific Origin Dest. By Area</th><th class='header text-center'>Specific Origin Dest. By State</th></tr></thead><tbody>";
-                if (json.length > 0) {
-                    jQuery.each(json, function (i, val) {
-                        var ServiceId = (val[1] == 1009) ? "Local" : "Long";
-
-                        if (val[3] == 0) {
-                            val[3] = "No"
-                        }
-                        else {
-                            val[3] = "Yes"
-                        }
-
-                        if (val[4] == 0) {
-                            val[4] = "No"
-                        }
-                        else {
-                            val[4] = "Yes"
-                        }
-                        if (val[5] == 0) {
-                            val[5] = "No"
-                        } else {
-                            val[5] = "Yes"
-                        }
-                        if (val[6] == 0) {
-                            val[6] = "No"
-                        } else {
-                            val[6] = "Yes"
-                        }
-                        if (val[7] == 0) {
-                            val[7] = "No"
-                        } else {
-                            val[7] = "Yes"
-                        }
-                        if (val[8] == 0) {
-                            val[8] = "No"
-                        } else {
-                            val[8] = "Yes"
-                        }
-                        if (val[9] == 0) {
-                            val[9] = "No"
-                        } else {
-                            val[9] = "Yes"
-                        }
-                        if (val[10] == 0) {
-                            val[10] = "No"
-                        }
-                        else {
-                            val[10] = "Yes"
-                        }
-
-                        table += "<tr><td class='text-center'>" + ServiceId + "</td><td class='text-center'>" + val[2] + "</td><td class='text-center'>" + val[3] + "</td><td class='text-center'>" + val[4] + "</td><td class='text-center'>" + val[5] + "</td><td class='text-center'>" + val[6] + "</td><td class='text-center'>" + val[7] + "</td><td class='text-center'>" + val[8] + "</td><td class='text-center'>" + val[9] + "</td><td class='text-center'>" + val[10] + "</td></tr>";
-                    });
-                    table += "</tbody></table>";
-
-                    $('#divfilter').html(table);
-                }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-            }
-        });
-
-</script>

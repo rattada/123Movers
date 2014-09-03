@@ -104,11 +104,6 @@
             </summary>
             <param name="ServiceId">Type of Service</param>
         </member>
-        <member name="M:_123Movers.Controllers.BudgetController.GetBudgetFilterInfo">
-            <summary>
-            Get Budget filter information
-            </summary>
-        </member>
         <member name="M:_123Movers.Controllers.DestinationAreaCodeController.GetCompanyDestAreas(System.Nullable{System.Int32})">
             <summary>
             Get Company Destination Area Codes by service

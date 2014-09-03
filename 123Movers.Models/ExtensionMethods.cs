@@ -83,18 +83,17 @@ namespace _123Movers.Models
       
         public static int? IfServiceNullLocal(this int? value)
         {
-            //if (value == null)
-            //{
-            //    return Constants.LOCAL;
-            //}
-            //return value;
-
             return value ?? Constants.LOCAL;
         }
 
         public static int? IfServiceBothReturnNull(this int? value)
         {
             return value == Constants.BOTH ? null : value;
+        }
+
+        public static int? IfServiceNullReturnNull(this int? value)
+        {
+            return value == null ? null : value;
         }
 
         public static MvcHtmlString Script(this HtmlHelper helper, string src)
