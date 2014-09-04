@@ -29,7 +29,8 @@ namespace _123Movers.DataEntities
                         companyID = Convert.ToInt32(model.CompanyId),
                         serviceID = Convert.ToInt32(model.ServiceId),
                         minMoveDistance = model.MinMoveDistance,
-                        maxMoveDistance = model.MaxMoveDistance
+                        maxMoveDistance = model.MaxMoveDistance,
+                        stampDate = DateTime.UtcNow
                     };
                     db.tbl_companyMoveDistance.AddObject(d);
 

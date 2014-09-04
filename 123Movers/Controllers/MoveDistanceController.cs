@@ -26,18 +26,10 @@ namespace _123Movers.Controllers
                 ViewBag.Services =GetServices(serviceId).Take(2);
             else
                 ViewBag.Services =GetServices(serviceId);
-            //List<List<string>> lstGetMoveDistance = ConfigValues.TableToList(BusinessLayer.GetCompanyMoveDistance(CompanyInfo.CompanyId, serviceId));
 
             MoveDistanceModel model = BusinessLayer.GetCompanyMoveDistance(CompanyInfo.CompanyId, serviceId);
             model._companyInfo = CompanyInfo;
             model.CompanyId = model._companyInfo.CompanyId;
-
-            //if (lstGetMoveDistance.Count > 0)
-            //{
-            //    model.ServiceId = lstGetMoveDistance[0][0].ToString().IntNullOrEmptyReturn0();
-            //    model.MinMoveDistance = lstGetMoveDistance[0][1].ToString().IntNullOrEmptyReturn0();
-            //    model.MaxMoveDistance = lstGetMoveDistance[0][2].ToString().IntNullOrEmptyReturn0();
-            //}
 
             return View(model);
 
