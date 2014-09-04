@@ -83,39 +83,6 @@ namespace _123Movers.DataEntities
 
         public static LeadLimitModel GetCompanyLeadLimit(int? companyId, int? serviceId)
         {
-
-            //List<tbl_companyLeadLimit> leadlimits;
-            //using (MoversDBEntities db = new MoversDBEntities())
-            //{
-            //    if (serviceId == null)
-            //    {
-            //        leadlimits = db.tbl_companyLeadLimit.Where(l => l.companyID == companyId).ToList();
-            //    }
-            //    else {
-            //        leadlimits = db.tbl_companyLeadLimit.Where(l => l.companyID == companyId && l.serviceID == serviceId).ToList();
-            //    }
-            //}
-
-            //List<LeadLimitModel> leads = new List<LeadLimitModel>();
-            //foreach (var lead in leadlimits)
-            //{
-            //    LeadLimitModel l = new LeadLimitModel {
-            //        AreaCodes = lead.areaCode,
-            //        ServiceId = lead.serviceID,
-            //        LeadFrequency = lead.leadFrequency,
-            //        IsDailyLeadLimit = Convert.ToBoolean(lead.isDailyLeadLimit),
-            //        DailyLeadLimit = lead.dailyLeadLimit,
-            //        IsMonthlyLeadLimit =Convert.ToBoolean(lead.isMonthlyLeadLimit),
-            //        MonthlyLeadLimit = lead.monthlyLeadLimit,
-            //        IsTotalLeadLimit = Convert.ToBoolean(lead.isTotalLeadLimit),
-            //        TotalLeadLimit = lead.totalLeadLimit
-            //    };
-
-            //    leads.Add(l);
-            //}
-
-
-
             LeadLimitModel ldModel = new LeadLimitModel();
 
             List<LeadLimitModel> leadLimitData = new List<LeadLimitModel>();
@@ -169,6 +136,139 @@ namespace _123Movers.DataEntities
 
 
             }
+            return ldModel;
+        }
+
+        public static LeadLimitModel GetCompanyLeadLimit1(int? companyId, int? serviceId)
+        {
+
+            List<tbl_companyLeadLimit> leadlimits;
+            List<tbl_companyAreacode> areas;
+            using (MoversDBEntities db = new MoversDBEntities())
+            {
+                if (serviceId == null)
+                {
+                    leadlimits = db.tbl_companyLeadLimit.Where(l => l.companyID == companyId).ToList();
+                    areas = db.tbl_companyAreacode.Where(a => a.companyID == companyId).ToList();
+                }
+                else
+                {
+                    leadlimits = db.tbl_companyLeadLimit.Where(l => l.companyID == companyId && l.serviceID == serviceId).ToList();
+                    areas = db.tbl_companyAreacode.Where(a => a.companyID == companyId && a.serviceID == serviceId).ToList();
+                }
+            }
+
+
+
+            LeadLimitModel ldModel = new LeadLimitModel();
+            List<LeadLimitModel> leads = new List<LeadLimitModel>();
+
+            foreach (var area in areas)
+            {
+                LeadLimitModel l = new LeadLimitModel
+                {
+                    AreaCodes = area.areaCode.ToString(),
+                    ServiceId = area.serviceID,
+                    LeadFrequency = 1,
+                    IsDailyLeadLimit = false,
+                    DailyLeadLimit = 0,
+                    IsMonthlyLeadLimit = false,
+                    MonthlyLeadLimit = 0,
+                    IsTotalLeadLimit = false,
+                    TotalLeadLimit = 0
+                };
+
+                leads.Add(l);
+            }
+
+
+            foreach (var l in leads )
+            {
+                foreach (var lead in leadlimits)
+                {
+                    if (lead.areaCode == l.AreaCodes && lead.serviceID == l.ServiceId)
+                    {
+                        l.LeadFrequency = lead.leadFrequency;
+                        l.IsDailyLeadLimit = Convert.ToBoolean(lead.isDailyLeadLimit);
+                        l.DailyLeadLimit = lead.dailyLeadLimit;
+                        l.IsMonthlyLeadLimit = Convert.ToBoolean(lead.isMonthlyLeadLimit);
+                        l.MonthlyLeadLimit = lead.monthlyLeadLimit;
+                        l.IsTotalLeadLimit = Convert.ToBoolean(lead.isTotalLeadLimit);
+                        l.TotalLeadLimit = lead.totalLeadLimit;
+                    }
+                    break;
+                }
+            }
+
+            foreach (var lead in leadlimits)
+            { 
+                 if(lead.areaCode == null)
+                    {
+                        LeadLimitModel lm = new LeadLimitModel
+                        {
+                            AreaCodes = null,
+                            ServiceId = lead.serviceID,
+                            LeadFrequency = lead.leadFrequency,
+                            IsDailyLeadLimit = Convert.ToBoolean(lead.isDailyLeadLimit),
+                            DailyLeadLimit = lead.dailyLeadLimit,
+                            IsMonthlyLeadLimit = Convert.ToBoolean(lead.isMonthlyLeadLimit),
+                            MonthlyLeadLimit = lead.monthlyLeadLimit,
+                            IsTotalLeadLimit = Convert.ToBoolean(lead.isTotalLeadLimit),
+                            TotalLeadLimit = lead.totalLeadLimit
+                        };
+
+                        leads.Add(lm);
+                    }
+                    else if(lead.areaCode == null && lead.serviceID == null)
+                    {
+                        LeadLimitModel lm = new LeadLimitModel
+                        {
+                            AreaCodes = null,
+                            ServiceId = null,
+                            LeadFrequency = lead.leadFrequency,
+                            IsDailyLeadLimit = Convert.ToBoolean(lead.isDailyLeadLimit),
+                            DailyLeadLimit = lead.dailyLeadLimit,
+                            IsMonthlyLeadLimit = Convert.ToBoolean(lead.isMonthlyLeadLimit),
+                            MonthlyLeadLimit = lead.monthlyLeadLimit,
+                            IsTotalLeadLimit = Convert.ToBoolean(lead.isTotalLeadLimit),
+                            TotalLeadLimit = lead.totalLeadLimit
+                        };
+
+                        leads.Add(lm);
+
+                        LeadLimitModel lm1 = new LeadLimitModel
+                        {
+                            AreaCodes = null,
+                            ServiceId = Constants.LOCAL,
+                            LeadFrequency = lead.leadFrequency,
+                            IsDailyLeadLimit = Convert.ToBoolean(lead.isDailyLeadLimit),
+                            DailyLeadLimit = lead.dailyLeadLimit,
+                            IsMonthlyLeadLimit = Convert.ToBoolean(lead.isMonthlyLeadLimit),
+                            MonthlyLeadLimit = lead.monthlyLeadLimit,
+                            IsTotalLeadLimit = Convert.ToBoolean(lead.isTotalLeadLimit),
+                            TotalLeadLimit = lead.totalLeadLimit
+                        };
+
+                        leads.Add(lm1);
+
+                        LeadLimitModel lm2 = new LeadLimitModel
+                        {
+                            AreaCodes = null,
+                            ServiceId = Constants.LONG,
+                            LeadFrequency = lead.leadFrequency,
+                            IsDailyLeadLimit = Convert.ToBoolean(lead.isDailyLeadLimit),
+                            DailyLeadLimit = lead.dailyLeadLimit,
+                            IsMonthlyLeadLimit = Convert.ToBoolean(lead.isMonthlyLeadLimit),
+                            MonthlyLeadLimit = lead.monthlyLeadLimit,
+                            IsTotalLeadLimit = Convert.ToBoolean(lead.isTotalLeadLimit),
+                            TotalLeadLimit = lead.totalLeadLimit
+                        };
+                        leads.Add(lm2);
+                    }
+            }
+
+            ldModel.LeadLimitData = leads;
+
             return ldModel;
         }
     }

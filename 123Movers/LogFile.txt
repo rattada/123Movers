@@ -878,3 +878,5 @@ The statement has been terminated.
    at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 46
    at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 28
    at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 53
+2014-09-03 19:46:04,173 [89] ERROR _123Movers.Controllers.LeadLimitController – System.NullReferenceException: Object reference not set to an instance of an object.
+   at _123Movers.Controllers.LeadLimitController.LeadLimit(List`1 leadlimit) in d:\Movers123\123Movers\123Movers\Controllers\LeadLimitController.cs:line 47

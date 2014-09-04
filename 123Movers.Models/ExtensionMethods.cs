@@ -91,11 +91,6 @@ namespace _123Movers.Models
             return value == Constants.BOTH ? null : value;
         }
 
-        public static int? IfServiceNullReturnNull(this int? value)
-        {
-            return value == null ? null : value;
-        }
-
         public static MvcHtmlString Script(this HtmlHelper helper, string src)
         {
             var builder = new TagBuilder("script");
