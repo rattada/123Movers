@@ -17,6 +17,7 @@ namespace _123Movers.Models
         [Display(Name = "Move Weight")]
         public string MoveWeight { get; set; }
 
+        public int? MoveWeightSeq { get; set; }
 
         [Display(Name = "Min Move Weight")]
         public int? MinMoveWeightSeq { get; set; }

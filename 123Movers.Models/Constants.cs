@@ -112,13 +112,13 @@ namespace _123Movers.Models
             #endregion
 
             #region MoveDistance Stored Procedures
-            public static readonly string SP_GET_COMPANY_MOVEDISTANCE = "usp_GetCompanyMoveDistance";
-            public static readonly string SP_ADD_COMPANY_MOVEDISTANCE = "usp_SaveMoveDistance";
+            //public static readonly string SP_GET_COMPANY_MOVEDISTANCE = "usp_GetCompanyMoveDistance";
+            //public static readonly string SP_ADD_COMPANY_MOVEDISTANCE = "usp_SaveMoveDistance";
             #endregion
 
             #region MoveWeight Stored Procedures
-            public static readonly string SP_GET_MOVESIZE_LOOKUP = "usp_GetMoveSizeLookup";
-            public static readonly string SP_ADD_COMPANY_MOVEWEIGHT = "usp_SaveMoveWeight";
+            //public static readonly string SP_GET_MOVESIZE_LOOKUP = "usp_GetMoveSizeLookup";
+            //public static readonly string SP_ADD_COMPANY_MOVEWEIGHT = "usp_SaveMoveWeight";
 
             #endregion
 

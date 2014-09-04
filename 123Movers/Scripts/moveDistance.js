@@ -87,9 +87,9 @@
                 success: function (data) {
                     var strigifyJson = JSON.stringify(data);
                     var json = $.parseJSON(strigifyJson);
-                    if (json.length > 0) {
-                        $("#MinMoveDistance").val(json[0][1]);
-                        $("#MaxMoveDistance").val(json[0][2]);
+                    if (json != undefined) {
+                        $("#MinMoveDistance").val(json.MinMoveDistance);
+                        $("#MaxMoveDistance").val(json.MaxMoveDistance);
 
                         orgMinDistance = $("#MinMoveDistance").val();
                         orgMaxDistance = $("#MaxMoveDistance").val();

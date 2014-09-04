@@ -23,24 +23,23 @@ namespace _123Movers.Controllers
         {
 
             int? cid = CompanyInfo.CompanyId;
-            DataSet ds = BusinessLayer.GetMoveWeights(cid, serviceId);
+            //DataSet ds = BusinessLayer.GetMoveWeights(cid, serviceId);
 
-            ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
+            //ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
+
+            ViewBag.MinMoveWeight = BusinessLayer.GetMoveSizeLookup().Select(x => new SelectListItem { Value = x.MoveWeightSeq.ToString(), Text = x.MoveWeight.ToString()});
+
+            var _moveWeight = BusinessLayer.GetMoveWeights(cid, serviceId);
+
             if (GetServices(serviceId).Count > 2)
                 ViewBag.Services = GetServices(serviceId).Take(2);
             else
                 ViewBag.Services = GetServices(serviceId);
-            MoveWeightModel model = new MoveWeightModel();
-            model._companyInfo = CompanyInfo;
-            model.CompanyId = cid;
-            if (ds.Tables[1].Rows.Count > 0)
-            {
-                model.ServiceId = ds.Tables[1].Rows[0][1].ToString().IntNullOrEmpty();
-                model.MinMoveWeightSeq = ds.Tables[1].Rows[0][2].ToString().IntNullOrEmpty();
-                model.MaxMoveWeightSeq = ds.Tables[1].Rows[0][3].ToString().IntNullOrEmpty();
-            }
 
-            return View(model);
+            _moveWeight._companyInfo = CompanyInfo;
+            _moveWeight.CompanyId = cid;
+
+            return View(_moveWeight);
         }
         /// <summary>
         /// Save Move Weight Data
@@ -51,9 +50,9 @@ namespace _123Movers.Controllers
         {
             JsonResult result;
             int? cid = CompanyInfo.CompanyId;
-            DataSet ds = BusinessLayer.GetMoveWeights(cid, model.ServiceId);
+           // DataSet ds = BusinessLayer.GetMoveWeights(cid, model.ServiceId);
 
-            ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
+            ViewBag.MinMoveWeight = BusinessLayer.GetMoveWeights(cid, model.ServiceId); // DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
             ViewBag.Services = GetServices().Take(2);
 
             try
@@ -72,8 +71,8 @@ namespace _123Movers.Controllers
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         public JsonResult GetMoveWeight(int? serviceId)
         {
-            DataSet ds = BusinessLayer.GetMoveWeights(CompanyInfo.CompanyId, serviceId);
-            return Json(ConfigValues.TableToList(ds.Tables[1]), JsonRequestBehavior.AllowGet);
+            //DataSet ds = BusinessLayer.GetMoveWeights(CompanyInfo.CompanyId, serviceId);
+            return Json(BusinessLayer.GetMoveWeights(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
     }
 }

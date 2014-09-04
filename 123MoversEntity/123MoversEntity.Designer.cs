@@ -2366,22 +2366,6 @@ namespace _123MoversEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<tbl_MoveSizelookup1> tbl_MoveSizelookup1
-        {
-            get
-            {
-                if ((_tbl_MoveSizelookup1 == null))
-                {
-                    _tbl_MoveSizelookup1 = base.CreateObjectSet<tbl_MoveSizelookup1>("tbl_MoveSizelookup1");
-                }
-                return _tbl_MoveSizelookup1;
-            }
-        }
-        private ObjectSet<tbl_MoveSizelookup1> _tbl_MoveSizelookup1;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<tbl_movingsurvey> tbl_movingsurvey
         {
             get
@@ -3866,6 +3850,38 @@ namespace _123MoversEntity
             }
         }
         private ObjectSet<vw_storagePricing> _vw_storagePricing;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<sysdiagram> sysdiagrams
+        {
+            get
+            {
+                if ((_sysdiagrams == null))
+                {
+                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
+                }
+                return _sysdiagrams;
+            }
+        }
+        private ObjectSet<sysdiagram> _sysdiagrams;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tbl_MoveSizelookup_V2> tbl_MoveSizelookup_V2
+        {
+            get
+            {
+                if ((_tbl_MoveSizelookup_V2 == null))
+                {
+                    _tbl_MoveSizelookup_V2 = base.CreateObjectSet<tbl_MoveSizelookup_V2>("tbl_MoveSizelookup_V2");
+                }
+                return _tbl_MoveSizelookup_V2;
+            }
+        }
+        private ObjectSet<tbl_MoveSizelookup_V2> _tbl_MoveSizelookup_V2;
 
         #endregion
 
@@ -5016,14 +5032,6 @@ namespace _123MoversEntity
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the tbl_MoveSizelookup1 EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTotbl_MoveSizelookup1(tbl_MoveSizelookup1 tbl_MoveSizelookup1)
-        {
-            base.AddObject("tbl_MoveSizelookup1", tbl_MoveSizelookup1);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the tbl_movingsurvey EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddTotbl_movingsurvey(tbl_movingsurvey tbl_movingsurvey)
@@ -5766,6 +5774,22 @@ namespace _123MoversEntity
         {
             base.AddObject("vw_storagePricing", vw_storagePricing);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTosysdiagrams(sysdiagram sysdiagram)
+        {
+            base.AddObject("sysdiagrams", sysdiagram);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tbl_MoveSizelookup_V2 EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotbl_MoveSizelookup_V2(tbl_MoveSizelookup_V2 tbl_MoveSizelookup_V2)
+        {
+            base.AddObject("tbl_MoveSizelookup_V2", tbl_MoveSizelookup_V2);
+        }
 
         #endregion
 
@@ -6028,6 +6052,290 @@ namespace _123MoversEntity
             }
     
             return base.CreateQuery<Split_Result>("[MoversDBEntities].[Split](@RowData, @SplitOn)", rowDataParameter, splitOnParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="diagramname">No Metadata Documentation available.</param>
+        /// <param name="owner_id">No Metadata Documentation available.</param>
+        /// <param name="version">No Metadata Documentation available.</param>
+        /// <param name="definition">No Metadata Documentation available.</param>
+        public int sp_alterdiagram(global::System.String diagramname, Nullable<global::System.Int32> owner_id, Nullable<global::System.Int32> version, global::System.Byte[] definition)
+        {
+            ObjectParameter diagramnameParameter;
+            if (diagramname != null)
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
+            }
+            else
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
+            }
+    
+            ObjectParameter owner_idParameter;
+            if (owner_id.HasValue)
+            {
+                owner_idParameter = new ObjectParameter("owner_id", owner_id);
+            }
+            else
+            {
+                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter versionParameter;
+            if (version.HasValue)
+            {
+                versionParameter = new ObjectParameter("version", version);
+            }
+            else
+            {
+                versionParameter = new ObjectParameter("version", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter definitionParameter;
+            if (definition != null)
+            {
+                definitionParameter = new ObjectParameter("definition", definition);
+            }
+            else
+            {
+                definitionParameter = new ObjectParameter("definition", typeof(global::System.Byte[]));
+            }
+    
+            return base.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="diagramname">No Metadata Documentation available.</param>
+        /// <param name="owner_id">No Metadata Documentation available.</param>
+        /// <param name="version">No Metadata Documentation available.</param>
+        /// <param name="definition">No Metadata Documentation available.</param>
+        public int sp_creatediagram(global::System.String diagramname, Nullable<global::System.Int32> owner_id, Nullable<global::System.Int32> version, global::System.Byte[] definition)
+        {
+            ObjectParameter diagramnameParameter;
+            if (diagramname != null)
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
+            }
+            else
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
+            }
+    
+            ObjectParameter owner_idParameter;
+            if (owner_id.HasValue)
+            {
+                owner_idParameter = new ObjectParameter("owner_id", owner_id);
+            }
+            else
+            {
+                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter versionParameter;
+            if (version.HasValue)
+            {
+                versionParameter = new ObjectParameter("version", version);
+            }
+            else
+            {
+                versionParameter = new ObjectParameter("version", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter definitionParameter;
+            if (definition != null)
+            {
+                definitionParameter = new ObjectParameter("definition", definition);
+            }
+            else
+            {
+                definitionParameter = new ObjectParameter("definition", typeof(global::System.Byte[]));
+            }
+    
+            return base.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="diagramname">No Metadata Documentation available.</param>
+        /// <param name="owner_id">No Metadata Documentation available.</param>
+        public int sp_dropdiagram(global::System.String diagramname, Nullable<global::System.Int32> owner_id)
+        {
+            ObjectParameter diagramnameParameter;
+            if (diagramname != null)
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
+            }
+            else
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
+            }
+    
+            ObjectParameter owner_idParameter;
+            if (owner_id.HasValue)
+            {
+                owner_idParameter = new ObjectParameter("owner_id", owner_id);
+            }
+            else
+            {
+                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="diagramname">No Metadata Documentation available.</param>
+        /// <param name="owner_id">No Metadata Documentation available.</param>
+        public ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(global::System.String diagramname, Nullable<global::System.Int32> owner_id)
+        {
+            ObjectParameter diagramnameParameter;
+            if (diagramname != null)
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
+            }
+            else
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
+            }
+    
+            ObjectParameter owner_idParameter;
+            if (owner_id.HasValue)
+            {
+                owner_idParameter = new ObjectParameter("owner_id", owner_id);
+            }
+            else
+            {
+                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="diagramname">No Metadata Documentation available.</param>
+        /// <param name="owner_id">No Metadata Documentation available.</param>
+        public ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(global::System.String diagramname, Nullable<global::System.Int32> owner_id)
+        {
+            ObjectParameter diagramnameParameter;
+            if (diagramname != null)
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
+            }
+            else
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
+            }
+    
+            ObjectParameter owner_idParameter;
+            if (owner_id.HasValue)
+            {
+                owner_idParameter = new ObjectParameter("owner_id", owner_id);
+            }
+            else
+            {
+                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="diagramname">No Metadata Documentation available.</param>
+        /// <param name="owner_id">No Metadata Documentation available.</param>
+        /// <param name="new_diagramname">No Metadata Documentation available.</param>
+        public int sp_renamediagram(global::System.String diagramname, Nullable<global::System.Int32> owner_id, global::System.String new_diagramname)
+        {
+            ObjectParameter diagramnameParameter;
+            if (diagramname != null)
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", diagramname);
+            }
+            else
+            {
+                diagramnameParameter = new ObjectParameter("diagramname", typeof(global::System.String));
+            }
+    
+            ObjectParameter owner_idParameter;
+            if (owner_id.HasValue)
+            {
+                owner_idParameter = new ObjectParameter("owner_id", owner_id);
+            }
+            else
+            {
+                owner_idParameter = new ObjectParameter("owner_id", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter new_diagramnameParameter;
+            if (new_diagramname != null)
+            {
+                new_diagramnameParameter = new ObjectParameter("new_diagramname", new_diagramname);
+            }
+            else
+            {
+                new_diagramnameParameter = new ObjectParameter("new_diagramname", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public int sp_upgraddiagrams()
+        {
+            return base.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="companyID">No Metadata Documentation available.</param>
+        /// <param name="serviceId">No Metadata Documentation available.</param>
+        /// <param name="areaCodes">No Metadata Documentation available.</param>
+        public int usp_DeleteCompanyAreasCodes(Nullable<global::System.Int32> companyID, Nullable<global::System.Int32> serviceId, global::System.String areaCodes)
+        {
+            ObjectParameter companyIDParameter;
+            if (companyID.HasValue)
+            {
+                companyIDParameter = new ObjectParameter("companyID", companyID);
+            }
+            else
+            {
+                companyIDParameter = new ObjectParameter("companyID", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter serviceIdParameter;
+            if (serviceId.HasValue)
+            {
+                serviceIdParameter = new ObjectParameter("serviceId", serviceId);
+            }
+            else
+            {
+                serviceIdParameter = new ObjectParameter("serviceId", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter areaCodesParameter;
+            if (areaCodes != null)
+            {
+                areaCodesParameter = new ObjectParameter("areaCodes", areaCodes);
+            }
+            else
+            {
+                areaCodesParameter = new ObjectParameter("areaCodes", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("usp_DeleteCompanyAreasCodes", companyIDParameter, serviceIdParameter, areaCodesParameter);
         }
 
         #endregion
@@ -7309,6 +7617,162 @@ namespace _123MoversEntity
         private global::System.String _STATE_FULLNAME;
         partial void OnSTATE_FULLNAMEChanging(global::System.String value);
         partial void OnSTATE_FULLNAMEChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MoversDBModel", Name="sysdiagram")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class sysdiagram : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new sysdiagram object.
+        /// </summary>
+        /// <param name="name">Initial value of the name property.</param>
+        /// <param name="principal_id">Initial value of the principal_id property.</param>
+        /// <param name="diagram_id">Initial value of the diagram_id property.</param>
+        public static sysdiagram Createsysdiagram(global::System.String name, global::System.Int32 principal_id, global::System.Int32 diagram_id)
+        {
+            sysdiagram sysdiagram = new sysdiagram();
+            sysdiagram.name = name;
+            sysdiagram.principal_id = principal_id;
+            sysdiagram.diagram_id = diagram_id;
+            return sysdiagram;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                OnnameChanging(value);
+                ReportPropertyChanging("name");
+                _name = StructuralObject.SetValidValue(value, false, "name");
+                ReportPropertyChanged("name");
+                OnnameChanged();
+            }
+        }
+        private global::System.String _name;
+        partial void OnnameChanging(global::System.String value);
+        partial void OnnameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 principal_id
+        {
+            get
+            {
+                return _principal_id;
+            }
+            set
+            {
+                Onprincipal_idChanging(value);
+                ReportPropertyChanging("principal_id");
+                _principal_id = StructuralObject.SetValidValue(value, "principal_id");
+                ReportPropertyChanged("principal_id");
+                Onprincipal_idChanged();
+            }
+        }
+        private global::System.Int32 _principal_id;
+        partial void Onprincipal_idChanging(global::System.Int32 value);
+        partial void Onprincipal_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 diagram_id
+        {
+            get
+            {
+                return _diagram_id;
+            }
+            set
+            {
+                if (_diagram_id != value)
+                {
+                    Ondiagram_idChanging(value);
+                    ReportPropertyChanging("diagram_id");
+                    _diagram_id = StructuralObject.SetValidValue(value, "diagram_id");
+                    ReportPropertyChanged("diagram_id");
+                    Ondiagram_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _diagram_id;
+        partial void Ondiagram_idChanging(global::System.Int32 value);
+        partial void Ondiagram_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                OnversionChanging(value);
+                ReportPropertyChanging("version");
+                _version = StructuralObject.SetValidValue(value, "version");
+                ReportPropertyChanged("version");
+                OnversionChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _version;
+        partial void OnversionChanging(Nullable<global::System.Int32> value);
+        partial void OnversionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] definition
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_definition);
+            }
+            set
+            {
+                OndefinitionChanging(value);
+                ReportPropertyChanging("definition");
+                _definition = StructuralObject.SetValidValue(value, true, "definition");
+                ReportPropertyChanged("definition");
+                OndefinitionChanged();
+            }
+        }
+        private global::System.Byte[] _definition;
+        partial void OndefinitionChanging(global::System.Byte[] value);
+        partial void OndefinitionChanged();
 
         #endregion
 
@@ -41334,27 +41798,54 @@ namespace _123MoversEntity
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="MoversDBModel", Name="tbl_MoveSizelookup1")]
+    [EdmEntityTypeAttribute(NamespaceName="MoversDBModel", Name="tbl_MoveSizelookup_V2")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class tbl_MoveSizelookup1 : EntityObject
+    public partial class tbl_MoveSizelookup_V2 : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new tbl_MoveSizelookup1 object.
+        /// Create a new tbl_MoveSizelookup_V2 object.
         /// </summary>
         /// <param name="tid">Initial value of the tid property.</param>
-        public static tbl_MoveSizelookup1 Createtbl_MoveSizelookup1(global::System.Int32 tid)
+        public static tbl_MoveSizelookup_V2 Createtbl_MoveSizelookup_V2(global::System.Int32 tid)
         {
-            tbl_MoveSizelookup1 tbl_MoveSizelookup1 = new tbl_MoveSizelookup1();
-            tbl_MoveSizelookup1.tid = tid;
-            return tbl_MoveSizelookup1;
+            tbl_MoveSizelookup_V2 tbl_MoveSizelookup_V2 = new tbl_MoveSizelookup_V2();
+            tbl_MoveSizelookup_V2.tid = tid;
+            return tbl_MoveSizelookup_V2;
         }
 
         #endregion
 
         #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 tid
+        {
+            get
+            {
+                return _tid;
+            }
+            set
+            {
+                if (_tid != value)
+                {
+                    OntidChanging(value);
+                    ReportPropertyChanging("tid");
+                    _tid = StructuralObject.SetValidValue(value, "tid");
+                    ReportPropertyChanged("tid");
+                    OntidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _tid;
+        partial void OntidChanging(global::System.Int32 value);
+        partial void OntidChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -41451,33 +41942,6 @@ namespace _123MoversEntity
         private Nullable<global::System.Int32> _moveWeightSeq;
         partial void OnmoveWeightSeqChanging(Nullable<global::System.Int32> value);
         partial void OnmoveWeightSeqChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 tid
-        {
-            get
-            {
-                return _tid;
-            }
-            set
-            {
-                if (_tid != value)
-                {
-                    OntidChanging(value);
-                    ReportPropertyChanging("tid");
-                    _tid = StructuralObject.SetValidValue(value, "tid");
-                    ReportPropertyChanged("tid");
-                    OntidChanged();
-                }
-            }
-        }
-        private global::System.Int32 _tid;
-        partial void OntidChanging(global::System.Int32 value);
-        partial void OntidChanged();
 
         #endregion
 
@@ -70821,6 +71285,16 @@ namespace _123MoversEntity
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MoversDBModel", Name="ComplexType1")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class ComplexType1 : ComplexObject
+    {
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmComplexTypeAttribute(NamespaceName="MoversDBModel", Name="fn_GetAllInsertionOrderDetails_Result")]
     [DataContractAttribute(IsReference=true)]
     [Serializable()]
@@ -76044,6 +76518,221 @@ namespace _123MoversEntity
         private global::System.String _budgetInsertionID;
         partial void OnbudgetInsertionIDChanging(global::System.String value);
         partial void OnbudgetInsertionIDChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MoversDBModel", Name="sp_helpdiagramdefinition_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class sp_helpdiagramdefinition_Result : ComplexObject
+    {
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                OnversionChanging(value);
+                ReportPropertyChanging("version");
+                _version = StructuralObject.SetValidValue(value, "version");
+                ReportPropertyChanged("version");
+                OnversionChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _version;
+        partial void OnversionChanging(Nullable<global::System.Int32> value);
+        partial void OnversionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] definition
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_definition);
+            }
+            set
+            {
+                OndefinitionChanging(value);
+                ReportPropertyChanging("definition");
+                _definition = StructuralObject.SetValidValue(value, true, "definition");
+                ReportPropertyChanged("definition");
+                OndefinitionChanged();
+            }
+        }
+        private global::System.Byte[] _definition;
+        partial void OndefinitionChanging(global::System.Byte[] value);
+        partial void OndefinitionChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MoversDBModel", Name="sp_helpdiagrams_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class sp_helpdiagrams_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new sp_helpdiagrams_Result object.
+        /// </summary>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="ownerID">Initial value of the OwnerID property.</param>
+        public static sp_helpdiagrams_Result Createsp_helpdiagrams_Result(global::System.String name, global::System.Int32 id, global::System.Int32 ownerID)
+        {
+            sp_helpdiagrams_Result sp_helpdiagrams_Result = new sp_helpdiagrams_Result();
+            sp_helpdiagrams_Result.Name = name;
+            sp_helpdiagrams_Result.ID = id;
+            sp_helpdiagrams_Result.OwnerID = ownerID;
+            return sp_helpdiagrams_Result;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Database
+        {
+            get
+            {
+                return _Database;
+            }
+            set
+            {
+                OnDatabaseChanging(value);
+                ReportPropertyChanging("Database");
+                _Database = StructuralObject.SetValidValue(value, true, "Database");
+                ReportPropertyChanged("Database");
+                OnDatabaseChanged();
+            }
+        }
+        private global::System.String _Database;
+        partial void OnDatabaseChanging(global::System.String value);
+        partial void OnDatabaseChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                OnIDChanging(value);
+                ReportPropertyChanging("ID");
+                _ID = StructuralObject.SetValidValue(value, "ID");
+                ReportPropertyChanged("ID");
+                OnIDChanged();
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Owner
+        {
+            get
+            {
+                return _Owner;
+            }
+            set
+            {
+                OnOwnerChanging(value);
+                ReportPropertyChanging("Owner");
+                _Owner = StructuralObject.SetValidValue(value, true, "Owner");
+                ReportPropertyChanged("Owner");
+                OnOwnerChanged();
+            }
+        }
+        private global::System.String _Owner;
+        partial void OnOwnerChanging(global::System.String value);
+        partial void OnOwnerChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 OwnerID
+        {
+            get
+            {
+                return _OwnerID;
+            }
+            set
+            {
+                OnOwnerIDChanging(value);
+                ReportPropertyChanging("OwnerID");
+                _OwnerID = StructuralObject.SetValidValue(value, "OwnerID");
+                ReportPropertyChanged("OwnerID");
+                OnOwnerIDChanged();
+            }
+        }
+        private global::System.Int32 _OwnerID;
+        partial void OnOwnerIDChanging(global::System.Int32 value);
+        partial void OnOwnerIDChanged();
 
         #endregion
 

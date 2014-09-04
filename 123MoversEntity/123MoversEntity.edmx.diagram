@@ -148,7 +148,6 @@
         <EntityTypeShape EntityType="MoversDBModel.tbl_mortgageLeadInfo" Width="1.5" PointX="34.75" PointY="28.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MoversDBModel.tbl_Movers" Width="1.5" PointX="35.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MoversDBModel.tbl_MoveSizelookup" Width="1.5" PointX="35.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MoversDBModel.tbl_MoveSizelookup1" Width="1.5" PointX="35.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MoversDBModel.tbl_movingsurvey" Width="1.5" PointX="8.75" PointY="35.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MoversDBModel.tbl_newsletter" Width="1.5" PointX="35.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MoversDBModel.tbl_newsletterUnsub" Width="1.5" PointX="24.75" PointY="35.75" IsExpanded="true" />
@@ -247,6 +246,8 @@
         <AssociationConnector Association="MoversDBModel.FK_tbl_companyPhoneAreaMapping_tbl_companyAreacode" ManuallyRouted="false" />
         <AssociationConnector Association="MoversDBModel.FK_tbl_listLinks_tbl_listMain" ManuallyRouted="false" />
         <AssociationConnector Association="MoversDBModel.webpages_UsersInRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MoversDBModel.sysdiagram" Width="1.5" PointX="11.572311976725381" PointY="13.182010254441765" />
+        <EntityTypeShape EntityType="MoversDBModel.tbl_MoveSizelookup_V2" Width="1.5" PointX="7.77695132222816" PointY="29.101586325607069" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

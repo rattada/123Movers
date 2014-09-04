@@ -144,7 +144,6 @@
     <EntitySet Name="tbl_mortgageLeadInfo" EntityType="MoversDBModel.tbl_mortgageLeadInfo" />
     <EntitySet Name="tbl_Movers" EntityType="MoversDBModel.tbl_Movers" />
     <EntitySet Name="tbl_MoveSizelookup" EntityType="MoversDBModel.tbl_MoveSizelookup" />
-    <EntitySet Name="tbl_MoveSizelookup1" EntityType="MoversDBModel.tbl_MoveSizelookup1" />
     <EntitySet Name="tbl_movingsurvey" EntityType="MoversDBModel.tbl_movingsurvey" />
     <EntitySet Name="tbl_newsletter" EntityType="MoversDBModel.tbl_newsletter" />
     <EntitySet Name="tbl_newsletterUnsub" EntityType="MoversDBModel.tbl_newsletterUnsub" />
@@ -287,6 +286,43 @@
     <FunctionImport Name="Split" ReturnType="Collection(MoversDBModel.Split_Result)" IsComposable="true">
       <Parameter Name="RowData" Mode="In" Type="String" />
       <Parameter Name="SplitOn" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="sysdiagrams" EntityType="MoversDBModel.sysdiagram" />
+    <EntitySet Name="tbl_MoveSizelookup_V2" EntityType="MoversDBModel.tbl_MoveSizelookup_V2" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MoversDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MoversDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="usp_DeleteCompanyAreasCodes">
+      <Parameter Name="companyID" Mode="In" Type="Int32" />
+      <Parameter Name="serviceId" Mode="In" Type="Int32" />
+      <Parameter Name="areaCodes" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="areaCodeToCityState_Result">
@@ -2635,16 +2671,6 @@
     <Property Name="moveWeightSeq" Type="Int32" />
     <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
   </EntityType>
-  <EntityType Name="tbl_MoveSizelookup1">
-    <Key>
-      <PropertyRef Name="tid" />
-    </Key>
-    <Property Name="moveweight" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="category" Type="Int32" />
-    <Property Name="categoryname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="moveWeightSeq" Type="Int32" />
-    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-  </EntityType>
   <EntityType Name="tbl_movingsurvey">
     <Key>
       <PropertyRef Name="id" />
@@ -4343,4 +4369,36 @@
     <End Role="webpages_Roles" Type="MoversDBModel.webpages_Roles" Multiplicity="*" />
     <End Role="UserProfile" Type="MoversDBModel.UserProfile" Multiplicity="*" />
   </Association>
+  <ComplexType Name="ComplexType1" />
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="principal_id" Nullable="false" />
+    <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="version" />
+    <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_MoveSizelookup_V2">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Type="Int32" Name="tid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="moveweight" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="category" />
+    <Property Type="String" Name="categoryname" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="moveWeightSeq" />
+  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

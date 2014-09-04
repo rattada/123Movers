@@ -880,3 +880,12 @@ The statement has been terminated.
    at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 53
 2014-09-03 19:46:04,173 [89] ERROR _123Movers.Controllers.LeadLimitController – System.NullReferenceException: Object reference not set to an instance of an object.
    at _123Movers.Controllers.LeadLimitController.LeadLimit(List`1 leadlimit) in d:\Movers123\123Movers\123Movers\Controllers\LeadLimitController.cs:line 47
+2014-09-04 16:16:17,496 [87] ERROR _123Movers.Controllers.MoveDistanceController – System.InvalidOperationException: Sequence contains more than one element
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__3[TResult](IEnumerable`1 sequence)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[S](Expression expression)
+   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
+   at _123Movers.DataEntities.DataLayer.SaveMoveDistance(MoveDistanceModel model) in d:\Movers123\123Movers\123Movers.DataEntities\Data_MoveDistance.cs:line 38
+   at _123Movers.BusinessEntities.BusinessLayer.SaveMoveDistance(MoveDistanceModel model) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_MoveDistance.cs:line 16
+   at _123Movers.Controllers.MoveDistanceController.MoveDistance(MoveDistanceModel model) in d:\Movers123\123Movers\123Movers\Controllers\MoveDistanceController.cs:line 60

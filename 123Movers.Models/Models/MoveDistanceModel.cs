@@ -19,17 +19,14 @@ namespace _123Movers.Models
         public string MoveWeight { get; set; }
 
         [Display(Name = "Min Move Distance")]
-        public decimal? MinMoveDistance { get; set; }
+        public double? MinMoveDistance { get; set; }
 
         [Display(Name = "Max Move Distance")]
 
-        public decimal? MaxMoveDistance { get; set; }
+        public double? MaxMoveDistance { get; set; }
 
         [Display(Name = "Move Weight Seq")]
         public decimal? MoveWeightSeq { get; set; }
-
-        [Display(Name = "Services")]
-        public string Services { get; set; }
 
         public CompanyModel _companyInfo { get; set; }
     }
