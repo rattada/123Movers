@@ -45,7 +45,10 @@
             data: ModelData,
             cache: false,
             success: function (data) {
-                alert("MoveWeight  data successfully saved");
+                if (data.success)
+                    alert("MoveWeight  data successfully saved");
+                else
+                    alert("There were no area code(s) saved to this Service");
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }

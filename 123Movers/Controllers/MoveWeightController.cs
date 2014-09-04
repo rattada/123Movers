@@ -45,12 +45,32 @@ namespace _123Movers.Controllers
         /// Save Move Weight Data
         /// </summary>
         /// <param name="model">Move Weight Model</param>
+        //[HttpPost]
+        //public JsonResult MoveWeight(MoveWeightModel model)
+        //{
+        //    JsonResult result;
+        //    int? cid = CompanyInfo.CompanyId;
+        //   // DataSet ds = BusinessLayer.GetMoveWeights(cid, model.ServiceId);
+
+        //    ViewBag.MinMoveWeight = BusinessLayer.GetMoveWeights(cid, model.ServiceId); // DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
+        //    ViewBag.Services = GetServices().Take(2);
+
+        //    try
+        //    {
+        //        model.CompanyId = cid;
+        //        BusinessLayer.SaveMoveWeight(model);
+        //    }
+        //    catch
+        //    {
+        //    }
+        //    return result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        //}
         [HttpPost]
         public JsonResult MoveWeight(MoveWeightModel model)
         {
-            JsonResult result;
+            JsonResult result = Json(new { success = false }, JsonRequestBehavior.AllowGet);
             int? cid = CompanyInfo.CompanyId;
-           // DataSet ds = BusinessLayer.GetMoveWeights(cid, model.ServiceId);
+            // DataSet ds = BusinessLayer.GetMoveWeights(cid, model.ServiceId);
 
             ViewBag.MinMoveWeight = BusinessLayer.GetMoveWeights(cid, model.ServiceId); // DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
             ViewBag.Services = GetServices().Take(2);
@@ -58,13 +78,22 @@ namespace _123Movers.Controllers
             try
             {
                 model.CompanyId = cid;
-                BusinessLayer.SaveMoveWeight(model);
+                bool success = BusinessLayer.SaveMoveWeight(model);
+                if (success)
+                {
+                    result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                }
             }
-            catch
+            catch (Exception ex)
             {
+                logger.Error(ex.ToString());
+                result = Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
-            return result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            return result;
         }
+
+
+
         /// <summary>
         /// Get Move Weight Information for company by service
         /// </summary>

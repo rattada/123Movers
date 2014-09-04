@@ -17,12 +17,13 @@ namespace _123Movers.DataEntities
             List<tbl_MoveSizelookup_V2> _moveSizeLookups;
             using (MoversDBEntities db = new MoversDBEntities())
             {
-               _moveSizeLookups = db.tbl_MoveSizelookup_V2.ToList();
+                _moveSizeLookups = db.tbl_MoveSizelookup_V2.ToList();
             }
 
             foreach (var m in _moveSizeLookups)
             {
-                MoveWeightModel wModel = new MoveWeightModel { 
+                MoveWeightModel wModel = new MoveWeightModel
+                {
                     MoveWeight = m.moveweight,
                     MoveWeightSeq = m.moveWeightSeq
                 };
@@ -57,8 +58,48 @@ namespace _123Movers.DataEntities
             return wModel;
         }
 
+        //public static bool SaveMoveWeight(MoveWeightModel model)
+        //{
+
+        //    using (MoversDBEntities db = new MoversDBEntities())
+        //    {
+        //        var moveWeight = db.tbl_companyMoveWeight.Where(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId).FirstOrDefault();
+        //        if (moveWeight != null)
+        //        {
+        //            moveWeight.minMoveWeight = Convert.ToInt32(model.MinMoveWeightSeq);
+        //            moveWeight.maxMoveWeight = Convert.ToInt32(model.MaxMoveWeightSeq);
+
+        //            db.ObjectStateManager.ChangeObjectState(moveWeight, EntityState.Modified);
+        //        }
+        //        else
+        //        {
+        //            tbl_companyMoveWeight mw = new tbl_companyMoveWeight
+        //            {
+        //                companyID = Convert.ToInt32(model.CompanyId),
+        //                serviceID = Convert.ToInt32(model.ServiceId),
+        //                minMoveWeight = Convert.ToInt32(model.MinMoveWeightSeq),
+        //                maxMoveWeight = Convert.ToInt32(model.MaxMoveWeightSeq),
+        //                stampDate = DateTime.UtcNow
+        //            };
+        //            db.tbl_companyMoveWeight.AddObject(mw);
+
+        //        }
+
+        //        var areas = db.tbl_companyAreacode.Where(a => a.companyID == model.CompanyId && a.serviceID == model.ServiceId).ToList();
+
+        //        foreach (var area in areas)
+        //        {
+        //            area.isMoveWeightSelect = 1;
+        //            db.ObjectStateManager.ChangeObjectState(area, EntityState.Modified);
+        //        }
+        //        db.SaveChanges();
+        //    }
+        //    return true;
+        //}
+
         public static bool SaveMoveWeight(MoveWeightModel model)
         {
+            bool result = false;
 
             using (MoversDBEntities db = new MoversDBEntities())
             {
@@ -86,14 +127,19 @@ namespace _123Movers.DataEntities
 
                 var areas = db.tbl_companyAreacode.Where(a => a.companyID == model.CompanyId && a.serviceID == model.ServiceId).ToList();
 
-                foreach (var area in areas)
+                if (areas.Count != 0 && areas != null)
                 {
-                    area.isMoveWeightSelect = 1;
-                    db.ObjectStateManager.ChangeObjectState(area, EntityState.Modified);
+                    foreach (var area in areas)
+                    {
+                        area.isMoveWeightSelect = 1;
+                        db.ObjectStateManager.ChangeObjectState(area, EntityState.Modified);
+                    }
+                    db.SaveChanges();
+                    result = true;
                 }
-                db.SaveChanges();
             }
-            return true;
+            return result;
         }
+
     }
 }
