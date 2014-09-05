@@ -8,6 +8,7 @@ using System.Web;
 using _123Movers.Models;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using _123MoversEntity;
 
 namespace _123Movers.DataEntities
 {
@@ -102,7 +103,9 @@ namespace _123Movers.DataEntities
 
         public static IEnumerable<SearchModel> SearchCompany(SearchModel search)
         {
+
             List<SearchModel> list = new List<SearchModel>();
+            DataTable dtResults = new DataTable();
             using (SqlConnection dbCon = ConnectToDb())
             {
                 SqlCommand cmdGetCompany = new SqlCommand();
@@ -121,30 +124,30 @@ namespace _123Movers.DataEntities
                // cmdGetCompany.Parameters.Add(paramInsertion);
 
 
-                DataTable dtResults = new DataTable();
+               
 
                 SqlDataReader drResults = cmdGetCompany.ExecuteReader();
                 dtResults.Load(drResults);
-
-                foreach (DataRow row in dtResults.Rows)
-                {
-                     SearchModel s = new SearchModel
-                     {
-                         CompanyId = row["CompanyID"].ToString().IntNullOrEmpty(),
-                        CompanyName = row["companyName"].ToString(),
-                        AX = row["AbNumber"].ToString(),
-                       // InsertionOrderId = row["insertionOrderId"].ToString(),
-                        ContactPerson = row["contactPerson"].ToString(),
-                         IsActive = row["isActive"].ToString().BooleanNullOrEmpty(),
-                        Suspended = row["suspended"].ToString()
-
-                    };
-                    list.Add(s);
-                }
-
-              
-                return list;
             }
+
+            foreach (DataRow row in dtResults.Rows)
+            {
+                SearchModel s = new SearchModel
+                {
+                    CompanyId = row["CompanyID"].ToString().IntNullOrEmpty(),
+                    CompanyName = row["companyName"].ToString(),
+                    AX = row["AbNumber"].ToString(),
+                    // InsertionOrderId = row["insertionOrderId"].ToString(),
+                    ContactPerson = row["contactPerson"].ToString(),
+                    IsActive = row["isActive"].ToString().BooleanNullOrEmpty(),
+                    Suspended = row["suspended"].ToString()
+
+                };
+                list.Add(s);
+            }
+
+
+            return list;
 
         }
 

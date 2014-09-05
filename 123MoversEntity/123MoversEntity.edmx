@@ -10973,6 +10973,11 @@
             <Parameter Name="serviceId" Mode="In" Type="Int32" />
             <Parameter Name="areaCodes" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="CompanySearchResult" ReturnType="Collection(MoversDBModel.usp_CompanySearchv3_Result)">
+            <Parameter Name="companyID" Mode="In" Type="Int32" />
+            <Parameter Name="companyName" Mode="In" Type="String" />
+            <Parameter Name="ax" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="areaCodeToCityState_Result">
           <Property Name="companyid" Type="Int32" />
@@ -15050,6 +15055,14 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="usp_CompanySearchv3_Result">
+          <Property Type="Int32" Name="companyID" Nullable="false" />
+          <Property Type="String" Name="companyName" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <Property Type="String" Name="AbNumber" Nullable="true" MaxLength="8000" />
+          <Property Type="String" Name="contactPerson" Nullable="true" MaxLength="8000" />
+          <Property Type="String" Name="suspended" Nullable="true" MaxLength="8000" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -19053,6 +19066,18 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MoversDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MoversDBModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="usp_DeleteCompanyAreasCodes" FunctionName="MoversDBModel.Store.usp_DeleteCompanyAreasCodes" />
+          <FunctionImportMapping FunctionImportName="CompanySearchResult" FunctionName="MoversDBModel.Store.usp_CompanySearchv3">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MoversDBModel.usp_CompanySearchv3_Result">
+                <ScalarProperty Name="companyID" ColumnName="companyID" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="AbNumber" ColumnName="AbNumber" />
+                <ScalarProperty Name="contactPerson" ColumnName="contactPerson" />
+                <ScalarProperty Name="suspended" ColumnName="suspended" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

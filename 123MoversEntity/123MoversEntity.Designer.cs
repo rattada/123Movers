@@ -6337,6 +6337,47 @@ namespace _123MoversEntity
     
             return base.ExecuteFunction("usp_DeleteCompanyAreasCodes", companyIDParameter, serviceIdParameter, areaCodesParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="companyID">No Metadata Documentation available.</param>
+        /// <param name="companyName">No Metadata Documentation available.</param>
+        /// <param name="ax">No Metadata Documentation available.</param>
+        public ObjectResult<usp_CompanySearchv3_Result> CompanySearchResult(Nullable<global::System.Int32> companyID, global::System.String companyName, global::System.String ax)
+        {
+            ObjectParameter companyIDParameter;
+            if (companyID.HasValue)
+            {
+                companyIDParameter = new ObjectParameter("companyID", companyID);
+            }
+            else
+            {
+                companyIDParameter = new ObjectParameter("companyID", typeof(global::System.Int32));
+            }
+    
+            ObjectParameter companyNameParameter;
+            if (companyName != null)
+            {
+                companyNameParameter = new ObjectParameter("companyName", companyName);
+            }
+            else
+            {
+                companyNameParameter = new ObjectParameter("companyName", typeof(global::System.String));
+            }
+    
+            ObjectParameter axParameter;
+            if (ax != null)
+            {
+                axParameter = new ObjectParameter("ax", ax);
+            }
+            else
+            {
+                axParameter = new ObjectParameter("ax", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<usp_CompanySearchv3_Result>("CompanySearchResult", companyIDParameter, companyNameParameter, axParameter);
+        }
 
         #endregion
 
@@ -76810,6 +76851,183 @@ namespace _123MoversEntity
         private global::System.String _Data;
         partial void OnDataChanging(global::System.String value);
         partial void OnDataChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MoversDBModel", Name="usp_CompanySearchv3_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class usp_CompanySearchv3_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new usp_CompanySearchv3_Result object.
+        /// </summary>
+        /// <param name="companyID">Initial value of the companyID property.</param>
+        /// <param name="companyName">Initial value of the companyName property.</param>
+        /// <param name="isActive">Initial value of the isActive property.</param>
+        public static usp_CompanySearchv3_Result Createusp_CompanySearchv3_Result(global::System.Int32 companyID, global::System.String companyName, global::System.Boolean isActive)
+        {
+            usp_CompanySearchv3_Result usp_CompanySearchv3_Result = new usp_CompanySearchv3_Result();
+            usp_CompanySearchv3_Result.companyID = companyID;
+            usp_CompanySearchv3_Result.companyName = companyName;
+            usp_CompanySearchv3_Result.isActive = isActive;
+            return usp_CompanySearchv3_Result;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 companyID
+        {
+            get
+            {
+                return _companyID;
+            }
+            set
+            {
+                OncompanyIDChanging(value);
+                ReportPropertyChanging("companyID");
+                _companyID = StructuralObject.SetValidValue(value, "companyID");
+                ReportPropertyChanged("companyID");
+                OncompanyIDChanged();
+            }
+        }
+        private global::System.Int32 _companyID;
+        partial void OncompanyIDChanging(global::System.Int32 value);
+        partial void OncompanyIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String companyName
+        {
+            get
+            {
+                return _companyName;
+            }
+            set
+            {
+                OncompanyNameChanging(value);
+                ReportPropertyChanging("companyName");
+                _companyName = StructuralObject.SetValidValue(value, false, "companyName");
+                ReportPropertyChanged("companyName");
+                OncompanyNameChanged();
+            }
+        }
+        private global::System.String _companyName;
+        partial void OncompanyNameChanging(global::System.String value);
+        partial void OncompanyNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean isActive
+        {
+            get
+            {
+                return _isActive;
+            }
+            set
+            {
+                OnisActiveChanging(value);
+                ReportPropertyChanging("isActive");
+                _isActive = StructuralObject.SetValidValue(value, "isActive");
+                ReportPropertyChanged("isActive");
+                OnisActiveChanged();
+            }
+        }
+        private global::System.Boolean _isActive;
+        partial void OnisActiveChanging(global::System.Boolean value);
+        partial void OnisActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AbNumber
+        {
+            get
+            {
+                return _AbNumber;
+            }
+            set
+            {
+                OnAbNumberChanging(value);
+                ReportPropertyChanging("AbNumber");
+                _AbNumber = StructuralObject.SetValidValue(value, true, "AbNumber");
+                ReportPropertyChanged("AbNumber");
+                OnAbNumberChanged();
+            }
+        }
+        private global::System.String _AbNumber;
+        partial void OnAbNumberChanging(global::System.String value);
+        partial void OnAbNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String contactPerson
+        {
+            get
+            {
+                return _contactPerson;
+            }
+            set
+            {
+                OncontactPersonChanging(value);
+                ReportPropertyChanging("contactPerson");
+                _contactPerson = StructuralObject.SetValidValue(value, true, "contactPerson");
+                ReportPropertyChanged("contactPerson");
+                OncontactPersonChanged();
+            }
+        }
+        private global::System.String _contactPerson;
+        partial void OncontactPersonChanging(global::System.String value);
+        partial void OncontactPersonChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String suspended
+        {
+            get
+            {
+                return _suspended;
+            }
+            set
+            {
+                OnsuspendedChanging(value);
+                ReportPropertyChanging("suspended");
+                _suspended = StructuralObject.SetValidValue(value, true, "suspended");
+                ReportPropertyChanged("suspended");
+                OnsuspendedChanged();
+            }
+        }
+        private global::System.String _suspended;
+        partial void OnsuspendedChanging(global::System.String value);
+        partial void OnsuspendedChanged();
 
         #endregion
 
