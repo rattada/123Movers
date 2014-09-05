@@ -18,7 +18,7 @@ namespace _123Movers.DataEntities
             List<tbl_MoveSizelookup_V2> _moveSizeLookups;
             using (MoversDBEntities db = new MoversDBEntities())
             {
-                _moveSizeLookups = db.tbl_MoveSizelookup_V2.ToList();
+                _moveSizeLookups = db.MoveSizelookup_V2.ToList();
             }
 
             foreach (var m in _moveSizeLookups)
@@ -43,11 +43,11 @@ namespace _123Movers.DataEntities
             {
                 if (serviceId == null)
                 {
-                    moveWeight = db.tbl_companyMoveWeight.Where(d => d.companyID == companyId).OrderByDescending(d => d.serviceID).FirstOrDefault();
+                    moveWeight = db.CompanyMoveWeight.Where(d => d.companyID == companyId).OrderByDescending(d => d.serviceID).FirstOrDefault();
                 }
                 else
                 {
-                    moveWeight = db.tbl_companyMoveWeight.Where(d => d.companyID == companyId && d.serviceID == serviceId).FirstOrDefault();
+                    moveWeight = db.CompanyMoveWeight.Where(d => d.companyID == companyId && d.serviceID == serviceId).FirstOrDefault();
                 }
             }
             if (moveWeight != null)
@@ -104,7 +104,7 @@ namespace _123Movers.DataEntities
 
             using (MoversDBEntities db = new MoversDBEntities())
             {
-                var moveWeight =  db.tbl_companyMoveWeight.Where(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId).FirstOrDefault();
+                var moveWeight =  db.CompanyMoveWeight.Where(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId).FirstOrDefault();
                 if (moveWeight != null)
                 {
                     moveWeight.minMoveWeight = Convert.ToInt32(model.MinMoveWeightSeq);
@@ -122,11 +122,11 @@ namespace _123Movers.DataEntities
                         maxMoveWeight = Convert.ToInt32(model.MaxMoveWeightSeq),
                         stampDate = DateTime.UtcNow
                     };
-                    db.tbl_companyMoveWeight.Add(mw);
+                    db.CompanyMoveWeight.Add(mw);
 
                 }
 
-                var areas = db.tbl_companyAreacode.Where(a => a.companyID == model.CompanyId && a.serviceID == model.ServiceId).ToList();
+                var areas = db.CompanyAreacode.Where(a => a.companyID == model.CompanyId && a.serviceID == model.ServiceId).ToList();
 
                 if (areas.Count != 0 && areas != null)
                 {

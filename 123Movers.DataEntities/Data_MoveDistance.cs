@@ -57,7 +57,7 @@ namespace _123Movers.DataEntities
             bool result = false;
             using (MoversDBEntities db = new MoversDBEntities())
             {
-                var distance = db.tbl_companyMoveDistance.Where(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId).FirstOrDefault();
+                var distance = db.CompanyMoveDistance.Where(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId).FirstOrDefault();
                 if (distance != null)
                 {
                     distance.minMoveDistance = model.MinMoveDistance;
@@ -75,11 +75,11 @@ namespace _123Movers.DataEntities
                         maxMoveDistance = model.MaxMoveDistance,
                         stampDate = DateTime.UtcNow
                     };
-                    db.tbl_companyMoveDistance.Add(d);
+                    db.CompanyMoveDistance.Add(d);
 
                 }
 
-                var areas = db.tbl_companyAreacode.Where(a => a.companyID == model.CompanyId && a.serviceID == model.ServiceId).ToList();
+                var areas = db.CompanyAreacode.Where(a => a.companyID == model.CompanyId && a.serviceID == model.ServiceId).ToList();
 
                 if (areas.Count != 0 && areas != null)
                 {
@@ -108,11 +108,11 @@ namespace _123Movers.DataEntities
             {
                 if (serviceId == null)
                 {
-                    distance = db.tbl_companyMoveDistance.Where(d => d.companyID == companyId).OrderByDescending(d => d.serviceID).FirstOrDefault();
+                    distance = db.CompanyMoveDistance.Where(d => d.companyID == companyId).OrderByDescending(d => d.serviceID).FirstOrDefault();
                 }
                 else
                 {
-                    distance = db.tbl_companyMoveDistance.Where(d => d.companyID == companyId && d.serviceID == serviceId).FirstOrDefault();
+                    distance = db.CompanyMoveDistance.Where(d => d.companyID == companyId && d.serviceID == serviceId).FirstOrDefault();
                 }
             }
             if (distance != null)

@@ -92,11 +92,11 @@ namespace _123Movers.DataEntities
             {
                 if (serviceId == null)
                 {
-                    budget = db.tbl_companyBudget.FirstOrDefault(b => b.companyID == companyId && b.serviceID == null);
+                    budget = db.CompanyBudget.FirstOrDefault(b => b.companyID == companyId && b.serviceID == null);
                 }
                 else
                 {
-                    budget = db.tbl_companyBudget.FirstOrDefault(b => b.companyID == companyId && b.serviceID == serviceId);
+                    budget = db.CompanyBudget.FirstOrDefault(b => b.companyID == companyId && b.serviceID == serviceId);
                 }
                 if (budget != null)
                 {
@@ -116,10 +116,10 @@ namespace _123Movers.DataEntities
                 List<tbl_companyAreacode> budgetFilter;
                 if (serviceID == null)
                 {
-                    budgetFilter = db.tbl_companyAreacode.Where(a => a.companyID == companyID).OrderByDescending(a => a.serviceID).ToList();
+                    budgetFilter = db.CompanyAreacode.Where(a => a.companyID == companyID).OrderByDescending(a => a.serviceID).ToList();
                 }
                 else { 
-                    budgetFilter = db.tbl_companyAreacode.Where(a => a.companyID == companyID && a.serviceID == serviceID).ToList();
+                    budgetFilter = db.CompanyAreacode.Where(a => a.companyID == companyID && a.serviceID == serviceID).ToList();
                 }
                 
                 List<AreaCodeModel> _areaCodes = new List<AreaCodeModel>();
@@ -148,7 +148,7 @@ namespace _123Movers.DataEntities
             BudgetModel budget = new BudgetModel();
             using (MoversDBEntities db = new MoversDBEntities())
             {
-                var _budget = db.tbl_companyBudget.Where(b => b.tid == id).FirstOrDefault();
+                var _budget = db.CompanyBudget.Where(b => b.tid == id).FirstOrDefault();
 
                 budget.tId = _budget.tid;
                 budget.CompanyId = _budget.companyID;
@@ -162,7 +162,7 @@ namespace _123Movers.DataEntities
             List<BudgetModel> budgets = new List<BudgetModel>();
             using(MoversDBEntities db = new MoversDBEntities())
             {
-                var _budgets = db.tbl_companyBudget.Where(b => b.companyID == companyID).ToList();
+                var _budgets = db.CompanyBudget.Where(b => b.companyID == companyID).ToList();
                 foreach (var _budget in _budgets)
                 {
                     BudgetModel budget = new BudgetModel
@@ -191,7 +191,7 @@ namespace _123Movers.DataEntities
             List<BudgetModel> budgets = new List<BudgetModel>();
             using (MoversDBEntities db = new MoversDBEntities())
             {
-                var count = db.tbl_companyBudget.Where(cb => cb.companyID == companyID).ToList().Count();
+                var count = db.CompanyBudget.Where(cb => cb.companyID == companyID).ToList().Count();
                 var _budgets = db.tl_companyBudget.Where(pb => pb.companyID == companyID && pb.action == "insert").OrderByDescending(pb => pb.stampDate).Skip(count).ToList();
                               
                 foreach (var _budget in _budgets)

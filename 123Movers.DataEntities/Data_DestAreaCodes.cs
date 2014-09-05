@@ -43,7 +43,7 @@ namespace _123Movers.DataEntities
             {
                 foreach (string areaCode in _areaCodes)
                 {
-                    db.tbl_companyDestinationAreaCodesZipCodes.Add(new tbl_companyDestinationAreaCodesZipCodes {companyID = (int)companyId, serviceID = (int)serviceId, destinationAreaCode = areaCode, destinationZipCode = null, stampDate = DateTime.UtcNow});
+                    db.CompanyDestinationAreaCodesZipCodes.Add(new tbl_companyDestinationAreaCodesZipCodes {companyID = (int)companyId, serviceID = (int)serviceId, destinationAreaCode = areaCode, destinationZipCode = null, stampDate = DateTime.UtcNow});
                     
                 }
                 db.SaveChanges();
@@ -83,10 +83,10 @@ namespace _123Movers.DataEntities
             {
                 foreach (string areaCode in _areaCodes)
                 {
-                    var _destAreaCode = db.tbl_companyDestinationAreaCodesZipCodes.FirstOrDefault(da => da.companyID == companyId && da.serviceID == serviceId && da.destinationAreaCode == areaCode && da.destinationZipCode == null);
+                    var _destAreaCode = db.CompanyDestinationAreaCodesZipCodes.FirstOrDefault(da => da.companyID == companyId && da.serviceID == serviceId && da.destinationAreaCode == areaCode && da.destinationZipCode == null);
                     if (_destAreaCode != null)
                     {
-                        db.tbl_companyDestinationAreaCodesZipCodes.Remove(_destAreaCode);
+                        db.CompanyDestinationAreaCodesZipCodes.Remove(_destAreaCode);
                     }
                 }
                 db.SaveChanges();
@@ -121,7 +121,7 @@ namespace _123Movers.DataEntities
             var _areaCodes = areaCodes.Split(',');
             using (MoversDBEntities db = new MoversDBEntities())
             {
-                var _allAreaCodes = db.tbl_companyAreacode.Where(a => a.companyID == companyId && a.serviceID == serviceId).ToList();
+                var _allAreaCodes = db.CompanyAreacode.Where(a => a.companyID == companyId && a.serviceID == serviceId).ToList();
                 foreach (var areacode in _allAreaCodes)
                 {
                     areacode.isDestinationAreaCode = 0;

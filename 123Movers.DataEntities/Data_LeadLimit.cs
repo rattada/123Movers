@@ -148,13 +148,13 @@ namespace _123Movers.DataEntities
             {
                 if (serviceId == null)
                 {
-                    leadlimits = db.tbl_companyLeadLimit.Where(l => l.companyID == companyId).ToList();
-                    areas = db.tbl_companyAreacode.Where(a => a.companyID == companyId).ToList();
+                    leadlimits = db.CompanyLeadLimit.Where(l => l.companyID == companyId).ToList();
+                    areas = db.CompanyAreacode.Where(a => a.companyID == companyId).ToList();
                 }
                 else
                 {
-                    leadlimits = db.tbl_companyLeadLimit.Where(l => l.companyID == companyId && l.serviceID == serviceId).ToList();
-                    areas = db.tbl_companyAreacode.Where(a => a.companyID == companyId && a.serviceID == serviceId).ToList();
+                    leadlimits = db.CompanyLeadLimit.Where(l => l.companyID == companyId && l.serviceID == serviceId).ToList();
+                    areas = db.CompanyAreacode.Where(a => a.companyID == companyId && a.serviceID == serviceId).ToList();
                 }
             }
 
