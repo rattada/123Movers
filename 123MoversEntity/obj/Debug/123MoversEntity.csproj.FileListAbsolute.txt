@@ -1,5 +1,0 @@
-D:\Movers123\123Movers\123MoversEntity\bin\Debug\123MoversEntity.dll.config
-D:\Movers123\123Movers\123MoversEntity\bin\Debug\123MoversEntity.dll
-D:\Movers123\123Movers\123MoversEntity\bin\Debug\123MoversEntity.pdb
-D:\Movers123\123Movers\123MoversEntity\obj\Debug\123MoversEntity.dll
-D:\Movers123\123Movers\123MoversEntity\obj\Debug\123MoversEntity.pdb

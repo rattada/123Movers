@@ -1,0 +1,9 @@
+D:\Movers123\123Movers\123Movers.Entity\bin\123Movers.Entity.dll
+D:\Movers123\123Movers\123Movers.Entity\bin\123Movers.Entity.pdb
+D:\Movers123\123Movers\123Movers.Entity\bin\EntityFramework.dll
+D:\Movers123\123Movers\123Movers.Entity\bin\EntityFramework.SqlServer.dll
+D:\Movers123\123Movers\123Movers.Entity\bin\EntityFramework.xml
+D:\Movers123\123Movers\123Movers.Entity\bin\EntityFramework.SqlServer.xml
+D:\Movers123\123Movers\123Movers.Entity\obj\Debug\123Movers.Entity.dll
+D:\Movers123\123Movers\123Movers.Entity\obj\Debug\123Movers.Entity.pdb
+D:\Movers123\123Movers\123Movers.Entity\obj\Debug\123Movers.Entity.csprojResolveAssemblyReference.cache

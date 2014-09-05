@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -46,7 +50,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,7 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Budget.cs" />
     <Compile Include="DataLayer.cs" />
     <Compile Include="Data_Account.cs" />
     <Compile Include="Data_AreaCodes.cs" />
@@ -81,20 +83,19 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\123Movers.Entity\123Movers.Entity.csproj">
+      <Project>{8094f36e-acd9-400e-ace3-fb14ff43cc7a}</Project>
+      <Name>123Movers.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\123Movers.Models\123Movers.Models.csproj">
       <Project>{d73bb4a2-1e6e-494d-aee8-00ee677f55ab}</Project>
       <Name>123Movers.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\123MoversEntity\123MoversEntity.csproj">
-      <Project>{d20c5c86-efad-4109-8a75-f70f0c6d05f7}</Project>
-      <Name>123MoversEntity</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

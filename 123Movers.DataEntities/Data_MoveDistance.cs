@@ -5,7 +5,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using _123MoversEntity;
+using _123Movers.DataEntities;
+using _123Movers.Entity;
+using System.Data.Entity;
 
 namespace _123Movers.DataEntities
 {
@@ -61,7 +63,7 @@ namespace _123Movers.DataEntities
                     distance.minMoveDistance = model.MinMoveDistance;
                     distance.maxMoveDistance = model.MaxMoveDistance;
 
-                    db.ObjectStateManager.ChangeObjectState(distance, EntityState.Modified);
+                    db.Entry(distance).State = EntityState.Modified;
                 }
                 else
                 {
@@ -73,7 +75,7 @@ namespace _123Movers.DataEntities
                         maxMoveDistance = model.MaxMoveDistance,
                         stampDate = DateTime.UtcNow
                     };
-                    db.tbl_companyMoveDistance.AddObject(d);
+                    db.tbl_companyMoveDistance.Add(d);
 
                 }
 
@@ -85,7 +87,7 @@ namespace _123Movers.DataEntities
                     foreach (var area in areas)
                     {
                         area.isMoveDistanceSelect = 1;
-                        db.ObjectStateManager.ChangeObjectState(area, EntityState.Modified);
+                        db.Entry(area).State = EntityState.Modified;
                     }
                     db.SaveChanges();
                     result = true;

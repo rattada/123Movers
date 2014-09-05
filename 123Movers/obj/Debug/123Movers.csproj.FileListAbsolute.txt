@@ -370,8 +370,8 @@ D:\123Movers\123Movers\123Movers\obj\Debug\123Movers.dll
 D:\123Movers\123Movers\123Movers\obj\Debug\123Movers.pdb
 D:\Movers123\123Movers\123Movers\bin\log4net.dll
 D:\Movers123\123Movers\123Movers\bin\log4net.xml
-D:\Movers123\123Movers\123Movers\bin\123MoversEntity.dll
-D:\Movers123\123Movers\123Movers\bin\123MoversEntity.pdb
 D:\Movers123\123Movers\123Movers\bin\EntityFramework.SqlServer.dll
 D:\Movers123\123Movers\123Movers\bin\EntityFramework.SqlServer.xml
 D:\Movers123\123Movers\123Movers\bin\123Movers.XML
+D:\Movers123\123Movers\123Movers\bin\123Movers.Entity.dll
+D:\Movers123\123Movers\123Movers\bin\123Movers.Entity.pdb

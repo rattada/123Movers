@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using _123Movers.DataEntities;
-using _123MoversEntity;
+using _123Movers.Entity;
 using System.Data.Entity;
 
 namespace _123Movers.DataEntities
@@ -88,7 +88,7 @@ namespace _123Movers.DataEntities
         public static void RenewBudget(int? companyId, int? serviceId)
         {
             tbl_companyBudget budget;
-            using (MoversDBEntities db = new MoversDBEntities())
+            using (var db = new MoversDBEntities())
             {
                 if (serviceId == null)
                 {
@@ -102,7 +102,7 @@ namespace _123Movers.DataEntities
                 {
                     budget.isOneTimeRenew = true;
 
-                    db.ObjectStateManager.ChangeObjectState(budget, System.Data.EntityState.Modified);
+                    db.Entry(budget).State = EntityState.Modified;
                     db.SaveChanges();
                 }
             }

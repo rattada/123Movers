@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using _123MoversEntity;
+using _123Movers.Entity;
 
 namespace _123Movers.DataEntities
 {

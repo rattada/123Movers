@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using _123MoversEntity;
+using _123Movers.Entity;
 
 namespace _123Movers.DataEntities
 {
@@ -16,7 +16,7 @@ namespace _123Movers.DataEntities
                 UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower());
                 if (user == null)
                 {
-                    db.UserProfiles.AddObject(new UserProfile { UserName = userName });
+                    db.UserProfiles.Add(new UserProfile { UserName = userName });
                     db.SaveChanges();
                     return true;
                 }

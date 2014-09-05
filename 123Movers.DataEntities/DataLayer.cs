@@ -8,7 +8,7 @@ using System.Web;
 using _123Movers.Models;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using _123MoversEntity;
+using _123Movers.Entity;
 
 namespace _123Movers.DataEntities
 {

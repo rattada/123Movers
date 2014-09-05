@@ -5,7 +5,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using _123MoversEntity;
+using _123Movers.Entity;
+using System.Data.Entity;
 
 namespace _123Movers.DataEntities
 {
@@ -103,13 +104,13 @@ namespace _123Movers.DataEntities
 
             using (MoversDBEntities db = new MoversDBEntities())
             {
-                var moveWeight = db.tbl_companyMoveWeight.Where(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId).FirstOrDefault();
+                var moveWeight =  db.tbl_companyMoveWeight.Where(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId).FirstOrDefault();
                 if (moveWeight != null)
                 {
                     moveWeight.minMoveWeight = Convert.ToInt32(model.MinMoveWeightSeq);
                     moveWeight.maxMoveWeight = Convert.ToInt32(model.MaxMoveWeightSeq);
 
-                    db.ObjectStateManager.ChangeObjectState(moveWeight, EntityState.Modified);
+                    db.Entry(moveWeight).State = EntityState.Modified;
                 }
                 else
                 {
@@ -121,7 +122,7 @@ namespace _123Movers.DataEntities
                         maxMoveWeight = Convert.ToInt32(model.MaxMoveWeightSeq),
                         stampDate = DateTime.UtcNow
                     };
-                    db.tbl_companyMoveWeight.AddObject(mw);
+                    db.tbl_companyMoveWeight.Add(mw);
 
                 }
 
@@ -132,7 +133,8 @@ namespace _123Movers.DataEntities
                     foreach (var area in areas)
                     {
                         area.isMoveWeightSelect = 1;
-                        db.ObjectStateManager.ChangeObjectState(area, EntityState.Modified);
+                        //db.ObjectStateManager.ChangeObjectState(area, EntityState.Modified);
+                        db.Entry(area).State = EntityState.Modified;
                     }
                     db.SaveChanges();
                     result = true;

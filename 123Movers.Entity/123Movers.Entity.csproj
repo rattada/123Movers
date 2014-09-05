@@ -1,0 +1,833 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8094F36E-ACD9-400E-ACE3-FB14FF43CC7A}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>_123Movers.Entity</RootNamespace>
+    <AssemblyName>123Movers.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="123MoversEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>123MoversEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="123MoversEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="123MoversEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>123MoversEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="allMySons2.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dtproperty.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IsAliasMail_Log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="recRevenue.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STATES_NAME.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_123bannerPricing.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_123bannerPricing_new.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_123moversBannerPricingModel.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_123moversPricing.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_123moversPricingModel.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_123moversPricing_new.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_adminEmployees.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_adServiceState.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Advertise.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affilaiteLoginTrack.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliate.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliateAutoPricingByAreaCode.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliateAutoQuotePricingByAreaCode.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliateMain.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliateNotifyAfterLeadSold.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliatePricingByAreaCode.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliateQuotePricingByAreaCode.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliateReport.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliateReportClicks.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliateReportSE.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliate_coBrand.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_affiliate_CobrandNew.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_agentsAdvertise.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AllListMoving.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AllListStorage.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_areaCodeAnalysis.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_areaCodeLeadsCount.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_areacodeserviceWithNoMovers.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_articlesForHomePage.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Auto.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_auto_opt_companyMain.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_availabilityListArchives.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_availabilityListExclusiveLeadCount.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_badName.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_badPhoneNumbers.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ballot.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_bhTrack.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_bkUpgradeDowngradeCancellation.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_blackListIPnEmail.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_blockedSe.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_broadband.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_callsource.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_campaignInfo.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_campaignVerification.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_cityArticle.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_collectionList.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_company.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyAdByArea.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyAreacode.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyAreacode_auto_opt.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyAssociation.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyBudget.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyBudgetAutoRenewBySPOnlyForReference.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyBudgetRenew.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyBudget_PayingLater.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyCancellations.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyCancellationsLog.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyCountries.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyCreditBudget.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyDestinationAreaCodesZipCodes.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyDifferentTextFormat.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyLeadLimit.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyLoginTrack.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyMain.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyManualEmailsLog.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyMinDistance.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyMoveDate.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyMoveDistance.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyMoveWeight.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyMultiAreas.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyOriginZipCodes.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyPhoneAreaMapping.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyPricePerLead.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyQuoteTrack.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyRefundLeads.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyRefundLeadsReasons.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyRefundReasons.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companySpecificOriginDestinationAreacode.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companySpecificOriginDestinationState.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_companyVlAgents.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_company_flagLeads.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_company_metatags.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_company_storage.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_complaints.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_confirmInfo.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_consentSeValue.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_content.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_countries.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_countriesDesc.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CPC.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_cpcContent.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_cpcContentHandle.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CPM.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_customerMain.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_dailyAffilaiteBudget.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_dailyBudgetAffiliateData.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_dailyBudgetConfig.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_dailyBudgetReport.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_desiredAreaCodePrices.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_disableFreeCompanies.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_emailDetailsFromRealTimeAPI.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_emailFilterAPI.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_EmailFormatAffiliate.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_emailValidationDetails.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_exclusiveCompany.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_exclusiveCompanyZipAreaException.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_exclusiveCompany_log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_exclusiveLeadCounter.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_exclusivePricing.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_exclusiveService.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_exclusiveService_log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_exclusiveSirvaCompanyLookUp.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_FacebookLandingPage.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_farmerBannerResponse.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_fileNamePerm.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_filterByDestination.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_homePagePhone.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_identifiers.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Intl.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_invalidQuotes.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_inValidQuotes_displayReasons.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_inValidQuotes_reasons.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_keywordIdentity.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_landingpagecontent.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_leadPostResponse.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LeadsReport.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_listLinks.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_listMain.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_lookUpAffiliatePricing.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_lowRevenueAreaCodes.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_manageUpgradeDowngradeAds.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_manageUpgradeDowngradeArea.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_monthly.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_monthlyAreaCodeLeadCount.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_mortgageLeadInfo.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Movers.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_MoveSizelookup.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_MoveSizelookup_V2.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_movingsurvey.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_newsletter.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_newsletterUnsub.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_NewStateDesc.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_notAllowForSpecialBenefits.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_numCompPerArea.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_p4pOffers.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_p4pOffersPostLog.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_p4pPostLog.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_pageContent.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_pageMain.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_paidComp.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_paidComp_inactive.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_phone.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_phoneOLD.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_poll.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_processDetails.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_quoteAnalysis.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_quoteAuto.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_quoteDestinationzip.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_quoteMoving.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_quoteRequests.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_quoteSelfMoving.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_quoteStorage.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_realEstateAgents.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_realtimeReversePhoneLookup.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_recordPostInformation.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_RecPostData.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_RestrictServiceAreaPerSE.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_resultPageContent.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_reverseVerificationCheck.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_reverseVerificationLeads.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_reverseVerificationLeadsCall.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_reverseVerificationLeadsCallLog.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_reverseVerificationLeadsEmail.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_reverseVerificationLeadsEmailLog.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_reverseVerificationMaskPhone.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_reverseVerifiedLeadsLog.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_reviews.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_reviewsReply.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Satellite.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_service.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_serviceLeadsCount.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_serviceMain.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_seTotalLeads.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_sirvaZipCodes.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_stateDesc.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Storage.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_TexasProject.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_tips.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_trackAdsMaster.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_trackCompPage.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_trackCompPageEven.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_trackCompPageOdd.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_trackOffers.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_trackSePosts.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_upgradeDowngradesCancelStatusLog.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_URLshortenAPI.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_userConsentSold.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_vote.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_zip.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_zipNewAreasSwitchToOld.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_zipNew_Front.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_zipOld.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_zipv2.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tempCompany.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tlk_companiesWith25pctDiscount.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tlk_companiesWith25pctDiscount070108.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_companyBudget.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_companyBudgetRenew.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_companyPricePerLead.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_company_activities_log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_company_advertisement_log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_company_areacodes_log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_company_countries_log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_company_deletelistings_log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_company_storage_log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_numCompPerArea_log.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_postInformation.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tl_quoteRequests.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserProfile.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_Membership.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_OAuthMembership.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_Roles.cs">
+      <DependentUpon>123MoversEntity.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="123MoversEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>123MoversEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="123MoversEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>123MoversEntity.edmx</DependentUpon>
+      <LastGenOutput>123MoversEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="123MoversEntity.edmx.diagram">
+      <DependentUpon>123MoversEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="123MoversEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>123MoversEntity.edmx</DependentUpon>
+      <LastGenOutput>123MoversEntity.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61478/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

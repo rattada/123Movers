@@ -5,7 +5,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using _123MoversEntity;
+using _123Movers.Entity;
+using System.Data.Entity;
 
 namespace _123Movers.DataEntities
 {
@@ -42,7 +43,7 @@ namespace _123Movers.DataEntities
             {
                 foreach (string areaCode in _areaCodes)
                 {
-                    db.tbl_companyDestinationAreaCodesZipCodes.AddObject(new tbl_companyDestinationAreaCodesZipCodes {companyID = (int)companyId, serviceID = (int)serviceId, destinationAreaCode = areaCode, destinationZipCode = null, stampDate = DateTime.UtcNow});
+                    db.tbl_companyDestinationAreaCodesZipCodes.Add(new tbl_companyDestinationAreaCodesZipCodes {companyID = (int)companyId, serviceID = (int)serviceId, destinationAreaCode = areaCode, destinationZipCode = null, stampDate = DateTime.UtcNow});
                     
                 }
                 db.SaveChanges();
@@ -85,7 +86,7 @@ namespace _123Movers.DataEntities
                     var _destAreaCode = db.tbl_companyDestinationAreaCodesZipCodes.FirstOrDefault(da => da.companyID == companyId && da.serviceID == serviceId && da.destinationAreaCode == areaCode && da.destinationZipCode == null);
                     if (_destAreaCode != null)
                     {
-                        db.tbl_companyDestinationAreaCodesZipCodes.DeleteObject(_destAreaCode);
+                        db.tbl_companyDestinationAreaCodesZipCodes.Remove(_destAreaCode);
                     }
                 }
                 db.SaveChanges();
@@ -124,7 +125,8 @@ namespace _123Movers.DataEntities
                 foreach (var areacode in _allAreaCodes)
                 {
                     areacode.isDestinationAreaCode = 0;
-                    db.ObjectStateManager.ChangeObjectState(areacode, EntityState.Modified);
+                    //db.ObjectStateManager.ChangeObjectState(areacode, EntityState.Modified);
+                    db.Entry(areacode).State = EntityState.Modified;
                 }
                 db.SaveChanges();
                 
@@ -133,7 +135,8 @@ namespace _123Movers.DataEntities
                     var _areaCode = _allAreaCodes.First(a => a.areaCode == Convert.ToInt16(areaCode));
 
                     _areaCode.isDestinationAreaCode = 1;
-                    db.ObjectStateManager.ChangeObjectState(_areaCode, EntityState.Modified);
+                    //db.ObjectStateManager.ChangeObjectState(_areaCode, EntityState.Modified);
+                    db.Entry(_areaCode).State = EntityState.Modified;
                 }
                 db.SaveChanges();
             }
