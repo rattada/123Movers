@@ -221,7 +221,7 @@
                     k = 1;
                 }
                 else {
-                    alert("Error occured while saving.Please Contact Administrator");
+                    alert(data.message);
                     return false;
                 }
             },

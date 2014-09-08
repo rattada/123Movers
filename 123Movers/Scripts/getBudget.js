@@ -3,11 +3,13 @@
     $('#ExpiredInfo').dataTable({ "sPaginationType": "full_numbers" });
 
     $('.renewBudget').click(function () {
+        debugger;
         var serviceId = $(this).attr('data-id');
+        var companyId = $(this).attr('data-cid');
         $.ajax({
             url: '/Budget/RenewBudget',
             type: "POST",
-            data: {'ServiceId' : serviceId},
+            data: { 'CompanyId': companyId, 'ServiceId' : serviceId},
             dataType: "json",
             cache: false,
             success: function (data) {

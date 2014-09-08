@@ -98,7 +98,7 @@
             </summary>
             <param name="budget">Budget Model</param>
         </member>
-        <member name="M:_123Movers.Controllers.BudgetController.RenewBudget(System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.BudgetController.RenewBudget(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Renewal the budget
             </summary>
