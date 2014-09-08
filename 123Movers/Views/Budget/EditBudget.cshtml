@@ -78,7 +78,7 @@
     <p class="clear-fix"></p>
     <div class="row">
         <div class="col-md-6">
-             @Html.ActionLink("Get Filter Info", "BudgetFilterInfo", "Budget", new { serviceId = Service }, new { id = "btnfilter", @class = "btn btn-default clsdisable spnload" })
+             @Html.ActionLink("Get Filter Info", "BudgetFilterInfo", "Budget", new {companyId = @Model.CompanyId, serviceId = Service }, new { id = "btnfilter", @class = "btn btn-default clsdisable spnload" })
             @* <a id="btnfilter"  class="btn btn-default clsdisable spnload" href="#" data-toggle="modal" data-target="#myModal" >Get Filter Info</a>*@
         </div>
         <div class="col-md-6">

@@ -180,12 +180,12 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="ServiceId">Type of Service</param>
         [HttpPost]
-        public JsonResult RenewBudget(int? ServiceId)
+        public JsonResult RenewBudget(int? CompanyId, int? ServiceId)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.RenewBudget(CompanyInfo.CompanyId, ServiceId);
+                BusinessLayer.RenewBudget(CompanyId, ServiceId);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -199,11 +199,11 @@ namespace _123Movers.Controllers
         }
 
         [HttpGet]
-        public ActionResult BudgetFilterInfo(int? serviceId)
+        public ActionResult BudgetFilterInfo(int? companyId, int? serviceId)
         {
             AreaCodeModel areaCode = new AreaCodeModel();
-            areaCode._companyInfo = CompanyInfo;
-            areaCode._areaCodes = BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, serviceId);
+            areaCode._companyInfo = RetrieveCurrentCompanyInfo(companyId);
+            areaCode._areaCodes = BusinessLayer.GetBudgetFilterInfo(companyId, serviceId);
             return View(areaCode);
         }
     }
