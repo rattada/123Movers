@@ -1,4 +1,6 @@
 ﻿$(function () {
+    var companyID = $("#tdCompanyID").text().split(":");
+    companyID = companyID[1];
     $(".TitleStyle").text("Lead Limit");
     $('#tblLeadLimit tbody tr').each(function () {
         $(this).find(".classCheckVal:input[type=text]").each(function () {
@@ -49,6 +51,7 @@
                 });
                 LeadLimitData =
                           [{
+                              companyID: companyID,
                               AreaCodes: AreaCodes,
                               ServiceId: ServiceId,
                               LeadFrequency: LeadFrequency,
@@ -60,7 +63,8 @@
             });
         });
         //Saving the  entire data in DB with Ajax call
-        if (Filleddata.length != 0) {
+        var data_to_send = JSON.stringify(Filleddata);
+        if (data_to_send != 0) {
             $.ajax({
                 url: '/LeadLimit/LeadLimit',
                 cache: false,

@@ -22,26 +22,26 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of Service</param>
         /// <returns>List of Area Codes</returns>
-        public JsonResult GetAvailableAreas(int? serviceId)
+        public JsonResult GetAvailableAreas(int?companyID,int? serviceId)
         {
-            return Json(BusinessLayer.GetAvailableAreas(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetAvailableAreas(companyID, serviceId), JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// Get Prices Per Lead
         /// </summary>
         /// <param name="serviceId">Type of Service</param>
         /// <returns>Area Codes With Prices</returns>
-        public JsonResult GetCompanyAreasWithPrices( int? serviceId)
+        public JsonResult GetCompanyAreasWithPrices(int? companyID, int? serviceId)
         {
-            var services = BusinessLayer.GetCompanyAreasWithPrices(CompanyInfo.CompanyId, serviceId);
+            var services = BusinessLayer.GetCompanyAreasWithPrices(companyID, serviceId);
             return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AreaCodes(int? serviceId)
+        public ActionResult AreaCodes(int? companyID,int? serviceId)
         {
             ViewBag.ServiceId = serviceId;
             AreaCodeModel areaCode = new AreaCodeModel();
-            areaCode._companyInfo = CompanyInfo;
+            areaCode._companyInfo = RetrieveCurrentCompanyInfo(companyID);
             return View(areaCode);
         }
 
@@ -50,12 +50,12 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <param name="areaCodes">Selected Area Codes</param>
-        public JsonResult AddAreaCodes(int? serviceId, string areaCodes)
+        public JsonResult AddAreaCodes(int? companyID,int? serviceId, string areaCodes)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.AddCompanyAreaCodes(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace());
+                BusinessLayer.AddCompanyAreaCodes(companyID, serviceId, areaCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -72,12 +72,12 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <param name="areaCodes">Selected Area Codes</param>
-        public ActionResult DeleteAreaCodes(int? serviceId, string areaCodes)
+        public ActionResult DeleteAreaCodes(int? companyID ,int? serviceId, string areaCodes)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.DeleteCompanyAreaCodes(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace());
+                BusinessLayer.DeleteCompanyAreaCodes(companyID, serviceId, areaCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -94,13 +94,13 @@ namespace _123Movers.Controllers
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <param name="areaCodes">Selected Area Codes</param>
         [HttpPost]
-        public JsonResult AddCompanyPricePerLead(int? serviceId,string areaCodes)
+        public JsonResult AddCompanyPricePerLead(int? companyID,int? serviceId,string areaCodes)
         {
 
             JsonResult result;
             try
             {
-                BusinessLayer.AddCompanyPricePerLead(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace(), null);
+                BusinessLayer.AddCompanyPricePerLead(companyID, serviceId, areaCodes.StrReplace(), null);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

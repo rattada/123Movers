@@ -1,14 +1,16 @@
 ﻿$(function () {
+    var companyID = $("#tdCompanyID").text().split(":");
+    companyID = companyID[1];
     $('.TitleStyle').text('Specific States');
     var serviceId = $('#ddlServiceID').val();
     if (serviceId != '') {
-        GetAvailStates(serviceId);
+        GetAvailStates(companyID, serviceId);
     } else { $('#ddlState').attr("disabled", true); }
-    function GetAvailStates(serviceId) {
+    function GetAvailStates(companyID, serviceId) {
         $.ajax({
             url: '/SpecificStates/GetAvailStates',
             type: "GET",
-            data: { 'serviceId': serviceId },
+            data: { 'companyID': companyID, 'serviceId': serviceId },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -45,7 +47,7 @@
         $.ajax({
             url: '/SpecificStates/GetCompanySpcfcOriginDestStates',
             type: "GET",
-            data: { 'serviceId': serviceId, "originState": originState, "IsOriginState": false },
+            data: { 'companyID': companyID, 'serviceId': serviceId, "originState": originState, "IsOriginState": false },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -114,7 +116,7 @@
         $.ajax({
             url: '/SpecificStates/AddCompanySpcfcOriginDeststates',
             type: "POST",
-            data: { 'serviceId': serviceId, "originState": Spcfcstate, 'destStates': states },
+            data: { 'companyID': companyID, 'serviceId': serviceId, "originState": Spcfcstate, 'destStates': states },
             success: function (data) {
                 GetCompanySpcfcStates(serviceId, Spcfcstate);
                 alert("State(s) added Successfully");
@@ -149,7 +151,7 @@
         $.ajax({
             url: '/Specificstates/DeleteCompanySpcfcOriginDeststates',
             type: "POST",
-            data: { 'serviceId': serviceId, "originState": Spcfcstate, "destStates": states },
+            data: { 'companyID': companyID, 'serviceId': serviceId, "originState": Spcfcstate, "destStates": states },
             success: function (data) {
                 GetCompanySpcfcStates(serviceId, Spcfcstate);
                 alert("State(s) removed Successfully");

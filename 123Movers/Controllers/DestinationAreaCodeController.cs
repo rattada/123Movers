@@ -18,16 +18,16 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of Service</param>
         /// <returns>List of Destination Area Codes</returns>
-        public JsonResult GetCompanyDestAreas(int? serviceId)
+        public JsonResult GetCompanyDestAreas(int? companyID, int? serviceId)
         {
-            return Json(BusinessLayer.GetCompanyAreasCodes(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanyAreasCodes(companyID, serviceId), JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// Display the Destination Area Codes
         /// </summary>
         /// <param name="serviceId">Type of Service(Local, Long and Both)</param>
         /// <returns></returns>
-        public ActionResult DestinationAreaCode(int? serviceId)
+        public ActionResult DestinationAreaCode(int? companyID, int? serviceId)
         {
             var Services = GetServices(serviceId);
             if (Services.Count > 2)
@@ -36,7 +36,7 @@ namespace _123Movers.Controllers
                 ViewBag.Services = Services;
 
             DestinationAreaCodeModel DestAreaCode = new DestinationAreaCodeModel();
-            DestAreaCode._companyInfo = CompanyInfo;
+            DestAreaCode._companyInfo = RetrieveCurrentCompanyInfo(companyID);
             return View(DestAreaCode);
         }
         
@@ -45,12 +45,12 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of Service(Local, Long and Both)</param>
         /// <param name="areaCodes">Selected Area Codes</param>
-        public JsonResult AddCompanyDestAreaCodes(int? serviceId, string areaCodes)
+        public JsonResult AddCompanyDestAreaCodes(int? companyID, int? serviceId, string areaCodes)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.AddCompanyDestAreaCodes(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace());
+                BusinessLayer.AddCompanyDestAreaCodes(companyID, serviceId, areaCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -66,12 +66,12 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of Service(Local, Long and Both)</param>
         /// <param name="areaCodes">Selected Area Codes</param>
-        public JsonResult DeleteCompanyDestAreaCodes(int? serviceId, string areaCodes)
+        public JsonResult DeleteCompanyDestAreaCodes(int? companyID, int? serviceId, string areaCodes)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.DeleteCompanyDestAreaCodes(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace());
+                BusinessLayer.DeleteCompanyDestAreaCodes(companyID, serviceId, areaCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -86,12 +86,12 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of Service(Local, Long and Both)</param>
         /// <param name="areaCodes">Selected Area Codes</param>
-        public JsonResult Turn_ON_OFF_CompanyDestAreaCodes(int? serviceId, string areaCodes)
+        public JsonResult Turn_ON_OFF_CompanyDestAreaCodes(int? companyID, int? serviceId, string areaCodes)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.Turn_ON_OFF_CompanyDestAreaCodes(CompanyInfo.CompanyId, serviceId, areaCodes.StrReplace());
+                BusinessLayer.Turn_ON_OFF_CompanyDestAreaCodes(companyID, serviceId, areaCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

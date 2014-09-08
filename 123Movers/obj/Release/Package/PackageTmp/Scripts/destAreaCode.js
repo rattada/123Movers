@@ -1,4 +1,6 @@
 ﻿$(function () {
+    var companyID = $("#tdCompanyID").text().split(":");
+    companyID = companyID[1];
     $('.TitleStyle').text('Destination Area Code');
     $("#accordion_tblCompanyAreas").hide();
     var serviceId = $('#ddlServiceID').val();
@@ -28,7 +30,7 @@
         $.ajax({
             url: '/DestinationAreaCode/GetCompanyDestAreas',
             type: "GET",
-            data: { 'serviceId': serviceId },
+            data: { 'companyID': companyID, 'serviceId': serviceId },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -102,7 +104,7 @@
         $.ajax({
             url: '/DestinationAreaCode/AddCompanyDestAreaCodes',
             type: "POST",
-            data: { 'serviceId': serviceId, 'areaCodes': data_to_send },
+            data: { 'companyID': companyID, 'serviceId': serviceId, 'areaCodes': data_to_send },
             success: function (data) {
                 GetSelectedAreas(serviceId, true);
                 alert("Area Code(s) added Successfully");
@@ -131,7 +133,7 @@
         $.ajax({
             url: '/DestinationAreaCode/DeleteCompanyDestAreaCodes',
             type: "POST",
-            data: { 'serviceId': serviceId, 'areaCodes': data_to_send },
+            data: { 'companyID': companyID, 'serviceId': serviceId, 'areaCodes': data_to_send },
             success: function (data) {
                 GetSelectedAreas(serviceId, true);
                 alert("Area Code(s) removed Successfully");
@@ -185,7 +187,7 @@
         $.ajax({
             url: '/DestinationAreaCode/Turn_ON_OFF_CompanyDestAreaCodes',
             type: "POST",
-            data: { 'serviceId': serviceId, 'areaCodes': data_to_send },
+            data: { 'companyID': companyID, 'serviceId': serviceId, 'areaCodes': data_to_send },
             success: function (data) {
                 alert("Settings saved Successfully");
             },

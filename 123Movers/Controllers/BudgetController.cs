@@ -18,9 +18,9 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <returns>Updated Filter Information</returns>
-        public JsonResult GetFilterResult(int? serviceId)
+        public JsonResult GetFilterResult(int? companyId, int? serviceId)
         {
-            return Json(BusinessLayer.GetFilterResult(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetFilterResult(companyId, serviceId), JsonRequestBehavior.AllowGet);
         }
         
         /// <summary>
@@ -69,7 +69,6 @@ namespace _123Movers.Controllers
         {
             ViewBag.Terms = GetTerms();
             ViewBag.Services = GetServices();
-            Session["CurrentCompanyInfo"] = null;
             try
             {
                 if (ModelState.IsValid)
@@ -101,9 +100,6 @@ namespace _123Movers.Controllers
             BudgetModel budget = new BudgetModel();
             ViewBag.Terms = GetTerms();
             ViewBag.Services = GetServices();
-
-            Session["CurrentCompanyInfo"] = null;
-
 
             string Recurring = (IsRecurring) ? (IsRequireNoticeToCharge) ? Constants.RecurringWithNotice : Constants.Recurring : Constants.NonRecurring;
             budget.TotalBudget = TotalBudget;
@@ -153,7 +149,6 @@ namespace _123Movers.Controllers
 
             ViewBag.Terms = GetTerms();
             ViewBag.Services = GetServices();
-            Session["CurrentCompanyInfo"] = null;
 
             try
             {

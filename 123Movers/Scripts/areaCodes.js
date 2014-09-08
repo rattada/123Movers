@@ -2,6 +2,8 @@
     var serviceId;
     var ServiceType;
     var k = 0;
+    var companyID = $("#tdCompanyID").text().split(":");
+    companyID = companyID[1];
     $(".TitleStyle").text("Area Codes");
     if ($('#serviceid').val() == 1000) {
         serviceId = 1000;
@@ -31,13 +33,14 @@
             $("#saveprice").removeAttr('disabled');
         }
     });
+
     GetAvailableAreas(serviceId, ServiceType);
     GetSelectedAreas(serviceId, ServiceType);
     function GetAvailableAreas(serviceId, ServiceType) {
         $.ajax({
             url: '/AreaCode/GetAvailableAreas',
             type: "GET",
-            data: { 'serviceId': serviceId },
+            data: {'companyID':companyID, 'serviceId': serviceId },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -67,7 +70,7 @@
         $.ajax({
             url: '/AreaCode/GetCompanyAreasWithPrices',
             type: "GET",
-            data: { 'serviceId': serviceId },
+            data: { 'companyID': companyID, 'serviceId': serviceId },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -173,7 +176,7 @@
         $.ajax({
             url: '/AreaCode/AddCompanyPricePerLead',
             type: "POST",
-            data: { 'serviceId': serviceId, areaCodes: jsareacodes },
+            data: { 'companyID': companyID, 'serviceId': serviceId, areaCodes: jsareacodes },
             success: function (data) {
                 if (data.success === true) {
                     alert('Prices Saved Suceessfully');
@@ -202,7 +205,7 @@
         $.ajax({
             url: '/AreaCode/AddAreaCodes',
             type: "POST",
-            data: { 'serviceId': serviceId, 'areaCodes': data_to_send },
+            data: { 'companyID': companyID, 'serviceId': serviceId, 'areaCodes': data_to_send },
             success: function (data) {
                 if (data.success) {
                     if (Service == "Local") {
@@ -221,7 +224,7 @@
                     k = 1;
                 }
                 else {
-                    alert(data.message);
+                    alert("Error occured while saving.Please go to Search");
                     return false;
                 }
             },
@@ -243,7 +246,7 @@
         $.ajax({
             url: '/AreaCode/DeleteAreaCodes',
             type: "POST",
-            data: { 'serviceId': serviceId, areaCodes: data_to_send },
+            data: { 'companyID': companyID, 'serviceId': serviceId, areaCodes: data_to_send },
             success: function (data) {
                 if (Service == "Local") {
                     serviceId = 1009;

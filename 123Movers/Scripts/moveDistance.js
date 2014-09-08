@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    var companyID = $("#tdCompanyID").text().split(":");
+    companyID = companyID[1];
     $('.TitleStyle').text('Move Distance');
     var message = $.trim($('#message').val());
     if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
@@ -59,7 +61,7 @@
             orgMaxDistance = $("#MaxMoveDistance").val();
         }
         var ModelData =
-            {
+            {   companyID:companyID,
                 ServiceId: serviceId,
                 MinMoveDistance: orgMinDistance,
                 MaxMoveDistance: orgMaxDistance
@@ -88,7 +90,7 @@
             $.ajax({
                 url: '/MoveDistance/GetMoveDistance',
                 type: "GET",
-                data: { 'ServiceId': serviceId },
+                data: {'companyID':companyID, 'ServiceId': serviceId },
                 cache: false,
                 success: function (data) {
                     var strigifyJson = JSON.stringify(data);

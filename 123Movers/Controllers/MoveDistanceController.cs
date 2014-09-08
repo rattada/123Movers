@@ -19,18 +19,15 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         [HttpGet]
-        public ActionResult MoveDistance(int? serviceId)
+        public ActionResult MoveDistance(int? companyID, int? serviceId)
         {
-
             if (GetServices(serviceId).Count > 2)
                 ViewBag.Services =GetServices(serviceId).Take(2);
             else
                 ViewBag.Services =GetServices(serviceId);
 
-            MoveDistanceModel model = BusinessLayer.GetCompanyMoveDistance(CompanyInfo.CompanyId, serviceId);
-            model._companyInfo = CompanyInfo;
-            model.CompanyId = model._companyInfo.CompanyId;
-
+            MoveDistanceModel model = BusinessLayer.GetCompanyMoveDistance(companyID, serviceId);
+            model._companyInfo = RetrieveCurrentCompanyInfo(companyID);
             return View(model);
 
         }
@@ -70,7 +67,6 @@ namespace _123Movers.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    model.CompanyId = CompanyInfo.CompanyId;
                     bool success = BusinessLayer.SaveMoveDistance(model);
                     if (success)
                     {
@@ -91,9 +87,9 @@ namespace _123Movers.Controllers
         /// Get the Move Distance information for company by service
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
-        public JsonResult GetMoveDistance(int? serviceId)
+        public JsonResult GetMoveDistance(int? companyID, int? serviceId)
         {
-            return Json(BusinessLayer.GetCompanyMoveDistance(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanyMoveDistance(companyID, serviceId), JsonRequestBehavior.AllowGet);
         }
 
     }

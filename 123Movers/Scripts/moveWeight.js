@@ -1,4 +1,6 @@
 ﻿$(function () {
+    var companyID = $("#tdCompanyID").text().split(":");
+    companyID = companyID[1];
     $('.TitleStyle').text('Move Weight');
     var message = $.trim($('#message').val());
     if (typeof message === 'undefined' || message.length <= 0) { } else { alert(message); }
@@ -35,6 +37,7 @@
         }
         var ModelData =
            {
+               companyID: companyID,
                ServiceId: serviceId,
                MinMoveWeightSeq: orgMin,
                MaxMoveWeightSeq: orgMax
@@ -63,7 +66,7 @@
             $.ajax({
                 url: '/MoveWeight/GetMoveWeight',
                 type: "GET",
-                data: { 'ServiceId': serviceId },
+                data: { 'companyID': companyID, 'ServiceId': serviceId },
                 cache: false,
                 success: function (data) {
                     var strigifyJson = JSON.stringify(data);

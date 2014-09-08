@@ -18,7 +18,7 @@ namespace _123Movers.Controllers
         /// Get Method for Radius
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
-        public ActionResult Radius(int? serviceId)
+        public ActionResult Radius(int? companyID, int? serviceId)
         {
             var Service =GetServices(serviceId);
             if (Service.Count > 2)
@@ -26,7 +26,7 @@ namespace _123Movers.Controllers
             else
                 ViewBag.Services = Service;
             RadiusModel radius = new RadiusModel();
-            radius._companyInfo = CompanyInfo;
+            radius._companyInfo = RetrieveCurrentCompanyInfo(companyID);
             radius.ServiceId = serviceId == null ? (int)ServiceType.Both : serviceId;// Constants.BOTH : serviceId;
             return View(radius);
         }
@@ -41,12 +41,12 @@ namespace _123Movers.Controllers
         /// <param name="type"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult AddZipCodesByRadius(int? service, int zipcode, decimal radius, string category)
+        public JsonResult AddZipCodesByRadius(int? companyID, int? service, int zipcode, decimal radius, string category)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.AddZipCodesByRadius(CompanyInfo.CompanyId, service, zipcode, radius, category);
+                BusinessLayer.AddZipCodesByRadius(companyID, service, zipcode, radius, category);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -58,15 +58,15 @@ namespace _123Movers.Controllers
             return result;
         }
 
-        public JsonResult GetZipCodesByRadius(int? service, int zipcode, decimal radius, string category)
+        public JsonResult GetZipCodesByRadius(int companyID, int? service, int zipcode, decimal radius, string category)
         {
-            return Json(BusinessLayer.GetZipCodesByRadius(CompanyInfo.CompanyId, service, zipcode, radius, category), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetZipCodesByRadius(companyID, service, zipcode, radius, category), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult AddAreaCodes(int? ServiceId, string areaCodes)
+        public JsonResult AddAreaCodes(int? companyID, int? ServiceId, string areaCodes)
         {
             JsonResult result;
             try {
-                BusinessLayer.AddCompanyAreaCodes(CompanyInfo.CompanyId, ServiceId, areaCodes.StrReplace());
+                BusinessLayer.AddCompanyAreaCodes(companyID, ServiceId, areaCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

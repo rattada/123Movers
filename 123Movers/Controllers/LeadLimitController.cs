@@ -18,13 +18,13 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         [HttpGet]
-        public ActionResult LeadLimit(int? serviceId)
+        public ActionResult LeadLimit(int? companyID, int? serviceId)
         {
 
             LeadLimitModel model = new LeadLimitModel();
 
-            model = BusinessLayer.GetCompanyLeadLimit(CompanyInfo.CompanyId, serviceId);
-            model._companyInfo = CompanyInfo;
+            model = BusinessLayer.GetCompanyLeadLimit(companyID, serviceId);
+            model._companyInfo = RetrieveCurrentCompanyInfo(companyID);
             model.ServiceId = serviceId;
             
             return View(model);
@@ -35,7 +35,7 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="leadlimit">Lead Limit Model</param>
         [HttpPost]
-        public JsonResult LeadLimit(List<List<LeadLimitModel>> leadlimit)
+        public JsonResult LeadLimit( List<List<LeadLimitModel>> leadlimit)
         {
 
             JsonResult result;
@@ -44,7 +44,7 @@ namespace _123Movers.Controllers
 
                 foreach (var ld in leadlimit)
                 {
-                    ld[0].CompanyId = CompanyInfo.CompanyId;
+                   // ld[0].CompanyId = companyID;
                     BusinessLayer.AddCompanyLeadLimit(ld[0]);
                 }
                 ModelState.Clear();

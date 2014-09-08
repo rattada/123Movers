@@ -20,9 +20,9 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <returns>List of States</returns>
-        public JsonResult GetAvailStates(int? serviceId)
+        public JsonResult GetAvailStates(int? companyID, int? serviceId)
         {
-            var services = BusinessLayer.GetAvailStates(CompanyInfo.CompanyId, serviceId);
+            var services = BusinessLayer.GetAvailStates(companyID, serviceId);
             return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
         }
 
@@ -31,16 +31,16 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <returns>List of States</returns>
-        public JsonResult GetCompanySpcfcOriginDestStates(int? serviceId, string originState, bool IsOriginState)
+        public JsonResult GetCompanySpcfcOriginDestStates(int? companyID, int? serviceId, string originState, bool IsOriginState)
         {
-            return Json(BusinessLayer.GetCompanySpcfcStates(CompanyInfo.CompanyId, serviceId, originState, IsOriginState), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanySpcfcStates(companyID, serviceId, originState, IsOriginState), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
         /// Display the Specific States by Service
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
-        public ActionResult SpecificStates(int? serviceId)
+        public ActionResult SpecificStates(int? companyID, int? serviceId)
         {
             var Service = GetServices(serviceId);
             if (Service.Count > 2)
@@ -49,7 +49,7 @@ namespace _123Movers.Controllers
                 ViewBag.Services = Service;
 
             SpecificStatesModel spcfcstates = new SpecificStatesModel();
-            spcfcstates._companyInfo = CompanyInfo;
+            spcfcstates._companyInfo = RetrieveCurrentCompanyInfo(companyID);
             spcfcstates.ServiceId = serviceId == null ? (int)ServiceType.Local : serviceId;
             return View(spcfcstates);
         }
@@ -61,13 +61,13 @@ namespace _123Movers.Controllers
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
        /// <param name="originState">Specific State</param>
        /// <param name="destStates">Selected Destination States</param>
-        public JsonResult AddCompanySpcfcOriginDeststates(int? serviceId, string originState, string destStates)
+        public JsonResult AddCompanySpcfcOriginDeststates(int? companyID, int? serviceId, string originState, string destStates)
         {
             JsonResult result;
             try
             {
 
-                BusinessLayer.AddCompanySpcfcStates(CompanyInfo.CompanyId, serviceId, originState, destStates.StrReplace());
+                BusinessLayer.AddCompanySpcfcStates(companyID, serviceId, originState, destStates.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -85,13 +85,13 @@ namespace _123Movers.Controllers
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <param name="originState">Specific State</param>
         /// <param name="destStates">Selected Destination States</param>
-        public JsonResult DeleteCompanySpcfcOriginDeststates(int? serviceId, string originState, string destStates)
+        public JsonResult DeleteCompanySpcfcOriginDeststates(int? companyID, int? serviceId, string originState, string destStates)
         {
             JsonResult result;
 
             try
             {
-                BusinessLayer.DeleteCompanySpcfcStates(CompanyInfo.CompanyId, serviceId, originState, destStates.StrReplace());
+                BusinessLayer.DeleteCompanySpcfcStates(companyID, serviceId, originState, destStates.StrReplace());
                     result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

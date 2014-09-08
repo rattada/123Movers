@@ -11,10 +11,12 @@
 
 @using (Html.BeginForm("AddBudget", "Budget", FormMethod.Post, new { id = "frmaddbudget" }))
 {
+    @Html.HiddenFor(m => m.CompanyId)
     <p class="clearfix"></p>
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">
+                
                 @Html.LabelFor(m => m.TotalBudget)
                 @Html.TextBoxFor(m => m.TotalBudget, new { @class = "form-control", @placeholder = "Enter Company Budget"  })
                 @Html.ValidationMessageFor(m => m.TotalBudget)
