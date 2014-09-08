@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using _123Movers.Models;
 using log4net;
 using System.Data;
+using _123Movers.BusinessEntities;
 
 namespace _123Movers.Controllers
 {
@@ -14,11 +15,13 @@ namespace _123Movers.Controllers
         protected int? _serviceId;
         protected CompanyModel  _companyInfo;
         public ILog logger;
-
+        public int? _companyId;
         public BaseController()
         {
             //logger = LogManager.GetLogger(typeof(controller));
         }
+
+        public int? companyId { get; set; }
         
         public int? ServiceId
         {
@@ -69,7 +72,7 @@ namespace _123Movers.Controllers
         {
             get
             {
-                if (_companyInfo == null) { RetrieveCurrentCompanyInfo(); }
+                if (_companyInfo == null) { RetrieveCurrentCompanyInfo(_companyId); }
                 return _companyInfo;
             }
         }
@@ -87,9 +90,9 @@ namespace _123Movers.Controllers
         /// <summary>
         /// Get company information from Session
         /// </summary>
-        protected CompanyModel RetrieveCurrentCompanyInfo()
+        protected CompanyModel RetrieveCurrentCompanyInfo(int? companyId)
         {
-         
+            _companyId = companyId;
             var companyCookieVal = _companyInfo;
             try
             {
@@ -98,6 +101,10 @@ namespace _123Movers.Controllers
 
                     if (Session["CurrentCompanyInfo"] != null)
                     {
+                        companyCookieVal = (CompanyModel)Session["CurrentCompanyInfo"];
+                    }
+                    else {
+                        Session["CurrentCompanyInfo"] = BusinessLayer.GetCompany(_companyId);
                         companyCookieVal = (CompanyModel)Session["CurrentCompanyInfo"];
                     }
 

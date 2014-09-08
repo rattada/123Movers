@@ -47,8 +47,11 @@
             success: function (data) {
                 if (data.success)
                     alert("MoveWeight  data successfully saved");
-                else
+                else {
                     alert("There were no area code(s) saved to this Service");
+                    $("#minMoveWeight option:first").attr('selected', 'selected');
+                    $("#maxMoveWeight option:first").attr('selected', 'selected');
+                }
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }

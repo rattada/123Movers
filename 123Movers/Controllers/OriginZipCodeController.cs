@@ -67,8 +67,6 @@ namespace _123Movers.Controllers
             {
                 BusinessLayer.AddCompanyAreaZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
-
-
             }
             catch (Exception ex)
             {

@@ -26,7 +26,7 @@ namespace _123Movers.Entity
         }
     
         public DbSet<Log> Logs { get; set; }
-        public DbSet<tbl_company> tbl_company { get; set; }
+        public DbSet<tbl_company> Company { get; set; }
         public DbSet<tbl_companyAreacode> CompanyAreacode { get; set; }
         public DbSet<tbl_companyBudget> CompanyBudget { get; set; }
         public DbSet<tbl_companyBudgetRenew> CompanyBudgetRenew { get; set; }

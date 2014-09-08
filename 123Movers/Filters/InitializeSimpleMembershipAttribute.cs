@@ -5,6 +5,7 @@ using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 using _123Movers.Models;
+using System.Web;
 
 namespace _123Movers.Filters
 {
@@ -20,6 +21,27 @@ namespace _123Movers.Filters
             // Ensure ASP.NET Simple Membership is initialized only once per app start
             LazyInitializer.EnsureInitialized(ref _initializer, ref _isInitialized, ref _initializerLock);
         }
+
+    //    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
+    //public class CheckSessionOutAttribute : ActionFilterAttribute
+    //{
+    //    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    //    {
+    //        string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower();
+    //        if (!controllerName.Contains("home"))
+    //        {
+    //            HttpSessionStateBase session = filterContext.HttpContext.Session;
+    //            var user = session["CurrentCompanyInfo"];
+    //            if (((user == null) && (!session.IsNewSession)) || (session.IsNewSession))
+    //            {
+    //                //send them off to the login page
+    //                var url = new UrlHelper(filterContext.RequestContext);
+    //                var loginUrl = url.Content("~/Account/Login");
+    //                filterContext.HttpContext.Response.Redirect(loginUrl, true);
+    //            }
+    //        }
+    //    }
+    //}
 
         private class SimpleMembershipInitializer
         {

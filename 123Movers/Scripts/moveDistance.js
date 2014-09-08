@@ -72,8 +72,11 @@
             success: function (data) {
                 if (data.success)
                     alert("Distance data successfully saved");
-                else
+                else {
                     alert("There were no area code(s) saved to this Service");
+                    $("#MinMoveDistance").val('');
+                    $("#MaxMoveDistance").val('');
+                }
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }

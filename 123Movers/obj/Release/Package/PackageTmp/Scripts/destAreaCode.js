@@ -52,7 +52,6 @@
                             destoptions += '<option value="' + val[0] + '">' + val[1] + ' - ' + val[0] + '</option>';
                         }
                     }
-
                     else {
                         if (bool == false) {
                             $("#divTblAreas").append("<label><input type='checkbox' name='option[]' class='chkEnable'   id=" + val[0] + " />" + val[1] + ' - ' + val[0] + "</label>");
@@ -98,11 +97,7 @@
             $('#originAreaCodes').focus();
             return false;
         }
-        if (selected.length > 20) {
-            alert("Please select only 20 area codes to Add per one time");
-            return false;
-
-        }
+       
         var data_to_send = JSON.stringify(selected);
         $.ajax({
             url: '/DestinationAreaCode/AddCompanyDestAreaCodes',

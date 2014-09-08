@@ -20,7 +20,7 @@
             </summary>
             <param name="companyInfo"></param>
         </member>
-        <member name="M:_123Movers.Controllers.BaseController.RetrieveCurrentCompanyInfo">
+        <member name="M:_123Movers.Controllers.BaseController.RetrieveCurrentCompanyInfo(System.Nullable{System.Int32})">
             <summary>
             Get company information from Session
             </summary>

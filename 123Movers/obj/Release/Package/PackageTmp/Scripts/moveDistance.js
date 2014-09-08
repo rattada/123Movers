@@ -70,7 +70,13 @@
             data: ModelData,
             cache: false,
             success: function (data) {
-                alert("Distance data successfully saved");
+                if (data.success)
+                    alert("Distance data successfully saved");
+                else {
+                    alert("There were no area code(s) saved to this Service");
+                    $("#MinMoveDistance").val('');
+                    $("#MaxMoveDistance").val('');
+                }
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
@@ -87,9 +93,9 @@
                 success: function (data) {
                     var strigifyJson = JSON.stringify(data);
                     var json = $.parseJSON(strigifyJson);
-                    if (json.length > 0) {
-                        $("#MinMoveDistance").val(json[0][1]);
-                        $("#MaxMoveDistance").val(json[0][2]);
+                    if (json != undefined) {
+                        $("#MinMoveDistance").val(json.MinMoveDistance);
+                        $("#MaxMoveDistance").val(json.MaxMoveDistance);
 
                         orgMinDistance = $("#MinMoveDistance").val();
                         orgMaxDistance = $("#MaxMoveDistance").val();

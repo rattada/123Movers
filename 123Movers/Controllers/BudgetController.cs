@@ -32,12 +32,9 @@ namespace _123Movers.Controllers
         public ActionResult GetBudget(CompanyModel Company)
         {
             BudgetModel budget = new BudgetModel();
-            //IEnumerable<BudgetModel> budgetList = new List<BudgetModel>();
-            //SearchModel search = new SearchModel();
 
             SaveCompanyInfo(Company);
-
-            //budgetList = BusinessLayer.GetBudget(CompanyInfo.CompanyId);
+            _companyId = Company.CompanyId;
 
             var _currentBudgets = BusinessLayer.GetCureentBudgets(CompanyInfo.CompanyId);
             var _pastBudgets = BusinessLayer.GetPastBudgets(CompanyInfo.CompanyId);
@@ -46,28 +43,20 @@ namespace _123Movers.Controllers
             budget._pastBudgets = _pastBudgets;
 
             budget._companyInfo = CompanyInfo;
-            //var tbilled = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.TotalBudget);
-            //var uamount = budgetList.Where(b => b.EndDate < DateTime.Now).Sum(b => b.UnchargedAmount);
-
-            //ViewBag.TotalBilled =  String.Format("{0:C}", tbilled);
-            //ViewBag.UnchargedAmount = String.Format("{0:C}", uamount);
-
-            //search._companyInfo = CompanyInfo;
-            //search.budget = budgetList;
 
             return View(budget);
         }
 
         
         [HttpGet]
-        public ActionResult AddBudget()
+        public ActionResult AddBudget(CompanyModel Company)
         {
             ViewBag.Terms = GetTerms();// ConfigValues.Terms();
             ViewBag.Services = GetServices();
-
+            
             BudgetModel budget = new BudgetModel();
 
-            budget._companyInfo = CompanyInfo;
+            budget._companyInfo = Company;
             return View(budget);
         }
 
@@ -80,27 +69,22 @@ namespace _123Movers.Controllers
         {
             ViewBag.Terms = GetTerms();
             ViewBag.Services = GetServices();
-
+            Session["CurrentCompanyInfo"] = null;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    budget._companyInfo = CompanyInfo;
+                    budget._companyInfo = RetrieveCurrentCompanyInfo(budget.CompanyId);// CompanyInfo;
                     budget.CompanyId = budget._companyInfo.CompanyId;
                     budget.Type = Constants.NEW_BUDGET;
 
                     BusinessLayer.SaveBudget(budget);
 
-                    return RedirectToAction("GetBudget", budget);
+                    return RedirectToAction("GetBudget", budget._companyInfo);
                 }
             }
             catch (Exception ex)
             {
-                //logger.Debug("Here is a debug log.");
-                //logger.Info("... and an Info log.");
-                //logger.Warn("... and a warning.");
-                //logger.Error("... and an error.");
-                //logger.Fatal("... and a fatal error.");
                 logger.Error(ex.ToString());
                 ModelState.AddModelError("Error", ex.Message);
             }
@@ -110,14 +94,17 @@ namespace _123Movers.Controllers
         }
         
 
-        [HttpGet]
-        public ActionResult EditBudget(decimal? TotalBudget, bool IsRecurring, bool IsRequireNoticeToCharge, int? serviceId, string agnumber, int? minDaysToCharge, int? id)
+        //[HttpGet]
+        public ActionResult EditBudget(int? companyId, decimal? TotalBudget, bool IsRecurring, bool IsRequireNoticeToCharge, int? serviceId, string agnumber, int? minDaysToCharge, int? id)
         {
 
             BudgetModel budget = new BudgetModel();
             ViewBag.Terms = GetTerms();
             ViewBag.Services = GetServices();
-           
+
+            Session["CurrentCompanyInfo"] = null;
+
+
             string Recurring = (IsRecurring) ? (IsRequireNoticeToCharge) ? Constants.RecurringWithNotice : Constants.Recurring : Constants.NonRecurring;
             budget.TotalBudget = TotalBudget;
             budget.IsRecurring = IsRecurring;
@@ -127,13 +114,38 @@ namespace _123Movers.Controllers
             budget.AgreementNumber = agnumber;
             budget.TermType = Recurring;
 
+
             SaveSeviceId(budget.ServiceId);
-           
-            budget._companyInfo = CompanyInfo;
-            budget.CompanyId = budget._companyInfo.CompanyId;
+
+            budget._companyInfo = RetrieveCurrentCompanyInfo(companyId);
+            budget.CompanyId = companyId;
 
             return View(budget);
         }
+
+        //[HttpGet]
+        //public ActionResult EditBudget(BudgetModel budget)
+        //{
+
+        //    //BudgetModel budget = new BudgetModel();
+        //    ViewBag.Terms = GetTerms();
+        //    ViewBag.Services = GetServices();
+
+        //    Session["CurrentCompanyInfo"] = null;
+
+
+        //    string Recurring = ((bool)budget.IsRecurring) ? ((bool)budget.IsRequireNoticeToCharge) ? Constants.RecurringWithNotice : Constants.Recurring : Constants.NonRecurring;
+        //    budget.ServiceId = budget.ServiceId == null ? (int)ServiceType.Both : budget.ServiceId;
+        //    budget.TermType = Recurring;
+
+
+        //    SaveSeviceId(budget.ServiceId);
+
+        //    budget._companyInfo = CompanyInfo;
+        //    budget.CompanyId = budget._companyInfo.CompanyId;
+
+        //    return View(budget);
+        //}
 
         [HttpPost]
         public ActionResult EditBudget(BudgetModel budget)
@@ -141,14 +153,15 @@ namespace _123Movers.Controllers
 
             ViewBag.Terms = GetTerms();
             ViewBag.Services = GetServices();
+            Session["CurrentCompanyInfo"] = null;
 
             try
             {
-                budget._companyInfo = CompanyInfo;
-                budget.CompanyId = budget._companyInfo.CompanyId;
+                budget._companyInfo = RetrieveCurrentCompanyInfo(budget.CompanyId);
+                //budget.CompanyId = budget._companyInfo.CompanyId;
                 budget.BudgetAction = Constants.RENEWL_BUDGET;
                 budget.Type = Constants.EDIT_BUDGET;
-                budget.ServiceId = ServiceId;
+                //budget.ServiceId = ServiceId;
 
                 BusinessLayer.SaveBudget(budget);
 
@@ -193,14 +206,5 @@ namespace _123Movers.Controllers
             areaCode._areaCodes = BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, serviceId);
             return View(areaCode);
         }
-        /// <summary>
-        /// Get Budget filter information
-        /// </summary>
-       
-        //public JsonResult GetBudgetFilterInfo()
-        //{
-        //    return Json(BusinessLayer.GetBudgetFilterInfo(CompanyInfo.CompanyId, ServiceId), JsonRequestBehavior.AllowGet);
-        //}
-       
     }
 }

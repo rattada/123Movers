@@ -25,6 +25,10 @@ namespace _123Movers.BusinessEntities
         //    budget.RemainingBudget = budget.TotalBudget;
         //    DataLayer.SaveBudget(budget);
         //}
+        public static CompanyModel GetCompany(int? companyId)
+        {
+           return DataLayer.GetCompany(companyId);
+        }
         public static IEnumerable<SearchModel> SearchCompany(SearchModel search)
         {
             return DataLayer.SearchCompany(search);

@@ -13,44 +13,6 @@ namespace _123Movers.DataEntities
 {
     public partial class DataLayer
     {
-        //public static bool SaveMoveDistance(MoveDistanceModel model)
-        //{
-        //    using (MoversDBEntities db = new MoversDBEntities())
-        //    {
-        //        var distance = db.tbl_companyMoveDistance.Where(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId).FirstOrDefault();
-        //        if (distance != null)
-        //        {
-        //            distance.minMoveDistance = model.MinMoveDistance;
-        //            distance.maxMoveDistance = model.MaxMoveDistance;
-
-        //            db.ObjectStateManager.ChangeObjectState(distance, EntityState.Modified);
-        //        }
-        //        else
-        //        {
-        //            tbl_companyMoveDistance d = new tbl_companyMoveDistance { 
-        //                companyID = Convert.ToInt32(model.CompanyId),
-        //                serviceID = Convert.ToInt32(model.ServiceId),
-        //                minMoveDistance = model.MinMoveDistance,
-        //                maxMoveDistance = model.MaxMoveDistance,
-        //                stampDate = DateTime.UtcNow
-        //            };
-        //            db.tbl_companyMoveDistance.AddObject(d);
-
-        //        }
-
-        //        var areas = db.tbl_companyAreacode.Where(a => a.companyID == model.CompanyId && a.serviceID == model.ServiceId).ToList();
-
-        //        foreach (var area in areas)
-        //        {
-        //            area.isMoveDistanceSelect = 1;
-        //            db.ObjectStateManager.ChangeObjectState(area, EntityState.Modified);
-        //        }
-        //        db.SaveChanges();
-        //    }
-
-        //    return true;
-        //}
-
         public static bool SaveMoveDistance(MoveDistanceModel model)
         {
 
@@ -67,7 +29,7 @@ namespace _123Movers.DataEntities
                 }
                 else
                 {
-                    tbl_companyMoveDistance d = new tbl_companyMoveDistance
+                    tbl_companyMoveDistance md = new tbl_companyMoveDistance
                     {
                         companyID = Convert.ToInt32(model.CompanyId),
                         serviceID = Convert.ToInt32(model.ServiceId),
@@ -75,7 +37,7 @@ namespace _123Movers.DataEntities
                         maxMoveDistance = model.MaxMoveDistance,
                         stampDate = DateTime.UtcNow
                     };
-                    db.CompanyMoveDistance.Add(d);
+                    db.CompanyMoveDistance.Add(md);
 
                 }
 

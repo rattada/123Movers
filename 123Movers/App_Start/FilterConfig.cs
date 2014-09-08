@@ -8,6 +8,7 @@ namespace _123Movers
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            //filters.Add(new _123Movers.Filters.InitializeSimpleMembershipAttribute.CheckSessionOutAttribute());
         }
     }
 }

@@ -45,7 +45,13 @@
             data: ModelData,
             cache: false,
             success: function (data) {
-                alert("MoveWeight  data successfully saved");
+                if (data.success)
+                    alert("MoveWeight  data successfully saved");
+                else {
+                    alert("There were no area code(s) saved to this Service");
+                    $("#minMoveWeight option:first").attr('selected', 'selected');
+                    $("#maxMoveWeight option:first").attr('selected', 'selected');
+                }
             },
             error: function (xhr, ajaxOptions, thrownError) {
             }
@@ -62,9 +68,9 @@
                 success: function (data) {
                     var strigifyJson = JSON.stringify(data);
                     var json = $.parseJSON(strigifyJson);
-                    if (json.length > 0) {
-                        $('#minMoveWeight').val(json[0][2]).attr("selected", "selected");
-                        $('#maxMoveWeight').val(json[0][3]).attr("selected", "selected");
+                    if (json != undefined) {
+                        $('#minMoveWeight').val(json.MinMoveWeightSeq);
+                        $('#maxMoveWeight').val(json.MaxMoveWeightSeq);
 
                         orgMax = $('#maxMoveWeight option:selected').val();
                         orgMin = $('#minMoveWeight option:selected').val();

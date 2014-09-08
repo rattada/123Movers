@@ -150,6 +150,40 @@ namespace _123Movers.DataEntities
             return list;
 
         }
+        public static CompanyModel GetCompany(int? companyId)
+        {
+            CompanyModel _company = new CompanyModel();
+            DataTable dtResults = new DataTable();
+            using (SqlConnection dbCon = ConnectToDb())
+            {
+                SqlCommand cmdGetCompany = new SqlCommand();
+                cmdGetCompany.Connection = dbCon;
+                cmdGetCompany.CommandType = System.Data.CommandType.StoredProcedure;
+                cmdGetCompany.CommandText = Constants.SP_COMPANY_SEARCH;
+
+                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+
+                cmdGetCompany.Parameters.Add(paramCompanyId);
+                
+                SqlDataReader drResults = cmdGetCompany.ExecuteReader();
+                dtResults.Load(drResults);
+            }
+
+            foreach (DataRow row in dtResults.Rows)
+            {
+                _company = new CompanyModel
+                {
+                    CompanyId = row["CompanyID"].ToString().IntNullOrEmpty(),
+                    CompanyName = row["companyName"].ToString(),
+                    AX = row["AbNumber"].ToString(),
+                    ContactPerson = row["contactPerson"].ToString(),
+                    IsActive = row["isActive"].ToString().BooleanNullOrEmpty(),
+                    Suspended = row["suspended"].ToString()
+                };
+            }
+            return _company;
+        }
+
 
     }
 

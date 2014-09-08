@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MoversDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MoversDBEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Logs" EntityType="MoversDBModel.Log" />
+    <EntitySet Name="tbl_company" EntityType="MoversDBModel.tbl_company" />
+    <EntitySet Name="tbl_companyAreacode" EntityType="MoversDBModel.tbl_companyAreacode" />
+    <EntitySet Name="tbl_companyBudget" EntityType="MoversDBModel.tbl_companyBudget" />
+    <EntitySet Name="tbl_companyBudgetRenew" EntityType="MoversDBModel.tbl_companyBudgetRenew" />
+    <EntitySet Name="tbl_companyDestinationAreaCodesZipCodes" EntityType="MoversDBModel.tbl_companyDestinationAreaCodesZipCodes" />
+    <EntitySet Name="tbl_companyLeadLimit" EntityType="MoversDBModel.tbl_companyLeadLimit" />
+    <EntitySet Name="tbl_companyMain" EntityType="MoversDBModel.tbl_companyMain" />
+    <EntitySet Name="tbl_companyMoveDistance" EntityType="MoversDBModel.tbl_companyMoveDistance" />
+    <EntitySet Name="tbl_companyMoveWeight" EntityType="MoversDBModel.tbl_companyMoveWeight" />
+    <EntitySet Name="tbl_companyOriginZipCodes" EntityType="MoversDBModel.tbl_companyOriginZipCodes" />
+    <EntitySet Name="tbl_companyPhoneAreaMapping" EntityType="MoversDBModel.tbl_companyPhoneAreaMapping" />
+    <EntitySet Name="tbl_companyPricePerLead" EntityType="MoversDBModel.tbl_companyPricePerLead" />
+    <EntitySet Name="tbl_companySpecificOriginDestinationAreacode" EntityType="MoversDBModel.tbl_companySpecificOriginDestinationAreacode" />
+    <EntitySet Name="tbl_companySpecificOriginDestinationState" EntityType="MoversDBModel.tbl_companySpecificOriginDestinationState" />
+    <EntitySet Name="tbl_MoveSizelookup_V2" EntityType="MoversDBModel.tbl_MoveSizelookup_V2" />
+    <EntitySet Name="tbl_zip" EntityType="MoversDBModel.tbl_zip" />
+    <EntitySet Name="tl_companyBudget" EntityType="MoversDBModel.tl_companyBudget" />
+    <EntitySet Name="UserProfiles" EntityType="MoversDBModel.UserProfile" />
+    <EntitySet Name="webpages_Membership" EntityType="MoversDBModel.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="MoversDBModel.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="MoversDBModel.webpages_Roles" />
+    <AssociationSet Name="FK_tbl_companyPhoneAreaMapping_tbl_companyAreacode" Association="MoversDBModel.FK_tbl_companyPhoneAreaMapping_tbl_companyAreacode">
+      <End Role="tbl_companyAreacode" EntitySet="tbl_companyAreacode" />
+      <End Role="tbl_companyPhoneAreaMapping" EntitySet="tbl_companyPhoneAreaMapping" />
+    </AssociationSet>
+    <AssociationSet Name="webpages_UsersInRoles" Association="MoversDBModel.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Thread" />
+      <PropertyRef Name="Level" />
+      <PropertyRef Name="Logger" />
+      <PropertyRef Name="Message" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Thread" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Level" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Logger" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="4000" Unicode="false" FixedLength="false" />
+    <Property Name="Exception" Type="String" MaxLength="2000" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_company">
+    <Key>
+      <PropertyRef Name="companyID" />
+      <PropertyRef Name="propName" />
+    </Key>
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="propName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="propValue" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_companyAreacode">
+    <Key>
+      <PropertyRef Name="companyID" />
+      <PropertyRef Name="serviceID" />
+      <PropertyRef Name="areaCode" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" Nullable="false" />
+    <Property Name="areaCode" Type="Int16" Nullable="false" />
+    <Property Name="position" Type="Int16" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
+    <Property Name="dateLastBatch" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="numLeads" Type="Int32" Nullable="false" />
+    <Property Name="isForceSelect" Type="Int32" Nullable="false" />
+    <Property Name="isOriginZipCode" Type="Int32" Nullable="false" />
+    <Property Name="isDestinationZipCode" Type="Int32" Nullable="false" />
+    <Property Name="isDestinationAreaCode" Type="Int32" Nullable="false" />
+    <Property Name="isMoveWeightSelect" Type="Int32" Nullable="false" />
+    <Property Name="isMoveDistanceSelect" Type="Int32" Nullable="false" />
+    <Property Name="isSpecificOriginDestinationState" Type="Int32" Nullable="false" />
+    <Property Name="isSpecificOriginDestinationAreacode" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_companyPhoneAreaMapping" Relationship="MoversDBModel.FK_tbl_companyPhoneAreaMapping_tbl_companyAreacode" FromRole="tbl_companyAreacode" ToRole="tbl_companyPhoneAreaMapping" />
+  </EntityType>
+  <EntityType Name="tbl_companyBudget">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" />
+    <Property Name="areaCode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="moveWeightID" Type="Int32" />
+    <Property Name="totalBudget" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="remainingBudget" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="lastQuoteID" Type="Int32" />
+    <Property Name="lastQuotePrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="budgetAction" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="budgetNote" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+    <Property Name="isRecurring" Type="Boolean" Nullable="false" />
+    <Property Name="isRequireNoticeToCharge" Type="Boolean" Nullable="false" />
+    <Property Name="isOneTimeRenew" Type="Boolean" Nullable="false" />
+    <Property Name="minDaysToCharge" Type="Int32" Nullable="false" />
+    <Property Name="agreementNumber" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_companyBudgetRenew">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" />
+    <Property Name="areaCode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="moveWeightID" Type="Int32" />
+    <Property Name="totalBudget" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="remainingBudget" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="budgetAction" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="budgetNote" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+    <Property Name="isRecurring" Type="Boolean" Nullable="false" />
+    <Property Name="isRequireNoticeToCharge" Type="Boolean" Nullable="false" />
+    <Property Name="isOneTimeRenew" Type="Boolean" Nullable="false" />
+    <Property Name="minDaysToCharge" Type="Int32" Nullable="false" />
+    <Property Name="agreementNumber" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_companyDestinationAreaCodesZipCodes">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" Nullable="false" />
+    <Property Name="destinationAreaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="destinationZipCode" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="tbl_companyLeadLimit">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" />
+    <Property Name="areaCode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="moveWeightID" Type="Int32" />
+    <Property Name="isTotalLeadLimit" Type="Int32" Nullable="false" />
+    <Property Name="isDailyLeadLimit" Type="Int32" Nullable="false" />
+    <Property Name="isMonthlyLeadLimit" Type="Int32" Nullable="false" />
+    <Property Name="totalLeadLimit" Type="Int32" Nullable="false" />
+    <Property Name="dailyLeadLimit" Type="Int32" Nullable="false" />
+    <Property Name="monthlyLeadLimit" Type="Int32" Nullable="false" />
+    <Property Name="totalLeadCount" Type="Int32" Nullable="false" />
+    <Property Name="dailyLeadCount" Type="Int32" Nullable="false" />
+    <Property Name="monthlyLeadCount" Type="Int32" Nullable="false" />
+    <Property Name="leadCounter" Type="Int32" Nullable="false" />
+    <Property Name="leadFrequency" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_companyMain">
+    <Key>
+      <PropertyRef Name="companyHandle" />
+    </Key>
+    <Property Name="companyID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyHandle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="companyName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="hideInfo" Type="Byte" />
+  </EntityType>
+  <EntityType Name="tbl_companyMoveDistance">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" Nullable="false" />
+    <Property Name="minMoveDistance" Type="Double" />
+    <Property Name="maxMoveDistance" Type="Double" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="tbl_companyMoveWeight">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" Nullable="false" />
+    <Property Name="minMoveWeight" Type="Int32" Nullable="false" />
+    <Property Name="maxMoveWeight" Type="Int32" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="tbl_companyOriginZipCodes">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" Nullable="false" />
+    <Property Name="originAreaCode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="originZipCode" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="tbl_companyPhoneAreaMapping">
+    <Key>
+      <PropertyRef Name="companyID" />
+      <PropertyRef Name="serviceID" />
+      <PropertyRef Name="areaCode" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" Nullable="false" />
+    <Property Name="areaCode" Type="Int16" Nullable="false" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tbl_companyAreacode" Relationship="MoversDBModel.FK_tbl_companyPhoneAreaMapping_tbl_companyAreacode" FromRole="tbl_companyPhoneAreaMapping" ToRole="tbl_companyAreacode" />
+  </EntityType>
+  <EntityType Name="tbl_companyPricePerLead">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" />
+    <Property Name="areaCode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="moveWeightID" Type="Int32" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="lastModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_companySpecificOriginDestinationAreacode">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" Nullable="false" />
+    <Property Name="originAreacode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="destinationAreacode" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_companySpecificOriginDestinationState">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" Nullable="false" />
+    <Property Name="OriginState" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+    <Property Name="DestinationState" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+    <Property Name="stampDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_MoveSizelookup_V2">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="moveweight" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="category" Type="Int32" />
+    <Property Name="categoryname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="moveWeightSeq" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_zip">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="cityName" Type="String" MaxLength="35" Unicode="false" FixedLength="false" />
+    <Property Name="state" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
+    <Property Name="zipCode" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="areaCode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="FIPS" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+    <Property Name="countyName" Type="String" MaxLength="35" Unicode="false" FixedLength="false" />
+    <Property Name="pref" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="timeZone" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="DST" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="lat" Type="Double" />
+    <Property Name="long" Type="Double" />
+    <Property Name="MSA" Type="String" MaxLength="4" Unicode="false" FixedLength="true" />
+    <Property Name="PMSA" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
+    <Property Name="cDist" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
+    <Property Name="DMA" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="type" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="longState" Type="String" MaxLength="35" Unicode="false" FixedLength="false" />
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="tl_companyBudget">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" />
+    <Property Name="serviceID" Type="Int32" />
+    <Property Name="areaCode" Type="String" MaxLength="3" Unicode="false" FixedLength="true" />
+    <Property Name="moveWeightID" Type="Int32" />
+    <Property Name="totalBudget" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="remainingBudget" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="lastQuoteID" Type="Int32" />
+    <Property Name="lastQuotePrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="lastModified" Type="DateTime" Precision="3" />
+    <Property Name="stampDate" Type="DateTime" Precision="3" />
+    <Property Name="logDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="action" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="budgetAction" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="budgetNote" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+    <Property Name="isRecurring" Type="Boolean" />
+    <Property Name="isRequireNoticeToCharge" Type="Boolean" />
+    <Property Name="isOneTimeRenew" Type="Boolean" />
+    <Property Name="minDaysToCharge" Type="Int32" />
+    <Property Name="agreementNumber" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+    <Property Name="budgetInsertionID_auto" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="webpages_Roles" Relationship="MoversDBModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserProfiles" Relationship="MoversDBModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="FK_tbl_companyPhoneAreaMapping_tbl_companyAreacode">
+    <End Role="tbl_companyAreacode" Type="MoversDBModel.tbl_companyAreacode" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_companyPhoneAreaMapping" Type="MoversDBModel.tbl_companyPhoneAreaMapping" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_companyAreacode">
+        <PropertyRef Name="companyID" />
+        <PropertyRef Name="serviceID" />
+        <PropertyRef Name="areaCode" />
+      </Principal>
+      <Dependent Role="tbl_companyPhoneAreaMapping">
+        <PropertyRef Name="companyID" />
+        <PropertyRef Name="serviceID" />
+        <PropertyRef Name="areaCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="webpages_UsersInRoles">
+    <End Role="webpages_Roles" Type="MoversDBModel.webpages_Roles" Multiplicity="*" />
+    <End Role="UserProfile" Type="MoversDBModel.UserProfile" Multiplicity="*" />
+  </Association>
+</Schema>

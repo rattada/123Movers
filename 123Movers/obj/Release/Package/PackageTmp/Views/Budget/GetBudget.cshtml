@@ -20,7 +20,7 @@
         <h2>Current Budgets</h2>
         <div class="row">
             <div class="col-md-12">
-                <p>@Html.ActionLink("Add Budget", "AddBudget", "Budget", new { id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
+                <p>@Html.ActionLink("Add Budget", "AddBudget", "Budget",  new { companyid = @Model._companyInfo.CompanyId, companyName = @Model._companyInfo.CompanyName, ax = @Model._companyInfo.AX, contactperson = @Model._companyInfo.ContactPerson, suspended = @Model._companyInfo.Suspended, isactive = @Model._companyInfo.IsActive }, new { id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
             </div>
         </div>
         <p class="clearfix"></p>

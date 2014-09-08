@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using _123Movers.Entity;
 
 namespace _123Movers.DataEntities
 {
@@ -12,6 +13,18 @@ namespace _123Movers.DataEntities
     {
         public static DataTable GetAvailableZipCodes(int? companyId, int? serviceId, int? areaCode)
         {
+            //using (MoversDBEntities db = new MoversDBEntities())
+            //{
+            //    var _zipCodes = (from z in db.Zip
+            //                     let zipcode = db.CompanyOriginZipCodes.Where(oz => oz.companyID == companyId && oz.serviceID == serviceId && oz.originAreaCode == areaCode.ToString()).Select(oz => oz.originZipCode).ToList()
+            //                    where z.areaCode == areaCode.ToString() && z.pref == "p" && !zipcode.Contains(z.zipCode)
+            //                    select new { 
+            //                        z.state,
+            //                        z.cityName,
+            //                        z.zipCode
+            //                    }).Distinct().ToList();
+               
+            //}
             using (SqlConnection dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand();
