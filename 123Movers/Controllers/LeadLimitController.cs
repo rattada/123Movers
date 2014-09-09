@@ -44,7 +44,7 @@ namespace _123Movers.Controllers
 
                 foreach (var ld in leadlimit)
                 {
-                   // ld[0].CompanyId = companyID;
+                   ld[0].CompanyId = CompanyId;
                     BusinessLayer.AddCompanyLeadLimit(ld[0]);
                 }
                 ModelState.Clear();

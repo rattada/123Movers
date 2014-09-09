@@ -4,12 +4,12 @@
         <name>123Movers</name>
     </assembly>
     <members>
-        <member name="M:_123Movers.Controllers.BaseController.SaveSeviceId(System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.BaseController.SaveCompanyId(System.Nullable{System.Int32})">
             <summary>
             Store Service Type
             </summary>
         </member>
-        <member name="M:_123Movers.Controllers.BaseController.RetrieveCurrentServiceId">
+        <member name="M:_123Movers.Controllers.BaseController.RetrieveCurrentCompanyId">
             <summary>
             Get Service from Cookie
             </summary>
@@ -43,42 +43,42 @@
             Convert Datat Table to Select List
             </summary>
         </member>
-        <member name="M:_123Movers.Controllers.AreaCodeController.GetAvailableAreas(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.AreaCodeController.GetAvailableAreas(System.Nullable{System.Int32})">
             <summary>
             Get Available Areas for compnay by service
             </summary>
             <param name="serviceId">Type of Service</param>
             <returns>List of Area Codes</returns>
         </member>
-        <member name="M:_123Movers.Controllers.AreaCodeController.GetCompanyAreasWithPrices(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.AreaCodeController.GetCompanyAreasWithPrices(System.Nullable{System.Int32})">
             <summary>
             Get Prices Per Lead
             </summary>
             <param name="serviceId">Type of Service</param>
             <returns>Area Codes With Prices</returns>
         </member>
-        <member name="M:_123Movers.Controllers.AreaCodeController.AddAreaCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+        <member name="M:_123Movers.Controllers.AreaCodeController.AddAreaCodes(System.Nullable{System.Int32},System.String)">
             <summary>
             Add Area Codes to Active Budget
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <param name="areaCodes">Selected Area Codes</param>
         </member>
-        <member name="M:_123Movers.Controllers.AreaCodeController.DeleteAreaCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+        <member name="M:_123Movers.Controllers.AreaCodeController.DeleteAreaCodes(System.Nullable{System.Int32},System.String)">
             <summary>
             Delete Area Codes from Active Budget
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <param name="areaCodes">Selected Area Codes</param>
         </member>
-        <member name="M:_123Movers.Controllers.AreaCodeController.AddCompanyPricePerLead(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+        <member name="M:_123Movers.Controllers.AreaCodeController.AddCompanyPricePerLead(System.Nullable{System.Int32},System.String)">
             <summary>
             Add price per lead to budget
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <param name="areaCodes">Selected Area Codes</param>
         </member>
-        <member name="M:_123Movers.Controllers.BudgetController.GetFilterResult(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.BudgetController.GetFilterResult(System.Nullable{System.Int32})">
             <summary>
             Get Filter information
             </summary>
@@ -91,13 +91,13 @@
             </summary>
             <param name="budget">Budget Model</param>
         </member>
-        <member name="M:_123Movers.Controllers.BudgetController.RenewBudget(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.BudgetController.RenewBudget(System.Nullable{System.Int32})">
             <summary>
             Renewal the budget
             </summary>
             <param name="ServiceId">Type of Service</param>
         </member>
-        <member name="M:_123Movers.Controllers.DestinationAreaCodeController.GetCompanyDestAreas(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.DestinationAreaCodeController.GetCompanyDestAreas(System.Nullable{System.Int32})">
             <summary>
             Get Company Destination Area Codes by service
             </summary>
@@ -111,21 +111,21 @@
             <param name="serviceId">Type of Service(Local, Long and Both)</param>
             <returns></returns>
         </member>
-        <member name="M:_123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+        <member name="M:_123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(System.Nullable{System.Int32},System.String)">
             <summary>
             Add Selected Area Codes to company by Service
             </summary>
             <param name="serviceId">Type of Service(Local, Long and Both)</param>
             <param name="areaCodes">Selected Area Codes</param>
         </member>
-        <member name="M:_123Movers.Controllers.DestinationAreaCodeController.DeleteCompanyDestAreaCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+        <member name="M:_123Movers.Controllers.DestinationAreaCodeController.DeleteCompanyDestAreaCodes(System.Nullable{System.Int32},System.String)">
             <summary>
             Delete Selected Area Codes to company by Service
             </summary>
             <param name="serviceId">Type of Service(Local, Long and Both)</param>
             <param name="areaCodes">Selected Area Codes</param>
         </member>
-        <member name="M:_123Movers.Controllers.DestinationAreaCodeController.Turn_ON_OFF_CompanyDestAreaCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+        <member name="M:_123Movers.Controllers.DestinationAreaCodeController.Turn_ON_OFF_CompanyDestAreaCodes(System.Nullable{System.Int32},System.String)">
             <summary>
             Turn on/off the filter 
             </summary>
@@ -213,7 +213,7 @@
             </summary>
             <param name="model">Move Distance Model</param>
         </member>
-        <member name="M:_123Movers.Controllers.MoveDistanceController.GetMoveDistance(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.MoveDistanceController.GetMoveDistance(System.Nullable{System.Int32})">
             <summary>
             Get the Move Distance information for company by service
             </summary>
@@ -231,7 +231,7 @@
             </summary>
             <param name="model">Move Weight Model</param>
         </member>
-        <member name="M:_123Movers.Controllers.MoveWeightController.GetMoveWeight(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.MoveWeightController.GetMoveWeight(System.Nullable{System.Int32})">
             <summary>
             Get Move Weight Information for company by service
             </summary>
@@ -243,7 +243,7 @@
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
-        <member name="M:_123Movers.Controllers.OriginZipCodeController.GetAreaCodeZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.OriginZipCodeController.GetAreaCodeZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Get Existing Origin Zip Codes for Service by Area Code
             </summary>
@@ -251,7 +251,7 @@
             <param name="areaCode">Selected Area Code</param>
             <retun>List of Origin Zip Codes</retun>
         </member>
-        <member name="M:_123Movers.Controllers.OriginZipCodeController.GetAvailableZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.OriginZipCodeController.GetAvailableZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Get All Origin Zip Codes for Service by Area Code
             </summary>
@@ -259,7 +259,7 @@
             <param name="areaCode">Selected Area Code</param>
             <retun>List of Origin Zip Codes</retun>
         </member>
-        <member name="M:_123Movers.Controllers.OriginZipCodeController.AddCompanyAreaZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+        <member name="M:_123Movers.Controllers.OriginZipCodeController.AddCompanyAreaZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
             <summary>
             Add Origin Zip codes to company by service and area code
             </summary>
@@ -267,7 +267,7 @@
             <param name="areaCode">Origin Area Code</param>
             <param name="zipCodes">Selected Zip Codes</param>
         </member>
-        <member name="M:_123Movers.Controllers.OriginZipCodeController.DeleteCompanyAreaZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+        <member name="M:_123Movers.Controllers.OriginZipCodeController.DeleteCompanyAreaZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
             <summary>
             Delete Origin Zip codes to company by service and area code
             </summary>
@@ -281,7 +281,7 @@
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
-        <member name="M:_123Movers.Controllers.RadiusController.AddZipCodesByRadius(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Decimal,System.String)">
+        <member name="M:_123Movers.Controllers.RadiusController.AddZipCodesByRadius(System.Nullable{System.Int32},System.Int32,System.Decimal,System.String)">
             <summary>
             Add the Zip Codes to Company
             </summary>
@@ -292,13 +292,13 @@
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.GetAvailSpcfcOriginDestAreas(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.GetAvailSpcfcOriginDestAreas(System.Nullable{System.Int32})">
             <summary>
             Get All Specific Origin Destination Area Codes
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
-        <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.GetCompanySpcfcOriginDestAreas(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32)">
+        <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.GetCompanySpcfcOriginDestAreas(System.Nullable{System.Int32},System.Int32)">
             <summary>
             Get Existing Specific Origin Destination Area Codes
             </summary>
@@ -307,13 +307,13 @@
             <param name="originAreaCode"></param>
             <returns></returns>
         </member>
-        <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.SpecificOriginAreaCodes(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.SpecificOriginAreaCodes(System.Nullable{System.Int32})">
             <summary>
             Display the Specific Origin Area Codes by Service
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
-        <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.AddCompanySpcfcOriginDestAreaCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.String)">
+        <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.AddCompanySpcfcOriginDestAreaCodes(System.Nullable{System.Int32},System.Int32,System.String)">
             <summary>
             Add Specific Origin Destination Area Codes to Company
             </summary>
@@ -321,7 +321,7 @@
             <param name="spcfcareacode">Specific Origin Area Code</param>
             <param name="areaCodes">Selected Destincation Area Codes</param>
         </member>
-        <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.DeleteCompanySpcfcOriginDestAreaCodes(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.String)">
+        <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.DeleteCompanySpcfcOriginDestAreaCodes(System.Nullable{System.Int32},System.Int32,System.String)">
             <summary>
             Delete Specific Origin Destination Area Codes from Company
             </summary>
@@ -329,14 +329,14 @@
             <param name="spcfcareacode">Specific Origin Area Code</param>
             <param name="areaCodes">Selected Destincation Area Codes</param>
         </member>
-        <member name="M:_123Movers.Controllers.SpecificStatesController.GetAvailStates(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.SpecificStatesController.GetAvailStates(System.Nullable{System.Int32})">
             <summary>
             Get All States for company by service
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <returns>List of States</returns>
         </member>
-        <member name="M:_123Movers.Controllers.SpecificStatesController.GetCompanySpcfcOriginDestStates(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.Boolean)">
+        <member name="M:_123Movers.Controllers.SpecificStatesController.GetCompanySpcfcOriginDestStates(System.Nullable{System.Int32},System.String,System.Boolean)">
             <summary>
             Get Existing States for company by service
             </summary>
@@ -349,7 +349,7 @@
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
-        <member name="M:_123Movers.Controllers.SpecificStatesController.AddCompanySpcfcOriginDeststates(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+        <member name="M:_123Movers.Controllers.SpecificStatesController.AddCompanySpcfcOriginDeststates(System.Nullable{System.Int32},System.String,System.String)">
             <summary>
             Add Specific States to Company
             </summary>
@@ -357,7 +357,7 @@
             <param name="originState">Specific State</param>
             <param name="destStates">Selected Destination States</param>
         </member>
-        <member name="M:_123Movers.Controllers.SpecificStatesController.DeleteCompanySpcfcOriginDeststates(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+        <member name="M:_123Movers.Controllers.SpecificStatesController.DeleteCompanySpcfcOriginDeststates(System.Nullable{System.Int32},System.String,System.String)">
             <summary>
             Delete Specific States to Company
             </summary>

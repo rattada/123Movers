@@ -18,9 +18,9 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <returns>Updated Filter Information</returns>
-        public JsonResult GetFilterResult(int? companyId, int? serviceId)
+        public JsonResult GetFilterResult(int? serviceId)
         {
-            return Json(BusinessLayer.GetFilterResult(companyId, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetFilterResult(CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
         
        
@@ -74,23 +74,6 @@ namespace _123Movers.Controllers
         [HttpGet]
         public ActionResult EditBudget(int? id)
         {
-
-            //BudgetModel budget = new BudgetModel();
-            //ViewBag.Terms = GetTerms();
-            //ViewBag.Services = GetServices();
-
-            //string Recurring = (IsRecurring) ? (IsRequireNoticeToCharge) ? Constants.RecurringWithNotice : Constants.Recurring : Constants.NonRecurring;
-            //budget.TotalBudget = TotalBudget;
-            //budget.IsRecurring = IsRecurring;
-            //budget.IsRequireNoticeToCharge = IsRequireNoticeToCharge;
-            //budget.ServiceId = serviceId == null ? (int)ServiceType.Both : serviceId;
-            //budget.MinDaysToCharge = minDaysToCharge;
-            //budget.AgreementNumber = agnumber;
-            //budget.TermType = Recurring;
-
-
-            //SaveSeviceId(budget.ServiceId);
-
             ViewBag.Terms = GetTerms();
             ViewBag.Services = GetServices();
 
@@ -99,34 +82,10 @@ namespace _123Movers.Controllers
             budget.TermType = Recurring;
             budget.ServiceId = budget.ServiceId == null ? (int)ServiceType.Both : budget.ServiceId;
 
-            budget._companyInfo = RetrieveCurrentCompanyInfo(companyId);
+            budget._companyInfo = CompanyInfo;
 
             return View(budget);
         }
-
-        //[HttpGet]
-        //public ActionResult EditBudget(BudgetModel budget)
-        //{
-
-        //    //BudgetModel budget = new BudgetModel();
-        //    ViewBag.Terms = GetTerms();
-        //    ViewBag.Services = GetServices();
-
-        //    Session["CurrentCompanyInfo"] = null;
-
-
-        //    string Recurring = ((bool)budget.IsRecurring) ? ((bool)budget.IsRequireNoticeToCharge) ? Constants.RecurringWithNotice : Constants.Recurring : Constants.NonRecurring;
-        //    budget.ServiceId = budget.ServiceId == null ? (int)ServiceType.Both : budget.ServiceId;
-        //    budget.TermType = Recurring;
-
-
-        //    SaveSeviceId(budget.ServiceId);
-
-        //    budget._companyInfo = CompanyInfo;
-        //    budget.CompanyId = budget._companyInfo.CompanyId;
-
-        //    return View(budget);
-        //}
 
         [HttpPost]
         public ActionResult EditBudget(BudgetModel budget)
@@ -138,14 +97,12 @@ namespace _123Movers.Controllers
             try
             {
                 budget._companyInfo = RetrieveCurrentCompanyInfo(budget.CompanyId);
-                //budget.CompanyId = budget._companyInfo.CompanyId;
                 budget.BudgetAction = Constants.RENEWL_BUDGET;
                 budget.Type = Constants.EDIT_BUDGET;
-                //budget.ServiceId = ServiceId;
 
                 BusinessLayer.SaveBudget(budget);
 
-                return RedirectToAction("GetBudget", budget._companyInfo);
+                return RedirectToAction("GetBudget", "Home", budget._companyInfo);
             }
             catch (Exception ex)
             {
@@ -160,7 +117,7 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="ServiceId">Type of Service</param>
         [HttpPost]
-        public JsonResult RenewBudget(int? CompanyId, int? ServiceId)
+        public JsonResult RenewBudget(int? ServiceId)
         {
             JsonResult result;
             try

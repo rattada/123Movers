@@ -1,16 +1,14 @@
 ﻿$(function () {
-    var companyID = $("#tdCompanyID").text().split(":");
-    companyID = companyID[1];
     $('.TitleStyle').text('Specific AreaCodes');
     var serviceId = $('#ddlServiceID').val();
     if (serviceId != '') {
-        GetAvailableAreas(companyID,serviceId);
+        GetAvailableAreas(serviceId);
     } else { $('#ddlareaCode').attr("disabled", true); }
-    function GetAvailableAreas(companyID,serviceId) {
+    function GetAvailableAreas(serviceId) {
         $.ajax({
             url: '/SpecificOriginAreaCodes/GetAvailSpcfcOriginDestAreas',
             type: "GET",
-            data: { 'companyID': companyID, 'serviceId': serviceId },
+            data: {  'serviceId': serviceId },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -47,7 +45,7 @@
         $.ajax({
             url: '/SpecificOriginAreaCodes/GetCompanySpcfcOriginDestAreas',
             type: "GET",
-            data: { 'companyID': companyID, 'serviceId': serviceId, "spcfcareacode": spfcareacode, "originAreaCode": false },
+            data: {  'serviceId': serviceId, "spcfcareacode": spfcareacode, "originAreaCode": false },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -117,7 +115,7 @@
         $.ajax({
             url: '/SpecificOriginAreaCodes/AddCompanySpcfcOriginDestAreaCodes',
             type: "POST",
-            data: { 'companyID': companyID, 'serviceId': serviceId, "spcfcareacode": originAreaCode, 'areaCodes': data_to_send },
+            data: {'serviceId': serviceId, "spcfcareacode": originAreaCode, 'areaCodes': data_to_send },
             success: function (data) {
                 GetSelectedAreas(serviceId, originAreaCode);
                 alert("Area Code(s) added Successfully");
@@ -152,7 +150,7 @@
         $.ajax({
             url: '/SpecificOriginAreaCodes/DeleteCompanySpcfcOriginDestAreaCodes',
             type: "POST",
-            data: { 'companyID': companyID, 'serviceId': serviceId, "spcfcareacode": originAreaCode, areaCodes: data_to_send },
+            data: { 'serviceId': serviceId, "spcfcareacode": originAreaCode, areaCodes: data_to_send },
             success: function (data) {
                 GetSelectedAreas(serviceId, originAreaCode);
                 alert("Area Code(s) removed Successfully");

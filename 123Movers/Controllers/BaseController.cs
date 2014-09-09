@@ -43,6 +43,7 @@ namespace _123Movers.Controllers
             };
             _companyId = id;
 
+            cookie.Expires.AddDays(365);
             Response.Cookies.Add(cookie);
         }
         /// <summary>
@@ -50,20 +51,20 @@ namespace _123Movers.Controllers
         /// </summary>
         protected string RetrieveCurrentCompanyId()
         {
-            var companyCookieVal = _companyId.ToString();
+            var companyIdCookieVal = _companyId.ToString();
 
             if (_companyId == null)
             {
 
                 if (Request.Cookies.AllKeys.Contains("CompanyId"))
                 {
-                    companyCookieVal = Request.Cookies["CompanyId"].Value;
+                    companyIdCookieVal = Request.Cookies["CompanyId"].Value;
                 }
 
-                _companyId = int.Parse(companyCookieVal);
+                _companyId = int.Parse(companyIdCookieVal);
             }
 
-            return companyCookieVal;
+            return companyIdCookieVal;
         }
 
 
@@ -115,6 +116,7 @@ namespace _123Movers.Controllers
             }
             return companyCookieVal;
         }
+
         /// <summary>
         /// Generate Term Types (Recurring, Non Recurring and Recurring with Notice)
         /// </summary>

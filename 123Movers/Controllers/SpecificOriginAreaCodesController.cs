@@ -18,9 +18,9 @@ namespace _123Movers.Controllers
         /// Get All Specific Origin Destination Area Codes
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
-       public JsonResult GetAvailSpcfcOriginDestAreas(int? companyID, int? serviceId)
+       public JsonResult GetAvailSpcfcOriginDestAreas(int? serviceId)
         {
-            return Json(BusinessLayer.GetAvailSpcfcOriginDestAreas(companyID, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetAvailSpcfcOriginDestAreas(CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -30,16 +30,16 @@ namespace _123Movers.Controllers
         /// <param name="spcfcareacode"> Selected Area Code</param>
         /// <param name="originAreaCode"></param>
         /// <returns></returns>
-       public JsonResult GetCompanySpcfcOriginDestAreas(int? companyID, int? serviceId, int spcfcareacode)
+       public JsonResult GetCompanySpcfcOriginDestAreas( int? serviceId, int spcfcareacode)
         {
-            return Json(BusinessLayer.GetCompanySpcfcOriginDestAreas(companyID, serviceId, spcfcareacode), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanySpcfcOriginDestAreas(CompanyId, serviceId, spcfcareacode), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
         /// Display the Specific Origin Area Codes by Service
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
-       public ActionResult SpecificOriginAreaCodes(int? companyID, int? serviceId)
+       public ActionResult SpecificOriginAreaCodes( int? serviceId)
         {
             var Services = GetServices(serviceId);
             if (Services.Count > 2)
@@ -48,7 +48,7 @@ namespace _123Movers.Controllers
                 ViewBag.Services = Services;
 
             SpecificOriginAreaCode spcfcOriginAreaCodes = new SpecificOriginAreaCode();
-            spcfcOriginAreaCodes._companyInfo = RetrieveCurrentCompanyInfo(companyID);
+            spcfcOriginAreaCodes._companyInfo = RetrieveCurrentCompanyInfo(CompanyId);
             spcfcOriginAreaCodes.ServiceId = serviceId == null ? (int)ServiceType.Local : serviceId; ;
             return View(spcfcOriginAreaCodes);
         }
@@ -59,12 +59,12 @@ namespace _123Movers.Controllers
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <param name="spcfcareacode">Specific Origin Area Code</param>
         /// <param name="areaCodes">Selected Destincation Area Codes</param>
-       public JsonResult AddCompanySpcfcOriginDestAreaCodes(int? companyID, int? serviceId, int spcfcareacode, string areaCodes)
+       public JsonResult AddCompanySpcfcOriginDestAreaCodes( int? serviceId, int spcfcareacode, string areaCodes)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.AddCompanySpcfcOriginAreaCodes(companyID, serviceId, spcfcareacode, areaCodes.StrReplace());
+                BusinessLayer.AddCompanySpcfcOriginAreaCodes(CompanyId, serviceId, spcfcareacode, areaCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -82,12 +82,12 @@ namespace _123Movers.Controllers
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <param name="spcfcareacode">Specific Origin Area Code</param>
         /// <param name="areaCodes">Selected Destincation Area Codes</param>
-       public JsonResult DeleteCompanySpcfcOriginDestAreaCodes(int? companyID, int? serviceId, int spcfcareacode, string areaCodes)
+       public JsonResult DeleteCompanySpcfcOriginDestAreaCodes(int? serviceId, int spcfcareacode, string areaCodes)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.DeleteCompanySpcfcOriginDestAreaCodes(companyID, serviceId, spcfcareacode, areaCodes.StrReplace());
+                BusinessLayer.DeleteCompanySpcfcOriginDestAreaCodes(CompanyId, serviceId, spcfcareacode, areaCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

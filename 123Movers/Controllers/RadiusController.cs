@@ -41,12 +41,12 @@ namespace _123Movers.Controllers
         /// <param name="type"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult AddZipCodesByRadius(int? companyID, int? service, int zipcode, decimal radius, string category)
+        public JsonResult AddZipCodesByRadius(int? service, int zipcode, decimal radius, string category)
         {
             JsonResult result;
             try
             {
-                BusinessLayer.AddZipCodesByRadius(companyID, service, zipcode, radius, category);
+                BusinessLayer.AddZipCodesByRadius(CompanyId, service, zipcode, radius, category);
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -58,15 +58,15 @@ namespace _123Movers.Controllers
             return result;
         }
 
-        public JsonResult GetZipCodesByRadius(int companyID, int? service, int zipcode, decimal radius, string category)
+        public JsonResult GetZipCodesByRadius(int? service, int zipcode, decimal radius, string category)
         {
-            return Json(BusinessLayer.GetZipCodesByRadius(companyID, service, zipcode, radius, category), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetZipCodesByRadius(CompanyId, service, zipcode, radius, category), JsonRequestBehavior.AllowGet);
         }
-        public JsonResult AddAreaCodes(int? companyID, int? ServiceId, string areaCodes)
+        public JsonResult AddAreaCodes( int? ServiceId, string areaCodes)
         {
             JsonResult result;
             try {
-                BusinessLayer.AddCompanyAreaCodes(companyID, ServiceId, areaCodes.StrReplace());
+                BusinessLayer.AddCompanyAreaCodes( CompanyId, ServiceId, areaCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

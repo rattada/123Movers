@@ -22,9 +22,9 @@ namespace _123Movers.Controllers
         public ActionResult MoveDistance(int? companyID, int? serviceId)
         {
             if (GetServices(serviceId).Count > 2)
-                ViewBag.Services =GetServices(serviceId).Take(2);
+                ViewBag.Services = GetServices(serviceId).Take(2);
             else
-                ViewBag.Services =GetServices(serviceId);
+                ViewBag.Services = GetServices(serviceId);
 
             MoveDistanceModel model = BusinessLayer.GetCompanyMoveDistance(companyID, serviceId);
             model._companyInfo = RetrieveCurrentCompanyInfo(companyID);
@@ -61,10 +61,12 @@ namespace _123Movers.Controllers
         [HttpPost]
         public JsonResult MoveDistance(MoveDistanceModel model)
         {
+            model.CompanyId = CompanyId;
             JsonResult result = Json(new { success = false }, JsonRequestBehavior.AllowGet);
             ViewBag.Services = GetServices().Take(2);
             try
             {
+                model.CompanyId = CompanyId;
                 if (ModelState.IsValid)
                 {
                     bool success = BusinessLayer.SaveMoveDistance(model);
@@ -87,9 +89,9 @@ namespace _123Movers.Controllers
         /// Get the Move Distance information for company by service
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
-        public JsonResult GetMoveDistance(int? companyID, int? serviceId)
+        public JsonResult GetMoveDistance( int? serviceId)
         {
-            return Json(BusinessLayer.GetCompanyMoveDistance(companyID, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanyMoveDistance(CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
 
     }
