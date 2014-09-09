@@ -97,7 +97,7 @@ namespace _123Movers.Controllers
             try
             {
                 budget._companyInfo = RetrieveCurrentCompanyInfo(CompanyId);
-                budget.BudgetAction = Constants.RENEWL_BUDGET;
+                budget.BudgetAction = Constants.NEW_BUDGET;
                 budget.Type = Constants.EDIT_BUDGET;
 
                 BusinessLayer.SaveBudget(budget);

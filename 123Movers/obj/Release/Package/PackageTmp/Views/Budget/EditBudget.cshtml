@@ -15,7 +15,8 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    @Html.HiddenFor(mbox => mbox.CompanyId)
+    @Html.HiddenFor(m => m.CompanyId)
+    @Html.HiddenFor(m => m.ServiceId)
 
     <p class="clearfix"></p>
     <div class="row">
