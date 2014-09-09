@@ -48,29 +48,6 @@ namespace _123Movers.DataEntities
                 }
                 db.SaveChanges();
             }
-            //int i = 0;
-
-            //using (SqlConnection dbCon = ConnectToDb())
-            //{
-            //    _cmd = new SqlCommand();
-            //    _cmd.Connection = dbCon;
-            //    _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            //    _cmd.CommandText = Constants.SP_COMPANY_DEST_AREACODE_ADD;
-
-            //    SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-            //    SqlParameter paramService = new SqlParameter("serviceId", serviceId);
-            //    SqlParameter paramAreaCode = new SqlParameter("areaCodes", areaCodes);
-
-
-            //    _cmd.Parameters.Add(paramCompanyId);
-            //    _cmd.Parameters.Add(paramService);
-            //    _cmd.Parameters.Add(paramAreaCode);
-
-
-            //    i = _cmd.ExecuteNonQuery();
-
-
-            //}
             return true;
         }
 
@@ -91,27 +68,6 @@ namespace _123Movers.DataEntities
                 }
                 db.SaveChanges();
             }
-            //int i = 0;
-            //using (SqlConnection dbCon = ConnectToDb())
-            //{
-            //    _cmd = new SqlCommand();
-            //    _cmd.Connection = dbCon;
-            //    _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            //    _cmd.CommandText = Constants.SP_COMPANY_DEST_AREACODE_DELETE;
-
-            //    SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-            //    SqlParameter paramService = new SqlParameter("serviceId", serviceId);
-            //    SqlParameter paramAreaCode = new SqlParameter("areaCodes", areaCodes);
-
-            //    _cmd.Parameters.Add(paramCompanyId);
-            //    _cmd.Parameters.Add(paramService);
-            //    _cmd.Parameters.Add(paramAreaCode);
-
-
-            //    i = _cmd.ExecuteNonQuery();
-
-
-            //}
             return true;
         }
 
@@ -125,7 +81,6 @@ namespace _123Movers.DataEntities
                 foreach (var areacode in _allAreaCodes)
                 {
                     areacode.isDestinationAreaCode = 0;
-                    //db.ObjectStateManager.ChangeObjectState(areacode, EntityState.Modified);
                     db.Entry(areacode).State = EntityState.Modified;
                 }
                 db.SaveChanges();
@@ -135,35 +90,11 @@ namespace _123Movers.DataEntities
                     var _areaCode = _allAreaCodes.First(a => a.areaCode == Convert.ToInt16(areaCode));
 
                     _areaCode.isDestinationAreaCode = 1;
-                    //db.ObjectStateManager.ChangeObjectState(_areaCode, EntityState.Modified);
                     db.Entry(_areaCode).State = EntityState.Modified;
                 }
                 db.SaveChanges();
             }
 
-            //int i = 0;
-
-            //using (SqlConnection dbCon = ConnectToDb())
-            //{
-            //    _cmd = new SqlCommand();
-            //    _cmd.Connection = dbCon;
-            //    _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            //    _cmd.CommandText = Constants.SP_COMPANY_DEST_AREACODE_TURN_ON_OFF;
-
-            //    SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-            //    SqlParameter paramService = new SqlParameter("serviceId", serviceId);
-            //    SqlParameter paramAreaCode = new SqlParameter("areaCodes", areaCodes);
-
-
-            //    _cmd.Parameters.Add(paramCompanyId);
-            //    _cmd.Parameters.Add(paramService);
-            //    _cmd.Parameters.Add(paramAreaCode);
-
-
-            //    i = _cmd.ExecuteNonQuery();
-
-
-            //}
             return true;
         }
     }

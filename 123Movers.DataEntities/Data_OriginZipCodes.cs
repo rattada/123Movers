@@ -30,7 +30,7 @@ namespace _123Movers.DataEntities
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_GET_COMPANY_AVAILABLE_AREA_ORIGIN_ZIPCODES;//"usp_availableAreacoded";
+                _cmd.CommandText = Constants.SP_GET_COMPANY_AVAILABLE_AREA_ORIGIN_ZIPCODES;
                 if (serviceId == null)
                 {
                     serviceId = 1009;
@@ -59,7 +59,7 @@ namespace _123Movers.DataEntities
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_GET_COMPANY_AREA_ORIGIN_ZIPCODES; //"usp_availableAreacoded";
+                _cmd.CommandText = Constants.SP_GET_COMPANY_AREA_ORIGIN_ZIPCODES; 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
                 SqlParameter paramAreaCode = new SqlParameter("areaCode", areaCode);

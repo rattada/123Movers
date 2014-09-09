@@ -139,7 +139,7 @@ namespace _123Movers.DataEntities
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                _cmd.CommandText = Constants.SP_GET_COMPANY_AVAILABLE_AREADEST_ZIPCODES; //"usp_availableAreacoded";
+                _cmd.CommandText = Constants.SP_GET_COMPANY_AVAILABLE_AREADEST_ZIPCODES;
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());

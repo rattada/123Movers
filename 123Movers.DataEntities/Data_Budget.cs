@@ -61,7 +61,7 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramServices);
                 _cmd.Parameters.Add(paramType);
 
-              int i=  _cmd.ExecuteNonQuery();
+               _cmd.ExecuteNonQuery();
             }
 
         }

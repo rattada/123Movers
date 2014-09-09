@@ -67,21 +67,14 @@ namespace _123Movers.Models
             #region Destination AreaCode Stored Procedures
 
             public static readonly string SP_GET_COMPANY_DEST_AREACODE = "usp_GetCompanyDestinationAreacode";
-            //public static readonly string SP_COMPANY_DEST_AREACODE_ADD = "usp_AddCompanyDestAreaCodes";
-            //public static readonly string SP_COMPANY_DEST_AREACODE_DELETE = "usp_DeleteCompanyDestAreaCodes";
-            //public static readonly string SP_COMPANY_DEST_AREACODE_TURN_ON_OFF = "usp_DestinationAreaFilterOnOff";
 
             #endregion
 
 
             #region Budget Stored Procedures
 
-            //public static readonly string SP_GET_COMPANY_BUDGET = "usp_GetCompanyBudget";
             public static readonly string SP_SAVE_BUDGET = "usp_SaveBudget";
-            public static readonly string SP_GET_AREACODES_STATES = "usp_getAreaCodesStates";
             public static readonly string SP_GET_FILTER_RESULT = "usp_GetFiltersInfo";
-            //public static readonly string SP_RENEWAL_BUDGET = "usp_RenewalBudget";
-            public static readonly string SP_GET_BUDGET_FILTER = "usp_GetBudgetFilterInfo";
 
             #endregion
 
@@ -101,6 +94,7 @@ namespace _123Movers.Models
             public static readonly string SP_DELETE_COMPANY_AREADEST_ZIPCODES = "usp_DeleteCompanyAreasDestZipCodes";
             public static readonly string SP_GET_COMPANY_AVAILABLE_AREADEST_ZIPCODES = "usp_GetCompanyAvailableAreasDestinationZipCodes";
             public static readonly string SP_GET_COMPANY_AREADEST_ZIPCODES = "usp_GetCompanyAreasDestinationZipCodes";
+            public static readonly string SP_GET_AREACODES_STATES = "usp_getAreaCodesStates";
 
             #endregion
 
@@ -109,16 +103,6 @@ namespace _123Movers.Models
             public static readonly string SP_ADD_COMPANY_LEADLIMIT = "usp_AddCompanyLeadLimit";
             #endregion
 
-            #region MoveDistance Stored Procedures
-            //public static readonly string SP_GET_COMPANY_MOVEDISTANCE = "usp_GetCompanyMoveDistance";
-            //public static readonly string SP_ADD_COMPANY_MOVEDISTANCE = "usp_SaveMoveDistance";
-            #endregion
-
-            #region MoveWeight Stored Procedures
-            //public static readonly string SP_GET_MOVESIZE_LOOKUP = "usp_GetMoveSizeLookup";
-            //public static readonly string SP_ADD_COMPANY_MOVEWEIGHT = "usp_SaveMoveWeight";
-
-            #endregion
 
             #region Notifications Stored Procedures
 
