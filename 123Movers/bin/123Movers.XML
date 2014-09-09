@@ -85,13 +85,6 @@
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <returns>Updated Filter Information</returns>
         </member>
-        <member name="M:_123Movers.Controllers.BudgetController.GetBudget(_123Movers.Models.CompanyModel)">
-            <summary>
-            Get All budgets for company
-            </summary>
-            <param name="Company">Company Details</param>
-            <returns>List Of BudgetModel</returns>
-        </member>
         <member name="M:_123Movers.Controllers.BudgetController.AddBudget(_123Movers.Models.BudgetModel)">
             <summary>
             Add new budget to company
@@ -188,6 +181,13 @@
             </summary>
             <param name="search">Search Model</param>
             <returns>List of Companies</returns>
+        </member>
+        <member name="M:_123Movers.Controllers.HomeController.GetBudget(_123Movers.Models.CompanyModel)">
+            <summary>
+            Get All budgets for company
+            </summary>
+            <param name="Company">Company Details</param>
+            <returns>List Of BudgetModel</returns>
         </member>
         <member name="M:_123Movers.Controllers.LeadLimitController.LeadLimit(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>

@@ -23,29 +23,7 @@ namespace _123Movers.Controllers
             return Json(BusinessLayer.GetFilterResult(companyId, serviceId), JsonRequestBehavior.AllowGet);
         }
         
-        /// <summary>
-        /// Get All budgets for company
-        /// </summary>
-        /// <param name="Company">Company Details</param>
-        /// <returns>List Of BudgetModel</returns>
-        [HttpGet]
-        public ActionResult GetBudget(CompanyModel Company)
-        {
-            BudgetModel budget = new BudgetModel();
-
-            SaveCompanyInfo(Company);
-            _companyId = Company.CompanyId;
-
-            var _currentBudgets = BusinessLayer.GetCureentBudgets(CompanyInfo.CompanyId);
-            var _pastBudgets = BusinessLayer.GetPastBudgets(CompanyInfo.CompanyId);
-
-            budget._currentBudgets = _currentBudgets;
-            budget._pastBudgets = _pastBudgets;
-
-            budget._companyInfo = CompanyInfo;
-
-            return View(budget);
-        }
+       
 
         
         [HttpGet]
@@ -93,7 +71,7 @@ namespace _123Movers.Controllers
         }
         
 
-        //[HttpGet]
+        [HttpGet]
         public ActionResult EditBudget(int? companyId, decimal? TotalBudget, bool IsRecurring, bool IsRequireNoticeToCharge, int? serviceId, string agnumber, int? minDaysToCharge, int? id)
         {
 

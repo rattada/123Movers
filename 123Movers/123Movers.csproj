@@ -362,7 +362,7 @@
     <Content Include="Views\Budget\EditBudget.cshtml" />
     <Content Include="Views\Shared\_CompanyInfo.cshtml" />
     <Content Include="Views\Report\Reports.cshtml" />
-    <Content Include="Views\Budget\GetBudget.cshtml" />
+    <Content Include="Views\Home\GetBudget.cshtml" />
     <Content Include="Views\AreaCode\AreaCodes.cshtml" />
     <Content Include="Views\LeadLimit\LeadLimit.cshtml" />
     <Content Include="Views\OriginZipCode\OriginZipCodes.cshtml" />

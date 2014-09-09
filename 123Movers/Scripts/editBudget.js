@@ -1,5 +1,4 @@
 ﻿$(function () {
-    debugger;
     var companyID = $("#tdCompanyID").text().split(":");
     companyID = companyID[1];
     var ddlservice = $("#services").val();
