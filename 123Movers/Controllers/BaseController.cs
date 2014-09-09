@@ -12,16 +12,10 @@ namespace _123Movers.Controllers
 {
     public class BaseController : Controller
     {
-       // protected int? _serviceId;
-        protected CompanyModel  _companyInfo;
-        public ILog logger;
+        private static ILog logger = LogManager.GetLogger(typeof(DestinationZipCodeController));
+        
         public int? _companyId;
-        public BaseController()
-        {
-            //logger = LogManager.GetLogger(typeof(controller));
-        }
-
-        public int? companyId { get; set; }
+        protected CompanyModel _companyInfo;
         
         public int? CompanyId
         {
@@ -124,10 +118,6 @@ namespace _123Movers.Controllers
         /// <returns> List of Term Types</returns>
         public List<SelectListItem> GetTerms()
         {
-            //var values = Enum.GetValues(typeof(DayOfWeek))
-            //                            .Cast<DayOfWeek>()
-            //                            .Select(d => Tuple.Create(((int)d).ToString(), d.ToString()))
-            //                            .ToList();
 
             var Terms = new List<SelectListItem>();
 
@@ -137,7 +127,6 @@ namespace _123Movers.Controllers
                                                                 Value = p.Value
                                                             }).ToList();
 
-            // var priceNames = ConfigValues.Terms1.Select(p => p.Value).ToList();
             return Terms;
         }
 
@@ -198,7 +187,7 @@ namespace _123Movers.Controllers
                 if (!controllerName.Contains("account") && !controllerName.Contains("home"))
                 {
                     HttpSessionStateBase session = filterContext.HttpContext.Session;
-                    var _company = session["CurrentCompanyInfo"]; //Key 2 should be User or UserName
+                    var _company = session["CurrentCompanyInfo"]; 
                     if (((_company == null) && (!session.IsNewSession)) || (session.IsNewSession))
                     {
                         //send them off to the login page

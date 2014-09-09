@@ -1,14 +1,11 @@
 ﻿$(function () {
-    var companyID = $("#tdCompanyID").text().split(":");
-    companyID = companyID[1];
     $('#ExpiredInfo').dataTable({ "sPaginationType": "full_numbers" });
-
     $('.renewBudget').click(function () {
         var serviceId = $(this).attr('data-id');
         $.ajax({
             url: '/Budget/RenewBudget',
             type: "POST",
-            data: { 'companyID': companyID, 'ServiceId': serviceId },
+            data: { 'ServiceId': serviceId },
             dataType: "json",
             cache: false,
             success: function (data) {

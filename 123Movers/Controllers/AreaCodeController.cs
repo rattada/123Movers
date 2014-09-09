@@ -24,7 +24,7 @@ namespace _123Movers.Controllers
         /// <returns>List of Area Codes</returns>
         public JsonResult GetAvailableAreas(int? serviceId)
         {
-            return Json(BusinessLayer.GetAvailableAreas( CompanyId, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetAvailableAreas(CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// Get Prices Per Lead

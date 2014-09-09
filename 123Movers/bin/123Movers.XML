@@ -132,7 +132,7 @@
             <param name="serviceId">Type of Service(Local, Long and Both)</param>
             <param name="areaCodes">Selected Area Codes</param>
         </member>
-        <member name="M:_123Movers.Controllers.DestinationZipCodeController.DestinationZipCodes(System.Nullable{System.Int32})">
+        <member name="M:_123Movers.Controllers.DestinationZipCodeController.DestinationZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Get Method
             </summary>
@@ -206,12 +206,6 @@
             Display the Existing Information
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
-        </member>
-        <member name="M:_123Movers.Controllers.MoveDistanceController.MoveDistance(_123Movers.Models.MoveDistanceModel)">
-            <summary>
-            Save Modified Data
-            </summary>
-            <param name="model">Move Distance Model</param>
         </member>
         <member name="M:_123Movers.Controllers.MoveDistanceController.GetMoveDistance(System.Nullable{System.Int32})">
             <summary>

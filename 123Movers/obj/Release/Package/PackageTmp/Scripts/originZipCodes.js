@@ -1,6 +1,4 @@
 ﻿$(function () {
-    var companyID = $("#tdCompanyID").text().split(":");
-    companyID = companyID[1];
     $('.TitleStyle').text('Origin Zip Codes');
     var areacode;
     var serviceid;
@@ -9,7 +7,7 @@
         var paramServiceId = $(this).data("serviceid");
         areacode = paramAreaCode;
         serviceid = paramServiceId;
-        GetZipCodes(companyID,areacode, serviceid);
+        GetZipCodes(areacode, serviceid);
     });
     $('#add').click(function (e) {
         e.preventDefault();
@@ -28,7 +26,7 @@
             $.ajax({
                 url: '/OriginZipCode/AddCompanyAreaZipCodes',
                 type: "POST",
-                data: {'companyID':companyID, 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
+                data: {'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
                 success: function (data) {
                     if (data.success === true) {
                         var x = $('#areaZipCode > option').length;
@@ -58,7 +56,7 @@
             $.ajax({
                 url: '/OriginZipCode/DeleteCompanyAreaZipCodes',
                 type: "POST",
-                data: { 'companyID': companyID, 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
+                data: { 'serviceId': serviceid, 'areaCode': areacode, 'zipCodes': zipcodes },
                 success: function (data) {
                     if (data.success === true) {
                         var x = $('#areaZipSelected > option').length;
@@ -81,13 +79,13 @@
         location.reload();
     });
 });
-function GetZipCodes(companyID,areaCode, serviceId) {
+function GetZipCodes(areaCode, serviceId) {
     serviceid = serviceId;
     areacode = areaCode
     $.ajax({
         url: '/OriginZipCode/GetAvailableZipCodes',
         type: "GET",
-        data: { 'companyID': companyID, 'serviceId': serviceId, 'areaCode': areaCode },
+        data: {  'serviceId': serviceId, 'areaCode': areaCode },
         dataType: "json",
         cache: false,
         success: function (data) {
@@ -113,7 +111,7 @@ function GetZipCodes(companyID,areaCode, serviceId) {
     $.ajax({
         url: '/OriginZipCode/GetAreaCodeZipCodes',
         type: "GET",
-        data: { 'companyID': companyID, 'serviceId': serviceId, 'areaCode': areaCode },
+        data: { 'serviceId': serviceId, 'areaCode': areaCode },
         dataType: "json",
         cache: false,
         success: function (data) {

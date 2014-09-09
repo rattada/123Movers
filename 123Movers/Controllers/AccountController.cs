@@ -19,14 +19,8 @@ namespace _123Movers.Controllers
     [InitializeSimpleMembership]
     public class AccountController : BaseController
     {
-        //protected ILog logger = LogManager.GetLogger(typeof(AccountController)); ;
-        public AccountController() 
-        {
-            logger = LogManager.GetLogger(typeof(AccountController)); 
-        }
-        //
-        // GET: /Account/Login
-
+        protected ILog logger = LogManager.GetLogger(typeof(AccountController)); 
+       
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {

@@ -57,7 +57,7 @@ namespace _123Movers.Controllers
 
                     BusinessLayer.SaveBudget(budget);
 
-                    return RedirectToAction("GetBudget", budget._companyInfo);
+                    return RedirectToAction("GetBudget", "Home", budget._companyInfo);
                 }
             }
             catch (Exception ex)
@@ -96,7 +96,7 @@ namespace _123Movers.Controllers
 
             try
             {
-                budget._companyInfo = RetrieveCurrentCompanyInfo(budget.CompanyId);
+                budget._companyInfo = RetrieveCurrentCompanyInfo(CompanyId);
                 budget.BudgetAction = Constants.RENEWL_BUDGET;
                 budget.Type = Constants.EDIT_BUDGET;
 

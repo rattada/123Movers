@@ -1,6 +1,4 @@
 ﻿$(function () {
-    var companyID = $("#tdCompanyID").text().split(":");
-    companyID = companyID[1];
     $('.TitleStyle').text('Radius Information');
     var areaCodes = [];
     var serviceId;
@@ -44,7 +42,6 @@
         }
         var RadiusData =
         {
-            companyID: companyID,
             service: serviceId,
             zipcode: zipcode,
             radius: radius,
@@ -61,7 +58,7 @@
 
         $.ajax({
             url: '/radius/AddAreaCodes',
-            data: { 'companyID': companyID, 'ServiceId': serviceId, 'AreaCodes': jareaCodes },
+            data: { 'ServiceId': serviceId, 'AreaCodes': jareaCodes },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -100,7 +97,6 @@
         debugger;
         var RadiusData =
         {
-            companyID: companyID,
             service: serviceId,
             zipcode: zipcode,
             radius: radius,

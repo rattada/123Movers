@@ -15,6 +15,8 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
+    @Html.HiddenFor(mbox => mbox.CompanyId)
+
     <p class="clearfix"></p>
     <div class="row">
         <div class="col-lg-4">
@@ -75,29 +77,10 @@
     <div class="row">
         <div class="col-md-6">
              @Html.ActionLink("Get Filter Info", "BudgetFilterInfo", "Budget", new {companyId = @Model.CompanyId, serviceId = Service }, new { id = "btnfilter", @class = "btn btn-default clsdisable spnload" })
-            @* <a id="btnfilter"  class="btn btn-default clsdisable spnload" href="#" data-toggle="modal" data-target="#myModal" >Get Filter Info</a>*@
         </div>
         <div class="col-md-6">
             <input type="submit" id="save" class="btn btn-primary pull-right" value="Save Budget" />
             <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary btnSpacing">Back To List</a>
-
         </div>
     </div>
-    @*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" >
-        <div class="modal-dialog-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close cross" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title text-center" id="myModalLabel"><b>Filter Information</b></h4>
-                </div>
-                <div class="modal-body text-center">
-                    <div class="modal-content" id="divfilter" style="overflow-y:auto;">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default cross" data-dismiss="modal" id="close">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>*@
 }

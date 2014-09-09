@@ -1,6 +1,4 @@
 ﻿$(function () {
-    var companyID = $("#tdCompanyID").text().split(":");
-    companyID = companyID[1];
     $(".TitleStyle").text("Lead Limit");
     $('#tblLeadLimit tbody tr').each(function () {
         $(this).find(".classCheckVal:input[type=text]").each(function () {
@@ -51,7 +49,6 @@
                 });
                 LeadLimitData =
                           [{
-                              companyID: companyID,
                               AreaCodes: AreaCodes,
                               ServiceId: ServiceId,
                               LeadFrequency: LeadFrequency,

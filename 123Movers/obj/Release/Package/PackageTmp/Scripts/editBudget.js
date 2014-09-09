@@ -1,13 +1,10 @@
 ﻿$(function () {
-    debugger;
-    var companyID = $("#tdCompanyID").text().split(":");
-    companyID = companyID[1];
     var ddlservice = $("#services").val();
     var ServiceId = (ddlservice == 1009) ? "1009" : (ddlservice == 1000) ? "1000" : null;
     $.ajax({
         url: '/Budget/GetFilterResult',
         type: "GET",
-        data: { 'companyID': companyID,'serviceId': ServiceId },
+        data: { 'serviceId': ServiceId },
         dataType: "json",
         cache: false,
         success: function (data) {

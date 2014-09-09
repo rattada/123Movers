@@ -12,12 +12,7 @@ namespace _123Movers.Controllers
 {
     public class DestZipCodeController : BaseController
     {
-        //
-        // GET: /DestZipCode/
-        public DestZipCodeController()
-        {
-            logger = LogManager.GetLogger(typeof(SpecificOriginAreaCodesController));
-        }
+        private static ILog logger = LogManager.GetLogger(typeof(DestZipCodeController));
 
         public JsonResult GetAvailDestAreas(int? serviceId)
         {
