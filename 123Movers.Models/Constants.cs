@@ -88,30 +88,9 @@ namespace _123Movers.Models
 
             #endregion
 
-            #region DestinationZipCodes Stored Procedures
-
-            public static readonly string SP_ADD_COMPANY_AREADEST_ZIPCODES = "usp_AddCompanyAreasDestZipCodes";
-            public static readonly string SP_DELETE_COMPANY_AREADEST_ZIPCODES = "usp_DeleteCompanyAreasDestZipCodes";
-            public static readonly string SP_GET_COMPANY_AVAILABLE_AREADEST_ZIPCODES = "usp_GetCompanyAvailableAreasDestinationZipCodes";
-            public static readonly string SP_GET_COMPANY_AREADEST_ZIPCODES = "usp_GetCompanyAreasDestinationZipCodes";
-            public static readonly string SP_GET_AREACODES_STATES = "usp_getAreaCodesStates";
-
-            #endregion
-
             #region LeadLimit Stored Procedures
             public static readonly string SP_GET_COMPANY_LEADLIMIT = "usp_GetCompanyLeadLimit";
             public static readonly string SP_ADD_COMPANY_LEADLIMIT = "usp_AddCompanyLeadLimit";
-            #endregion
-
-
-            #region Notifications Stored Procedures
-
-
-            #endregion
-
-            #region Reports Stored Procedures
-
-
             #endregion
 
             #region SpecificOriginDestAreaCodes Stored Procedures

@@ -12,7 +12,7 @@ namespace _123Movers.Controllers
 {
     public class BaseController : Controller
     {
-        private static ILog logger = LogManager.GetLogger(typeof(DestinationZipCodeController));
+        private static ILog logger = LogManager.GetLogger(typeof(BaseController));
         
         public int? _companyId;
         protected CompanyModel _companyInfo;

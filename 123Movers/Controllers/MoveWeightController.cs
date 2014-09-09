@@ -22,10 +22,6 @@ namespace _123Movers.Controllers
         public ActionResult MoveWeight(int? companyID, int? serviceId)
         {
 
-            //DataSet ds = BusinessLayer.GetMoveWeights(cid, serviceId);
-
-            //ViewBag.MinMoveWeight = DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
-
             ViewBag.MinMoveWeight = BusinessLayer.GetMoveSizeLookup().Select(x => new SelectListItem { Value = x.MoveWeightSeq.ToString(), Text = x.MoveWeight.ToString()});
 
             var _moveWeight = BusinessLayer.GetMoveWeights(companyID, serviceId);
@@ -39,35 +35,11 @@ namespace _123Movers.Controllers
 
             return View(_moveWeight);
         }
-        /// <summary>
-        /// Save Move Weight Data
-        /// </summary>
-        /// <param name="model">Move Weight Model</param>
-        //[HttpPost]
-        //public JsonResult MoveWeight(MoveWeightModel model)
-        //{
-        //    JsonResult result;
-        //    int? cid = CompanyInfo.CompanyId;
-        //   // DataSet ds = BusinessLayer.GetMoveWeights(cid, model.ServiceId);
 
-        //    ViewBag.MinMoveWeight = BusinessLayer.GetMoveWeights(cid, model.ServiceId); // DataTableToSelectList(ds.Tables[0], "moveWeightSeq", "moveweight");
-        //    ViewBag.Services = GetServices().Take(2);
-
-        //    try
-        //    {
-        //        model.CompanyId = cid;
-        //        BusinessLayer.SaveMoveWeight(model);
-        //    }
-        //    catch
-        //    {
-        //    }
-        //    return result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
-        //}
         [HttpPost]
         public JsonResult MoveWeight(MoveWeightModel model)
         {
             JsonResult result = Json(new { success = false }, JsonRequestBehavior.AllowGet);
-            // DataSet ds = BusinessLayer.GetMoveWeights(cid, model.ServiceId);
 
             ViewBag.MinMoveWeight = BusinessLayer.GetMoveSizeLookup().Select(x => new SelectListItem { Value = x.MoveWeightSeq.ToString(), Text = x.MoveWeight.ToString() }); 
             ViewBag.Services = GetServices().Take(2);
@@ -95,7 +67,6 @@ namespace _123Movers.Controllers
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         public JsonResult GetMoveWeight( int? serviceId)
         {
-            //DataSet ds = BusinessLayer.GetMoveWeights(CompanyInfo.CompanyId, serviceId);
             return Json(BusinessLayer.GetMoveWeights(CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
     }

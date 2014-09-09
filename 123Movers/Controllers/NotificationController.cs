@@ -8,13 +8,6 @@ namespace _123Movers.Controllers
 {
     public class NotificationController : BaseController
     {
-        //
-        // GET: /Notification/
-        //protected NotificationController() 
-        //{
-        //    //logger = LogManager.GetLogger(typeof(NotificationController)); 
-        //}
-
         public ActionResult Index()
         {
             return View();

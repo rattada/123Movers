@@ -31,7 +31,6 @@ namespace _123Movers.DataEntities
                 dtResults.Load(drResults);
 
                 return dtResults;
-
             }
         }
 
@@ -53,8 +52,7 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramOriginState);
                 _cmd.Parameters.Add(paramDestStates);
 
-                int i = _cmd.ExecuteNonQuery();
-
+                _cmd.ExecuteNonQuery();
             }
         }
 
@@ -76,7 +74,7 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramOriginState);
                 _cmd.Parameters.Add(paramDestStates);
 
-                int i = _cmd.ExecuteNonQuery();
+                _cmd.ExecuteNonQuery();
 
             }
         }
@@ -95,11 +93,12 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramCompanyId);
                 _cmd.Parameters.Add(paramService);
                 _cmd.Parameters.Add(paramOriginState);
+
                 SqlDataAdapter da = new SqlDataAdapter(_cmd);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
-                return ConfigValues.DataSetToList(ds);
 
+                return ConfigValues.DataSetToList(ds);
             }
         }
     }

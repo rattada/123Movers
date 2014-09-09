@@ -53,9 +53,7 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramAreaCode);
                 _cmd.Parameters.Add(paramSpecificAreaCode);
 
-
-                int  i = _cmd.ExecuteNonQuery();
-
+                _cmd.ExecuteNonQuery();
             }
         }
         public static void DeleteCompanySpcfcOriginDestAreaCodes(int? companyId, int? serviceId, int spcfcareacode, string areaCodes)
@@ -76,8 +74,7 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramAreaCode);
                 _cmd.Parameters.Add(paramSpecificAreaCode);
 
-                int  i = _cmd.ExecuteNonQuery();
-
+                _cmd.ExecuteNonQuery();
             }
         }
         public static List<List<string>> GetCompanySpcfcOriginDestAreas(int? companyId, int? serviceId, int spfcfAreaCode)

@@ -70,16 +70,5 @@ namespace _123Movers.Tests.Controllers
             Assert.IsNotNull(companies, "The request did not return any results.");
             Assert.AreEqual(1, companies.Count());
         }
-
-        [TestMethod]
-        public void Search_SearchWithInsertionId_ReturnOneCompany()
-        {
-            SearchModel model = new SearchModel();
-            model.InsertionOrderId = "4708-20140218-132236-6";
-            var companies = BusinessLayer.SearchCompany(model);
-
-            Assert.IsNotNull(companies, "The request did not return any results.");
-            Assert.AreEqual(1, companies.Count());
-        }
     }
 }

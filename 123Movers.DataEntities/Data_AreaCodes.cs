@@ -32,7 +32,6 @@ namespace _123Movers.DataEntities
                 dtResults.Load(drResults);
 
                 return ConfigValues.TableToList(dtResults); ;
-
             }
         }
 
@@ -78,7 +77,6 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramService);
                 _cmd.Parameters.Add(paramAreaCode);
 
-
                 var i = _cmd.ExecuteNonQuery();
 
             }
@@ -101,8 +99,6 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramCompanyId);
                 _cmd.Parameters.Add(paramService);
                 _cmd.Parameters.Add(paramAreaCode);
-
-
                 var i = _cmd.ExecuteNonQuery();
 
             }
@@ -110,7 +106,6 @@ namespace _123Movers.DataEntities
 
         public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, string areaCodes, int? moveWeightID)
         {
-            int i = 0;
             using (SqlConnection dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand();
@@ -128,10 +123,7 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramAreaCode);
                 _cmd.Parameters.Add(paramMoveWeight);
 
-
-                i = _cmd.ExecuteNonQuery();
-
-
+                _cmd.ExecuteNonQuery();
             }
             return true;
         }

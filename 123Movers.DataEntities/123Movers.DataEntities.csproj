@@ -66,8 +66,6 @@
     <Compile Include="Data_AreaCodes.cs" />
     <Compile Include="Data_Budget.cs" />
     <Compile Include="Data_DestAreaCodes.cs" />
-    <Compile Include="Data_DestinationZipCodes.cs" />
-    <Compile Include="Data_DestZipCodes.cs" />
     <Compile Include="Data_LeadLimit.cs" />
     <Compile Include="Data_MoveDistance.cs" />
     <Compile Include="Data_MoveWeight.cs" />

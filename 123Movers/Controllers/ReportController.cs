@@ -9,13 +9,6 @@ namespace _123Movers.Controllers
 {
     public class ReportController : BaseController
     {
-        //
-        // GET: /Report/
-        //protected ReportController() 
-        //{
-        //    //logger = LogManager.GetLogger(typeof(ReportController)); 
-        //} 
-
         public ActionResult Reports(CompanyModel _companyInfo)
         {
             ReportModel report = new ReportModel();

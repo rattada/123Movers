@@ -59,7 +59,6 @@ namespace _123Movers.Controllers
         [HttpPost]
         public JsonResult AddCompanyAreaZipCodes(int? serviceId, int? areaCode, string zipCodes)
         {
-
             JsonResult result;
             try
             {
@@ -71,7 +70,6 @@ namespace _123Movers.Controllers
                 logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
-
             return result;
         }
 
@@ -84,22 +82,17 @@ namespace _123Movers.Controllers
         [HttpPost]
         public JsonResult DeleteCompanyAreaZipCodes(int? serviceId, int? areaCode, string zipCodes)
         {
-
             JsonResult result;
             try
             {
-
                 BusinessLayer.DeleteCompanyAreaZipCodes(CompanyId, serviceId, areaCode, zipCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
-
-
             }
             catch (Exception ex)
             {
                 logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
-
             return result;
         }
 

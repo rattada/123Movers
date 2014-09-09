@@ -34,7 +34,6 @@ namespace _123Movers.DataEntities
                 _cmd.ExecuteNonQuery();
             }
         }
-
         /// <summary>
         /// Get Zip Codes to company by radius
         /// <param name="companyId">Company Id</param>

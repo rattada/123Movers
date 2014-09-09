@@ -88,11 +88,10 @@ namespace _123Movers.Controllers
         public JsonResult DeleteCompanySpcfcOriginDeststates( int? serviceId, string originState, string destStates)
         {
             JsonResult result;
-
             try
             {
                 BusinessLayer.DeleteCompanySpcfcStates( CompanyId, serviceId, originState, destStates.StrReplace());
-                    result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

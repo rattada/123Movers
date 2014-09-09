@@ -15,7 +15,6 @@ namespace _123Movers.DataEntities
     {
         public static bool SaveMoveDistance(MoveDistanceModel model)
         {
-
             bool result = false;
             using (MoversDBEntities db = new MoversDBEntities())
             {
@@ -38,14 +37,11 @@ namespace _123Movers.DataEntities
                         stampDate = DateTime.UtcNow
                     };
                     db.CompanyMoveDistance.Add(md);
-
                 }
-
                 var areas = db.CompanyAreacode.Where(a => a.companyID == model.CompanyId && a.serviceID == model.ServiceId).ToList();
 
                 if (areas.Count != 0 && areas != null)
                 {
-
                     foreach (var area in areas)
                     {
                         area.isMoveDistanceSelect = 1;
@@ -56,13 +52,11 @@ namespace _123Movers.DataEntities
                 }
                 return result;
             }
-
         }
 
 
         public static MoveDistanceModel GetCompanyMoveDistance(int? companyId, int? serviceId)
         {
-
             tbl_companyMoveDistance distance;
             MoveDistanceModel dModel = new MoveDistanceModel();
 
@@ -84,7 +78,6 @@ namespace _123Movers.DataEntities
                 dModel.MaxMoveDistance = distance.maxMoveDistance;
             }
             return dModel;
-
         }
     }
 }

@@ -44,13 +44,11 @@ namespace _123Movers.DataEntities
                 foreach (string areaCode in _areaCodes)
                 {
                     db.CompanyDestinationAreaCodesZipCodes.Add(new tbl_companyDestinationAreaCodesZipCodes {companyID = (int)companyId, serviceID = (int)serviceId, destinationAreaCode = areaCode, destinationZipCode = null, stampDate = DateTime.UtcNow});
-                    
                 }
                 db.SaveChanges();
             }
             return true;
         }
-
 
         public static bool DeleteCompanyDestAreaCodes(int? companyId, int? serviceId, string areaCodes)
         {
@@ -73,7 +71,6 @@ namespace _123Movers.DataEntities
 
         public static bool Turn_ON_OFF_CompanyDestAreaCodes(int? companyId, int? serviceId, string areaCodes)
         {
-
             var _areaCodes = areaCodes.Split(',');
             using (MoversDBEntities db = new MoversDBEntities())
             {
@@ -94,7 +91,6 @@ namespace _123Movers.DataEntities
                 }
                 db.SaveChanges();
             }
-
             return true;
         }
     }

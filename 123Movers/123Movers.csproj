@@ -195,8 +195,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\DestinationAreaCodeController.cs" />
-    <Compile Include="Controllers\DestinationZipCodeController.cs" />
-    <Compile Include="Controllers\DestZipCodeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeadLimitController.cs" />
     <Compile Include="Controllers\MoveDistanceController.cs" />
@@ -287,8 +285,6 @@
     <Content Include="Scripts\areaCodes.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\destAreaCode.js" />
-    <Content Include="Scripts\destZipCodes.js" />
-    <Content Include="Scripts\destZipCodesNew.js" />
     <Content Include="Scripts\editBudget.js" />
     <Content Include="Scripts\getBudget.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -366,14 +362,12 @@
     <Content Include="Views\AreaCode\AreaCodes.cshtml" />
     <Content Include="Views\LeadLimit\LeadLimit.cshtml" />
     <Content Include="Views\OriginZipCode\OriginZipCodes.cshtml" />
-    <Content Include="Views\DestinationZipCode\DestinationZipCodes.cshtml" />
     <Content Include="Views\MoveDistance\MoveDistance.cshtml" />
     <Content Include="Views\MoveWeight\MoveWeight.cshtml" />
     <Content Include="Views\Notification\Notifications.cshtml" />
     <Content Include="Views\DestinationAreaCode\DestinationAreaCode.cshtml" />
     <Content Include="Views\SpecificOriginAreaCodes\SpecificOriginAreaCodes.cshtml" />
     <Content Include="Views\SpecificStates\SpecificStates.cshtml" />
-    <Content Include="Views\DestZipCode\DestZipCode.cshtml" />
     <Content Include="Views\Radius\Radius.cshtml" />
     <Content Include="Views\Budget\BudgetFilterInfo.cshtml" />
   </ItemGroup>

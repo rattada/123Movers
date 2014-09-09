@@ -13,24 +13,13 @@ namespace _123Movers.DataEntities
     {
         public static DataTable GetAvailableZipCodes(int? companyId, int? serviceId, int? areaCode)
         {
-            //using (MoversDBEntities db = new MoversDBEntities())
-            //{
-            //    var _zipCodes = (from z in db.Zip
-            //                     let zipcode = db.CompanyOriginZipCodes.Where(oz => oz.companyID == companyId && oz.serviceID == serviceId && oz.originAreaCode == areaCode.ToString()).Select(oz => oz.originZipCode).ToList()
-            //                    where z.areaCode == areaCode.ToString() && z.pref == "p" && !zipcode.Contains(z.zipCode)
-            //                    select new { 
-            //                        z.state,
-            //                        z.cityName,
-            //                        z.zipCode
-            //                    }).Distinct().ToList();
-               
-            //}
             using (SqlConnection dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand();
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 _cmd.CommandText = Constants.SP_GET_COMPANY_AVAILABLE_AREA_ORIGIN_ZIPCODES;
+
                 if (serviceId == null)
                 {
                     serviceId = 1009;
@@ -49,7 +38,6 @@ namespace _123Movers.DataEntities
                 dtResults.Load(drResults);
 
                 return dtResults;
-
             }
         }
         public static DataTable GetCompanyAreasZipCodes(int? companyId, int? serviceId, int? areaCode)
@@ -74,12 +62,10 @@ namespace _123Movers.DataEntities
                 dtResults.Load(drResults);
 
                 return dtResults;
-
             }
         }
         public static bool AddCompanyAreaZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
         {
-            int i = 0;
             using (SqlConnection dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand();
@@ -97,17 +83,13 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramAreaCode);
                 _cmd.Parameters.Add(paramzipCodes);
 
-
-                i = _cmd.ExecuteNonQuery();
-
-
+                 _cmd.ExecuteNonQuery();
             }
             return true;
         }
 
         public static bool DeleteCompanyAreaZipCodes(int? companyId, int? serviceId, int? areaCode, string zipCodes)
         {
-            int i = 0;
             using (SqlConnection dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand();
@@ -125,17 +107,13 @@ namespace _123Movers.DataEntities
                 _cmd.Parameters.Add(paramAreaCode);
                 _cmd.Parameters.Add(paramzipCodes);
 
-
-                i = _cmd.ExecuteNonQuery();
-
-
+               _cmd.ExecuteNonQuery();
             }
             return true;
         }
 
         public static OriginZipCodeModel GetCompanyServiceAreaCodes(int? companyId, int? serviceId)
         {
-
             OriginZipCodeModel OriginAreaZip = new OriginZipCodeModel();
             List<OriginZipCodeModel> areacodes = new List<OriginZipCodeModel>();
             List<OriginZipCodeModel> zipcodes = new List<OriginZipCodeModel>();
@@ -145,7 +123,6 @@ namespace _123Movers.DataEntities
                 _cmd.Connection = dbCon;
                 _cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 _cmd.CommandText = Constants.SP_GET_COMPANY_SERVICE_AREACODES;
-
 
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
@@ -167,16 +144,13 @@ namespace _123Movers.DataEntities
                         CompanyId = row["companyID"].ToString().IntNullOrEmpty(),
                         ServiceId = row["serviceID"].ToString().IntNullOrEmpty(),
                         AreaCode = row["areaCode"].ToString().IntNullOrEmpty(),
-                        // ZipCode = zid
                     };
                     areacodes.Add(s);
                 }
                 OriginAreaZip.OriginAreaCodes = areacodes;
 
-
                 foreach (DataRow row in ds.Tables[1].Rows)
                 {
-               
                     OriginZipCodeModel s = new OriginZipCodeModel
                     {
                         CompanyId = row["companyID"].ToString().IntNullOrEmpty(),
@@ -187,10 +161,8 @@ namespace _123Movers.DataEntities
                     zipcodes.Add(s);
                 }
                 OriginAreaZip.OriginZipCodes = zipcodes;
-
             }
             return OriginAreaZip;
         }
-
     }
 }
