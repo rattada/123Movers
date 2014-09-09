@@ -185,7 +185,7 @@
         $.ajax({
             url: '/DestinationAreaCode/Turn_ON_OFF_CompanyDestAreaCodes',
             type: "POST",
-            data: {F'serviceId': serviceId, 'areaCodes': data_to_send },
+            data: {'serviceId': serviceId, 'areaCodes': data_to_send },
             success: function (data) {
                 alert("Settings saved Successfully");
             },
