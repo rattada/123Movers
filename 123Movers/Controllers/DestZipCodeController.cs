@@ -21,7 +21,7 @@ namespace _123Movers.Controllers
 
         public JsonResult GetAvailDestAreas(int? serviceId)
         {
-            return Json(BusinessLayer.GetAvailSpcfcOriginDestAreas(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetAvailSpcfcOriginDestAreas(CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetAllAreaCodes(int? serviceId)
         {
@@ -30,10 +30,10 @@ namespace _123Movers.Controllers
 
         public JsonResult GetCompanyAreasDestinationZipCodes(int? serviceId, int? areaCode)
         {
-            return Json(BusinessLayer.GetCompanyAreasDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanyAreasDestinationZipCodes(CompanyId, serviceId, areaCode), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult DestZipCode(int? serviceId)
+        public ActionResult DestZipCode(int? companyId, int? serviceId)
         {
             
 
@@ -44,7 +44,7 @@ namespace _123Movers.Controllers
                 ViewBag.Services = Services;
 
             DestZipCodeModel destZipCodes = new DestZipCodeModel();
-            destZipCodes._companyInfo = CompanyInfo;
+            destZipCodes._companyInfo = RetrieveCurrentCompanyInfo(companyId);
             destZipCodes.ServiceId = serviceId == null ? (int)ServiceType.Local : serviceId;
             return View(destZipCodes);
         }
@@ -52,12 +52,12 @@ namespace _123Movers.Controllers
 
         public JsonResult GetAvailableDestinationZipCodes(int? serviceId, int? areaCode, int? destAreaCode)
         {
-            return Json(BusinessLayer.GetAvailableDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, destAreaCode), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetAvailableDestinationZipCodes(CompanyId, serviceId, areaCode, destAreaCode), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetCompanyDestAreas(int? serviceId)
         {
-            return Json(BusinessLayer.GetCompanyAreasCodes(CompanyInfo.CompanyId, serviceId), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanyAreasCodes(CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
 
 
@@ -67,7 +67,7 @@ namespace _123Movers.Controllers
             JsonResult result;
             try
             {
-                BusinessLayer.AddCompanyAreaDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes.StrReplace());
+                BusinessLayer.AddCompanyAreaDestinationZipCodes(CompanyId, serviceId, areaCode, zipCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -85,7 +85,7 @@ namespace _123Movers.Controllers
             JsonResult result;
             try
             {
-                BusinessLayer.DeleteCompanyAreaDestinationZipCodes(CompanyInfo.CompanyId, serviceId, areaCode, zipCodes.StrReplace());
+                BusinessLayer.DeleteCompanyAreaDestinationZipCodes(CompanyId, serviceId, areaCode, zipCodes.StrReplace());
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

@@ -103,10 +103,11 @@ namespace _123Movers.Controllers
                     {
                         companyCookieVal = (CompanyModel)Session["CurrentCompanyInfo"];
                     }
-                    //else {
-                    //    Session["CurrentCompanyInfo"] = BusinessLayer.GetCompany(_companyId);
-                    //    companyCookieVal = (CompanyModel)Session["CurrentCompanyInfo"];
-                    //}
+                    else
+                    {
+                        Session["CurrentCompanyInfo"] = BusinessLayer.GetCompany(_companyId);
+                        companyCookieVal = (CompanyModel)Session["CurrentCompanyInfo"];
+                    }
 
                     _companyInfo = companyCookieVal;
                 }

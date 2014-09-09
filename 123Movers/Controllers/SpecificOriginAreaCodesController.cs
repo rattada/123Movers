@@ -48,7 +48,7 @@ namespace _123Movers.Controllers
                 ViewBag.Services = Services;
 
             SpecificOriginAreaCode spcfcOriginAreaCodes = new SpecificOriginAreaCode();
-            spcfcOriginAreaCodes._companyInfo = RetrieveCurrentCompanyInfo(CompanyId);
+            spcfcOriginAreaCodes._companyInfo = CompanyInfo;
             spcfcOriginAreaCodes.ServiceId = serviceId == null ? (int)ServiceType.Local : serviceId; ;
             return View(spcfcOriginAreaCodes);
         }
