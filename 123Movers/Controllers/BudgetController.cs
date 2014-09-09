@@ -72,27 +72,34 @@ namespace _123Movers.Controllers
         
 
         [HttpGet]
-        public ActionResult EditBudget(int? companyId, decimal? TotalBudget, bool IsRecurring, bool IsRequireNoticeToCharge, int? serviceId, string agnumber, int? minDaysToCharge, int? id)
+        public ActionResult EditBudget(int? id)
         {
 
-            BudgetModel budget = new BudgetModel();
+            //BudgetModel budget = new BudgetModel();
+            //ViewBag.Terms = GetTerms();
+            //ViewBag.Services = GetServices();
+
+            //string Recurring = (IsRecurring) ? (IsRequireNoticeToCharge) ? Constants.RecurringWithNotice : Constants.Recurring : Constants.NonRecurring;
+            //budget.TotalBudget = TotalBudget;
+            //budget.IsRecurring = IsRecurring;
+            //budget.IsRequireNoticeToCharge = IsRequireNoticeToCharge;
+            //budget.ServiceId = serviceId == null ? (int)ServiceType.Both : serviceId;
+            //budget.MinDaysToCharge = minDaysToCharge;
+            //budget.AgreementNumber = agnumber;
+            //budget.TermType = Recurring;
+
+
+            //SaveSeviceId(budget.ServiceId);
+
             ViewBag.Terms = GetTerms();
             ViewBag.Services = GetServices();
 
-            string Recurring = (IsRecurring) ? (IsRequireNoticeToCharge) ? Constants.RecurringWithNotice : Constants.Recurring : Constants.NonRecurring;
-            budget.TotalBudget = TotalBudget;
-            budget.IsRecurring = IsRecurring;
-            budget.IsRequireNoticeToCharge = IsRequireNoticeToCharge;
-            budget.ServiceId = serviceId == null ? (int)ServiceType.Both : serviceId;
-            budget.MinDaysToCharge = minDaysToCharge;
-            budget.AgreementNumber = agnumber;
+            var budget = BusinessLayer.GetBudgetById(id);
+            string Recurring = ((bool)budget.IsRecurring) ? ((bool)budget.IsRequireNoticeToCharge) ? Constants.RecurringWithNotice : Constants.Recurring : Constants.NonRecurring;
             budget.TermType = Recurring;
-
-
-            SaveSeviceId(budget.ServiceId);
+            budget.ServiceId = budget.ServiceId == null ? (int)ServiceType.Both : budget.ServiceId;
 
             budget._companyInfo = RetrieveCurrentCompanyInfo(companyId);
-            budget.CompanyId = companyId;
 
             return View(budget);
         }

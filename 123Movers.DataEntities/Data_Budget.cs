@@ -150,9 +150,21 @@ namespace _123Movers.DataEntities
             {
                 var _budget = db.CompanyBudget.Where(b => b.tid == id).FirstOrDefault();
 
-                budget.tId = _budget.tid;
-                budget.CompanyId = _budget.companyID;
-                budget.ServiceId = _budget.serviceID;
+                budget = new BudgetModel
+                {
+                    tId = _budget.tid,
+                    CompanyId = _budget.companyID,
+                    ServiceId = _budget.serviceID,
+                    TotalBudget = _budget.totalBudget,
+                    RemainingBudget = _budget.remainingBudget,
+                    StartDate = _budget.stampDate,
+                    EndDate = _budget.lastModified,
+                    IsRecurring = _budget.isRecurring,
+                    IsRequireNoticeToCharge = _budget.isRequireNoticeToCharge,
+                    IsOneTimeRenew = _budget.isOneTimeRenew,
+                    AgreementNumber = _budget.agreementNumber,
+                    MinDaysToCharge = _budget.minDaysToCharge
+                };
             }
             return budget;
         }

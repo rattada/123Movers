@@ -21,10 +21,10 @@ namespace _123Movers.BusinessEntities
             DataLayer.SaveBudget(budget);
         }
 
-        //public static List<List<string>> GetServies()
-        //{
-        //    return DataLayer.GetServices();
-        //}
+        public static BudgetModel GetBudgetById(int? id)
+        {
+            return DataLayer.GetBudgetById(id);
+        }
 
         public static List<List<string>> GetFilterResult(int? companyID, int? serviceID)
         {

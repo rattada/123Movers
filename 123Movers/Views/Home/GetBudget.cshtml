@@ -28,8 +28,6 @@
             <table id="ActiveInfo" class="table table-hover table-bordered">
                 <thead>
                     <tr>
-                       @* <th class="text-center">Insertion Order Id
-                        </th>*@
                         <th class="text-center">Start Date
                         </th>
                         <th class="text-center">Budget Amount
@@ -48,8 +46,6 @@
                 </thead>
                 <tbody>
                     @{
-    //List<BudgetModel> activeBudget = Model.budget.Where(c => c.EndDate >= DateTime.Now || c.EndDate == null || c.RemainingBudget >= 0).OrderByDescending(c => c.ServiceId).ToList();
-    //List<BudgetModel> activeBudget = Model.budget.Where(c => c.IsActive).ToList();
     List<BudgetModel> activeBudget = Model._currentBudgets;
                     }
                     @if (activeBudget.Count > 0)
@@ -57,9 +53,6 @@
                         foreach (var budget in activeBudget)
                         {
                         <tr>
-                            @*<td class="text-center">
-                                @budget.InsertionOrderId
-                            </td>*@
                             <td class="text-center">
                                 @{
                             var sdate = @budget.StartDate.HasValue ? @DateTime.Parse(@budget.StartDate.ToString()).ToShortDateString() : null;
@@ -85,19 +78,18 @@
                                 @Service
                             </td>
                             <td class="text-center">
-                                @Html.ActionLink("Edit", "EditBudget", "Budget", new {CompanyId = @budget.CompanyId, TotalBudget = @budget.TotalBudget, IsRecurring = @budget.IsRecurring, IsRequireNoticeToCharge = @budget.IsRequireNoticeToCharge, ServiceId = @budget.ServiceId, agnumber = @budget.AgreementNumber, minDaysToCharge = @budget.MinDaysToCharge, id = @budget.tId }, new { @class = "btn btn-sm btn-info editBudget" })
+                                @Html.ActionLink("Edit", "EditBudget", "Budget", new {id = @budget.tId }, new { @class = "btn btn-sm btn-info editBudget" })
                             </td>
                             <td class="text-center">
                                 @if (@Recurring == "Recurring With Notice")
                                 {
-                                    @*<p><input type="button" value="Renew" id="activeRenew@(budget.ServiceId)"  data-id ="@budget.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>*@
                                    if(@budget.IsOneTimeRenew)
                                     {
-                                        <input type="button" value="Renewed" id="activeRenew@(budget.ServiceId)"  data-id ="@budget.ServiceId" data-cid ="@budget.CompanyId" class = "btn btn-sm btn-info renewBudget"  disabled="disabled"/>
+                                        <input type="button" value="Renewed" data-id ="@budget.ServiceId" data-cid ="@budget.CompanyId" class = "btn btn-sm btn-info renewBudget"  disabled="disabled"/>
                                     }
                                     else
                                     {
-                                        <input type="button" value="Renew" id="activeRenew@(budget.ServiceId)"  data-id ="@budget.ServiceId" data-cid ="@budget.CompanyId" class = "btn btn-sm btn-info renewBudget"/>
+                                        <input type="button" value="Renew"  data-id ="@budget.ServiceId" data-cid ="@budget.CompanyId" class = "btn btn-sm btn-info renewBudget"/>
                                     }
                                 }
                             </td>
@@ -117,61 +109,31 @@
 
         <h2>Past Budgets</h2>
 
-        @*<div class="row">
-            <div class="col-md-6">
-                <p><strong>Total Billed    :</strong> @ViewBag.TotalBilled</p>
-            </div>
-            <div class="col-md-6">
-                <p><strong>Total Uncharged :</strong> @ViewBag.UnchargedAmount</p>
-            </div>
-        </div>*@
         <div class="table-responsive ">
             <table id="ExpiredInfo" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        @*<th class="text-center">Insertion Order ID
-                        </th>*@
                         <th class="text-center">Start Date
                         </th>
                         <th class="text-center">End Date
                         </th>
                         <th class="text-center">Total Budget
                         </th>
-                        @*<th class="text-center">Uncharged Amount
-                        </th>*@
                         <th class="text-center">Terms
                         </th>
                         <th class="text-center">Service
                         </th>
-                       @* <th class="text-center">Renew
-                        </th>*@
                     </tr>
                 </thead>
                 <tbody>
                     @{
-                    //List<BudgetModel> expiredBudget = Model.budget.Where(c => c.IsActive == false).ToList();
     List<BudgetModel> expiredBudget = Model._pastBudgets;
-                    //for (int i = 0; i < expiredBudget.Count; i++)
-                    //{
-                        
-                    //    for (int j = 0; j < activeBudget.Count; j++)
-                    //    {
-                    //        if (activeBudget[j].TotalBudget == expiredBudget[i].TotalBudget && activeBudget[j].StartDate == expiredBudget[i].StartDate && activeBudget[j].TermType == expiredBudget[i].TermType && activeBudget[j].ServiceId == expiredBudget[i].ServiceId)
-                    //        {
-                    //            expiredBudget.RemoveAt(i);
-                    //        }
-
-                    //    }
-                    //}
                     }
                     @if (expiredBudget.Count > 0)
                     {
                         foreach (var budget in expiredBudget)
                         {
                         <tr>
-                            @*<td class="text-center">
-                                @budget.InsertionOrderId
-                            </td>*@
                             <td class="text-center">
                                 @{
                             var sdate = @budget.StartDate.HasValue ? @DateTime.Parse(@budget.StartDate.ToString()).ToShortDateString() : null;
@@ -188,9 +150,6 @@
                                 @string.Format("{0:c}", @budget.TotalBudget)
                             </td>
 
-                            @*<td class="text-center">
-                                @string.Format("{0:c}", @budget.UnchargedAmount)
-                            </td>*@
                             <td class="text-center">
                                 @{
                             var Recurring = ((bool)@budget.IsRecurring) ? ((bool)@budget.IsRequireNoticeToCharge) ? "Recurring With Notice" : "Recurring" : "Non Recurring";
@@ -203,21 +162,6 @@
                                 }
                                 @Service
                             </td>
-                            @*<td class="text-center">
-                           
-                                @if (@Recurring == "Recurring With Notice" && @budget.RemainingBudget == 0)
-                                {
-                                    
-                                    if(@budget.IsOneTimeRenew)
-                                    {
-                                        <p><input type="button" value="Renewed" id="expireRenew@(budget.ServiceId)"  data-id ="@budget.ServiceId" class = "btn btn-sm btn-info renewBudget"  disabled="disabled"/></p>
-                                    }
-                                    else
-                                    {
-                                        <p><input type="button" value="Renew" id="expireRenew@(budget.ServiceId)"  data-id ="@budget.ServiceId" class = "btn btn-sm btn-info renewBudget"/></p>
-                                    }
-                                }
-                            </td>*@
                         </tr>
                         }
                     }

@@ -12,7 +12,7 @@ namespace _123Movers.Controllers
 {
     public class BaseController : Controller
     {
-        protected int? _serviceId;
+       // protected int? _serviceId;
         protected CompanyModel  _companyInfo;
         public ILog logger;
         public int? _companyId;
@@ -23,49 +23,48 @@ namespace _123Movers.Controllers
 
         public int? companyId { get; set; }
         
-        public int? ServiceId
+        public int? CompanyId
         {
             get
             {
-                if (_serviceId == null) { RetrieveCurrentServiceId(); }
-                return _serviceId;
+                if (_companyId == null) { RetrieveCurrentCompanyId(); }
+                return _companyId;
             }
         }
 
         /// <summary>
         /// Store Service Type
         /// </summary>
-        public void SaveSeviceId(int? id)
+        public void SaveCompanyId(int? id)
         {
-            var cookie = new HttpCookie("ServiceId")
+            var cookie = new HttpCookie("CompanyId")
             {
                 Value = Convert.ToString(id)
             };
-            _serviceId = id;
+            _companyId = id;
 
             Response.Cookies.Add(cookie);
         }
         /// <summary>
         /// Get Service from Cookie
         /// </summary>
-        protected string RetrieveCurrentServiceId()
+        protected string RetrieveCurrentCompanyId()
         {
-            var companyCookieVal = _serviceId.ToString();
+            var companyCookieVal = _companyId.ToString();
 
-            if (_serviceId == null)
+            if (_companyId == null)
             {
 
-                if (Request.Cookies.AllKeys.Contains("ServiceId"))
+                if (Request.Cookies.AllKeys.Contains("CompanyId"))
                 {
-                    companyCookieVal = Request.Cookies["ServiceId"].Value;
+                    companyCookieVal = Request.Cookies["CompanyId"].Value;
                 }
 
-                _serviceId = int.Parse(companyCookieVal);
+                _companyId = int.Parse(companyCookieVal);
             }
 
             return companyCookieVal;
         }
-
 
 
         public CompanyModel CompanyInfo

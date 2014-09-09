@@ -58,11 +58,13 @@ namespace _123Movers.Controllers
         {
             BudgetModel budget = new BudgetModel();
 
-            SaveCompanyInfo(Company);
             _companyId = Company.CompanyId;
 
-            var _currentBudgets = BusinessLayer.GetCureentBudgets(CompanyInfo.CompanyId);
-            var _pastBudgets = BusinessLayer.GetPastBudgets(CompanyInfo.CompanyId);
+            SaveCompanyInfo(Company);
+            SaveCompanyId(_companyId);
+
+            var _currentBudgets = BusinessLayer.GetCureentBudgets(_companyId);
+            var _pastBudgets = BusinessLayer.GetPastBudgets(_companyId);
 
             budget._currentBudgets = _currentBudgets;
             budget._pastBudgets = _pastBudgets;
