@@ -193,6 +193,7 @@ namespace _123Movers.Controllers
                         //send them off to the login page
                         var url = new UrlHelper(filterContext.RequestContext);
                         var loginUrl = url.Content("~/Account/Login");
+                        
                         filterContext.HttpContext.Response.Redirect(loginUrl, true);
                     }
                 }

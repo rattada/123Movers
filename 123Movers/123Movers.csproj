@@ -275,6 +275,7 @@
     <Content Include="Global.asax" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="ClassDiagram2.cd" />
+    <None Include="Properties\PublishProfiles\123Movers_Release.pubxml" />
     <None Include="Properties\PublishProfiles\release.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\loadingSG.gif" />
