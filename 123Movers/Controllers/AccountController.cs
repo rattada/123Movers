@@ -24,6 +24,9 @@ namespace _123Movers.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            int i = 0;
+            int j = 1;
+            int k = j / i;
             if (returnUrl == Constants.URL)
             {
                 returnUrl = "";
@@ -40,7 +43,6 @@ namespace _123Movers.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            //BusinessLayer.Login(model);
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
                 return RedirectToLocal(returnUrl);
