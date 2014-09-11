@@ -1,891 +1,227 @@
-2014-07-17 16:27:04,891 [10] ERROR _123Movers.Controllers.HomeController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'usp_CompanySearchv3' expects parameter '@insertionOrderId', which was not supplied.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
-   at System.Data.SqlClient.SqlDataReader.get_MetaData()
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteReader()
-   at _123Movers.DataEntities.DataLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.DataEntities\DataLayer.cs:line 125
-   at _123Movers.BusinessEntities.BusinessLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.BusinessEntities\BusinessLayer.cs:line 30
-   at _123Movers.Controllers.HomeController.Search(SearchModel search) in d:\Movers123\123Movers\123Movers\Controllers\HomeController.cs:line 33
-ClientConnectionId:ca510c9e-f244-407e-bb8e-4fcb1b525465
-2014-07-24 19:14:43,048 [68] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-String or binary data would be truncated.
-String or binary data would be truncated.
-The statement has been terminated.
-The statement has been terminated.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_SpcfcOriginDestAreaCodes.cs:line 57
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanySpcfcOriginAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Busines_SpcfcOriginAreaCodes.cs:line 15
-   at _123Movers.Controllers.SpecificOriginAreaCodesController.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\SpecificOriginAreaCodesController.cs:line 45
-ClientConnectionId:2cba36ca-4657-401a-9fd4-d557972c6b61
-2014-07-24 19:14:51,467 [68] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-String or binary data would be truncated.
-String or binary data would be truncated.
-String or binary data would be truncated.
-String or binary data would be truncated.
-The statement has been terminated.
-The statement has been terminated.
-The statement has been terminated.
-The statement has been terminated.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_SpcfcOriginDestAreaCodes.cs:line 57
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanySpcfcOriginAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Busines_SpcfcOriginAreaCodes.cs:line 15
-   at _123Movers.Controllers.SpecificOriginAreaCodesController.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\SpecificOriginAreaCodesController.cs:line 45
-ClientConnectionId:2cba36ca-4657-401a-9fd4-d557972c6b61
-2014-07-24 19:15:09,908 [7] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-String or binary data would be truncated.
-String or binary data would be truncated.
-String or binary data would be truncated.
-The statement has been terminated.
-The statement has been terminated.
-The statement has been terminated.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_SpcfcOriginDestAreaCodes.cs:line 57
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanySpcfcOriginAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Busines_SpcfcOriginAreaCodes.cs:line 15
-   at _123Movers.Controllers.SpecificOriginAreaCodesController.AddCompanySpcfcOriginDestAreaCodes(Nullable`1 serviceId, Int32 spcfcareacode, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\SpecificOriginAreaCodesController.cs:line 45
-ClientConnectionId:2cba36ca-4657-401a-9fd4-d557972c6b61
-2014-07-28 16:34:47,772 [13] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-Conversion failed when converting the varchar value '["270"' to data type smallint.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
-ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
-2014-07-28 16:34:53,394 [36] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-Conversion failed when converting the varchar value '["209"' to data type smallint.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
-ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
-2014-07-28 16:40:00,237 [13] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-Conversion failed when converting the varchar value '["334"' to data type smallint.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
-ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
-2014-07-28 16:40:01,571 [38] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-Conversion failed when converting the varchar value '["334"' to data type smallint.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
-ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
-2014-07-28 16:40:49,011 [13] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-Conversion failed when converting the varchar value '["209"' to data type smallint.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
-ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
-2014-07-28 16:40:49,872 [38] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-Conversion failed when converting the varchar value '["209"' to data type smallint.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
-ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
-2014-07-28 16:40:50,138 [36] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-Conversion failed when converting the varchar value '["209"' to data type smallint.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
-ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
-2014-07-28 16:40:50,369 [38] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-Conversion failed when converting the varchar value '["209"' to data type smallint.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
-ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
-2014-07-28 16:40:50,626 [36] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-Conversion failed when converting the varchar value '["209"' to data type smallint.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
-ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
-2014-07-28 16:41:20,078 [38] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
-Conversion failed when converting the varchar value '["209"' to data type smallint.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 58
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 18
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 46
-ClientConnectionId:a5b10d84-5f9d-470f-beb8-7944f286f5c0
-2014-07-29 00:57:40,675 [51] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'usp_AddCompanyAreasDestZipCodes' expects parameter '@areaCode', which was not supplied.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddCompanyAreaDestinationZipCodes(Nullable`1 companyId, Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestinationZipCodes.cs:line 96
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyAreaDestinationZipCodes(Nullable`1 companyId, Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestinationZipCodes.cs:line 15
-   at _123Movers.Controllers.DestZipCodeController.AddCompanyAreaDestinationZipCodes(Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestZipCodeController.cs:line 66
-ClientConnectionId:5fa227af-d4d3-4eda-9cad-752b3acb318b
-2014-07-30 20:21:08,397 [242] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
-2014-07-30 20:21:59,856 [222] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
-2014-07-30 20:22:39,362 [224] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
-2014-07-30 20:23:58,525 [224] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
-2014-07-30 20:24:35,878 [224] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
-2014-07-30 20:25:02,852 [242] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.tbl_companyDestinationAreaCodesZipCodes' with unique index 'IX_tbl_companyDestinationAreaCodesZipCodes'. The duplicate key value is (1234, 1009, 619, 91905).
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:397f90cf-9f74-4147-b33b-e968a6e06443
-2014-08-04 19:00:30,570 [109] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'usp_AddZipCodesByRadius' expects parameter '@records', which was not supplied.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 27
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:22302df9-de36-41c3-bb97-ec47319a0304
-2014-08-04 19:08:53,128 [108] ERROR _123Movers.Controllers.SpecificStatesController – System.IndexOutOfRangeException: An SqlParameter with ParameterName 'records ' is not contained by this SqlParameterCollection.
-   at System.Data.SqlClient.SqlParameterCollection.GetParameter(String parameterName)
-   at System.Data.SqlClient.SqlParameterCollection.get_Item(String parameterName)
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 30
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-2014-08-04 19:25:58,161 [104] ERROR _123Movers.Controllers.SpecificStatesController – System.InvalidCastException: Specified cast is not valid.
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 36
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-2014-08-04 20:42:12,734 [20] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:483618c4-6717-4d12-bf4b-f7e60b044ed9
-2014-08-04 20:42:18,412 [21] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:483618c4-6717-4d12-bf4b-f7e60b044ed9
-2014-08-04 20:42:35,896 [21] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:483618c4-6717-4d12-bf4b-f7e60b044ed9
-2014-08-04 20:42:52,431 [13] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:483618c4-6717-4d12-bf4b-f7e60b044ed9
-2014-08-04 20:43:07,462 [21] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:483618c4-6717-4d12-bf4b-f7e60b044ed9
-2014-08-04 20:45:12,658 [17] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:483618c4-6717-4d12-bf4b-f7e60b044ed9
-2014-08-05 19:09:44,893 [277] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:7c7fe8c5-bff9-4e69-b91b-b66518d3148f
-2014-08-05 19:10:03,787 [277] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:7c7fe8c5-bff9-4e69-b91b-b66518d3148f
-2014-08-07 15:41:17,878 [10] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
-2014-08-07 15:41:23,701 [14] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
-2014-08-07 15:41:38,139 [15] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
-2014-08-07 15:41:52,640 [9] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
-2014-08-07 15:42:08,075 [14] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
-2014-08-07 15:42:22,190 [9] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
-2014-08-07 15:43:31,847 [9] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
-2014-08-07 15:46:00,805 [10] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
-2014-08-07 15:48:02,516 [11] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
-2014-08-07 15:48:44,298 [14] ERROR _123Movers.Controllers.SpecificStatesController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function usp_GetZipCodesByRadius has too many arguments specified.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Radius.cs:line 35
-   at _123Movers.BusinessEntities.BusinessLayer.AddZipCodesByRadius(Nullable`1 companyId, Nullable`1 serviceId, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Radius.cs:line 14
-   at _123Movers.Controllers.RadiusController.AddZipCodesByRadius(Nullable`1 service, Int32 zipcode, Decimal radius, String category, String type) in d:\Movers123\123Movers\123Movers\Controllers\RadiusController.cs:line 40
-ClientConnectionId:81bf36d3-ec55-4a84-8a5e-46016617d1fe
-2014-08-11 14:15:05,508 [14] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.NullReferenceException: Object reference not set to an instance of an object.
-   at _123Movers.Controllers.DestZipCodeController.AddCompanyAreaDestinationZipCodes(Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestZipCodeController.cs:line 70
-2014-08-11 14:15:14,618 [11] ERROR _123Movers.Controllers.SpecificOriginAreaCodesController – System.NullReferenceException: Object reference not set to an instance of an object.
-   at _123Movers.Controllers.DestZipCodeController.AddCompanyAreaDestinationZipCodes(Nullable`1 serviceId, Nullable`1 areaCode, String zipCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestZipCodeController.cs:line 70
-2014-08-12 16:03:26,124 [16] ERROR _123Movers.Controllers.BudgetController – System.FormatException: Input string was not in a correct format.
-   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
-   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
-   at System.Int32.Parse(String s)
-   at _123Movers.Controllers.BaseController.RetrieveCurrentCompanyId() in d:\Movers123\123Movers\123Movers\Controllers\BaseController.cs:line 54
-   at _123Movers.Controllers.BaseController.get_ServiceId() in d:\Movers123\123Movers\123Movers\Controllers\BaseController.cs:line 26
-   at _123Movers.Controllers.BudgetController.RenewBudget() in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 155
-2014-08-12 17:12:19,982 [23] ERROR _123Movers.Controllers.BudgetController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'usp_RenewalBudget' expects parameter '@serviceId', which was not supplied.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 165
-   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
-   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 155
-ClientConnectionId:2835ae8d-1296-4535-a586-165213ac174f
-2014-08-21 17:25:02,602 [9] ERROR _123Movers.Controllers.BudgetController – System.ArgumentException: The specified named connection is either not found in the configuration, not intended to be used with the EntityClient provider, or not valid.
-   at System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
-   at System.Data.EntityClient.EntityConnection..ctor(String connectionString)
-   at System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
-   at System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
-   at _123MoversEntity.MoversDBEntities..ctor() in d:\Movers123\123Movers\123MoversEntity\123MoversEntity.Designer.cs:line 44
-   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 161
-   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
-   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 185
-2014-08-21 17:27:21,117 [14] ERROR _123Movers.Controllers.BudgetController – System.ArgumentException: The specified named connection is either not found in the configuration, not intended to be used with the EntityClient provider, or not valid.
-   at System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
-   at System.Data.EntityClient.EntityConnection..ctor(String connectionString)
-   at System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
-   at System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
-   at _123MoversEntity.MoversDBEntities..ctor() in d:\Movers123\123Movers\123MoversEntity\123MoversEntity.Designer.cs:line 44
-   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 161
-   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
-   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 185
-2014-08-21 17:29:32,578 [12] ERROR _123Movers.Controllers.BudgetController – System.ArgumentException: The specified named connection is either not found in the configuration, not intended to be used with the EntityClient provider, or not valid.
-   at System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
-   at System.Data.EntityClient.EntityConnection..ctor(String connectionString)
-   at System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
-   at System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
-   at _123MoversEntity.MoversDBEntities..ctor() in d:\Movers123\123Movers\123MoversEntity\123MoversEntity.Designer.cs:line 44
-   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 161
-   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
-   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 185
-2014-08-21 18:24:54,828 [15] ERROR _123Movers.Controllers.BudgetController – System.ArgumentException: The specified named connection is either not found in the configuration, not intended to be used with the EntityClient provider, or not valid.
-   at System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
-   at System.Data.EntityClient.EntityConnection..ctor(String connectionString)
-   at System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
-   at System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
-   at _123MoversEntity.MoversDBEntities..ctor() in d:\Movers123\123Movers\123MoversEntity\123MoversEntity.Designer.cs:line 44
-   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 161
-   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
-   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 185
-2014-08-21 18:28:29,717 [17] ERROR _123Movers.Controllers.BudgetController – System.NullReferenceException: Object reference not set to an instance of an object.
-   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 162
-   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
-   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 185
-2014-08-25 12:38:38,282 [10] ERROR _123Movers.Controllers.BudgetController – System.InvalidOperationException: The object cannot be attached because it is already in the object context. An object can only be reattached when it is in an unchanged state. 
-   at System.Data.Objects.ObjectContext.VerifyRootForAdd(Boolean doAttach, String entitySetName, IEntityWrapper wrappedEntity, EntityEntry existingEntry, EntitySet& entitySet, Boolean& isNoOperation)
-   at System.Data.Objects.ObjectContext.AttachTo(String entitySetName, Object entity)
-   at System.Data.Objects.ObjectSet`1.Attach(TEntity entity)
-   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 175
-   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
-   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 157
-2014-08-25 12:41:13,182 [37] ERROR _123Movers.Controllers.BudgetController – System.InvalidOperationException: The object cannot be attached because it is already in the object context. An object can only be reattached when it is in an unchanged state. 
-   at System.Data.Objects.ObjectContext.VerifyRootForAdd(Boolean doAttach, String entitySetName, IEntityWrapper wrappedEntity, EntityEntry existingEntry, EntitySet& entitySet, Boolean& isNoOperation)
-   at System.Data.Objects.ObjectContext.AttachTo(String entitySetName, Object entity)
-   at System.Data.Objects.ObjectSet`1.Attach(TEntity entity)
-   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 175
-   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
-   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 157
-2014-08-25 12:41:41,596 [25] ERROR _123Movers.Controllers.BudgetController – System.InvalidOperationException: The object cannot be attached because it is already in the object context. An object can only be reattached when it is in an unchanged state. 
-   at System.Data.Objects.ObjectContext.VerifyRootForAdd(Boolean doAttach, String entitySetName, IEntityWrapper wrappedEntity, EntityEntry existingEntry, EntitySet& entitySet, Boolean& isNoOperation)
-   at System.Data.Objects.ObjectContext.AttachTo(String entitySetName, Object entity)
-   at System.Data.Objects.ObjectSet`1.Attach(TEntity entity)
-   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 175
-   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
-   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 157
-2014-08-25 12:42:27,321 [35] ERROR _123Movers.Controllers.BudgetController – System.InvalidOperationException: The object cannot be attached because it is already in the object context. An object can only be reattached when it is in an unchanged state. 
-   at System.Data.Objects.ObjectContext.VerifyRootForAdd(Boolean doAttach, String entitySetName, IEntityWrapper wrappedEntity, EntityEntry existingEntry, EntitySet& entitySet, Boolean& isNoOperation)
-   at System.Data.Objects.ObjectContext.AttachTo(String entitySetName, Object entity)
-   at System.Data.Objects.ObjectSet`1.Attach(TEntity entity)
-   at _123Movers.DataEntities.DataLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 175
-   at _123Movers.BusinessEntities.BusinessLayer.RenewBudget(Nullable`1 companyId, Nullable`1 serviceId) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 35
-   at _123Movers.Controllers.BudgetController.RenewBudget(Nullable`1 ServiceId) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 157
-2014-08-25 15:39:23,403 [132] ERROR _123Movers.Controllers.AreaCodeController – System.Data.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'status', table '123movers.dbo.tbl_companyAreacode'; column does not allow nulls. INSERT fails.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
-   at System.Data.SqlClient.SqlDataReader.get_MetaData()
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   at System.Data.Mapping.Update.Internal.DynamicUpdateCommand.Execute(UpdateTranslator translator, EntityConnection connection, Dictionary`2 identifierValues, List`1 generatedValues)
-   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
-   --- End of inner exception stack trace ---
-   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
-   at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
-   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
-   at System.Data.Objects.ObjectContext.SaveChanges()
-   at _123Movers.DataEntities.DataLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_AreaCodes.cs:line 96
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_AreaCodes.cs:line 28
-   at _123Movers.Controllers.AreaCodeController.AddAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\AreaCodeController.cs:line 65
-2014-08-25 15:44:25,384 [144] ERROR _123Movers.Controllers.AreaCodeController – System.Data.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'status', table '123movers.dbo.tbl_companyAreacode'; column does not allow nulls. INSERT fails.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
-   at System.Data.SqlClient.SqlDataReader.get_MetaData()
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   at System.Data.Mapping.Update.Internal.DynamicUpdateCommand.Execute(UpdateTranslator translator, EntityConnection connection, Dictionary`2 identifierValues, List`1 generatedValues)
-   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
-   --- End of inner exception stack trace ---
-   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
-   at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
-   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
-   at System.Data.Objects.ObjectContext.SaveChanges()
-   at _123Movers.DataEntities.DataLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_AreaCodes.cs:line 96
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_AreaCodes.cs:line 28
-   at _123Movers.Controllers.AreaCodeController.AddAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\AreaCodeController.cs:line 65
-2014-08-25 15:50:56,555 [144] ERROR _123Movers.Controllers.AreaCodeController – System.Data.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The conversion of a datetime2 data type to a datetime data type resulted in an out-of-range value.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
-   at System.Data.SqlClient.SqlDataReader.get_MetaData()
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   at System.Data.Mapping.Update.Internal.DynamicUpdateCommand.Execute(UpdateTranslator translator, EntityConnection connection, Dictionary`2 identifierValues, List`1 generatedValues)
-   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
-   --- End of inner exception stack trace ---
-   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
-   at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
-   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
-   at System.Data.Objects.ObjectContext.SaveChanges()
-   at _123Movers.DataEntities.DataLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_AreaCodes.cs:line 96
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_AreaCodes.cs:line 28
-   at _123Movers.Controllers.AreaCodeController.AddAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\AreaCodeController.cs:line 65
-2014-08-28 12:53:07,270 [274] ERROR _123Movers.Controllers.BudgetController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'usp_SaveBudget' expects parameter '@type', which was not supplied.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.SaveBudget(BudgetModel budget) in d:\Movers123\123Movers\123Movers.DataEntities\Data_Budget.cs:line 121
-   at _123Movers.BusinessEntities.BusinessLayer.SaveBudget(BudgetModel budget) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_Budget.cs:line 21
-   at _123Movers.Controllers.BudgetController.EditBudget(BudgetModel budget) in d:\Movers123\123Movers\123Movers\Controllers\BudgetController.cs:line 146
-ClientConnectionId:65ad34ed-9b0f-4ffd-bb57-497cbbfbc6e3
-2014-09-01 12:32:28,604 [117] ERROR _123Movers.Controllers.AreaCodeController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'usp_DeleteCompanyAreasCodes' expects parameter '@areaCodes', which was not supplied.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.DeleteCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_AreaCodes.cs:line 161
-   at _123Movers.BusinessEntities.BusinessLayer.DeleteCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_AreaCodes.cs:line 36
-   at _123Movers.Controllers.AreaCodeController.DeleteAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\AreaCodeController.cs:line 102
-ClientConnectionId:9b1b599e-8c8e-4d42-816c-e4ead7263547
-2014-09-01 12:34:23,372 [117] ERROR _123Movers.Controllers.AreaCodeController – System.Data.SqlClient.SqlException (0x80131904): Procedure or function 'usp_DeleteCompanyAreasCodes' expects parameter '@areaCodes', which was not supplied.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
-   at _123Movers.DataEntities.DataLayer.DeleteCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_AreaCodes.cs:line 161
-   at _123Movers.BusinessEntities.BusinessLayer.DeleteCompanyAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_AreaCodes.cs:line 36
-   at _123Movers.Controllers.AreaCodeController.DeleteAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\AreaCodeController.cs:line 102
-ClientConnectionId:9b1b599e-8c8e-4d42-816c-e4ead7263547
-2014-09-02 12:30:06,363 [11] ERROR _123Movers.Controllers.DestinationAreaCodeController – System.Data.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The conversion of a datetime2 data type to a smalldatetime data type resulted in an out-of-range value.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
-   at System.Data.SqlClient.SqlDataReader.get_MetaData()
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   at System.Data.Mapping.Update.Internal.DynamicUpdateCommand.Execute(UpdateTranslator translator, EntityConnection connection, Dictionary`2 identifierValues, List`1 generatedValues)
-   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
-   --- End of inner exception stack trace ---
-   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
-   at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
-   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
-   at System.Data.Objects.ObjectContext.SaveChanges()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 47
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 28
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 53
-2014-09-02 12:37:15,743 [19] ERROR _123Movers.Controllers.DestinationAreaCodeController – System.Data.UpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The conversion of a datetime2 data type to a smalldatetime data type resulted in an out-of-range value.
-The statement has been terminated.
-   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
-   at System.Data.SqlClient.SqlDataReader.get_MetaData()
-   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
-   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   at System.Data.Mapping.Update.Internal.DynamicUpdateCommand.Execute(UpdateTranslator translator, EntityConnection connection, Dictionary`2 identifierValues, List`1 generatedValues)
-   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
-   --- End of inner exception stack trace ---
-   at System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)
-   at System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)
-   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
-   at System.Data.Objects.ObjectContext.SaveChanges()
-   at _123Movers.DataEntities.DataLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.DataEntities\Data_DestAreaCodes.cs:line 46
-   at _123Movers.BusinessEntities.BusinessLayer.AddCompanyDestAreaCodes(Nullable`1 companyId, Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_DestAreaCodes.cs:line 28
-   at _123Movers.Controllers.DestinationAreaCodeController.AddCompanyDestAreaCodes(Nullable`1 serviceId, String areaCodes) in d:\Movers123\123Movers\123Movers\Controllers\DestinationAreaCodeController.cs:line 53
-2014-09-03 19:46:04,173 [89] ERROR _123Movers.Controllers.LeadLimitController – System.NullReferenceException: Object reference not set to an instance of an object.
-   at _123Movers.Controllers.LeadLimitController.LeadLimit(List`1 leadlimit) in d:\Movers123\123Movers\123Movers\Controllers\LeadLimitController.cs:line 47
-2014-09-04 16:16:17,496 [87] ERROR _123Movers.Controllers.MoveDistanceController – System.InvalidOperationException: Sequence contains more than one element
-   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
-   at System.Data.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__3[TResult](IEnumerable`1 sequence)
-   at System.Data.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
-   at System.Data.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[S](Expression expression)
-   at System.Linq.Queryable.Single[TSource](IQueryable`1 source)
-   at _123Movers.DataEntities.DataLayer.SaveMoveDistance(MoveDistanceModel model) in d:\Movers123\123Movers\123Movers.DataEntities\Data_MoveDistance.cs:line 38
-   at _123Movers.BusinessEntities.BusinessLayer.SaveMoveDistance(MoveDistanceModel model) in d:\Movers123\123Movers\123Movers.BusinessEntities\Business_MoveDistance.cs:line 16
-   at _123Movers.Controllers.MoveDistanceController.MoveDistance(MoveDistanceModel model) in d:\Movers123\123Movers\123Movers\Controllers\MoveDistanceController.cs:line 60
+2014-09-11 19:26:15,344 [113] ERROR _123Movers.Controllers.BaseController – Attempted to divide by zero.System.DivideByZeroException: Attempted to divide by zero.
+   at _123Movers.Controllers.AccountController.Login(String returnUrl) in d:\Movers123\123Movers\123Movers\Controllers\AccountController.cs:line 29
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+2014-09-11 19:27:01,742 [111] ERROR _123Movers.Controllers.BaseController – Attempted to divide by zero.System.DivideByZeroException: Attempted to divide by zero.
+   at _123Movers.Controllers.AccountController.Login(String returnUrl) in d:\Movers123\123Movers\123Movers\Controllers\AccountController.cs:line 29
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.InvokeSynchronousActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+2014-09-11 19:37:56,656 [116] ERROR _123Movers.Controllers.BaseController – Attempted to divide by zero.System.DivideByZeroException: Attempted to divide by zero.
+   at _123Movers.Controllers.AccountController.Login(String returnUrl) in d:\Movers123\123Movers\123Movers\Controllers\AccountController.cs:line 29
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.InvokeSynchronousActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+2014-09-11 19:38:38,686 [117] ERROR _123Movers.Controllers.BaseController – Attempted to divide by zero.System.DivideByZeroException: Attempted to divide by zero.
+   at _123Movers.Controllers.AccountController.Login(String returnUrl) in d:\Movers123\123Movers\123Movers\Controllers\AccountController.cs:line 29
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.InvokeSynchronousActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+2014-09-11 19:43:26,882 [112] ERROR _123Movers.Controllers.BaseController – Attempted to divide by zero.System.DivideByZeroException: Attempted to divide by zero.
+   at _123Movers.Controllers.AccountController.Login(String returnUrl) in d:\Movers123\123Movers\123Movers\Controllers\AccountController.cs:line 29
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.InvokeSynchronousActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+2014-09-11 19:44:22,462 [116] ERROR _123Movers.Controllers.BaseController – Attempted to divide by zero.System.DivideByZeroException: Attempted to divide by zero.
+   at _123Movers.Controllers.AccountController.Login(String returnUrl) in d:\Movers123\123Movers\123Movers\Controllers\AccountController.cs:line 29
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.InvokeSynchronousActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+2014-09-11 19:45:06,091 [96] ERROR _123Movers.Controllers.BaseController – Attempted to divide by zero.System.DivideByZeroException: Attempted to divide by zero.
+   at _123Movers.Controllers.AccountController.Login(String returnUrl) in d:\Movers123\123Movers\123Movers\Controllers\AccountController.cs:line 29
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.InvokeSynchronousActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+2014-09-11 19:45:29,194 [96] ERROR _123Movers.Controllers.BaseController – Attempted to divide by zero.System.DivideByZeroException: Attempted to divide by zero.
+   at _123Movers.Controllers.AccountController.Login(String returnUrl) in d:\Movers123\123Movers\123Movers\Controllers\AccountController.cs:line 29
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.InvokeSynchronousActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+2014-09-11 19:51:31,706 [96] ERROR _123Movers.Controllers.BaseController – Attempted to divide by zero.System.DivideByZeroException: Attempted to divide by zero.
+   at _123Movers.Controllers.AccountController.Login(String returnUrl) in d:\Movers123\123Movers\123Movers\Controllers\AccountController.cs:line 29
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.InvokeSynchronousActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+2014-09-11 19:53:18,790 [97] ERROR _123Movers.Controllers.BaseController – Attempted to divide by zero.System.DivideByZeroException: Attempted to divide by zero.
+   at _123Movers.Controllers.AccountController.Login(String returnUrl) in d:\Movers123\123Movers\123Movers\Controllers\AccountController.cs:line 29
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.InvokeSynchronousActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
