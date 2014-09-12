@@ -14,10 +14,10 @@ namespace _123Movers.Controllers
     public class BaseController : Controller
     {
         private static ILog logger = LogManager.GetLogger(typeof(BaseController));
-        
+
         public int? _companyId;
         protected CompanyModel _companyInfo;
-        
+
         public int? CompanyId
         {
             get
@@ -107,7 +107,8 @@ namespace _123Movers.Controllers
                     _companyInfo = companyCookieVal;
                 }
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 logger.Error(ex.ToString());
             }
             return companyCookieVal;
@@ -179,86 +180,88 @@ namespace _123Movers.Controllers
             return new SelectList(list, "Value", "Text");
         }
 
-        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-        public class CheckSessionOutAttribute : ActionFilterAttribute
+
+
+    }
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
+    public class CheckSessionOutAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            public override void OnActionExecuting(ActionExecutingContext filterContext)
+            string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower();
+            if (!controllerName.Contains("account") && !controllerName.Contains("home"))
             {
-                string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower();
-                if (!controllerName.Contains("account") && !controllerName.Contains("home"))
+                HttpSessionStateBase session = filterContext.HttpContext.Session;
+                var _company = session["CurrentCompanyInfo"];
+                if (((_company == null) && (!session.IsNewSession)) || (session.IsNewSession))
                 {
-                    HttpSessionStateBase session = filterContext.HttpContext.Session;
-                    var _company = session["CurrentCompanyInfo"]; 
-                    if (((_company == null) && (!session.IsNewSession)) || (session.IsNewSession))
+                    //send them off to the login page
+                    var url = new UrlHelper(filterContext.RequestContext);
+                    var loginUrl = url.Content("~/Account/Login");
+
+                    filterContext.HttpContext.Response.Redirect(loginUrl, true);
+                }
+            }
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
+    public class CustomHandleErrorAttribute : HandleErrorAttribute
+    {
+        private static ILog logger = LogManager.GetLogger(typeof(BaseController));
+        public override void OnException(ExceptionContext filterContext)
+        {
+            //if (filterContext.ExceptionHandled || !filterContext.HttpContext.IsCustomErrorEnabled)
+            //{
+            //    return;
+            //}
+
+            //if (new HttpException(null, filterContext.Exception).GetHttpCode() != 500)
+            //{
+            //    return;
+            //}
+
+            //if (!ExceptionType.IsInstanceOfType(filterContext.Exception))
+            //{
+            //    return;
+            //}
+
+            // if the request is AJAX return JSON else view.
+            if (filterContext.HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                filterContext.Result = new JsonResult
+                {
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                    Data = new
                     {
-                        //send them off to the login page
-                        var url = new UrlHelper(filterContext.RequestContext);
-                        var loginUrl = url.Content("~/Account/Login");
-                        
-                        filterContext.HttpContext.Response.Redirect(loginUrl, true);
+                        error = true,
+                        message = filterContext.Exception.Message
                     }
-                }
+                };
             }
-        }
-
-        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-        public class CustomHandleErrorAttribute : HandleErrorAttribute
-        {
-            public override void OnException(ExceptionContext filterContext)
+            else
             {
-                //if (filterContext.ExceptionHandled || !filterContext.HttpContext.IsCustomErrorEnabled)
-                //{
-                //    return;
-                //}
+                var controllerName = (string)filterContext.RouteData.Values["controller"];
+                var actionName = (string)filterContext.RouteData.Values["action"];
+                var model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
 
-                //if (new HttpException(null, filterContext.Exception).GetHttpCode() != 500)
-                //{
-                //    return;
-                //}
-
-                //if (!ExceptionType.IsInstanceOfType(filterContext.Exception))
-                //{
-                //    return;
-                //}
-
-                // if the request is AJAX return JSON else view.
-                if (filterContext.HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                filterContext.Result = new ViewResult
                 {
-                    filterContext.Result = new JsonResult
-                    {
-                        JsonRequestBehavior = JsonRequestBehavior.AllowGet,
-                        Data = new
-                        {
-                            error = true,
-                            message = filterContext.Exception.Message
-                        }
-                    };
-                }
-                else
-                {
-                    var controllerName = (string)filterContext.RouteData.Values["controller"];
-                    var actionName = (string)filterContext.RouteData.Values["action"];
-                    var model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
-
-                    filterContext.Result = new ViewResult
-                    {
-                        ViewName = View,
-                        MasterName = Master,
-                        ViewData = new ViewDataDictionary(model),
-                        TempData = filterContext.Controller.TempData
-                    };
-                }
-
-                // log the error by using your own method
-                logger.Error(filterContext.Exception.Message, filterContext.Exception);
-
-                filterContext.ExceptionHandled = true;
-                filterContext.HttpContext.Response.Clear();
-                filterContext.HttpContext.Response.StatusCode = 500;
-
-                filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
+                    ViewName = View,  //ViewName = "CustomError"
+                    MasterName = Master,
+                    ViewData = new ViewDataDictionary(model),
+                    TempData = filterContext.Controller.TempData
+                };
             }
-        }
 
+            // log the error by using your own method
+            logger.Error(filterContext.Exception.Message, filterContext.Exception);
+
+            filterContext.ExceptionHandled = true;
+            filterContext.HttpContext.Response.Clear();
+            filterContext.HttpContext.Response.StatusCode = 500;
+
+            filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
+        }
     }
 }

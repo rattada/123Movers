@@ -8,8 +8,8 @@ namespace _123Movers
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new  BaseController.CustomHandleErrorAttribute());
-            filters.Add(new  BaseController.CheckSessionOutAttribute());
+            filters.Add(new  CustomHandleErrorAttribute());
+            filters.Add(new  CheckSessionOutAttribute());
         }
     }
 }

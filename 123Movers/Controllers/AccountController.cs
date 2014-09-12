@@ -24,9 +24,6 @@ namespace _123Movers.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            int i = 0;
-            int j = 1;
-            int k = j / i;
             if (returnUrl == Constants.URL)
             {
                 returnUrl = "";
