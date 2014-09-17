@@ -22,7 +22,7 @@ namespace _123Movers.Controllers
         [HttpGet]
         public ActionResult Search()
         {
-            return View();
+            return View(new SearchModel());
         }
 
         /// <summary>

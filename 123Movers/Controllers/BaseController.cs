@@ -11,9 +11,12 @@ using System.Web.Routing;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BaseController : Controller
     {
-        private static ILog logger = LogManager.GetLogger(typeof(BaseController));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(BaseController));
 
         public int? _companyId;
         protected CompanyModel _companyInfo;
@@ -109,7 +112,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
             }
             return companyCookieVal;
         }
@@ -120,16 +123,13 @@ namespace _123Movers.Controllers
         /// <returns> List of Term Types</returns>
         public List<SelectListItem> GetTerms()
         {
+            var terms = ConfigValues.Terms.Select(p => new SelectListItem
+                {
+                    Text = p.Key,
+                    Value = p.Value
+                }).ToList();
 
-            var Terms = new List<SelectListItem>();
-
-            Terms = ConfigValues.Terms.Select(p => new SelectListItem
-                                                            {
-                                                                Text = p.Key,
-                                                                Value = p.Value
-                                                            }).ToList();
-
-            return Terms;
+            return terms;
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace _123Movers.Controllers
         /// <returns>List Of Services</returns>
         public List<SelectListItem> GetServices(int? serviceId = null)
         {
-            var listOption = new SelectListItem();
+            SelectListItem listOption;
             var services = new List<SelectListItem>();
 
             if (serviceId == null || serviceId == Constants.LOCAL)
