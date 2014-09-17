@@ -4,9 +4,14 @@
         <name>123Movers</name>
     </assembly>
     <members>
+        <member name="T:_123Movers.Controllers.BaseController">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:_123Movers.Controllers.BaseController.SaveCompanyId(System.Nullable{System.Int32})">
             <summary>
-            Store Service Type
+            Store Company ID
             </summary>
         </member>
         <member name="M:_123Movers.Controllers.BaseController.RetrieveCurrentCompanyId">
@@ -38,9 +43,19 @@
             <param name="serviceId">Select Service</param>
             <returns>List Of Services</returns>
         </member>
-        <member name="M:_123Movers.Controllers.BaseController.DataTableToSelectList(System.Data.DataTable,System.String,System.String)">
+        <member name="P:_123Movers.Controllers.BaseController.CompanyId">
             <summary>
-            Convert Datat Table to Select List
+            Get CompanyId
+            </summary>
+        </member>
+        <member name="P:_123Movers.Controllers.BaseController.CompanyInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:_123Movers.Controllers.BaseController.CheckSessionOutAttribute">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:_123Movers.Controllers.AreaCodeController.GetAvailableAreas(System.Nullable{System.Int32})">

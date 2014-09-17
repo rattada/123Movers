@@ -27,23 +27,5 @@ namespace _123Movers.Models
 
         [Display(Name = "Suspended")]
         public string Suspended { get; set; }
-
-
-        //public CompanyModel CurrentCompany
-        //{
-        //    get
-        //    {
-        //        if (HttpContext.Current.Session["CurrentCompanyInfo"] == null)
-        //            return null;
-        //        else
-        //            return (CompanyModel)HttpContext.Current.Session["CurrentCompanyInfo"];
-        //    }
-
-        //    set
-        //    {
-        //        HttpContext.Current.Session["CurrentCompanyInfo"] = value;
-        //    }
-        //}
-
     }
 }

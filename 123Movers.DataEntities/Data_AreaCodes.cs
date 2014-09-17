@@ -104,7 +104,7 @@ namespace _123Movers.DataEntities
             }
         }
 
-        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, string areaCodes, int? moveWeightID)
+        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, string areaCodes, int? moveWeightId)
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
@@ -116,7 +116,7 @@ namespace _123Movers.DataEntities
                 SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
                 SqlParameter paramService = new SqlParameter("serviceID", serviceId);
                 SqlParameter paramAreaCode = new SqlParameter("areacodes", areaCodes);
-                SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", moveWeightID);
+                SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", moveWeightId);
 
                 _cmd.Parameters.Add(paramCompanyId);
                 _cmd.Parameters.Add(paramService);

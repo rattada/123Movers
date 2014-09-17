@@ -9,9 +9,12 @@ using log4net;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// Budget related controller
+    /// </summary>
     public class BudgetController : BaseController
     {
-        private static ILog logger = LogManager.GetLogger(typeof(BudgetController));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(BudgetController));
      
         /// <summary>
         /// Get Filter information
@@ -26,15 +29,19 @@ namespace _123Movers.Controllers
        
 
         
+        /// <summary>
+        /// Enter Budget Information
+        /// </summary>
+        /// <param name="company">Company Model</param>
         [HttpGet]
-        public ActionResult AddBudget(CompanyModel Company)
+        public ActionResult AddBudget(CompanyModel company)
         {
             ViewBag.Terms = GetTerms();// ConfigValues.Terms();
             ViewBag.Services = GetServices();
             
             BudgetModel budget = new BudgetModel();
 
-            budget._companyInfo = Company;
+            budget._companyInfo = company;
             return View(budget);
         }
 
@@ -51,7 +58,7 @@ namespace _123Movers.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    budget._companyInfo = RetrieveCurrentCompanyInfo(budget.CompanyId);// CompanyInfo;
+                    budget._companyInfo = RetrieveCurrentCompanyInfo(budget.CompanyId);
                     budget.CompanyId = budget._companyInfo.CompanyId;
                     budget.Type = Constants.NEW_BUDGET;
 
@@ -62,7 +69,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 ModelState.AddModelError("Error", ex.Message);
             }
             return View(budget);
@@ -105,7 +112,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 ModelState.AddModelError("", ex.Message);
             }
             return View(budget);
@@ -126,7 +133,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 

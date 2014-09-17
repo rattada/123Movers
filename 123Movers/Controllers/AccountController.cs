@@ -19,7 +19,7 @@ namespace _123Movers.Controllers
     [InitializeSimpleMembership]
     public class AccountController : BaseController
     {
-        protected ILog logger = LogManager.GetLogger(typeof(AccountController)); 
+        private  static readonly ILog Logger = LogManager.GetLogger(typeof(AccountController)); 
        
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -282,7 +282,7 @@ namespace _123Movers.Controllers
                     
                 }
                 catch(Exception ex) {
-                    logger.Error(ex.Message);
+                    Logger.Error(ex.Message);
                 }
             }
 

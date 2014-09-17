@@ -28,6 +28,7 @@ namespace _123Movers.Models
         public const string BASE_JS_FOLDER = "/Scripts/";
         public static readonly string VIEW = "~/Views/Shared/_CompanyInfo.cshtml";
         public static readonly string URL = "/Account/LogOff";
+        public  static readonly string CurrentCompanyInfo = "CurrentCompanyInfo";
 
         public static readonly string NEW_BUDGET = "NEW";
         public static readonly string RENEWL_BUDGET = "RENEWAL INSERTION";
