@@ -93,6 +93,11 @@
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <param name="areaCodes">Selected Area Codes</param>
         </member>
+        <member name="T:_123Movers.Controllers.BudgetController">
+            <summary>
+            Budget related controller
+            </summary>
+        </member>
         <member name="M:_123Movers.Controllers.BudgetController.GetFilterResult(System.Nullable{System.Int32})">
             <summary>
             Get Filter information
@@ -100,9 +105,27 @@
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <returns>Updated Filter Information</returns>
         </member>
+        <member name="M:_123Movers.Controllers.BudgetController.AddBudget(_123Movers.Models.CompanyModel)">
+            <summary>
+            Enter Budget Information
+            </summary>
+            <param name="company">Company Model</param>
+        </member>
         <member name="M:_123Movers.Controllers.BudgetController.AddBudget(_123Movers.Models.BudgetModel)">
             <summary>
             Add new budget to company
+            </summary>
+            <param name="budget">Budget Model</param>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.EditBudget(System.Nullable{System.Int32})">
+            <summary>
+            Modify the Budget details
+            </summary>
+            <param name="id">Budget Id</param>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.EditBudget(_123Movers.Models.BudgetModel)">
+            <summary>
+            Save modified budget
             </summary>
             <param name="budget">Budget Model</param>
         </member>
@@ -110,7 +133,15 @@
             <summary>
             Renewal the budget
             </summary>
-            <param name="ServiceId">Type of Service</param>
+            <param name="serviceId">Type of Service</param>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.BudgetFilterInfo(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Get Budget Filter Information
+            </summary>
+            <param name="companyId">CompanyId</param>
+            <param name="serviceId">Type of Service</param>
+            <returns></returns>
         </member>
         <member name="M:_123Movers.Controllers.DestinationAreaCodeController.GetCompanyDestAreas(System.Nullable{System.Int32})">
             <summary>
