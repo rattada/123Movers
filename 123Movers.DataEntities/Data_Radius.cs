@@ -22,7 +22,7 @@ namespace _123Movers.DataEntities
                 _cmd = new SqlCommand
                     {
                         Connection = dbCon,
-                        CommandType = System.Data.CommandType.StoredProcedure,
+                        CommandType = CommandType.StoredProcedure,
                         CommandText = Constants.SP_COMPANY_ZIPCODES_BY_RADIUS_ADD
                     };
                 _cmd.Parameters.AddWithValue("companyID", companyId);
