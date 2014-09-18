@@ -20,7 +20,7 @@ namespace _123Movers.Models
         public string ContactPerson { get; set; }
 
         [Display(Name = "AX #")]
-        public string AX { get; set; }
+        public string Ax { get; set; }
 
         [Display(Name = "Active")]
         public bool IsActive { get; set; }

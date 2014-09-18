@@ -64,7 +64,7 @@ namespace _123Movers.Tests.Controllers
         public void Search_SearchWithAXNumber_ReturnOneCompany()
         {
             SearchModel model = new SearchModel();
-            model.AX = "10007121";
+            model.Ax = "10007121";
             var companies = BusinessLayer.SearchCompany(model);
 
             Assert.IsNotNull(companies, "The request did not return any results.");

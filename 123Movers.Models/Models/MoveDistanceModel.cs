@@ -28,6 +28,6 @@ namespace _123Movers.Models
         [Display(Name = "Move Weight Seq")]
         public decimal? MoveWeightSeq { get; set; }
 
-        public CompanyModel _companyInfo { get; set; }
+        public CompanyModel CompanyInfo { get; set; }
     }
 }

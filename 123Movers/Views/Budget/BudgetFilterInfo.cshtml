@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Budget Filter Info";
 }
-@Html.Partial(Constants.VIEW, @Model._companyInfo)
+@Html.Partial(Constants.VIEW, @Model.CompanyInfo)
 
 <p class="clearfix"></p>
 <div class="row">
@@ -33,61 +33,61 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (Model._areaCodes.Count > 0)
+                    @if (Model.AreaCodes.Count > 0)
                     {
-                        foreach (var areaCode in Model._areaCodes)
+                        foreach (var areaCode in Model.AreaCodes)
                         {
                         <tr>
                             <td class="text-center">
                                 @{
-                            var Service = (@areaCode.serviceID == Constants.LOCAL) ? "Local" : (@areaCode.serviceID == Constants.LONG) ? "Long" : "Both";
+                            var service = (@areaCode.ServiceId == Constants.LOCAL) ? "Local" : (@areaCode.ServiceId == Constants.LONG) ? "Long" : "Both";
                                 }
-                                @Service
+                                @service
                             </td>
                             <td class="text-center">
-                                @areaCode.areaCode
-                            </td>
-                            <td class="text-center">
-                                @{
-                            var Force = (@areaCode.isForceSelect == 1) ? "Yes" : "No";
-                                }
-                                @Force
+                                @areaCode.AreaCode
                             </td>
                             <td class="text-center">
                                 @{
-                            var DestArea = (@areaCode.isDestinationAreaCode == 1) ? "Yes" : "No";
+                            var force = (@areaCode.IsForceSelect == 1) ? "Yes" : "No";
                                 }
-                                @DestArea
+                                @force
                             </td>
                             <td class="text-center">
                                 @{
-                            var MoveDistance = (@areaCode.isMoveDistanceSelect == 1) ? "Yes" : "No";
+                            var destArea = (@areaCode.IsDestinationAreaCode == 1) ? "Yes" : "No";
                                 }
-                                @MoveDistance
+                                @destArea
                             </td>
                             <td class="text-center">
                                 @{
-                            var MoveWeight = (@areaCode.isMoveWeightSelect == 1) ? "Yes" : "No";
+                            var moveDistance = (@areaCode.IsMoveDistanceSelect == 1) ? "Yes" : "No";
                                 }
-                                @MoveWeight
+                                @moveDistance
                             </td>
                             <td class="text-center">
                                 @{
-                            var OriginZip = (@areaCode.isOriginZipCode == 1) ? "Yes" : "No";
+                            var moveWeight = (@areaCode.IsMoveWeightSelect == 1) ? "Yes" : "No";
                                 }
-                                @OriginZip
+                                @moveWeight
                             </td>
                             <td class="text-center">
                                 @{
-                            var SpDestArea = (@areaCode.isSpecificOriginDestinationAreacode == 1) ? "Yes" : "No";
+                            var originZip = (@areaCode.IsOriginZipCode == 1) ? "Yes" : "No";
                                 }
-                                @SpDestArea
+                                @originZip
                             </td>
                             <td class="text-center">
                                 @{
-                            var SpOrgDestState = (@areaCode.isSpecificOriginDestinationState == 1) ? "Yes" : "No";
+                            var spDestArea = (@areaCode.IsSpecificOriginDestinationAreacode == 1) ? "Yes" : "No";
                                 }
-                                @SpOrgDestState
+                                @spDestArea
+                            </td>
+                            <td class="text-center">
+                                @{
+                            var spOrgDestState = (@areaCode.IsSpecificOriginDestinationState == 1) ? "Yes" : "No";
+                                }
+                                @spOrgDestState
                             </td>
                         </tr>
                         }

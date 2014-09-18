@@ -6,7 +6,7 @@
 
 <input type="hidden" id="hdnServiceId" value="@ViewBag.ServiceID"/>
 
-@Html.Partial(Constants.VIEW, @Model._companyInfo)
+@Html.Partial(Constants.VIEW, @Model.CompanyInfo)
 @section JavaScript{
     @Html.Script("leadLimit.js")
 }

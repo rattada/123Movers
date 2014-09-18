@@ -26,7 +26,7 @@ namespace _123Movers.Controllers
         {
 
             var model = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
-            model._companyInfo = RetrieveCurrentCompanyInfo(companyId);
+            model.CompanyInfo = RetrieveCurrentCompanyInfo(companyId);
             model.ServiceId = serviceId;
             
             return View(model);

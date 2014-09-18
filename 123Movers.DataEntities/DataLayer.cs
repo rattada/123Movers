@@ -44,7 +44,7 @@ namespace _123Movers.DataEntities
 
                 _cmd.Parameters.AddWithValue("companyID", search.CompanyId);
                 _cmd.Parameters.AddWithValue("companyName", search.CompanyName.TrimNullOrEmpty());
-                _cmd.Parameters.AddWithValue("ax", search.AX.TrimNullOrEmpty());
+                _cmd.Parameters.AddWithValue("ax", search.Ax.TrimNullOrEmpty());
 
                 var drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
@@ -55,7 +55,7 @@ namespace _123Movers.DataEntities
                                   {
                                       CompanyId = row["CompanyID"].ToString().IntNullOrEmpty(),
                                       CompanyName = row["companyName"].ToString(),
-                                      AX = row["AbNumber"].ToString(),
+                                      Ax = row["AbNumber"].ToString(),
                                       ContactPerson = row["contactPerson"].ToString(),
                                       IsActive = row["isActive"].ToString().BooleanNullOrEmpty(),
                                       Suspended = row["suspended"].ToString()
@@ -88,7 +88,7 @@ namespace _123Movers.DataEntities
                 {
                     CompanyId = dtResults.Rows[0]["CompanyID"].ToString().IntNullOrEmpty(),
                     CompanyName = dtResults.Rows[0]["companyName"].ToString(),
-                    AX = dtResults.Rows[0]["AbNumber"].ToString(),
+                    Ax = dtResults.Rows[0]["AbNumber"].ToString(),
                     ContactPerson = dtResults.Rows[0]["contactPerson"].ToString(),
                     IsActive = dtResults.Rows[0]["isActive"].ToString().BooleanNullOrEmpty(),
                     Suspended = dtResults.Rows[0]["suspended"].ToString()

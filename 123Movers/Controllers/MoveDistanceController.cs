@@ -29,7 +29,7 @@ namespace _123Movers.Controllers
                                    ? GetServices(serviceId).Take(2)
                                    : GetServices(serviceId);
             var model = BusinessLayer.GetCompanyMoveDistance(companyId, serviceId);
-            model._companyInfo = RetrieveCurrentCompanyInfo(companyId);
+            model.CompanyInfo = RetrieveCurrentCompanyInfo(companyId);
             return View(model);
         }
 

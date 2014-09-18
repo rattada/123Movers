@@ -33,7 +33,7 @@ namespace _123Movers.Controllers
 
             var moveWeight = BusinessLayer.GetMoveWeights(companyId, serviceId);
 
-            moveWeight._companyInfo = RetrieveCurrentCompanyInfo(companyId);
+            moveWeight.CompanyInfo = RetrieveCurrentCompanyInfo(companyId);
 
             return View(moveWeight);
         }

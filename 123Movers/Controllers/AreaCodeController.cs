@@ -51,7 +51,7 @@ namespace _123Movers.Controllers
             ViewBag.ServiceId = serviceId;
             var areaCode = new AreaCodeModel
                 {
-                    _companyInfo = RetrieveCurrentCompanyInfo(companyId)
+                    CompanyInfo = RetrieveCurrentCompanyInfo(companyId)
                 };
             
             return View(areaCode);

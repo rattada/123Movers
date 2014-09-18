@@ -25,6 +25,6 @@ namespace _123Movers.Models
         [Display(Name = "Max Move Weight")]
         public int? MaxMoveWeightSeq { get; set; }
 
-        public CompanyModel _companyInfo { get; set; }
+        public CompanyModel CompanyInfo { get; set; }
     }
 }

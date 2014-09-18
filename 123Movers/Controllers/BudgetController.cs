@@ -41,7 +41,7 @@ namespace _123Movers.Controllers
             
             BudgetModel budget = new BudgetModel();
 
-            budget._companyInfo = company;
+            budget.CompanyInfo = company;
             return View(budget);
         }
 
@@ -58,13 +58,13 @@ namespace _123Movers.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    budget._companyInfo = RetrieveCurrentCompanyInfo(budget.CompanyId);
-                    budget.CompanyId = budget._companyInfo.CompanyId;
+                    budget.CompanyInfo = RetrieveCurrentCompanyInfo(budget.CompanyId);
+                    budget.CompanyId = budget.CompanyInfo.CompanyId;
                     budget.Type = Constants.NEW_BUDGET;
 
                     BusinessLayer.SaveBudget(budget);
 
-                    return RedirectToAction("GetBudget", "Home", budget._companyInfo);
+                    return RedirectToAction("GetBudget", "Home", budget.CompanyInfo);
                 }
             }
             catch (Exception ex)
@@ -93,7 +93,7 @@ namespace _123Movers.Controllers
             budget.TermType = recurring;
             budget.ServiceId = budget.ServiceId ?? (int)ServiceType.Both;
 
-            budget._companyInfo = CompanyInfo;
+            budget.CompanyInfo = CompanyInfo;
 
             return View(budget);
         }
@@ -108,12 +108,12 @@ namespace _123Movers.Controllers
             ViewBag.Services = GetServices();
             try
             {
-                budget._companyInfo = RetrieveCurrentCompanyInfo(CompanyId);
+                budget.CompanyInfo = RetrieveCurrentCompanyInfo(CompanyId);
                 budget.Type = Constants.EDIT_BUDGET;
 
                 BusinessLayer.SaveBudget(budget);
 
-                return RedirectToAction("GetBudget", "Home", budget._companyInfo);
+                return RedirectToAction("GetBudget", "Home", budget.CompanyInfo);
             }
             catch (Exception ex)
             {
@@ -157,8 +157,8 @@ namespace _123Movers.Controllers
         {
             var areaCode = new AreaCodeModel
                 {
-                    _companyInfo = RetrieveCurrentCompanyInfo(companyId),
-                    _areaCodes = BusinessLayer.GetBudgetFilterInfo(companyId, serviceId)
+                    CompanyInfo = RetrieveCurrentCompanyInfo(companyId),
+                    AreaCodes = BusinessLayer.GetBudgetFilterInfo(companyId, serviceId)
                 };
             return View(areaCode);
         }

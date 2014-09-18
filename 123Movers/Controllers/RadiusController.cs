@@ -28,7 +28,7 @@ namespace _123Movers.Controllers
             ViewBag.Services = service.Count > 2 ? service.Take(2) : service;
             var radius = new RadiusModel
                 {
-                    _companyInfo = RetrieveCurrentCompanyInfo(companyId),
+                    CompanyInfo = RetrieveCurrentCompanyInfo(companyId),
                     ServiceId = serviceId ?? (int)ServiceType.Both
                 };
             return View(radius);

@@ -69,10 +69,10 @@ namespace _123Movers.Controllers
             var currentBudgets = BusinessLayer.GetCureentBudgets(CompanyId);
             var pastBudgets = BusinessLayer.GetPastBudgets(CompanyId);
 
-            budget._currentBudgets = currentBudgets;
-            budget._pastBudgets = pastBudgets;
+            budget.CurrentBudgets = currentBudgets;
+            budget.PastBudgets = pastBudgets;
 
-            budget._companyInfo = CompanyInfo;
+            budget.CompanyInfo = CompanyInfo;
 
             return View(budget);
         }

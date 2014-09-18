@@ -25,7 +25,7 @@ namespace _123Movers.Controllers
        public ActionResult OriginZipCodes(int? companyId, int? serviceId)
         {
             var origin = BusinessLayer.GetCompanyServiceAreaCodes(companyId, serviceId);
-            origin._companyInfo = RetrieveCurrentCompanyInfo(companyId);
+            origin.CompanyInfo = RetrieveCurrentCompanyInfo(companyId);
             return View(origin);
         }
 

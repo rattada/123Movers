@@ -8,10 +8,6 @@
         if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
             event.preventDefault();
         }
-        //Shouldnot allow more than 2 digits after decimal point.
-        //if ($(this).val().split(".")[1].length > 1) {
-        //    event.preventDefault();
-        //}
     });
     //Shouldnot allow decilmal values and Allow only digits.
     $("body").parent().on("keypress", "#txtzipcode", function (event) {
@@ -20,9 +16,7 @@
         }
     });
     $('#btnRadius').click(function () {
-       // var service = $.trim($("#ddlServiceID").val());
         var lessergreater = $.trim($("#ddllessorgreate").val());
-        var type = 'ORIGIN'// $.trim($("#ddlorigordest").val());
         var radius = $.trim($("#txtradius").val());
         var zipcode = $.trim($("#txtzipcode").val());
         if (serviceId == "") {
@@ -40,21 +34,18 @@
             $("#txtzipcode").focus();
             return false;
         }
-        var RadiusData =
+        var radiusData =
         {
             service: serviceId,
             zipcode: zipcode,
             radius: radius,
             category: lessergreater,
         };
-        AddZipCodesByRadius(RadiusData);
+        addZipCodesByRadius(radiusData);
     });
 
     $('#addAreaCode').on('click', function () {
-        var areacode;
-        var jareaCodes;
-
-        jareaCodes = JSON.stringify(areaCodes);
+        var jareaCodes = JSON.stringify(areaCodes);
 
         $.ajax({
             url: '/radius/AddAreaCodes',
@@ -79,11 +70,6 @@
             $("#ddlServiceID").focus();
             return false;
         }
-        //else if (category == "") {
-        //    alert('Please select Category');
-        //    $("#ddllessorgreate").focus();
-        //    return false;
-        //}
         else if (radius == "") {
             alert('Please enter Radius');
             $("#txtradius").focus();
@@ -94,22 +80,21 @@
             $("#txtzipcode").focus();
             return false;
         }
-        debugger;
-        var RadiusData =
+        var radiusData =
         {
             service: serviceId,
             zipcode: zipcode,
             radius: radius,
             category: lessergreater
         };
-        GetZipCodesByRadius(RadiusData);
+        getZipCodesByRadius(radiusData);
     });
-    function AddZipCodesByRadius(RadiusData) {
+    function addZipCodesByRadius(radiusData) {
         $("body").mask('Saving...');
         $.ajax({
             url: '/Radius/AddZipCodesByRadius',
             type: 'POST',
-            data: RadiusData,
+            data: radiusData,
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -127,12 +112,12 @@
             }
         });
     };
-    function GetZipCodesByRadius(RadiusData) {
+    function getZipCodesByRadius(radiusData) {
         $("body").mask('Loading...');
         $.ajax({
             url: '/Radius/GetZipCodesByRadius',
             type: 'GET',
-            data: RadiusData,
+            data: radiusData,
             dataType: "json",
             cache: false,
             success: function (data) {

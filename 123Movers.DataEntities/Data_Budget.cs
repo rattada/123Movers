@@ -12,7 +12,7 @@ namespace _123Movers.DataEntities
     {
         public static void SaveBudget(BudgetModel budget)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand
                     {
@@ -97,7 +97,16 @@ namespace _123Movers.DataEntities
 
                 return budgetFilter.Select(areaCode => new AreaCodeModel
                     {
-                        companyID = areaCode.companyID, serviceID = areaCode.serviceID, areaCode = areaCode.areaCode, isForceSelect = areaCode.isForceSelect, isDestinationAreaCode = areaCode.isDestinationAreaCode, isMoveDistanceSelect = areaCode.isMoveDistanceSelect, isMoveWeightSelect = areaCode.isMoveWeightSelect, isOriginZipCode = areaCode.isOriginZipCode, isSpecificOriginDestinationAreacode = areaCode.isSpecificOriginDestinationAreacode, isSpecificOriginDestinationState = areaCode.isSpecificOriginDestinationState
+                        CompanyId = areaCode.companyID, 
+                        ServiceId = areaCode.serviceID, 
+                        AreaCode = areaCode.areaCode, 
+                        IsForceSelect = areaCode.isForceSelect, 
+                        IsDestinationAreaCode = areaCode.isDestinationAreaCode, 
+                        IsMoveDistanceSelect = areaCode.isMoveDistanceSelect, 
+                        IsMoveWeightSelect = areaCode.isMoveWeightSelect, 
+                        IsOriginZipCode = areaCode.isOriginZipCode, 
+                        IsSpecificOriginDestinationAreacode = areaCode.isSpecificOriginDestinationAreacode, 
+                        IsSpecificOriginDestinationState = areaCode.isSpecificOriginDestinationState
                     }).ToList();
             }
         }
@@ -113,7 +122,7 @@ namespace _123Movers.DataEntities
                 {
                     budget = new BudgetModel
                         {
-                            tId = _budget.tid,
+                            Id = _budget.tid,
                             CompanyId = _budget.companyID,
                             ServiceId = _budget.serviceID,
                             TotalBudget = _budget.totalBudget,
@@ -139,7 +148,18 @@ namespace _123Movers.DataEntities
                 var _budgets = db.CompanyBudget.Where(b => b.companyID == companyId).ToList();
                 budgets.AddRange(_budgets.Select(budget => new BudgetModel
                     {
-                        tId = budget.tid, CompanyId = budget.companyID, ServiceId = budget.serviceID, TotalBudget = budget.totalBudget, RemainingBudget = budget.remainingBudget, StartDate = budget.stampDate, EndDate = budget.lastModified, IsRecurring = budget.isRecurring, IsRequireNoticeToCharge = budget.isRequireNoticeToCharge, IsOneTimeRenew = budget.isOneTimeRenew, AgreementNumber = budget.agreementNumber, MinDaysToCharge = budget.minDaysToCharge
+                        Id = budget.tid, 
+                        CompanyId = budget.companyID, 
+                        ServiceId = budget.serviceID, 
+                        TotalBudget = budget.totalBudget, 
+                        RemainingBudget = budget.remainingBudget, 
+                        StartDate = budget.stampDate, 
+                        EndDate = budget.lastModified, 
+                        IsRecurring = budget.isRecurring, 
+                        IsRequireNoticeToCharge = budget.isRequireNoticeToCharge, 
+                        IsOneTimeRenew = budget.isOneTimeRenew, 
+                        AgreementNumber = budget.agreementNumber, 
+                        MinDaysToCharge = budget.minDaysToCharge
                     }));
             }
             return budgets;
@@ -155,7 +175,15 @@ namespace _123Movers.DataEntities
 
                 budgets.AddRange(_budgets.Select(budget => new BudgetModel
                     {
-                        tId = budget.tid, CompanyId = budget.companyID, ServiceId = budget.serviceID, TotalBudget = budget.totalBudget, RemainingBudget = budget.remainingBudget, StartDate = budget.stampDate, EndDate = budget.lastModified, IsRecurring = budget.isRecurring.ToString().BooleanNullOrEmpty(), IsRequireNoticeToCharge = budget.isRequireNoticeToCharge.ToString().BooleanNullOrEmpty(),
+                        Id = budget.tid, 
+                        CompanyId = budget.companyID, 
+                        ServiceId = budget.serviceID, 
+                        TotalBudget = budget.totalBudget, 
+                        RemainingBudget = budget.remainingBudget, 
+                        StartDate = budget.stampDate, 
+                        EndDate = budget.lastModified, 
+                        IsRecurring = budget.isRecurring.ToString().BooleanNullOrEmpty(), 
+                        IsRequireNoticeToCharge = budget.isRequireNoticeToCharge.ToString().BooleanNullOrEmpty(),
                     }));
             }
             return budgets;

@@ -31,8 +31,8 @@
             </div>
             <div class="form-group">
                 <label class="control-label col-md-4" id="lblAX">AX #</label>
-                <div class="col-md-8">@Html.TextBoxFor(m => m.AX, new { @class = "form-control", id = "AX", @placeholder = "Enter Company AX" })</div>
-                @Html.ValidationMessageFor(m => m.AX)
+                <div class="col-md-8">@Html.TextBoxFor(m => m.Ax, new { @class = "form-control", id = "AX", @placeholder = "Enter Company AX" })</div>
+                @Html.ValidationMessageFor(m => m.Ax)
             </div>
             @*<div class="form-group">
                 <label class="control-label col-md-4" id="lblInsertionOrderId">Insertion Order ID</label>
@@ -76,11 +76,11 @@
                         @lot.CompanyName
                     </td>
                     <td class="text-center">
-                        @lot.AX
+                        @lot.Ax
                     </td>
                     <td class="text-center">
-                        @Html.ActionLink("Budget", "GetBudget", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, isactive = @lot.IsActive }, new { @class = "btn btn-info btn-sm btnBudget" })
-                        @Html.ActionLink("Reports", "Reports", "Report", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.AX, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, isactive = @lot.IsActive }, new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Budget", "GetBudget", "Home", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.Ax, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, isactive = @lot.IsActive }, new { @class = "btn btn-info btn-sm btnBudget" })
+                        @Html.ActionLink("Reports", "Reports", "Report", new { companyid = @lot.CompanyId, companyName = @lot.CompanyName, ax = @lot.Ax, contactperson = @lot.ContactPerson, suspended = @lot.Suspended, isactive = @lot.IsActive }, new { @class = "btn btn-info btn-sm" })
                     </td>
                 </tr>
                 }

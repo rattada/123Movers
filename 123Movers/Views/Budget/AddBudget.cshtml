@@ -7,7 +7,7 @@
 @Html.AntiForgeryToken()
 @Html.ValidationSummary(true)
 
-@Html.Partial(Constants.VIEW, @Model._companyInfo)
+@Html.Partial(Constants.VIEW, @Model.CompanyInfo)
 
 @using (Html.BeginForm("AddBudget", "Budget", FormMethod.Post, new { id = "frmaddbudget" }))
 {

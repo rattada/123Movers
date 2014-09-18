@@ -23,6 +23,6 @@ namespace _123Movers.Models
 
         public IEnumerable<OriginZipCodeModel> OriginAreaCodes { get; set; }
         public IEnumerable<OriginZipCodeModel> OriginZipCodes { get; set; }
-        public CompanyModel _companyInfo { get; set; }
+        public CompanyModel CompanyInfo { get; set; }
     }
 }

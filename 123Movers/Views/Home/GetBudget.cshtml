@@ -11,7 +11,7 @@
     @Html.Script("jquery.loadmask.min.js")
 }
 
-@Html.Partial(Constants.VIEW, @Model._companyInfo)
+@Html.Partial(Constants.VIEW, @Model.CompanyInfo)
 
 <p class="clearfix"></p>
 @if (@Model != null)
@@ -20,7 +20,7 @@
         <h2>Current Budgets</h2>
         <div class="row">
             <div class="col-md-12">
-                <p>@Html.ActionLink("Add Budget", "AddBudget", "Budget",  new { companyid = @Model._companyInfo.CompanyId, companyName = @Model._companyInfo.CompanyName, ax = @Model._companyInfo.AX, contactperson = @Model._companyInfo.ContactPerson, suspended = @Model._companyInfo.Suspended, isactive = @Model._companyInfo.IsActive }, new { id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
+                <p>@Html.ActionLink("Add Budget", "AddBudget", "Budget",  new { companyid = @Model.CompanyInfo.CompanyId, companyName = @Model.CompanyInfo.CompanyName, ax = @Model.CompanyInfo.Ax, contactperson = @Model.CompanyInfo.ContactPerson, suspended = @Model.CompanyInfo.Suspended, isactive = @Model.CompanyInfo.IsActive }, new { id = "AddBudget", @class = "btn btn-primary btn-lg" })</p>
             </div>
         </div>
         <p class="clearfix"></p>
@@ -46,7 +46,7 @@
                 </thead>
                 <tbody>
                     @{
-    List<BudgetModel> activeBudget = Model._currentBudgets;
+    List<BudgetModel> activeBudget = Model.CurrentBudgets;
                     }
                     @if (activeBudget.Count > 0)
                     {
@@ -78,7 +78,7 @@
                                 @Service
                             </td>
                             <td class="text-center">
-                                @Html.ActionLink("Edit", "EditBudget", "Budget", new {id = @budget.tId }, new { @class = "btn btn-sm btn-info editBudget" })
+                                @Html.ActionLink("Edit", "EditBudget", "Budget", new {id = @budget.Id }, new { @class = "btn btn-sm btn-info editBudget" })
                             </td>
                             <td class="text-center">
                                 @if (@Recurring == "Recurring With Notice")
@@ -127,7 +127,7 @@
                 </thead>
                 <tbody>
                     @{
-    List<BudgetModel> expiredBudget = Model._pastBudgets;
+    List<BudgetModel> expiredBudget = Model.PastBudgets;
                     }
                     @if (expiredBudget.Count > 0)
                     {
