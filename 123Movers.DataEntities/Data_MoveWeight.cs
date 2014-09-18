@@ -31,7 +31,7 @@ namespace _123Movers.DataEntities
 
             using (var db = new MoversDBEntities())
             {
-                moveWeight = serviceId == null ? db.CompanyMoveWeight.Where(d => d.companyID == companyId).OrderByDescending(d => d.serviceID).FirstOrDefault() : db.CompanyMoveWeight.Where(d => d.companyID == companyId && d.serviceID == serviceId).FirstOrDefault();
+                moveWeight = serviceId == null ? db.CompanyMoveWeight.Where(d => d.companyID == companyId).OrderByDescending(d => d.serviceID).FirstOrDefault() : db.CompanyMoveWeight.FirstOrDefault(d => d.companyID == companyId && d.serviceID == serviceId);
             }
             if (moveWeight != null)
             {
@@ -44,7 +44,7 @@ namespace _123Movers.DataEntities
 
         public static bool SaveMoveWeight(MoveWeightModel model)
         {
-            bool result = false;
+            var result = false;
 
             using (var db = new MoversDBEntities())
             {
