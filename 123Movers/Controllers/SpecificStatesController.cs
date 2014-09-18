@@ -50,7 +50,7 @@ namespace _123Movers.Controllers
 
             var spcfcstates = new SpecificStatesModel
                 {
-                    _companyInfo = RetrieveCurrentCompanyInfo(companyId),
+                    CompanyInfo = RetrieveCurrentCompanyInfo(companyId),
                     ServiceId = serviceId ?? (int) ServiceType.Local
                 };
             return View(spcfcstates);

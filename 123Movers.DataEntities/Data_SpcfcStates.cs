@@ -9,7 +9,7 @@ namespace _123Movers.DataEntities
     {
         public static DataTable GetAvailStates(int? companyId, int? serviceId)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand
                     {
@@ -71,7 +71,7 @@ namespace _123Movers.DataEntities
         }
         public static List<List<string>> GetCompanySpcfcStates(int? companyId, int? serviceId, string originState, bool isoriginState)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand
                     {

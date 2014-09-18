@@ -1,10 +1,6 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Linq;
-using System.Web;
 using System.Collections.Generic;
-using System.Web.Mvc;
-using System.ComponentModel;
 
 namespace _123Movers.Models
 {
