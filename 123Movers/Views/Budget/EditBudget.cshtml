@@ -58,26 +58,26 @@
         </div>
     </div>
    
-    var Service = (@Model.ServiceId == (int)ServiceType.Both) ? null : @Model.ServiceId;
+    var service = (@Model.ServiceId == (int)ServiceType.Both) ? null : @Model.ServiceId;
     <div class="row">
         <div class="col-md-12">
-            @Html.ActionLink("Area Codes", "AreaCodes", "AreaCode", new {Model.CompanyId, serviceId = Service }, new { id = "managearea", @class = "btn btn-default spnload" })
-            @Html.ActionLink("Lead Limit", "LeadLimit", "LeadLimit", new { Model.CompanyId,serviceId = Service }, new { id = "leadlimit", @class = "btn btn-default clsdisable spnload" })
-            @Html.ActionLink("Origin Zip", "OriginZipCodes", "OriginZipCode", new {Model.CompanyId, serviceId = Service }, new { id = "originzip", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Area Codes", "AreaCodes", "AreaCode", new {Model.CompanyId, serviceId = service }, new { id = "managearea", @class = "btn btn-default spnload" })
+            @Html.ActionLink("Lead Limit", "LeadLimit", "LeadLimit", new { Model.CompanyId,serviceId = service }, new { id = "leadlimit", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Origin Zip", "OriginZipCodes", "OriginZipCode", new {Model.CompanyId, serviceId = service }, new { id = "originzip", @class = "btn btn-default clsdisable spnload" })
             @*@Html.ActionLink("Destination Zip", "DestinationZipCodes", "DestinationZipCode", new { serviceId = Service }, new { id = "destzip", @class = "btn btn-default spnload" })*@
             @*@Html.ActionLink("Destination Zip", "DestZipCode", "DestZipCode", new { serviceId = Service }, new { id = "destareazip", @class = "btn btn-default clsdisable spnload" })*@
-            @Html.ActionLink("Destination Area", "DestinationAreaCode", "DestinationAreaCode", new {Model.CompanyId, serviceId = Service }, new { id = "destarea", @class = "btn btn-default clsdisable spnload" })
-            @Html.ActionLink("Distance", "MoveDistance", "MoveDistance", new {Model.CompanyId, serviceId = Service }, new { id = "distance", @class = "btn btn-default clsdisable spnload" })
-            @Html.ActionLink("Move Weight", "MoveWeight", "MoveWeight", new {Model.CompanyId, serviceId = Service }, new { id = "movewight", @class = "btn btn-default clsdisable spnload" })
-            @Html.ActionLink("Specific Areas", "SpecificOriginAreaCodes", "SpecificOriginAreaCodes", new {Model.CompanyId, serviceId = Service }, new { id = "specificAreas", @class = "btn btn-default clsdisable spnload" })
-            @Html.ActionLink("Specific States", "SpecificStates", "SpecificStates", new {Model.CompanyId, serviceId = Service }, new { id = "specificStates", @class = "btn btn-default clsdisable spnload" })
-            @Html.ActionLink("Radius", "Radius", "Radius", new {Model.CompanyId, serviceId = Service }, new { id = "radius", @class = "btn btn-default spnload" })
+            @Html.ActionLink("Destination Area", "DestinationAreaCode", "DestinationAreaCode", new {Model.CompanyId, serviceId = service }, new { id = "destarea", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Distance", "MoveDistance", "MoveDistance", new {Model.CompanyId, serviceId = service }, new { id = "distance", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Move Weight", "MoveWeight", "MoveWeight", new {Model.CompanyId, serviceId = service }, new { id = "movewight", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Specific Areas", "SpecificOriginAreaCodes", "SpecificOriginAreaCodes", new {Model.CompanyId, serviceId = service }, new { id = "specificAreas", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Specific States", "SpecificStates", "SpecificStates", new {Model.CompanyId, serviceId = service }, new { id = "specificStates", @class = "btn btn-default clsdisable spnload" })
+            @Html.ActionLink("Radius", "Radius", "Radius", new {Model.CompanyId, serviceId = service }, new { id = "radius", @class = "btn btn-default spnload" })
         </div>
     </div>
     <p class="clear-fix"></p>
     <div class="row">
         <div class="col-md-6">
-             @Html.ActionLink("Get Filter Info", "BudgetFilterInfo", "Budget", new {companyId = @Model.CompanyId, serviceId = Service }, new { id = "btnfilter", @class = "btn btn-default clsdisable spnload" })
+             @Html.ActionLink("Get Filter Info", "BudgetFilterInfo", "Budget", new {companyId = @Model.CompanyId, serviceId = service }, new { id = "btnfilter", @class = "btn btn-default clsdisable spnload" })
         </div>
         <div class="col-md-6">
             <input type="submit" id="save" class="btn btn-primary pull-right" value="Save Budget" />

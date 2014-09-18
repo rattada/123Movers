@@ -9,7 +9,6 @@
     @Html.Script("jquery.loadmask.min.js")
 }
 
-
 <h2>Search for Company </h2>
 @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { id = "frmsearch", @class = "form-horizontal" }))
 {
@@ -34,11 +33,6 @@
                 <div class="col-md-8">@Html.TextBoxFor(m => m.Ax, new { @class = "form-control", id = "AX", @placeholder = "Enter Company AX" })</div>
                 @Html.ValidationMessageFor(m => m.Ax)
             </div>
-            @*<div class="form-group">
-                <label class="control-label col-md-4" id="lblInsertionOrderId">Insertion Order ID</label>
-                <div class="col-md-8">@Html.TextBoxFor(m => m.InsertionOrderId, new { @class = "form-control", id = "InsertionOrderId", @placeholder = "Enter Company Insertion" })</div>
-                @Html.ValidationMessageFor(m => m.InsertionOrderId)
-            </div>*@
         </div>
     </div>
     <div class="row">
@@ -64,7 +58,7 @@
                     </th>
                 </tr>
             </thead>
-            @if (@Model.Companies != null && @Model.Companies.Count() > 0)
+            @if (@Model.Companies != null && @Model.Companies.Any())
             {
                 foreach (var lot in Model.Companies)
                 {

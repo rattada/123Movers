@@ -35,8 +35,11 @@ namespace _123Movers.Controllers
             var services = GetServices(serviceId);
             ViewBag.Services = services.Count > 2 ? services.Take(2) : services;
 
-            var destAreaCode = new DestinationAreaCodeModel();
-            destAreaCode.CompanyInfo = RetrieveCurrentCompanyInfo(companyId);
+            var destAreaCode = new DestinationAreaCodeModel()
+                {
+                    CompanyInfo = RetrieveCurrentCompanyInfo(companyId),
+                    ServiceId = serviceId ?? (int) ServiceType.Local
+                };
             return View(destAreaCode);
         }
         

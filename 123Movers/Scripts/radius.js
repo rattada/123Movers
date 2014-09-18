@@ -46,7 +46,7 @@
 
     $('#addAreaCode').on('click', function () {
         var jareaCodes = JSON.stringify(areaCodes);
-
+        
         $.ajax({
             url: '/radius/AddAreaCodes',
             data: { 'ServiceId': serviceId, 'AreaCodes': jareaCodes },

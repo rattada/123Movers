@@ -25,9 +25,6 @@
 <div class="table-responsive scrollable-table" id="divOrigin">
     <table id="tbOrigin" class="table table-hover table-striped table-bordered">
         <thead>
-            @*<tr>
-                <th class="topheader">Origin Zip To Multiple Area Code</th>
-            </tr>*@
             <tr>
                 <th class="text-center">Service</th>
                 <th class="text-center">Area Code</th>
@@ -37,28 +34,28 @@
         <tbody>
             @if (@Model != null)
             {
-                if (@Model.OriginAreaCodes.Count() > 0)
+                if (@Model.OriginAreaCodes.Any())
                 {
-                    foreach (var OriginAreaCode in Model.OriginAreaCodes)
+                    foreach (var originAreaCode in Model.OriginAreaCodes)
                     {
                 <tr>
                     <td class="text-center">
-                        @OriginAreaCode.ServiceId.TernaryLocalLong()
+                        @originAreaCode.ServiceId.TernaryLocalLong()
                     </td>
                     <td id="areacode" class="text-center">
-                        @OriginAreaCode.AreaCode
+                        @originAreaCode.AreaCode
                     </td>
                     <td class="text-center">
                         @{
-                        var zipcodes = @Model.OriginZipCodes.Where(x => x.AreaCode == @OriginAreaCode.AreaCode && x.ServiceId == @OriginAreaCode.ServiceId).Select(x => x.ZipCode).ToList();
+                        var zipcodes = @Model.OriginZipCodes.Where(x => x.AreaCode == originAreaCode.AreaCode && x.ServiceId == originAreaCode.ServiceId).Select(x => x.ZipCode).ToList();
                         }
-                        @if (@zipcodes.Count() > 0)
+                        @if (@zipcodes.Any())
                         {
-                            <b>YES --> @zipcodes.Count() ZipCodes - </b> <a id="zipcodes" href="#" data-toggle="modal" data-target="#myModal" class="OriginAreaCode"  data-serviceid="@OriginAreaCode.ServiceId" data-areacode="@OriginAreaCode.AreaCode">View</a>
+                            <b>YES --> @zipcodes.Count() ZipCodes - </b> <a id="zipcodes" href="#" data-toggle="modal" data-target="#myModal" class="OriginAreaCode"  data-serviceid="@originAreaCode.ServiceId" data-areacode="@originAreaCode.AreaCode">View</a>
                         }
                         else
                         {
-                            <a id="zipcodes1" href="#" data-toggle="modal" data-target="#myModal" class="OriginAreaCode"  data-serviceid="@OriginAreaCode.ServiceId" data-areacode="@OriginAreaCode.AreaCode">Add Origin ZipCodes</a>
+                            <a id="zipcodes1" href="#" data-toggle="modal" data-target="#myModal" class="OriginAreaCode"  data-serviceid="@originAreaCode.ServiceId" data-areacode="@originAreaCode.AreaCode">Add Origin ZipCodes</a>
                         }
 
                     </td>
@@ -75,6 +72,7 @@
         <a href="#" onclick="history.go(-1);return false;" class="btn btn-primary  pull-right">Back To Edit</a>
     </div>
 </div>
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">

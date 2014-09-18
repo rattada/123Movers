@@ -1,33 +1,19 @@
 ﻿@model _123Movers.Models.CompanyModel
 
 @{
-    var Suspended = @Model.Suspended == "Yes" ? "Suspended" : @Model.IsActive ? "Active" : "Inactive";
+    var suspended = @Model.Suspended == "Yes" ? "Suspended" : @Model.IsActive ? "Active" : "Inactive";
 }
 <div class="row">
     <div class="col-md-12">
         <p></p>
         <table class="table table-bordered" style="margin-bottom: 0px;">
-            @*<tbody>
-                <tr>
-                    <td class="col-md-6">Legal Name : <strong>@Model.CompanyName</strong></td>
-                    <td class="col-md-6">CompanyID : <strong>@Model.CompanyId</strong></td>
-                </tr>
-                <tr>
-                    <td class="col-md-6">AX # : <strong>@Model.AX</strong></td>
-                    <td class="col-md-6">Sales Person : <strong>@Model.ContactPerson</strong></td>
-                </tr>
-                <tr>
-                    <td class="col-md-6">Status : <strong>@Suspended</strong></td>
-                    <td class="col-md-6"></td>
-                </tr>
-            </tbody>*@
             <tbody>
                 <tr>
                     <td>Legal Name : <strong>@Model.CompanyName</strong></td>
                     <td >CompanyID : <strong>@Model.CompanyId</strong></td>
                     <td>AX # : <strong>@Model.Ax</strong></td>
                     <td>Sales Person : <strong>@Model.ContactPerson</strong></td>
-                    <td>Status : <strong>@Suspended</strong></td>
+                    <td>Status : <strong>@suspended</strong></td>
                 </tr>
             </tbody>
         </table>

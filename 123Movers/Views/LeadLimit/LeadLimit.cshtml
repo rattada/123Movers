@@ -4,7 +4,6 @@
     ViewBag.Title = "Company Lead Limit";
 }
 
-<input type="hidden" id="hdnServiceId" value="@ViewBag.ServiceID"/>
 
 @Html.Partial(Constants.VIEW, @Model.CompanyInfo)
 @section JavaScript{
@@ -39,9 +38,9 @@
             @{
                 if (@Model.LeadLimitData != null)
                 {
-                    if (@Model.LeadLimitData.Count() > 0)
+                    if (@Model.LeadLimitData.Any())
                     {
-                        var bothservice = Model.LeadLimitData.Where(x => x.ServiceId == null).SingleOrDefault();
+                        var bothservice = Model.LeadLimitData.SingleOrDefault(x => x.ServiceId == null);
 
                         if (bothservice != null)
                         {
