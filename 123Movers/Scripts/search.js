@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    var rows_Count = $('#info tr').length;
-    if (rows_Count > 2) {
+    var rowsCount = $('#info tr').length;
+    if (rowsCount > 2) {
         $('#info').dataTable({ "sPaginationType": "full_numbers" });
     }
     else {
@@ -8,7 +8,7 @@
     }
     $('#btnSearch').click(function () {
 
-        if (CheckForInputs() == false)
+        if (checkForInputs() == false)
             return false;
         else
             $("body").mask('Searching...');
@@ -27,7 +27,7 @@
     //Getting the records when "Enter" key is Pressed.. 
     $(document).keypress(function (e) {
         if (e.which === 13) {
-            if (CheckForInputs() == false) {
+            if (checkForInputs() == false) {
                 $('#info').html('');
                 return false;
             }
@@ -37,7 +37,7 @@
     });
 
     //Check for all TextBox values whether they are empty or not returns boolean value...
-    function CheckForInputs() {
+    function checkForInputs() {
         var companyname = $.trim($("#CompanyName").val());
         var companyId = $.trim($("#CompanyId").val());
         var ax = $.trim($("#AX").val());
