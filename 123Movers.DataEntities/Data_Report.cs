@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using _123Movers.Models;
 
 namespace _123Movers.DataEntities
@@ -12,22 +8,21 @@ namespace _123Movers.DataEntities
     {
         public static DataTable GetReports(int? companyId, int? serviceId)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = "usp_GetCompanyPricePerLead";
-               
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId.ToString().IntNullOrEmpty());
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_AREACODE_DELETE
+                    };
 
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId.ToString().IntNullOrEmpty());
 
-                DataTable dtResults = new DataTable();
+                var dtResults = new DataTable();
 
-                SqlDataReader drResults = _cmd.ExecuteReader();
+                var drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
                 return dtResults;

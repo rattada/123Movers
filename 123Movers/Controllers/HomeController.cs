@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using _123Movers.Models;
 using _123Movers.BusinessEntities;
-using System.Data;
-using System.Web.Script.Serialization;
 using log4net;
 
 namespace _123Movers.Controllers

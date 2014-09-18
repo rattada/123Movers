@@ -24,7 +24,6 @@ namespace _123Movers.DataEntities
             }
             catch (Exception)
             {
-
                 return conDb;
             }
         }
@@ -33,7 +32,7 @@ namespace _123Movers.DataEntities
         {
             var list = new List<SearchModel>();
             var dtResults = new DataTable();
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
                _cmd = new SqlCommand
                     {
