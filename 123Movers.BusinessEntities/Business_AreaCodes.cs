@@ -1,10 +1,6 @@
 ﻿using _123Movers.DataEntities;
-using _123Movers.Models;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 
 namespace _123Movers.BusinessEntities
 {
@@ -19,26 +15,18 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.GetCompanyAreasWithPrices(companyId, serviceId);
         }
-        //public static void AddCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
-        //{
-        //    DataLayer.AddCompanyAdByArea(companyId, serviceId, areaCode);
-        //}
         public static void AddCompanyAreaCodes(int? companyId, int? serviceId, string areaCodes)
         {
             DataLayer.AddCompanyAreaCodes(companyId, serviceId, areaCodes);
         }
-        //public static void DeleteCompanyAdByArea(int? companyId, int? serviceId, int areaCode)
-        //{
-        //    DataLayer.DeleteCompanyAdByArea(companyId, serviceId, areaCode);
-        //}
         public static void DeleteCompanyAreaCodes(int? companyId, int? serviceId, string areaCodes)
         {
             DataLayer.DeleteCompanyAreaCodes(companyId, serviceId, areaCodes);
         }
 
-        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, string areaCodes, int? moveWeightID)
+        public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, string areaCodes, int? moveWeightId)
         {
-            return DataLayer.AddCompanyPricePerLead(companyId, serviceId, areaCodes, moveWeightID);
+            return DataLayer.AddCompanyPricePerLead(companyId, serviceId, areaCodes, moveWeightId);
         }
     }
 }

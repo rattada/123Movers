@@ -20,6 +20,6 @@
     });
 
     $('.editBudget').click(function () {
-        $("body").mask('Loading...')
+        $("body").mask('Loading...');
     });
 });

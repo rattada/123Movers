@@ -2,9 +2,9 @@
     $('.TitleStyle').text('Specific AreaCodes');
     var serviceId = $('#ddlServiceID').val();
     if (serviceId != '') {
-        GetAvailableAreas(serviceId);
+        getAvailableAreas(serviceId);
     } else { $('#ddlareaCode').attr("disabled", true); }
-    function GetAvailableAreas(serviceId) {
+    function getAvailableAreas(serviceId) {
         $.ajax({
             url: '/SpecificOriginAreaCodes/GetAvailSpcfcOriginDestAreas',
             type: "GET",
@@ -40,7 +40,7 @@
             }
         });
     }
-    function GetSelectedAreas(serviceId, spfcareacode) {
+    function getSelectedAreas(serviceId, spfcareacode) {
         //OriginAreaCodes
         $.ajax({
             url: '/SpecificOriginAreaCodes/GetCompanySpcfcOriginDestAreas',
@@ -111,13 +111,13 @@
             $('#originAreaCodes').focus();
             return false;
         }
-        var data_to_send = JSON.stringify(selected);
+        var dataToSend = JSON.stringify(selected);
         $.ajax({
             url: '/SpecificOriginAreaCodes/AddCompanySpcfcOriginDestAreaCodes',
             type: "POST",
-            data: {'serviceId': serviceId, "spcfcareacode": originAreaCode, 'areaCodes': data_to_send },
+            data: {'serviceId': serviceId, "spcfcareacode": originAreaCode, 'areaCodes': dataToSend },
             success: function (data) {
-                GetSelectedAreas(serviceId, originAreaCode);
+                getSelectedAreas(serviceId, originAreaCode);
                 alert("Area Code(s) added Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -152,7 +152,7 @@
             type: "POST",
             data: { 'serviceId': serviceId, "spcfcareacode": originAreaCode, areaCodes: data_to_send },
             success: function (data) {
-                GetSelectedAreas(serviceId, originAreaCode);
+                getSelectedAreas(serviceId, originAreaCode);
                 alert("Area Code(s) removed Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -162,7 +162,7 @@
     $("body").parent().on("change", "#ddlServiceID", function () {
         var serviceId = $('#ddlServiceID').val();
         if (serviceId != '') {
-            GetAvailableAreas(serviceId);
+            getAvailableAreas(serviceId);
             $('#ddlareaCode').attr("disabled", false);
         }
         else {
@@ -176,7 +176,7 @@
         var serviceId = $('#ddlServiceID').val();
         var originAreaCode = $('#ddlareaCode').val();
         if (originAreaCode != '') {
-            GetSelectedAreas(serviceId, originAreaCode);
+            getSelectedAreas(serviceId, originAreaCode);
         }
         else {
             $('#originAreaCodes').html('');

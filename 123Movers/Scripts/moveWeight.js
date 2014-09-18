@@ -33,7 +33,7 @@
                 orgMin = $('#minMoveWeight option:selected').val();
             }
         }
-        var ModelData =
+        var modelData =
            {
                ServiceId: serviceId,
                MinMoveWeightSeq: orgMin,
@@ -42,7 +42,7 @@
         $.ajax({
             url: '/MoveWeight/MoveWeight',
             type: "POST",
-            data: ModelData,
+            data: modelData,
             cache: false,
             success: function (data) {
                 if (data.success)

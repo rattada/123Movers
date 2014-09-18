@@ -1,9 +1,11 @@
 ﻿$(function () {
     $('.TitleStyle').text('Destination Area Code');
+    
     $("#accordion_tblCompanyAreas").hide();
     var serviceId = $('#ddlServiceID').val();
+    
     if (serviceId != '') {
-        GetSelectedAreas(serviceId, false);
+        getSelectedAreas(serviceId, false);
     } else { $('#ddlareaCode').attr("disabled", true); }
     $("#saveSettings").attr("disabled", "disabled");
     jQuery.fn.multiselect = function () {
@@ -11,9 +13,11 @@
             var checkboxes = $(this).find("input:checkbox");
             checkboxes.each(function () {
                 var checkbox = $(this);
+
                 // Highlight pre-selected checkboxes
                 if (checkbox.prop("checked"))
                     checkbox.parent().addClass("multiselect-on");
+
                 // Highlight checkboxes that the user selects
                 checkbox.click(function () {
                     if (checkbox.prop("checked"))
@@ -24,11 +28,11 @@
             });
         });
     };
-    function GetSelectedAreas(serviceId, bool) {
+    function getSelectedAreas(service, bool) {
         $.ajax({
             url: '/DestinationAreaCode/GetCompanyDestAreas',
             type: "GET",
-            data: { 'serviceId': serviceId },
+            data: { 'serviceId': service },
             dataType: "json",
             cache: false,
             success: function (data) {
@@ -81,12 +85,12 @@
         });
     }
     $('#add').click(function () {
-        var serviceId = $('#ddlServiceID').val();
+        var service = $('#ddlServiceID').val();
         var selected = [];
         $('#originAreaCodes :selected').each(function (i, el) {
             selected[i] = $(this).val();
         });
-        if (serviceId == '') {
+        if (service == '') {
             alert("Please select Service Type");
             $('#ddlServiceID').focus();
             return false;
@@ -98,13 +102,13 @@
             return false;
         }
        
-        var data_to_send = JSON.stringify(selected);
+        var dataToSend = JSON.stringify(selected);
         $.ajax({
             url: '/DestinationAreaCode/AddCompanyDestAreaCodes',
             type: "POST",
-            data: {  'serviceId': serviceId, 'areaCodes': data_to_send },
+            data: { 'serviceId': service, 'areaCodes': dataToSend },
             success: function (data) {
-                GetSelectedAreas(serviceId, true);
+                getSelectedAreas(service, true);
                 alert("Area Code(s) added Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -112,9 +116,9 @@
         });
     });
     $('#remove').click(function () {
-        var serviceId = $('#ddlServiceID').val();
+        var service = $('#ddlServiceID').val();
         var selected = [];
-        if (serviceId == '') {
+        if (service == '') {
             alert("Please select Service Type");
             $('#ddlServiceID').focus();
             return false;
@@ -127,13 +131,13 @@
             $('#destAreaCodes').focus();
             return false;
         }
-        var data_to_send = JSON.stringify(selected);
+        var dataToSend = JSON.stringify(selected);
         $.ajax({
             url: '/DestinationAreaCode/DeleteCompanyDestAreaCodes',
             type: "POST",
-            data: { 'serviceId': serviceId, 'areaCodes': data_to_send },
+            data: { 'serviceId': service, 'areaCodes': dataToSend },
             success: function (data) {
-                GetSelectedAreas(serviceId, true);
+                getSelectedAreas(service, true);
                 alert("Area Code(s) removed Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -141,11 +145,10 @@
         });
     });
     $("body").parent().on("change", "#ddlServiceID", function () {
-        var serviceId = $('#ddlServiceID').val();
-        if (serviceId != '') {
+        var service = $('#ddlServiceID').val();
+        if (service != '') {
             $("#divTblAreas").html('');
-            GetSelectedAreas(serviceId, false);
-            //GettblCompanyAreas(serviceId);
+            getSelectedAreas(service, false);
             $('#ddlareaCode').attr("disabled", false);
         }
         else {
@@ -158,9 +161,9 @@
         }
     });
     $('#saveSettings').click(function () {
-        var serviceId = $('#ddlServiceID').val();
+        var service = $('#ddlServiceID').val();
         var selected = [];
-        if (serviceId == '') {
+        if (service == '') {
             alert("Please select Service Type");
             $('#ddlServiceID').focus();
             return false;
@@ -176,7 +179,7 @@
                 }
             });
         });
-        var data_to_send = JSON.stringify(selected);
+        var dataToSend = JSON.stringify(selected);
         if (selected.length == 0) {
             alert("No available area codes were selected");
             $("#divTblAreas").focus();
@@ -185,7 +188,7 @@
         $.ajax({
             url: '/DestinationAreaCode/Turn_ON_OFF_CompanyDestAreaCodes',
             type: "POST",
-            data: {'serviceId': serviceId, 'areaCodes': data_to_send },
+            data: { 'serviceId': service, 'areaCodes': dataToSend },
             success: function (data) {
                 alert("Settings saved Successfully");
             },

@@ -58,7 +58,7 @@
             orgMinDistance = $("#MinMoveDistance").val();
             orgMaxDistance = $("#MaxMoveDistance").val();
         }
-        var ModelData =
+        var modelData =
             {  
                 ServiceId: serviceId,
                 MinMoveDistance: orgMinDistance,
@@ -67,7 +67,7 @@
         $.ajax({
             url: '/MoveDistance/MoveDistance',
             type: "POST",
-            data: ModelData,
+            data: modelData,
             cache: false,
             success: function (data) {
                 if (data.success)

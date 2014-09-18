@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using _123Movers.DataEntities;
+﻿using _123Movers.DataEntities;
 
 namespace _123Movers.BusinessEntities
 {

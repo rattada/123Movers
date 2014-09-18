@@ -15,9 +15,8 @@
             $("#saveleads").removeAttr('disabled');
     });
     $("#saveleads").click(function () {
-        var values = "";
-        var LeadLimitData = [];
-        var Filleddata = [];
+        var leadLimitData = [];
+        var filleddata = [];
         $('#tblLeadLimit tbody tr').each(function () {
             //Checking for Only checked checkboxes
             $(this).find('.chkSelectClass:checkbox:checked').each(function () {
@@ -47,7 +46,7 @@
                         TotalLeadLimit = $.trim($(this).closest('td').find("input:text").val());
                     }
                 });
-                LeadLimitData =
+                leadLimitData =
                           [{
                               AreaCodes: AreaCodes,
                               ServiceId: ServiceId,
@@ -56,18 +55,18 @@
                               MonthlyLeadLimit: MonthlyLeadLimit,
                               TotalLeadLimit: TotalLeadLimit
                           }]
-                Filleddata.push(LeadLimitData);
+                filleddata.push(leadLimitData);
             });
         });
         //Saving the  entire data in DB with Ajax call
-        var data_to_send = JSON.stringify(Filleddata);
-        if (data_to_send != 0) {
+        var dataToSend = JSON.stringify(filleddata);
+        if (dataToSend != 0) {
             $.ajax({
                 url: '/LeadLimit/LeadLimit',
                 cache: false,
                 type: 'POST',
                 dataType: "json",
-                data: JSON.stringify(Filleddata),// Comverting the list items to JSON format(Because POST method accepts  only JSON data)
+                data: JSON.stringify(filleddata),// Comverting the list items to JSON format(Because POST method accepts  only JSON data)
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     alert('Successfully Updated:');
@@ -96,19 +95,12 @@
     });
     $(".chkBoth").on("change", function () {
         if ($(this).prop('checked') == true) {
-            //$("#txtFrequencyLocal").attr("disabled", true);
-            //$("#txtFrequencyLong").attr("disabled", true);
-            //$("#rdbtnLocal").prop("checked", false);
-            //$("#rdbtnLong").prop("checked", false);
             $(".chkLocalLong").prop("checked", false);
             $(".txtFrqLocalLong").attr("disabled", true);
 
         };
     });
     $(".chkLocalLong").on("change", function () {
-        //$("#rdbtnboth").prop("checked", false);
-        //$("#txtFrequencyboth").attr("disabled", true);
-
         $(".chkBoth").prop("checked", false);
         $(".txtFrqBoth").attr("disabled", true);
     });

@@ -1,18 +1,11 @@
 ﻿using _123Movers.DataEntities;
 using _123Movers.Models;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 
 namespace _123Movers.BusinessEntities
 {
     public partial class BusinessLayer
     {
-
-
-
         public static OriginZipCodeModel GetCompanyServiceAreaCodes(int? companyId, int? serviceId)
         {
             return DataLayer.GetCompanyServiceAreaCodes(companyId, serviceId);
@@ -33,9 +26,5 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.DeleteCompanyAreaZipCodes(companyId, serviceId, areaCode, zipCodes);
         }
-        //public static bool AddCompanyZipCodesPerAreaCodes(int? companyId, int serviceId, string areaCodes, int IsOrigin)
-        //{
-        //    return DataLayer.AddCompanyZipCodesPerAreaCodes(companyId, serviceId, areaCodes, IsOrigin);
-        //}
     }
 }

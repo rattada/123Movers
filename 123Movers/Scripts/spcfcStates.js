@@ -2,9 +2,9 @@
     $('.TitleStyle').text('Specific States');
     var serviceId = $('#ddlServiceID').val();
     if (serviceId != '') {
-        GetAvailStates(serviceId);
+        getAvailStates(serviceId);
     } else { $('#ddlState').attr("disabled", true); }
-    function GetAvailStates(serviceId) {
+    function getAvailStates(serviceId) {
         $.ajax({
             url: '/SpecificStates/GetAvailStates',
             type: "GET",
@@ -41,7 +41,7 @@
             }
         });
     }
-    function GetCompanySpcfcStates(serviceId, originState) {
+    function getCompanySpcfcStates(serviceId, originState) {
         $.ajax({
             url: '/SpecificStates/GetCompanySpcfcOriginDestStates',
             type: "GET",
@@ -116,7 +116,7 @@
             type: "POST",
             data: { 'serviceId': serviceId, "originState": Spcfcstate, 'destStates': states },
             success: function (data) {
-                GetCompanySpcfcStates(serviceId, Spcfcstate);
+                getCompanySpcfcStates(serviceId, Spcfcstate);
                 alert("State(s) added Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -151,7 +151,7 @@
             type: "POST",
             data: {  'serviceId': serviceId, "originState": Spcfcstate, "destStates": states },
             success: function (data) {
-                GetCompanySpcfcStates(serviceId, Spcfcstate);
+                getCompanySpcfcStates(serviceId, Spcfcstate);
                 alert("State(s) removed Successfully");
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -161,7 +161,7 @@
     $("body").parent().on("change", "#ddlServiceID", function () {
         var serviceId = $('#ddlServiceID').val();
         if (serviceId != '') {
-            GetAvailStates(serviceId);
+            getAvailStates(serviceId);
         }
         else {
             $('#ddlState').html('');
@@ -174,7 +174,7 @@
         var serviceId = $('#ddlServiceID').val();
         var originState = $('#ddlState').val();
         if (originState != '') {
-            GetCompanySpcfcStates(serviceId, originState);
+            getCompanySpcfcStates(serviceId, originState);
         }
         else {
             $('#originStates').html('');

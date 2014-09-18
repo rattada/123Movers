@@ -140,7 +140,6 @@
                     $("#addAreaCode").prop("disabled", false);
                 }
                 else {
-                    // $('#tblRadius_wrapper').html('');
                     $("#btnRadius").css('display', 'none');
                     $("#ddlorigordest").prop("disabled", true);
                     alert("No record(s) found with above Combination.Please try with another Combination");
