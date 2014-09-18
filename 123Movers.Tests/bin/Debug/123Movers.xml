@@ -4,6 +4,17 @@
         <name>123Movers</name>
     </assembly>
     <members>
+        <member name="T:_123Movers.FilterConfig">
+            <summary>
+            Filter config class
+            </summary>
+        </member>
+        <member name="M:_123Movers.FilterConfig.RegisterGlobalFilters(System.Web.Mvc.GlobalFilterCollection)">
+            <summary>
+            
+            </summary>
+            <param name="filters"></param>
+        </member>
         <member name="T:_123Movers.Controllers.BaseController">
             <summary>
             
@@ -49,11 +60,6 @@
             </summary>
         </member>
         <member name="P:_123Movers.Controllers.BaseController.CompanyInfo">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:_123Movers.Controllers.BaseController.CheckSessionOutAttribute">
             <summary>
             
             </summary>
@@ -105,6 +111,11 @@
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <param name="areaCodes">Selected Area Codes</param>
+        </member>
+        <member name="T:_123Movers.Controllers.CheckSessionOutAttribute">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:_123Movers.Controllers.BudgetController">
             <summary>
