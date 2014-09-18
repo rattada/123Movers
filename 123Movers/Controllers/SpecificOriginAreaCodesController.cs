@@ -10,9 +10,12 @@ using log4net;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// Specific Origin Area Codes Controller
+    /// </summary>
     public class SpecificOriginAreaCodesController : BaseController
     {
-       private static ILog logger = LogManager.GetLogger(typeof(SpecificOriginAreaCodesController)); 
+       private static readonly ILog Logger = LogManager.GetLogger(typeof(SpecificOriginAreaCodesController)); 
         
         /// <summary>
         /// Get All Specific Origin Destination Area Codes
@@ -28,8 +31,6 @@ namespace _123Movers.Controllers
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         /// <param name="spcfcareacode"> Selected Area Code</param>
-        /// <param name="originAreaCode"></param>
-        /// <returns></returns>
        public JsonResult GetCompanySpcfcOriginDestAreas( int? serviceId, int spcfcareacode)
         {
             return Json(BusinessLayer.GetCompanySpcfcOriginDestAreas(CompanyId, serviceId, spcfcareacode), JsonRequestBehavior.AllowGet);
@@ -41,15 +42,14 @@ namespace _123Movers.Controllers
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
        public ActionResult SpecificOriginAreaCodes( int? serviceId)
         {
-            var Services = GetServices(serviceId);
-            if (Services.Count > 2)
-                ViewBag.Services = Services.Take(2);
-            else
-                ViewBag.Services = Services;
+            var services = GetServices(serviceId);
+            ViewBag.Services = services.Count > 2 ? services.Take(2) : services;
 
-            SpecificOriginAreaCode spcfcOriginAreaCodes = new SpecificOriginAreaCode();
-            spcfcOriginAreaCodes._companyInfo = CompanyInfo;
-            spcfcOriginAreaCodes.ServiceId = serviceId == null ? (int)ServiceType.Local : serviceId; ;
+            var spcfcOriginAreaCodes = new SpecificOriginAreaCode
+                {
+                    _companyInfo = CompanyInfo,
+                    ServiceId = serviceId ?? (int)ServiceType.Local
+                };
             return View(spcfcOriginAreaCodes);
         }
 
@@ -69,7 +69,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 
@@ -92,7 +92,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
             return result;

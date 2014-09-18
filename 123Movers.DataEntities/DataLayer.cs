@@ -4,11 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 using _123Movers.Models;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using _123Movers.Entity;
 
 namespace _123Movers.DataEntities
 {
@@ -19,172 +15,87 @@ namespace _123Movers.DataEntities
         public static SqlConnection ConnectToDb()
         {
             string strCon = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
-            SqlConnection conDB = null;
+            SqlConnection conDb = null;
             try
             {
-                conDB = new SqlConnection(strCon);
-                conDB.Open();
-                return conDB;
+                conDb = new SqlConnection(strCon);
+                conDb.Open();
+                return conDb;
             }
             catch (Exception)
             {
 
-                return conDB;
+                return conDb;
             }
         }
 
-        //public static bool Login(LoginModel login)
-        //{
-
-
-        //    using (SqlConnection dbCon = ConnectToDb())
-        //    {
-        //        SqlCommand cmdGetDetailsByCompanyName = new SqlCommand();
-        //        cmdGetDetailsByCompanyName.Connection = dbCon;
-        //        cmdGetDetailsByCompanyName.CommandType = System.Data.CommandType.StoredProcedure;
-        //        cmdGetDetailsByCompanyName.CommandText = "usp_CheckUser";
-
-
-
-        //        SqlParameter paramUserName = new SqlParameter("UserName", login.UserName);
-        //        SqlParameter paramPassword = new SqlParameter("Password", login.Password);
-
-        //        cmdGetDetailsByCompanyName.Parameters.Add(paramUserName);
-        //        cmdGetDetailsByCompanyName.Parameters.Add(paramPassword);
-
-        //        SqlDataReader dr = cmdGetDetailsByCompanyName.ExecuteReader();
-        //        if (dr.Read())
-        //        {
-
-        //            ret = dr.GetBoolean(0);
-
-        //        }
-        //    }
-        //    return ret;
-
-        //}
-
-        //public static void RegisterUser(RegisterModel model)
-        //{
-
-        //    using (SqlConnection dbCon = ConnectToDb())
-        //    {
-
-        //        SqlCommand cmdGetDetailsByCompanyName = new SqlCommand();
-        //        cmdGetDetailsByCompanyName.Connection = dbCon;
-        //        cmdGetDetailsByCompanyName.CommandType = System.Data.CommandType.StoredProcedure;
-        //        cmdGetDetailsByCompanyName.CommandText = "usp_AddUser";
-
-
-
-        //        SqlParameter paramUserName = new SqlParameter("UserName", model.UserName);
-        //        SqlParameter paramPassword = new SqlParameter("Password", model.Password);
-        //        SqlParameter paramEmail = new SqlParameter("EmailId", model.EmailID);
-
-        //        cmdGetDetailsByCompanyName.Parameters.Add(paramUserName);
-        //        cmdGetDetailsByCompanyName.Parameters.Add(paramPassword);
-        //        cmdGetDetailsByCompanyName.Parameters.Add(paramEmail);
-
-
-        //        //var parms = new IDataParameter[3];
-        //        //int i = 0;
-        //        //parms[i++] = NewParameter("UserName", SqlDbType.VarChar, model.UserName);
-        //        //parms[i++] = NewParameter("Password", SqlDbType.VarChar, model.Password);
-        //        //parms[i++] = NewParameter("EmailId", SqlDbType.VarChar, model.EmailID);
-
-        //        //cmdGetDetailsByCompanyName.Parameters.Add(parms);
-
-        //        var i = cmdGetDetailsByCompanyName.ExecuteNonQuery();
-
-        //    }
-
-        //}
-
-
         public static IEnumerable<SearchModel> SearchCompany(SearchModel search)
         {
-
-            List<SearchModel> list = new List<SearchModel>();
-            DataTable dtResults = new DataTable();
+            var list = new List<SearchModel>();
+            var dtResults = new DataTable();
             using (SqlConnection dbCon = ConnectToDb())
             {
-                SqlCommand cmdGetCompany = new SqlCommand();
-                cmdGetCompany.Connection = dbCon;
-                cmdGetCompany.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdGetCompany.CommandText = Constants.SP_COMPANY_SEARCH;
+               _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_SEARCH
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", search.CompanyId);
-                SqlParameter paramCompanyName = new SqlParameter("companyName", search.CompanyName.TrimNullOrEmpty());
-                SqlParameter paramAx = new SqlParameter("ax", search.AX.TrimNullOrEmpty());
-               // SqlParameter paramInsertion = new SqlParameter("insertionOrderId", search.InsertionOrderId.TrimNullOrEmpty());
+                _cmd.Parameters.AddWithValue("companyID", search.CompanyId);
+                _cmd.Parameters.AddWithValue("companyName", search.CompanyName.TrimNullOrEmpty());
+                _cmd.Parameters.AddWithValue("ax", search.AX.TrimNullOrEmpty());
 
-                cmdGetCompany.Parameters.Add(paramCompanyId);
-                cmdGetCompany.Parameters.Add(paramCompanyName);
-                cmdGetCompany.Parameters.Add(paramAx);
-               // cmdGetCompany.Parameters.Add(paramInsertion);
-
-
-               
-
-                SqlDataReader drResults = cmdGetCompany.ExecuteReader();
+                var drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
             }
 
-            foreach (DataRow row in dtResults.Rows)
-            {
-                SearchModel s = new SearchModel
-                {
-                    CompanyId = row["CompanyID"].ToString().IntNullOrEmpty(),
-                    CompanyName = row["companyName"].ToString(),
-                    AX = row["AbNumber"].ToString(),
-                    // InsertionOrderId = row["insertionOrderId"].ToString(),
-                    ContactPerson = row["contactPerson"].ToString(),
-                    IsActive = row["isActive"].ToString().BooleanNullOrEmpty(),
-                    Suspended = row["suspended"].ToString()
-
-                };
-                list.Add(s);
-            }
-
-
+            list.AddRange(from DataRow row in dtResults.Rows
+                              select new SearchModel()
+                                  {
+                                      CompanyId = row["CompanyID"].ToString().IntNullOrEmpty(),
+                                      CompanyName = row["companyName"].ToString(),
+                                      AX = row["AbNumber"].ToString(),
+                                      ContactPerson = row["contactPerson"].ToString(),
+                                      IsActive = row["isActive"].ToString().BooleanNullOrEmpty(),
+                                      Suspended = row["suspended"].ToString()
+                                  });
             return list;
 
         }
         public static CompanyModel GetCompany(int? companyId)
         {
-            CompanyModel _company = new CompanyModel();
-            DataTable dtResults = new DataTable();
-            using (SqlConnection dbCon = ConnectToDb())
+            var company = new CompanyModel();
+            var dtResults = new DataTable();
+            using (var dbCon = ConnectToDb())
             {
-                SqlCommand cmdGetCompany = new SqlCommand();
-                cmdGetCompany.Connection = dbCon;
-                cmdGetCompany.CommandType = System.Data.CommandType.StoredProcedure;
-                cmdGetCompany.CommandText = Constants.SP_COMPANY_SEARCH;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_SEARCH
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
 
-                cmdGetCompany.Parameters.Add(paramCompanyId);
-                
-                SqlDataReader drResults = cmdGetCompany.ExecuteReader();
+                var drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
             }
 
-            foreach (DataRow row in dtResults.Rows)
+            if (dtResults.Rows.Count > 0)
             {
-                _company = new CompanyModel
+                company = new CompanyModel
                 {
-                    CompanyId = row["CompanyID"].ToString().IntNullOrEmpty(),
-                    CompanyName = row["companyName"].ToString(),
-                    AX = row["AbNumber"].ToString(),
-                    ContactPerson = row["contactPerson"].ToString(),
-                    IsActive = row["isActive"].ToString().BooleanNullOrEmpty(),
-                    Suspended = row["suspended"].ToString()
+                    CompanyId = dtResults.Rows[0]["CompanyID"].ToString().IntNullOrEmpty(),
+                    CompanyName = dtResults.Rows[0]["companyName"].ToString(),
+                    AX = dtResults.Rows[0]["AbNumber"].ToString(),
+                    ContactPerson = dtResults.Rows[0]["contactPerson"].ToString(),
+                    IsActive = dtResults.Rows[0]["isActive"].ToString().BooleanNullOrEmpty(),
+                    Suspended = dtResults.Rows[0]["suspended"].ToString()
                 };
             }
-            return _company;
+
+            return company;
         }
-
-
     }
-
 }

@@ -1,10 +1,7 @@
 ﻿using _123Movers.Models;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 using _123Movers.Entity;
 using System.Data.Entity;
 
@@ -14,39 +11,27 @@ namespace _123Movers.DataEntities
     {
         public static List<MoveWeightModel> GetMoveSizeLookup()
         {
-            List<MoveWeightModel> _moveSizeModels = new List<MoveWeightModel>();
-            List<tbl_MoveSizelookup_V2> _moveSizeLookups;
-            using (MoversDBEntities db = new MoversDBEntities())
+            List<tbl_MoveSizelookup_V2> moveSizeLookups;
+            using (var db = new MoversDBEntities())
             {
-                _moveSizeLookups = db.MoveSizelookup_V2.ToList();
+                moveSizeLookups = db.MoveSizelookup_V2.ToList();
             }
-            foreach (var m in _moveSizeLookups)
-            {
-                MoveWeightModel wModel = new MoveWeightModel
+
+            return moveSizeLookups.Select(m => new MoveWeightModel
                 {
                     MoveWeight = m.moveweight,
                     MoveWeightSeq = m.moveWeightSeq
-                };
-                _moveSizeModels.Add(wModel);
-            }
-            return _moveSizeModels;
+                }).ToList();
         }
 
         public static MoveWeightModel GetMoveWeights(int? companyId, int? serviceId)
         {
             tbl_companyMoveWeight moveWeight;
-            MoveWeightModel wModel = new MoveWeightModel();
+            var wModel = new MoveWeightModel();
 
-            using (MoversDBEntities db = new MoversDBEntities())
+            using (var db = new MoversDBEntities())
             {
-                if (serviceId == null)
-                {
-                    moveWeight = db.CompanyMoveWeight.Where(d => d.companyID == companyId).OrderByDescending(d => d.serviceID).FirstOrDefault();
-                }
-                else
-                {
-                    moveWeight = db.CompanyMoveWeight.Where(d => d.companyID == companyId && d.serviceID == serviceId).FirstOrDefault();
-                }
+                moveWeight = serviceId == null ? db.CompanyMoveWeight.Where(d => d.companyID == companyId).OrderByDescending(d => d.serviceID).FirstOrDefault() : db.CompanyMoveWeight.Where(d => d.companyID == companyId && d.serviceID == serviceId).FirstOrDefault();
             }
             if (moveWeight != null)
             {
@@ -61,9 +46,9 @@ namespace _123Movers.DataEntities
         {
             bool result = false;
 
-            using (MoversDBEntities db = new MoversDBEntities())
+            using (var db = new MoversDBEntities())
             {
-                var moveWeight = db.CompanyMoveWeight.Where(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId).FirstOrDefault();
+                var moveWeight = db.CompanyMoveWeight.FirstOrDefault(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId);
                 if (moveWeight != null)
                 {
                     moveWeight.minMoveWeight = Convert.ToInt32(model.MinMoveWeightSeq);
@@ -73,7 +58,7 @@ namespace _123Movers.DataEntities
                 }
                 else
                 {
-                    tbl_companyMoveWeight mw = new tbl_companyMoveWeight
+                    var mw = new tbl_companyMoveWeight
                     {
                         companyID = Convert.ToInt32(model.CompanyId),
                         serviceID = Convert.ToInt32(model.ServiceId),
@@ -86,7 +71,7 @@ namespace _123Movers.DataEntities
 
                 var areas = db.CompanyAreacode.Where(a => a.companyID == model.CompanyId && a.serviceID == model.ServiceId).ToList();
 
-                if (areas.Count != 0 && areas != null)
+                if (areas.Count != 0)
                 {
                     foreach (var area in areas)
                     {

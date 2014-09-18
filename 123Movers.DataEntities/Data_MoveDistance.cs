@@ -1,11 +1,6 @@
 ﻿using _123Movers.Models;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
-using _123Movers.DataEntities;
 using _123Movers.Entity;
 using System.Data.Entity;
 
@@ -15,10 +10,10 @@ namespace _123Movers.DataEntities
     {
         public static bool SaveMoveDistance(MoveDistanceModel model)
         {
-            bool result = false;
-            using (MoversDBEntities db = new MoversDBEntities())
+            var result = false;
+            using (var db = new MoversDBEntities())
             {
-                var distance = db.CompanyMoveDistance.Where(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId).FirstOrDefault();
+                var distance = db.CompanyMoveDistance.FirstOrDefault(d => d.companyID == model.CompanyId && d.serviceID == model.ServiceId);
                 if (distance != null)
                 {
                     distance.minMoveDistance = model.MinMoveDistance;
@@ -28,7 +23,7 @@ namespace _123Movers.DataEntities
                 }
                 else
                 {
-                    tbl_companyMoveDistance md = new tbl_companyMoveDistance
+                    var md = new tbl_companyMoveDistance
                     {
                         companyID = Convert.ToInt32(model.CompanyId),
                         serviceID = Convert.ToInt32(model.ServiceId),
@@ -40,7 +35,7 @@ namespace _123Movers.DataEntities
                 }
                 var areas = db.CompanyAreacode.Where(a => a.companyID == model.CompanyId && a.serviceID == model.ServiceId).ToList();
 
-                if (areas.Count != 0 && areas != null)
+                if (areas.Count != 0)
                 {
                     foreach (var area in areas)
                     {
@@ -58,18 +53,11 @@ namespace _123Movers.DataEntities
         public static MoveDistanceModel GetCompanyMoveDistance(int? companyId, int? serviceId)
         {
             tbl_companyMoveDistance distance;
-            MoveDistanceModel dModel = new MoveDistanceModel();
+            var dModel = new MoveDistanceModel();
 
-            using (MoversDBEntities db = new MoversDBEntities())
+            using (var db = new MoversDBEntities())
             {
-                if (serviceId == null)
-                {
-                    distance = db.CompanyMoveDistance.Where(d => d.companyID == companyId).OrderByDescending(d => d.serviceID).FirstOrDefault();
-                }
-                else
-                {
-                    distance = db.CompanyMoveDistance.Where(d => d.companyID == companyId && d.serviceID == serviceId).FirstOrDefault();
-                }
+                distance = serviceId == null ? db.CompanyMoveDistance.Where(d => d.companyID == companyId).OrderByDescending(d => d.serviceID).FirstOrDefault() : db.CompanyMoveDistance.FirstOrDefault(d => d.companyID == companyId && d.serviceID == serviceId);
             }
             if (distance != null)
             {

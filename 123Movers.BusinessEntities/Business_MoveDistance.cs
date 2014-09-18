@@ -15,10 +15,6 @@ namespace _123Movers.BusinessEntities
         {
             return DataLayer.SaveMoveDistance(model);
         }
-        //public static DataTable GetCompanyMoveDistance(int? companyId, int? serviceId)
-        //{
-        //    return DataLayer.GetCompanyMoveDistance(companyId, serviceId);
-        //}
         public static MoveDistanceModel GetCompanyMoveDistance(int? companyId, int? serviceId)
         {
             return DataLayer.GetCompanyMoveDistance(companyId, serviceId);

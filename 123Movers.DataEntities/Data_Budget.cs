@@ -1,11 +1,8 @@
 ﻿using _123Movers.Models;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
-using _123Movers.DataEntities;
 using _123Movers.Entity;
 using System.Data.Entity;
 
@@ -17,10 +14,12 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_SAVE_BUDGET;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_SAVE_BUDGET
+                    };
 
                 if (budget.TermType == Constants.Recurring)
                 {
@@ -38,48 +37,38 @@ namespace _123Movers.DataEntities
                     budget.IsRequireNoticeToCharge = true;
                 }
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", budget.CompanyId);
-                SqlParameter paramTotalBudget = new SqlParameter("totalBudget", budget.TotalBudget);
-                SqlParameter paramRemainingBudget = new SqlParameter("remainingBudget", budget.RemainingBudget);
-                SqlParameter paramBudgetAction = new SqlParameter("budgetAction", budget.BudgetAction);
-                SqlParameter paramRecurring = new SqlParameter("isRecurring", budget.IsRecurring);
-                SqlParameter paramRequireNoticeToCharge = new SqlParameter("isRequireNoticeToCharge", budget.IsRequireNoticeToCharge);
-                SqlParameter paramAgreementNumber = new SqlParameter("agreementNumber", budget.AgreementNumber.TrimNullOrEmpty());
-                SqlParameter paramMinCharge = new SqlParameter("minDaysToCharge", budget.MinDaysToCharge);
-                SqlParameter paramServices = new SqlParameter("service", budget.ServiceId == Constants.BOTH ? null:budget.ServiceId);
-                SqlParameter paramType = new SqlParameter("type", budget.Type);
-
-
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramTotalBudget);
-                _cmd.Parameters.Add(paramRemainingBudget);
-                _cmd.Parameters.Add(paramBudgetAction);
-                _cmd.Parameters.Add(paramRecurring);
-                _cmd.Parameters.Add(paramRequireNoticeToCharge);
-                _cmd.Parameters.Add(paramAgreementNumber);
-                _cmd.Parameters.Add(paramMinCharge);
-                _cmd.Parameters.Add(paramServices);
-                _cmd.Parameters.Add(paramType);
+                _cmd.Parameters.AddWithValue("companyID", budget.CompanyId);
+                _cmd.Parameters.AddWithValue("totalBudget", budget.TotalBudget);
+                _cmd.Parameters.AddWithValue("remainingBudget", budget.RemainingBudget);
+                _cmd.Parameters.AddWithValue("budgetAction", budget.BudgetAction);
+                _cmd.Parameters.AddWithValue("isRecurring", budget.IsRecurring);
+                _cmd.Parameters.AddWithValue("isRequireNoticeToCharge", budget.IsRequireNoticeToCharge);
+                _cmd.Parameters.AddWithValue("agreementNumber", budget.AgreementNumber.TrimNullOrEmpty());
+                _cmd.Parameters.AddWithValue("minDaysToCharge", budget.MinDaysToCharge);
+                _cmd.Parameters.AddWithValue("service", budget.ServiceId == Constants.BOTH ? null : budget.ServiceId);
+                _cmd.Parameters.AddWithValue("type", budget.Type);
 
                _cmd.ExecuteNonQuery();
             }
 
         }
       
-        public static List<List<string>> GetFilterResult(int? companyID, int? serviceID)
+        public static List<List<string>> GetFilterResult(int? companyId, int? serviceId)
         {
-            DataTable dtResults = new DataTable();
-            using (SqlConnection dbCon = ConnectToDb())
+            var dtResults = new DataTable();
+            using (var dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_GET_FILTER_RESULT;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_GET_FILTER_RESULT
+                    };
 
-                _cmd.Parameters.Add(new SqlParameter("companyID", companyID));
-                _cmd.Parameters.Add(new SqlParameter("serviceID", serviceID));
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId);
 
-                SqlDataReader drResults = _cmd.ExecuteReader();
+                var drResults = _cmd.ExecuteReader();
 
                 dtResults.Load(drResults);
             }
@@ -87,141 +76,87 @@ namespace _123Movers.DataEntities
         }
         public static void RenewBudget(int? companyId, int? serviceId)
         {
-            tbl_companyBudget budget;
             using (var db = new MoversDBEntities())
             {
-                if (serviceId == null)
-                {
-                    budget = db.CompanyBudget.FirstOrDefault(b => b.companyID == companyId && b.serviceID == null);
-                }
-                else
-                {
-                    budget = db.CompanyBudget.FirstOrDefault(b => b.companyID == companyId && b.serviceID == serviceId);
-                }
-                if (budget != null)
-                {
-                    budget.isOneTimeRenew = true;
+                tbl_companyBudget budget;
+                budget = serviceId == null ? db.CompanyBudget.FirstOrDefault(b => b.companyID == companyId && b.serviceID == null) : db.CompanyBudget.FirstOrDefault(b => b.companyID == companyId && b.serviceID == serviceId);
+                if (budget == null) return;
+                budget.isOneTimeRenew = true;
 
-                    db.Entry(budget).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
+                db.Entry(budget).State = EntityState.Modified;
+                db.SaveChanges();
             }
         }
 
-        public static List<AreaCodeModel> GetBudgetFilterInfo(int? companyID, int? serviceID)
+        public static List<AreaCodeModel> GetBudgetFilterInfo(int? companyId, int? serviceId)
         {
 
-            using (MoversDBEntities db = new MoversDBEntities())
+            using (var db = new MoversDBEntities())
             {
-                List<tbl_companyAreacode> budgetFilter;
-                if (serviceID == null)
-                {
-                    budgetFilter = db.CompanyAreacode.Where(a => a.companyID == companyID).OrderByDescending(a => a.serviceID).ToList();
-                }
-                else { 
-                    budgetFilter = db.CompanyAreacode.Where(a => a.companyID == companyID && a.serviceID == serviceID).ToList();
-                }
-                
-                List<AreaCodeModel> _areaCodes = new List<AreaCodeModel>();
-                foreach (var areaCode in budgetFilter)
-                {
-                    AreaCodeModel _areaCode = new AreaCodeModel { 
-                        companyID = areaCode.companyID,
-                        serviceID = areaCode.serviceID,
-                        areaCode = areaCode.areaCode,
-                        isForceSelect = areaCode.isForceSelect,
-                        isDestinationAreaCode = areaCode.isDestinationAreaCode,
-                        isMoveDistanceSelect = areaCode.isMoveDistanceSelect,
-                        isMoveWeightSelect = areaCode.isMoveWeightSelect,
-                        isOriginZipCode = areaCode.isOriginZipCode,
-                        isSpecificOriginDestinationAreacode = areaCode.isSpecificOriginDestinationAreacode,
-                        isSpecificOriginDestinationState = areaCode.isSpecificOriginDestinationState
-                    };
-                    _areaCodes.Add(_areaCode);
-                }
-                return _areaCodes;
+                var budgetFilter = serviceId == null ? db.CompanyAreacode.Where(a => a.companyID == companyId).OrderByDescending(a => a.serviceID).ToList() : db.CompanyAreacode.Where(a => a.companyID == companyId && a.serviceID == serviceId).ToList();
+
+                return budgetFilter.Select(areaCode => new AreaCodeModel
+                    {
+                        companyID = areaCode.companyID, serviceID = areaCode.serviceID, areaCode = areaCode.areaCode, isForceSelect = areaCode.isForceSelect, isDestinationAreaCode = areaCode.isDestinationAreaCode, isMoveDistanceSelect = areaCode.isMoveDistanceSelect, isMoveWeightSelect = areaCode.isMoveWeightSelect, isOriginZipCode = areaCode.isOriginZipCode, isSpecificOriginDestinationAreacode = areaCode.isSpecificOriginDestinationAreacode, isSpecificOriginDestinationState = areaCode.isSpecificOriginDestinationState
+                    }).ToList();
             }
         }
 
         public static BudgetModel GetBudgetById(int? id)
         {
-            BudgetModel budget = new BudgetModel();
-            using (MoversDBEntities db = new MoversDBEntities())
+            var budget = new BudgetModel();
+            using (var db = new MoversDBEntities())
             {
-                var _budget = db.CompanyBudget.Where(b => b.tid == id).FirstOrDefault();
+                var _budget = db.CompanyBudget.FirstOrDefault(b => b.tid == id);
 
-                budget = new BudgetModel
+                if (_budget != null)
                 {
-                    tId = _budget.tid,
-                    CompanyId = _budget.companyID,
-                    ServiceId = _budget.serviceID,
-                    TotalBudget = _budget.totalBudget,
-                    RemainingBudget = _budget.remainingBudget,
-                    StartDate = _budget.stampDate,
-                    EndDate = _budget.lastModified,
-                    IsRecurring = _budget.isRecurring,
-                    IsRequireNoticeToCharge = _budget.isRequireNoticeToCharge,
-                    IsOneTimeRenew = _budget.isOneTimeRenew,
-                    AgreementNumber = _budget.agreementNumber,
-                    MinDaysToCharge = _budget.minDaysToCharge
-                };
+                    budget = new BudgetModel
+                        {
+                            tId = _budget.tid,
+                            CompanyId = _budget.companyID,
+                            ServiceId = _budget.serviceID,
+                            TotalBudget = _budget.totalBudget,
+                            RemainingBudget = _budget.remainingBudget,
+                            StartDate = _budget.stampDate,
+                            EndDate = _budget.lastModified,
+                            IsRecurring = _budget.isRecurring,
+                            IsRequireNoticeToCharge = _budget.isRequireNoticeToCharge,
+                            IsOneTimeRenew = _budget.isOneTimeRenew,
+                            AgreementNumber = _budget.agreementNumber,
+                            MinDaysToCharge = _budget.minDaysToCharge
+                        };
+                }
             }
             return budget;
         }
 
-        public static List<BudgetModel> GetCureentBudgets(int? companyID)
+        public static List<BudgetModel> GetCureentBudgets(int? companyId)
         {
-            List<BudgetModel> budgets = new List<BudgetModel>();
-            using(MoversDBEntities db = new MoversDBEntities())
+            var budgets = new List<BudgetModel>();
+            using(var db = new MoversDBEntities())
             {
-                var _budgets = db.CompanyBudget.Where(b => b.companyID == companyID).ToList();
-                foreach (var _budget in _budgets)
-                {
-                    BudgetModel budget = new BudgetModel
+                var _budgets = db.CompanyBudget.Where(b => b.companyID == companyId).ToList();
+                budgets.AddRange(_budgets.Select(budget => new BudgetModel
                     {
-                        tId = _budget.tid,
-                        CompanyId = _budget.companyID,
-                        ServiceId = _budget.serviceID,
-                        TotalBudget = _budget.totalBudget,
-                        RemainingBudget = _budget.remainingBudget,
-                        StartDate = _budget.stampDate,
-                        EndDate = _budget.lastModified,
-                        IsRecurring = _budget.isRecurring,
-                        IsRequireNoticeToCharge = _budget.isRequireNoticeToCharge,
-                        IsOneTimeRenew = _budget.isOneTimeRenew,
-                        AgreementNumber = _budget.agreementNumber,
-                        MinDaysToCharge = _budget.minDaysToCharge
-                    };
-                    budgets.Add(budget);
-                }
+                        tId = budget.tid, CompanyId = budget.companyID, ServiceId = budget.serviceID, TotalBudget = budget.totalBudget, RemainingBudget = budget.remainingBudget, StartDate = budget.stampDate, EndDate = budget.lastModified, IsRecurring = budget.isRecurring, IsRequireNoticeToCharge = budget.isRequireNoticeToCharge, IsOneTimeRenew = budget.isOneTimeRenew, AgreementNumber = budget.agreementNumber, MinDaysToCharge = budget.minDaysToCharge
+                    }));
             }
             return budgets;
         }
 
-        public static List<BudgetModel> GetPastBudgets(int? companyID)
+        public static List<BudgetModel> GetPastBudgets(int? companyId)
         {
-            List<BudgetModel> budgets = new List<BudgetModel>();
-            using (MoversDBEntities db = new MoversDBEntities())
+            var budgets = new List<BudgetModel>();
+            using (var db = new MoversDBEntities())
             {
-                var count = db.CompanyBudget.Where(cb => cb.companyID == companyID).ToList().Count();
-                var _budgets = db.tl_companyBudget.Where(pb => pb.companyID == companyID && pb.action == "insert").OrderByDescending(pb => pb.stampDate).Skip(count).ToList();
-                              
-                foreach (var _budget in _budgets)
-                {
-                    BudgetModel budget = new BudgetModel
+                var count = db.CompanyBudget.Count(cb => cb.companyID == companyId);
+                var _budgets = db.tl_companyBudget.Where(pb => pb.companyID == companyId && pb.action == "insert").OrderByDescending(pb => pb.stampDate).Skip(count).ToList();
+
+                budgets.AddRange(_budgets.Select(budget => new BudgetModel
                     {
-                        tId = _budget.tid,
-                        CompanyId = _budget.companyID,
-                        ServiceId = _budget.serviceID,
-                        TotalBudget = _budget.totalBudget,
-                        RemainingBudget = _budget.remainingBudget,
-                        StartDate = _budget.stampDate,
-                        EndDate = _budget.lastModified,
-                        IsRecurring = _budget.isRecurring.ToString().BooleanNullOrEmpty(),
-                        IsRequireNoticeToCharge = _budget.isRequireNoticeToCharge.ToString().BooleanNullOrEmpty(),
-                    };
-                    budgets.Add(budget);
-                }
+                        tId = budget.tid, CompanyId = budget.companyID, ServiceId = budget.serviceID, TotalBudget = budget.totalBudget, RemainingBudget = budget.remainingBudget, StartDate = budget.stampDate, EndDate = budget.lastModified, IsRecurring = budget.isRecurring.ToString().BooleanNullOrEmpty(), IsRequireNoticeToCharge = budget.isRequireNoticeToCharge.ToString().BooleanNullOrEmpty(),
+                    }));
             }
             return budgets;
         }

@@ -14,20 +14,19 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY_AVAIL_STATES__GET;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_AVAIL_STATES__GET
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
 
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
+                var dtResults = new DataTable();
 
-                DataTable dtResults = new DataTable();
-
-                SqlDataReader drResults = _cmd.ExecuteReader();
+                var drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
                 return dtResults;
@@ -36,22 +35,20 @@ namespace _123Movers.DataEntities
 
         public static void AddCompanySpcfcStates(int? companyId, int? serviceId, string originState, string destStates)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY_SPCFC_STATES_ADD;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType =CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_SPCFC_STATES_ADD
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramOriginState = new SqlParameter("originState", originState);
-                SqlParameter paramDestStates = new SqlParameter("destStates", destStates);
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
-                _cmd.Parameters.Add(paramOriginState);
-                _cmd.Parameters.Add(paramDestStates);
-
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId);
+                _cmd.Parameters.AddWithValue("originState", originState);
+                _cmd.Parameters.AddWithValue("destStates", destStates);
+               
                 _cmd.ExecuteNonQuery();
             }
         }
@@ -60,42 +57,38 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY_SPCFC_STATES_DELETE;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_SPCFC_STATES_DELETE
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramOriginState = new SqlParameter("originState", originState);
-                SqlParameter paramDestStates = new SqlParameter("destStates", destStates);
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
-                _cmd.Parameters.Add(paramOriginState);
-                _cmd.Parameters.Add(paramDestStates);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId);
+                _cmd.Parameters.AddWithValue("originState", originState);
+                _cmd.Parameters.AddWithValue("destStates", destStates);
 
                 _cmd.ExecuteNonQuery();
-
             }
         }
-        public static List<List<string>> GetCompanySpcfcStates(int? companyId, int? serviceId, string originState, bool IsoriginState)
+        public static List<List<string>> GetCompanySpcfcStates(int? companyId, int? serviceId, string originState, bool isoriginState)
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY_SPCFC_STATES_GET;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_SPCFC_STATES_GET
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
-                SqlParameter paramOriginState = new SqlParameter("orgState", originState);
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
-                _cmd.Parameters.Add(paramOriginState);
-
-                SqlDataAdapter da = new SqlDataAdapter(_cmd);
-                DataSet ds = new DataSet();
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
+                _cmd.Parameters.AddWithValue("orgState", originState);
+               
+                var da = new SqlDataAdapter(_cmd);
+                var ds = new DataSet();
                 da.Fill(ds);
 
                 return ConfigValues.DataSetToList(ds);

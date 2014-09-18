@@ -9,9 +9,12 @@ using System.Web.Mvc;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// Destination Area Code Controller
+    /// </summary>
     public class DestinationAreaCodeController : BaseController
     {
-        private static ILog logger = LogManager.GetLogger(typeof(DestinationAreaCodeController)); 
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(DestinationAreaCodeController)); 
 
         /// <summary>
         /// Get Company Destination Area Codes by service
@@ -22,22 +25,21 @@ namespace _123Movers.Controllers
         {
             return Json(BusinessLayer.GetCompanyAreasCodes(CompanyId, serviceId), JsonRequestBehavior.AllowGet);
         }
+
         /// <summary>
         /// Display the Destination Area Codes
         /// </summary>
+        /// <param name="companyId">Company Id</param>
         /// <param name="serviceId">Type of Service(Local, Long and Both)</param>
         /// <returns></returns>
-        public ActionResult DestinationAreaCode(int? companyID, int? serviceId)
+        public ActionResult DestinationAreaCode(int? companyId, int? serviceId)
         {
-            var Services = GetServices(serviceId);
-            if (Services.Count > 2)
-                ViewBag.Services = Services.Take(2);
-            else
-                ViewBag.Services = Services;
+            var services = GetServices(serviceId);
+            ViewBag.Services = services.Count > 2 ? services.Take(2) : services;
 
-            DestinationAreaCodeModel DestAreaCode = new DestinationAreaCodeModel();
-            DestAreaCode._companyInfo = RetrieveCurrentCompanyInfo(companyID);
-            return View(DestAreaCode);
+            var destAreaCode = new DestinationAreaCodeModel();
+            destAreaCode._companyInfo = RetrieveCurrentCompanyInfo(companyId);
+            return View(destAreaCode);
         }
         
         /// <summary>
@@ -55,7 +57,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 
@@ -76,7 +78,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
             return result;
@@ -96,7 +98,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 

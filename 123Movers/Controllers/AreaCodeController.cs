@@ -10,12 +10,15 @@ using log4net;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// Area Code Controller
+    /// </summary>
     public class AreaCodeController : BaseController
     {
         //
         // GET: /AreaCode/
 
-        private static ILog logger = LogManager.GetLogger(typeof(AreaCodeController)); 
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(AreaCodeController)); 
 
         /// <summary>
         /// Get Available Areas for compnay by service
@@ -37,11 +40,20 @@ namespace _123Movers.Controllers
             return Json(ConfigValues.TableToList(services), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AreaCodes(int? companyID,int? serviceId)
+        /// <summary>
+        /// Display the Area Codes for budget by service
+        /// </summary>
+        /// <param name="companyId">companyID</param>
+        /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <returns></returns>
+        public ActionResult AreaCodes(int? companyId,int? serviceId)
         {
             ViewBag.ServiceId = serviceId;
-            AreaCodeModel areaCode = new AreaCodeModel();
-            areaCode._companyInfo = RetrieveCurrentCompanyInfo(companyID);
+            var areaCode = new AreaCodeModel
+                {
+                    _companyInfo = RetrieveCurrentCompanyInfo(companyId)
+                };
+            
             return View(areaCode);
         }
 
@@ -60,7 +72,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 
@@ -82,7 +94,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 
@@ -105,7 +117,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 

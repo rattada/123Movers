@@ -10,32 +10,38 @@ using System.Web.Mvc;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// Move Weight Controller
+    /// </summary>
     public class MoveWeightController : BaseController
     {
-        private static ILog logger = LogManager.GetLogger(typeof(MoveWeightController));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(MoveWeightController));
 
         /// <summary>
         /// Display the Existing Data
         /// </summary>
+        /// <param name="companyId">Company Id</param>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         [HttpGet]
-        public ActionResult MoveWeight(int? companyID, int? serviceId)
+        public ActionResult MoveWeight(int? companyId, int? serviceId)
         {
 
             ViewBag.MinMoveWeight = BusinessLayer.GetMoveSizeLookup().Select(x => new SelectListItem { Value = x.MoveWeightSeq.ToString(), Text = x.MoveWeight.ToString()});
+            ViewBag.Services = GetServices(serviceId).Count > 2
+                                   ? GetServices(serviceId).Take(2)
+                                   : GetServices(serviceId);
 
-            var _moveWeight = BusinessLayer.GetMoveWeights(companyID, serviceId);
+            var moveWeight = BusinessLayer.GetMoveWeights(companyId, serviceId);
 
-            if (GetServices(serviceId).Count > 2)
-                ViewBag.Services = GetServices(serviceId).Take(2);
-            else
-                ViewBag.Services = GetServices(serviceId);
+            moveWeight._companyInfo = RetrieveCurrentCompanyInfo(companyId);
 
-            _moveWeight._companyInfo = RetrieveCurrentCompanyInfo(companyID);
-
-            return View(_moveWeight);
+            return View(moveWeight);
         }
 
+        /// <summary>
+        /// Save Move Weight for budget
+        /// </summary>
+        /// <param name="model">Move Weight Model</param>
         [HttpPost]
         public JsonResult MoveWeight(MoveWeightModel model)
         {
@@ -47,15 +53,14 @@ namespace _123Movers.Controllers
             try
             {
                 model.CompanyId = CompanyId;
-                bool success = BusinessLayer.SaveMoveWeight(model);
-                if (success)
+                if (BusinessLayer.SaveMoveWeight(model))
                 {
                     result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
             return result;

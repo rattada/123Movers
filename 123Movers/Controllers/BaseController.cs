@@ -162,27 +162,26 @@ namespace _123Movers.Controllers
 
             return services;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-        public class CheckSessionOutAttribute : ActionFilterAttribute
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
+    public class CheckSessionOutAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            public override void OnActionExecuting(ActionExecutingContext filterContext)
-            {
-                var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower();
-                if (controllerName.Contains("account") || controllerName.Contains("home")) return;
-                var session = filterContext.HttpContext.Session;
-                if (session == null) return;
-                var company = session[Constants.CurrentCompanyInfo];
-                if (((company != null) || (session.IsNewSession)) && (!session.IsNewSession)) return;
-                //send them off to the login page
-                var url = new UrlHelper(filterContext.RequestContext);
-                var loginUrl = url.Content("~/Account/Login");
-                        
-                filterContext.HttpContext.Response.Redirect(loginUrl, true);
-            }
-        }
+            var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower();
+            if (controllerName.Contains("account") || controllerName.Contains("home")) return;
+            var session = filterContext.HttpContext.Session;
+            if (session == null) return;
+            var company = session[Constants.CurrentCompanyInfo];
+            if (((company != null) || (session.IsNewSession)) && (!session.IsNewSession)) return;
+            //send them off to the login page
+            var url = new UrlHelper(filterContext.RequestContext);
+            var loginUrl = url.Content("~/Account/Login");
 
+            filterContext.HttpContext.Response.Redirect(loginUrl, true);
+        }
     }
 }

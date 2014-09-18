@@ -58,6 +58,11 @@
             
             </summary>
         </member>
+        <member name="T:_123Movers.Controllers.AreaCodeController">
+            <summary>
+            Area Code Controller
+            </summary>
+        </member>
         <member name="M:_123Movers.Controllers.AreaCodeController.GetAvailableAreas(System.Nullable{System.Int32})">
             <summary>
             Get Available Areas for compnay by service
@@ -71,6 +76,14 @@
             </summary>
             <param name="serviceId">Type of Service</param>
             <returns>Area Codes With Prices</returns>
+        </member>
+        <member name="M:_123Movers.Controllers.AreaCodeController.AreaCodes(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Display the Area Codes for budget by service
+            </summary>
+            <param name="companyId">companyID</param>
+            <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+            <returns></returns>
         </member>
         <member name="M:_123Movers.Controllers.AreaCodeController.AddAreaCodes(System.Nullable{System.Int32},System.String)">
             <summary>
@@ -93,6 +106,11 @@
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <param name="areaCodes">Selected Area Codes</param>
         </member>
+        <member name="T:_123Movers.Controllers.BudgetController">
+            <summary>
+            Budget related controller
+            </summary>
+        </member>
         <member name="M:_123Movers.Controllers.BudgetController.GetFilterResult(System.Nullable{System.Int32})">
             <summary>
             Get Filter information
@@ -100,9 +118,27 @@
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <returns>Updated Filter Information</returns>
         </member>
+        <member name="M:_123Movers.Controllers.BudgetController.AddBudget(_123Movers.Models.CompanyModel)">
+            <summary>
+            Enter Budget Information
+            </summary>
+            <param name="company">Company Model</param>
+        </member>
         <member name="M:_123Movers.Controllers.BudgetController.AddBudget(_123Movers.Models.BudgetModel)">
             <summary>
             Add new budget to company
+            </summary>
+            <param name="budget">Budget Model</param>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.EditBudget(System.Nullable{System.Int32})">
+            <summary>
+            Modify the Budget details
+            </summary>
+            <param name="id">Budget Id</param>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.EditBudget(_123Movers.Models.BudgetModel)">
+            <summary>
+            Save modified budget
             </summary>
             <param name="budget">Budget Model</param>
         </member>
@@ -110,7 +146,20 @@
             <summary>
             Renewal the budget
             </summary>
-            <param name="ServiceId">Type of Service</param>
+            <param name="serviceId">Type of Service</param>
+        </member>
+        <member name="M:_123Movers.Controllers.BudgetController.BudgetFilterInfo(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Get Budget Filter Information
+            </summary>
+            <param name="companyId">CompanyId</param>
+            <param name="serviceId">Type of Service</param>
+            <returns></returns>
+        </member>
+        <member name="T:_123Movers.Controllers.DestinationAreaCodeController">
+            <summary>
+            Destination Area Code Controller
+            </summary>
         </member>
         <member name="M:_123Movers.Controllers.DestinationAreaCodeController.GetCompanyDestAreas(System.Nullable{System.Int32})">
             <summary>
@@ -123,6 +172,7 @@
             <summary>
             Display the Destination Area Codes
             </summary>
+            <param name="companyId">Company Id</param>
             <param name="serviceId">Type of Service(Local, Long and Both)</param>
             <returns></returns>
         </member>
@@ -147,6 +197,11 @@
             <param name="serviceId">Type of Service(Local, Long and Both)</param>
             <param name="areaCodes">Selected Area Codes</param>
         </member>
+        <member name="T:_123Movers.Controllers.HomeController">
+            <summary>
+            Home Controller
+            </summary>
+        </member>
         <member name="M:_123Movers.Controllers.HomeController.Search">
             <summary>
             Get Method
@@ -163,13 +218,19 @@
             <summary>
             Get All budgets for company
             </summary>
-            <param name="Company">Company Details</param>
+            <param name="company">Company Details</param>
             <returns>List Of BudgetModel</returns>
+        </member>
+        <member name="T:_123Movers.Controllers.LeadLimitController">
+            <summary>
+            Lead Limit Controller
+            </summary>
         </member>
         <member name="M:_123Movers.Controllers.LeadLimitController.LeadLimit(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Display the Leads Information of the Company
             </summary>
+            <param name="companyId">Company Id</param>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
         <member name="M:_123Movers.Controllers.LeadLimitController.LeadLimit(System.Collections.Generic.List{System.Collections.Generic.List{_123Movers.Models.LeadLimitModel}})">
@@ -178,11 +239,24 @@
             </summary>
             <param name="leadlimit">Lead Limit Model</param>
         </member>
+        <member name="T:_123Movers.Controllers.MoveDistanceController">
+            <summary>
+            Move Distance Controller
+            </summary>
+        </member>
         <member name="M:_123Movers.Controllers.MoveDistanceController.MoveDistance(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Display the Existing Information
             </summary>
+            <param name="companyId">Company Id</param>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        </member>
+        <member name="M:_123Movers.Controllers.MoveDistanceController.MoveDistance(_123Movers.Models.MoveDistanceModel)">
+            <summary>
+            Save Distance for budget
+            </summary>
+            <param name="model"> Move Distance Model</param>
+            <returns></returns>
         </member>
         <member name="M:_123Movers.Controllers.MoveDistanceController.GetMoveDistance(System.Nullable{System.Int32})">
             <summary>
@@ -190,11 +264,23 @@
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
+        <member name="T:_123Movers.Controllers.MoveWeightController">
+            <summary>
+            Move Weight Controller
+            </summary>
+        </member>
         <member name="M:_123Movers.Controllers.MoveWeightController.MoveWeight(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Display the Existing Data
             </summary>
+            <param name="companyId">Company Id</param>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        </member>
+        <member name="M:_123Movers.Controllers.MoveWeightController.MoveWeight(_123Movers.Models.MoveWeightModel)">
+            <summary>
+            Save Move Weight for budget
+            </summary>
+            <param name="model">Move Weight Model</param>
         </member>
         <member name="M:_123Movers.Controllers.MoveWeightController.GetMoveWeight(System.Nullable{System.Int32})">
             <summary>
@@ -202,10 +288,33 @@
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
+        <member name="T:_123Movers.Controllers.NotificationController">
+            <summary>
+            Notification Controller
+            </summary>
+        </member>
+        <member name="M:_123Movers.Controllers.NotificationController.Index">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_123Movers.Controllers.NotificationController.Notifications">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:_123Movers.Controllers.OriginZipCodeController">
+            <summary>
+            Origin Zip Code Controller
+            </summary>
+        </member>
         <member name="M:_123Movers.Controllers.OriginZipCodeController.OriginZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Display the Origin Zip Codes for Company by Service
             </summary>
+            <param name="companyId">Company Id</param>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
         <member name="M:_123Movers.Controllers.OriginZipCodeController.GetAreaCodeZipCodes(System.Nullable{System.Int32},System.Nullable{System.Int32})">
@@ -240,22 +349,59 @@
             <param name="areaCode">Origin Area Code</param>
             <param name="zipCodes">Selected Zip Codes</param>
         </member>
+        <member name="T:_123Movers.Controllers.RadiusController">
+            <summary>
+            Radius Controller
+            </summary>
+        </member>
         <member name="M:_123Movers.Controllers.RadiusController.Radius(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Get Method for Radius
             </summary>
+            <param name="companyId">CompanyId</param>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
         <member name="M:_123Movers.Controllers.RadiusController.AddZipCodesByRadius(System.Nullable{System.Int32},System.Int32,System.Decimal,System.String)">
             <summary>
             Add the Zip Codes to Company
             </summary>
-            <param name="service"></param>
-            <param name="zipcode"></param>
-            <param name="radius"></param>
-            <param name="category"></param>
-            <param name="type"></param>
+            <param name="service">Type of the Service(Local, Long Or Both)</param>
+            <param name="zipcode">Zip Code</param>
+            <param name="radius">Radius in miles</param>
+            <param name="category">Lesser or Gratter</param>
+        </member>
+        <member name="M:_123Movers.Controllers.RadiusController.GetZipCodesByRadius(System.Nullable{System.Int32},System.Int32,System.Decimal,System.String)">
+            <summary>
+            Get Zip Codes By Radius.
+            </summary>
+            <param name="service">Type of the Service(Local, Long Or Both)</param>
+            <param name="zipcode">Zip Code</param>
+            <param name="radius">Radius in miles</param>
+            <param name="category">Lesser or Gratter</param>
+        </member>
+        <member name="M:_123Movers.Controllers.RadiusController.AddAreaCodes(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Add Area Codes to budget
+            </summary>
+            <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+            <param name="areaCodes">Selected Area Codes</param>
+        </member>
+        <member name="T:_123Movers.Controllers.ReportController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:_123Movers.Controllers.ReportController.Reports(_123Movers.Models.CompanyModel)">
+            <summary>
+            
+            </summary>
+            <param name="companyInfo"></param>
             <returns></returns>
+        </member>
+        <member name="T:_123Movers.Controllers.SpecificOriginAreaCodesController">
+            <summary>
+            Specific Origin Area Codes Controller
+            </summary>
         </member>
         <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.GetAvailSpcfcOriginDestAreas(System.Nullable{System.Int32})">
             <summary>
@@ -269,8 +415,6 @@
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
             <param name="spcfcareacode"> Selected Area Code</param>
-            <param name="originAreaCode"></param>
-            <returns></returns>
         </member>
         <member name="M:_123Movers.Controllers.SpecificOriginAreaCodesController.SpecificOriginAreaCodes(System.Nullable{System.Int32})">
             <summary>
@@ -294,6 +438,11 @@
             <param name="spcfcareacode">Specific Origin Area Code</param>
             <param name="areaCodes">Selected Destincation Area Codes</param>
         </member>
+        <member name="T:_123Movers.Controllers.SpecificStatesController">
+            <summary>
+            Specific States Controller
+            </summary>
+        </member>
         <member name="M:_123Movers.Controllers.SpecificStatesController.GetAvailStates(System.Nullable{System.Int32})">
             <summary>
             Get All States for company by service
@@ -306,12 +455,15 @@
             Get Existing States for company by service
             </summary>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+            <param name="originState"></param>
+            <param name="isOriginState"></param>
             <returns>List of States</returns>
         </member>
         <member name="M:_123Movers.Controllers.SpecificStatesController.SpecificStates(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Display the Specific States by Service
             </summary>
+            <param name="companyId">Company Id</param>
             <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         </member>
         <member name="M:_123Movers.Controllers.SpecificStatesController.AddCompanySpcfcOriginDeststates(System.Nullable{System.Int32},System.String,System.String)">

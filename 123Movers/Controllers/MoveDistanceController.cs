@@ -10,28 +10,34 @@ using System.Web.Mvc;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// Move Distance Controller
+    /// </summary>
     public class MoveDistanceController : BaseController
     {
-        private static ILog logger = LogManager.GetLogger(typeof(MoveDistanceController));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(MoveDistanceController));
 
         /// <summary>
         /// Display the Existing Information
         /// </summary>
+        /// <param name="companyId">Company Id</param>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         [HttpGet]
-        public ActionResult MoveDistance(int? companyID, int? serviceId)
+        public ActionResult MoveDistance(int? companyId, int? serviceId)
         {
-            if (GetServices(serviceId).Count > 2)
-                ViewBag.Services = GetServices(serviceId).Take(2);
-            else
-                ViewBag.Services = GetServices(serviceId);
-
-            MoveDistanceModel model = BusinessLayer.GetCompanyMoveDistance(companyID, serviceId);
-            model._companyInfo = RetrieveCurrentCompanyInfo(companyID);
+            ViewBag.Services = GetServices((serviceId)).Count > 2
+                                   ? GetServices(serviceId).Take(2)
+                                   : GetServices(serviceId);
+            var model = BusinessLayer.GetCompanyMoveDistance(companyId, serviceId);
+            model._companyInfo = RetrieveCurrentCompanyInfo(companyId);
             return View(model);
-
         }
 
+        /// <summary>
+        /// Save Distance for budget
+        /// </summary>
+        /// <param name="model"> Move Distance Model</param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult MoveDistance(MoveDistanceModel model)
         {
@@ -42,8 +48,7 @@ namespace _123Movers.Controllers
                 model.CompanyId = CompanyId;
                 if (ModelState.IsValid)
                 {
-                    bool success = BusinessLayer.SaveMoveDistance(model);
-                    if (success)
+                    if (BusinessLayer.SaveMoveDistance(model))
                     {
                         result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
                     }
@@ -51,7 +56,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
             return result;

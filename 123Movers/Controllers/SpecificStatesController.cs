@@ -11,9 +11,12 @@ using log4net;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// Specific States Controller
+    /// </summary>
     public class SpecificStatesController : BaseController
     {
-        private static ILog logger = LogManager.GetLogger(typeof(SpecificStatesController)); 
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(SpecificStatesController)); 
         
         /// <summary>
         /// Get All States for company by service
@@ -30,27 +33,29 @@ namespace _123Movers.Controllers
         /// Get Existing States for company by service
         /// </summary>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
+        /// <param name="originState"></param>
+        /// <param name="isOriginState"></param>
         /// <returns>List of States</returns>
-        public JsonResult GetCompanySpcfcOriginDestStates( int? serviceId, string originState, bool IsOriginState)
+        public JsonResult GetCompanySpcfcOriginDestStates( int? serviceId, string originState, bool isOriginState)
         {
-            return Json(BusinessLayer.GetCompanySpcfcStates(CompanyId, serviceId, originState, IsOriginState), JsonRequestBehavior.AllowGet);
+            return Json(BusinessLayer.GetCompanySpcfcStates(CompanyId, serviceId, originState, isOriginState), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
         /// Display the Specific States by Service
         /// </summary>
+        /// <param name="companyId">Company Id</param>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
-        public ActionResult SpecificStates(int? companyID, int? serviceId)
+        public ActionResult SpecificStates(int? companyId, int? serviceId)
         {
-            var Service = GetServices(serviceId);
-            if (Service.Count > 2)
-                ViewBag.Services = Service.Take(2);
-            else
-                ViewBag.Services = Service;
+            var service = GetServices(serviceId);
+            ViewBag.Services = service.Count > 2 ? service.Take(2) : service;
 
-            SpecificStatesModel spcfcstates = new SpecificStatesModel();
-            spcfcstates._companyInfo = RetrieveCurrentCompanyInfo(companyID);
-            spcfcstates.ServiceId = serviceId == null ? (int)ServiceType.Local : serviceId;
+            var spcfcstates = new SpecificStatesModel
+                {
+                    _companyInfo = RetrieveCurrentCompanyInfo(companyId),
+                    ServiceId = serviceId ?? (int) ServiceType.Local
+                };
             return View(spcfcstates);
         }
 
@@ -72,7 +77,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
             return result;
@@ -95,7 +100,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
 
             }

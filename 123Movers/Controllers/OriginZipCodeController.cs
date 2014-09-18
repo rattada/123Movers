@@ -9,21 +9,24 @@ using System.Web.Mvc;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// Origin Zip Code Controller
+    /// </summary>
     public class OriginZipCodeController : BaseController
     {
-       private static ILog logger = LogManager.GetLogger(typeof(OriginZipCodeController)); 
+       private static readonly ILog Logger = LogManager.GetLogger(typeof(OriginZipCodeController));
 
         /// <summary>
         /// Display the Origin Zip Codes for Company by Service
         /// </summary>
+       /// <param name="companyId">Company Id</param>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         [HttpGet]
-       public ActionResult OriginZipCodes(int? companyID, int? serviceId)
+       public ActionResult OriginZipCodes(int? companyId, int? serviceId)
         {
-            OriginZipCodeModel Origin = new OriginZipCodeModel();
-            Origin = BusinessLayer.GetCompanyServiceAreaCodes(companyID, serviceId);
-            Origin._companyInfo = RetrieveCurrentCompanyInfo(companyID);
-            return View(Origin);
+            var origin = BusinessLayer.GetCompanyServiceAreaCodes(companyId, serviceId);
+            origin._companyInfo = RetrieveCurrentCompanyInfo(companyId);
+            return View(origin);
         }
 
         /// <summary>
@@ -34,8 +37,8 @@ namespace _123Movers.Controllers
         /// <retun>List of Origin Zip Codes</retun>
         public JsonResult GetAreaCodeZipCodes(int? serviceId, int? areaCode)
         {
-            var OriginAreaCodes = BusinessLayer.GetCompanyAreasZipCodes(CompanyId, serviceId, areaCode);
-            return Json(ConfigValues.TableToList(OriginAreaCodes), JsonRequestBehavior.AllowGet);
+            var originAreaCodes = BusinessLayer.GetCompanyAreasZipCodes(CompanyId, serviceId, areaCode);
+            return Json(ConfigValues.TableToList(originAreaCodes), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -67,7 +70,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
             return result;
@@ -90,7 +93,7 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
             return result;

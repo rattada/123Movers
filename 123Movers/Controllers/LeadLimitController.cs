@@ -9,22 +9,24 @@ using System.Web.Mvc;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// Lead Limit Controller
+    /// </summary>
     public class LeadLimitController : BaseController
     {
-        private static ILog logger = LogManager.GetLogger(typeof(LeadLimitController));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(LeadLimitController));
 
         /// <summary>
         /// Display the Leads Information of the Company
         /// </summary>
+        /// <param name="companyId">Company Id</param>
         /// <param name="serviceId">Type of the Service(Local, Long Or Both)</param>
         [HttpGet]
-        public ActionResult LeadLimit(int? companyID, int? serviceId)
+        public ActionResult LeadLimit(int? companyId, int? serviceId)
         {
 
-            LeadLimitModel model = new LeadLimitModel();
-
-            model = BusinessLayer.GetCompanyLeadLimit(companyID, serviceId);
-            model._companyInfo = RetrieveCurrentCompanyInfo(companyID);
+            var model = BusinessLayer.GetCompanyLeadLimit(companyId, serviceId);
+            model._companyInfo = RetrieveCurrentCompanyInfo(companyId);
             model.ServiceId = serviceId;
             
             return View(model);
@@ -37,22 +39,20 @@ namespace _123Movers.Controllers
         [HttpPost]
         public JsonResult LeadLimit( List<List<LeadLimitModel>> leadlimit)
         {
-
             JsonResult result;
             try
             {
-
                 foreach (var ld in leadlimit)
                 {
                    ld[0].CompanyId = CompanyId;
-                    BusinessLayer.AddCompanyLeadLimit(ld[0]);
+                   BusinessLayer.AddCompanyLeadLimit(ld[0]);
                 }
                 ModelState.Clear();
                 result = Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                Logger.Error(ex.ToString());
                 result = Json(new { success = false, message = "An error occurred while saving." + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 

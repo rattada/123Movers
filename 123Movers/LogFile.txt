@@ -225,3 +225,19 @@
    at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
    at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
 
+2014-09-18 16:05:44,177 [54] ERROR _123Movers.Controllers.HomeController – System.NullReferenceException: Object reference not set to an instance of an object.
+   at _123Movers.DataEntities.DataLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.DataEntities\DataLayer.cs:line 45
+   at _123Movers.BusinessEntities.BusinessLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.BusinessEntities\BusinessLayer.cs:line 34
+   at _123Movers.Controllers.HomeController.Search(SearchModel search) in d:\Movers123\123Movers\123Movers\Controllers\HomeController.cs:line 41
+2014-09-18 16:06:15,142 [54] ERROR _123Movers.Controllers.HomeController – System.NullReferenceException: Object reference not set to an instance of an object.
+   at _123Movers.DataEntities.DataLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.DataEntities\DataLayer.cs:line 45
+   at _123Movers.BusinessEntities.BusinessLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.BusinessEntities\BusinessLayer.cs:line 34
+   at _123Movers.Controllers.HomeController.Search(SearchModel search) in d:\Movers123\123Movers\123Movers\Controllers\HomeController.cs:line 41
+2014-09-18 16:06:40,525 [54] ERROR _123Movers.Controllers.HomeController – System.NullReferenceException: Object reference not set to an instance of an object.
+   at _123Movers.DataEntities.DataLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.DataEntities\DataLayer.cs:line 45
+   at _123Movers.BusinessEntities.BusinessLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.BusinessEntities\BusinessLayer.cs:line 34
+   at _123Movers.Controllers.HomeController.Search(SearchModel search) in d:\Movers123\123Movers\123Movers\Controllers\HomeController.cs:line 41
+2014-09-18 16:07:21,967 [55] ERROR _123Movers.Controllers.HomeController – System.NullReferenceException: Object reference not set to an instance of an object.
+   at _123Movers.DataEntities.DataLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.DataEntities\DataLayer.cs:line 45
+   at _123Movers.BusinessEntities.BusinessLayer.SearchCompany(SearchModel search) in d:\Movers123\123Movers\123Movers.BusinessEntities\BusinessLayer.cs:line 34
+   at _123Movers.Controllers.HomeController.Search(SearchModel search) in d:\Movers123\123Movers\123Movers\Controllers\HomeController.cs:line 41

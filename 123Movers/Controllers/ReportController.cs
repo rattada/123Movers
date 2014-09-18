@@ -7,12 +7,22 @@ using _123Movers.Models;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ReportController : BaseController
     {
-        public ActionResult Reports(CompanyModel _companyInfo)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="companyInfo"></param>
+        /// <returns></returns>
+        public ActionResult Reports(CompanyModel companyInfo)
         {
-            ReportModel report = new ReportModel();
-            report._companyInfo = _companyInfo;
+            var report = new ReportModel
+                {
+                    _companyInfo = companyInfo
+                };
             return View(report);
         }
 

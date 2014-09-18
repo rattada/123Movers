@@ -1,11 +1,7 @@
 ﻿using _123Movers.Models;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using _123Movers.Entity;
 
 namespace _123Movers.DataEntities
 {
@@ -13,46 +9,44 @@ namespace _123Movers.DataEntities
     {
         public static List<List<string>> GetAvailableAreas(int? companyId, int? serviceId)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_GET_AVAILABLE_AREAS; 
-                                
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_GET_AVAILABLE_AREAS
+                    };
 
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
 
-                DataTable dtResults = new DataTable();
+                var dtResults = new DataTable();
 
-                SqlDataReader drResults = _cmd.ExecuteReader();
+                var drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
-                return ConfigValues.TableToList(dtResults); ;
+                return ConfigValues.TableToList(dtResults); 
             }
         }
 
         public static DataTable GetCompanyAreasWithPrices(int? companyId, int? serviceId)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_GET_COMPANY_STATE_AREACODE_PRICE; 
-               
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = System.Data.CommandType.StoredProcedure,
+                        CommandText = Constants.SP_GET_COMPANY_STATE_AREACODE_PRICE
+                    };
 
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
 
-                DataTable dtResults = new DataTable();
+                var dtResults = new DataTable();
 
-                SqlDataReader drResults = _cmd.ExecuteReader();
+                var drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
                 return dtResults;
@@ -62,66 +56,59 @@ namespace _123Movers.DataEntities
 
         public static void AddCompanyAreaCodes(int? companyId, int? serviceId, string areaCodes)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY_AREACODE_ADD;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_AREACODE_ADD
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramAreaCode = new SqlParameter("areacodes", areaCodes);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
+                _cmd.Parameters.AddWithValue("areacodes", areaCodes);
 
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
-                _cmd.Parameters.Add(paramAreaCode);
-
-                var i = _cmd.ExecuteNonQuery();
-
+                _cmd.ExecuteNonQuery();
             }
         }
 
 
         public static void DeleteCompanyAreaCodes(int? companyId, int? serviceId, string areaCodes)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY_AREACODE_DELETE;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = System.Data.CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_AREACODE_DELETE
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramAreaCode = new SqlParameter("areaCodes", areaCodes);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
+                _cmd.Parameters.AddWithValue("areacodes", areaCodes);
 
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
-                _cmd.Parameters.Add(paramAreaCode);
-                var i = _cmd.ExecuteNonQuery();
+                 _cmd.ExecuteNonQuery();
 
             }
         }
 
         public static bool AddCompanyPricePerLead(int? companyId, int? serviceId, string areaCodes, int? moveWeightId)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_ADD_COMPANY_PRICE_PERLEAD;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = System.Data.CommandType.StoredProcedure,
+                        CommandText = Constants.SP_ADD_COMPANY_PRICE_PERLEAD
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramAreaCode = new SqlParameter("areacodes", areaCodes);
-                SqlParameter paramMoveWeight = new SqlParameter("moveWeightID", moveWeightId);
-
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
-                _cmd.Parameters.Add(paramAreaCode);
-                _cmd.Parameters.Add(paramMoveWeight);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
+                _cmd.Parameters.AddWithValue("areacodes", areaCodes);
+                _cmd.Parameters.AddWithValue("moveWeightID", moveWeightId);
 
                 _cmd.ExecuteNonQuery();
             }

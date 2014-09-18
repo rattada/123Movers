@@ -11,10 +11,13 @@ using log4net;
 
 namespace _123Movers.Controllers
 {
+    /// <summary>
+    /// Home Controller
+    /// </summary>
     [Authorize]
     public class HomeController : BaseController
     {
-        private static ILog logger = LogManager.GetLogger(typeof(HomeController)); 
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(HomeController)); 
 
         /// <summary>
         /// Get Method
@@ -42,8 +45,8 @@ namespace _123Movers.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
-                ModelState.AddModelError("", ex.Message);
+                Logger.Error(ex.ToString());
+                ModelState.AddModelError("Error", ex.Message);
             }
             return View(search);
         }
@@ -51,23 +54,23 @@ namespace _123Movers.Controllers
         /// <summary>
         /// Get All budgets for company
         /// </summary>
-        /// <param name="Company">Company Details</param>
+        /// <param name="company">Company Details</param>
         /// <returns>List Of BudgetModel</returns>
         [HttpGet]
-        public ActionResult GetBudget(CompanyModel Company)
+        public ActionResult GetBudget(CompanyModel company)
         {
-            BudgetModel budget = new BudgetModel();
+            var budget = new BudgetModel();
 
             //Store CompanyId in cookie for use entire application
-            SaveCompanyId(Company.CompanyId);
+            SaveCompanyId(company.CompanyId);
             //Store Company Information in Session for use entire application
-            SaveCompanyInfo(Company);
+            SaveCompanyInfo(company);
 
-            var _currentBudgets = BusinessLayer.GetCureentBudgets(CompanyId);
-            var _pastBudgets = BusinessLayer.GetPastBudgets(CompanyId);
+            var currentBudgets = BusinessLayer.GetCureentBudgets(CompanyId);
+            var pastBudgets = BusinessLayer.GetPastBudgets(CompanyId);
 
-            budget._currentBudgets = _currentBudgets;
-            budget._pastBudgets = _pastBudgets;
+            budget._currentBudgets = currentBudgets;
+            budget._pastBudgets = pastBudgets;
 
             budget._companyInfo = CompanyInfo;
 

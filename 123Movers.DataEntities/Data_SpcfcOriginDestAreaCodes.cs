@@ -1,10 +1,7 @@
 ﻿using _123Movers.Models;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace _123Movers.DataEntities
 {
@@ -14,44 +11,39 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY_SPCFC_AVAIL_ORIGINDEST_AREACODE_GET; 
-                                
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_SPCFC_AVAIL_ORIGINDEST_AREACODE_GET
+                    };
 
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
 
-                DataTable dtResults = new DataTable();
+                var dtResults = new DataTable();
 
-                SqlDataReader drResults = _cmd.ExecuteReader();
+                var drResults = _cmd.ExecuteReader();
                 dtResults.Load(drResults);
 
                 return ConfigValues.TableToList(dtResults);
-
             }
         }
         public static void AddCompanySpcfcOriginDestAreaCodes(int? companyId, int? serviceId, int spcfcareacode, string areaCodes)
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_ADD;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_ADD
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramSpecificAreaCode = new SqlParameter("originAreaCode", spcfcareacode);
-                SqlParameter paramAreaCode = new SqlParameter("destAreaCodes", areaCodes);
-
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
-                _cmd.Parameters.Add(paramAreaCode);
-                _cmd.Parameters.Add(paramSpecificAreaCode);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId);
+                _cmd.Parameters.AddWithValue("originAreaCode", spcfcareacode);
+                _cmd.Parameters.AddWithValue("destAreaCodes", areaCodes);
 
                 _cmd.ExecuteNonQuery();
             }
@@ -60,20 +52,18 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_DELETE;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_DELETE
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId);
-                SqlParameter paramAreaCode = new SqlParameter("destAreaCodes", areaCodes);
-                SqlParameter paramSpecificAreaCode = new SqlParameter("originAreaCode", spcfcareacode);
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
-                _cmd.Parameters.Add(paramAreaCode);
-                _cmd.Parameters.Add(paramSpecificAreaCode);
-
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId);
+                _cmd.Parameters.AddWithValue("destAreaCodes", areaCodes);
+                _cmd.Parameters.AddWithValue("originAreaCode", spcfcareacode);
+ 
                 _cmd.ExecuteNonQuery();
             }
         }
@@ -81,24 +71,22 @@ namespace _123Movers.DataEntities
         {
             using (SqlConnection dbCon = ConnectToDb())
             {
-                _cmd = new SqlCommand();
-                _cmd.Connection = dbCon;
-                _cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                _cmd.CommandText = Constants.SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_GET;
+                _cmd = new SqlCommand
+                    {
+                        Connection = dbCon,
+                        CommandType = CommandType.StoredProcedure,
+                        CommandText = Constants.SP_COMPANY_SPCFC_ORIGINDEST_AREACODE_GET
+                    };
 
-                SqlParameter paramCompanyId = new SqlParameter("companyID", companyId);
-                SqlParameter paramService = new SqlParameter("serviceID", serviceId.IfServiceNullLocal());
-                SqlParameter paramSpcfcAreacode = new SqlParameter("areaCode", spfcfAreaCode);
+                _cmd.Parameters.AddWithValue("companyID", companyId);
+                _cmd.Parameters.AddWithValue("serviceID", serviceId.IfServiceNullLocal());
+                _cmd.Parameters.AddWithValue("areaCode", spfcfAreaCode);
 
-                _cmd.Parameters.Add(paramCompanyId);
-                _cmd.Parameters.Add(paramService);
-                _cmd.Parameters.Add(paramSpcfcAreacode);
+                var dtResults = new DataTable();
 
-                DataTable dtResults = new DataTable();
+                var da = new SqlDataAdapter(_cmd);
 
-                SqlDataAdapter da = new SqlDataAdapter(_cmd);
-
-                DataSet ds = new DataSet();
+                var ds = new DataSet();
                 da.Fill(ds);
                 
                 return ConfigValues.DataSetToList(ds);
