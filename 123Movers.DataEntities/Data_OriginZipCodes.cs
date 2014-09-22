@@ -10,7 +10,7 @@ namespace _123Movers.DataEntities
     {
         public static DataTable GetAvailableZipCodes(int? companyId, int? serviceId, int? areaCode)
         {
-            using (SqlConnection dbCon = ConnectToDb())
+            using (var dbCon = ConnectToDb())
             {
                 _cmd = new SqlCommand
                     {

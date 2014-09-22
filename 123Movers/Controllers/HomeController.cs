@@ -72,5 +72,15 @@ namespace _123Movers.Controllers
             return View(budget);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="searchstring"></param>
+        /// <returns></returns>
+        public JsonResult AutocompleteSuggestions(string searchstring)
+        {
+            return Json(BusinessLayer.AutocompleteSuggestions(searchstring), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

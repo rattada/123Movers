@@ -232,6 +232,13 @@
             <param name="company">Company Details</param>
             <returns>List Of BudgetModel</returns>
         </member>
+        <member name="M:_123Movers.Controllers.HomeController.AutocompleteSuggestions(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="searchstring"></param>
+            <returns></returns>
+        </member>
         <member name="T:_123Movers.Controllers.LeadLimitController">
             <summary>
             Lead Limit Controller

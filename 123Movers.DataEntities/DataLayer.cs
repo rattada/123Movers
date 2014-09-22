@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using _123Movers.Entity;
 using _123Movers.Models;
 
 namespace _123Movers.DataEntities
@@ -95,6 +96,18 @@ namespace _123Movers.DataEntities
             }
 
             return company;
+        }
+        public static List<CompanyModel> AutocompleteSuggestions(string searchstring)
+        {
+            using (var db=new MoversDBEntities())
+            {
+                return (from r in db.CompanyMain
+                         where r.companyName.ToLower().Contains(searchstring.ToLower())
+                         select new CompanyModel()
+                             {
+                                 CompanyName = r.companyName
+                             }).ToList();
+            }
         }
     }
 }

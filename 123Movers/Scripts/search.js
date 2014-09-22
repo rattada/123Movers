@@ -14,6 +14,37 @@
             $("body").mask('Searching...');
 
     });
+    
+    //auto complete by company name
+    $('#CompanyName').autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "/Home/AutocompleteSuggestions",
+                type: 'GET',
+                cache: false,
+                dataType: 'json',
+                data: { searchstring: request.term },
+                success: function (json) {
+                    // call autocomplete callback method with results 
+                    response($.map(json, function (data) {
+                        return {
+                            label: data.CompanyName,
+                            value: data.CompanyName
+                        };
+                    }));
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrown) {
+                    console.log('some error occured', textStatus, errorThrown);
+                }
+            });
+        },
+        minLength: 5,
+        select: function (event, ui) {
+            $('#CompanyName').val(ui.item.label);
+            return false;
+        }
+    });
+
 
     $('.btnBudget').click(function () {
         $("body").mask('Loading...');
